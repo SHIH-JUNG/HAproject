@@ -1,0 +1,54 @@
+.ui-widget {
+    font-size: .8em;
+}
+.ui-datepicker {
+    width: 15.5em;
+}
+.ui-datepicker .ui-datepicker-title select {
+    font-size: .9em;
+}
+
+ .ui-datepicker select.ui-datepicker-year {
+    width: 40%;
+}
+.ui-datepicker select.ui-datepicker-month
+{
+    width: 40%;
+}
+.ui-widget-header {
+    border: none;
+    background: none;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default {
+    border: none;
+    background: none;
+}
+.ui-state-default:hover,.ui-widget-content .ui-state-default:hover
+{
+    background: #dadada url(images/ui-bg_glass_75_dadada_1x400.png) 50% 50% repeat-x;
+}
+
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
+    border: 1px solid rgb(250, 173, 6);
+    background: rgb(255 201 54) url(images/ui-bg_glass_55_fbf9ee_1x400.png) 50% 50% repeat-x;
+    color: rgb(255, 255, 255);
+}
+
+.ui-state-default:hover, .ui-widget-content .ui-state-default:hover {
+    background: none;
+	background-color: rgb(43, 167, 255);
+}
+
+
+#ui-datepicker-div
+{
+	margin-left: 0px;
+}
+
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, a.ui-button:active, .ui-button:active, .ui-button.ui-state-active:hover
+{
+	border: 1px solid rgb(26, 98, 214);
+    background: rgb(26, 98, 214) url(images/ui-bg_glass_55_fbf9ee_1x400.png) 50% 50% repeat-x;
+    color: rgb(255, 255, 255);
+}

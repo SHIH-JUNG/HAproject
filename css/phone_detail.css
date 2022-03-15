@@ -1,0 +1,156 @@
+span{
+	margin-right: 20px;
+}
+input{
+        height: 20pt;
+        font-size: 18pt;
+        display: inline-block;
+    	vertical-align: bottom;
+}
+select{
+    height: 20pt;
+    display: inline-block;
+    vertical-align: bottom;
+}
+input[type=checkbox]{
+    height: 10pt;
+    vertical-align: baseline;
+    margin-right: 5px;
+}
+input[type=radio]{
+    vertical-align: center;
+    margin-right: 5px;
+}
+input[type=file]{
+	height: 30pt;
+}
+input[type=date]{
+	width: 203px;
+}
+textarea {
+    resize:none;
+   	width: 60%;
+   	margin-top:10px;
+}
+article{
+	background-color:rgb(248, 214, 121);
+	margin-top:10px; 
+	margin-left: -10px;
+}
+.nolive{
+	white-space:nowrap;
+}
+.brand{
+	width: 230px;
+	float: left;
+	text-align:right;
+	padding-top:10px;	
+}
+.brand-content{
+	padding-top:10px;
+	margin-bottom:2px ;
+	background-color:rgb(248, 214, 121);
+}
+.content{
+	padding-left: 240px;
+}
+.component{
+	border-bottom: 1px dashed gray;
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+}
+.paragraph{
+	margin-left: 50px;
+}
+.top-space{
+	margin-top: 20px;
+}
+.bottom-space{
+	margin-bottom: 10px;
+}
+.space{
+	margin-left: 20px;
+}
+.reverse-space{
+	margin-left: -10px;
+}
+.check{
+	white-space:nowrap;
+}
+.box{
+	display: inline-block;
+	width: 390px;
+	border: 1px solid gray;
+	padding: 10px;
+}
+.subtitle{
+	display:inline-block;
+	background-color:rgb(248, 214, 121);
+	text-align: center;
+	width: 150px;
+	margin-right: 10px;
+}
+.subtitle2{
+	display:inline-block;
+	text-align: center;
+	margin-right: 10px;
+	background-color:#B9B9FF;
+}
+.subtitleH
+{
+	margin-bottom:2px ;
+	background-color:#B9B9FF;
+}
+.subcontent{
+	display: inline-block;
+}
+.tag{
+	text-align: center;
+	margin-bottom:2px ;
+	background-color:#B9B9FF;
+}
+#caseTop{
+	text-align: center;
+}
+#caseNumber{
+	margin-right: 28%;
+}
+#viewdate{
+	width:180px;
+}
+#firstBrand{
+	margin-top: 10px;
+}
+#contentOne{
+	padding-top: 10px;
+	margin-top: 20px;
+}
+#christ{
+	padding-bottom: 10px;
+	border:1px gray;
+	border-style:solid; 
+	margin-top:10px;
+	margin-bottom: 10px; 
+}
+#address input{
+	width:40%;
+}
+#contentTwo{
+	padding-top: 10px;
+	margin-top: 2px;
+}
+#preview{
+	max-width: 500px;
+	max-height: 500px;
+	min-width: 0px;
+	min-height: 0px;
+}
+#familyKnow{
+	margin-right: 20px;
+}
+#tag{
+	text-align: center;
+}
+#caseRemark,#uncomfor-content{
+    width: 40%;
+}

@@ -1,0 +1,550 @@
+<?php session_start(); ?>
+<?php include("database/check_authority.php"); ?>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!--網頁icon-->
+    <link rel="icon" href="image/HA.png" type="image/x-icon">
+    <!-- CSS-->
+    <link href="css/style.css" rel="stylesheet" />
+    <!--  notify  -->
+    <link href="css/notify/notyf.min.css" rel="stylesheet" />
+    <!--  sweetalert2  -->
+    <link href="css/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
+    <!-- ================== CSS bootstrap-select ================== -->
+    <link href="css/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
+    <!--  fullcalendar行事曆  -->
+    <link href='js/lib/main.css' rel='stylesheet' />
+    <!--  table  -->
+    <link rel="stylesheet" href="css/bootstrap-table.min.css">
+    <!--  時間24小時  -->
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+
+    <meta charset="UTF-8" />
+    <!--    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />-->
+    <meta name="description" content="快樂聯盟資管系統">
+    <meta name="author" content="HANG">
+    <title>個案管理系統</title>
+    <!--行事曆自動換行-->
+    <style>
+
+    </style>
+</head>
+<!--<SVG>引入bootstrap icon-->
+
+<body>
+    <!--讀取進度條-->
+    <div class="preloader-it">
+        <div class="la-anim-1"></div>
+    </div>
+    <!--/讀取進度條-->
+    <div class="wrapper">
+        <!-- 最上方導覽列 -->
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <a id="toggle_nav_btn" class="toggle-left-nav-btn inline-block mr-20 pull-left" href="javascript:void(0);">
+                <i><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-list" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+                    </svg></i>
+            </a>
+            <a href="index.php"><img class="brand-img pull-left" src="image/HA.png" /></a>
+            <a href="index.php"><img class="brand-img pull-left" src="image/logo字.png" /></a>
+            <ul class="nav navbar-right top-nav pull-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle pr-0" data-toggle="dropdown">歡迎 <?php echo $_SESSION['name']." ".$_SESSION['job']; ?><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-down-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                        </svg></a>
+                    <ul class="dropdown-menu user-auth-dropdown" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                        <li>
+                            <a href="#" id="Sign_out"><i><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-power" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M5.578 4.437a5 5 0 1 0 4.922.044l.5-.866a6 6 0 1 1-5.908-.053l.486.875z" />
+                                        <path fill-rule="evenodd" d="M7.5 8V1h1v7h-1z" />
+                                    </svg></i> 登出</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <!--/最上方導覽列-->
+        <!--左側導覽列-->
+        <div class="fixed-sidebar-left">
+            <ul class="nav navbar-nav side-nav nicescroll-bar">
+                <li>
+                    <!--class 設為active 被選中的大項目會為黑底-->
+                    <a href="javascript:void(0);" class="" data-toggle="collapse" data-target="#administration">行政管理
+                        <span class="pull-right">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-down-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                            </svg>
+                        </span>
+                    </a>
+                    <ul style="font-size:18px" id="administration" class="collapse">
+                        <li>
+                            <a href="received.php">收文
+                            </a>
+                        </li>
+                        <li>
+                            <a href="published.php">發文
+                            </a>
+                        </li>
+                        <li>
+                            <a href="staff_manag.php">員工管理
+                            </a>
+                        </li>
+                        <li>
+                            <a href="volunteer.php">志工資料
+                            </a>
+                        </li>
+                        <li>
+                            <a href="meeting_record.php">會議記錄
+                            </a>
+                        </li>
+                        <li>
+                            <a href="accounting_record.php">會計資料
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:void(0);" data-toggle="collapse" data-target="#case">個案管理
+                        <span class="pull-right">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-down-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                            </svg>
+                        </span>
+                    </a>
+                    <ul style="font-size:18px" id="case" class="collapse">
+                        <li>
+                            <a href="javascript:void(0);" class="" data-toggle="collapse" data-target="#non_open">未開案個案
+                                <span class="pull-right">
+                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-down-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                                    </svg>
+                                </span>
+                            </a>
+                            <ul style="font-size:15px" id="non_open" class="collapse">
+                                <li>
+                                    <li>
+                                        <a href="phone.php">諮詢個案
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="counsel.php">監所輔導
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="screening.php">篩檢
+                                        </a>
+                                    </li>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="current_case.php">開案個案
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">結案個案
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">生輔紀錄
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:void(0);" data-toggle="collapse" data-target="#plan">方案管理
+                        <span class="pull-right">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-down-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                            </svg>
+                        </span>
+                    </a>
+                    <ul style="font-size:18px" id="plan" class="collapse" data-toggle="collapse">
+                        <li>
+                            <a href="#">方案活動
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">方案計畫
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- <li>
+                    <a href="#">項目5</a>
+                </li>
+                <li>
+                    <a href="#">項目6</a>
+                </li>
+                <li>
+                    <a href="#" data-toggle="collapse" data-target="#track">項目7</a>
+                </li> -->
+                <li>
+                    <a href="Authority.html" data-toggle="collapse" data-target="#track">權限管理</a>
+                </li>
+            </ul>
+        </div>
+        <!--/左側導覽列-->
+        <!--網頁內容-->
+        <div class="page-wrapper">
+            <div class="container-fluid ">
+                <!--Title-->
+                <div class="row heading-bg  bg-green">
+                    <!--麵包屑-->
+                    <ol class="breadcrumb">
+                        <li><span>首頁</span></li>
+                    </ol>
+                    <!--/麵包屑-->
+                </div>
+                <!-- /Title -->
+                <!-- Footer -->
+                <footer class="footer container-fluid">
+                    <div class="row">
+                        <div class="col-sm-12 text-center">
+                            <p>Copyright &copy; 2020國立屏東科技大學資訊管理系</p>
+                        </div>
+                    </div>
+                </footer>
+                <!-- /Footer -->
+                <!-- /Title -->
+                <div class="row">
+                    <div style="zoom:80%" class="row text-center">
+                        <div class="col-sm-12">
+                            <div class="panel panel-default card-view">
+                                <div class="panel-wrapper collapse in">
+                                    <div class="panel-body">
+                                        <div class="table-wrap">
+                                            <div class="table-responsive">
+                                                <div class="text-center">訊息公告</div>
+                                                <table style="font-size:15px;font-family:新細明體;" class="text-center table-striped table-sm" id="ann_table" data-toggle="table" data-page-size=5 data-search="false" data-pagination="true" data-pagination-parts="[pageList]">
+                                                    <thead>
+                                                        <tr>
+                                                            <th data-width="65" data-width-unit="%">標題</th>
+                                                            <th data-width="20" data-width-unit="%">日期</th>
+                                                            <th data-width="15" data-width-unit="%">負責人</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="ann"></tbody>
+                                                </table>
+                                                <br>
+                                                <button style="font-size:15px" id="ann_add" class="btn btn-default"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
+                                                        <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z" />
+                                                        <path fill-rule="evenodd" d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5z" />
+                                                    </svg>新增</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="zoom:80%" class="row text-center">
+                        <div class="col-sm-12">
+                            <div class="panel panel-default card-view">
+                                <div class="panel-wrapper collapse in">
+                                    <div class="panel-body">
+                                        <div class="table-wrap">
+                                            <div class="table-responsive">
+                                                <div class="text-center">活動</div>
+                                                <table style="font-size:15px;font-family:新細明體;" class="text-center table-striped table-sm" data-toggle="table" data- data-page-size=5 data-search="false" data-pagination="true" data-pagination-parts="[pageList]">
+                                                    <thead>
+                                                        <tr>
+                                                            <th data-width="65" data-width-unit="%">標題</th>
+                                                            <th data-width="20" data-width-unit="%">日期</th>
+                                                            <th data-width="15" data-width-unit="%">負責人</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="sign_info"></tbody>
+                                                </table>
+                                                <br>
+                                                <button style="font-size:15px" id="event_add" class="btn btn-default"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
+                                                        <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z" />
+                                                        <path fill-rule="evenodd" d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5z" />
+                                                    </svg>新增</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="zoom:80%" class="row text-center">
+                        <div class="col-sm-12">
+                            <div class="panel panel-default card-view">
+                                <div class="panel-wrapper collapse in">
+                                    <div class="panel-body">
+                                        <div class="table-wrap">
+                                            <div class="table-responsive">
+                                                <div class="text-center">社工訪視</div>
+                                                <table style="font-size:15px;font-family:新細明體;" class="text-center table-hover table-striped table-sm" data-toggle="table" data- data-page-size=5 data-search="false" data-pagination="true" data-pagination-parts="[pageList]">
+                                                    <thead>
+                                                        <tr>
+                                                            <th data-width="65" data-width-unit="%">標題</th>
+                                                            <th data-width="20" data-width-unit="%">日期</th>
+                                                            <th data-width="15" data-width-unit="%">負責人</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="sign_check"></tbody>
+                                                </table>
+                                                <br>
+                                                <button style="font-size:15px" id="visit_add" class="btn btn-default"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
+                                                        <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z" />
+                                                        <path fill-rule="evenodd" d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5z" />
+                                                    </svg>新增</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="zoom:80%" class="row text-center">
+                        <div class="col-sm-12">
+                            <div class="panel panel-default card-view">
+                                <div class="panel-wrapper collapse in">
+                                    <div class="panel-body">
+                                        <div class="table-wrap">
+                                            <div class="table-responsive">
+                                                <div class="text-center">請假</div>
+                                                <table style="font-size:15px;font-family:新細明體;" class="text-center table-hover table-striped table-sm" data-toggle="table" data- data-page-size=5 data-search="false" data-pagination="true" data-pagination-parts="[pageList]">
+                                                    <thead>
+                                                        <tr>
+                                                            <th data-width="65" data-width-unit="%">標題</th>
+                                                            <th data-width="20" data-width-unit="%">日期</th>
+                                                            <th data-width="15" data-width-unit="%">負責人</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="sign_check"></tbody>
+                                                </table>
+                                                <br>
+                                                <button style="font-size:15px" id="dayoff_add" class="btn btn-default"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
+                                                        <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z" />
+                                                        <path fill-rule="evenodd" d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5z" />
+                                                    </svg>新增</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="panel panel-default card-view">
+                            <div class="panel-wrapper collapse in">
+                                <div class="panel-body">
+                                    <div class="table-wrap">
+                                        <div class="table-responsive">
+                                            <div class="text-center">
+                                                <h4>行事曆</h4>
+                                            </div>
+                                            <div id='calendar'></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/網頁內容-->
+            <!--浮動視窗(add)-->
+            <div class="modal fade" id="add" data-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="exampleModalLabel">新增行事曆</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-sm-12 text-center">
+                                    <input class="col-sm-12" id="title" type="text" placeholder="請輸入標題" required="required">
+                                </div>
+                                <div class="col-sm-12 text-center">
+                                    <textarea class="col-sm-12" id="description" style="height:100px;margin-top:5px;resize: none" type="text" placeholder="請輸入內容" required="required"></textarea>
+                                </div>
+                                <div class="col-sm-12 text-center">
+                                    <div class="col-sm-12">
+                                        <label>開始時間</label>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div id="test" class="input-group date form_datetime" data-date-format="yyyy-mm-dd hh:ii" data-link-field="dtp_input1">
+                                            <input id="start" class="form-control" type="text" value="" readonly>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="end_time" class="col-sm-12 text-center">
+                                    <div class="col-sm-12">
+                                        <label>結束時間</label>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="input-group date form_datetime" data-date="" data-date-format="yyyy-mm-dd hh:ii" data-link-field="dtp_input2">
+                                            <input id="end" class="form-control" type="text" value="" readonly>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button id="cancel" type="button" class="btn btn-default" data-dismiss="modal" onclick="cancel()">取消</button>
+                            <button id="add_new_note" type="button" class="btn btn-primary">新增</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/浮動視窗-->
+            <!--浮動視窗(update)-->
+            <div class="modal fade" id="update_delete" data-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="exampleModalLabel">修改行事曆</h4>
+                        </div>
+                        <div class="modal-body">
+<!--                            <form method="post" id="form_add">-->
+                                <div class="row">
+                                    <div class="col-sm-12 text-center">
+                                        <input class="col-sm-12" id="up_title" type="text">
+                                    </div>
+                                    <div class="col-sm-12 text-center">
+                                        <textarea class="col-sm-12" id="up_description" style="height:100px;margin-top:5px;resize: none" type="text"></textarea>
+                                    </div>
+                                    <div class="col-sm-12 text-center">
+                                        <a id="site"><button id="btn" hidden>連結至個案</button></a>
+                                    </div>
+                                    <div id="start_time" class="col-sm-12 text-center">
+                                        <div class="col-sm-12">
+                                            <label>開始時間</label>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="input-group date form_datetime" data-date="" data-date-format="yyyy-mm-dd hh:ii" data-link-field="dtp_input3">
+                                                <input id="up_start" class="form-control" type="text" value="" readonly>
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="end_time" class="col-sm-12 text-center">
+                                        <div class="col-sm-12">
+                                            <label>結束時間</label>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="input-group date form_datetime" data-date="" data-date-format="yyyy-mm-dd hh:ii" data-link-field="dtp_input4">
+                                                <input id="up_end" class="form-control" type="text" value="" readonly>
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="end_time" class="col-sm-12 text-center">
+                                        <div class="col-sm-12">
+                                            <label>登錄人:</label><span id="publisher"></span>
+                                        </div>
+                                    </div>
+                                </div>
+<!--                            </form>-->
+                        </div>
+                        <div class="modal-footer">
+                            <div class="text-left col-sm-6">
+                                <button id="up_delete" type="button" class="btn btn-danger">刪除</button>
+                            </div>
+                            <div class="text-right col-sm-6">
+                                <button id="up_cancel" type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                <button id="up_note" type="button" class="btn btn-primary">修改</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/浮動視窗-->
+            <!--浮動視窗(add_ann)-->
+            <div class="modal fade" id="add_ann_m" data-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="exampleModalLabel">新增公告</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-sm-12 text-center">
+                                    <label>標題</label>
+                                </div>
+                                <div class="col-sm-12 text-center">
+                                    <input class="col-sm-12" id="ann_title" placeholder="請輸入標題" type="text">
+                                </div>
+                                <div class="col-sm-12 text-center">
+                                    <label>權限等級</label>
+                                </div>
+                                <div class="col-sm-12 text-center">
+                                    <select class="col-sm-12" id="ann_authority">
+                                        <option value="1">1-社工</option>
+                                        <option value="2">2-組長</option>
+                                        <option value="3">3-主任</option>
+                                        <option value="4">4-執行長</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="text-center col-sm-12">
+                                <button id="ann_cancel" type="button" class="btn btn-default" data-dismiss="modal" onclick="ann_cancel()">取消</button>
+                                <button id="add_new_ann" type="button" class="btn btn-primary">新增</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/浮動視窗(add_ann)-->
+        </div>
+    </div>
+    <!-- /#wrapper -->
+    <!-- JavaScript -->
+    <!-- Bootstrap and jQuery -->
+    <script src="javascript/jquery.min.js"></script>
+    <script src="javascript/bootstrap.min.js"></script>
+    <!-- 表格 JavaScript -->
+    <script src="javascript/jquery.dataTables.min.js"></script>
+    <script src="javascript/dataTables-data.js"></script>
+    <!-- 滾動條 JavaScript -->
+    <script src="javascript/jquery.slimscroll.js"></script>
+    <!-- Fancy Dropdown JS -->
+    <script src="javascript/dropdown-bootstrap-extended.js"></script>
+    <!-- Init -->
+    <script src="javascript/init.js"></script>
+    <!-- ================== JS notify控制 ================== -->
+    <script src="javascript/notify/notyf.min.js"></script>
+    <!-- ================== JS sweetalert2 ================== -->
+    <script src="javascript/sweetalert2/sweetalert2.min.js"></script>
+    <!-- ================== JS IE sweetalert ================== -->
+    <script src="javascript/sweetalert2/core-js.js"></script>
+    <!-- ================== JQ cookie.js ================== -->
+    <script src="javascript/cookie/js.cookie-2.1.3.min.js"></script>
+    <!-- ================== 行事曆 ================== -->
+    <script src='js/lib/main.js'></script>
+    <!-- ================== 行事曆設定 ================== -->
+    <script src='js/fullcalendar.js'></script>
+    <!-- ================== 登出設定 ================== -->
+    <script src='js/logout.js'></script>
+    <!-- ================== moment ================== -->
+    <script src='javascript/moment.min.js'></script>
+    <!-- ================== table ================== -->
+    <script src="javascript/bootstrap-table.min.js"></script>
+    <script src="javascript/bootstrap-table-zh-TW.min.js"></script>
+    <!-- ================== announcement ================== -->
+    <script src="js/index.js"></script>
+    <!--     ==================  時間24小時 ================== -->
+    <script type="text/javascript" src="js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="js/bootstrap-datetimepicker.zh-TW.js" charset="UTF-8"></script>
+
+</body>
+
+</html>
