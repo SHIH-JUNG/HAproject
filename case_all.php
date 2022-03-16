@@ -417,12 +417,12 @@
                                                                         <th>檔案名稱</th>
                                                                         <th>前/中/後測</th>
                                                                         <th>備註</th>
-                                                                        <tbody id="new_store2"></tbody>
+                                                                        <tbody id="sullen_full_add"></tbody>
                                                                     </table>
                                                            </div>
                                                             </div>
                                                         </div>
-                                                        <button id="btn-upload2" class="btn btn-default">新增</button>
+                                                        <button id="sullen_add_new" class="btn btn-default" onclick="form_upload_new(this)">新增</button>
                                                         <button onclick="location.reload();" class="btn btn-default">返回</button>
                                                     </div>
                                                 </div>
@@ -535,7 +535,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <button id="BSRS5_add_new" class="btn btn-default" onclick="form_add_new(this)">新增</button>
+                                                        <button id="BSRS5_add_new" class="btn btn-default" onclick="form_BSRS5_add_new(this)">新增</button>
                                                         <button onclick="location.reload();" class="btn btn-default">返回</button>
                                                     </div>
                                                 </div>

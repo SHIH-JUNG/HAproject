@@ -396,12 +396,15 @@ CREATE TABLE `form_all_info` (
   `Case_id` int(30) NOT NULL,
   `Case_name` varchar(20) NOT NULL,
   `Case_pid` varchar(50) NOT NULL,
+  `Is_upload` tinyint(1) NOT NULL,
   `Url` varchar(2000) NOT NULL,
+  `Upload_path` varchar(1000) NOT NULL,
   `Number` int(10) NOT NULL,
   `Form_name` varchar(30) NOT NULL,
   `Fillin_date` date NOT NULL,
   `Remark` varchar(200) NOT NULL,
   `Other_info` varchar(1000) NOT NULL,
+  `Upload_info` varchar(2000) NOT NULL,
   `Create_date` datetime NOT NULL,
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime NOT NULL,
@@ -412,16 +415,19 @@ CREATE TABLE `form_all_info` (
 -- 傾印資料表的資料 `form_all_info`
 --
 
-INSERT INTO `form_all_info` (`Id`, `Phone_id`, `Case_id`, `Case_name`, `Case_pid`, `Url`, `Number`, `Form_name`, `Fillin_date`, `Remark`, `Other_info`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
-(1, 2, 1, 'Allen', 'B1238475', 'case_detail.php?name=Allen&pid=B1238475&date=2021-11-25&grade=A&property=%E7%A4%BE%E5%8D%80&type=%E6%84%9B%E6%BB%8B%E6%84%9F%E6%9F%93%E8%80%85&id=2&open_id=1&addition=K%E4%BB%96%E5%91%BD&age=36&gender=%E7%94%B7', 0, 'case', '2022-02-23', 'test12313', '\"[{\"name\":\"case\",\"value\":\"暫不結案，持續服務至民國110年3月1日\"}]\"', '2022-02-23 00:00:00', '園主任', '2022-02-23 17:37:38', '園主任'),
-(2, 2, 1, 'Allen', 'B1238475', 'case_detail.php?name=Allen&pid=B1238475&date=2021-11-25&grade=A&property=%E7%A4%BE%E5%8D%80&type=%E6%84%9B%E6%BB%8B%E6%84%9F%E6%9F%93%E8%80%85&id=2&open_id=1&addition=K%E4%BB%96%E5%91%BD&age=36&gender=%E7%94%B7', 1, 'case', '2022-02-25', '', '\"[{\"name\":\"case\",\"value\":\"暫不結案，持續服務至民國109年12月1日\"}]\"', '2022-02-23 00:00:00', '園主任', '2022-02-23 17:36:34', '園主任'),
-(3, 2, 1, 'Allen', 'B1238475', 'case_detail.php?name=Allen&pid=B1238475&date=2021-11-25&grade=A&property=%E7%A4%BE%E5%8D%80&type=%E6%84%9B%E6%BB%8B%E6%84%9F%E6%9F%93%E8%80%85&id=2&open_id=1&addition=K%E4%BB%96%E5%91%BD&age=36&gender=%E7%94%B7', 2, 'case', '2022-02-04', 'test121', '', '2022-02-23 00:00:00', '園主任', '0000-00-00 00:00:00', ''),
-(4, 2, 1, 'Allen', 'B1238475', 'case_detail.php?name=Allen&pid=B1238475&date=2021-11-25&grade=A&property=%E7%A4%BE%E5%8D%80&type=%E6%84%9B%E6%BB%8B%E6%84%9F%E6%9F%93%E8%80%85&id=2&open_id=1&addition=K%E4%BB%96%E5%91%BD&age=36&gender=%E7%94%B7', 0, 'life', '2022-02-23', 'test122', '\"[{\"name\":\"life\",\"value\":\"前測\"}]\"', '2022-02-23 00:00:00', '園主任', '2022-02-23 18:03:44', '園主任'),
-(5, 2, 1, 'Allen', 'B1238475', 'case_detail.php?name=Allen&pid=B1238475&date=2021-11-25&grade=A&property=%E7%A4%BE%E5%8D%80&type=%E6%84%9B%E6%BB%8B%E6%84%9F%E6%9F%93%E8%80%85&id=2&open_id=1&addition=K%E4%BB%96%E5%91%BD&age=36&gender=%E7%94%B7', 0, 'employment_satif', '2022-02-23', '123', '\"[{\"name\":\"employment_satif\",\"value\":\"0\"}]\"', '2022-02-23 00:00:00', '園主任', '2022-02-23 18:04:22', '園主任'),
-(6, 2, 1, 'Allen', 'B1238475', 'case_detail.php?name=Allen&pid=B1238475&date=2021-11-25&grade=A&property=%E7%A4%BE%E5%8D%80&type=%E6%84%9B%E6%BB%8B%E6%84%9F%E6%9F%93%E8%80%85&id=2&open_id=1&addition=K%E4%BB%96%E5%91%BD&age=36&gender=%E7%94%B7', 0, 'satif', '2022-02-23', '', '\"[{\"name\":\"satif\",\"value\":\"35\"}]\"', '2022-02-23 00:00:00', '園主任', '2022-02-23 18:05:05', '園主任'),
-(7, 2, 1, 'Allen', 'B1238475', 'case_detail.php?name=Allen&pid=B1238475&date=2021-11-25&grade=A&property=%E7%A4%BE%E5%8D%80&type=%E6%84%9B%E6%BB%8B%E6%84%9F%E6%9F%93%E8%80%85&id=2&open_id=1&addition=K%E4%BB%96%E5%91%BD&age=36&gender=%E7%94%B7', 0, 'familyship', '2022-02-23', '', '\"[{\"name\":\"familyship\",\"value\":\"36\"},{\"name\":\"familyship\",\"value\":\"前測\"}]\"', '2022-02-23 00:00:00', '園主任', '2022-02-23 18:08:05', '園主任'),
-(8, 2, 1, 'Allen', 'B1238475', 'case_detail.php?name=Allen&pid=B1238475&date=2021-11-25&grade=A&property=%E7%A4%BE%E5%8D%80&type=%E6%84%9B%E6%BB%8B%E6%84%9F%E6%9F%93%E8%80%85&id=2&open_id=1&addition=K%E4%BB%96%E5%91%BD&age=36&gender=%E7%94%B7', 0, 'settlement', '2022-02-23', '', '\"[{\"name\":\"settlement\",\"value\":\"符合基本條件指標條件共2項，符合收案指標條件共4項。\"}]\"', '2022-02-23 00:00:00', '園主任', '2022-02-23 18:11:23', '園主任'),
-(9, 2, 1, 'Allen', 'B1238475', 'case_detail.php?name=Allen&pid=B1238475&date=2021-11-25&grade=A&property=%E7%A4%BE%E5%8D%80&type=%E6%84%9B%E6%BB%8B%E6%84%9F%E6%9F%93%E8%80%85&id=2&open_id=1&addition=K%E4%BB%96%E5%91%BD&age=36&gender=%E7%94%B7', 0, 'health', '2022-02-11', '2022/03/01', '', '2022-03-01 00:00:00', '園主任', '0000-00-00 00:00:00', '');
+INSERT INTO `form_all_info` (`Id`, `Phone_id`, `Case_id`, `Case_name`, `Case_pid`, `Is_upload`, `Url`, `Upload_path`, `Number`, `Form_name`, `Fillin_date`, `Remark`, `Other_info`, `Upload_info`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
+(1, 2, 1, 'Allen', 'B1238475', 0, 'case_detail.php?name=Allen&pid=B1238475&date=2021-11-25&grade=A&property=%E7%A4%BE%E5%8D%80&type=%E6%84%9B%E6%BB%8B%E6%84%9F%E6%9F%93%E8%80%85&id=2&open_id=1&addition=K%E4%BB%96%E5%91%BD&age=36&gender=%E7%94%B7', '', 0, 'case', '2022-02-23', 'test12313', '\"[{\"name\":\"case\",\"value\":\"暫不結案，持續服務至民國110年3月1日\"}]\"', '', '2022-02-23 00:00:00', '園主任', '2022-02-23 17:37:38', '園主任'),
+(2, 2, 1, 'Allen', 'B1238475', 0, 'case_detail.php?name=Allen&pid=B1238475&date=2021-11-25&grade=A&property=%E7%A4%BE%E5%8D%80&type=%E6%84%9B%E6%BB%8B%E6%84%9F%E6%9F%93%E8%80%85&id=2&open_id=1&addition=K%E4%BB%96%E5%91%BD&age=36&gender=%E7%94%B7', '', 1, 'case', '2022-02-25', '', '\"[{\"name\":\"case\",\"value\":\"暫不結案，持續服務至民國109年12月1日\"}]\"', '', '2022-02-23 00:00:00', '園主任', '2022-02-23 17:36:34', '園主任'),
+(3, 2, 1, 'Allen', 'B1238475', 0, 'case_detail.php?name=Allen&pid=B1238475&date=2021-11-25&grade=A&property=%E7%A4%BE%E5%8D%80&type=%E6%84%9B%E6%BB%8B%E6%84%9F%E6%9F%93%E8%80%85&id=2&open_id=1&addition=K%E4%BB%96%E5%91%BD&age=36&gender=%E7%94%B7', '', 2, 'case', '2022-02-04', 'test121', '', '', '2022-02-23 00:00:00', '園主任', '0000-00-00 00:00:00', ''),
+(4, 2, 1, 'Allen', 'B1238475', 0, 'case_detail.php?name=Allen&pid=B1238475&date=2021-11-25&grade=A&property=%E7%A4%BE%E5%8D%80&type=%E6%84%9B%E6%BB%8B%E6%84%9F%E6%9F%93%E8%80%85&id=2&open_id=1&addition=K%E4%BB%96%E5%91%BD&age=36&gender=%E7%94%B7', '', 0, 'life', '2022-02-23', 'test122', '\"[{\"name\":\"life\",\"value\":\"前測\"}]\"', '', '2022-02-23 00:00:00', '園主任', '2022-02-23 18:03:44', '園主任'),
+(5, 2, 1, 'Allen', 'B1238475', 0, 'case_detail.php?name=Allen&pid=B1238475&date=2021-11-25&grade=A&property=%E7%A4%BE%E5%8D%80&type=%E6%84%9B%E6%BB%8B%E6%84%9F%E6%9F%93%E8%80%85&id=2&open_id=1&addition=K%E4%BB%96%E5%91%BD&age=36&gender=%E7%94%B7', '', 0, 'employment_satif', '2022-02-23', '123', '\"[{\"name\":\"employment_satif\",\"value\":\"0\"}]\"', '', '2022-02-23 00:00:00', '園主任', '2022-02-23 18:04:22', '園主任'),
+(6, 2, 1, 'Allen', 'B1238475', 0, 'case_detail.php?name=Allen&pid=B1238475&date=2021-11-25&grade=A&property=%E7%A4%BE%E5%8D%80&type=%E6%84%9B%E6%BB%8B%E6%84%9F%E6%9F%93%E8%80%85&id=2&open_id=1&addition=K%E4%BB%96%E5%91%BD&age=36&gender=%E7%94%B7', '', 0, 'satif', '2022-02-23', '', '\"[{\"name\":\"satif\",\"value\":\"35\"}]\"', '', '2022-02-23 00:00:00', '園主任', '2022-02-23 18:05:05', '園主任'),
+(7, 2, 1, 'Allen', 'B1238475', 0, 'case_detail.php?name=Allen&pid=B1238475&date=2021-11-25&grade=A&property=%E7%A4%BE%E5%8D%80&type=%E6%84%9B%E6%BB%8B%E6%84%9F%E6%9F%93%E8%80%85&id=2&open_id=1&addition=K%E4%BB%96%E5%91%BD&age=36&gender=%E7%94%B7', '', 0, 'familyship', '2022-02-23', '', '\"[{\"name\":\"familyship\",\"value\":\"36\"},{\"name\":\"familyship\",\"value\":\"前測\"}]\"', '', '2022-02-23 00:00:00', '園主任', '2022-02-23 18:08:05', '園主任'),
+(8, 2, 1, 'Allen', 'B1238475', 0, 'case_detail.php?name=Allen&pid=B1238475&date=2021-11-25&grade=A&property=%E7%A4%BE%E5%8D%80&type=%E6%84%9B%E6%BB%8B%E6%84%9F%E6%9F%93%E8%80%85&id=2&open_id=1&addition=K%E4%BB%96%E5%91%BD&age=36&gender=%E7%94%B7', '', 0, 'settlement', '2022-02-23', '', '\"[{\"name\":\"settlement\",\"value\":\"符合基本條件指標條件共2項，符合收案指標條件共4項。\"}]\"', '', '2022-02-23 00:00:00', '園主任', '2022-02-23 18:11:23', '園主任'),
+(9, 2, 1, 'Allen', 'B1238475', 0, 'case_detail.php?name=Allen&pid=B1238475&date=2021-11-25&grade=A&property=%E7%A4%BE%E5%8D%80&type=%E6%84%9B%E6%BB%8B%E6%84%9F%E6%9F%93%E8%80%85&id=2&open_id=1&addition=K%E4%BB%96%E5%91%BD&age=36&gender=%E7%94%B7', '', 0, 'health', '2022-02-11', '2022/03/01', '', '', '2022-03-01 00:00:00', '園主任', '0000-00-00 00:00:00', ''),
+(13, 2, 1, 'Allen', 'B1238475', 1, '', '../upload/case_all/123abc.PNG', 0, 'BSRS5', '0000-00-00', '', '', '\"[{\"name\":\"create_date_BSRS50\",\"value\":\"2022-03-16\"},{\"name\":\"add_new_typeBSRS50\",\"value\":\"上傳檔案\"},{\"name\":\"scoreBSRS50\",\"value\":\"96\"},{\"name\":\"disposeBSRS50\",\"value\":\"無處置情形\"},{\"name\":\"fileBSRS50\",\"value\":\"123abc.PNG\"},{\"name\":\"remarkBSRS50\",\"value\":\"test備註316\"}]\"', '2022-03-16 16:57:23', '園主任', '0000-00-00 00:00:00', ''),
+(15, 2, 1, 'Allen', 'B1238475', 1, '', '../upload/case_all/123abc.PNG', 0, 'sullen', '0000-00-00', '', '', '\"[{\"name\":\"upload_date_sullen0\",\"value\":\"2022-03-16\"},{\"name\":\"scoresullen0\",\"value\":\"88\"},{\"name\":\"filesullen0\",\"value\":\"123abc.PNG\"},{\"name\":\"test_typesullen0\",\"value\":\"中測\"},{\"name\":\"remarksullen0\",\"value\":\"test備註憂鬱量表111\"}]\"', '2022-03-16 17:00:46', '園主任', '0000-00-00 00:00:00', ''),
+(17, 2, 1, 'Allen', 'B1238475', 0, 'case_detail.php?name=Allen&pid=B1238475&date=2021-11-25&grade=A&property=%E7%A4%BE%E5%8D%80&type=%E6%84%9B%E6%BB%8B%E6%84%9F%E6%9F%93%E8%80%85&id=2&open_id=1&addition=K%E4%BB%96%E5%91%BD&age=36&gender=%E7%94%B7', '', 1, 'BSRS5', '0000-00-00', '', '', '', '2022-03-16 00:00:00', '園主任', '0000-00-00 00:00:00', '');
 
 -- --------------------------------------------------------
 
@@ -846,7 +852,7 @@ ALTER TABLE `forms`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `form_all_info`
 --
 ALTER TABLE `form_all_info`
-  MODIFY `Id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `Id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `ha_phone`
