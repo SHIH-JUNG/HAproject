@@ -29,6 +29,13 @@ $("input[name*='answer']").change( function(event) {
     
     //加總所有選項分數
     answer_score_counting();
+
+    //BSRS5量表總分計算和得分評估
+    if(form_type=="BSRS5")
+    {
+        BSRS5_answer_score_counting();
+        BSRS5_answer_score_evaluation();
+    }
 });
 
 //量表分數計算region
@@ -45,6 +52,58 @@ function answer_score_counting() {
     });
 
     $("#answer_score").val(t_score);
+}
+//endregion
+
+//BSRS5量表分數計算(扣除附加題分數) region
+function BSRS5_answer_score_counting() {
+    var t_score = 0;
+    var answer_last_ques = $("input[name*='answer'][type='radio']").last().attr("name");
+
+    $("input[name*='answer']").each(function(i,n){
+
+        if($(this).is(":checked"))
+        {
+            var score = parseInt($(this).val())
+            t_score += score;
+        }
+    });
+
+    var add_ques_score = parseInt($("input[name='"+answer_last_ques+"']:checked").attr("value")) || 0;
+
+
+    $("#answer_score").val(t_score - add_ques_score);
+}
+//endregion
+
+//BSRS5量表分數評估 region
+function BSRS5_answer_score_evaluation() {
+
+    var answer_score = $("#answer_score").val();
+
+    var answer_last_ques = $("input[name*='answer'][type='radio']").last().attr("name");
+
+    //評估是否總分大於6分，除附加題以外
+    if(parseInt(answer_score) > 6)
+    {
+        $("input[name='treatment_status']").first().prop("checked",true);
+    }
+    else
+    {
+        $("input[name='treatment_status']").first().prop("checked",false);
+    }
+
+
+    //評估附加題分數是否大於0
+    if(parseInt($("input[name='"+answer_last_ques+"']:checked").attr("value")) > 0)
+    {
+        $("input[name='treatment_status']").last().prop("checked",true);
+    }
+    else
+    {
+        $("input[name='treatment_status']").last().prop("checked",false);
+    }
+    
 }
 //endregion
 
@@ -257,7 +316,12 @@ function check_file_exist(){
             break;
 
         case 'BSRS5':
-            pass
+
+            var answer_score = $('input[name="answer_score"]').val();
+            other_info_arr.push({name:form_tpye,value:answer_score});
+            var statement = $('textarea[name="statement"]').val();
+            other_info_arr.push({name:form_tpye,value:statement});
+
             break;
 
         case 'settlement':
@@ -512,6 +576,7 @@ $(document).ready(function () {
     $("#pid").val(decodeURIComponent(pid));
     $("input[name='sex'][value='"+decodeURIComponent(gender)+"生']").attr('checked',true);
     $("#open_date").val(decodeURIComponent(date));
+    $("#age").val(decodeURIComponent(age));
 
     //填寫日期自動帶入
     $("input[name*='fillin_date']").each(function(){
