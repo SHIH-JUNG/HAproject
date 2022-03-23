@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 
--- 伺服器版本： 10.4.6-MariaDB
--- PHP 版本： 7.1.32
+-- 產生時間： 2022-03-23 13:04:49
+-- 伺服器版本： 10.4.21-MariaDB
+-- PHP 版本： 7.4.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- 資料庫： `ha`
+-- 資料庫: `ha`
 --
 
 -- --------------------------------------------------------
@@ -216,8 +215,9 @@ CREATE TABLE `counsel` (
 --
 
 INSERT INTO `counsel` (`Id`, `Refferal`, `Counsel_id`, `Name`, `Gender`, `Sexual_orientation`, `Birth`, `Pid`, `Info_name`, `Info_phone`, `Address`, `In_prison_date`, `Out_prison_date`, `In_prison_date_2nd`, `Out_prison_date_2nd`, `In_prison_date_3rd`, `Out_prison_date_3rd`, `Is_parole`, `HIV_diagnosis_date`, `Family_know`, `Cocktail_therapy_status`, `Interview_date_1st`, `Interview_date_2nd`, `Interview_date_3rd`, `Interview_date_4th`, `Interview_date_5th`, `Interview_date_6th`, `Interview_date_7th`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
-(1, '高雄監獄', 766, '黃QQ', '男生', '同性', '1969-08-11', 'T121956775', '劉大福', '988517485', '屏東縣內埔鄉東寧村勝利路5557-2號', '2016-09-30', '2022-05-06', '2022-05-18', '0000-00-00', '0000-00-00', '0000-00-00', '是', '2022-06-25', '否', '否', '2022-02-11', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '2022-03-05 00:00:00', '', '2022-03-09 15:47:05', '園主任'),
-(2, '台南監獄', 622, 'test', '男生', '異性', '1952-09-17', 'd1234455186', 'test緊急聯絡人', '05121312', '屏東縣屏東市自由路63312號', '2021-12-01', '2023-03-02', '2021-12-02', '2022-05-26', '0000-00-00', '0000-00-00', '否', '2021-12-29', '是', '否', '2022-02-02', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '2022-03-07 16:55:01', '園主任', '0000-00-00 00:00:00', '');
+(1, '高雄監獄', 766, '黃QQ', '男生', '同性', '1969-08-11', 'T121956775', '劉大福', '988517485', '屏東縣內埔鄉東寧村勝利路5557-2號', '2016-09-30', '2022-05-06', '2022-05-18', '0000-00-00', '0000-00-00', '0000-00-00', '是', '2022-06-25', '否', '否', '2022-02-11', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '2022-03-05 00:00:00', '', '2022-03-21 12:38:24', '社工員1'),
+(2, '台南監獄', 622, 'test', '男生', '異性', '1952-09-17', 'd1234455186', 'test緊急聯絡人', '05121312', '屏東縣屏東市自由路63312號', '2021-12-01', '2023-03-02', '2021-12-02', '2022-05-26', '0000-00-00', '0000-00-00', '否', '2021-12-29', '是', '否', '2022-02-02', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '2022-03-07 16:55:01', '園主任', '0000-00-00 00:00:00', ''),
+(3, '台南監獄', 12, '2', '男生', '同性', '2022-03-17', '44', '44', '2', '2', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '是', '0000-00-00', '是', '是', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '2022-03-18 11:59:04', '社工員1', '0000-00-00 00:00:00', '');
 
 -- --------------------------------------------------------
 
@@ -495,6 +495,50 @@ INSERT INTO `ha_phone` (`Id`, `Phone_id`, `Call_datetime`, `Way`, `Way_detail`, 
 -- --------------------------------------------------------
 
 --
+-- 資料表結構 `published`
+--
+
+CREATE TABLE `published` (
+  `id` int(30) NOT NULL,
+  `date_publish` datetime NOT NULL,
+  `unit` varchar(100) NOT NULL,
+  `num_publish` int(100) NOT NULL,
+  `subject` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 傾印資料表的資料 `published`
+--
+
+INSERT INTO `published` (`id`, `date_publish`, `unit`, `num_publish`, `subject`) VALUES
+(1, '2022-03-18 04:19:18', '123', 456, '4565');
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `received`
+--
+
+CREATE TABLE `received` (
+  `id` int(30) NOT NULL,
+  `subject` varchar(50) NOT NULL,
+  `date_come` datetime NOT NULL,
+  `unit_come` varchar(100) NOT NULL,
+  `words_receive` varchar(100) NOT NULL,
+  `num_receive` int(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 傾印資料表的資料 `received`
+--
+
+INSERT INTO `received` (`id`, `subject`, `date_come`, `unit_come`, `words_receive`, `num_receive`) VALUES
+(1, '無', '2022-03-17 10:12:23', '無', '無', 1),
+(2, '無', '2022-03-15 10:12:23', '無', '無', 1);
+
+-- --------------------------------------------------------
+
+--
 -- 資料表結構 `scale`
 --
 
@@ -607,6 +651,30 @@ INSERT INTO `sign_notice` (`Id`, `file_name`, `authority`, `date`, `person`, `da
 (30, '黃QQ(2022-01-28)監所輔導-訪談', 1, '0000-00-00', '園主任', '2022-01-28 12:00', '社工員1、執行長、'),
 (31, '黃QQ(2022-02-04)監所輔導-訪談', 1, '0000-00-00', '園主任', '2022-02-04 06:30', '社工組長、社工員2、'),
 (32, 'test(2021-11-11)監所輔導-訪談', 1, '0000-00-00', '園主任', '2021-11-11 12:00', '社工員2、、');
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `sign_off`
+--
+
+CREATE TABLE `sign_off` (
+  `id` int(100) NOT NULL,
+  `info_name` varchar(100) NOT NULL,
+  `submitter` varchar(100) NOT NULL,
+  `submit_date` datetime NOT NULL,
+  `read_date` datetime NOT NULL,
+  `audit_date` datetime NOT NULL,
+  `state` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 傾印資料表的資料 `sign_off`
+--
+
+INSERT INTO `sign_off` (`id`, `info_name`, `submitter`, `submit_date`, `read_date`, `audit_date`, `state`) VALUES
+(1, '123', 'test', '2022-03-18 04:54:13', '2022-03-18 04:54:13', '2022-03-18 04:54:13', 'test'),
+(2, '123', 'test', '2022-03-18 04:54:13', '2022-03-18 04:54:13', '2022-03-18 04:54:13', 'test');
 
 -- --------------------------------------------------------
 
@@ -762,6 +830,18 @@ ALTER TABLE `ha_phone`
   ADD PRIMARY KEY (`Id`) USING BTREE;
 
 --
+-- 資料表索引 `published`
+--
+ALTER TABLE `published`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- 資料表索引 `received`
+--
+ALTER TABLE `received`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- 資料表索引 `scale`
 --
 ALTER TABLE `scale`
@@ -778,6 +858,12 @@ ALTER TABLE `screening`
 --
 ALTER TABLE `sign_notice`
   ADD PRIMARY KEY (`Id`);
+
+--
+-- 資料表索引 `sign_off`
+--
+ALTER TABLE `sign_off`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- 資料表索引 `tw_counties`
@@ -823,7 +909,7 @@ ALTER TABLE `consult`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `counsel`
 --
 ALTER TABLE `counsel`
-  MODIFY `Id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `counsel_visit`
@@ -862,6 +948,18 @@ ALTER TABLE `ha_phone`
   MODIFY `Id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
+-- 使用資料表自動遞增(AUTO_INCREMENT) `published`
+--
+ALTER TABLE `published`
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `received`
+--
+ALTER TABLE `received`
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- 使用資料表自動遞增(AUTO_INCREMENT) `scale`
 --
 ALTER TABLE `scale`
@@ -878,6 +976,12 @@ ALTER TABLE `screening`
 --
 ALTER TABLE `sign_notice`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `sign_off`
+--
+ALTER TABLE `sign_off`
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `tw_counties`
