@@ -62,7 +62,7 @@ input[type=number] {
                     </svg></i>
             </a>
             <a href="index.php"><img class="brand-img pull-left" src="image/HA.png" /></a>
-            <a href="index.php"><img class="brand-img pull-left" src="image/logo字.png" /></a>   
+            <a href="index.php"><img class="brand-img pull-left" style="width:330px;height:70px" src="image/logo字.png" /></a>   
             <ul class="nav navbar-right top-nav pull-right">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle pr-0" data-toggle="dropdown">歡迎 <?php echo $_SESSION['name']." ".$_SESSION['job']; ?><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-down-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -330,25 +330,25 @@ input[type=number] {
                                                                 <td style="border-bottom: solid 1px;">
                                                                     一級毒品：
                                                                     <label id="addition0"><input name="main[]" style="zoom: 1.5" type="checkbox" value="海洛因">海洛因</label>
-                                                                    <label  id="addition1"><input name="main[]" style="zoom: 1.5" type="checkbox" value="鴉片">鴉片</label>
-                                                                    <label  id="addition2"><input name="main[]" style="zoom: 1.5" type="checkbox" value="嗎啡">嗎啡</label>
-                                                                    <label  id="addition3"><input name="main[]" style="zoom: 1.5" type="checkbox" value="古柯鹼">古柯鹼</label>
+                                                                    <label id="addition1"><input name="main[]" style="zoom: 1.5" type="checkbox" value="鴉片">鴉片</label>
+                                                                    <label id="addition2"><input name="main[]" style="zoom: 1.5" type="checkbox" value="嗎啡">嗎啡</label>
+                                                                    <label id="addition3"><input name="main[]" style="zoom: 1.5" type="checkbox" value="古柯鹼">古柯鹼</label>
                                                                     <br>
                                                                     二級毒品：
-                                                                    <label  id="addition4"><input name="main[]" style="zoom: 1.5" type="checkbox" value="安非他命">安非他命</label>
-                                                                    <label  id="addition5"><input name="main[]" style="zoom: 1.5" type="checkbox" value="大麻">大麻</label>
-                                                                    <label  id="addition6"><input name="main[]" style="zoom: 1.5" type="checkbox" value="搖頭丸">搖頭丸</label>
+                                                                    <label id="addition4"><input name="main[]" style="zoom: 1.5" type="checkbox" value="安非他命">安非他命</label>
+                                                                    <label id="addition5"><input name="main[]" style="zoom: 1.5" type="checkbox" value="大麻">大麻</label>
+                                                                    <label id="addition6"><input name="main[]" style="zoom: 1.5" type="checkbox" value="搖頭丸">搖頭丸</label>
                                                                     <br>
                                                                     三級毒品：
-                                                                    <label  id="addition7"><input name="main[]" style="zoom: 1.5" type="checkbox" value="K他命">K他命</label>
-                                                                    <label  id="addition8"><input name="main[]" style="zoom: 1.5" type="checkbox" value="FM2藥丸">FM2藥丸</label>
+                                                                    <label id="addition7"><input name="main[]" style="zoom: 1.5" type="checkbox" value="K他命">K他命</label>
+                                                                    <label id="addition8"><input name="main[]" style="zoom: 1.5" type="checkbox" value="FM2藥丸">FM2藥丸</label>
                                                                     <br>
-                                                                    <label  id="addition9"><input name="main[]" style="zoom: 1.5" type="checkbox" value="酒精">酒精</label>
-                                                                    <label  id="addition10"><input name="main[]" style="zoom: 1.5" type="checkbox" value="強力膠">強力膠</label>
-                                                                    <label  id="addition11"><input name="main[]" style="zoom: 1.5" type="checkbox" value="檳榔">檳榔</label>
-                                                                    <label  id="addition12"><input name="main[]" style="zoom: 1.5" type="checkbox" value="菸">菸</label >
-                                                                    <label  id="addition13"><input name="main[]" style="zoom: 1.5" type="checkbox" value="精神藥物">精神藥物</label>
-                                                                    <label  id="addition14"><input name="main[]" style="zoom: 1.5" type="checkbox"  value="其他">其他：
+                                                                    <label id="addition9"><input name="main[]" style="zoom: 1.5" type="checkbox" value="酒精">酒精</label>
+                                                                    <label id="addition10"><input name="main[]" style="zoom: 1.5" type="checkbox" value="強力膠">強力膠</label>
+                                                                    <label id="addition11"><input name="main[]" style="zoom: 1.5" type="checkbox" value="檳榔">檳榔</label>
+                                                                    <label id="addition12"><input name="main[]" style="zoom: 1.5" type="checkbox" value="菸">菸</label >
+                                                                    <label id="addition13"><input name="main[]" style="zoom: 1.5" type="checkbox" value="精神藥物">精神藥物</label>
+                                                                    <label id="addition14"><input name="main[]" style="zoom: 1.5" type="checkbox"  value="其他">其他：
                                                                     <input id="other_main" type="text" value=""></label>
                                                                 </td>
                                                             </tr>

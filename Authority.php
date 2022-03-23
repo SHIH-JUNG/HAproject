@@ -43,7 +43,7 @@
                     </svg></i>
             </a>
             <a href="index.php"><img class="brand-img pull-left" src="image/LOGO.png" /></a>
-            <a href="index.php"><img class="brand-img pull-left" src="image/logo字.png" /></a>
+            <a href="index.php"><img class="brand-img pull-left" style="width:330px;height:70px" src="image/logo字.png" /></a>
             <ul class="nav navbar-right top-nav pull-right">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle pr-0" data-toggle="dropdown">歡迎 <?php echo $_SESSION['name']." ".$_SESSION['job']; ?><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-down-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

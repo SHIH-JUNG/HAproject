@@ -235,7 +235,7 @@
                                                         <thead>
                                                             <tr>
                                                                 <th class="text-right" colspan="16">
-                                                                    <a href="add_phone.php"><button style="font-size:15px" type="button" class="btn btn-default"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                                    <a href="add_received.php"><button style="font-size:15px" type="button" class="btn btn-default"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                                                 <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
                                                                                 <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z" />
                                                                                 <path fill-rule="evenodd" d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5z" />
@@ -244,21 +244,11 @@
                                                             </tr>
                                                             <tr style="background-color:rgb(255 201 54);">
                                                                 <th>編號</th>
-                                                                <th>個案姓名</th>
-                                                                <th>諮詢日期</th>
-                                                                <th>諮詢方式</th>
-                                                                <th>面訪地點</th>
-                                                                <th>來電次數</th>
-                                                                <th>面訪次數</th>
-                                                                <th>性別</th>
-                                                                <th>服務對象類別</th>
-                                                                <th>癮別</th>
-                                                                <th>年齡區間</th>
-                                                                <th>居住縣市</th>
-                                                                <th>聯絡人與案主關係</th>
-                                                                <th>得知管道</th>
-                                                                <th>是否符合開案</th>
-                                                                <th>負責同工</th>
+                                                                <th>來文日期</th>
+                                                                <th>來文單位</th>
+                                                                <th>收文字號</th>
+                                                                <th>主旨</th>
+                                                                <th>收文檔號</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody id="call_view"></tbody>
@@ -279,148 +269,57 @@
                                                         <tr>
                                                             <td class="text-right" style="background-color:rgb(255 201 54);">編號：</td>
                                                             <td class="text-left">
-                                                                <select id="phone_id" rel="0" class="filter search">
+                                                                <select id="id" rel="0" class="filter search">
 
                                                                 </select>
                                                             </td>
 
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">諮詢日期：</td>
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">來文日期：</td>
                                                             <td class="text-left">
-                                                                <input id="min_date" rel="" name="pcall_date" class="" type="date" placeholder="諮詢日期搜尋">
+                                                                <input id="min_date" rel="" name="pcall_date" class="" type="date" placeholder="來文日期搜尋">
                                                                 <label>～</label>
-                                                                <input id="max_date" rel="" name="pcall_date" class="" type="date" placeholder="諮詢日期搜尋">
+                                                                <input id="max_date" rel="" name="pcall_date" class="" type="date" placeholder="來文日期搜尋">
                                                             </td>
 
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">姓名：</td>
-                                                            <td class="text-left"><input id="name" rel="1" name="pname" class="filter search" style="width:130px;" type="text" placeholder="姓名搜尋"></td>
-
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">性別查詢：</td>
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">來文單位：</td>
                                                             <td class="text-left">
                                                                 <select rel="7" class="filter search">
-                                                                    <option value="">所有</option>
-                                                                    <option value="男">男</option>
-                                                                    <option value="女">女</option>
-                                                                    <option value="同性">同性</option>
-                                                                    <option value="不明">不明</option>
+                                                                    <option value="">X</option>
+                                                                    <option value="X">X</option>
+                                                                    <option value="X">X</option>
+                                                                    <option value="X">X</option>
+                                                                    <option value="X">X</option>
                                                                 </select>
                                                             </td>
 
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">聯絡人：</td>
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">收文字號：</td>
                                                             <td class="text-left">
                                                                 <select rel="12" class="filter search">
-                                                                    <option value="">所有</option>
-                                                                    <option value="配偶">配偶</option>
-                                                                    <option value="父母">父母</option>
-                                                                    <option value="手足">手足</option>
-                                                                    <option value="子女">子女</option>
-                                                                    <option value="親戚">親戚</option>
-                                                                    <option value="社工">社工</option>
-                                                                    <option value="教會">教會</option>
-                                                                    <option value="朋友">朋友</option>
-                                                                    <option value="本人">本人</option>
-                                                                    <option value="其他">其他</option>
+                                                                    <option value="">X</option>
+                                                                    <option value="X">X</option>
+                                                                    <option value="X">X</option>
+                                                                    <option value="X">X</option>
+                                                                    <option value="X">X</option>
                                                                 </select>
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">諮詢方式：</td>
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">主旨：</td>
                                                             <td class="text-left">
                                                                 <select rel="3" class="filter search">
-                                                                    <option value="">所有</option>
-                                                                    <option value="電訪">電訪</option>
-                                                                    <option value="面訪">面訪</option>
+                                                                    <option value="X">X</option>
+                                                                    <option value="X">X</option>
                                                                 </select>
                                                             </td>
 
-                                                            <td class="text-right" style="background-color:rgb(255 201 54);">癮別：</td>
-                                                            <td class="text-left"><input id="addition" rel="9" name="paddition" class="filter search" type="text" placeholder="癮別搜尋"></td>
-
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">年齡：</td>
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">收文檔號：</td>
                                                             <td class="text-left">
                                                                 <select rel="10" class="filter search">
-                                                                    <option value="">所有</option>
-                                                                    <option value="10歲以下">10歲以下</option>
-                                                                    <option value="10-19歲">10-19歲</option>
-                                                                    <option value="20-29歲">20-29歲</option>
-                                                                    <option value="30-39歲">30-39歲</option>
-                                                                    <option value="40-49歲">40-49歲</option>
-                                                                    <option value="50-59歲">50-59歲</option>
-                                                                    <option value="60歲以上">60歲以上</option>
-                                                                    <option value="不明">不明</option>
+                                                                    <option value="X">X</option>
+                                                                    <option value="X">X</option>
                                                                 </select>
                                                             </td>
 
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">居住縣市：</td>
-                                                            <td class="text-left">
-                                                                <select id="local_id" rel="11" class="filter search">
-                                                                    <option value="">所有</option>
-                                                                </select>
-                                                            </td>
-
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">符合開案：</td>
-                                                            <td class="text-left">
-                                                                <select rel="14" class="filter search">
-                                                                    <option value="">所有</option>
-                                                                    <option value="是">是</option>
-                                                                    <option value="否">否</option>
-                                                                    <option value="不明">不明</option>
-                                                                </select>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">面訪地點：</td>
-                                                            <td class="text-left">
-                                                                <select rel="4" class="filter search">
-                                                                    <option value="">所有</option>
-                                                                    <option value="社區">社區</option>
-                                                                    <option value="家訪">家訪</option>
-                                                                    <option value="監所">監所</option>
-                                                                </select>
-                                                            </td>
-
-                                                            <td class="text-right" style="background-color:rgb(255 201 54);">服務對象類別：</td>
-                                                            <td class="text-left">
-                                                                <select rel="8" id="service type" class="filter search" style="width:200px;">
-                                                                    <option value="">所有</option>
-                                                                    <option value="一般藥癮者">一般藥癮者</option>
-                                                                    <option value="愛滋感染者">愛滋感染者</option>
-                                                                    <option value="家庭">家庭</option>
-                                                                    <option value="兒少">兒少</option>
-                                                                </select>
-                                                            </td>
-
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">來電次數：</td>
-                                                            <td class="text-left">
-                                                                <select id="phone_count" rel="5" class="filter search">
-
-                                                                </select>
-                                                            </td>
-
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">面訪次數：</td>
-                                                            <td class="text-left">
-                                                                <select id="face_count" rel="6" class="filter search">
-
-                                                                </select>
-                                                            </td>
-
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">得知管道：</td>
-                                                            <td class="text-left">
-                                                                <select rel="13" class="filter search">
-                                                                    <option value="">所有</option>
-                                                                    <option value="網路">網路</option>
-                                                                    <option value="醫院">醫院</option>
-                                                                    <option value="監所">監所</option>
-                                                                    <option value="舊個案">舊個案</option>
-                                                                    <option value="社福機構">社福機構</option>
-                                                                    <option value="戒毒機構">戒毒機構</option>
-                                                                    <option value="朋友">朋友</option>
-                                                                    <option value="教會">教會</option>
-                                                                    <option value="其他">其他</option>
-                                                                    <option value="不明">不明</option>
-                                                                </select>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
                                                             <td colspan="10" class="text-right">
                                                                 <button onclick="location.reload();">重置搜尋</button><span> </span>
                                                             </td>

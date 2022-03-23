@@ -40,7 +40,7 @@
             <path fill-rule="evenodd" d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/></svg></i>
             </a>
             <a href="index.php"><img class="brand-img pull-left" src="image/HA.png" /></a>
-            <a href="index.php"><img class="brand-img pull-left" src="image/logo字.png" /></a>      
+            <a href="index.php"><img class="brand-img pull-left" style="width:330px;height:70px" src="image/logo字.png" /></a>      
             <ul class="nav navbar-right top-nav pull-right">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle pr-0" data-toggle="dropdown">歡迎 <span id="username"><?php echo $_SESSION['name'] ?></span><span id="job_title"><?php echo " ".$_SESSION['job']; ?></span><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-down-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/></svg></a>            

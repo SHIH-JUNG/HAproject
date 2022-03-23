@@ -15,25 +15,39 @@
     <!-- ================== CSS bootstrap-select ================== -->
     <link href="css/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
     <!--  table  -->
-    <!--    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.css">-->
-    <!-- ================== 匯出EXCEL ================== -->
-    <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
-    <link href="https://cdn.datatables.net/buttons/1.5.1/css/buttons.dataTables.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/bootstrap-table.min.css">
 
     <meta charset="UTF-8" />
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!--        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="description" content="快樂聯盟資管系統">
     <meta name="author" content="HANG">
+    <meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+    <meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+    <meta HTTP-EQUIV="expires" CONTENT="0">
     <title>個案管理系統</title>
 </head>
-<style>
-    .NOline {
-        word-break: keep-all;
-        /*必須*/
-    }
-</style>
 <!--<SVG>引入bootstrap icon-->
+<style>
+    table {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /*隱藏input number上下箭頭*/
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+
+    /*隱藏input number上下箭頭/*/
+</style>
 
 <body>
     <!--讀取進度條-->
@@ -50,7 +64,7 @@
                     </svg></i>
             </a>
             <a href="index.php"><img class="brand-img pull-left" src="image/HA.png" /></a>
-            <a href="index.php"><img class="brand-img pull-left" style="width:330px;height:70px" src="image/logo字.png" /></a>
+            <a href="index.php"><img class="brand-img pull-left" src="image/logo字.png" /></a>
             <ul class="nav navbar-right top-nav pull-right">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle pr-0" data-toggle="dropdown">歡迎 <?php echo $_SESSION['name'] . " " . $_SESSION['job']; ?><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-down-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -72,7 +86,7 @@
         <div class="fixed-sidebar-left">
             <ul class="nav navbar-nav side-nav nicescroll-bar">
                 <li>
-                    <!--class 設為 active 被選中的大項目會為黑底-->
+                    <!--class 設為active 被選中的大項目會為黑底-->
                     <a href="javascript:void(0);" class="" data-toggle="collapse" data-target="#administration">行政管理
                         <span class="pull-right">
                             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-down-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -174,6 +188,15 @@
                     </li>
                 </ul>
             </li>
+            <!-- <li>
+                    <a href="#">項目5</a>
+                </li>
+                <li>
+                    <a href="#">項目6</a>
+                </li>
+                <li>
+                    <a href="#" data-toggle="collapse" data-target="#track">項目7</a>
+                </li> -->
             <li>
                 <a href="Authority.html" data-toggle="collapse" data-target="#track">權限管理</a>
             </li>
@@ -187,15 +210,15 @@
                 <div class="row heading-bg  bg-green">
                     <!--麵包屑-->
                     <ol class="breadcrumb">
-                        <li><span><a href="index.php">首頁</a></span></li>
+                        <li><span><a href="index.php">行政管理</a></span></li>
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span><a href="">行政管理</a></span></li>
+                        <li><span><a href="accounting_record.php">會計資料</a></span></li>
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span>會計資料</span></li>
+                        <li><span>新增會計資料</span></li>
                     </ol>
                     <!--/麵包屑-->
                 </div>
@@ -211,41 +234,60 @@
                 </footer>
                 <!-- /Footer -->
                 <!-- /Title -->
-                <!---Table--->
-                <div style="zoom:75%" class="row text-center">
+                <div style="zoom:80%" class="row">
                     <div class="col-md-12">
                         <div class="panel panel-default card-view">
                             <div class="panel-wrapper collapse in">
                                 <div class="panel-body">
-                                    <div class="table-wrap">
-                                        <div class="table-responsive">
-                                            <h4>會計資料</h4>
-                                            <div class="table-wrap">
-                                                <div class="table-responsive">
-                                                    <table class="table display table-hover dataTable no-footer" style="font-size:15px;font-family:微軟正黑體;width:100%" id="tab_all" data-toolbar="#toolbar">
-                                                        <thead>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-xs-12">
+                                            <div class="col-sm-12 text-center">
+                                                <div class="table-wrap">
+                                                    <div class="table-responsive">
+                                                        <table style="width:auto;" class="table table-bordered">
                                                             <tr>
-                                                                <th class="text-right" colspan="16">
-                                                                    <a href="add_accounting_record.php"><button style="font-size:15px" type="button" class="btn btn-default"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                                                <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
-                                                                                <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z" />
-                                                                                <path fill-rule="evenodd" d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5z" />
-                                                                            </svg>新增</button></a>
-                                                                </th>
+                                                                <td colspan="2">
+                                                                    <h3>新增會計資料</h3>
+                                                                </td>
                                                             </tr>
-                                                            <tr style="background-color:rgb(255 201 54);">
-                                                                <th>上傳日期</th>
-                                                                <th>月報表</th>
-                                                                <th>年報表</th>
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>上傳日期</td>
+                                                                <td style="border-bottom: solid 1px;"><input id="call_datetime" type="datetime-local">
                                                             </tr>
-                                                        </thead>
-                                                        <tbody id="call_view"></tbody>
-                                                    </table>
-                                                    <div class="text-center">
-                                                        <span id="count_people"></span>
-                                                        <span id="count_people2"></span>
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;"></i>月報表</td>
+                                                                <td style="border-bottom: solid 1px;">
+                                                                    <form method="post" enctype="multipart/form-data" action="add_accounting_record.php">
+                                                                        <input type="file" name="my_file">
+                                                                        <br>
+                                                                        <input type="submit" value="Upload">
+                                                                        <input type="reset" value="Reset">
+                                                                    </form>
+                                                                </td>
+                                                            </tr>
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">年報表 </td>
+                                                                <td style="border-bottom: solid 1px;">
+                                                                    <form method="post" enctype="multipart/form-data" action="add_accounting_record.php">
+                                                                        <input type="file" name="my_file">
+                                                                        <br>
+                                                                        <input type="submit" value="Upload">
+                                                                        <input type="reset" value="Reset">
+                                                                    </form>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
                                                     </div>
                                                 </div>
+                                                <br>
+                                                <button id="#" style="font-size:15px" type="button" class="btn btn-default"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-check" viewBox="0 0 16 16">
+                                                        <path d="M10.854 7.854a.5.5 0 0 0-.708-.708L7.5 9.793 6.354 8.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
+                                                        <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
+                                                    </svg>新增</button>
+                                                <a href="staff_manag.php"><button style="font-size:15px" type="button" class="btn btn-default"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-excel" viewBox="0 0 16 16">
+                                                            <path d="M5.884 6.68a.5.5 0 1 0-.768.64L7.349 10l-2.233 2.68a.5.5 0 0 0 .768.64L8 10.781l2.116 2.54a.5.5 0 0 0 .768-.641L8.651 10l2.233-2.68a.5.5 0 0 0-.768-.64L8 9.219l-2.116-2.54z" />
+                                                            <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
+                                                        </svg>取消</button></a>
                                             </div>
                                         </div>
                                     </div>
@@ -254,7 +296,6 @@
                         </div>
                     </div>
                 </div>
-                <!---/Table--->
             </div>
             <!--/網頁內容-->
         </div>
@@ -264,16 +305,9 @@
     <!-- Bootstrap and jQuery -->
     <script src="javascript/jquery.min.js"></script>
     <script src="javascript/bootstrap.min.js"></script>
-    <!-- ================== 匯出EXCEL ================== -->
-    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
     <!-- 表格 JavaScript -->
-    <!--
     <script src="javascript/jquery.dataTables.min.js"></script>
     <script src="javascript/dataTables-data.js"></script>
--->
     <!-- 滾動條 JavaScript -->
     <script src="javascript/jquery.slimscroll.js"></script>
     <!-- Fancy Dropdown JS -->
@@ -289,24 +323,12 @@
     <!-- ================== 登出設定 ================== -->
     <script src='js/logout.js'></script>
     <!-- ================== moment ================== -->
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.0/moment.min.js'></script>
+    <script src='javascript/moment2.29.0.min.js'></script>
     <!-- ================== table ================== -->
-    <script src="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.js"></script>
-    <script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/locale/bootstrap-table-zh-TW.min.js"></script>
-    <!-- ================== phone ================== -->
-    <script type="text/javascript" src="js/staff_manag.js"></script>
-    <!-- ================== 地區選擇下拉 ================== -->
-    <!--
-    <script src="js/jQuery-TWzipcode-master/twzipcode.js"></script>
-    <script src="js/jQuery-TWzipcode-master/jquery.twzipcode.js"></script>
-    <script src="js/jQuery-TWzipcode-master/jquery.twzipcode.min.js"></script>
--->
+    <script src="javascript/bootstrap1.18.0-table.min.js"></script>
+    <script src="javascript/bootstrap-table1.11.1-zh-TW.min.js"></script>
+    <!-- ================== add_phone.js ================== -->
+    <script src="js/#.js"></script>
 </body>
-<script>
-    //$("#twzipcode").twzipcode({
-    //    css: ['col-sm-12',],
-    //});
-    //$.fn.dataTable.ext.classes.sPageButton = 'btn btn-primary'; // Change Pagination Button Class
-</script>
 
 </html>

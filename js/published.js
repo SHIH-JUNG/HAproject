@@ -1,423 +1,54 @@
-var address_arr = [];
-var new_address_arr = [];
-
-//抓所有電話諮詢紀錄region
+//抓所有電話詢戒表region
 $.ajax({
-  url: "database/find_data.php",
+  url: "database/find_data_published.php",
   type: "POST",
   dataType: "JSON",
   async: false, //啟用同步請求
   success: function (data) {
-    // console.log(data);
     var cssString = "";
-    var local_str = "";
-    var consult_date = "";
-    for (var index in data.Call_datetime) {
-      //判斷癮別取第一個字
-      //                if(data.Addiction[index] =="鴉片"|| data.Addiction[index] =="嗎啡"|| data.Addiction[index] =="海洛因"|| data.Addiction[index] =="古柯鹼"|| data.Addiction[index] =="安非他命"|| data.Addiction[index] =="搖頭丸"|| data.Addiction[index] =="K他命"|| data.Addiction[index] =="酒精"){
-      //                    main_val_all = data.Addiction[index];
-      //                    main_val = data.Addiction[index].substr(0,1);
-      //                }else if(data.Addiction[index] =="大麻"){
-      //                    main_val_all = data.Addiction[index];
-      //                    main_val = data.Addiction[index].substr(1,1);
-      //                }else if(data.Addiction[index] == "FM2藥丸"){
-      //                    main_val_all = data.Addiction[index];
-      //                    main_val = data.Addiction[index].substr(0,3);
-      //                }else{
-      //                    main_val_all = data.Addiction[index];
-      //                    main_val = data.Addiction[index].substr(0,1);
-      //                }
-      if (
-        data.Call_datetime[index] == "" ||
-        data.Call_datetime[index] == null
-      ) {
-        consult_date = data.Start_date[index];
-      } else {
-        consult_date = data.Call_datetime[index];
-      }
-      phone = data.R_phone[index].split("、");
-      //                console.log(phone);
+    console.log(data);
+    for (var index in data.id) {
+      // ID = data.Id[index].split("、");
       cssString +=
-        //                        '<a href="phone_detail(原版).php?id='+ data.id[index] + '><tr>' +
         '<tr id="' +
-        data.Phone_id[index] +
+        data.id[index] +
         '">' +
         '<td style="text-align:center">' +
-        data.Phone_id[index] +
+        data.id[index] +
         "</td>" +
         '<td style="text-align:center">' +
-        data.Name[index] +
+        data.date_publish[index] +
         "</td>" +
         '<td style="text-align:center">' +
-        consult_date +
+        data.unit[index] +
         "</td>" +
         '<td style="text-align:center">' +
-        data.Way[index] +
+        data.num_publish[index] +
         "</td>" +
         '<td style="text-align:center">' +
-        data.Way_detail[index] +
-        "</td>" +
-        // '<td style="text-align:center">' + data.Count[index] + '</td>' +
-        '<td style="text-align:center">' +
-        data.phone_count[index] +
-        "</td>" +
-        '<td style="text-align:center"></td>' +
-        '<td style="text-align:center">' +
-        data.Gender[index] +
-        "</td>" +
-        '<td style="text-align:center">' +
-        data.Object_type[index] +
-        "</td>" +
-        '<td style="text-align:center">' +
-        data.Addiction[index] +
-        "</td>" +
-        '<td style="text-align:center">' +
-        data.A_detail[index] +
-        "</td>" +
-        '<td style="text-align:center">' +
-        data.Address[index].substring(0, 3) +
-        "</td>" +
-        // '<td style="text-align:center">' + data.Referral_detail[index] + '</td>' +
-        '<td style="text-align:center">' +
-        data.R_detail[index] +
-        "</td>" +
-        // '<td style="text-align:center">' + data.Relationship_detail[index] + '</td>' +
-        '<td style="text-align:center">' +
-        data.Know_from_detail[index] +
-        "</td>" +
-        '<td style="text-align:center">' +
-        data.Eligible[index] +
-        "</td>" +
-        ' <td style="text-align:center">' +
-        data.Assign[index] +
+        data.subject[index] +
         "</td>" +
         "</tr>";
-      //將Phone_id加入編號的option選項內
-      $("#phone_id").append(
-        '<option value="' +
-          data.Phone_id[index] +
-          '">' +
-          data.Phone_id[index] +
-          "</option>"
-      );
-      $("#phone_count").append(
-        '<option value="' +
-          data.Count[index] +
-          '">' +
-          data.Count[index] +
-          "</option>"
-      );
-      //將地址分割出縣市名稱
-      local_str = data.Address[index];
-      if (local_str.indexOf("縣") != -1 || local_str.indexOf("市") != -1) {
-        var local_arr = local_str.substring(0, 3);
-      }
-      //縣市名稱加入陣列
-      address_arr.push(local_arr);
     }
-    //刪除重複的元素
-    address_arr = filterArray(address_arr);
-
-    //刪除null或空值元素
-    address_arr.forEach(function (item, index, arr) {
-      if (item == null || item == "") {
-        arr.splice(index, 1);
-      }
-    });
-
-    //console.log(address_arr);
-    //option小到大排序
-    $("#phone_id option")
-      .sort(function (a, b) {
-        var aText = $(a).text().toUpperCase();
-        var bText = $(b).text().toUpperCase();
-        if (aText > bText) return 1;
-        if (aText < bText) return -1;
-        return 0;
-      })
-      .appendTo("#phone_id");
-
-    //最前面新增"所有"選像
-    $("#phone_id").prepend(
-      "<option value='' selected='selected'>所有</option>"
-    );
-
-    //option小到大排序
-    $("#phone_count option")
-      .sort(function (a, b) {
-        var aText = $(a).text().toUpperCase();
-        var bText = $(b).text().toUpperCase();
-        if (aText > bText) return 1;
-        if (aText < bText) return -1;
-        return 0;
-      })
-      .appendTo("#phone_count");
-
-    //最前面新增"所有"選像
-    $("#phone_count").prepend(
-      "<option value='' selected='selected'>所有</option>"
-    );
-
-    $("#phone_id")
-      .children()
-      .each(function () {
-        text = $(this).text();
-        if ($("select#phone_id option:contains(" + text + ")").length > 1) {
-          $("select#phone_id option:contains(" + text + "):gt(0)").remove();
-        }
-        //                    console.log(text)
-      });
-    $("#phone_count")
-      .children()
-      .each(function () {
-        text = $(this).text();
-        if ($("select#phone_count option:contains(" + text + ")").length > 1) {
-          $("select#phone_count option:contains(" + text + "):gt(0)").remove();
-        }
-        //                    console.log(text)
-      });
 
     //印出表格
     $("#call_view").html(cssString);
 
     //點擊table tr 進入詳細頁面
-    $(".table-hover tbody").on("click", "tr", function () {
-      window.location.href =
-        "phone_detail_v2.php?phone_id=" + $(this).attr("id") + "";
-    });
-    // console.log(index);
+    // $(".table-hover tbody").on("click", "tr", function () {
+    //   window.location.href =
+    //     "screening_detail.php?screening_id=" + $(this).attr("id") + "";
+    // });
   },
 
   error: function (e) {
     console.log(e);
   },
 });
-//endregion
 
-//依據phone_id抓所有面訪次數region
-var get_tr_phoneid = [];
-var get_face_counts = [];
-
-//抓取每個tr的id值(Phone_id)，存入get_tr_phoneid陣列
-$("#call_view tr").each(function () {
-  get_tr_phoneid.push($(this).attr("id"));
-});
-
-//依據get_tr_phoneid陣列儲存的Phone_id值查詢相對應face資料庫
-$.each(get_tr_phoneid, function (index, val) {
-  $.ajax({
-    url: "database/find_face_count.php",
-    type: "POST",
-    data: {
-      Phone_id: val,
-    },
-    dataType: "JSON",
-    async: false, //啟用同步請求
-    success: function (data) {
-      //  console.log(data)
-      //若該Phone_id未在face資料建檔會Face_counter顯示undefined，需轉為"0"
-      if (
-        data.Face_counter[0] == undefined ||
-        data.Face_counter[0] == "" ||
-        data.Face_counter[0] == null
-      ) {
-        data.Face_counter[0] = "0";
-      }
-      //將得到的面訪次數存入get_face_counts陣列
-      get_face_counts.push(data.Face_counter[0]);
-
-      //將面訪次數的數值加到 #face_count 的option值中
-      $("#face_count").append(
-        '<option value="' +
-          data.Face_counter[0] +
-          '">' +
-          data.Face_counter[0] +
-          "</option>"
-      );
-
-      //option小到大排序
-      $("#face_count option")
-        .sort(function (a, b) {
-          var aText = $(a).text().toUpperCase();
-          var bText = $(b).text().toUpperCase();
-          if (aText > bText) return 1;
-          if (aText < bText) return -1;
-          return 0;
-        })
-        .appendTo("#face_count");
-
-      //最前面新增"所有"選像
-      $("#face_count").prepend(
-        "<option value='' selected='selected'>所有</option>"
-      );
-
-      //去除重複
-      $("#face_count")
-        .children()
-        .each(function () {
-          text = $(this).text();
-          if ($("select#face_count option:contains(" + text + ")").length > 1) {
-            $("select#face_count option:contains(" + text + "):gt(0)").remove();
-          }
-        });
-    },
-    error: function (e) {
-      console.log(e);
-    },
-  });
-});
-
-//將面訪次數逐一寫入表格中
-$("#call_view tr").each(function (index, element) {
-  $(this).children("td").eq(6).text(get_face_counts[index]);
-});
-//endregion
-
-//刪除陣列重複元素region
-function filterArray(inputArr) {
-  var found = {};
-  var out = inputArr.filter(function (element) {
-    return found.hasOwnProperty(element) ? false : (found[element] = true);
-  });
-  return out;
-}
-//endregion
-
-//獲取臺灣各縣市名稱，按照北到南順序加到下拉式選單region
-$.ajax({
-  url: "database/find_counties.php",
-  type: "POST",
-  dataType: "JSON",
-  async: false, //啟用同步請求
-  success: function (data) {
-    // console.log(data);
-    var local_arr = [];
-    for (var index in data.Id) {
-      local_arr.push(data.Counties_Cities[index]);
-
-      //將縣市重新按照資料庫的北到南順序排列
-      // console.log(address_arr);
-      for (var i = 0; i < address_arr.length; i++) {
-        var arr_num = local_arr.indexOf(address_arr[i]);
-
-        if (arr_num > 0) {
-          new_address_arr[arr_num] = address_arr[i];
-        }
-        //console.log(address_arr[i],i)
-      }
-    }
-
-    //將排序完成的縣市加入下拉式選單中
-    $.each(new_address_arr, function (index, val) {
-      if (val != undefined) {
-        $("#local_id").append(
-          '<option value="' + val + '">' + val + "</option>"
-        );
-      }
-    });
-
-    //console.log(local_arr);
-    // console.log(new_address_arr);
-  },
-
-  error: function (e) {
-    console.log(e);
-  },
-});
-//endregion
-
-//文字框顯示隱藏&取消勾選變回預設值region
-$("#relationship").change(function () {
-  if ($("#relationship").val() != "本人") {
-    $("#other_text").css("display", "");
-  } else {
-    $("#other_text").css("display", "none");
-  }
-});
-$("#checkbox1").change(function () {
-  if ($("#checkbox1").prop("checked")) {
-    $("#other_Addiction_text1").css("display", "");
-  } else {
-    $("#other_Addiction_text1").css("display", "none");
-    $("#other_Addiction_text1").val("0");
-  }
-});
-$("#checkbox2").change(function () {
-  if ($("#checkbox2").prop("checked")) {
-    $("#other_Addiction_text2").css("display", "");
-  } else {
-    $("#other_Addiction_text2").css("display", "none");
-    $("#other_Addiction_text2").val("0");
-  }
-});
-$("#checkbox3").change(function () {
-  if ($("#checkbox3").prop("checked")) {
-    $("#other_Addiction_text3").css("display", "");
-  } else {
-    $("#other_Addiction_text3").css("display", "none");
-    $("#other_Addiction_text3").val("0");
-  }
-});
-$("#checkbox5").change(function () {
-  if ($("#checkbox5").prop("checked")) {
-    $("#other_Addiction_text5").css("display", "");
-  } else {
-    $("#other_Addiction_text5").css("display", "none");
-    $("#other_Addiction_text5").val("");
-  }
-});
-//endregion
-
-//取消後清除文字框region
-function phone_cancel() {
-  $("#call_datetime").val("");
-  $("#name").val("");
-  $("#age").val("");
-  $("#info_name").val("");
-  $("#address").val("");
-}
-//endregion
-
-//判斷是否勾選賦予input值region
-//酒精
-$("#checkbox4").on("change", function () {
-  if ($("#checkbox4").prop("checked")) {
-    $("#other_Addiction_text4").val("酒精");
-  } else {
-    $("#other_Addiction_text4").val("");
-  }
-});
-//關係
-$("#relationship").change(function () {
-  if ($("#relationship").val() == "本人") {
-    $("#other_text").val("本人");
-  } else {
-    $("#other_text").val("");
-  }
-});
 //endregion
 
 //設定table搜尋框重整後自動填入文字region
-
-//按按鈕儲存table搜尋框文字
-//$(document).on('click',"#edit", function(){
-//    var inputValue = $(".search").find("input").val();
-//    console.log(inputValue);
-//    sessionStorage.setItem("inputValue", inputValue);
-//});
-////自動填入
-//$(document).ready(function() {
-//    var sessionStorageVal = sessionStorage.getItem("inputValue")
-////    console.log(sessionStorageVal);
-//    if (sessionStorageVal != null) {
-//        //setTimeout(function(){
-//        // $(".search").find("input").focus()
-//        // $(".search").find("input").val(localStorageVal);
-//        //},1000)
-//        $('#tab_all').bootstrapTable('resetSearch', sessionStorageVal);
-//    }
-//});
-//endregion
 
 //table設定region
 var $table = $("#tab_all").DataTable({
@@ -455,34 +86,25 @@ var $table = $("#tab_all").DataTable({
   buttons: [
     {
       extend: "excelHtml5",
-      title: "快樂聯盟諮詢個案一覽表",
-      text: "匯出Word",
+      title: "快樂聯盟預約篩檢總表",
+      text: "匯出Excel",
     },
   ],
 });
 
 //範圍搜尋region
-//var age_range =(
-//    function( settings, data, dataIndex ) {
-//        var min = parseInt( $('#min').val(), 10 );
-//        var max = parseInt( $('#max').val(), 10 );
-//        var age = parseFloat( data[5] ) || 0; // use data for the age column
-//
-//        if ( ( isNaN( min ) && isNaN( max ) ) ||
-//             ( isNaN( min ) && age <= max ) ||
-//             ( min <= age   && isNaN( max ) ) ||
-//             ( min <= age   && age <= max ) )
-//        {
-//            return true;
-//        }
-//        return false;
-//    });
+function parseTime(t) {
+  var d = new Date();
+  var time = t.match(/(\d+)(?::(\d\d))?\s*(p?)/);
+  d.setHours(parseInt(time[1]) + (time[3] ? 12 : 0));
+  d.setMinutes(parseInt(time[2]) || 0);
+  return d;
+}
 
 var date_range = function (settings, data, dataIndex) {
   var min_date = parseInt(Date.parse($("#min_date").val()), 10);
   var max_date = parseInt(Date.parse($("#max_date").val()), 10);
-  var date = parseInt(Date.parse(data[2])) || 0; // use data for the date column
-  // console.log($('#min_date').val())
+  var date = parseInt(Date.parse(data[1])) || 0; // use data for the date column
   if (
     (isNaN(min_date) && isNaN(max_date)) ||
     (isNaN(min_date) && date <= max_date) ||
@@ -493,35 +115,77 @@ var date_range = function (settings, data, dataIndex) {
   }
   return false;
 };
+
+var time_range = function (settings, data, dataIndex) {
+  // var min_time = parseInt(Date.parse( $('#min_time').val()), 10 );
+  // var max_time = parseInt(Date.parse( $('#max_time').val()), 10 );
+  // var time = parseInt(Date.parse( data[2] )) || 0; // use data for the date column
+  var min_time = $("#min_time").val();
+  var max_time = $("#max_time").val();
+  switch (min_time) {
+    case "00:00":
+      min_time = "12:00";
+      break;
+    case "12:00":
+      min_time = "24:00";
+      break;
+    default:
+      min_time = min_time;
+      break;
+  }
+
+  switch (max_time) {
+    case "00:00":
+      max_time = "12:00";
+      break;
+    case "12:00":
+      max_time = "24:00";
+      break;
+    default:
+      max_time = max_time;
+      break;
+  }
+
+  const [hours_i, minutes_i] = min_time.split(":");
+  const [hours_x, minutes_x] = max_time.split(":");
+  const [hours_filter, minutes_filter] = data[2].split(":") || 0;
+  const totalSeconds_min = +hours_i * 60 * 60 + +minutes_i * 60;
+  const totalSeconds_max = +hours_x * 60 * 60 + +minutes_x * 60;
+  const totalSeconds_time = +hours_filter * 60 * 60 + +minutes_filter * 60 || 0;
+
+  if (
+    (isNaN(totalSeconds_min) && isNaN(totalSeconds_max)) ||
+    (isNaN(totalSeconds_min) && totalSeconds_time <= totalSeconds_max) ||
+    (totalSeconds_min <= totalSeconds_time && isNaN(totalSeconds_max)) ||
+    (totalSeconds_min <= totalSeconds_time &&
+      totalSeconds_time <= totalSeconds_max)
+  ) {
+    return true;
+  }
+  return false;
+};
+
 //endregion
-
-//$('#Search').on('click', function () {
-//var args1 = $("#phone_id").val();
-//var args2 = $("#call_date").val();
-//var args3 = $("#name").val();
-//var args4 = $("#gender").val();
-//var args5 = $("#addition").val();
-//var args6 = $("#home").val();
-//var args7 = $("#info_name").val();
-//var args8 = $("#relationship").val();
-//var args9 = $("#phone").val();
-//var args10 = $("#k_place").val();
-//var args11 = $("#wish").val();
-
-//$table.columns(rel).search(this.value).draw();
-//});
-//$('#min, #max').keyup( function() {
-//    $table.draw();
-//} );
 
 //預設總人數人次region
 $("#count_people").text("人次：" + $table.column(0).data().count());
 $("#count_people2").text("，人數：" + $table.column(0).data().unique().count());
 //endregion
 
+//額外設定select
 $("select.filter").on("change", function () {
   var rel = $(this).attr("rel");
-  $table.columns(rel).search(this.value).draw();
+  if (this.value != "") {
+    //格式：.serch(該欄位值, 是否啟用正則表達式匹配, 是否關閉智能查詢, 是否開啟不區分大小寫)
+    //須完全匹配option的value值 設定option.value 使用正則符號匹配，ex:"^" + this.value+ "$"
+    //前端注意option value內有特殊字元須加入轉義字 ex:H+梅 positive => H\+梅 positive
+    $table
+      .columns(rel)
+      .search("^" + this.value + "$", true, false, true)
+      .draw();
+  } else {
+    $table.columns(rel).search(this.value).draw();
+  }
 });
 $("#min, #max").keyup(function () {
   $.fn.dataTable.ext.search.push(age_range);
@@ -530,6 +194,11 @@ $("#min, #max").keyup(function () {
 $("#min_date, #max_date").on("change", function () {
   //    console.log($('#min_date').val())
   $.fn.dataTable.ext.search.push(date_range);
+  $table.draw();
+});
+$("#min_time, #max_time").on("change", function () {
+  //    console.log($('#min_date').val())
+  $.fn.dataTable.ext.search.push(time_range);
   $table.draw();
 });
 
@@ -546,9 +215,7 @@ $("input.filter").on("keyup change", function () {
 
   $table.columns(rel).search(this.value).draw();
 });
-//$('#min, #max').keyup( function() {
-//    $table.draw();
-//} );
+
 //endregion
 
 //匯出EXCEL按鈕CSS設定 region

@@ -50,7 +50,7 @@
                     </svg></i>
             </a>
             <a href="index.php"><img class="brand-img pull-left" src="image/HA.png" /></a>
-            <a href="index.php"><img class="brand-img pull-left" style="width:330px;height:70px" src="image/logo字.png" /></a>
+            <a href="index.php"><img class="brand-img pull-left" style="width:330px;height:70px" style="width:330px;height:70px" src="image/logo字.png" /></a>
             <ul class="nav navbar-right top-nav pull-right">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle pr-0" data-toggle="dropdown">歡迎 <?php echo $_SESSION['name'] . " " . $_SESSION['job']; ?><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-down-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -226,7 +226,7 @@
                                                         <thead>
                                                             <tr>
                                                                 <th class="text-right" colspan="16">
-                                                                    <a href="staff_upload.php"><button style="font-size:15px" type="button" class="btn btn-default"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                                    <a href="add_volunteer.php"><button style="font-size:15px" type="button" class="btn btn-default"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                                                 <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
                                                                                 <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z" />
                                                                                 <path fill-rule="evenodd" d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5z" />
@@ -236,8 +236,7 @@
                                                             <tr style="background-color:rgb(255 201 54);">
                                                                 <th>人事資料報名表</th>
                                                                 <th>服務累積時數</th>
-                                                                <th>日期</th>
-                                                                <th>時間</th>
+                                                                <th>日期時間</th>
                                                                 <th>時數</th>
                                                                 <th>服務內容</th>
                                                             </tr>

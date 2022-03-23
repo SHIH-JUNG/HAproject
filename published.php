@@ -226,7 +226,7 @@
                                                         <thead>
                                                             <tr>
                                                                 <th class="text-right" colspan="16">
-                                                                    <a href="add_phone.php"><button style="font-size:15px" type="button" class="btn btn-default"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                                    <a href="add_published.php"><button style="font-size:15px" type="button" class="btn btn-default"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                                                 <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
                                                                                 <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z" />
                                                                                 <path fill-rule="evenodd" d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5z" />
@@ -235,21 +235,10 @@
                                                             </tr>
                                                             <tr style="background-color:rgb(255 201 54);">
                                                                 <th>編號</th>
-                                                                <th>個案姓名</th>
-                                                                <th>諮詢日期</th>
-                                                                <th>諮詢方式</th>
-                                                                <th>面訪地點</th>
-                                                                <th>來電次數</th>
-                                                                <th>面訪次數</th>
-                                                                <th>性別</th>
-                                                                <th>服務對象類別</th>
-                                                                <th>癮別</th>
-                                                                <th>年齡區間</th>
-                                                                <th>居住縣市</th>
-                                                                <th>聯絡人與案主關係</th>
-                                                                <th>得知管道</th>
-                                                                <th>是否符合開案</th>
-                                                                <th>負責同工</th>
+                                                                <th>發文日期</th>
+                                                                <th>受文單位</th>
+                                                                <th>發文字號</th>
+                                                                <th>主旨</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody id="call_view"></tbody>

@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="css/bootstrap-table.min.css">
 
     <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="description" content="快樂聯盟資管系統">
     <meta name="author" content="HANG">
     <meta HTTP-EQUIV="pragma" CONTENT="no-cache">
@@ -32,19 +32,21 @@
         margin-left: auto;
         margin-right: auto;
     }
-/*隱藏input number上下箭頭*/
-/* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
 
-/* Firefox */
-input[type=number] {
-  -moz-appearance: textfield;
-}
-/*隱藏input number上下箭頭/*/
+    /*隱藏input number上下箭頭*/
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+
+    /*隱藏input number上下箭頭/*/
 </style>
 
 <body>
@@ -62,10 +64,10 @@ input[type=number] {
                     </svg></i>
             </a>
             <a href="index.php"><img class="brand-img pull-left" src="image/HA.png" /></a>
-            <a href="index.php"><img class="brand-img pull-left" style="width:330px;height:70px" src="image/logo字.png" /></a>   
+            <a href="index.php"><img class="brand-img pull-left" style="width:330px;height:70px" src="image/logo字.png" /></a>
             <ul class="nav navbar-right top-nav pull-right">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle pr-0" data-toggle="dropdown">歡迎 <?php echo $_SESSION['name']." ".$_SESSION['job']; ?><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-down-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <a href="#" class="dropdown-toggle pr-0" data-toggle="dropdown">歡迎 <?php echo $_SESSION['name'] . " " . $_SESSION['job']; ?><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-down-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
                         </svg></a>
                     <ul class="dropdown-menu user-auth-dropdown" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
@@ -138,55 +140,55 @@ input[type=number] {
                             </a>
                             <ul style="font-size:15px" id="non_open" class="collapse">
                                 <li>
-                                    <li>
-                                        <a href="phone.php">諮詢個案
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="counsel.php">監所輔導
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="screening.php">篩檢
-                                        </a>
-                                    </li>
+                                <li>
+                                    <a href="phone.php">諮詢個案
+                                    </a>
                                 </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="current_case.php">開案個案
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">結案個案
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">生輔紀錄
-                            </a>
+                                <li>
+                                    <a href="counsel.php">監所輔導
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="screening.php">篩檢
+                                    </a>
+                                </li>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="javascript:void(0);" data-toggle="collapse" data-target="#plan">方案管理
-                        <span class="pull-right">
-                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-down-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
-                            </svg>
-                        </span>
+                    <a href="current_case.php">開案個案
                     </a>
-                    <ul style="font-size:18px" id="plan" class="collapse" data-toggle="collapse">
-                        <li>
-                            <a href="#">方案活動
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">方案計畫
-                            </a>
-                        </li>
-                    </ul>
                 </li>
-                <!-- <li>
+                <li>
+                    <a href="#">結案個案
+                    </a>
+                </li>
+                <li>
+                    <a href="#">生輔紀錄
+                    </a>
+                </li>
+            </ul>
+            </li>
+            <li>
+                <a href="javascript:void(0);" data-toggle="collapse" data-target="#plan">方案管理
+                    <span class="pull-right">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-down-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                        </svg>
+                    </span>
+                </a>
+                <ul style="font-size:18px" id="plan" class="collapse" data-toggle="collapse">
+                    <li>
+                        <a href="#">方案活動
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">方案計畫
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <!-- <li>
                     <a href="#">項目5</a>
                 </li>
                 <li>
@@ -195,9 +197,9 @@ input[type=number] {
                 <li>
                     <a href="#" data-toggle="collapse" data-target="#track">項目7</a>
                 </li> -->
-                <li>
-                    <a href="Authority.html" data-toggle="collapse" data-target="#track">權限管理</a>
-                </li>
+            <li>
+                <a href="Authority.html" data-toggle="collapse" data-target="#track">權限管理</a>
+            </li>
             </ul>
         </div>
         <!--/左側導覽列-->
@@ -208,15 +210,15 @@ input[type=number] {
                 <div class="row heading-bg  bg-green">
                     <!--麵包屑-->
                     <ol class="breadcrumb">
-                        <li><span><a href="index.php">個案管理</a></span></li>
+                        <li><span><a href="index.php">行政管理</a></span></li>
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span><a href="screening.php">篩檢</a></span></li>
+                        <li><span><a href="staff_manag.php">員工管理</a></span></li>
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span>新增篩檢資料</span></li>
+                        <li><span>新增請假系統</span></li>
                     </ol>
                     <!--/麵包屑-->
                 </div>
@@ -245,129 +247,110 @@ input[type=number] {
                                                         <table style="width:auto;" class="table table-bordered">
                                                             <tr>
                                                                 <td colspan="2">
-                                                                    <h3>新增篩檢資料</h3>
+                                                                    <h3>新增請假系統</h3>
                                                                 </td>
                                                             </tr>
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>預約日期</td>
-                                                                <td style="border-bottom: solid 1px;"><input id="reservation_date" type="date"></td>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>休假日期</td>
+                                                                <td style="border-bottom: solid 1px;"><input id="call_datetime" type="datetime-local">
                                                             </tr>
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>預約時段</td>
-                                                                <td style="border-bottom: solid 1px;"><input id="reservation_time" type="time"></td>
-                                                            </tr>
-                                                            <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>姓名</td>
-                                                                <td style="border-bottom: solid 1px;"><input id="name" type="text" oninput="value=value.replace(/[\d]/g,'')"></td>
-                                                            </tr>
-                                                            <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>年齡</td>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>休假時數</td>
                                                                 <td style="border-bottom: solid 1px;">
-                                                                    <input id="age" type="text" maxlength="2" oninput="value=value.replace(/[^\d]/g,'')">
-                                                                    <br>
-                                                                    <label>分類：</label>
-                                                                    <input name="a_type[]" style="zoom: 1.5" type="radio" value="10歲以下"><label>10歲以下</label>
-                                                                    <input name="a_type[]" style="zoom: 1.5" type="radio" value="10-19歲"><label>10-19歲</label>
-                                                                    <input name="a_type[]" style="zoom: 1.5" type="radio" value="20-29歲"><label>20-29歲</label>
-                                                                    <input name="a_type[]" style="zoom: 1.5" type="radio" value="30-39歲"><label>30-39歲</label>
-                                                                    <input name="a_type[]" style="zoom: 1.5" type="radio" value="40-49歲"><label>40-49歲</label>
-                                                                    <input name="a_type[]" style="zoom: 1.5" type="radio" value="50-59歲"><label>50-59歲</label>
-                                                                    <input name="a_type[]" style="zoom: 1.5" type="radio" value="60歲以上"><label>60歲以上</label>
-                                                                    <input name="a_type[]" style="zoom: 1.5" type="radio" value="不明"><label>不明</label>
-                                                                </td>
-                                                            </tr>
-                                                            <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>電話</td>
-                                                                <td style="border-bottom: solid 1px;"><input name="phone" type="number" max="14" id="phone"></td>
-                                                            </tr>
-                                                            <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">性別</td>
-                                                                <td style="border-bottom: solid 1px;">
-                                                                    <select id="gender" style="width:200px;">
-                                                                        <option value="">請選擇</option>
-                                                                        <option value="男">男</option>
-                                                                        <option value="女">女</option>
-                                                                        <option value="跨性別">跨性別</option>
+                                                                    <select id="way">
+                                                                        <option value="X">X</option>
+                                                                        <option value="X">X</option>
                                                                     </select>
                                                                 </td>
                                                             </tr>
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">性向</td>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>請假日期</td>
+                                                                <td style="border-bottom: solid 1px;"><input id="call_datetime" type="datetime-local">
+                                                            </tr>
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>請假時數</td>
                                                                 <td style="border-bottom: solid 1px;">
-                                                                    <select id="sexual_orientation" style="width:200px;">
-                                                                        <option value="">請選擇</option>
-                                                                        <option value="同性">同性</option>
-                                                                        <option value="異性">異性</option>
-                                                                        <option value="雙性">雙性</option>
+                                                                    <select id="way">
+                                                                        <option value="X">X</option>
+                                                                        <option value="X">X</option>
                                                                     </select>
                                                                 </td>
                                                             </tr>
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>篩檢類型</td>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">請假人 </td>
                                                                 <td style="border-bottom: solid 1px;">
-                                                                    <select id="screening_type" style="width:200px;">
-                                                                        <option value="">請選擇</option>
-                                                                        <option value="HIV">HIV</option>
-                                                                        <option value="梅毒">梅毒</option>
-                                                                        <option value="HIV+梅毒">HIV+梅毒</option>
+                                                                    <select id="way_detail">
+                                                                        <option value="">X</option>
+                                                                        <option value="X">X</option>
+                                                                        <option value="X">X</option>
+                                                                        <option value="X">X</option>
                                                                     </select>
                                                                 </td>
                                                             </tr>
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">篩檢結果</td>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">特休 </td>
                                                                 <td style="border-bottom: solid 1px;">
-                                                                    <select id="screening_results" style="width:200px;">
-                                                                        <option value="">請選擇</option>
-                                                                        <option value="H positive">H positive</option>
-                                                                        <option value="H negative">H negative</option>
-                                                                        <option value="梅 positive">梅 positive</option>
-                                                                        <option value="梅 negative">梅 negative</option>
-                                                                        <option value="H+梅 positive">H+梅 positive</option>
-                                                                        <option value="H+梅 negative">H+梅 negative</option>
+                                                                    <select id="way_detail">
+                                                                        <option value="">X</option>
+                                                                        <option value="X">X</option>
+                                                                        <option value="X">X</option>
+                                                                        <option value="X">X</option>
                                                                     </select>
                                                                 </td>
                                                             </tr>
-                                                            <!-- <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">建立者</td>
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">補休 </td>
                                                                 <td style="border-bottom: solid 1px;">
-                                                                    <select class="user" id="user">
-                                                                        <option value="" disabled selected hidden>請選擇同工</option>
+                                                                    <select id="way_detail">
+                                                                        <option value="">X</option>
+                                                                        <option value="X">X</option>
+                                                                        <option value="X">X</option>
+                                                                        <option value="X">X</option>
                                                                     </select>
                                                                 </td>
-                                                            </tr> -->
+                                                            </tr>
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white">訪談內容</td>
-                                                                <td>
-                                                                    <textarea style="height:150px;width:700px;resize: none;font-size: 20px;" name="interview_content" id="interview_content" placeholder="請輸入訪談內容"></textarea>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">職務代理 </td>
+                                                                <td style="border-bottom: solid 1px;">
+                                                                    <select id="way_detail">
+                                                                        <option value="">X</option>
+                                                                        <option value="X">X</option>
+                                                                        <option value="X">X</option>
+                                                                        <option value="X">X</option>
+                                                                    </select>
                                                                 </td>
                                                             </tr>
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white">備註</td>
-                                                                <td>
-                                                                    <textarea style="height:150px;width:700px;resize: none;font-size: 20px;" name="remark" id="remark" placeholder="請輸入備註"></textarea>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">權限簽核 </td>
+                                                                <td style="border-bottom: solid 1px;">
+                                                                    <select id="way_detail">
+                                                                        <option value="">X</option>
+                                                                        <option value="X">X</option>
+                                                                        <option value="X">X</option>
+                                                                        <option value="X">X</option>
+                                                                    </select>
                                                                 </td>
                                                             </tr>
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white">試劑編號</td>
-                                                                <td>
-                                                                    <input id="reagent_seq" type="text">
-                                                                </td>
-                                                            </tr>
-                                                            <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white">金額</td>
-                                                                <td>
-                                                                    <input id="amount" type="text" oninput="value=value.replace(/[^\d]/g,'')">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">請假人 </td>
+                                                                <td style="border-bottom: solid 1px;">
+                                                                    <select id="way_detail">
+                                                                        <option value="">X</option>
+                                                                        <option value="X">X</option>
+                                                                        <option value="X">X</option>
+                                                                        <option value="X">X</option>
+                                                                    </select>
                                                                 </td>
                                                             </tr>
                                                         </table>
                                                     </div>
                                                 </div>
                                                 <br>
-                                                <button id="screening_add_new" style="font-size:15px" type="button" class="btn btn-default"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-check" viewBox="0 0 16 16">
+                                                <button id="#" style="font-size:15px" type="button" class="btn btn-default"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-check" viewBox="0 0 16 16">
                                                         <path d="M10.854 7.854a.5.5 0 0 0-.708-.708L7.5 9.793 6.354 8.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
                                                         <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
                                                     </svg>新增</button>
-                                                <a href="screening.php"><button style="font-size:15px" type="button" class="btn btn-default"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-excel" viewBox="0 0 16 16">
+                                                <a href="staff_manag.php"><button style="font-size:15px" type="button" class="btn btn-default"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-excel" viewBox="0 0 16 16">
                                                             <path d="M5.884 6.68a.5.5 0 1 0-.768.64L7.349 10l-2.233 2.68a.5.5 0 0 0 .768.64L8 10.781l2.116 2.54a.5.5 0 0 0 .768-.641L8.651 10l2.233-2.68a.5.5 0 0 0-.768-.64L8 9.219l-2.116-2.54z" />
                                                             <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
                                                         </svg>取消</button></a>
@@ -410,8 +393,8 @@ input[type=number] {
     <!-- ================== table ================== -->
     <script src="javascript/bootstrap1.18.0-table.min.js"></script>
     <script src="javascript/bootstrap-table1.11.1-zh-TW.min.js"></script>
-    <!-- ================== add_screening.js ================== -->
-    <script src="js/add_screening.js"></script>
+    <!-- ================== add_phone.js ================== -->
+    <script src="js/#.js"></script>
 </body>
 
 </html>
