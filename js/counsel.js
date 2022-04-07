@@ -139,7 +139,7 @@ check_sql_date_format = function(date) {
 //endregion
 
 
-//監所輔導表格region
+//監所服務表格region
 $.ajax({
     url: "database/find_data_counsel.php",
     type: "POST",
@@ -248,7 +248,7 @@ language: {
 buttons: [
     {
         extend: 'excelHtml5',
-        title: '快樂聯盟監所輔導紀錄總表',
+        title: '快樂聯盟監所服務紀錄總表',
         text:'匯出Excel'
     },
 ]

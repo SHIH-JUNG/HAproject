@@ -358,15 +358,15 @@ function screening_cancel(){
 
 //進入預覽WORD頁面region
 $("#preview_word").on('click',function(){
-    var phone_id = getUrlVars()["phone_id"];
+    var screening_id = getUrlVars()["screening_id"];
 //    console.log(id);
-    location.href = 'preview_word.php?phone_id='+phone_id+'';
+    location.href = 'preview_word.php?screening_id='+screening_id+'';
 });
 
 $("#preview_word2").on('click',function(){
-    var phone_id = getUrlVars()["phone_id"];
+    var screening_id = getUrlVars()["screening_id"];
 //    console.log(id);
-    location.href = 'preview_word2.php?phone_id='+phone_id+'';
+    location.href = 'preview_word2.php?screening_id='+screening_id+'';
 })
 //endregion
 

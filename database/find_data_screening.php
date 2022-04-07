@@ -1,7 +1,7 @@
 <?php
 include("sql_connect.php"); 
 //region 抓資料
-$note = "SELECT *, DATE_FORMAT(`Reservation_time`, '%H:%i') As Reservation_time FROM `screening`";
+$note = "SELECT *, DATE_FORMAT(`Reservation_time`, '%H:%i') As Reservation_time FROM `screening` ORDER BY `screening`.`Reservation_date` DESC";
 $select_note = mysqli_query($conn,$note);
 $data = array();
 $data['Id'] = array();

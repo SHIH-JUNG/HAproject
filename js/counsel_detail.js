@@ -135,7 +135,7 @@ check_sql_date_format = function(date) {
 
 
 
-//抓個別特定監所輔導紀錄表region
+//抓個別特定監所服務紀錄表region
 $(document).ready(function(){
 
     var id = getUrlVars()["id"];
@@ -229,7 +229,7 @@ $(document).ready(function(){
 //endregion 
 
 
-//更新監所輔導紀錄表基本資料region
+//更新監所服務紀錄表基本資料region
 $("#counsel_update").on('click',function(){
 
 var id = getUrlVars()["id"];
@@ -308,7 +308,7 @@ var stau = false;
 
 });
 
-//監所輔導紀錄表(update)的必填欄位 region
+//監所服務紀錄表(update)的必填欄位 region
 function check_updat_counsel_data()
 {
     var refferal = $("#refferal").val();
@@ -353,7 +353,7 @@ function check_updat_counsel_data()
 
 
 
-//點擊監所輔導紀錄表旁邊的"+"功能 新增第n次來電 region
+//點擊監所服務紀錄表旁邊的"+"功能 新增第n次來電 region
 
 function addNewTag() {
     var cssString = "";
@@ -580,7 +580,7 @@ function reservation_rec_new(){
                 check_creat_radio_value();
                 // check_radio_value();
                 // check_main_checkbox();
-                var title = $("#name").val()+'('+$("#start_date").val()+')監所輔導-訪談';
+                var title = $("#name").val()+'('+$("#start_date").val()+')監所服務-訪談';
                 var start_time = $("#start_time_h").val()+":"+$("#start_time_m").val();
                 var end_time = $("#end_time_h").val()+":"+$("#end_time_m").val();
                 //    console.log(title)
@@ -687,7 +687,7 @@ function reservation_rec_new(){
 //endregion
 
 
-//檢查監所輔導訪談紀錄的必填欄位region
+//檢查監所服務訪談紀錄的必填欄位region
 function check_open_reservation_note_value_str()
 {
     var start_date = $("#start_date").val();
@@ -733,7 +733,7 @@ function check_open_reservation_note_value_str()
 //endregion
 
 function counsel_visit_show() {
-    //印出監所輔導預約訪談紀錄表格region
+    //印出監所服務預約訪談紀錄表格region
     var counsel_id = getUrlVars()["counsel_id"];
     //console.log(id);
     $.ajax({
@@ -983,7 +983,7 @@ function counsel_visit_show() {
 
 
 
-//檢查欄位 個人監所輔導紀錄(Update) region
+//檢查欄位 個人監所服務紀錄(Update) region
 function check_open_phone_note_value_str2(id)
 {
   var ncall_datetime =  $('#ncall_datetime'+id+'').val();
@@ -1288,7 +1288,7 @@ function cancel_face(id){
 };
 //endregion
 
-//監所輔導總表格鎖定控制region
+//監所服務總表格鎖定控制region
 function counsel_edit(){
     $('.counsel_question').attr('disabled', false);
     $('#edit_div').attr('hidden', true);
@@ -1399,15 +1399,15 @@ function update_add_face(id){
 
 //進入預覽WORD頁面region
 $("#preview_word").on('click',function(){
-    var phone_id = getUrlVars()["phone_id"];
+    var counsel_id = getUrlVars()["counsel_id"];
 //    console.log(id);
-    location.href = 'preview_word.php?phone_id='+phone_id+'';
+    location.href = 'preview_word.php?counsel_id='+counsel_id+'';
 });
 
 $("#preview_word2").on('click',function(){
-    var phone_id = getUrlVars()["phone_id"];
+    var counsel_id = getUrlVars()["counsel_id"];
 //    console.log(id);
-    location.href = 'preview_word2.php?phone_id='+phone_id+'';
+    location.href = 'preview_word2.php?counsel_id='+counsel_id+'';
 })
 //endregion
 

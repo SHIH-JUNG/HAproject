@@ -103,6 +103,40 @@ CREATE TABLE `case_all` (
 -- --------------------------------------------------------
 
 --
+-- 資料表結構 `closed`
+--
+
+CREATE TABLE `closed` (
+  `Id` int(30) NOT NULL,
+  `Closed_id` text NOT NULL,
+  `Open_date` date NOT NULL,
+  `Closed_date` date NOT NULL,
+  `Name` varchar(20) NOT NULL,
+  `Gender` varchar(20) NOT NULL,
+  `Main_issue` varchar(3000) NOT NULL,
+  `Intervention` varchar(3000) NOT NULL,
+  `Closed_reason` varchar(2000) NOT NULL,
+  `Remark` varchar(3000) NOT NULL,
+  `Assign` varchar(30) NOT NULL,
+  `Supervise` varchar(30) NOT NULL,
+  `Supervise_signature` varchar(500) NOT NULL,
+  `Create_date` datetime NOT NULL,
+  `Create_name` varchar(30) NOT NULL,
+  `Update_date` datetime DEFAULT current_timestamp(),
+  `Update_name` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- 傾印資料表的資料 `closed`
+--
+
+INSERT INTO `closed` (`Id`, `Closed_id`, `Open_date`, `Closed_date`, `Name`, `Gender`, `Main_issue`, `Intervention`, `Closed_reason`, `Remark`, `Assign`, `Supervise`, `Supervise_signature`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
+(1, 're12324', '2021-01-20', '2021-12-25', 'Allen', '男', '主要問題test2', '問題處遇test1', 'othertest結案原因123', '備註test461', '社工員1', '', '', '2022-04-06 18:01:44', '社工員1', '2022-04-06 19:50:28', '園主任'),
+(2, '658', '2021-12-01', '2022-09-13', 'Amy', '女', '主要問題test111', '問題處遇test121', '達到目標，已無需要在服務', '備註test46123', '社工員2', '', '', '2022-04-06 18:01:44', '社工員2', '0000-00-00 00:00:00', '');
+
+-- --------------------------------------------------------
+
+--
 -- 資料表結構 `consult`
 --
 
@@ -303,6 +337,49 @@ INSERT INTO `current_case` (`Id`, `Case_id`, `Phone_id`, `Scale_id`, `Open_case_
 -- --------------------------------------------------------
 
 --
+-- 資料表結構 `dlgrec`
+--
+
+CREATE TABLE `dlgrec` (
+  `Id` int(11) NOT NULL,
+  `bf_num` int(11) NOT NULL,
+  `al_num` int(11) NOT NULL,
+  `em_num` int(11) NOT NULL,
+  `lp_num` int(11) NOT NULL,
+  `leave_num` int(11) NOT NULL,
+  `dlgrec_date` date NOT NULL,
+  `dlgrec_0` varchar(500) NOT NULL,
+  `dlgrec_1` varchar(500) NOT NULL,
+  `dlgrec_2` varchar(500) NOT NULL,
+  `dlgrec_3` varchar(500) NOT NULL,
+  `dlgrec_4` varchar(500) NOT NULL,
+  `dlgrec_5` varchar(500) NOT NULL,
+  `dlgrec_6` varchar(500) NOT NULL,
+  `dlgrec_7` varchar(500) NOT NULL,
+  `dlgrec_8` varchar(500) NOT NULL,
+  `dlgrec_9` varchar(500) NOT NULL,
+  `dlgrec_10` varchar(500) NOT NULL,
+  `dlgrec_11` varchar(500) NOT NULL,
+  `dlg_manager` varchar(30) NOT NULL,
+  `social_worker` varchar(30) NOT NULL,
+  `supervise` varchar(30) NOT NULL,
+  `Create_date` datetime NOT NULL,
+  `Create_name` varchar(30) NOT NULL,
+  `Update_date` datetime DEFAULT current_timestamp(),
+  `Update_name` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- 傾印資料表的資料 `dlgrec`
+--
+
+INSERT INTO `dlgrec` (`Id`, `bf_num`, `al_num`, `em_num`, `lp_num`, `leave_num`, `dlgrec_date`, `dlgrec_0`, `dlgrec_1`, `dlgrec_2`, `dlgrec_3`, `dlgrec_4`, `dlgrec_5`, `dlgrec_6`, `dlgrec_7`, `dlgrec_8`, `dlgrec_9`, `dlgrec_10`, `dlgrec_11`, `dlg_manager`, `social_worker`, `supervise`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
+(1, 20, 30, 29, 33, 3, '2021-12-22', 'test1', '', '', '', '', 'test2', 't', '', '', '', 'test5', 'test6\n', 'testw', '社工員2', 'tests', '2022-04-07 20:46:39', '社工員1', '2022-04-07 21:45:35', '園主任'),
+(2, 17, 28, 28, 30, 2, '2021-11-10', 'test1', '', 'test2', '', '', '', 'test3', 'test4', 'test特殊個案反應情形輔導處理', 'test輔導諮詢執行實況	', 'test問題處遇概況	', 'test備註	', 'test管理員/生活輔導員', 'test社工員', 'test督導', '2022-04-07 20:47:56', '園主任', '2022-04-07 20:47:56', '');
+
+-- --------------------------------------------------------
+
+--
 -- 資料表結構 `face`
 --
 
@@ -495,6 +572,50 @@ INSERT INTO `ha_phone` (`Id`, `Phone_id`, `Call_datetime`, `Way`, `Way_detail`, 
 -- --------------------------------------------------------
 
 --
+-- 資料表結構 `published`
+--
+
+CREATE TABLE `published` (
+  `id` int(30) NOT NULL,
+  `date_publish` datetime NOT NULL,
+  `unit` varchar(100) NOT NULL,
+  `num_publish` int(100) NOT NULL,
+  `subject` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 傾印資料表的資料 `published`
+--
+
+INSERT INTO `published` (`id`, `date_publish`, `unit`, `num_publish`, `subject`) VALUES
+(1, '2022-03-18 04:19:18', '123', 456, '4565');
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `received`
+--
+
+CREATE TABLE `received` (
+  `id` int(30) NOT NULL,
+  `subject` varchar(50) NOT NULL,
+  `date_come` datetime NOT NULL,
+  `unit_come` varchar(100) NOT NULL,
+  `words_receive` varchar(100) NOT NULL,
+  `num_receive` int(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 傾印資料表的資料 `received`
+--
+
+INSERT INTO `received` (`id`, `subject`, `date_come`, `unit_come`, `words_receive`, `num_receive`) VALUES
+(1, '無', '2022-03-17 10:12:23', '無', '無', 1),
+(2, '無', '2022-03-15 10:12:23', '無', '無', 1);
+
+-- --------------------------------------------------------
+
+--
 -- 資料表結構 `scale`
 --
 
@@ -611,6 +732,30 @@ INSERT INTO `sign_notice` (`Id`, `file_name`, `authority`, `date`, `person`, `da
 -- --------------------------------------------------------
 
 --
+-- 資料表結構 `sign_off`
+--
+
+CREATE TABLE `sign_off` (
+  `id` int(100) NOT NULL,
+  `info_name` varchar(100) NOT NULL,
+  `submitter` varchar(100) NOT NULL,
+  `submit_date` datetime NOT NULL,
+  `read_date` datetime NOT NULL,
+  `audit_date` datetime NOT NULL,
+  `state` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 傾印資料表的資料 `sign_off`
+--
+
+INSERT INTO `sign_off` (`id`, `info_name`, `submitter`, `submit_date`, `read_date`, `audit_date`, `state`) VALUES
+(1, '123', 'test', '2022-03-18 04:54:13', '2022-03-18 04:54:13', '2022-03-18 04:54:13', 'test'),
+(2, '123', 'test', '2022-03-18 04:54:13', '2022-03-18 04:54:13', '2022-03-18 04:54:13', 'test');
+
+-- --------------------------------------------------------
+
+--
 -- 資料表結構 `tw_counties`
 --
 
@@ -714,6 +859,12 @@ ALTER TABLE `case_all`
   ADD PRIMARY KEY (`Id`);
 
 --
+-- 資料表索引 `closed`
+--
+ALTER TABLE `closed`
+  ADD PRIMARY KEY (`Id`);
+
+--
 -- 資料表索引 `consult`
 --
 ALTER TABLE `consult`
@@ -735,6 +886,12 @@ ALTER TABLE `counsel_visit`
 -- 資料表索引 `current_case`
 --
 ALTER TABLE `current_case`
+  ADD PRIMARY KEY (`Id`);
+
+--
+-- 資料表索引 `dlgrec`
+--
+ALTER TABLE `dlgrec`
   ADD PRIMARY KEY (`Id`);
 
 --
@@ -762,6 +919,18 @@ ALTER TABLE `ha_phone`
   ADD PRIMARY KEY (`Id`) USING BTREE;
 
 --
+-- 資料表索引 `published`
+--
+ALTER TABLE `published`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- 資料表索引 `received`
+--
+ALTER TABLE `received`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- 資料表索引 `scale`
 --
 ALTER TABLE `scale`
@@ -778,6 +947,12 @@ ALTER TABLE `screening`
 --
 ALTER TABLE `sign_notice`
   ADD PRIMARY KEY (`Id`);
+
+--
+-- 資料表索引 `sign_off`
+--
+ALTER TABLE `sign_off`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- 資料表索引 `tw_counties`
@@ -814,6 +989,12 @@ ALTER TABLE `case_all`
   MODIFY `Id` int(30) NOT NULL AUTO_INCREMENT;
 
 --
+-- 使用資料表自動遞增(AUTO_INCREMENT) `closed`
+--
+ALTER TABLE `closed`
+  MODIFY `Id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- 使用資料表自動遞增(AUTO_INCREMENT) `consult`
 --
 ALTER TABLE `consult`
@@ -836,6 +1017,12 @@ ALTER TABLE `counsel_visit`
 --
 ALTER TABLE `current_case`
   MODIFY `Id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `dlgrec`
+--
+ALTER TABLE `dlgrec`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `face`
@@ -862,6 +1049,18 @@ ALTER TABLE `ha_phone`
   MODIFY `Id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
+-- 使用資料表自動遞增(AUTO_INCREMENT) `published`
+--
+ALTER TABLE `published`
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `received`
+--
+ALTER TABLE `received`
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- 使用資料表自動遞增(AUTO_INCREMENT) `scale`
 --
 ALTER TABLE `scale`
@@ -878,6 +1077,12 @@ ALTER TABLE `screening`
 --
 ALTER TABLE `sign_notice`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `sign_off`
+--
+ALTER TABLE `sign_off`
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `tw_counties`

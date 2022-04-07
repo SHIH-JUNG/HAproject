@@ -45,6 +45,14 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 /*隱藏input number上下箭頭/*/
+
+#dlgrec_tab tbody tr td textarea
+{
+    width:85%;
+    /* border: none; */
+    min-height:6em;
+    overflow: auto;
+}
 </style>
 
 <body>
@@ -62,7 +70,7 @@ input[type=number] {
                     </svg></i>
             </a>
             <a href="index.php"><img class="brand-img pull-left" src="image/HA.png" /></a>
-            <a href="index.php"><img class="brand-img pull-left" style="width:330px;height:70px" src="image/logo字.png" /></a>
+            <a href="index.php"><img class="brand-img pull-left" style="width:330px;height:70px" src="image/logo字.png" /></a>   
             <ul class="nav navbar-right top-nav pull-right">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle pr-0" data-toggle="dropdown">歡迎 <?php echo $_SESSION['name']." ".$_SESSION['job']; ?><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-down-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -94,11 +102,11 @@ input[type=number] {
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span><a href="current_case.php">開案個案</a></span></li>
+                        <li><span><a href="dlgrec.php">生輔紀錄</a></span></li>
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span>新增個案</span></li>
+                        <li><span>新增每日生活輔導紀錄表</span></li>
                     </ol>
                     <!--/麵包屑-->
                 </div>
@@ -124,98 +132,115 @@ input[type=number] {
                                             <div class="col-sm-12 text-center">
                                                 <div class="table-wrap">
                                                     <div class="table-responsive">
-                                                        <table style="width:auto;" class="table table-bordered">
+                                                        <table style="width:75%;" class="table table-bordered" id="dlgrec_tab">
                                                             <tr>
                                                                 <td colspan="2">
-                                                                    <h3>新增個案</h3>
+                                                                    <h3>新增每日生活輔導紀錄表</h3>
                                                                 </td>
                                                             </tr>
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">編號</td>
-                                                                <td style="border-bottom: solid 1px;"><input id="Id" type="text" oninput="value=value.replace(/[\d]/g,'')"></td>
-                                                            </tr>
-                                                            <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>姓名</td>
-                                                                <td style="border-bottom: solid 1px;"><input id="Name" type="text" oninput="value=value.replace(/[\d]/g,'')"></td>
-                                                            </tr>
-                                                            <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>個案分級</td>
-                                                                <td style="border-bottom: solid 1px;">
-                                                                    <select id="Case_grade" style="width:200px;">>
-                                                                        <option value="A">A</option>
-                                                                        <option value="B">B</option>
-                                                                        <option value="C">C</option>
-                                                                    </select>
+                                                                <td colspan="2" style="border-bottom: solid 1px;">
+                                                                    <label for="bf_num">早餐：</label><input style="width:3.5em;" id="bf_num" type="number">人、
+                                                                    <label for="al_num">午餐：</label><input style="width:3.5em;" id="al_num" type="number">人、
+                                                                    <label for="em_num">晚餐：</label><input style="width:3.5em;" id="em_num" type="number">人，
+                                                                    <label for="lp_num">當日入住人數：</label><input style="width:3.5em;" id="lp_num" type="number">人、
+                                                                    <label for="leave_num">請假：</label><input style="width:3.5em;" id="leave_num" type="number">人<br/><br/>
+                                                                    <label for="dlgrec_date">日期：</label><input style="width:9em;" id="dlgrec_date" type="date">
                                                                 </td>
                                                             </tr>
-                                                            <tr class="text-align:left">
-                                                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>開案日期</td>
-                                                            <td class="text-left">
-                                                                <input id="min_date" rel="" name="pcall_date" class="" type="date">
-                                                                <label>～</label>
-                                                                <input id="max_date" rel="" name="pcall_date" class="" type="date">
-                                                            </td>
-                                                            </tr>
-                                                            <tr class="text-align:left">
-                                                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>年齡</td>
-                                                            <td class="text-left">
-                                                                <input id="min" rel="" name="min" class="" type="text">
-                                                                <label>～</label>
-                                                                <input id="max" rel="" name="max" class="" type="text">
-                                                            </td>
+                                                            
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:center;background-color:rgb(255 201 54);width: 10em;">時間</td>
+                                                                <td style="text-align:center;background-color:rgb(255 201 54);">輔導內容:生活、輔導、職訓及相關事宜</td>
                                                             </tr>
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>服務對象類別</td>
+                                                                <td style="text-align:center;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">6:30<br/>7:30</td>
                                                                 <td style="border-bottom: solid 1px;">
-                                                                    <select id="Object_type" style="width:200px;">
-                                                                        <option value="一般藥癮者">一般藥癮者</option>
-                                                                        <option value="愛滋感染者">愛滋感染者</option>
-                                                                        <option value="家庭">家庭</option>
-                                                                        <option value="兒少">兒少</option>
-                                                                    </select>
+                                                                <textarea id="dlgrec_0" name="dlgrec_textarea" placeholder="請輸入內容" contenteditable="true"></textarea>
                                                                 </td>
                                                             </tr>
                                                             <tr style="text-align:left">
-                                                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>個案屬性</td>
-                                                            <td style="border-bottom: solid 1px;">
-                                                                <select id="Case_property" style="width:160px;">
-                                                                    <option value="家園">家園</option>
-                                                                    <option value="自立宿舍">自立宿舍</option>
-                                                                    <option value="社區">社區</option>
-                                                                    <option value="藥癮家庭">藥癮家庭</option>
-                                                                    <option value="藥癮者">藥癮者</option>
-                                                                    <option value="兒少">兒少</option>
-                                                                </select>
-                                                            </td>
+                                                                <td style="text-align:center;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">7:30<br/>9:30</td>
+                                                                <td style="border-bottom: solid 1px;">
+                                                                <textarea id="dlgrec_1" name="dlgrec_textarea" placeholder="請輸入內容" contenteditable="true"></textarea>
+                                                                </td>
                                                             </tr>
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white">轉介來源</td>
+                                                                <td style="text-align:center;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">9:30<br/>12:30</td>
                                                                 <td style="border-bottom: solid 1px;">
-                                                                <select id="Referral" style="width:160px;">
-                                                                    <option value="醫院">醫院</option>
-                                                                    <option value="矯正機關">矯正機關</option>
-                                                                    <option value="自行求助">自行求助</option>
-                                                                    <option value="藥癮家庭">藥癮家庭</option>
-                                                                    <option value="衛政">衛政</option>
-                                                                    <option value="民間社福機構">民間社福機構</option>
-                                                                    <option value="毒防中心">毒防中心</option>
-                                                                    <option value="警政">警政</option>
-                                                                    <option value="教會">教會</option>
-                                                                    <option value="社政">社政</option>
-                                                                    <option value="社區">社區</option>
-                                                                    <option value="其他">其他</option>
-                                                                </select>
+                                                                <textarea id="dlgrec_2" name="dlgrec_textarea" placeholder="請輸入內容" contenteditable="true"></textarea>
+                                                                </td>
+                                                            </tr>
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:center;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">12:30<br/>14:00</td>
+                                                                <td style="border-bottom: solid 1px;">
+                                                                <textarea id="dlgrec_3" name="dlgrec_textarea" placeholder="請輸入內容" contenteditable="true"></textarea>
+                                                                </td>
+                                                            </tr>
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:center;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">14:00<br/>17:30</td>
+                                                                <td style="border-bottom: solid 1px;">
+                                                                <textarea id="dlgrec_4" name="dlgrec_textarea" placeholder="請輸入內容" contenteditable="true"></textarea>
+                                                                </td>
+                                                            </tr>
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:center;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">17:30<br/>18:30</td>
+                                                                <td style="border-bottom: solid 1px;">
+                                                                <textarea id="dlgrec_5" name="dlgrec_textarea" placeholder="請輸入內容" contenteditable="true"></textarea>
+                                                                </td>
+                                                            </tr>
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:center;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">18:30<br/>21:30</td>
+                                                                <td style="border-bottom: solid 1px;">
+                                                                <textarea id="dlgrec_6" name="dlgrec_textarea" placeholder="請輸入內容" contenteditable="true"></textarea>
+                                                                </td>
+                                                            </tr>
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:center;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">21:30<br/>22:00</td>
+                                                                <td style="border-bottom: solid 1px;">
+                                                                <textarea id="dlgrec_7" name="dlgrec_textarea" placeholder="請輸入內容" contenteditable="true"></textarea>
+                                                                </td>
+                                                            </tr>
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:center;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">特殊個案反應情形輔導處理</td>
+                                                                <td style="border-bottom: solid 1px;">
+                                                                <textarea id="dlgrec_8" name="dlgrec_textarea" placeholder="請輸入特殊個案反應情形輔導處理" contenteditable="true"></textarea>
+                                                                </td>
+                                                            </tr>
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:center;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">輔導諮詢執行實況</td>
+                                                                <td style="border-bottom: solid 1px;">
+                                                                <textarea id="dlgrec_9" name="dlgrec_textarea" placeholder="請輸入輔導諮詢執行實況" contenteditable="true"></textarea>
+                                                                </td>
+                                                            </tr>
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:center;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">問題處遇概況</td>
+                                                                <td style="border-bottom: solid 1px;">
+                                                                <textarea id="dlgrec_10" name="dlgrec_textarea" placeholder="請輸入問題處遇概況" contenteditable="true"></textarea>
+                                                                </td>
+                                                            </tr>
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:center;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">備註</td>
+                                                                <td style="border-bottom: solid 1px;">
+                                                                <textarea id="dlgrec_11" name="dlgrec_textarea" placeholder="請輸入備註" contenteditable="true"></textarea>
+                                                                </td>
+                                                            </tr>
+                                                            <tr style="text-align:left">
+                                                                <td colspan="2" style="border-bottom: solid 1px;">
+                                                                    <label for="dlg_manager">管理員/生活輔導員：</label><input style="width:10em;" id="dlg_manager" type="text">
+                                                                    <label for="social_worker">社工員：</label><input style="width:10em;" id="social_worker" type="text">
+                                                                    <label for="supervise">督導：</label><input style="width:10em;" id="supervise" type="text">
                                                                 </td>
                                                             </tr>
                                                         </table>
                                                     </div>
                                                 </div>
                                                 <br>
-                                                <button id="phone_add_new" style="font-size:15px" type="button" class="btn btn-default"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-check" viewBox="0 0 16 16">
+                                                <button id="dlgrec_add_new" style="font-size:15px" type="button" class="btn btn-default"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-check" viewBox="0 0 16 16">
                                                         <path d="M10.854 7.854a.5.5 0 0 0-.708-.708L7.5 9.793 6.354 8.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
                                                         <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
                                                     </svg>新增</button>
-                                                <a href="phone.php"><button style="font-size:15px" type="button" class="btn btn-default"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-excel" viewBox="0 0 16 16">
+                                                <a href="dlgrec.php"><button style="font-size:15px" type="button" class="btn btn-default"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-excel" viewBox="0 0 16 16">
                                                             <path d="M5.884 6.68a.5.5 0 1 0-.768.64L7.349 10l-2.233 2.68a.5.5 0 0 0 .768.64L8 10.781l2.116 2.54a.5.5 0 0 0 .768-.641L8.651 10l2.233-2.68a.5.5 0 0 0-.768-.64L8 9.219l-2.116-2.54z" />
                                                             <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
                                                         </svg>取消</button></a>
@@ -258,8 +283,8 @@ input[type=number] {
     <!-- ================== table ================== -->
     <script src="javascript/bootstrap1.18.0-table.min.js"></script>
     <script src="javascript/bootstrap-table1.11.1-zh-TW.min.js"></script>
-    <!-- ================== add_phone.js ================== -->
-    <script src="js/add_phone.js"></script>
+    <!-- ================== add_dlgrec.js ================== -->
+    <script src="js/add_dlgrec.js"></script>
 </body>
 
 </html>

@@ -15,10 +15,7 @@
     <!-- ================== CSS bootstrap-select ================== -->
     <link href="css/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
     <!--  table  -->
-    <link href="css/bootstrap-table.min.css" rel="stylesheet" />
-    <!--  日期民國  -->
-    <link data-require="jqueryui@*" rel="stylesheet" href="css/jquery-ui.css" />
-    <link href="css/dtsel.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/bootstrap-table.min.css">
 
     <meta charset="UTF-8" />
     <!--    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />-->
@@ -119,11 +116,7 @@
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span><a href="">未開案個案</a></span></li>
-                        <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
-                        </svg>
-                        <li><span><a href="screening.php">篩檢</a></span></li>
+                        <li><span><a href="closed.php">結案個案</a></span></li>
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
@@ -157,9 +150,9 @@
                                             </div>
                                             <div class="col-sm-12">
                                                 <ul style="font-size:17px" class="nav nav-tabs" id="myTab" role="tablist">
-                                                    <li class="nav-item active" role="presentation" id="screening_rec_all">
+                                                    <li class="nav-item active" role="presentation" id="closed_rec_all">
                                                         <a class="nav-link" id="home-tab" data-toggle="pill" href="#one" role="tab" aria-selected="true">
-                                                            <b>預約篩檢紀錄</b>
+                                                            <b>個案結案表</b>
                                                         </a>
                                                     </li>
                                                     
@@ -177,53 +170,26 @@
                                                                 <div class="panel-heading" id="headingTwo">
                                                                     <h2 class="mb-0">
                                                                         <button class="btn btn-link btn-block collapsed" type="button" data-toggle="collapse" data-parent="#myTabContent" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                                                            <span style="color:black;font-size:17px">預約篩檢紀錄</span>
+                                                                            <span style="color:black;font-size:17px">個案結案表</span>
                                                                         </button>
                                                                     </h2>
                                                                 </div>
                                                                 <div id="collapseTwo" class="collapse in" aria-labelledby="headingTwo" data-parent="#accordionExample">
                                                                     <div class="panel-body scr_container">
-                                                                        <table id="all_data" style="width:auto;" class="table table-bordered">
+                                                                        <table id="all_data" style="width:75%;" class="table table-bordered">
                                                                             <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline">序號</td>
-                                                                                <td style=""><span id="t_sn"></span></td>
-                                                                            </tr>
-                                                                            <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;width:10em;"><i style="color:red;">※</i>預約日期</td>
-                                                                                <td style="border-bottom: solid 1px;"><input class="screening_question" id="reservation_date" type="text"></td>
-                                                                            </tr>
-                                                                            <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>預約時段</td>
-                                                                                <td style="border-bottom: solid 1px;"><input class="screening_question" id="reservation_time" type="time"></td>
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline">案號</td>
+                                                                                <td style=""><span id="closed_id"></span></td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>姓名</td>
-                                                                                <td style="border-bottom: solid 1px;"><input class="screening_question" id="name" type="text" oninput="value=value.replace(/[\d]/g,'')"></td>
+                                                                                <td style="border-bottom: solid 1px;"><input id="name" type="text" oninput="value=value.replace(/[\d]/g,'')" disabled="disabled"></td>
                                                                             </tr>
-                                                                            <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>年齡</td>
-                                                                                <td style="border-bottom: solid 1px;">
-                                                                                    <input class="screening_question" id="age" type="text" maxlength="2" oninput = "value=value.replace(/[^\d]/g,'')">
-                                                                                    <br>
-                                                                                    <label>分類：</label>
-                                                                                    <input class="screening_question" name="a_type[]" style="zoom: 1.5" type="radio" value="10歲以下"><label>10歲以下</label>
-                                                                                    <input class="screening_question" name="a_type[]" style="zoom: 1.5" type="radio" value="10-19歲"><label>10-19歲</label>
-                                                                                    <input class="screening_question" name="a_type[]" style="zoom: 1.5" type="radio" value="20-29歲"><label>20-29歲</label>
-                                                                                    <input class="screening_question" name="a_type[]" style="zoom: 1.5" type="radio" value="30-39歲"><label>30-39歲</label>
-                                                                                    <input class="screening_question" name="a_type[]" style="zoom: 1.5" type="radio" value="40-49歲"><label>40-49歲</label>
-                                                                                    <input class="screening_question" name="a_type[]" style="zoom: 1.5" type="radio" value="50-59歲"><label>50-59歲</label>
-                                                                                    <input class="screening_question" name="a_type[]" style="zoom: 1.5" type="radio" value="60歲以上"><label>60歲以上</label>
-                                                                                    <input class="screening_question" name="a_type[]" style="zoom: 1.5" type="radio" value="不明"><label>不明</label>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>電話</td>
-                                                                                <td style="border-bottom: solid 1px;"><input class="screening_question" name="phone" type="number" max="14" id="phone"></td>
-                                                                            </tr>
+
                                                                             <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">性別</td>
                                                                                 <td style="border-bottom: solid 1px;">
-                                                                                    <select class="screening_question" id="gender" style="width:200px;">
+                                                                                    <select id="gender" style="width:200px;" disabled="disabled">
                                                                                         <option value="">請選擇</option>
                                                                                         <option value="男">男</option>
                                                                                         <option value="女">女</option>
@@ -231,72 +197,65 @@
                                                                                     </select>
                                                                                 </td>
                                                                             </tr>
+
                                                                             <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">性向</td>
-                                                                                <td style="border-bottom: solid 1px;">
-                                                                                    <select class="screening_question" id="sexual_orientation" style="width:200px;">
-                                                                                        <option value="">請選擇</option>
-                                                                                        <option value="同性">同性</option>
-                                                                                        <option value="異性">異性</option>
-                                                                                        <option value="雙性">雙性</option>
-                                                                                    </select>
-                                                                                </td>
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;width:10em;"><i style="color:red;">※</i>開案日期</td>
+                                                                                <td style="border-bottom: solid 1px;"><input id="open_date" type="date" disabled="disabled"></td>
+                                                                            </tr>
+
+                                                                            <tr style="text-align:left">
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;width:10em;"><i style="color:red;">※</i>結案日期</td>
+                                                                                <td style="border-bottom: solid 1px;"><input class="closed_question" id="closed_date" type="date"></td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>篩檢類型</td>
-                                                                                <td style="border-bottom: solid 1px;">
-                                                                                    <select class="screening_question" id="screening_type" style="width:200px;">
-                                                                                        <option value="">請選擇</option>
-                                                                                        <option value="HIV">HIV</option>
-                                                                                        <option value="梅毒">梅毒</option>
-                                                                                        <option value="HIV+梅毒">HIV+梅毒</option>
-                                                                                    </select>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">篩檢結果</td>
-                                                                                <td style="border-bottom: solid 1px;">
-                                                                                    <select class="screening_question" id="screening_results" style="width:200px;">
-                                                                                        <option value="">請選擇</option>
-                                                                                        <option value="H positive">H positive</option>
-                                                                                        <option value="H negative">H negative</option>
-                                                                                        <option value="梅 positive">梅 positive</option>
-                                                                                        <option value="梅 negative">梅 negative</option>
-                                                                                        <option value="H+梅 positive">H+梅 positive</option>
-                                                                                        <option value="H+梅 negative">H+梅 negative</option>
-                                                                                    </select>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <!-- <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">建立者</td>
-                                                                                <td style="border-bottom: solid 1px;">
-                                                                                    <select class="user" id="user">
-                                                                                        <option value="" disabled selected hidden>請選擇同工</option>
-                                                                                    </select>
-                                                                                </td>
-                                                                            </tr> -->
-                                                                            <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white">訪談內容</td>
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white">主要問題</td>
                                                                                 <td>
-                                                                                    <textarea class="screening_question" style="height:150px;width:700px;resize: none;font-size: 20px;" name="interview_content" id="interview_content" placeholder="請輸入訪談內容"></textarea>
+                                                                                    <textarea class="closed_question" style="min-height:200px;width:75%;resize: none;font-size: 20px;" name="main_issue" id="main_issue" placeholder="請輸入主要問題"></textarea>
                                                                                 </td>
                                                                             </tr>
+                                                                            <tr style="text-align:left">
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white">問題處遇</td>
+                                                                                <td>
+                                                                                    <textarea class="closed_question" style="min-height:200px;width:75%;resize: none;font-size: 20px;" name="intervention" id="intervention" placeholder="請輸入問題處遇"></textarea>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr style="text-align:left">
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">結案原因</td>
+                                                                                <td style="border-bottom: solid 1px;">
+                                                                                <input class="closed_question" name="closed_reason" style="zoom: 1.5" type="radio" value="達到目標，已無需要在服務"><label>達到目標，已無需要在服務</label>
+                                                                                    <input class="closed_question" name="closed_reason" style="zoom: 1.5" type="radio" value="穩定就業三個月，以達到目標"><label>穩定就業三個月，以達到目標</label>
+                                                                                    <input class="closed_question" name="closed_reason" style="zoom: 1.5" type="radio" value="個案者死亡"><label>個案者死亡</label>
+                                                                                    <input class="closed_question" name="closed_reason" style="zoom: 1.5" type="radio" value="再次入監無法合作"><label>再次入監無法合作</label>
+                                                                                    <input class="closed_question" name="closed_reason" style="zoom: 1.5" type="radio" value="無意願接受服務"><label>無意願接受服務</label><br/>
+                                                                                    <input class="closed_question" name="closed_reason" style="zoom: 1.5" type="radio" value="失去聯絡（一個月連繫三次均聯繫不上或三個月，每月連繫三次均聯繫不上）"><label>失去聯絡（一個月連繫三次均聯繫不上或三個月，每月連繫三次均聯繫不上）</label>
+                                                                                    <input class="closed_question" name="closed_reason" style="zoom: 1.5" type="radio" value="轉介其他資源單位，並且已達處遇目標"><label>轉介其他資源單位，並且已達處遇目標。</label>
+                                                                                    <div>
+                                                                                        <input class="closed_question" name="closed_reason" style="zoom: 1.5" type="radio" value="other"><label>其他</label>
+                                                                                        <input class="closed_question" id="closed_reason_other" style="width:75%;" type="text">
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+
                                                                             <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white">備註</td>
                                                                                 <td>
-                                                                                    <textarea class="screening_question" style="height:150px;width:700px;resize: none;font-size: 20px;" name="remark" id="remark" placeholder="請輸入備註"></textarea>
+                                                                                    <textarea class="closed_question" style="height:150px;width:75%;resize: none;font-size: 20px;" name="remark" id="remark" placeholder="請輸入備註"></textarea>
                                                                                 </td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white">試劑編號</td>
-                                                                                <td>
-                                                                                    <input class="screening_question" id="reagent_seq" type="text">
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">社工員</td>
+                                                                                <td style="border-bottom: solid 1px;">
+                                                                                    <select class="user closed_question" id="user">
+                                                                                        <option value="" disabled selected hidden>請選擇社工員</option>
+                                                                                    </select>
                                                                                 </td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white">金額</td>
-                                                                                <td>
-                                                                                    <input class="screening_question" id="amount" type="text" oninput="value=value.replace(/[^\d]/g,'')">
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline">
+                                                                                    <label>督導簽章</label>
+                                                                                </td>
+                                                                                <td style="">
+                                                                                    <span id="supervise_signature"></span>
                                                                                 </td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
@@ -334,35 +293,21 @@
                                                                             <tr>
                                                                                 <td colspan="2">
                                                                                     <div id="edit_div">
-                                                                                        <button style="font-size:20px" id="screening_edit" class="btn btn-default" onclick="screening_edit();">編輯</button>
+                                                                                        <button style="font-size:20px" id="closed_edit" class="btn btn-default" onclick="closed_edit();">編輯</button>
                                                                                     </div>
                                                                                     <div id="save_div" hidden>
-                                                                                        <button style="font-size:20px" id="screening_update" class="btn btn-default" >修改</button>           
-                                                                                        <button style="font-size:20px" id="screening_cancel" class="btn btn-default" onclick="screening_cancel();">取消</button>
+                                                                                        <button style="font-size:20px" id="closed_update" class="btn btn-default">修改</button>           
+                                                                                        <button style="font-size:20px" id="closed_cancel" class="btn btn-default" onclick="closed_cancel();">取消</button>
                                                                                     </div>
                                                                                 </td>
                                                                             </tr>
                                                                         </table>
-                                                                        <!-- <span id="create_new_content"></span> -->
-                                                                        <!-- <div>
-                                                                            <span id="add_new_choise">
-                                                                                <input class="record_type" name="newrec_type" style="zoom: 1.5" type="radio" value="phone" checked><label>新增電話紀錄</label>
-                                                                                <input class="record_type" name="newrec_type" style="zoom: 1.5" type="radio" value="reservation"><label>新增面訪紀錄</label>
-                                                                            </span>
-                                                                            <br/>
-                                                                            <span id="add_new_content"></span>
-                                                                            <span id="add_new_reservation"></span>
-                                                                        </div> -->
-                                                                       
-
+                                                                    
                                                                         <div class="col-sm-12" style="padding-left:0;padding-right:0;margin-top:3em;">
                                                                             <div class="text-center col-sm-4" style="padding-left:0;">
                                                                             </div>
                                                                             <div class="text-center col-sm-4">
                                                                                 <button style="font-size:20px;" id="preview_word2" class="btn btn-default">預覽匯出</button>
-                                                                            </div>
-                                                                            <div class="text-right col-sm-4" style="padding-right:0;">
-                                                                                <button style="font-size:20px;" id="trans_to_opencase" class="btn btn-default trans_btn">轉案(新增至開案個案)</button>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -390,12 +335,12 @@
 
         </div>
     </div>
+
     <!-- /#wrapper -->
     <!-- JavaScript -->
     <!-- Bootstrap and jQuery -->
     <script src="javascript/jquery.min.js"></script>
     <script src="javascript/bootstrap.min.js"></script>
-
     <!-- 表格 JavaScript -->
     <script src="javascript/jquery.dataTables.min.js"></script>
     <script src="javascript/dataTables-data.js"></script>
@@ -421,103 +366,8 @@
     <script src="js/jQuery-TWzipcode-master/jquery.twzipcode.js"></script>
     <script src="js/jQuery-TWzipcode-master/jquery.twzipcode.min.js"></script>
     <!-- ================== detail ================== -->
-    <!-- <script type="text/javascript" src="js/screening_detail.js"></script> -->
+    <script type="text/javascript" src="js/closed_detail.js"></script>
 
-    <!-- 日期民國-->
-    <script src="javascript/jquery-ui.min.js"></script>
-
-    <!-- 日期民國-->
-    <script src="javascript/datepickerTw.js"></script>
-    <script>
-        var dateX = '2010-04-09';
-        var date1 = '2022-03-09';
-        var date2 = '2022-05-22';
-        var date3 = '2022-03-11';
-        var date4 = '2023-12-15';
-        // var date = '';
-
-        $(document).ready(function () {
-
-            if(date1!=='')
-            {
-                datepicker_set_date("", "reservation_date");
-                datepicker_set_date(date2, "name");
-                datepicker_set_date(date3, "age");
-                datepicker_set_date(date4, "reagent_seq");
-            }
-        }); 
-       
-        datepicker_set_date = function(ajax_data_date, selector_id) {
-
-            var setdefaultDate = new Date(ajax_data_date);
-
-            $('#'+selector_id).datepicker({
-                changeYear: true,
-                changeMonth: true,
-                currentText: "今天",
-                dateFormat:"R-mm-dd",
-                showButtonPanel: true,
-                minDate:new Date(new Date().getFullYear(), new Date().getMonth() - 3, 1),
-                maxDate:new Date(new Date().getFullYear() + 3, 11, 31),
-                defaultDate:setdefaultDate,
-                onClose: function(dateText) {
-                    console.log($('#'+selector_id).val());
-                    console.log(trans_to_EN(dateText));
-                }
-                ,beforeShow: function(input, inst) {
-                    var $this = $(this);
-                    var cal = inst.dpDiv;
-                    var outerh = $this.outerHeight();
-                    if($this.offset().top>1200)
-                    {
-                        outerh = outerh*4;
-                    }
-                    else
-                    {
-                        outerh = outerh*3;
-                    }
-                    console.log($this.offset().top)
-                    console.log(outerh)
-
-
-                    var top = $this.offset().top - outerh;
-                    var left = $this.offset().left - 10;
-                    setTimeout(function() {
-                        cal.css({
-                            'top': top,
-                            'left': left
-                        });
-                    }, 10);
-                }
-            }).datepicker("setDate", setdefaultDate);
-
-        }
-
-        
-
-
-        trans_to_Tw =  function(endate) {
-            var strAry = endate.split('-');
-
-            if(parseInt(strAry[0]) > 1911){
-                strAry[0] = parseInt(strAry[0]) - 1911;
-            }
-
-            return strAry.join("-");
-        }
-
-        trans_to_EN =  function(endate) {
-            var strAry = endate.split('-');
-
-            if(parseInt(strAry[0]) < 1911){
-                strAry[0] = parseInt(strAry[0]) + 1911;
-            }
-
-            return strAry.join("-");
-        }
-
-
-    </script>
 </body>
 
 </html>
