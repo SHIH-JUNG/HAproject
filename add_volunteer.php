@@ -129,54 +129,76 @@
                                                         <table style="width:auto;" class="table table-bordered">
                                                             <tr>
                                                                 <td colspan="2">
-                                                                    <h3>新增志工管理</h3>
+                                                                    <h3>新增志工</h3>
                                                                 </td>
                                                             </tr>
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>人事資料報名表</td>
-                                                                <td style="border-bottom: solid 1px;">
-                                                                    <form method="post" enctype="multipart/form-data" action="add_volunteer.php">
-                                                                        <input type="file" name="my_file">
-                                                                        <br>
-                                                                        <input type="submit" value="Upload">
-                                                                        <input type="reset" value="Reset">
-                                                                    </form>
-                                                                </td>
-                                                            </tr>
-                                                            <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">服務累積時數 </td>
-                                                                <td style="border-bottom: solid 1px;">
-                                                                    <select id="way_detail">
-                                                                        <option value="">X</option>
-                                                                        <option value="X">X</option>
-                                                                        <option value="X">X</option>
-                                                                        <option value="X">X</option>
-                                                                    </select>
-                                                                </td>
-                                                            </tr>
-                                                            <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>日期時間</td>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>年度</td>
                                                                 <td style="border-bottom: solid 1px;"><input id="call_datetime" type="datetime-local">
                                                             </tr>
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">時數</td>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>姓名</td>
+                                                                <td style="border-bottom: solid 1px;"><input id="Name" type="text" oninput="value=value.replace(/[\d]/g,'')"></td>
+                                                            </tr>
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">服務項目</td>
                                                                 <td style="border-bottom: solid 1px;">
                                                                     <select id="way_detail">
-                                                                        <option value="">X</option>
-                                                                        <option value="X">X</option>
-                                                                        <option value="X">X</option>
-                                                                        <option value="X">X</option>
+                                                                        <option value="電腦">電腦</option>
+                                                                        <option value="美工">美工</option>
+                                                                        <option value="活動">活動</option>
+                                                                        <option value="文宣">文宣</option>
+                                                                        <option value="輔導">輔導</option>
+                                                                        <option value="環境清潔">環境清潔</option>
+                                                                        <option value="其他">其他</option>
                                                                     </select>
                                                                 </td>
                                                             </tr>
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">服務內容</td>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">服務時間</td>
                                                                 <td style="border-bottom: solid 1px;">
                                                                     <select id="way_detail">
-                                                                        <option value="">X</option>
-                                                                        <option value="X">X</option>
-                                                                        <option value="X">X</option>
-                                                                        <option value="X">X</option>
+                                                                        <option value="周一早上(9:00-12:00)">周一早上(9:00-12:00)</option>
+                                                                        <option value="周一下午(13:00-12:00)">周一下午(13:00-12:00)</option>
+                                                                        <option value="周二早上(9:00-12:00)">周二早上(9:00-12:00)</option>
+                                                                        <option value="周二下午(13:00-12:00)">周二下午(13:00-12:00)</option>
+                                                                        <option value="周三早上(9:00-12:00)">周三早上(9:00-12:00)</option>
+                                                                        <option value="周三下午(13:00-12:00)">周三下午(13:00-12:00)</option>
+                                                                        <option value="周四早上(9:00-12:00)">周四早上(9:00-12:00)</option>
+                                                                        <option value="周四下午(13:00-12:00)">周四下午(13:00-12:00)</option>
+                                                                        <option value="周五早上(9:00-12:00)">周五早上(9:00-12:00)</option>
+                                                                        <option value="周五下午(13:00-12:00)">周五下午(13:00-12:00)</option>
+                                                                    </select>
+                                                                </td>
+                                                            </tr>
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>目前服務時數</td>
+                                                                <td style="border-bottom: solid 1px;"><input id="service_time" type="text" oninput="value=value.replace(/[\d]/g,'')"></td>
+                                                            </tr>
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">是否領取時數條</td>
+                                                                <td style="border-bottom: solid 1px;">
+                                                                    <select id="way_detail">
+                                                                        <option value="是">是</option>
+                                                                        <option value="否">否</option>
+                                                                    </select>
+                                                                </td>
+                                                            </tr>
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">是否領取服務獎狀</td>
+                                                                <td style="border-bottom: solid 1px;">
+                                                                    <select id="way_detail">
+                                                                        <option value="是">是</option>
+                                                                        <option value="否">否</option>
+                                                                    </select>
+                                                                </td>
+                                                            </tr>
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">是否持有志工榮譽卡</td>
+                                                                <td style="border-bottom: solid 1px;">
+                                                                    <select id="way_detail">
+                                                                        <option value="是">是</option>
+                                                                        <option value="否">否</option>
                                                                     </select>
                                                                 </td>
                                                             </tr>
@@ -184,11 +206,11 @@
                                                     </div>
                                                 </div>
                                                 <br>
-                                                <button id="#" style="font-size:15px" type="button" class="btn btn-default"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-check" viewBox="0 0 16 16">
+                                                <button id="volunteer_add_new" style="font-size:15px" type="button" class="btn btn-default"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-check" viewBox="0 0 16 16">
                                                         <path d="M10.854 7.854a.5.5 0 0 0-.708-.708L7.5 9.793 6.354 8.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
                                                         <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
                                                     </svg>新增</button>
-                                                <a href="staff_manag.php"><button style="font-size:15px" type="button" class="btn btn-default"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-excel" viewBox="0 0 16 16">
+                                                <a href="volunteer.php"><button style="font-size:15px" type="button" class="btn btn-default"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-excel" viewBox="0 0 16 16">
                                                             <path d="M5.884 6.68a.5.5 0 1 0-.768.64L7.349 10l-2.233 2.68a.5.5 0 0 0 .768.64L8 10.781l2.116 2.54a.5.5 0 0 0 .768-.641L8.651 10l2.233-2.68a.5.5 0 0 0-.768-.64L8 9.219l-2.116-2.54z" />
                                                             <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
                                                         </svg>取消</button></a>

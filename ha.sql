@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2022-03-23 13:04:49
--- 伺服器版本： 10.4.21-MariaDB
--- PHP 版本： 7.4.25
+-- 產生時間： 
+-- 伺服器版本： 10.4.6-MariaDB
+-- PHP 版本： 7.1.32
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- 資料庫: `ha`
+-- 資料庫： `ha`
 --
 
 -- --------------------------------------------------------
@@ -43,6 +44,23 @@ INSERT INTO `announcement` (`Id`, `title`, `authority`, `publisher`, `datetime`)
 (1, '會議記錄整理', 3, '園主任', '2021-12-11'),
 (2, '電訪', 3, '園主任', '2021-12-11'),
 (3, '開會', 3, '園主任', '2021-12-13');
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `board_supervisor`
+--
+
+CREATE TABLE `board_supervisor` (
+  `Id` int(240) NOT NULL,
+  `record_content` longtext NOT NULL,
+  `upload_content` longtext NOT NULL,
+  `file_path` varchar(2000) NOT NULL,
+  `Create_date` datetime NOT NULL,
+  `Create_name` varchar(30) NOT NULL,
+  `Update_date` datetime NOT NULL,
+  `Update_name` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -141,7 +159,7 @@ INSERT INTO `closed` (`Id`, `Closed_id`, `Open_date`, `Closed_date`, `Name`, `Ge
 
 CREATE TABLE `consult` (
   `Id` int(30) NOT NULL,
-  `Phone_id` int(30) NOT NULL,
+  `Phone_id` varchar(2000) NOT NULL,
   `Call_datetime` datetime NOT NULL,
   `Way` varchar(20) NOT NULL,
   `Way_detail` varchar(20) NOT NULL,
@@ -189,19 +207,19 @@ CREATE TABLE `consult` (
 --
 
 INSERT INTO `consult` (`Id`, `Phone_id`, `Call_datetime`, `Way`, `Way_detail`, `Name`, `Gender`, `Object_type`, `Addiction`, `M_addiction`, `Age`, `A_detail`, `Address`, `L_detail`, `Info_Name`, `Relationship_detail`, `R_detail`, `R_phone`, `Referral`, `Referral_detail`, `Referral_phone`, `Referral_name`, `Know_from`, `Know_from_detail`, `Eligible`, `Assign`, `Phone_note`, `Count`, `Location`, `Location_detail`, `Start_date`, `End_date`, `Start_time`, `End_time`, `One_user_name`, `Two_user_name`, `Remark`, `Is_firstadd`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
-(5, 1, '2021-09-16 09:00:00', '面訪', '社區', 'Allen', '男', '愛滋感染者', '古柯鹼、安非他命、K他命', 'K他命', '36', '30-39歲', '新北市林口區公園路561號', '北部', 'Allen父親', 'Allen父親', '父母', '09852154', '矯正署', '矯正機關', '123', '矯正署人員', '屏安醫院', '醫院', '不明', '社工員2', 'test0125', '1', '', '', '0000-00-00', '0000-00-00', '00:00:00', '00:00:00', '', '', '', 1, '2022-01-25 17:57:53', '園主任', '2022-01-25 17:57:53', ''),
-(6, 2, '2021-09-25 14:30:00', '電訪', '', 'yukia', '女', '愛滋感染者', '海洛因、安非他命、大麻', '海洛因、安非他命', '34', '30-39歲', '彰化縣田中鎮西路里斗中路一段152號', '中部', 'yukia男友fein', '男友', '配偶', '07123912', '自行打電話求助', '自行求助', '', 'yukia男友fein', '田中教會', '教會', '不明', '社工組長', 'testtest1', '1', '', '', '0000-00-00', '0000-00-00', '00:00:00', '00:00:00', '', '', '', 1, '2021-10-08 00:00:00', '園主任', '2022-01-25 19:03:30', '園主任'),
-(7, 2, '0000-00-00 00:00:00', '面訪', '家訪', 'yukia', '女', '愛滋感染者', '海洛因、安非他命、大麻', '海洛因、安非他命', '34', '30-39歲', '彰化縣田中鎮西路里斗中路一段152號', '中部', 'fein', '男友', '配偶', '07123912', '自行打電話求助', '自行求助', '', 'yukia男友fein', '田中教會', '教會', '是', '社工組長', 'testtest1', '', 'yukiad家', '家訪', '2021-09-26', '2021-09-26', '14:00:00', '15:00:00', '社工員1', '社工組長', 'test', 0, '2021-10-08 00:00:00', '園主任', '2022-01-25 18:45:34', '園主任'),
-(8, 2, '2021-10-08 00:00:00', '電訪', '', 'yukia', '女', '愛滋感染者', '海洛因、安非他命、大麻', '海洛因、安非他命', '34', '30-39歲', '彰化縣田中鎮西路里斗中路一段152號', '中部', 'fein', '男友', '配偶', '07123912', '自行打電話求助', '自行求助', '', 'yukia男友fein', '田中教會', '教會', '是', '社工組長', 'testtest1', '3', '', '', '0000-00-00', '0000-00-00', '00:00:00', '00:00:00', '', '', '', 0, '2021-10-08 00:00:00', '園主任', '2022-01-25 18:45:34', '園主任'),
-(9, 2, '0000-00-00 00:00:00', '面訪', '家訪', 'yukia', '女', '愛滋感染者', '海洛因、安非他命、大麻', '海洛因、安非他命', '34', '30-39歲', '彰化縣田中鎮西路里斗中路一段152號', '中部', 'fein', '男友', '配偶', '07123912', '自行打電話求助', '自行求助', '', 'yukia男友fein', '田中教會', '教會', '是', '社工組長', 'testtest1', '', 'yukia家裡', '家訪', '2021-10-15', '2021-10-15', '14:00:00', '15:00:00', '社工員2', '社工組長', 'TEST', 0, '2022-01-25 18:34:36', '園主任', '2022-01-25 18:45:34', '園主任'),
-(10, 2, '0000-00-00 00:00:00', '面訪', '家訪', 'yukia', '女', '愛滋感染者', '海洛因、安非他命、大麻', '海洛因、安非他命', '34', '30-39歲', '彰化縣田中鎮西路里斗中路一段152號', '中部', 'fein', '男友', '配偶', '07123912', '自行打電話求助', '自行求助', '', 'yukia男友fein', '田中教會', '教會', '是', '社工組長', 'testtest1', '', 'yukia男友家', '家訪', '2021-10-11', '2021-10-11', '12:00:00', '13:00:00', '社工員1', '社工員2', 'TEST', 0, '2022-01-25 18:35:40', '園主任', '2022-01-25 18:45:34', '園主任'),
-(11, 2, '2021-09-29 00:00:00', '電訪', '', 'yukia', '女', '愛滋感染者', '海洛因、安非他命、大麻', '海洛因、安非他命', '34', '30-39歲', '彰化縣田中鎮西路里斗中路一段152號', '中部', 'fein', '男友', '配偶', '07123912', '自行打電話求助', '自行求助', '', 'yukia男友fein', '田中教會', '教會', '是', '社工組長', 'testtest1', '6', '', '', '0000-00-00', '0000-00-00', '00:00:00', '00:00:00', '', '', '', 0, '2022-01-25 18:36:37', '園主任', '2022-01-25 18:45:34', '園主任'),
-(12, 1, '0000-00-00 00:00:00', '面訪', '家訪', 'Allen', '男', '愛滋感染者', '古柯鹼、安非他命、K他命', 'K他命', '36', '30-39歲', '新北市林口區公園路561號', '北部', 'Allen父親', 'Allen父親', '父母', '09852154', '矯正署', '矯正機關', '', '', '屏安醫院', '醫院', '不明', '社工員2', '', '', 'Allen家裡', '家訪', '2021-09-17', '2021-09-17', '08:00:00', '09:00:00', '社工員2', '社工組長', 'TEST123', 0, '2022-01-25 19:16:02', '園主任', '2022-01-25 19:16:25', '園主任'),
-(13, 1, '2021-10-05 00:00:00', '電訪', '', 'Allen', '男', '愛滋感染者', '古柯鹼、安非他命、K他命', 'K他命', '36', '30-39歲', '新北市林口區公園路561號', '北部', 'Allen', '本人', '', '09853357', '矯正署', '矯正機關', '123', '矯正署人員', '屏安醫院', '醫院', '不明', '社工員2', 'TEST', '3', '', '', '0000-00-00', '0000-00-00', '00:00:00', '00:00:00', '', '', '', 0, '2022-01-25 19:17:14', '園主任', '2022-01-25 19:17:14', ''),
-(14, 3, '2021-12-16 10:00:00', '面訪', '社區', 'Deny', '不明', '兒少', '大麻、FM2藥丸', '大麻', '29', '20-29歲', '臺北市松山區八德路781號', '北部', 'denyfa', 'deny父親', '父母', '09852233', '八德醫院', '醫院', '0376351831', '張醫師', '八德醫院', '醫院', '不明', '社工員1', '', '1', '', '', '0000-00-00', '0000-00-00', '00:00:00', '00:00:00', '', '', '', 1, '2022-01-25 20:02:17', '園主任', '2022-01-25 20:05:54', '園主任'),
-(15, 3, '2021-12-17 00:00:00', '電訪', '', 'Deny', '不明', '兒少', '大麻、FM2藥丸', '大麻', '29', '20-29歲', '臺北市松山區八德路781號', '北部', 'Denyfa', 'deny父親', '', '09852233', '八德醫院', '醫院', '0376351831', '張醫師', '八德醫院', '醫院', '不明', '社工員2', 'TEST', '2', '', '', '0000-00-00', '0000-00-00', '00:00:00', '00:00:00', '', '', '', 0, '2022-01-25 20:06:35', '園主任', '2022-01-25 20:06:35', ''),
-(16, 3, '0000-00-00 00:00:00', '面訪', '社區', 'Deny', '不明', '兒少', '大麻、FM2藥丸', '大麻', '29', '20-29歲', '臺北市松山區八德路781號', '北部', 'denyfa', 'deny父親', '父母', '09852233', '八德醫院', '醫院', '', '', '八德醫院', '醫院', '不明', '社工員1', '', '', '社區', '社區', '2021-12-18', '2021-12-18', '15:00:00', '16:00:00', '社工員2', '社工員1', 'TEST', 0, '2022-01-25 20:07:36', '園主任', '2022-01-25 20:07:36', ''),
-(17, 4, '2021-12-29 16:10:00', '電訪', '', 'Timmy', '男', '家庭', '酒精', '酒精', '25', '20-29歲', '屏東縣屏東市自由路1162號', '南部', 'Ameria', 'Timmy wife', '配偶', '0982136831', '', '', '', '', '屏東教會', '教會', '', '社工員1', '', '1', '', '', '0000-00-00', '0000-00-00', '00:00:00', '00:00:00', '', '', '', 1, '2022-01-25 20:12:19', '園主任', '2022-01-25 20:12:19', '');
+(5, '1', '2021-09-16 09:00:00', '面訪', '社區', 'Allen', '男', '愛滋感染者', '古柯鹼、安非他命、K他命', 'K他命', '36', '30-39歲', '新北市林口區公園路561號', '北部', 'Allen父親', 'Allen父親', '父母', '09852154', '矯正署', '矯正機關', '123', '矯正署人員', '屏安醫院', '醫院', '不明', '社工員2', 'test0125', '1', '', '', '0000-00-00', '0000-00-00', '00:00:00', '00:00:00', '', '', '', 1, '2022-01-25 17:57:53', '園主任', '2022-01-25 17:57:53', ''),
+(6, '2', '2021-09-25 14:30:00', '電訪', '', 'yukia', '女', '愛滋感染者', '海洛因、安非他命、大麻', '海洛因、安非他命', '34', '30-39歲', '彰化縣田中鎮西路里斗中路一段152號', '中部', 'yukia男友fein', '男友', '配偶', '07123912', '自行打電話求助', '自行求助', '', 'yukia男友fein', '田中教會', '教會', '不明', '社工組長', 'testtest1', '1', '', '', '0000-00-00', '0000-00-00', '00:00:00', '00:00:00', '', '', '', 1, '2021-10-08 00:00:00', '園主任', '2022-01-25 19:03:30', '園主任'),
+(7, '2', '0000-00-00 00:00:00', '面訪', '家訪', 'yukia', '女', '愛滋感染者', '海洛因、安非他命、大麻', '海洛因、安非他命', '34', '30-39歲', '彰化縣田中鎮西路里斗中路一段152號', '中部', 'fein', '男友', '配偶', '07123912', '自行打電話求助', '自行求助', '', 'yukia男友fein', '田中教會', '教會', '是', '社工組長', 'testtest1', '', 'yukiad家', '家訪', '2021-09-26', '2021-09-26', '14:00:00', '15:00:00', '社工員1', '社工組長', 'test', 0, '2021-10-08 00:00:00', '園主任', '2022-01-25 18:45:34', '園主任'),
+(8, '2', '2021-10-08 00:00:00', '電訪', '', 'yukia', '女', '愛滋感染者', '海洛因、安非他命、大麻', '海洛因、安非他命', '34', '30-39歲', '彰化縣田中鎮西路里斗中路一段152號', '中部', 'fein', '男友', '配偶', '07123912', '自行打電話求助', '自行求助', '', 'yukia男友fein', '田中教會', '教會', '是', '社工組長', 'testtest1', '3', '', '', '0000-00-00', '0000-00-00', '00:00:00', '00:00:00', '', '', '', 0, '2021-10-08 00:00:00', '園主任', '2022-01-25 18:45:34', '園主任'),
+(9, '2', '0000-00-00 00:00:00', '面訪', '家訪', 'yukia', '女', '愛滋感染者', '海洛因、安非他命、大麻', '海洛因、安非他命', '34', '30-39歲', '彰化縣田中鎮西路里斗中路一段152號', '中部', 'fein', '男友', '配偶', '07123912', '自行打電話求助', '自行求助', '', 'yukia男友fein', '田中教會', '教會', '是', '社工組長', 'testtest1', '', 'yukia家裡', '家訪', '2021-10-15', '2021-10-15', '14:00:00', '15:00:00', '社工員2', '社工組長', 'TEST', 0, '2022-01-25 18:34:36', '園主任', '2022-01-25 18:45:34', '園主任'),
+(10, '2', '0000-00-00 00:00:00', '面訪', '家訪', 'yukia', '女', '愛滋感染者', '海洛因、安非他命、大麻', '海洛因、安非他命', '34', '30-39歲', '彰化縣田中鎮西路里斗中路一段152號', '中部', 'fein', '男友', '配偶', '07123912', '自行打電話求助', '自行求助', '', 'yukia男友fein', '田中教會', '教會', '是', '社工組長', 'testtest1', '', 'yukia男友家', '家訪', '2021-10-11', '2021-10-11', '12:00:00', '13:00:00', '社工員1', '社工員2', 'TEST', 0, '2022-01-25 18:35:40', '園主任', '2022-01-25 18:45:34', '園主任'),
+(11, '2', '2021-09-29 00:00:00', '電訪', '', 'yukia', '女', '愛滋感染者', '海洛因、安非他命、大麻', '海洛因、安非他命', '34', '30-39歲', '彰化縣田中鎮西路里斗中路一段152號', '中部', 'fein', '男友', '配偶', '07123912', '自行打電話求助', '自行求助', '', 'yukia男友fein', '田中教會', '教會', '是', '社工組長', 'testtest1', '6', '', '', '0000-00-00', '0000-00-00', '00:00:00', '00:00:00', '', '', '', 0, '2022-01-25 18:36:37', '園主任', '2022-01-25 18:45:34', '園主任'),
+(12, '1', '0000-00-00 00:00:00', '面訪', '家訪', 'Allen', '男', '愛滋感染者', '古柯鹼、安非他命、K他命', 'K他命', '36', '30-39歲', '新北市林口區公園路561號', '北部', 'Allen父親', 'Allen父親', '父母', '09852154', '矯正署', '矯正機關', '', '', '屏安醫院', '醫院', '不明', '社工員2', '', '', 'Allen家裡', '家訪', '2021-09-17', '2021-09-17', '08:00:00', '09:00:00', '社工員2', '社工組長', 'TEST123', 0, '2022-01-25 19:16:02', '園主任', '2022-01-25 19:16:25', '園主任'),
+(13, '1', '2021-10-05 00:00:00', '電訪', '', 'Allen', '男', '愛滋感染者', '古柯鹼、安非他命、K他命', 'K他命', '36', '30-39歲', '新北市林口區公園路561號', '北部', 'Allen', '本人', '', '09853357', '矯正署', '矯正機關', '123', '矯正署人員', '屏安醫院', '醫院', '不明', '社工員2', 'TEST', '3', '', '', '0000-00-00', '0000-00-00', '00:00:00', '00:00:00', '', '', '', 0, '2022-01-25 19:17:14', '園主任', '2022-01-25 19:17:14', ''),
+(14, '3', '2021-12-16 10:00:00', '面訪', '社區', 'Deny', '不明', '兒少', '大麻、FM2藥丸', '大麻', '29', '20-29歲', '臺北市松山區八德路781號', '北部', 'denyfa', 'deny父親', '父母', '09852233', '八德醫院', '醫院', '0376351831', '張醫師', '八德醫院', '醫院', '不明', '社工員1', '', '1', '', '', '0000-00-00', '0000-00-00', '00:00:00', '00:00:00', '', '', '', 1, '2022-01-25 20:02:17', '園主任', '2022-01-25 20:05:54', '園主任'),
+(15, '3', '2021-12-17 00:00:00', '電訪', '', 'Deny', '不明', '兒少', '大麻、FM2藥丸', '大麻', '29', '20-29歲', '臺北市松山區八德路781號', '北部', 'Denyfa', 'deny父親', '', '09852233', '八德醫院', '醫院', '0376351831', '張醫師', '八德醫院', '醫院', '不明', '社工員2', 'TEST', '2', '', '', '0000-00-00', '0000-00-00', '00:00:00', '00:00:00', '', '', '', 0, '2022-01-25 20:06:35', '園主任', '2022-01-25 20:06:35', ''),
+(16, '3', '0000-00-00 00:00:00', '面訪', '社區', 'Deny', '不明', '兒少', '大麻、FM2藥丸', '大麻', '29', '20-29歲', '臺北市松山區八德路781號', '北部', 'denyfa', 'deny父親', '父母', '09852233', '八德醫院', '醫院', '', '', '八德醫院', '醫院', '不明', '社工員1', '', '', '社區', '社區', '2021-12-18', '2021-12-18', '15:00:00', '16:00:00', '社工員2', '社工員1', 'TEST', 0, '2022-01-25 20:07:36', '園主任', '2022-01-25 20:07:36', ''),
+(17, '4', '2021-12-29 16:10:00', '電訪', '', 'Timmy', '男', '家庭', '酒精', '酒精', '25', '20-29歲', '屏東縣屏東市自由路1162號', '南部', 'Ameria', 'Timmy wife', '配偶', '0982136831', '', '', '', '', '屏東教會', '教會', '', '社工員1', '', '1', '', '', '0000-00-00', '0000-00-00', '00:00:00', '00:00:00', '', '', '', 1, '2022-01-25 20:12:19', '園主任', '2022-04-13 21:52:39', '園主任');
 
 -- --------------------------------------------------------
 
@@ -249,9 +267,8 @@ CREATE TABLE `counsel` (
 --
 
 INSERT INTO `counsel` (`Id`, `Refferal`, `Counsel_id`, `Name`, `Gender`, `Sexual_orientation`, `Birth`, `Pid`, `Info_name`, `Info_phone`, `Address`, `In_prison_date`, `Out_prison_date`, `In_prison_date_2nd`, `Out_prison_date_2nd`, `In_prison_date_3rd`, `Out_prison_date_3rd`, `Is_parole`, `HIV_diagnosis_date`, `Family_know`, `Cocktail_therapy_status`, `Interview_date_1st`, `Interview_date_2nd`, `Interview_date_3rd`, `Interview_date_4th`, `Interview_date_5th`, `Interview_date_6th`, `Interview_date_7th`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
-(1, '高雄監獄', 766, '黃QQ', '男生', '同性', '1969-08-11', 'T121956775', '劉大福', '988517485', '屏東縣內埔鄉東寧村勝利路5557-2號', '2016-09-30', '2022-05-06', '2022-05-18', '0000-00-00', '0000-00-00', '0000-00-00', '是', '2022-06-25', '否', '否', '2022-02-11', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '2022-03-05 00:00:00', '', '2022-03-21 12:38:24', '社工員1'),
-(2, '台南監獄', 622, 'test', '男生', '異性', '1952-09-17', 'd1234455186', 'test緊急聯絡人', '05121312', '屏東縣屏東市自由路63312號', '2021-12-01', '2023-03-02', '2021-12-02', '2022-05-26', '0000-00-00', '0000-00-00', '否', '2021-12-29', '是', '否', '2022-02-02', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '2022-03-07 16:55:01', '園主任', '0000-00-00 00:00:00', ''),
-(3, '台南監獄', 12, '2', '男生', '同性', '2022-03-17', '44', '44', '2', '2', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '是', '0000-00-00', '是', '是', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '2022-03-18 11:59:04', '社工員1', '0000-00-00 00:00:00', '');
+(1, '高雄監獄', 766, '黃QQ', '男生', '同性', '1969-08-11', 'T121956775', '劉大福', '988517485', '屏東縣內埔鄉東寧村勝利路5557-2號', '2016-09-30', '2022-05-06', '2022-05-18', '0000-00-00', '0000-00-00', '0000-00-00', '是', '2022-06-25', '否', '否', '2022-02-11', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '2022-03-05 00:00:00', '', '2022-04-13 22:05:27', '園主任'),
+(2, '台南監獄', 622, 'test', '男生', '異性', '1952-09-17', 'd1234455186', 'test緊急聯絡人', '05121312', '屏東縣屏東市自由路63312號', '2021-12-01', '2023-03-02', '2021-12-02', '2022-05-26', '0000-00-00', '0000-00-00', '否', '2021-12-29', '是', '否', '2022-02-02', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '2022-03-07 16:55:01', '園主任', '0000-00-00 00:00:00', '');
 
 -- --------------------------------------------------------
 
@@ -298,41 +315,36 @@ INSERT INTO `counsel_visit` (`Id`, `Referral`, `Counsel_id`, `Name`, `Pid`, `Loc
 --
 
 CREATE TABLE `current_case` (
-  `Id` int(30) NOT NULL,
-  `Case_id` varchar(100) NOT NULL,
-  `Phone_id` int(30) NOT NULL,
-  `Scale_id` int(30) NOT NULL,
-  `Open_case_date` datetime NOT NULL,
-  `Close_case_date` datetime NOT NULL,
-  `Case_grade` varchar(20) NOT NULL,
-  `Case_state` varchar(20) NOT NULL,
-  `Name` varchar(20) NOT NULL,
-  `Case_pid` varchar(50) NOT NULL,
-  `Gender` varchar(10) NOT NULL,
-  `Case_property` varchar(10) NOT NULL,
-  `Object_type` varchar(10) NOT NULL,
-  `M_addiction` varchar(200) NOT NULL,
-  `Age` varchar(10) NOT NULL,
-  `Info_Name` varchar(30) NOT NULL,
-  `R_phone` varchar(30) NOT NULL,
+  `Id` int(240) NOT NULL,
+  `Case_id` varchar(500) NOT NULL,
+  `Phone_id` varchar(500) NOT NULL,
+  `Unopen_type` varchar(30) NOT NULL,
+  `Case_Create_date` date NOT NULL,
+  `Object_type` varchar(50) NOT NULL,
+  `Case_property` varchar(50) NOT NULL,
+  `Open_case_date` date NOT NULL,
+  `Name` varchar(30) NOT NULL,
+  `Phone` varchar(100) NOT NULL,
+  `Birth` date NOT NULL,
+  `Case_pid` varchar(30) NOT NULL,
   `Referral` varchar(50) NOT NULL,
-  `Referral_phone` varchar(20) NOT NULL,
-  `Remark` varchar(30) NOT NULL,
-  `Assign` varchar(10) NOT NULL,
+  `Case_state` varchar(200) NOT NULL,
+  `Close_case_date` date NOT NULL,
   `Create_date` datetime NOT NULL,
   `Create_name` varchar(30) NOT NULL,
-  `Update_date` datetime DEFAULT current_timestamp(),
-  `Update_name` varchar(20) NOT NULL
+  `Update_date` datetime NOT NULL,
+  `Update_name` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- 傾印資料表的資料 `current_case`
 --
 
-INSERT INTO `current_case` (`Id`, `Case_id`, `Phone_id`, `Scale_id`, `Open_case_date`, `Close_case_date`, `Case_grade`, `Case_state`, `Name`, `Case_pid`, `Gender`, `Case_property`, `Object_type`, `M_addiction`, `Age`, `Info_Name`, `R_phone`, `Referral`, `Referral_phone`, `Remark`, `Assign`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
-(1, '1', 2, 20, '2021-11-25 00:00:00', '0000-00-00 00:00:00', 'A', '未結案', 'Allen', 'B1238475', '男', '社區', '愛滋感染者', 'K他命', '36', 'Allen本人', '09852154', '矯正機關', '123', '123456', '社工員1', '2021-11-25 00:00:00', '社工員1', '2021-12-02 15:38:25', ''),
-(2, '2', 4, 21, '2021-11-10 00:00:00', '0000-00-00 00:00:00', 'B', '未結案', '匿名A', 'A1123421', '不明', '親子教育', '家庭', '菸、精神藥物', '51', '匿名A本人', '0254433126', '社區', '012317461745', '012317461745', '社工員2', '2021-11-11 00:00:00', '社工員2', '2021-12-02 15:43:15', ''),
-(3, '2', 4, 15, '2020-05-05 00:00:00', '0000-00-00 00:00:00', 'C', '已結案', '匿名A', 'A1123421', '不明', '親子教育', '家庭', '精神藥物', '50', '匿名A朋友', '0612314152', '醫院', '0252134235', '', '社工員2', '2020-05-05 00:00:00', '社工員2', '0000-00-00 00:00:00', '');
+INSERT INTO `current_case` (`Id`, `Case_id`, `Phone_id`, `Unopen_type`, `Case_Create_date`, `Object_type`, `Case_property`, `Open_case_date`, `Name`, `Phone`, `Birth`, `Case_pid`, `Referral`, `Case_state`, `Close_case_date`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
+(3, 'ER111', '2', 'screening', '2021-07-23', '藥癮家庭', '自立宿舍', '2021-06-03', 'Kiealy', '023458942', '1912-04-09', 's61233141', '矯正機關', '未結案', '0000-00-00', '2022-04-11 17:31:21', '園主任', '0000-00-00 00:00:00', ''),
+(4, 'A1612', '766', 'counsel', '2021-10-11', '親職兒少', '安置家園', '2021-10-11', '黃QQ', '988517485', '1993-02-02', 'd1234455186', '矯正機關', '未結案', '0000-00-00', '2022-04-11 17:44:57', '園主任', '0000-00-00 00:00:00', ''),
+(6, 'ER161', '3', 'phone', '2022-04-11', '藥癮家庭', '自立宿舍', '2022-04-08', 'Deny', '父母', '1798-06-07', 'q131214241', '醫院', '未結案', '0000-00-00', '2022-04-11 18:17:48', '園主任', '0000-00-00 00:00:00', ''),
+(8, 'ER16231', '', 'case', '2021-04-06', '藥癮家庭', '安置家園', '2021-04-05', '張啟生', '06223341', '1862-07-07', 'h12364423', '民間社福機構', '未結案', '0000-00-00', '2022-04-13 13:24:57', '園主任', '0000-00-00 00:00:00', '');
 
 -- --------------------------------------------------------
 
@@ -433,7 +445,7 @@ INSERT INTO `face` (`Id`, `Face_id`, `Phone_id`, `Name`, `Gender`, `Object_type`
 
 CREATE TABLE `forms` (
   `Id` int(30) NOT NULL,
-  `Case_id` int(30) NOT NULL,
+  `Case_id` varchar(2000) NOT NULL,
   `Form_id` int(30) NOT NULL,
   `Form_type` varchar(30) NOT NULL,
   `Case_name` varchar(20) NOT NULL,
@@ -452,15 +464,8 @@ CREATE TABLE `forms` (
 --
 
 INSERT INTO `forms` (`Id`, `Case_id`, `Form_id`, `Form_type`, `Case_name`, `Case_pid`, `Create_date`, `Create_name`, `Update_date`, `Update_name`, `answer`, `file_path`, `Health_rec`) VALUES
-(1, 1, 1, 'case', 'Allen', 'B1238475', '2022-02-23 17:22:54', '園主任', '2022-02-23 17:37:38', '園主任', '\"[{\"name\":\"assign_name\",\"value\":\"園主任\"},{\"name\":\"fillin_date\",\"value\":\"2022-02-23\"},{\"name\":\"name\",\"value\":\"Allen\"},{\"name\":\"birth\",\"value\":\"1991-07-13\"},{\"name\":\"pid\",\"value\":\"B1238475\"},{\"name\":\"sex\",\"value\":\"男生\"},{\"name\":\"phone_home\",\"value\":\"03113212\"},{\"name\":\"phone_mobile\",\"value\":\"06123128\"},{\"name\":\"address\",\"value\":\"屏東縣屏東市自由路15531號\"},{\"name\":\"residence\",\"value\":\"屏東縣屏東市自由路15531號\"},{\"name\":\"same_address\",\"value\":\"same_address\"},{\"name\":\"education\",\"value\":\"小學以下\"},{\"name\":\"marital\",\"value\":\"未婚\"},{\"name\":\"cohabitant\",\"value\":\"獨居\"},{\"name\":\"cohabitant_other\",\"value\":\"\"},{\"name\":\"current_job\",\"value\":\"漁\"},{\"name\":\"current_job_other\",\"value\":\"\"},{\"name\":\"economic_status\",\"value\":\"0\"},{\"name\":\"economic_status_0\",\"value\":\"123334\"},{\"name\":\"economic_status_1\",\"value\":\"\"},{\"name\":\"economic_status_2\",\"value\":\"\"},{\"name\":\"economic_status_3\",\"value\":\"\"},{\"name\":\"religion\",\"value\":\"其他\"},{\"name\":\"religion_other\",\"value\":\"無\"},{\"name\":\"drug_record_0\",\"value\":\"\"},{\"name\":\"drug_record_1\",\"value\":\"\"},{\"name\":\"drug_record\",\"value\":\"2\"},{\"name\":\"drug_record_2\",\"value\":\"6\"},{\"name\":\"drug_record_3\",\"value\":\"\"},{\"name\":\"correctional_question_count\",\"value\":\"3\"},{\"name\":\"correctional_question_start\",\"value\":\"2019-04\"},{\"name\":\"correctional_question_end\",\"value\":\"2020-10\"},{\"name\":\"correctional_year\",\"value\":\"1\"},{\"name\":\"correctional_month\",\"value\":\"6\"},{\"name\":\"family_description\",\"value\":\"test個案家庭概況描述\"},{\"name\":\"assessment\",\"value\":\"\"},{\"name\":\"treatment_time\",\"value\":\"0\"},{\"name\":\"treatment_time_year\",\"value\":\"109\"},{\"name\":\"treatment_time_month\",\"value\":\"1\"},{\"name\":\"treatment_time_1\",\"value\":\"\"},{\"name\":\"treatment_status\",\"value\":\"已接受治療\"},{\"name\":\"medical_name\",\"value\":\"test就醫醫院/醫師\"},{\"name\":\"medical_info\",\"value\":\"test醫院個管\"},{\"name\":\"medical_phone\",\"value\":\"0511453126\"},{\"name\":\"health_clinic_name\",\"value\":\"test衛生局所/承辦者\"},{\"name\":\"health_clinic_phone\",\"value\":\"0312134513\"},{\"name\":\"CD4_index_0\",\"value\":\"1231\"},{\"name\":\"CD4_index_1\",\"value\":\"110\"},{\"name\":\"CD4_index_2\",\"value\":\"11\"},{\"name\":\"viral_0\",\"value\":\"2341\"},{\"name\":\"viral_1\",\"value\":\"100\"},{\"name\":\"viral_2\",\"value\":\"1\"},{\"name\":\"medical_other\",\"value\":\"test其他\"},{\"name\":\"medicine\",\"value\":\"Triumeq三恩美\"},{\"name\":\"medicine\",\"value\":\"Atripla亞翠佩\"},{\"name\":\"medicine\",\"value\":\"Complera康普萊\"},{\"name\":\"medicine\",\"value\":\"Bikyavy吉他韋\"},{\"name\":\"medicine\",\"value\":\"Symtuza信擇立\"},{\"name\":\"medicine\",\"value\":\"抑滋靈\"},{\"name\":\"medicine\",\"value\":\"伊芳滋\"},{\"name\":\"medicine\",\"value\":\"艾立莎\"},{\"name\":\"medicine\",\"value\":\"英特萊\"},{\"name\":\"medicine\",\"value\":\"諾億亞\"},{\"name\":\"medicine\",\"value\":\"瑞塔滋\"},{\"name\":\"symptoms\",\"value\":\"持續疲倦\"},{\"name\":\"symptoms\",\"value\":\"發燒\"},{\"name\":\"symptoms\",\"value\":\"其他\"},{\"name\":\"symptoms_other\",\"value\":\"合併症狀test\"},{\"name\":\"statement\",\"value\":\"個案問題陳述test\"},{\"name\":\"personal_system\",\"value\":\"個人系統test\"},{\"name\":\"family_system\",\"value\":\"\"},{\"name\":\"social_system\",\"value\":\"\"},{\"name\":\"resource_system\",\"value\":\"\"},{\"name\":\"diagnose_main\",\"value\":\"診斷問題test主要\"},{\"name\":\"diagnose_minor\",\"value\":\"\"},{\"name\":\"dealwith_target\",\"value\":\"test處遇目標\"},{\"name\":\"dealwith_strategy\",\"value\":\"\"},{\"name\":\"resource_w_referrals\",\"value\":\"資源與轉介test\"},{\"name\":\"pretest_depression_year\",\"value\":\"\"},{\"name\":\"pretest_depression_month\",\"value\":\"\"},{\"name\":\"pretest_depression_day\",\"value\":\"\"},{\"name\":\"pretest_depression_score\",\"value\":\"\"},{\"name\":\"midtest_depression_year\",\"value\":\"\"},{\"name\":\"midtest_depression_month\",\"value\":\"\"},{\"name\":\"midtest_depression_day\",\"value\":\"\"},{\"name\":\"midtest_depression_score\",\"value\":\"\"},{\"name\":\"posttest_depression_year\",\"value\":\"\"},{\"name\":\"posttest_depression_month\",\"value\":\"\"},{\"name\":\"posttest_depression_day\",\"value\":\"\"},{\"name\":\"posttest_depression_score\",\"value\":\"\"},{\"name\":\"BSRS5_score\",\"value\":\"90\"},{\"name\":\"pretest_life_year\",\"value\":\"\"},{\"name\":\"pretest_life_month\",\"value\":\"\"},{\"name\":\"pretest_life_day\",\"value\":\"\"},{\"name\":\"pretest_life_score\",\"value\":\"\"},{\"name\":\"posttest_life_year\",\"value\":\"\"},{\"name\":\"posttest_life_month\",\"value\":\"\"},{\"name\":\"posttest_life_day\",\"value\":\"\"},{\"name\":\"posttest_life_score\",\"value\":\"\"},{\"name\":\"pretest_familyship_year\",\"value\":\"\"},{\"name\":\"pretest_familyship_month\",\"value\":\"\"},{\"name\":\"pretest_familyship_day\",\"value\":\"\"},{\"name\":\"pretest_familyship_score\",\"value\":\"\"},{\"name\":\"posttest_familyship_year\",\"value\":\"\"},{\"name\":\"posttest_familyship_month\",\"value\":\"\"},{\"name\":\"posttest_familyship_day\",\"value\":\"\"},{\"name\":\"posttest_familyship_score\",\"value\":\"\"},{\"name\":\"employment_radio\",\"value\":\"就業輔導中\"},{\"name\":\"social_adaptation_radio\",\"value\":\"尚可\"},{\"name\":\"other_assessments\",\"value\":\"test其他評量\"},{\"name\":\"case_closed_yes\",\"value\":\"\"},{\"name\":\"case_closed_radio\",\"value\":\"暫不結案\"},{\"name\":\"case_closed_year\",\"value\":\"110\"},{\"name\":\"case_closed_month\",\"value\":\"3\"},{\"name\":\"case_closed_day\",\"value\":\"1\"},{\"name\":\"case_closed_totalmonth\",\"value\":\"5\"},{\"name\":\"customFile1\",\"value\":\"123abc.PNG\"}]\"', '../upload/123abc.PNG', ''),
-(2, 1, 2, 'case', 'Allen', 'B1238475', '2022-02-23 17:35:59', '園主任', '2022-02-23 17:36:34', '園主任', '\"[{\"name\":\"assign_name\",\"value\":\"園主任v2\"},{\"name\":\"fillin_date\",\"value\":\"2022-02-25\"},{\"name\":\"name\",\"value\":\"Allen\"},{\"name\":\"birth\",\"value\":\"1991-07-13\"},{\"name\":\"pid\",\"value\":\"B1238475\"},{\"name\":\"sex\",\"value\":\"男生\"},{\"name\":\"phone_home\",\"value\":\"03113212\"},{\"name\":\"phone_mobile\",\"value\":\"06123128\"},{\"name\":\"address\",\"value\":\"屏東縣屏東市自由路15531號\"},{\"name\":\"residence\",\"value\":\"屏東縣屏東市自由路15531號\"},{\"name\":\"same_address\",\"value\":\"same_address\"},{\"name\":\"education\",\"value\":\"小學以下\"},{\"name\":\"marital\",\"value\":\"未婚\"},{\"name\":\"cohabitant\",\"value\":\"獨居\"},{\"name\":\"cohabitant_other\",\"value\":\"\"},{\"name\":\"current_job\",\"value\":\"漁\"},{\"name\":\"current_job_other\",\"value\":\"\"},{\"name\":\"economic_status\",\"value\":\"0\"},{\"name\":\"economic_status_0\",\"value\":\"123334\"},{\"name\":\"economic_status_1\",\"value\":\"\"},{\"name\":\"economic_status_2\",\"value\":\"\"},{\"name\":\"economic_status_3\",\"value\":\"\"},{\"name\":\"religion\",\"value\":\"其他\"},{\"name\":\"religion_other\",\"value\":\"無\"},{\"name\":\"drug_record_0\",\"value\":\"\"},{\"name\":\"drug_record_1\",\"value\":\"\"},{\"name\":\"drug_record\",\"value\":\"2\"},{\"name\":\"drug_record_2\",\"value\":\"6\"},{\"name\":\"drug_record_3\",\"value\":\"\"},{\"name\":\"correctional_question_count\",\"value\":\"3\"},{\"name\":\"correctional_question_start\",\"value\":\"2019-04\"},{\"name\":\"correctional_question_end\",\"value\":\"2020-10\"},{\"name\":\"correctional_year\",\"value\":\"1\"},{\"name\":\"correctional_month\",\"value\":\"6\"},{\"name\":\"family_description\",\"value\":\"test個案家庭概況描述\"},{\"name\":\"assessment\",\"value\":\"\"},{\"name\":\"treatment_time\",\"value\":\"0\"},{\"name\":\"treatment_time_year\",\"value\":\"109\"},{\"name\":\"treatment_time_month\",\"value\":\"1\"},{\"name\":\"treatment_time_1\",\"value\":\"\"},{\"name\":\"treatment_status\",\"value\":\"已接受治療\"},{\"name\":\"medical_name\",\"value\":\"test就醫醫院/醫師\"},{\"name\":\"medical_info\",\"value\":\"test醫院個管\"},{\"name\":\"medical_phone\",\"value\":\"0511453126\"},{\"name\":\"health_clinic_name\",\"value\":\"test衛生局所/承辦者\"},{\"name\":\"health_clinic_phone\",\"value\":\"0312134513\"},{\"name\":\"CD4_index_0\",\"value\":\"1231\"},{\"name\":\"CD4_index_1\",\"value\":\"110\"},{\"name\":\"CD4_index_2\",\"value\":\"11\"},{\"name\":\"viral_0\",\"value\":\"2341\"},{\"name\":\"viral_1\",\"value\":\"100\"},{\"name\":\"viral_2\",\"value\":\"1\"},{\"name\":\"medical_other\",\"value\":\"test其他\"},{\"name\":\"medicine\",\"value\":\"Triumeq三恩美\"},{\"name\":\"medicine\",\"value\":\"Atripla亞翠佩\"},{\"name\":\"medicine\",\"value\":\"Complera康普萊\"},{\"name\":\"medicine\",\"value\":\"Bikyavy吉他韋\"},{\"name\":\"medicine\",\"value\":\"Symtuza信擇立\"},{\"name\":\"medicine\",\"value\":\"抑滋靈\"},{\"name\":\"medicine\",\"value\":\"伊芳滋\"},{\"name\":\"medicine\",\"value\":\"艾立莎\"},{\"name\":\"medicine\",\"value\":\"英特萊\"},{\"name\":\"medicine\",\"value\":\"諾億亞\"},{\"name\":\"medicine\",\"value\":\"瑞塔滋\"},{\"name\":\"symptoms\",\"value\":\"持續疲倦\"},{\"name\":\"symptoms\",\"value\":\"發燒\"},{\"name\":\"symptoms\",\"value\":\"其他\"},{\"name\":\"symptoms_other\",\"value\":\"合併症狀test\"},{\"name\":\"statement\",\"value\":\"個案問題陳述test\"},{\"name\":\"personal_system\",\"value\":\"個人系統test\"},{\"name\":\"family_system\",\"value\":\"\"},{\"name\":\"social_system\",\"value\":\"\"},{\"name\":\"resource_system\",\"value\":\"\"},{\"name\":\"diagnose_main\",\"value\":\"診斷問題test主要\"},{\"name\":\"diagnose_minor\",\"value\":\"\"},{\"name\":\"dealwith_target\",\"value\":\"test處遇目標\"},{\"name\":\"dealwith_strategy\",\"value\":\"\"},{\"name\":\"resource_w_referrals\",\"value\":\"資源與轉介test\"},{\"name\":\"pretest_depression_year\",\"value\":\"\"},{\"name\":\"pretest_depression_month\",\"value\":\"\"},{\"name\":\"pretest_depression_day\",\"value\":\"\"},{\"name\":\"pretest_depression_score\",\"value\":\"\"},{\"name\":\"midtest_depression_year\",\"value\":\"\"},{\"name\":\"midtest_depression_month\",\"value\":\"\"},{\"name\":\"midtest_depression_day\",\"value\":\"\"},{\"name\":\"midtest_depression_score\",\"value\":\"\"},{\"name\":\"posttest_depression_year\",\"value\":\"\"},{\"name\":\"posttest_depression_month\",\"value\":\"\"},{\"name\":\"posttest_depression_day\",\"value\":\"\"},{\"name\":\"posttest_depression_score\",\"value\":\"\"},{\"name\":\"BSRS5_score\",\"value\":\"90\"},{\"name\":\"pretest_life_year\",\"value\":\"\"},{\"name\":\"pretest_life_month\",\"value\":\"\"},{\"name\":\"pretest_life_day\",\"value\":\"\"},{\"name\":\"pretest_life_score\",\"value\":\"\"},{\"name\":\"posttest_life_year\",\"value\":\"\"},{\"name\":\"posttest_life_month\",\"value\":\"\"},{\"name\":\"posttest_life_day\",\"value\":\"\"},{\"name\":\"posttest_life_score\",\"value\":\"\"},{\"name\":\"pretest_familyship_year\",\"value\":\"\"},{\"name\":\"pretest_familyship_month\",\"value\":\"\"},{\"name\":\"pretest_familyship_day\",\"value\":\"\"},{\"name\":\"pretest_familyship_score\",\"value\":\"\"},{\"name\":\"posttest_familyship_year\",\"value\":\"\"},{\"name\":\"posttest_familyship_month\",\"value\":\"\"},{\"name\":\"posttest_familyship_day\",\"value\":\"\"},{\"name\":\"posttest_familyship_score\",\"value\":\"\"},{\"name\":\"employment_radio\",\"value\":\"就業輔導中\"},{\"name\":\"social_adaptation_radio\",\"value\":\"尚可\"},{\"name\":\"other_assessments\",\"value\":\"test其他評量\"},{\"name\":\"case_closed_yes\",\"value\":\"\"},{\"name\":\"case_closed_radio\",\"value\":\"暫不結案\"},{\"name\":\"case_closed_year\",\"value\":\"109\"},{\"name\":\"case_closed_month\",\"value\":\"12\"},{\"name\":\"case_closed_day\",\"value\":\"1\"},{\"name\":\"case_closed_totalmonth\",\"value\":\"1\"},{\"name\":\"customFile1\",\"value\":\"123abc.PNG\"}]\"', '../upload/123abc.PNG', ''),
-(3, 1, 4, 'life', 'Allen', 'B1238475', '2022-02-23 18:02:52', '園主任', '2022-02-23 18:03:44', '園主任', '\"[{\"name\":\"life_answer1\",\"value\":\"極不好\"},{\"name\":\"life_answer2\",\"value\":\"極滿意\"},{\"name\":\"life_answer3\",\"value\":\"有一點妨礙\"},{\"name\":\"life_answer4\",\"value\":\"極需要\"},{\"name\":\"life_answer5\",\"value\":\"中等程度享受\"},{\"name\":\"life_answer6\",\"value\":\"極有\"},{\"name\":\"life_answer7\",\"value\":\"很好\"},{\"name\":\"life_answer8\",\"value\":\"中等程度安全\"},{\"name\":\"life_answer9\",\"value\":\"中等程度健康\"},{\"name\":\"life_answer10\",\"value\":\"完全足夠\"},{\"name\":\"life_answer11\",\"value\":\"少許能夠\"},{\"name\":\"life_answer12\",\"value\":\"很足夠\"},{\"name\":\"life_answer13\",\"value\":\"完全不方便\"},{\"name\":\"life_answer14\",\"value\":\"中等程度機會\"},{\"name\":\"life_answer15\",\"value\":\"有一點好\"},{\"name\":\"life_answer16\",\"value\":\"不滿意\"},{\"name\":\"life_answer17\",\"value\":\"滿意\"},{\"name\":\"life_answer18\",\"value\":\"滿意\"},{\"name\":\"life_answer19\",\"value\":\"滿意\"},{\"name\":\"life_answer20\",\"value\":\"中等程度滿意\"},{\"name\":\"life_answer21\",\"value\":\"滿意\"},{\"name\":\"life_answer22\",\"value\":\"中等程度滿意\"},{\"name\":\"life_answer23\",\"value\":\"中等程度滿意\"},{\"name\":\"life_answer24\",\"value\":\"極滿意\"},{\"name\":\"life_answer25\",\"value\":\"中等程度滿意\"},{\"name\":\"life_answer26\",\"value\":\"一半有一半沒有\"},{\"name\":\"life_answer27\",\"value\":\"中等程度有\"},{\"name\":\"life_answer28\",\"value\":\"一直都有\"},{\"name\":\"customRange1\",\"value\":\"70\"},{\"name\":\"customRange2\",\"value\":\"90\"},{\"name\":\"customRange3\",\"value\":\"0\"},{\"name\":\"customRange4\",\"value\":\"95\"},{\"name\":\"customRange5\",\"value\":\"100\"},{\"name\":\"customRange6\",\"value\":\"80\"},{\"name\":\"customRange7\",\"value\":\"50\"},{\"name\":\"n0\",\"value\":\"3\"},{\"name\":\"n1\",\"value\":\"4\"},{\"name\":\"n2\",\"value\":\"6\"},{\"name\":\"n3\",\"value\":\"2\"},{\"name\":\"n4\",\"value\":\"1\"},{\"name\":\"n5\",\"value\":\"5\"},{\"name\":\"w_test\",\"value\":\"前測\"},{\"name\":\"fillin_date\",\"value\":\"2022-02-23\"},{\"name\":\"case_name\",\"value\":\"Allen\"},{\"name\":\"sex\",\"value\":\"男生\"},{\"name\":\"birth\",\"value\":\"1990-07-07\"},{\"name\":\"education\",\"value\":\"國小/小學\"},{\"name\":\"education_other\",\"value\":\"\"},{\"name\":\"current_job\",\"value\":\"自由業\"},{\"name\":\"current_job_other\",\"value\":\"\"},{\"name\":\"religion\",\"value\":\"無神論\"},{\"name\":\"religion_other\",\"value\":\"\"},{\"name\":\"marital\",\"value\":\"未婚/單身\"},{\"name\":\"marital_other\",\"value\":\"\"},{\"name\":\"disease_type1\",\"value\":\"高血壓\"},{\"name\":\"disease_type2\",\"value\":\"高血糖\"},{\"name\":\"disease_type3\",\"value\":\"高血脂\"},{\"name\":\"health\",\"value\":\"很差\"},{\"name\":\"fillin_persion\",\"value\":\"別人填寫\"},{\"name\":\"fillin_endtime\",\"value\":\"66\"}]\"', '', ''),
-(4, 1, 5, 'employment_satif', 'Allen', 'B1238475', '2022-02-23 18:04:22', '園主任', '0000-00-00 00:00:00', '', '\"[{\"name\":\"fillin_date_0\",\"value\":\"2022-02-23\"},{\"name\":\"name\",\"value\":\"Allen\"},{\"name\":\"sex\",\"value\":\"男生\"},{\"name\":\"birth\",\"value\":\"\"},{\"name\":\"phone_mobile\",\"value\":\"\"},{\"name\":\"address\",\"value\":\"\"},{\"name\":\"work_experience\",\"value\":\"\"},{\"name\":\"contact_name\",\"value\":\"\"},{\"name\":\"relation\",\"value\":\"\"},{\"name\":\"contact_phone\",\"value\":\"\"},{\"name\":\"physical_mental_t_1\",\"value\":\"\"},{\"name\":\"physical_mental_t_2\",\"value\":\"\"},{\"name\":\"correction_rec_t_1\",\"value\":\"\"},{\"name\":\"correction_rec_t_2\",\"value\":\"\"},{\"name\":\"correction_rec_t_3\",\"value\":\"\"},{\"name\":\"correction_rec_t_4\",\"value\":\"\"},{\"name\":\"correction_rec_t_5\",\"value\":\"\"},{\"name\":\"correction_rec_date_start\",\"value\":\"\"},{\"name\":\"correction_rec_date_end\",\"value\":\"\"},{\"name\":\"capability_t_0\",\"value\":\"\"},{\"name\":\"capability_t_1\",\"value\":\"\"},{\"name\":\"capability_t_2\",\"value\":\"\"},{\"name\":\"capability_t_3\",\"value\":\"\"},{\"name\":\"capability_t_4\",\"value\":\"\"},{\"name\":\"other_skills_t_0\",\"value\":\"\"},{\"name\":\"traffic_capacity_t_0\",\"value\":\"\"},{\"name\":\"traffic_capacity_t_1\",\"value\":\"\"},{\"name\":\"traffic_capacity_t_2\",\"value\":\"\"},{\"name\":\"employment_status_t_date\",\"value\":\"\"},{\"name\":\"employment_status_t_1\",\"value\":\"\"},{\"name\":\"employment_status_t_2\",\"value\":\"\"},{\"name\":\"employment_status_t_3\",\"value\":\"\"},{\"name\":\"employment_status_t_4\",\"value\":\"\"},{\"name\":\"employment_status_t_5\",\"value\":\"\"},{\"name\":\"employment_status_t_6\",\"value\":\"\"},{\"name\":\"tsn_case_id\",\"value\":\"1\"},{\"name\":\"fillin_date_1\",\"value\":\"2022-02-23\"},{\"name\":\"answer_score\",\"value\":\"0\"}]\"', '', ''),
-(5, 1, 6, 'satif', 'Allen', 'B1238475', '2022-02-23 18:05:05', '園主任', '0000-00-00 00:00:00', '', '\"[{\"name\":\"fillin_date\",\"value\":\"2022-02-23\"},{\"name\":\"case_name\",\"value\":\"Allen\"},{\"name\":\"assign_name\",\"value\":\"園主任\"},{\"name\":\"tsn_case_id\",\"value\":\"1\"},{\"name\":\"agency\",\"value\":\"test123\"},{\"name\":\"answer1\",\"value\":\"4\"},{\"name\":\"answer2\",\"value\":\"3\"},{\"name\":\"answer4\",\"value\":\"2\"},{\"name\":\"answer6\",\"value\":\"1\"},{\"name\":\"answer7\",\"value\":\"1\"},{\"name\":\"answer8\",\"value\":\"1\"},{\"name\":\"answer9\",\"value\":\"1\"},{\"name\":\"answer10\",\"value\":\"2\"},{\"name\":\"answer11\",\"value\":\"4\"},{\"name\":\"answer12\",\"value\":\"4\"},{\"name\":\"answer13\",\"value\":\"4\"},{\"name\":\"answer14\",\"value\":\"4\"},{\"name\":\"answer15\",\"value\":\"4\"},{\"name\":\"answer16\",\"value\":\"\"},{\"name\":\"answer_score\",\"value\":\"35\"}]\"', '', ''),
-(6, 1, 7, 'familyship', 'Allen', 'B1238475', '2022-02-23 18:05:43', '園主任', '2022-02-23 18:08:05', '園主任', '\"[{\"name\":\"w_test\",\"value\":\"前測\"},{\"name\":\"fillin_date\",\"value\":\"2022-02-23\"},{\"name\":\"sex\",\"value\":\"男生\"},{\"name\":\"education\",\"value\":\"國小/小學\"},{\"name\":\"education_other\",\"value\":\"\"},{\"name\":\"current_job\",\"value\":\"服務業\"},{\"name\":\"current_job_other\",\"value\":\"\"},{\"name\":\"marital\",\"value\":\"未婚/單身\"},{\"name\":\"marital_other\",\"value\":\"\"},{\"name\":\"cohabitant\",\"value\":\"其他\"},{\"name\":\"cohabitant_other\",\"value\":\"哥哥\"},{\"name\":\"answer1\",\"value\":\"4\"},{\"name\":\"answer2\",\"value\":\"3\"},{\"name\":\"answer3\",\"value\":\"3\"},{\"name\":\"answer4\",\"value\":\"3\"},{\"name\":\"answer5\",\"value\":\"3\"},{\"name\":\"answer6\",\"value\":\"4\"},{\"name\":\"answer7\",\"value\":\"4\"},{\"name\":\"answer8\",\"value\":\"4\"},{\"name\":\"answer9\",\"value\":\"4\"},{\"name\":\"answer10\",\"value\":\"4\"},{\"name\":\"answer_score\",\"value\":\"36\"}]\"', '', ''),
-(7, 1, 8, 'settlement', 'Allen', 'B1238475', '2022-02-23 18:10:08', '園主任', '2022-02-23 18:11:23', '園主任', '\"[{\"name\":\"fillin_date\",\"value\":\"2022-02-23\"},{\"name\":\"assign_name\",\"value\":\"園主任\"},{\"name\":\"name\",\"value\":\"Allen\"},{\"name\":\"birth\",\"value\":\"1994-07-07\"},{\"name\":\"pid\",\"value\":\"B1238475\"},{\"name\":\"sex\",\"value\":\"男生\"},{\"name\":\"phone_mobile\",\"value\":\"3431413515\"},{\"name\":\"address\",\"value\":\"屏東縣屏東市自由路26313號\"},{\"name\":\"residence\",\"value\":\"屏東縣屏東市自由路26313號\"},{\"name\":\"same_address\",\"value\":\"same_address\"},{\"name\":\"education\",\"value\":\"小學以下\"},{\"name\":\"marital\",\"value\":\"未婚\"},{\"name\":\"cohabitant\",\"value\":\"獨居\"},{\"name\":\"cohabitant_other\",\"value\":\"\"},{\"name\":\"current_job\",\"value\":\"無\"},{\"name\":\"current_job_other\",\"value\":\"\"},{\"name\":\"economic_status_0\",\"value\":\"\"},{\"name\":\"economic_status\",\"value\":\"1\"},{\"name\":\"economic_status_1\",\"value\":\"31231\"},{\"name\":\"economic_status_2\",\"value\":\"\"},{\"name\":\"economic_status_3\",\"value\":\"\"},{\"name\":\"religion\",\"value\":\"其他\"},{\"name\":\"religion_other\",\"value\":\"無\"},{\"name\":\"drug_record_0\",\"value\":\"\"},{\"name\":\"drug_record\",\"value\":\"1\"},{\"name\":\"drug_record_1\",\"value\":\"5\"},{\"name\":\"drug_record_2\",\"value\":\"\"},{\"name\":\"drug_record_3\",\"value\":\"\"},{\"name\":\"correctional_question_count\",\"value\":\"2\"},{\"name\":\"correctional_question_start\",\"value\":\"2019-03\"},{\"name\":\"correctional_question_end\",\"value\":\"2019-08\"},{\"name\":\"correctional_year\",\"value\":\"0\"},{\"name\":\"correctional_month\",\"value\":\"5\"},{\"name\":\"family_description\",\"value\":\"test個案家庭概況描述\"},{\"name\":\"assessment\",\"value\":\"\"},{\"name\":\"treatment_time_year\",\"value\":\"108\"},{\"name\":\"treatment_time_month\",\"value\":\"3\"},{\"name\":\"medical_name\",\"value\":\"test就醫醫院/醫師\"},{\"name\":\"medical_info\",\"value\":\"\"},{\"name\":\"medical_phone\",\"value\":\"\"},{\"name\":\"health_clinic_name\",\"value\":\"test衛生局所/承辦者\"},{\"name\":\"health_clinic_phone\",\"value\":\"\"},{\"name\":\"CD4_index_0\",\"value\":\"\"},{\"name\":\"CD4_index_1\",\"value\":\"\"},{\"name\":\"CD4_index_2\",\"value\":\"\"},{\"name\":\"viral_0\",\"value\":\"\"},{\"name\":\"viral_1\",\"value\":\"\"},{\"name\":\"viral_2\",\"value\":\"\"},{\"name\":\"medicine\",\"value\":\"安以斯Ocmplera\"},{\"name\":\"symptoms\",\"value\":\"頭痛\"},{\"name\":\"symptoms_other\",\"value\":\"\"},{\"name\":\"statement\",\"value\":\"\"},{\"name\":\"personal_system\",\"value\":\"test個人系統\"},{\"name\":\"family_system\",\"value\":\"\"},{\"name\":\"social_system\",\"value\":\"\"},{\"name\":\"resource_system\",\"value\":\"\"},{\"name\":\"diagnose_main\",\"value\":\"\"},{\"name\":\"diagnose_minor\",\"value\":\"\"},{\"name\":\"basic_indicator\",\"value\":\"藥癮者居無定所\"},{\"name\":\"basic_indicator\",\"value\":\"本身同意於安置中心入住並有意願重新開始者\"},{\"name\":\"end_indicator\",\"value\":\"入住當日與入住後都願意接受藥癮檢測 結果都呈陰性者，沒有在使用非法藥物者，但可以接受使用美沙酮或舌下錠者(丁基原啡因)\"},{\"name\":\"end_indicator\",\"value\":\"生活可自理者且行動能力正常\"},{\"name\":\"end_indicator\",\"value\":\"個案需要至感染科就診，並附上病歷摘要表，以利審核\"},{\"name\":\"end_indicator\",\"value\":\"個案家屬需負擔個案就醫、生活用品等費用\"},{\"name\":\"resource_w_referrals\",\"value\":\"資源與轉介test\"},{\"name\":\"customFile1\",\"value\":\"abc123.PNG\"}]\"', '../upload/abc123.PNG', ''),
-(13, 1, 9, 'health', 'Allen', 'B1238475', '2022-03-14 19:36:25', '園主任', '2022-03-14 19:40:49', '園主任', '\"[{\"name\":\"fillin_date\",\"value\":\"2022-03-14\"},{\"name\":\"name\",\"value\":\"Allen\"},{\"name\":\"birth\",\"value\":\"\"},{\"name\":\"pid\",\"value\":\"B1238475\"},{\"name\":\"medical_card\",\"value\":\"\"},{\"name\":\"treatment_time_year\",\"value\":\"\"},{\"name\":\"treatment_time_month\",\"value\":\"\"},{\"name\":\"health_clinic_unit\",\"value\":\"\"},{\"name\":\"health_clinic_name\",\"value\":\"\"},{\"name\":\"medical_name\",\"value\":\"\"},{\"name\":\"medical_info\",\"value\":\"\"},{\"name\":\"medical_manager\",\"value\":\"\"},{\"name\":\"symptoms_other\",\"value\":\"\"},{\"name\":\"methadone_time\",\"value\":\"\"},{\"name\":\"methadone_dosage\",\"value\":\"\"},{\"name\":\"methadone_hospital\",\"value\":\"\"},{\"name\":\"methadone_hospital_phone\",\"value\":\"\"},{\"name\":\"diagnosis\",\"value\":\"\"},{\"name\":\"visiting_hospital\",\"value\":\"\"},{\"name\":\"visiting_hospital_phone\",\"value\":\"\"},{\"name\":\"medical_history\",\"value\":\"\"},{\"name\":\"STD_type_other\",\"value\":\"\"},{\"name\":\"STD_treatment_other\",\"value\":\"\"},{\"name\":\"smoke_age\",\"value\":\"\"},{\"name\":\"smoke_frequency\",\"value\":\"\"},{\"name\":\"smoke_resons\",\"value\":\"\"},{\"name\":\"smoke_rec_1&0_0\",\"value\":\"\"},{\"name\":\"smoke_rec_1&0_1\",\"value\":\"\"},{\"name\":\"smoke_rec_1&0_2\",\"value\":\"\"},{\"name\":\"smoke_rec_1&1_0\",\"value\":\"\"},{\"name\":\"smoke_rec_1&1_1\",\"value\":\"\"},{\"name\":\"smoke_rec_1&1_2\",\"value\":\"\"},{\"name\":\"smoke_rec_1&2_0\",\"value\":\"\"},{\"name\":\"smoke_rec_1&2_1\",\"value\":\"\"},{\"name\":\"smoke_rec_1&2_2\",\"value\":\"\"},{\"name\":\"smoke_rec_1&3_0\",\"value\":\"\"},{\"name\":\"smoke_rec_1&3_1\",\"value\":\"\"},{\"name\":\"smoke_rec_1&3_2\",\"value\":\"\"},{\"name\":\"smoke_rec_1&4_0\",\"value\":\"\"},{\"name\":\"smoke_rec_1&4_1\",\"value\":\"\"},{\"name\":\"smoke_rec_1&4_2\",\"value\":\"\"},{\"name\":\"smoke_rec_1&5_0\",\"value\":\"\"},{\"name\":\"smoke_rec_1&5_1\",\"value\":\"\"},{\"name\":\"smoke_rec_1&5_2\",\"value\":\"\"},{\"name\":\"smoke_rec_1&6_0\",\"value\":\"\"},{\"name\":\"smoke_rec_1&6_1\",\"value\":\"\"},{\"name\":\"smoke_rec_1&6_2\",\"value\":\"\"},{\"name\":\"smoke_rec_1&7_0\",\"value\":\"\"},{\"name\":\"smoke_rec_1&7_1\",\"value\":\"\"},{\"name\":\"smoke_rec_1&7_2\",\"value\":\"\"},{\"name\":\"smoke_rec_1&8_0\",\"value\":\"\"},{\"name\":\"smoke_rec_1&8_1\",\"value\":\"\"},{\"name\":\"smoke_rec_1&8_2\",\"value\":\"\"},{\"name\":\"smoke_rec_2&0_0\",\"value\":\"\"},{\"name\":\"smoke_rec_2&0_1\",\"value\":\"\"},{\"name\":\"smoke_rec_2&0_2\",\"value\":\"\"},{\"name\":\"smoke_rec_2&1_0\",\"value\":\"\"},{\"name\":\"smoke_rec_2&1_1\",\"value\":\"\"},{\"name\":\"smoke_rec_2&1_2\",\"value\":\"\"},{\"name\":\"smoke_rec_2&2_0\",\"value\":\"\"},{\"name\":\"smoke_rec_2&2_1\",\"value\":\"\"},{\"name\":\"smoke_rec_2&2_2\",\"value\":\"\"},{\"name\":\"smoke_rec_2&3_0\",\"value\":\"\"},{\"name\":\"smoke_rec_2&3_1\",\"value\":\"\"},{\"name\":\"smoke_rec_2&3_2\",\"value\":\"\"},{\"name\":\"smoke_rec_2&4_0\",\"value\":\"\"},{\"name\":\"smoke_rec_2&4_1\",\"value\":\"\"},{\"name\":\"smoke_rec_2&4_2\",\"value\":\"\"},{\"name\":\"smoke_rec_2&5_0\",\"value\":\"\"},{\"name\":\"smoke_rec_2&5_1\",\"value\":\"\"},{\"name\":\"smoke_rec_2&5_2\",\"value\":\"\"},{\"name\":\"smoke_rec_2&6_0\",\"value\":\"\"},{\"name\":\"smoke_rec_2&6_1\",\"value\":\"\"},{\"name\":\"smoke_rec_2&6_2\",\"value\":\"\"},{\"name\":\"smoke_rec_2&7_0\",\"value\":\"\"},{\"name\":\"smoke_rec_2&7_1\",\"value\":\"\"},{\"name\":\"smoke_rec_2&7_2\",\"value\":\"\"},{\"name\":\"smoke_rec_2&8_0\",\"value\":\"\"},{\"name\":\"smoke_rec_2&8_1\",\"value\":\"\"},{\"name\":\"smoke_rec_2&8_2\",\"value\":\"\"}]\"', '', '\"[{\"name\":\"mtable1&medical_rec_1[]\",\"value\":[\"1\",\"\",\"\",\"\",\"\",\"\",\"\",\"1\",\"1\",\"\",\"\",\"1\",\"1\",\"1\",\"\",\"1\",\"1\",\"\",\"\",\"\",\"1\",\"1\",\"\",\"1\",\"1\",\"\",\"\",\"\",\"\",\"\",\"\",\"1\"]},{\"name\":\"mtable1&medical_rec_2[]\",\"value\":[\"1\",\"1\",\"1\",\"1\",\"1\",\"\",\"1\",\"\",\"\",\"1\",\"1\",\"\",\"1\",\"\",\"1\",\"\",\"1\",\"\",\"1\",\"\",\"1\",\"\",\"5\",\"\",\"\",\"1\",\"1\",\"1\",\"1\",\"1\",\"\",\"\",\"\",\"\",\"1\",\"1\",\"\",\"\",\"\",\"1\"]},{\"name\":\"mtable2&medical_rec_1[]\",\"value\":[\"2\",\"2\",\"2\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"2\",\"2\",\"2\",\"\",\"2\",\"\",\"2\",\"\",\"\",\"2\",\"2\",\"2\",\"2\",\"2\",\"\",\"2\",\"\",\"\",\"\",\"2\",\"\",\"2\"]},{\"name\":\"mtable2&medical_rec_2[]\",\"value\":[\"2\",\"\",\"\",\"\",\"2\",\"2\",\"\",\"2\",\"\",\"2\",\"2\",\"\",\"2\",\"2\",\"2\",\"\",\"2\",\"\",\"\",\"2\",\"\",\"2\",\"\",\"\",\"2\",\"2\",\"\",\"2\",\"\",\"2\",\"2\",\"2\",\"\",\"\",\"2\",\"2\",\"2\",\"\",\"\",\"2\"]},{\"name\":\"mtable3&medical_rec_1[]\",\"value\":[\"3\",\"\",\"3\",\"\",\"3\",\"\",\"3\",\"3\",\"\",\"\",\"3\",\"\",\"3\",\"\",\"3\",\"\",\"\",\"\",\"3\",\"\",\"3\",\"\",\"3\",\"\",\"3\",\"\",\"3\",\"\",\"\",\"\",\"3\",\"3\"]},{\"name\":\"mtable3&medical_rec_2[]\",\"value\":[\"5\",\"5\",\"6\",\"6\",\"6\",\"\",\"5\",\"6\",\"\",\"\",\"\",\"5\",\"6\",\"6\",\"6\",\"5\",\"5\",\"\",\"\",\"\",\"5\",\"5\",\"6\",\"6\",\"6\",\"\",\"5\",\"as\",\"a\",\"a\",\"\",\"5\",\"6\",\"a\",\"a\",\"5\",\"5\",\"6\",\"6\",\"6\"]}]\"'),
-(14, 1, 17, 'BSRS5', 'Allen', 'B1238475', '2022-03-18 11:05:52', '園主任', '2022-03-18 11:08:53', '園主任', '\"[{\"name\":\"name\",\"value\":\"Allen\"},{\"name\":\"sex\",\"value\":\"男生\"},{\"name\":\"birth\",\"value\":\"1994-12-15\"},{\"name\":\"age\",\"value\":\"36\"},{\"name\":\"phone_mobile\",\"value\":\"07412411\"},{\"name\":\"address\",\"value\":\"屏東縣內埔鄉東寧村勝利路64123號\"},{\"name\":\"answer1\",\"value\":\"2\"},{\"name\":\"answer2\",\"value\":\"2\"},{\"name\":\"answer3\",\"value\":\"2\"},{\"name\":\"answer4\",\"value\":\"1\"},{\"name\":\"answer5\",\"value\":\"0\"},{\"name\":\"answer6\",\"value\":\"1\"},{\"name\":\"answer_score\",\"value\":\"7\"},{\"name\":\"treatment_status\",\"value\":\"超過6分\"},{\"name\":\"treatment_status\",\"value\":\"第6題單獨得分\"},{\"name\":\"statement\",\"value\":\"test處置情形111\"}]\"', '', '');
+(1, 'ER161', 1, 'settlement', 'Deny', 'q131214241', '2022-04-13 12:59:10', '園主任', '2022-04-13 23:09:12', '園主任', '\"[{\"name\":\"fillin_date\",\"value\":\"2022-04-13\"},{\"name\":\"assign_name\",\"value\":\"園主任\"},{\"name\":\"name\",\"value\":\"Deny\"},{\"name\":\"birth\",\"value\":\"\"},{\"name\":\"pid\",\"value\":\"q131214241\"},{\"name\":\"phone_mobile\",\"value\":\"\"},{\"name\":\"address\",\"value\":\"\"},{\"name\":\"residence\",\"value\":\"\"},{\"name\":\"cohabitant_other\",\"value\":\"\"},{\"name\":\"current_job_other\",\"value\":\"\"},{\"name\":\"economic_status_0\",\"value\":\"\"},{\"name\":\"economic_status_1\",\"value\":\"\"},{\"name\":\"economic_status_2\",\"value\":\"\"},{\"name\":\"economic_status_3\",\"value\":\"\"},{\"name\":\"religion_other\",\"value\":\"\"},{\"name\":\"drug_record_0\",\"value\":\"\"},{\"name\":\"drug_record_1\",\"value\":\"\"},{\"name\":\"drug_record_2\",\"value\":\"\"},{\"name\":\"drug_record_3\",\"value\":\"\"},{\"name\":\"correctional_question_count\",\"value\":\"\"},{\"name\":\"correctional_question_start\",\"value\":\"\"},{\"name\":\"correctional_question_end\",\"value\":\"\"},{\"name\":\"correctional_year\",\"value\":\"0\"},{\"name\":\"correctional_month\",\"value\":\"0\"},{\"name\":\"family_description\",\"value\":\"\"},{\"name\":\"assessment\",\"value\":\"\"},{\"name\":\"treatment_time_year\",\"value\":\"\"},{\"name\":\"treatment_time_month\",\"value\":\"\"},{\"name\":\"medical_name\",\"value\":\"\"},{\"name\":\"medical_info\",\"value\":\"\"},{\"name\":\"medical_phone\",\"value\":\"\"},{\"name\":\"health_clinic_name\",\"value\":\"\"},{\"name\":\"health_clinic_phone\",\"value\":\"\"},{\"name\":\"CD4_index_0\",\"value\":\"\"},{\"name\":\"CD4_index_1\",\"value\":\"\"},{\"name\":\"CD4_index_2\",\"value\":\"\"},{\"name\":\"viral_0\",\"value\":\"\"},{\"name\":\"viral_1\",\"value\":\"\"},{\"name\":\"viral_2\",\"value\":\"\"},{\"name\":\"symptoms_other\",\"value\":\"\"},{\"name\":\"statement\",\"value\":\"\"},{\"name\":\"personal_system\",\"value\":\"\"},{\"name\":\"family_system\",\"value\":\"\"},{\"name\":\"social_system\",\"value\":\"\"},{\"name\":\"resource_system\",\"value\":\"\"},{\"name\":\"diagnose_main\",\"value\":\"\"},{\"name\":\"diagnose_minor\",\"value\":\"\"},{\"name\":\"basic_indicator\",\"value\":\"藥癮者居無定所\"},{\"name\":\"basic_indicator\",\"value\":\"本身同意於安置中心入住並有意願重新開始者\"},{\"name\":\"basic_indicator\",\"value\":\"願意配合本聯盟社工處遇與安置中心/自立宿舍相關規定\"},{\"name\":\"basic_indicator\",\"value\":\"願意配合入住時藥癮檢測與每周、不定時藥癮檢測\"},{\"name\":\"end_indicator\",\"value\":\"個案須接種過疫苗才能入住機構\"},{\"name\":\"end_indicator\",\"value\":\"生活可自理者且行動能力正常\"},{\"name\":\"end_indicator\",\"value\":\"因應COVID-19疫情個案都必須做過快篩機制結果為陰性者才能入住\"},{\"name\":\"resource_w_referrals\",\"value\":\"\"},{\"name\":\"customFile1\",\"value\":\"新文字文件.txt\"}]\"', '../upload/新文字文件.txt', ''),
+(2, 'ER16231', 2, 'health', '張啟生', 'h12364423', '2022-04-13 13:28:56', '園主任', '0000-00-00 00:00:00', '', '\"[{\"name\":\"fillin_date\",\"value\":\"2022-04-13\"},{\"name\":\"name\",\"value\":\"張啟生\"},{\"name\":\"birth\",\"value\":\"\"},{\"name\":\"pid\",\"value\":\"h12364423\"},{\"name\":\"medical_card\",\"value\":\"\"},{\"name\":\"treatment_time_year\",\"value\":\"\"},{\"name\":\"treatment_time_month\",\"value\":\"\"},{\"name\":\"health_clinic_unit\",\"value\":\"\"},{\"name\":\"health_clinic_name\",\"value\":\"\"},{\"name\":\"medical_name\",\"value\":\"\"},{\"name\":\"medical_info\",\"value\":\"\"},{\"name\":\"medical_manager\",\"value\":\"\"},{\"name\":\"medicine\",\"value\":\"Atripla亞翠佩\"},{\"name\":\"medicine\",\"value\":\"安以斯Ocmplera\"},{\"name\":\"medicine\",\"value\":\"滋若愷Juluca\"},{\"name\":\"medicine\",\"value\":\"Duovir倍歐減\"},{\"name\":\"medicine\",\"value\":\"Zovilam諾穩錠\"},{\"name\":\"medicine\",\"value\":\"衛滋\"},{\"name\":\"medicine\",\"value\":\"寧衛邁\"},{\"name\":\"symptoms\",\"value\":\"腹瀉\"},{\"name\":\"symptoms\",\"value\":\"夜間出汗\"},{\"name\":\"symptoms_other\",\"value\":\"\"},{\"name\":\"methadone\",\"value\":\"否\"},{\"name\":\"methadone_time\",\"value\":\"\"},{\"name\":\"methadone_dosage\",\"value\":\"\"},{\"name\":\"methadone_hospital\",\"value\":\"\"},{\"name\":\"methadone_hospital_phone\",\"value\":\"\"},{\"name\":\"diagnosis\",\"value\":\"\"},{\"name\":\"visiting_hospital\",\"value\":\"\"},{\"name\":\"visiting_hospital_phone\",\"value\":\"\"},{\"name\":\"medical_history\",\"value\":\"\"},{\"name\":\"STD\",\"value\":\"2.沒有\"},{\"name\":\"STD_type_other\",\"value\":\"\"},{\"name\":\"STD_treatment_other\",\"value\":\"\"},{\"name\":\"smoke_age\",\"value\":\"\"},{\"name\":\"smoke_frequency\",\"value\":\"\"},{\"name\":\"smoke_resons\",\"value\":\"\"},{\"name\":\"smoke_rec_1&0_0\",\"value\":\"\"},{\"name\":\"smoke_rec_1&0_1\",\"value\":\"\"},{\"name\":\"smoke_rec_1&0_2\",\"value\":\"test\"},{\"name\":\"smoke_rec_1&1_0\",\"value\":\"\"},{\"name\":\"smoke_rec_1&1_1\",\"value\":\"\"},{\"name\":\"smoke_rec_1&1_2\",\"value\":\"\"},{\"name\":\"smoke_rec_1&2_0\",\"value\":\"\"},{\"name\":\"smoke_rec_1&2_1\",\"value\":\"\"},{\"name\":\"smoke_rec_1&2_2\",\"value\":\"\"},{\"name\":\"smoke_rec_1&3_0\",\"value\":\"\"},{\"name\":\"smoke_rec_1&3_1\",\"value\":\"\"},{\"name\":\"smoke_rec_1&3_2\",\"value\":\"\"},{\"name\":\"smoke_rec_1&4_0\",\"value\":\"\"},{\"name\":\"smoke_rec_1&4_1\",\"value\":\"\"},{\"name\":\"smoke_rec_1&4_2\",\"value\":\"\"},{\"name\":\"smoke_rec_1&5_0\",\"value\":\"\"},{\"name\":\"smoke_rec_1&5_1\",\"value\":\"\"},{\"name\":\"smoke_rec_1&5_2\",\"value\":\"\"},{\"name\":\"smoke_rec_1&6_0\",\"value\":\"\"},{\"name\":\"smoke_rec_1&6_1\",\"value\":\"\"},{\"name\":\"smoke_rec_1&6_2\",\"value\":\"\"},{\"name\":\"smoke_rec_1&7_0\",\"value\":\"\"},{\"name\":\"smoke_rec_1&7_1\",\"value\":\"\"},{\"name\":\"smoke_rec_1&7_2\",\"value\":\"\"},{\"name\":\"smoke_rec_1&8_0\",\"value\":\"\"},{\"name\":\"smoke_rec_1&8_1\",\"value\":\"\"},{\"name\":\"smoke_rec_1&8_2\",\"value\":\"\"},{\"name\":\"smoke_rec_2&0_0\",\"value\":\"\"},{\"name\":\"smoke_rec_2&0_1\",\"value\":\"\"},{\"name\":\"smoke_rec_2&0_2\",\"value\":\"\"},{\"name\":\"smoke_rec_2&1_0\",\"value\":\"\"},{\"name\":\"smoke_rec_2&1_1\",\"value\":\"\"},{\"name\":\"smoke_rec_2&1_2\",\"value\":\"\"},{\"name\":\"smoke_rec_2&2_0\",\"value\":\"\"},{\"name\":\"smoke_rec_2&2_1\",\"value\":\"\"},{\"name\":\"smoke_rec_2&2_2\",\"value\":\"\"},{\"name\":\"smoke_rec_2&3_0\",\"value\":\"\"},{\"name\":\"smoke_rec_2&3_1\",\"value\":\"\"},{\"name\":\"smoke_rec_2&3_2\",\"value\":\"\"},{\"name\":\"smoke_rec_2&4_0\",\"value\":\"\"},{\"name\":\"smoke_rec_2&4_1\",\"value\":\"\"},{\"name\":\"smoke_rec_2&4_2\",\"value\":\"\"},{\"name\":\"smoke_rec_2&5_0\",\"value\":\"\"},{\"name\":\"smoke_rec_2&5_1\",\"value\":\"\"},{\"name\":\"smoke_rec_2&5_2\",\"value\":\"\"},{\"name\":\"smoke_rec_2&6_0\",\"value\":\"\"},{\"name\":\"smoke_rec_2&6_1\",\"value\":\"\"},{\"name\":\"smoke_rec_2&6_2\",\"value\":\"\"},{\"name\":\"smoke_rec_2&7_0\",\"value\":\"\"},{\"name\":\"smoke_rec_2&7_1\",\"value\":\"\"},{\"name\":\"smoke_rec_2&7_2\",\"value\":\"\"},{\"name\":\"smoke_rec_2&8_0\",\"value\":\"\"},{\"name\":\"smoke_rec_2&8_1\",\"value\":\"\"},{\"name\":\"smoke_rec_2&8_2\",\"value\":\"\"}]\"', '', '\"[{\"name\":\"mtable1&medical_rec_1[]\",\"value\":[\"\",\"test\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"]},{\"name\":\"mtable1&medical_rec_2[]\",\"value\":[\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"]}]\"');
 
 -- --------------------------------------------------------
 
@@ -470,8 +475,8 @@ INSERT INTO `forms` (`Id`, `Case_id`, `Form_id`, `Form_type`, `Case_name`, `Case
 
 CREATE TABLE `form_all_info` (
   `Id` int(30) NOT NULL,
-  `Phone_id` int(30) NOT NULL,
-  `Case_id` int(30) NOT NULL,
+  `Phone_id` varchar(2000) NOT NULL,
+  `Case_id` varchar(2000) NOT NULL,
   `Case_name` varchar(20) NOT NULL,
   `Case_pid` varchar(50) NOT NULL,
   `Is_upload` tinyint(1) NOT NULL,
@@ -494,18 +499,9 @@ CREATE TABLE `form_all_info` (
 --
 
 INSERT INTO `form_all_info` (`Id`, `Phone_id`, `Case_id`, `Case_name`, `Case_pid`, `Is_upload`, `Url`, `Upload_path`, `Number`, `Form_name`, `Fillin_date`, `Remark`, `Other_info`, `Upload_info`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
-(1, 2, 1, 'Allen', 'B1238475', 0, 'case_detail.php?name=Allen&pid=B1238475&date=2021-11-25&grade=A&property=%E7%A4%BE%E5%8D%80&type=%E6%84%9B%E6%BB%8B%E6%84%9F%E6%9F%93%E8%80%85&id=2&open_id=1&addition=K%E4%BB%96%E5%91%BD&age=36&gender=%E7%94%B7', '', 0, 'case', '2022-02-23', 'test12313', '\"[{\"name\":\"case\",\"value\":\"暫不結案，持續服務至民國110年3月1日\"}]\"', '', '2022-02-23 00:00:00', '園主任', '2022-02-23 17:37:38', '園主任'),
-(2, 2, 1, 'Allen', 'B1238475', 0, 'case_detail.php?name=Allen&pid=B1238475&date=2021-11-25&grade=A&property=%E7%A4%BE%E5%8D%80&type=%E6%84%9B%E6%BB%8B%E6%84%9F%E6%9F%93%E8%80%85&id=2&open_id=1&addition=K%E4%BB%96%E5%91%BD&age=36&gender=%E7%94%B7', '', 1, 'case', '2022-02-25', '', '\"[{\"name\":\"case\",\"value\":\"暫不結案，持續服務至民國109年12月1日\"}]\"', '', '2022-02-23 00:00:00', '園主任', '2022-02-23 17:36:34', '園主任'),
-(3, 2, 1, 'Allen', 'B1238475', 0, 'case_detail.php?name=Allen&pid=B1238475&date=2021-11-25&grade=A&property=%E7%A4%BE%E5%8D%80&type=%E6%84%9B%E6%BB%8B%E6%84%9F%E6%9F%93%E8%80%85&id=2&open_id=1&addition=K%E4%BB%96%E5%91%BD&age=36&gender=%E7%94%B7', '', 2, 'case', '2022-02-04', 'test121', '', '', '2022-02-23 00:00:00', '園主任', '0000-00-00 00:00:00', ''),
-(4, 2, 1, 'Allen', 'B1238475', 0, 'case_detail.php?name=Allen&pid=B1238475&date=2021-11-25&grade=A&property=%E7%A4%BE%E5%8D%80&type=%E6%84%9B%E6%BB%8B%E6%84%9F%E6%9F%93%E8%80%85&id=2&open_id=1&addition=K%E4%BB%96%E5%91%BD&age=36&gender=%E7%94%B7', '', 0, 'life', '2022-02-23', 'test122', '\"[{\"name\":\"life\",\"value\":\"前測\"}]\"', '', '2022-02-23 00:00:00', '園主任', '2022-02-23 18:03:44', '園主任'),
-(5, 2, 1, 'Allen', 'B1238475', 0, 'case_detail.php?name=Allen&pid=B1238475&date=2021-11-25&grade=A&property=%E7%A4%BE%E5%8D%80&type=%E6%84%9B%E6%BB%8B%E6%84%9F%E6%9F%93%E8%80%85&id=2&open_id=1&addition=K%E4%BB%96%E5%91%BD&age=36&gender=%E7%94%B7', '', 0, 'employment_satif', '2022-02-23', '123', '\"[{\"name\":\"employment_satif\",\"value\":\"0\"}]\"', '', '2022-02-23 00:00:00', '園主任', '2022-02-23 18:04:22', '園主任'),
-(6, 2, 1, 'Allen', 'B1238475', 0, 'case_detail.php?name=Allen&pid=B1238475&date=2021-11-25&grade=A&property=%E7%A4%BE%E5%8D%80&type=%E6%84%9B%E6%BB%8B%E6%84%9F%E6%9F%93%E8%80%85&id=2&open_id=1&addition=K%E4%BB%96%E5%91%BD&age=36&gender=%E7%94%B7', '', 0, 'satif', '2022-02-23', '', '\"[{\"name\":\"satif\",\"value\":\"35\"}]\"', '', '2022-02-23 00:00:00', '園主任', '2022-02-23 18:05:05', '園主任'),
-(7, 2, 1, 'Allen', 'B1238475', 0, 'case_detail.php?name=Allen&pid=B1238475&date=2021-11-25&grade=A&property=%E7%A4%BE%E5%8D%80&type=%E6%84%9B%E6%BB%8B%E6%84%9F%E6%9F%93%E8%80%85&id=2&open_id=1&addition=K%E4%BB%96%E5%91%BD&age=36&gender=%E7%94%B7', '', 0, 'familyship', '2022-02-23', '', '\"[{\"name\":\"familyship\",\"value\":\"36\"},{\"name\":\"familyship\",\"value\":\"前測\"}]\"', '', '2022-02-23 00:00:00', '園主任', '2022-02-23 18:08:05', '園主任'),
-(8, 2, 1, 'Allen', 'B1238475', 0, 'case_detail.php?name=Allen&pid=B1238475&date=2021-11-25&grade=A&property=%E7%A4%BE%E5%8D%80&type=%E6%84%9B%E6%BB%8B%E6%84%9F%E6%9F%93%E8%80%85&id=2&open_id=1&addition=K%E4%BB%96%E5%91%BD&age=36&gender=%E7%94%B7', '', 0, 'settlement', '2022-02-23', '', '\"[{\"name\":\"settlement\",\"value\":\"符合基本條件指標條件共2項，符合收案指標條件共4項。\"}]\"', '', '2022-02-23 00:00:00', '園主任', '2022-02-23 18:11:23', '園主任'),
-(9, 2, 1, 'Allen', 'B1238475', 0, 'case_detail.php?name=Allen&pid=B1238475&date=2021-11-25&grade=A&property=%E7%A4%BE%E5%8D%80&type=%E6%84%9B%E6%BB%8B%E6%84%9F%E6%9F%93%E8%80%85&id=2&open_id=1&addition=K%E4%BB%96%E5%91%BD&age=36&gender=%E7%94%B7', '', 0, 'health', '2022-02-11', '2022/03/01', '', '', '2022-03-01 00:00:00', '園主任', '0000-00-00 00:00:00', ''),
-(13, 2, 1, 'Allen', 'B1238475', 1, '', '../upload/case_all/123abc.PNG', 0, 'BSRS5', '0000-00-00', '', '', '\"[{\"name\":\"create_date_BSRS50\",\"value\":\"2022-03-16\"},{\"name\":\"add_new_typeBSRS50\",\"value\":\"上傳檔案\"},{\"name\":\"scoreBSRS50\",\"value\":\"96\"},{\"name\":\"disposeBSRS50\",\"value\":\"無處置情形\"},{\"name\":\"fileBSRS50\",\"value\":\"123abc.PNG\"},{\"name\":\"remarkBSRS50\",\"value\":\"test備註316\"}]\"', '2022-03-16 16:57:23', '園主任', '0000-00-00 00:00:00', ''),
-(15, 2, 1, 'Allen', 'B1238475', 1, '', '../upload/case_all/123abc.PNG', 0, 'sullen', '0000-00-00', '', '', '\"[{\"name\":\"upload_date_sullen0\",\"value\":\"2022-03-16\"},{\"name\":\"scoresullen0\",\"value\":\"88\"},{\"name\":\"filesullen0\",\"value\":\"123abc.PNG\"},{\"name\":\"test_typesullen0\",\"value\":\"中測\"},{\"name\":\"remarksullen0\",\"value\":\"test備註憂鬱量表111\"}]\"', '2022-03-16 17:00:46', '園主任', '0000-00-00 00:00:00', ''),
-(17, 2, 1, 'Allen', 'B1238475', 0, 'case_detail.php?name=Allen&pid=B1238475&date=2021-11-25&grade=A&property=%E7%A4%BE%E5%8D%80&type=%E6%84%9B%E6%BB%8B%E6%84%9F%E6%9F%93%E8%80%85&id=2&open_id=1&addition=K%E4%BB%96%E5%91%BD&age=36&gender=%E7%94%B7', '', 1, 'BSRS5', '0000-00-00', '', '\"[{\"name\":\"BSRS5\",\"value\":\"7\"},{\"name\":\"BSRS5\",\"value\":\"test處置情形111\"}]\"', '', '2022-03-16 00:00:00', '園主任', '2022-03-18 11:08:53', '園主任');
+(1, '3', 'ER161', 'Deny', 'q131214241', 0, 'case_detail.php?name=Deny&pid=q131214241&date=2022-04-08&property=自立宿舍&type=藥癮家庭&id=3&open_id=ER161&referral=醫院&case_Create_date=2022-04-11&birth=1798-06-07&unopen_type=phone', '', 0, 'settlement', '2022-04-13', 'test46', '\"[{\"name\":\"settlement\",\"value\":\"符合基本條件指標條件共4項，符合收案指標條件共3項。\"}]\"', '', '2022-04-13 00:00:00', '園主任', '2022-04-13 23:09:12', '園主任'),
+(2, '', 'ER16231', '張啟生', 'h12364423', 0, 'case_detail.php?name=張啟生&pid=h12364423&date=2021-04-05&property=安置家園&type=藥癮家庭&id=&open_id=ER16231&referral=民間社福機構&case_Create_date=2021-04-06&birth=1862-07-07&unopen_type=case', '', 0, 'health', '2021-06-22', 'test張', '', '', '2022-04-13 00:00:00', '園主任', '0000-00-00 00:00:00', ''),
+(3, '3', 'ER161', 'Deny', 'q131214241', 0, 'case_detail.php?name=Deny&pid=q131214241&date=2022-04-08&property=自立宿舍&type=藥癮家庭&id=3&open_id=ER161&referral=醫院&case_Create_date=2022-04-11&birth=1798-06-07&unopen_type=phone', '', 0, 'case', '2022-04-06', '46', '', '', '2022-04-13 00:00:00', '園主任', '0000-00-00 00:00:00', '');
 
 -- --------------------------------------------------------
 
@@ -756,6 +752,31 @@ INSERT INTO `sign_off` (`id`, `info_name`, `submitter`, `submit_date`, `read_dat
 -- --------------------------------------------------------
 
 --
+-- 資料表結構 `supervisor_record`
+--
+
+CREATE TABLE `supervisor_record` (
+  `Id` int(240) NOT NULL,
+  `record_content` longtext NOT NULL,
+  `upload_content` longtext NOT NULL,
+  `file_path` varchar(2000) NOT NULL,
+  `Create_date` datetime NOT NULL,
+  `Create_name` varchar(30) NOT NULL,
+  `Update_date` datetime NOT NULL,
+  `Update_name` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- 傾印資料表的資料 `supervisor_record`
+--
+
+INSERT INTO `supervisor_record` (`Id`, `record_content`, `upload_content`, `file_path`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
+(1, '[{\"name\":\"title_name\",\"value\":\"test會議記錄標題\"},{\"name\":\"ceo_name\",\"value\":\"tt執行長\"},{\"name\":\"attendees\",\"value\":\"ttt出席人員\"},{\"name\":\"record\",\"value\":\"ttt團督記錄f\"},{\"name\":\"meeting_date\",\"value\":\"111年04月04日\"},{\"name\":\"meeting_time\",\"value\":\"14:30\"},{\"name\":\"place\",\"value\":\"tr地點\"},{\"name\":\"suggest\",\"value\":\"ttt督導建議\"},{\"name\":\"next_focus\",\"value\":\"ttt下次團督重點ss\"}]', '', '', '2022-04-13 20:31:29', '園主任', '2022-04-13 22:35:29', '園主任'),
+(2, '', '\"[{\"name\":\"upload_title_name\",\"value\":\"uploadtt會議記錄標題11\"},{\"name\":\"upload_rec_date\",\"value\":\"2022-04-01\"},{\"name\":\"upload_rec_remark\",\"value\":\"test備註ssa\"},{\"name\":\"customFile1\",\"value\":\"abc123.PNG\"}]\"', '../supervisor_record/upload/abc123.PNG', '2022-04-13 20:32:06', '園主任', '2022-04-13 23:00:48', '園主任');
+
+-- --------------------------------------------------------
+
+--
 -- 資料表結構 `tw_counties`
 --
 
@@ -844,6 +865,12 @@ INSERT INTO `user_info` (`Id`, `Account`, `Password`, `Name`, `Authority`, `Date
 -- 資料表索引 `announcement`
 --
 ALTER TABLE `announcement`
+  ADD PRIMARY KEY (`Id`);
+
+--
+-- 資料表索引 `board_supervisor`
+--
+ALTER TABLE `board_supervisor`
   ADD PRIMARY KEY (`Id`);
 
 --
@@ -955,6 +982,12 @@ ALTER TABLE `sign_off`
   ADD PRIMARY KEY (`id`);
 
 --
+-- 資料表索引 `supervisor_record`
+--
+ALTER TABLE `supervisor_record`
+  ADD PRIMARY KEY (`Id`);
+
+--
 -- 資料表索引 `tw_counties`
 --
 ALTER TABLE `tw_counties`
@@ -975,6 +1008,12 @@ ALTER TABLE `user_info`
 --
 ALTER TABLE `announcement`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `board_supervisor`
+--
+ALTER TABLE `board_supervisor`
+  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `calendar`
@@ -1004,7 +1043,7 @@ ALTER TABLE `consult`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `counsel`
 --
 ALTER TABLE `counsel`
-  MODIFY `Id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `counsel_visit`
@@ -1016,7 +1055,7 @@ ALTER TABLE `counsel_visit`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `current_case`
 --
 ALTER TABLE `current_case`
-  MODIFY `Id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `dlgrec`
@@ -1034,13 +1073,13 @@ ALTER TABLE `face`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `forms`
 --
 ALTER TABLE `forms`
-  MODIFY `Id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `Id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `form_all_info`
 --
 ALTER TABLE `form_all_info`
-  MODIFY `Id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `Id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `ha_phone`
@@ -1083,6 +1122,12 @@ ALTER TABLE `sign_notice`
 --
 ALTER TABLE `sign_off`
   MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `supervisor_record`
+--
+ALTER TABLE `supervisor_record`
+  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `tw_counties`

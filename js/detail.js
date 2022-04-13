@@ -1851,6 +1851,12 @@ function update_phone_note(id){
 $("#trans_to_opencase_submit").on('click',function(){
     var phone_id = getUrlVars()["phone_id"];
 
+    var tran_case_name = '';
+    var tran_case_pid = '';
+    var tran_case_phone = '';
+    var tran_case_birth = '';
+    var tran_case_referral = '';
+
     var stau = false;
 
     if (check_trans_to_opencase_value() != "") 
@@ -1873,36 +1879,130 @@ $("#trans_to_opencase_submit").on('click',function(){
     }
     else
     {
-        window.location.href = 'phone_trans_to_opencase.php?phone_id='+phone_id.replace(/^\s+|\s+$/gm,'')+'&case_id='+$('#open_case_t_sn').val().replace(/^\s+|\s+$/gm,'')+'&case_property='+$('#open_case_type').val()+'';
+        $.ajax({
+            url: "database/find_personal_data.php",
+            data:{
+                Phone_id:phone_id,
+            },
+            type: "POST",
+            dataType: "JSON",
+            async :false,
+            success: function (data) {
+
+                tran_case_name = data.Name[0];
+                // tran_case_pid = data.Pid[0];
+                tran_case_phone = data.R_detail[0];
+                // tran_case_birth = data.Birth[0];
+                tran_case_referral = data.Referral_detail[0];
+            },
+            error:function(e){
+                console.log("error");
+            }
+        });
+
+        window.location.href = 'phone_trans_to_opencase.php?unopen_type=phone&id='+phone_id.replace(/^\s+|\s+$/gm,'')+'&case_id='+$('#open_case_t_sn').val().replace(/^\s+|\s+$/gm,'')+'&case_property='+$('#open_case_type').val()+'&object_type='+$('#open_object_type').val()+'&tran_case_name='+tran_case_name+'&tran_case_phone='+tran_case_phone+'&tran_case_pid=&tran_case_birth=&tran_case_referral='+tran_case_referral;;
     }
 });
 //endregion
 
-//檢查欄位 個人面訪紀錄(Update) region
+// 根據服務對象類型 自動填入 開案編號 region
+$('#open_object_type').on('change', function() {
+
+    $("#open_case_t_sn").val('');
+
+    switch (this.value) {
+        case '一般藥癮者':
+        case '藥癮家庭':   
+
+                $("#open_case_t_sn").val('ER');
+            break;
+        case '親職兒少':   
+                $("#open_case_t_sn").val('A');
+            break;
+        default:
+                $("#open_case_t_sn").val('');
+            break;
+    }
+});
+//endregion
+
+//檢查欄位 轉案欄位 region
 function check_trans_to_opencase_value()
 {
     var open_case_t_sn = $('#open_case_t_sn').val();
     var open_case_type = $('#open_case_type').val();
+    var open_object_type = $('#open_object_type').val();
+    var caseid_repeat = check_case_isrepeat();
     var errorstr = "";
 
-    // if (open_case_t_sn == null) {
-    //     errorstr += "未填寫開案編號!\r\n";
-    // }
+    if (open_case_t_sn == null) {
+        errorstr += "未填寫開案編號!\r\n";
+    }
     if (open_case_type == null) {
         errorstr += "未選擇個案屬性!\r\n";
     }
+    if (open_object_type == null) {
+        errorstr += "未選擇服務對象類別!\r\n";
+    }
     if (errorstr == "") {
-        // if (open_case_t_sn.replace(/\s*/g, "") == '') {
-        //     errorstr += "未填寫開案編號!\r\n";
-        // }
+        // console.log(caseid_repeat)
+        if(caseid_repeat)
+        {
+            errorstr += "開案編號重複!!!\r\n";
+        }
+        if (open_case_t_sn.replace(/\s*/g, "") == '') {
+            errorstr += "未填寫開案編號!\r\n";
+        }
         if (open_case_type.replace(/\s*/g, "") == '') {
             errorstr += "未選擇個案屬性!\r\n";
+        }
+        if (open_object_type.replace(/\s*/g, "") == '') {
+            errorstr += "未選擇服務對象類別!\r\n";
         }
     }
 
     return errorstr;
 }
 //endregion
+
+//檢查開案編號是否重複 region
+function check_case_isrepeat() {
+    
+    var isrepeat = false;
+
+    var r_case_id = $("#open_case_t_sn").val().replace(/^\s*|\s*$/g,"");
+
+    // console.log(r_case_id)
+
+    $.ajax({
+        url: "database/find_repeat_caseid.php",
+        data: {
+            Open_id:r_case_id
+        },
+        type: "POST",
+        dataType: "JSON",
+        async :false,
+        success: function (data) {
+            // console.log(data)
+            if(data == 1)
+            {
+                isrepeat = true;
+            }
+            else
+            {
+                isrepeat = false;
+            }
+        },
+        error: function (e) {
+            console.log(e);
+        }
+    });
+    
+
+    return isrepeat;
+}
+//endregion
+
 
 //取消重整region
 function cancel(){

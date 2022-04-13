@@ -110,6 +110,56 @@
                                 <div class="panel-body">
                                     <div class="table-wrap">
                                         <div class="table-responsive">
+                                            <h4>查詢</h4>
+                                            <div　class="col-sm-12" id="toolbar">
+                                                <div class="col-sm-12">
+                                                    <table style="font-size:20px;font-family:微軟正黑體;width:100%" class="table table-bordered NOline">
+                                                        <tr>
+
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">收文檔號：</td>
+                                                            <td class="text-left">
+                                                                <select id="num_receive" rel="0" class="filter search">
+                                                                    <!-- <option value="">所有</option> -->
+                                                                </select>
+                                                            </td>
+
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">來文日期：</td>
+                                                            <td class="text-left">
+                                                                <input id="min_date" rel="1" name="pcall_date" class="" type="date" placeholder="來文日期搜尋">
+                                                                <label>～</label>
+                                                                <input id="max_date" rel="1" name="pcall_date" class="" type="date" placeholder="來文日期搜尋">
+                                                            </td>
+
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">來文單位：</td>
+                                                            <td class="text-left">
+                                                                <select id="unit_come" rel="2" class="filter search">
+                                                                    <!-- <option value="">所有</option> -->
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">主旨：</td>
+                                                            <td class="text-left">
+                                                                <select id="words_receive" rel="3" class="filter search">
+                                                                    <!-- <option value="X">X</option> -->
+                                                                </select>
+                                                            </td>
+
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">收文字號：</td>
+                                                            <td class="text-left">
+                                                                <select id="subject" rel="4" class="filter search">
+                                                                    <!-- <option value="">所有</option> -->
+                                                                </select>
+                                                            </td>
+
+                                                            <td colspan="10" class="text-right">
+                                                                <button onclick="location.reload();">重置搜尋</button><span> </span>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <br>
                                             <h4>目錄</h4>
                                             <div class="table-wrap">
                                                 <div class="table-responsive">
@@ -125,12 +175,11 @@
                                                                 </th>
                                                             </tr>
                                                             <tr style="background-color:rgb(255 201 54);">
-                                                                <th>編號</th>
+                                                                <th>收文檔號</th>
                                                                 <th>來文日期</th>
                                                                 <th>來文單位</th>
                                                                 <th>收文字號</th>
                                                                 <th>主旨</th>
-                                                                <th>收文檔號</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody id="call_view"></tbody>
@@ -142,74 +191,7 @@
                                                 </div>
                                             </div>
                                             <br>
-                                            <div>
-                                                <h4>查詢</h4>
-                                            </div>
-                                            <div　class="col-sm-12" id="toolbar">
-                                                <div class="col-sm-12">
-                                                    <table style="font-size:20px;font-family:微軟正黑體;width:100%" class="table table-bordered NOline">
-                                                        <tr>
-                                                            <td class="text-right" style="background-color:rgb(255 201 54);">編號：</td>
-                                                            <td class="text-left">
-                                                                <select id="id" rel="0" class="filter search">
 
-                                                                </select>
-                                                            </td>
-
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">來文日期：</td>
-                                                            <td class="text-left">
-                                                                <input id="min_date" rel="" name="pcall_date" class="" type="date" placeholder="來文日期搜尋">
-                                                                <label>～</label>
-                                                                <input id="max_date" rel="" name="pcall_date" class="" type="date" placeholder="來文日期搜尋">
-                                                            </td>
-
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">來文單位：</td>
-                                                            <td class="text-left">
-                                                                <select rel="7" class="filter search">
-                                                                    <option value="">X</option>
-                                                                    <option value="X">X</option>
-                                                                    <option value="X">X</option>
-                                                                    <option value="X">X</option>
-                                                                    <option value="X">X</option>
-                                                                </select>
-                                                            </td>
-
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">收文字號：</td>
-                                                            <td class="text-left">
-                                                                <select rel="12" class="filter search">
-                                                                    <option value="">X</option>
-                                                                    <option value="X">X</option>
-                                                                    <option value="X">X</option>
-                                                                    <option value="X">X</option>
-                                                                    <option value="X">X</option>
-                                                                </select>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">主旨：</td>
-                                                            <td class="text-left">
-                                                                <select rel="3" class="filter search">
-                                                                    <option value="X">X</option>
-                                                                    <option value="X">X</option>
-                                                                </select>
-                                                            </td>
-
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">收文檔號：</td>
-                                                            <td class="text-left">
-                                                                <select rel="10" class="filter search">
-                                                                    <option value="X">X</option>
-                                                                    <option value="X">X</option>
-                                                                </select>
-                                                            </td>
-
-                                                            <td colspan="10" class="text-right">
-                                                                <button onclick="location.reload();">重置搜尋</button><span> </span>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                            <br>
                                             <div>
                                                 <h4>簽核</h4>
                                             </div>

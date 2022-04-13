@@ -9,19 +9,25 @@ function getUrlVars() {
 //endregion
 
 //填寫資料(輔導紀錄)region
-var name = getUrlVars()["name"];
+var name = decodeURIComponent(getUrlVars()["name"]);
 var pid =getUrlVars()["pid"];
 var date = getUrlVars()["date"];
-var grade = getUrlVars()["grade"];
-var property = getUrlVars()["property"];
-var type = getUrlVars()["type"];
+// var grade = getUrlVars()["grade"];
+var property = decodeURIComponent(getUrlVars()["property"]);
+var type = decodeURIComponent(getUrlVars()["type"]);
 var phone_id = getUrlVars()["id"];
 var open_id = getUrlVars()["open_id"];
-var addition =getUrlVars()["addition"];
-var age =getUrlVars()["age"];
-var gender =getUrlVars()["gender"];
+// var addition =decodeURIComponent(getUrlVars()["addition"]);
+// var age = decodeURIComponent(getUrlVars()["age"]);
+// var gender =decodeURIComponent(getUrlVars()["gender"]);
+
+var referral = decodeURIComponent(getUrlVars()["referral"]);
+var case_Create_date = getUrlVars()["case_Create_date"];
+var unopen_type = decodeURIComponent(getUrlVars()["unopen_type"]);
+var birth = getUrlVars()["birth"];
+
 var form_id = getUrlVars()["form_id"];
-var form_type = getUrlVars()["form_type"];
+var form_type = decodeURIComponent(getUrlVars()["form_type"]);
 
 
 //當量表分數改變(選項)的時候，重算分數
@@ -563,20 +569,20 @@ $(document).ready(function () {
 
     
     //家庭關係量表自動填入性別
-    $("input[name='sex'][value='"+decodeURIComponent(gender)+"生']").attr('checked',true);
+    // $("input[name='sex'][value='"+gender+"生']").attr('checked',true);
 
     //個案服務滿意度調查表自動填入資料
-    $("#case_name").val(decodeURIComponent(name));
+    $("#case_name").val(name);
     $("#tsn_case_id").val(decodeURIComponent(open_id));
     //assign_name 於case_detail.php 第234行定義變數
     $("#assign_name").val(assign_name);
 
     //個案評估表自動填入資料
-    $("#name").val(decodeURIComponent(name));
+    $("#name").val(name);
     $("#pid").val(decodeURIComponent(pid));
-    $("input[name='sex'][value='"+decodeURIComponent(gender)+"生']").attr('checked',true);
+    // $("input[name='sex'][value='"+gender+"生']").attr('checked',true);
     $("#open_date").val(decodeURIComponent(date));
-    $("#age").val(decodeURIComponent(age));
+    // $("#age").val(decodeURIComponent(age));
 
     //填寫日期自動帶入
     $("input[name*='fillin_date']").each(function(){
@@ -1091,6 +1097,15 @@ calculation_date = function() {
     var amount_year = parseInt(iDays / 365);
     var amount_month = parseInt((iDays % 365) / 30);
 
+    if(isNaN(amount_year))
+    {
+        amount_year = 0
+    }
+    if(isNaN(amount_month))
+    {
+        amount_month = 0
+    }
+
     $("#correctional_year").val(amount_year);
     $("#correctional_month").val(amount_month);
 }
@@ -1106,7 +1121,7 @@ $("#preview").on('click', function(){
 
 //設定麵包屑返回region
 
-var url = 'case_all.php?name='+name+'&pid='+pid+'&date='+date+'&grade='+grade+'&property='+property+'&type='+type+'&id='+phone_id+'&open_id='+open_id+'&addition='+addition+'&age='+age+'&gender='+gender+'';
+var url = 'case_all.php?name='+name+'&pid='+pid+'&date='+date+'&property='+property+'&type='+type+'&id='+phone_id+'&open_id='+open_id+'&referral='+referral+'&case_Create_date='+case_Create_date+'&unopen_type='+unopen_type+'&birth='+birth+'';
 $("#history").attr('href',url);
 
 var url2 = 'case_all_all.php?id='+phone_id+'&open_id='+open_id+'';
@@ -1116,11 +1131,25 @@ $("#history2").attr('href',url2);
 
     //結案region
     $("#end").on('click', function () {
-        var face_id = getUrlVars()["id"];
-        var open_id = getUrlVars()["open_id"];
         var name = decodeURIComponent(getUrlVars()["name"]);
-        var house = decodeURIComponent(getUrlVars()["house"]);
-        var addition = decodeURIComponent(getUrlVars()["addition"]);
+        var pid =getUrlVars()["pid"];
+        var date = getUrlVars()["date"];
+        // var grade = getUrlVars()["grade"];
+        var property = decodeURIComponent(getUrlVars()["property"]);
+        var type = decodeURIComponent(getUrlVars()["type"]);
+        var phone_id = getUrlVars()["id"];
+        var open_id = getUrlVars()["open_id"];
+        // var addition =decodeURIComponent(getUrlVars()["addition"]);
+        // var age = decodeURIComponent(getUrlVars()["age"]);
+        // var gender =decodeURIComponent(getUrlVars()["gender"]);
+
+        var referral = decodeURIComponent(getUrlVars()["referral"]);
+        var case_Create_date = getUrlVars()["case_Create_date"];
+        var unopen_type = decodeURIComponent(getUrlVars()["unopen_type"]);
+        var birth = getUrlVars()["birth"];
+
+        var form_id = getUrlVars()["form_id"];
+        var form_type = decodeURIComponent(getUrlVars()["form_type"]);
         var Today=new Date();
         var twdate = (Today.getFullYear()-1911)+'-'+('0'+(Today.getMonth()+1)).substr(-2)+'-'+('0'+Today.getDate()).substr(-2);
         swal({

@@ -66,8 +66,6 @@ $("#dlgrec_add_new").on('click',function(){
                         type: 'error',
                         title: '新增失敗!請聯絡負責人',
                         allowOutsideClick: false //不可點背景關閉
-                        }).then(function () {
-                            window.location.replace("dlgrec.php"); 
                         })
                 }  
             },

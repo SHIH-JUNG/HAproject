@@ -1,5 +1,6 @@
 <?php session_start(); ?>
 <?php include("database/check_authority.php"); ?>
+<?php @$unopen_type =  $_GET['unopen_type']; ?>
 <!DOCTYPE html>
 <html>
 
@@ -102,11 +103,39 @@ input[type=number] {
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span><a href="phone.php">諮詢個案</a></span></li>
+                        <?php
+                            if($unopen_type == "screening")
+                            {
+                                echo '<li><span><a href="screening.php">篩檢</a></span></li>';
+                            }
+                            elseif($unopen_type == "phone")
+                            {
+                                echo '<li><span><a href="phone.php">諮詢個案</a></span></li>';
+                            }
+                            elseif($unopen_type == "counsel")
+                            {
+                                echo '<li><span><a href="counsel.php">監所服務</a></span></li>';
+                            }
+                        ?>
+                        <!-- <li><span><a href="phone.php">諮詢個案</a></span></li> -->
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span><a id="history" href="javascript:history.back()">諮詢個案詳細資料</a></span></li>
+                        <?php
+                            if($unopen_type == "screening")
+                            {
+                                echo '<li><span><a id="history" href="javascript:history.back()">預約篩檢詳細資料</a></span></li>';
+                            }
+                            elseif($unopen_type == "phone")
+                            {
+                                echo '<li><span><a id="history" href="javascript:history.back()">諮詢個案詳細資料</a></span></li>';
+                            }
+                            elseif($unopen_type == "counsel")
+                            {
+                                echo '<li><span><a id="history" href="javascript:history.back()">監所服務詳細資料</a></span></li>';
+                            }
+                        ?>
+                        <!-- <li><span><a id="history" href="javascript:history.back()">諮詢個案詳細資料</a></span></li> -->
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
@@ -136,45 +165,78 @@ input[type=number] {
                                             <div class="col-sm-12 text-center">
                                                 <div class="table-wrap">
                                                     <div class="table-responsive">
-                                                        <table style="width:auto;" class="table table-bordered">
+                                                        <table style="width:45%;" class="table table-bordered">
                                                             <tr>
                                                                 <td colspan="2">
                                                                     <h3>新增個案</h3>
                                                                 </td>
                                                             </tr>
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">諮詢個案編號</td>
-                                                                <td style="border-bottom: solid 1px;"><span id="phone_id"></span></td>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">未開案個案編號</td>
+                                                                <td style="border-bottom: solid 1px;"><span id="unopencase_id"></span></td>
                                                             </tr>
                                                             <tr style="text-align:left">
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">開案編號</td>
-                                                                <td style="border-bottom: solid 1px;"><input id="case_id" type="text" oninput="value=value.replace(/[\d]/g,'')"></td>
+                                                                <td style="border-bottom: solid 1px;"><input id="case_id" type="text"></td>
                                                             </tr>
-                                                            <tr style="text-align:left">
-                                                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>個案屬性</td>
-                                                            <td style="border-bottom: solid 1px;">
-                                                                <select id="case_property" style="width:160px;">
-                                                                <option value="">請選擇</option>
-                                                                <option value="安置家園">安置家園</option>
-                                                                <option value="自立宿舍">自立宿舍</option>
-                                                                <option value="社區">社區</option>
-                                                                <option value="藥癮家庭">藥癮家庭</option>
-                                                                <option value="藥癮者">藥癮者</option>
-                                                                <option value="親子教育">親子教育</option>
-                                                                </select>
+                                                            <tr class="text-align:left">
+                                                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>登入日期</td>
+                                                            <td class="text-left">
+                                                                <input id="create_date" type="date">
                                                             </td>
                                                             </tr>
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>服務對象類別</td>
+                                                                <td style="border-bottom: solid 1px;">
+                                                                    <select id="object_type" style="width:200px;">
+                                                                        <option value="">請選擇</option>
+                                                                        <option value="愛滋感染者">愛滋感染者</option>
+                                                                        <option value="一般藥癮者">一般藥癮者</option>
+                                                                        <option value="藥癮家庭">藥癮家庭</option>
+                                                                        <option value="親職兒少">親職兒少</option>
+                                                                    </select>
+                                                                </td>
+                                                            </tr>
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>個案屬性</td>
+                                                                <td style="border-bottom: solid 1px;">
+                                                                    <select id="case_property" style="width:160px;">
+                                                                    <option value="">請選擇</option>
+                                                                    <option value="安置家園">安置家園</option>
+                                                                    <option value="自立宿舍">自立宿舍</option>
+                                                                    <option value="社區">社區</option>
+                                                                    <!-- <option value="藥癮家庭">藥癮家庭</option>
+                                                                    <option value="藥癮者">藥癮者</option>
+                                                                    <option value="親子教育">親子教育</option> -->
+                                                                    </select>
+                                                                </td>
+                                                            </tr>
+
                                                             <tr class="text-align:left">
                                                             <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>開案日期</td>
                                                             <td class="text-left">
-                                                                <input id="open_case_date" type="datetime-local">
+                                                                <input id="open_case_date" type="date">
                                                             </td>
                                                             </tr>
                                                             <tr style="text-align:left">
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>姓名</td>
-                                                                <td style="border-bottom: solid 1px;"><input id="name" type="text" oninput="value=value.replace(/[\d]/g,'')"></td>
+                                                                <td style="border-bottom: solid 1px;"><input id="name" type="text"></td>
                                                             </tr>
                                                             <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>電話</td>
+                                                                <td style="border-bottom: solid 1px;"><input id="phone" type="text"></td>
+                                                            </tr>
+                                                            <tr class="text-align:left">
+                                                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>出生年月日</td>
+                                                            <td class="text-left">
+                                                                <input id="birth" type="date">
+                                                            </td>
+                                                            </tr>
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>身分證字號</td>
+                                                                <td style="border-bottom: solid 1px;"><input id="pid" type="text"></td>
+                                                            </tr>
+                                                            <!-- <tr style="text-align:left">
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>個案分級</td>
                                                                 <td style="border-bottom: solid 1px;">
                                                                     <select id="case_grade" style="width:200px;">
@@ -184,35 +246,8 @@ input[type=number] {
                                                                         <option value="C">C</option>
                                                                     </select>
                                                                 </td>
-                                                            </tr>
-                                                            <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>年齡</td>
-                                                                <td style="border-bottom: solid 1px;">
-                                                                    <input id="age" type="text" maxlength="2" oninput="value=value.replace(/[^\d]/g,'')">
-                                                                    <br>
-                                                                    <label>分類：</label>
-                                                                    <input name="a_type[]" style="zoom: 1.5" type="radio" value="10歲以下"><label>10歲以下</label>
-                                                                    <input name="a_type[]" style="zoom: 1.5" type="radio" value="10-19歲"><label>10-19歲</label>
-                                                                    <input name="a_type[]" style="zoom: 1.5" type="radio" value="20-29歲"><label>20-29歲</label>
-                                                                    <input name="a_type[]" style="zoom: 1.5" type="radio" value="30-39歲"><label>30-39歲</label>
-                                                                    <input name="a_type[]" style="zoom: 1.5" type="radio" value="40-49歲"><label>40-49歲</label>
-                                                                    <input name="a_type[]" style="zoom: 1.5" type="radio" value="50-59歲"><label>50-59歲</label>
-                                                                    <input name="a_type[]" style="zoom: 1.5" type="radio" value="60歲以上"><label>60歲以上</label>
-                                                                    <input name="a_type[]" style="zoom: 1.5" type="radio" value="不明"><label>不明</label>
-                                                                </td>
-                                                            </tr>
-                                                            <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>服務對象類別</td>
-                                                                <td style="border-bottom: solid 1px;">
-                                                                    <select id="object_type" style="width:200px;">
-                                                                        <option value="">請選擇</option>
-                                                                        <option value="一般藥癮者">一般藥癮者</option>
-                                                                        <option value="愛滋感染者">愛滋感染者</option>
-                                                                        <option value="家庭">家庭</option>
-                                                                        <option value="兒少">兒少</option>
-                                                                    </select>
-                                                                </td>
-                                                            </tr>
+                                                            </tr> -->
+                                                            
                                                             <tr style="text-align:left">
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white">轉介來源</td>
                                                                 <td style="border-bottom: solid 1px;">

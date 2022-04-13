@@ -37,15 +37,15 @@
                             <ul style="font-size:15px" id="meeting_non_open" class="collapse">
                                 <li>
                                     <li>
-                                        <a href="meeting_record.php">團督紀錄
+                                        <a href="supervisor_record.php">團督紀錄
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#">理監事會議
+                                        <a href="board_supervisor.php">理監事會議
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#">會員大會
+                                        <a href="members_assemble.php">會員大會
                                         </a>
                                     </li>
                                 </li>

@@ -182,7 +182,7 @@
                                                                     姓名：<span class="case_name"></span>
                                                                     ，開案日期：<span class="case_date"></span>
                                                                     ，服務對象類別：<span class="case_object_type"></span>
-                                                                    ，目前使用物質：<span class="case_addiction"></span>
+                                                                    ，個案屬性：<span class="case_property_type"></span>
                                                                 </div>
                                                                 <table id="case_all" style="width:auto;" class="table table-bordered">
                                                                     <th>建立日期</th>
@@ -211,7 +211,7 @@
                                                                     姓名：<span class="case_name"></span>
                                                                     ，開案日期：<span class="case_date"></span>
                                                                     ，服務對象類別：<span class="case_object_type"></span>
-                                                                    ，目前使用物質：<span class="case_addiction"></span>
+                                                                    ，個案屬性：<span class="case_property_type"></span>
                                                                 </div>
                                                                 <table id="interlocution_all" style="width:auto;" class="table table-bordered">
                                                                     <th>建立日期</th>
@@ -238,7 +238,7 @@
                                                                     姓名：<span class="case_name"></span>
                                                                     ，開案日期：<span class="case_date"></span>
                                                                     ，服務對象類別：<span class="case_object_type"></span>
-                                                                    ，目前使用物質：<span class="case_addiction"></span>
+                                                                    ，個案屬性：<span class="case_property_type"></span>
                                                                 </div>
                                                                 <table id="life_all" style="width:auto;" class="table table-bordered">
                                                                     <th>建立日期</th>
@@ -266,7 +266,7 @@
                                                                     姓名：<span class="case_name"></span>
                                                                     ，開案日期：<span class="case_date"></span>
                                                                     ，服務對象類別：<span class="case_object_type"></span>
-                                                                    ，目前使用物質：<span class="case_addiction"></span>
+                                                                    ，個案屬性：<span class="case_property_type"></span>
                                                                 </div>
                                                                 <div>
                                                                 <table id="health_all" style="width:auto;" class="table table-bordered">
@@ -320,7 +320,7 @@
                                                                     姓名：<span class="case_name"></span>
                                                                     ，開案日期：<span class="case_date"></span>
                                                                     ，服務對象類別：<span class="case_object_type"></span>
-                                                                    ，目前使用物質：<span class="case_addiction"></span>
+                                                                    ，個案屬性：<span class="case_property_type"></span>
                                                                 </div>
                                                                 <div>
                                                                 <table id="employment_satif_all" style="width:auto;" class="table table-bordered">
@@ -349,7 +349,7 @@
                                                                     姓名：<span class="case_name"></span>
                                                                     ，開案日期：<span class="case_date"></span>
                                                                     ，服務對象類別：<span class="case_object_type"></span>
-                                                                    ，目前使用物質：<span class="case_addiction"></span>
+                                                                    ，個案屬性：<span class="case_property_type"></span>
                                                                 </div>
                                                                 <div>
                                                                 <table id="satif_all" style="width:auto;" class="table table-bordered">
@@ -378,7 +378,7 @@
                                                                     姓名：<span class="case_name"></span>
                                                                     ，開案日期：<span class="case_date"></span>
                                                                     ，服務對象類別：<span class="case_object_type"></span>
-                                                                    ，目前使用物質：<span class="case_addiction"></span>
+                                                                    ，個案屬性：<span class="case_property_type"></span>
                                                                 </div>
                                                                 <div>
                                                                 <table id="familyship_all" style="width:auto;" class="table table-bordered">
@@ -432,7 +432,7 @@
                                                                     姓名：<span class="case_name"></span>
                                                                     ，開案日期：<span class="case_date"></span>
                                                                     ，服務對象類別：<span class="case_object_type"></span>
-                                                                    ，目前使用物質：<span class="case_addiction"></span>
+                                                                    ，個案屬性：<span class="case_property_type"></span>
                                                                 </div>
                                                                 <table id="settlement_all" style="width:auto;" class="table table-bordered">
                                                                     <th>建立日期</th>

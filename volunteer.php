@@ -1,5 +1,4 @@
 <?php session_start(); ?>
-<?php include("database/check_authority.php"); ?>
 <!DOCTYPE html>
 <html>
 
@@ -15,10 +14,10 @@
     <!-- ================== CSS bootstrap-select ================== -->
     <link href="css/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
     <!--  table  -->
-    <!--    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.css">-->
+    <!--    <link rel="stylesheet" href="css/bootstrap-table.min.css">-->
     <!-- ================== 匯出EXCEL ================== -->
-    <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
-    <link href="https://cdn.datatables.net/buttons/1.5.1/css/buttons.dataTables.min.css" rel="stylesheet" />
+    <link href="css/jquery.dataTables1.10.16.min.css" rel="stylesheet" />
+    <link href="css/buttons.dataTables1.5.1.min.css" rel="stylesheet" />
 
     <meta charset="UTF-8" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -50,7 +49,7 @@
                     </svg></i>
             </a>
             <a href="index.php"><img class="brand-img pull-left" src="image/HA.png" /></a>
-            <a href="index.php"><img class="brand-img pull-left" style="width:330px;height:70px" style="width:330px;height:70px" src="image/logo字.png" /></a>
+            <a href="index.php"><img class="brand-img pull-left" style="width:330px;height:70px" src="image/logo字.png" /></a>
             <ul class="nav navbar-right top-nav pull-right">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle pr-0" data-toggle="dropdown">歡迎 <?php echo $_SESSION['name'] . " " . $_SESSION['job']; ?><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-down-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -110,13 +109,87 @@
                                 <div class="panel-body">
                                     <div class="table-wrap">
                                         <div class="table-responsive">
-                                            <h4>志工管理</h4>
+                                            <div>
+                                                <h4>查詢</h4>
+                                            </div>
+                                            <div　class="col-sm-12" id="toolbar">
+                                                <div class="col-sm-12">
+                                                    <table style="font-size:20px;font-family:微軟正黑體;width:100%" class="table table-bordered NOline">
+                                                        <tr>
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">年度：</td>
+                                                            <td class="text-left">
+                                                                <select id="year" rel="0" class="filter search">
+                                                                    <!-- <option value="">所有</option> -->
+                                                                </select>
+                                                            </td>
+
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">姓名：</td>
+                                                            <td class="text-left">
+                                                                <select id="name" rel="1" class="filter search">
+                                                                    <!-- <option value="">所有</option> -->
+                                                                </select>
+                                                            </td>
+
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">服務項目：</td>
+                                                            <td class="text-left">
+                                                                <select id="serv_type" rel="2" class="filter search">
+                                                                    <!-- <option value="">所有</option> -->
+                                                                </select>
+                                                            </td>
+
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">服務時間：</td>
+                                                            <td class="text-left">
+                                                                <select id="serv_time" rel="3" class="filter search">
+                                                                    <!-- <option value="">所有</option> -->
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">目前服務時數：</td>
+                                                            <td class="text-left">
+                                                                <select id="time_all" rel="4" class="filter search">
+                                                                    <!-- <option value="">所有</option> -->
+                                                                </select>
+                                                            </td>
+
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">是否領取時數條：</td>
+                                                            <td class="text-left">
+                                                                <select id="rece_hours" rel="5" class="filter search">
+                                                                    <!-- <option value="">所有</option> -->
+                                                                </select>
+                                                            </td>
+
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">是否領取服務獎狀：</td>
+                                                            <td class="text-left">
+                                                                <select id="serv_award" rel="6" class="filter search">
+                                                                    <!-- <option value="">所有</option> -->
+                                                                </select>
+                                                            </td>
+
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">是否持有志工榮譽卡：</td>
+                                                            <td class="text-left">
+                                                                <select id="honor_card" rel="7" class="filter search">
+                                                                    <!-- <option value="">所有</option> -->
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="8" class="text-right">
+                                                                <button onclick="location.reload();">重置搜尋</button><span> </span>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <p>
+                                            <h4>志工一覽表</h4>
                                             <div class="table-wrap">
                                                 <div class="table-responsive">
                                                     <table class="table display table-hover dataTable no-footer" style="font-size:15px;font-family:微軟正黑體;width:100%" id="tab_all" data-toolbar="#toolbar">
                                                         <thead>
                                                             <tr>
-                                                                <th class="text-right" colspan="16">
+                                                                <th class="text-right" colspan="15">
                                                                     <a href="add_volunteer.php"><button style="font-size:15px" type="button" class="btn btn-default"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                                                 <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
                                                                                 <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z" />
@@ -125,11 +198,14 @@
                                                                 </th>
                                                             </tr>
                                                             <tr style="background-color:rgb(255 201 54);">
-                                                                <th>人事資料報名表</th>
-                                                                <th>服務累積時數</th>
-                                                                <th>日期時間</th>
-                                                                <th>時數</th>
-                                                                <th>服務內容</th>
+                                                                <th>年度</th>
+                                                                <th>姓名</th>
+                                                                <th>服務項目</th>
+                                                                <th>服務時間</th>
+                                                                <th>目前服務時數</th>
+                                                                <th>是否領取時數條</th>
+                                                                <th>是否領取服務獎狀</th>
+                                                                <th>是否持有志工榮譽卡</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody id="call_view"></tbody>
@@ -138,6 +214,7 @@
                                                         <span id="count_people"></span>
                                                         <span id="count_people2"></span>
                                                     </div>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -158,10 +235,10 @@
     <script src="javascript/jquery.min.js"></script>
     <script src="javascript/bootstrap.min.js"></script>
     <!-- ================== 匯出EXCEL ================== -->
-    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+    <script src="javascript/jquery.dataTables1.10.16.min.js"></script>
+    <script src="javascript/dataTables1.2.2.buttons.min.js"></script>
+    <!-- <script src="javascript/jszip2.5.0.min.js"></script> -->
+    <script src="javascript/buttons1.2.2.html5.min.js"></script>
     <!-- 表格 JavaScript -->
     <!--
     <script src="javascript/jquery.dataTables.min.js"></script>
@@ -182,12 +259,12 @@
     <!-- ================== 登出設定 ================== -->
     <script src='js/logout.js'></script>
     <!-- ================== moment ================== -->
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.0/moment.min.js'></script>
+    <script src='javascript/moment2.29.0.min.js'></script>
     <!-- ================== table ================== -->
-    <script src="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.js"></script>
-    <script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/locale/bootstrap-table-zh-TW.min.js"></script>
-    <!-- ================== phone ================== -->
-    <script type="text/javascript" src="js/staff_manag.js"></script>
+    <script src="javascript/bootstrap1.18.0-table.min.js"></script>
+    <script src="javascript/bootstrap-table1.11.1-zh-TW.min.js"></script>
+    <!-- ================== add_volunteer ================== -->
+    <script type="text/javascript" src="js/volunteer.js"></script>
     <!-- ================== 地區選擇下拉 ================== -->
     <!--
     <script src="js/jQuery-TWzipcode-master/twzipcode.js"></script>

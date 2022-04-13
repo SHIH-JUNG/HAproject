@@ -5,36 +5,52 @@ $.ajax({
     dataType: "JSON",
     async: false,//啟用同步請求
     success: function (data) {
-        var TimeNow= new Date();
-        var today = TimeNow.getFullYear()+"-"+('0'+(TimeNow.getMonth()+1)).substr(-2)+"-"+('0'+TimeNow.getDate()).substr(-2);
-//        var today = "2020-12-16";
+        // console.log(data);
+
+        // var TimeNow= new Date();
+        // var today = TimeNow.getFullYear()+"-"+('0'+(TimeNow.getMonth()+1)).substr(-2)+"-"+('0'+TimeNow.getDate()).substr(-2);
+
         var cssString = "";
-        for (var index in data.Name) {
-            if(data.Case_id[index] != ''){
-                // if(Date.parse(today,10) < Date.parse(data.stage1[index])){
-                //     var fstage = "第一階段";
-                // }else if(Date.parse(today,10) < Date.parse(data.stage2[index])){
-                //     var fstage = "第二階段";
-                // }else if(Date.parse(today,10) < Date.parse(data.stage3[index])){
-                //     var fstage = "第三階段";
-                // }else{
-                //     var fstage = "第四階段";
-                // }
-            
-                cssString += 
-                        '<tr name="'+ data.Name[index] +'" date="'+ data.Open_case_date[index] +'" grade="'+ data.Case_grade[index] +'" property="'+ data.Case_property[index] +'" type="'+ data.Object_type[index] +'" addition="'+data.M_addiction[index]+'" id="'+data.Phone_id[index]+'" openid="'+data.Case_id[index]+'" age="'+data.Age[index]+'" gender="'+data.Gender[index]+'" assign="'+data.Assign[index]+'"> ' +
-                            '<td>' +data.Case_id[index]+ '</td>' +
-                            '<td>' + data.Open_case_date[index] + '</td>' +
-                            '<td>' + data.Case_grade[index] + '</td>' +
-                            '<td>' + data.Name[index] + '</td>' +
-                            '<td>' + data.Case_property[index] + '</td>' +
-                            '<td>' + data.Object_type[index] + '</td>' +
-                            '<td>' + data.Age[index] + '</td>' +
-                            '<td>'+data.Referral[index]+'</td>'+
-                        '</tr>'
-                $("#open_id").append('<option value="'+data.Case_id[index]+'">'+data.Case_id[index]+'</option>');
-            }
-        } 
+
+        $.each(data,function(index,value){
+
+            cssString += 
+            '<tr name="'+ value.Name +'" date="'+ value.Open_case_date +'" property="'+ value.Case_property +'" type="'+ value.Object_type +'" id="'+value.Phone_id+'" openid="'+value.Case_id+'" pid="'+value.Case_pid+'">' +
+                '<td style="text-align:center">' + value.Case_id + '</td>' +
+                '<td style="text-align:center">' + value.Case_Create_date + '</td>' +
+                '<td style="text-align:center">' + value.Object_type + '</td>' +
+                '<td style="text-align:center">' + value.Case_property + '</td>' +
+                '<td style="text-align:center">' + value.Open_case_date + '</td>' +
+                '<td style="text-align:center">' + value.Name + '</td>' +
+                '<td style="text-align:center">' + value.Phone + '</td>' +
+                '<td style="text-align:center">' + value.Birth + '</td>' +
+                '<td style="text-align:center">' + value.Case_pid + '</td>' +
+                '<td style="text-align:center">' + value.Referral + '</td>' +
+            '</tr>'
+            // $("#open_id").append('<option value="'+value.Case_id+'">'+value.Case_id+'</option>');
+        });
+
+        // //option小到大排序
+        // $('#open_id option').sort(function(a,b){
+        //     var aText = $(a).text().toUpperCase();
+        //     var bText = $(b).text().toUpperCase();
+        //     if(aText>bText) return 1;
+        //     if(aText<bText) return -1;
+        //     return 0;
+        // }).appendTo('#open_id')
+
+        // //最前面新增"所有"選像
+        // $('#open_id').prepend("<option value='' selected='selected'>所有</option>");
+
+        // $("#open_id").children().each(function() {
+        //     text = $(this).text();
+        //     if($("select#open_id option:contains("+text+")").length > 1){
+        //         $("select#open_id option:contains("+text+"):gt(0)").remove();
+        //     }
+        //     //    console.log(text)
+        // });
+
+
         $("#open_case").html(cssString);
             //點擊table tr 進入詳細頁面
             $(".table-hover tbody").on("click","tr",function () {
@@ -106,34 +122,31 @@ var $table = $('#tab_case').DataTable({
     ]
 });
 //範圍搜尋region
-var age_range =(
-    function( settings, data, dataIndex) {
-//        $("#count").text($table.column(0).data().unique().count())
-        var min = parseInt( $('#min').val(), 10 );
-        var max = parseInt( $('#max').val(), 10 );
-        var name = data[0];
-        var age = parseFloat( data[6] ) || 0; // use data for the age column
-//       console.log(data[5])
-        if ( ( isNaN( min ) && isNaN( max ) ) ||
-             ( isNaN( min ) && age <= max ) ||
-             ( min <= age   && isNaN( max ) ) ||
-             ( min <= age   && age <= max ) )
-        {
-//            $("#count_people2").text("人數："+$table.search());
-            return true;
-        }        
-        return false;
-    });
 
-var date_range = (
+var c_date_range = (
     function( settings, data, dataIndex) {
-        var min_date = parseInt(Date.parse( $('#min_date').val()), 10 );
-        var max_date = parseInt(Date.parse( $('#max_date').val()), 10 );
+        var min_date = parseInt(Date.parse( $('#c_min_date').val()), 10 );
+        var max_date = parseInt(Date.parse( $('#c_max_date').val()), 10 );
         var date = parseInt(Date.parse( data[1] )) || 0; // use data for the date column        
         if ( ( isNaN( min_date ) && isNaN( max_date ) ) ||
              ( isNaN( min_date ) && date <= max_date ) ||
              ( min_date <= date   && isNaN( max_date ) ) ||
              ( min_date <= date   && date <= max_date ) )
+        {            
+            return true;
+        }
+        return false;
+    });
+
+var o_date_range = (
+    function( settings, data, dataIndex) {
+        var min_date = parseInt(Date.parse( $('#o_min_date').val()), 10 );
+        var max_date = parseInt(Date.parse( $('#o_max_date').val()), 10 );
+        var date = parseInt(Date.parse( data[4] )) || 0; // use data for the date column        
+        if ( ( isNaN( min_date ) && isNaN( max_date ) ) ||
+                ( isNaN( min_date ) && date <= max_date ) ||
+                ( min_date <= date   && isNaN( max_date ) ) ||
+                ( min_date <= date   && date <= max_date ) )
         {            
             return true;
         }
@@ -167,8 +180,13 @@ $('#min, #max').keyup( function() {
     $table.draw();
 }); 
 
-$('#min_date, #max_date').on('change', function() {
-    $.fn.dataTable.ext.search.push(date_range);
+$('#c_min_date, #c_max_date').on('change', function() {
+    $.fn.dataTable.ext.search.push(c_date_range);
+    $table.draw();
+}); 
+
+$('#o_min_date, #o_max_date').on('change', function() {
+    $.fn.dataTable.ext.search.push(o_date_range);
     $table.draw();
 }); 
 

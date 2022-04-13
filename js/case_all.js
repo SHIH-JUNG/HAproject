@@ -14,22 +14,29 @@ function getUrlVars() {
 var form_type_arr = [];
 
 //填寫資料(輔導紀錄)region
-var name = getUrlVars()["name"];
+var name = decodeURIComponent(getUrlVars()["name"]);
 var pid =getUrlVars()["pid"];
 var date = getUrlVars()["date"];
-var grade = getUrlVars()["grade"];
-var property = getUrlVars()["property"];
-var type = getUrlVars()["type"];
+// var grade = getUrlVars()["grade"];
+var property = decodeURIComponent(getUrlVars()["property"]);
+var type = decodeURIComponent(getUrlVars()["type"]);
 var phone_id = getUrlVars()["id"];
 var open_id = getUrlVars()["open_id"];
-var addition =getUrlVars()["addition"];
-var age =getUrlVars()["age"];
-var gender =getUrlVars()["gender"];
+// var addition =decodeURIComponent(getUrlVars()["addition"]);
+// var age = decodeURIComponent(getUrlVars()["age"]);
+// var gender =decodeURIComponent(getUrlVars()["gender"]);
+
+var referral = decodeURIComponent(getUrlVars()["referral"]);
+var case_Create_date = getUrlVars()["case_Create_date"];
+var unopen_type = decodeURIComponent(getUrlVars()["unopen_type"]);
+var birth = getUrlVars()["birth"];
+
 // console.log(name, date, grade, property, type, phone_id, open_id, addition, age, gender);
-$(".case_name").text(decodeURIComponent(name));
+$(".case_name").text(name);
 $(".case_date").text(date);
-$(".case_object_type").text(decodeURIComponent(type));
-$(".case_addiction").text(decodeURIComponent(addition));
+$(".case_object_type").text(type);
+$(".case_property_type").text(property);
+// $(".case_addiction").text(addition);
 //endregion
 
 //抓所有量表region
@@ -81,8 +88,8 @@ function load_each_form()
 {
     var phone_id = getUrlVars()["id"];
     var open_id = getUrlVars()["open_id"];
-    var name = getUrlVars()["name"];
     var pid =getUrlVars()["pid"];
+    var name = decodeURIComponent(getUrlVars()["name"]);
 
     $.each(form_type_arr,function(sq,form_name){
 
@@ -265,17 +272,23 @@ form_add_new = function(obj){
 //點擊儲存到case_all資料庫region
 function store(num, form_name){
     
-    var name = getUrlVars()["name"];
+    var name = decodeURIComponent(getUrlVars()["name"]);
     var pid =getUrlVars()["pid"];
     var date = getUrlVars()["date"];
-    var grade = getUrlVars()["grade"];
-    var property = getUrlVars()["property"];
-    var type = getUrlVars()["type"];
+    // var grade = getUrlVars()["grade"];
+    var property = decodeURIComponent(getUrlVars()["property"]);
+    var type = decodeURIComponent(getUrlVars()["type"]);
     var phone_id = getUrlVars()["id"];
     var open_id = getUrlVars()["open_id"];
-    var addition =getUrlVars()["addition"];
-    var age =getUrlVars()["age"];
-    var gender =getUrlVars()["gender"];
+    // var addition =decodeURIComponent(getUrlVars()["addition"]);
+    // var age = decodeURIComponent(getUrlVars()["age"]);
+    // var gender =decodeURIComponent(getUrlVars()["gender"]);
+    
+    var referral = decodeURIComponent(getUrlVars()["referral"]);
+    var case_Create_date = getUrlVars()["case_Create_date"];
+    var unopen_type = decodeURIComponent(getUrlVars()["unopen_type"]);
+    var birth = getUrlVars()["birth"];
+    
 
     // console.log($('#create_date_'+form_name+num).text().replace(/\//g, "-"));
     // console.log($('#fillin_date_'+form_name+num).val());
@@ -296,7 +309,7 @@ function store(num, form_name){
             Create_date:create_date,
             Fillin_date:fillin_date,
             Remark:remark,
-            Url:'case_detail.php?name='+name+'&pid='+pid+'&date='+date+'&grade='+ grade +'&property='+ property +'&type='+ type+'&id='+phone_id+'&open_id='+open_id+'&addition='+addition+'&age='+age+'&gender='+gender+'',
+            Url:'case_detail.php?name='+name+'&pid='+pid+'&date='+date+'&property='+ property +'&type='+ type+'&id='+phone_id+'&open_id='+open_id+'&referral='+referral+'&case_Create_date='+case_Create_date+'&birth='+birth+'&unopen_type='+unopen_type+'',
         },
         type: "POST",
         dataType: "JSON",
@@ -475,18 +488,23 @@ function select_change(option, obj_name_num, num, obj_name)
 //點擊儲存到case_all資料庫region
 function i_store(num, form_name){
     
-    var name = getUrlVars()["name"];
+    var name = decodeURIComponent(getUrlVars()["name"]);
     var pid =getUrlVars()["pid"];
     var date = getUrlVars()["date"];
-    var grade = getUrlVars()["grade"];
-    var property = getUrlVars()["property"];
-    var type = getUrlVars()["type"];
+    // var grade = getUrlVars()["grade"];
+    var property = decodeURIComponent(getUrlVars()["property"]);
+    var type = decodeURIComponent(getUrlVars()["type"]);
     var phone_id = getUrlVars()["id"];
     var open_id = getUrlVars()["open_id"];
-    var addition =getUrlVars()["addition"];
-    var age =getUrlVars()["age"];
-    var gender =getUrlVars()["gender"];
-
+    // var addition =decodeURIComponent(getUrlVars()["addition"]);
+    // var age = decodeURIComponent(getUrlVars()["age"]);
+    // var gender =decodeURIComponent(getUrlVars()["gender"]);
+    
+    var referral = decodeURIComponent(getUrlVars()["referral"]);
+    var case_Create_date = getUrlVars()["case_Create_date"];
+    var unopen_type = decodeURIComponent(getUrlVars()["unopen_type"]);
+    var birth = getUrlVars()["birth"];
+    
     var timenow = moment().format('YYYY-MM-DD');
 
     var upload_info_arr = new Array();
@@ -609,12 +627,23 @@ function i_store(num, form_name){
 
 //新增至離園一覽表(結案)region
 $("#end").on('click', function () {
-    var face_id = getUrlVars()["id"];
-    var open_id = getUrlVars()["open_id"];
     var name = decodeURIComponent(getUrlVars()["name"]);
-    var four_id = getUrlVars()["four_id"];
-    var house = decodeURIComponent(getUrlVars()["house"]);
-    var addition = decodeURIComponent(getUrlVars()["addition"]);
+    var pid =getUrlVars()["pid"];
+    var date = getUrlVars()["date"];
+    // var grade = getUrlVars()["grade"];
+    var property = decodeURIComponent(getUrlVars()["property"]);
+    var type = decodeURIComponent(getUrlVars()["type"]);
+    var phone_id = getUrlVars()["id"];
+    var open_id = getUrlVars()["open_id"];
+    // var addition =decodeURIComponent(getUrlVars()["addition"]);
+    // var age = decodeURIComponent(getUrlVars()["age"]);
+    // var gender =decodeURIComponent(getUrlVars()["gender"]);
+    
+    var referral = decodeURIComponent(getUrlVars()["referral"]);
+    var case_Create_date = getUrlVars()["case_Create_date"];
+    var unopen_type = decodeURIComponent(getUrlVars()["unopen_type"]);
+    var birth = getUrlVars()["birth"];
+
     var Today=new Date();
     var twdate = (Today.getFullYear()-1911)+'-'+('0'+(Today.getMonth()+1)).substr(-2)+'-'+('0'+Today.getDate()).substr(-2);
     swal({

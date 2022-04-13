@@ -124,74 +124,90 @@ input[type=number] {
                                             <div class="col-sm-12 text-center">
                                                 <div class="table-wrap">
                                                     <div class="table-responsive">
-                                                        <table style="width:auto;" class="table table-bordered">
+                                                        <table style="width:45%;" class="table table-bordered">
                                                             <tr>
                                                                 <td colspan="2">
                                                                     <h3>新增個案</h3>
                                                                 </td>
                                                             </tr>
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">編號</td>
-                                                                <td style="border-bottom: solid 1px;"><input id="Id" type="text" oninput="value=value.replace(/[\d]/g,'')"></td>
-                                                            </tr>
-                                                            <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>姓名</td>
-                                                                <td style="border-bottom: solid 1px;"><input id="Name" type="text" oninput="value=value.replace(/[\d]/g,'')"></td>
-                                                            </tr>
-                                                            <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>個案分級</td>
-                                                                <td style="border-bottom: solid 1px;">
-                                                                    <select id="Case_grade" style="width:200px;">>
-                                                                        <option value="A">A</option>
-                                                                        <option value="B">B</option>
-                                                                        <option value="C">C</option>
-                                                                    </select>
-                                                                </td>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">開案編號</td>
+                                                                <td style="border-bottom: solid 1px;"><input id="case_id" type="text"></td>
                                                             </tr>
                                                             <tr class="text-align:left">
-                                                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>開案日期</td>
+                                                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>登入日期</td>
                                                             <td class="text-left">
-                                                                <input id="min_date" rel="" name="pcall_date" class="" type="date">
-                                                                <label>～</label>
-                                                                <input id="max_date" rel="" name="pcall_date" class="" type="date">
-                                                            </td>
-                                                            </tr>
-                                                            <tr class="text-align:left">
-                                                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>年齡</td>
-                                                            <td class="text-left">
-                                                                <input id="min" rel="" name="min" class="" type="text">
-                                                                <label>～</label>
-                                                                <input id="max" rel="" name="max" class="" type="text">
+                                                                <input id="create_date" type="date">
                                                             </td>
                                                             </tr>
                                                             <tr style="text-align:left">
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>服務對象類別</td>
                                                                 <td style="border-bottom: solid 1px;">
-                                                                    <select id="Object_type" style="width:200px;">
-                                                                        <option value="一般藥癮者">一般藥癮者</option>
+                                                                    <select id="object_type" style="width:200px;">
+                                                                        <option value="">請選擇</option>
                                                                         <option value="愛滋感染者">愛滋感染者</option>
-                                                                        <option value="家庭">家庭</option>
-                                                                        <option value="兒少">兒少</option>
+                                                                        <option value="一般藥癮者">一般藥癮者</option>
+                                                                        <option value="藥癮家庭">藥癮家庭</option>
+                                                                        <option value="親職兒少">親職兒少</option>
                                                                     </select>
                                                                 </td>
                                                             </tr>
                                                             <tr style="text-align:left">
-                                                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>個案屬性</td>
-                                                            <td style="border-bottom: solid 1px;">
-                                                                <select id="Case_property" style="width:160px;">
-                                                                    <option value="家園">家園</option>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>個案屬性</td>
+                                                                <td style="border-bottom: solid 1px;">
+                                                                    <select id="case_property" style="width:160px;">
+                                                                    <option value="">請選擇</option>
+                                                                    <option value="安置家園">安置家園</option>
                                                                     <option value="自立宿舍">自立宿舍</option>
                                                                     <option value="社區">社區</option>
-                                                                    <option value="藥癮家庭">藥癮家庭</option>
+                                                                    <!-- <option value="藥癮家庭">藥癮家庭</option>
                                                                     <option value="藥癮者">藥癮者</option>
-                                                                    <option value="兒少">兒少</option>
-                                                                </select>
+                                                                    <option value="親子教育">親子教育</option> -->
+                                                                    </select>
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr class="text-align:left">
+                                                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>開案日期</td>
+                                                            <td class="text-left">
+                                                                <input id="open_case_date" type="date">
                                                             </td>
                                                             </tr>
                                                             <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>姓名</td>
+                                                                <td style="border-bottom: solid 1px;"><input id="name" type="text"></td>
+                                                            </tr>
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>電話</td>
+                                                                <td style="border-bottom: solid 1px;"><input id="phone" type="text"></td>
+                                                            </tr>
+                                                            <tr class="text-align:left">
+                                                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>出生年月日</td>
+                                                            <td class="text-left">
+                                                                <input id="birth" type="date">
+                                                            </td>
+                                                            </tr>
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>身分證字號</td>
+                                                                <td style="border-bottom: solid 1px;"><input id="pid" type="text"></td>
+                                                            </tr>
+                                                            <!-- <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>個案分級</td>
+                                                                <td style="border-bottom: solid 1px;">
+                                                                    <select id="case_grade" style="width:200px;">
+                                                                        <option value="">請選擇</option>
+                                                                        <option value="A">A</option>
+                                                                        <option value="B">B</option>
+                                                                        <option value="C">C</option>
+                                                                    </select>
+                                                                </td>
+                                                            </tr> -->
+                                                            
+                                                            <tr style="text-align:left">
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white">轉介來源</td>
                                                                 <td style="border-bottom: solid 1px;">
-                                                                <select id="Referral" style="width:160px;">
+                                                                <select id="referral" style="width:160px;">
+                                                                    <option value="">請選擇</option>
                                                                     <option value="醫院">醫院</option>
                                                                     <option value="矯正機關">矯正機關</option>
                                                                     <option value="自行求助">自行求助</option>
@@ -211,7 +227,7 @@ input[type=number] {
                                                     </div>
                                                 </div>
                                                 <br>
-                                                <button id="phone_add_new" style="font-size:15px" type="button" class="btn btn-default"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-check" viewBox="0 0 16 16">
+                                                <button id="case_add_new" style="font-size:15px" type="button" class="btn btn-default"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-check" viewBox="0 0 16 16">
                                                         <path d="M10.854 7.854a.5.5 0 0 0-.708-.708L7.5 9.793 6.354 8.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
                                                         <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
                                                     </svg>新增</button>
@@ -258,8 +274,8 @@ input[type=number] {
     <!-- ================== table ================== -->
     <script src="javascript/bootstrap1.18.0-table.min.js"></script>
     <script src="javascript/bootstrap-table1.11.1-zh-TW.min.js"></script>
-    <!-- ================== add_phone.js ================== -->
-    <script src="js/add_phone.js"></script>
+    <!-- ================== add_current_case.js ================== -->
+    <script src="js/add_current_case.js"></script>
 </body>
 
 </html>
