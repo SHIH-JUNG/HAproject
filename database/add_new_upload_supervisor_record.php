@@ -5,7 +5,7 @@
 include("sql_connect.php");
 
 @$upload_content = json_encode($_REQUEST['upload_content'],JSON_UNESCAPED_UNICODE);
-
+@$year = $_REQUEST['year'];
 
 @$file_dir = "../supervisor_record/upload/";
 
@@ -65,8 +65,8 @@ if(isset($_FILES["file4"]))
         
         // if($_FILES["file4"]["name"] != null && $_FILES["file4"]["type"] == "application/pdf"){
         if(@$_FILES["file4"]["name"] != null || isset($_REQUEST['File_name'])){
-            $sql = "INSERT INTO `supervisor_record` (`upload_content`, `file_path`, `Create_date`, `Create_name`) VALUES 
-            ('$upload_content', '$file', NOW(), '$user');";
+            $sql = "INSERT INTO `supervisor_record` (`Year`, `upload_content`, `file_path`, `Create_date`, `Create_name`) VALUES 
+            ('$year', '$upload_content', '$file', NOW(), '$user');";
 
             if(mysqli_multi_query($conn,$sql)){
                 echo true;

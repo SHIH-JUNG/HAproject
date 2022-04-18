@@ -353,6 +353,20 @@ function check_trans_to_opencase_value()
     var caseid_repeat = check_case_isrepeat();
     var errorstr = "";
 
+
+    var case_id_c_2 = "none";
+    if (open_case_t_sn.replace(/\s*/g, "") != '') {
+
+        if(open_case_t_sn.includes("ER"))
+        {
+            case_id_c_2 = open_case_t_sn.replace("ER", "")
+        }
+        else if(open_case_t_sn.includes("A"))
+        {
+            case_id_c_2 = open_case_t_sn.replace("A", "")
+        }
+    }
+
     if (open_case_t_sn == null) {
         errorstr += "未填寫開案編號!\r\n";
     }
@@ -368,7 +382,7 @@ function check_trans_to_opencase_value()
         {
             errorstr += "開案編號重複!!!\r\n";
         }
-        if (open_case_t_sn.replace(/\s*/g, "") == '') {
+        if (open_case_t_sn.replace(/\s*/g, "") == '' || case_id_c_2.replace(/\s*/g, "") == '') {
             errorstr += "未填寫開案編號!\r\n";
         }
         if (open_case_type.replace(/\s*/g, "") == '') {
@@ -377,7 +391,6 @@ function check_trans_to_opencase_value()
         if (open_object_type.replace(/\s*/g, "") == '') {
             errorstr += "未選擇服務對象類別!\r\n";
         }
-        
     }
 
     return errorstr;

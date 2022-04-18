@@ -180,7 +180,7 @@ input[type=number] {
                                                                     </select>
                                                                 </td>
                                                             </tr>
-                                                            <tr style="text-align:left">
+                                                            <!-- <tr style="text-align:left">
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>曾經使用物質</td>
                                                                 <td style="border-bottom: solid 1px;">
                                                                     一級毒品：
@@ -206,7 +206,7 @@ input[type=number] {
                                                                     <br>
                                                                     <input name="addition[]" style="zoom: 1.5" type="checkbox" value="其他">其他：<input id="other" type="text" value="">
                                                                 </td>
-                                                            </tr>
+                                                            </tr> -->
                                                             <tr style="text-align:left">
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>目前使用物質</td>
                                                                 <td style="border-bottom: solid 1px;">
@@ -318,7 +318,7 @@ input[type=number] {
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">職稱/姓名</td>
                                                                 <td style="border-bottom: solid 1px;"><input id="referral_name" type="text" oninput="value=value.replace(/[\d]/g,'')"></td>
                                                             </tr>
-                                                            <tr style="text-align:left">
+                                                            <!-- <tr style="text-align:left">
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">得知快樂聯盟管道</td>
                                                                 <td style="border-bottom: solid 1px;">
                                                                     <input class="phone_question" id="k_place" type="text">
@@ -335,7 +335,7 @@ input[type=number] {
                                                                     <input class="phone_question" name="k_type[]" style="zoom: 1.5" type="radio" value="其他"><label>其他</label>
                                                                     <input class="phone_question" name="k_type[]" style="zoom: 1.5" type="radio" value="不明"><label>不明</label>
                                                                 </td>
-                                                            </tr>
+                                                            </tr> -->
                                                             <tr style="text-align:left">
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">是否符合開案</td>
                                                                 <td style="border-bottom: solid 1px;">

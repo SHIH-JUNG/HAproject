@@ -1,6 +1,7 @@
 <?php session_start(); ?>
 <?php include("database/check_authority.php"); ?>
 <?php @$rec_type =  $_GET['rec_type']; ?>
+<?php @$rec_year =  $_GET['year']; ?>
 <!DOCTYPE html>
 <html>
 
@@ -119,15 +120,19 @@
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span><a href="">會議管理</a></span></li>
+                        <li><span><a href="supervisor_record_yearlist.php">會議管理</a></span></li>
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span><a href="supervisor_record.php">團督紀錄</a></span></li>
+                        <li><span><a href="supervisor_record_yearlist.php">團督紀錄</a></span></li>
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span>詳細資料</span></li>
+                        <?php echo "<li><span><a href='supervisor_record.php?year=".trim($rec_year)."'>".trim($rec_year)."年度會議資料</a></span></li>"; ?>
+                        <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+                        </svg>
+                        <li><span>會議記錄詳細資料</span></li>
                     </ol>
                     <!--/麵包屑-->
                 </div>
@@ -152,14 +157,14 @@
                                         <div class="col-sm-12 col-xs-12">
                                             <div>
                                                 <div>
-                                                    <h4>詳細資料</h4>
+                                                    <h4>會議記錄詳細資料</h4>
                                                 </div>
                                             </div>
                                             <div class="col-sm-12">
                                                 <ul style="font-size:17px" class="nav nav-tabs" id="myTab" role="tablist">
                                                     <li class="nav-item active" role="presentation" id="sr_rec_all">
                                                         <a class="nav-link" id="home-tab" data-toggle="pill" href="#one" role="tab" aria-selected="true">
-                                                            <b>會議記錄</b>
+                                                            <b>詳細資料</b>
                                                         </a>
                                                     </li>
                                                     
@@ -177,7 +182,7 @@
                                                                 <div class="panel-heading" id="headingTwo">
                                                                     <h2 class="mb-0">
                                                                         <button class="btn btn-link btn-block collapsed" type="button" data-toggle="collapse" data-parent="#myTabContent" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                                                            <span style="color:black;font-size:17px">會議記錄</span>
+                                                                            <span style="color:black;font-size:17px">詳細資料</span>
                                                                         </button>
                                                                     </h2>
                                                                 </div>

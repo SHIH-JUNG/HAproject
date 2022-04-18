@@ -9,7 +9,7 @@ $Phone_id= $_POST['Phone_id'];
 @$Name = $_POST['Name'];
 @$Gender = $_POST['Gender'];
 @$Object_type = $_POST['nObject_type'];
-@$nAddition = $_POST['nAddition'];
+// @$nAddition = $_POST['nAddition'];
 @$M_addiction = $_POST['main_radio'];
 @$Address = $_POST['address'];
 @$Age = $_POST['Age'];
@@ -23,8 +23,8 @@ $Phone_id= $_POST['Phone_id'];
 @$nReferral_phone = $_POST['nReferral_phone'];
 @$nReferral_detail = $_POST['ref_val'];
 @$nReferral_name = $_POST['nReferral_name'];
-@$Know_from = $_POST['Know_from'];
-@$nKnow_from_detail = $_POST['k_val'];
+// @$Know_from = $_POST['Know_from'];
+// @$nKnow_from_detail = $_POST['k_val'];
 @$nEligible = $_POST['e_val'];
 @$Assign = $_POST['Assign'];
 @$nPhone_note = $_POST['nPhone_note'];
@@ -34,14 +34,14 @@ $Phone_id= $_POST['Phone_id'];
 
 
 
-if(!empty($nAddition))
-{
-    @$Addiction = implode("、",$nAddition);
-}
-else
-{
-    $Addiction = '';
-}
+// if(!empty($nAddition))
+// {
+//     @$Addiction = implode("、",$nAddition);
+// }
+// else
+// {
+//     $Addiction = '';
+// }
 
 if(!empty($nReferral_phone))
 {
@@ -61,12 +61,12 @@ $Count = ($count_text[0]+1);
 
 
 
-$sql = "INSERT INTO `consult` (`Phone_id`,`Way`,`Call_datetime`, `Name`, `Gender`,`Object_type`,`Addiction`,`M_addiction`,`Address`,`Age`,`A_detail`,`L_detail`,`Info_Name`,`Relationship_detail`,`R_phone`,`Referral`, `Referral_detail`, `Referral_phone`,
- `Referral_name`,`Know_from`, `Know_from_detail`, `Eligible`, `Assign`, `Phone_note`, `Count`, `Create_name`, `Create_date`) VALUES 
- ('$Phone_id','$Way','$nCall_datetime','$Name','$Gender','$Object_type','$Addiction',
+$sql = "INSERT INTO `consult` (`Phone_id`,`Way`,`Call_datetime`, `Name`, `Gender`,`Object_type`,`M_addiction`,`Address`,`Age`,`A_detail`,`L_detail`,`Info_Name`,`Relationship_detail`,`R_phone`,`Referral`, `Referral_detail`, `Referral_phone`,
+ `Referral_name`, `Eligible`, `Assign`, `Phone_note`, `Count`, `Create_name`, `Create_date`) VALUES 
+ ('$Phone_id','$Way','$nCall_datetime','$Name','$Gender','$Object_type',
  '$M_addiction','$Address','$Age','$nA_detail', '$nL_detail', '$nInfo_Name',
   '$nRelationship_detail', '$nR_phone','$nReferral','$nReferral_detail','$Referral_Phone',
-  '$nReferral_name','$Know_from','$nKnow_from_detail','$nEligible','$Assign','$nPhone_note','$Count',
+  '$nReferral_name','$nEligible','$Assign','$nPhone_note','$Count',
   '$publisher', Now());";
 	if(mysqli_query($conn,$sql)){
         echo true;

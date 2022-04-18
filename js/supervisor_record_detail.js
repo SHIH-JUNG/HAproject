@@ -11,6 +11,7 @@ function getUrlVars() {
 var id = getUrlVars()["id"];
 var sr_id = getUrlVars()["sr_id"];
 var rec_type = getUrlVars()["rec_type"];
+var sr_year = getUrlVars()["year"];
 
 //datepicker創建 region
 datepicker_create = function(selector_id) {
@@ -101,7 +102,8 @@ $(document).ready(function(){
     $.ajax({
         url: "database/find_supervisor_record_data_detail.php",
         data:{
-            sr_id:sr_id
+            sr_id:sr_id,
+            year:sr_year
         },
         type: "POST",
         dataType: "JSON",
@@ -237,6 +239,8 @@ function rec_update_fillin() {
 
     var form = $('#form_a').serializeArray();
 
+    var meeting_date_year_split = $("#meeting_date").val().split('年');
+
 
     // console.log(form)
 
@@ -265,7 +269,8 @@ function rec_update_fillin() {
             type: "POST",
             data:{
                 sr_id:sr_id,
-                record_content:form
+                record_content:form,
+                year:meeting_date_year_split[0]
             },
 //            dataType: "JSON",
             success: function (data) {
@@ -276,7 +281,7 @@ function rec_update_fillin() {
                         title: '新增成功!',
                         allowOutsideClick: false //不可點背景關閉
                         }).then(function () {
-                            location.reload();
+                            window.location.href='supervisor_record_detail.php?year='+meeting_date_year_split[0]+'&id='+id+'&sr_id='+sr_id+'&rec_type='+rec_type+'';
                         })
                 }
                 else{
@@ -477,6 +482,8 @@ function submit_form_data_upload() {
     var form = $('#form_b').serializeArray();
     var customfile = $('[type="file"]').prop('files');
 
+    var upload_rec_date_year_split = $("#upload_rec_date").val().split('年');
+
     // console.log(customfile)
 
     if(file_name.length==0)
@@ -517,6 +524,7 @@ function submit_form_data_upload() {
     }
 
      form_data.append("sr_id", sr_id);
+     form_data.append("year", (upload_rec_date_year_split[0]));
      form_data.append("upload_content", JSON.stringify(form));
 
      for (var pair of form_data.entries()) {
@@ -540,7 +548,7 @@ function submit_form_data_upload() {
                     title: '新增成功!',
                     allowOutsideClick: false //不可點背景關閉
                     }).then(function () {
-                        location.reload();
+                        window.location.href='supervisor_record_detail.php?year='+upload_rec_date_year_split[0]+'&id='+id+'&sr_id='+sr_id+'&rec_type='+rec_type+'';
                     })
             }
             else{

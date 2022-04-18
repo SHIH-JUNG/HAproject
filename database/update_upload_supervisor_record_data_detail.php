@@ -7,6 +7,7 @@ include("sql_connect.php");
 $sr_id = $_REQUEST['sr_id'];
 
 @$upload_content = json_encode($_REQUEST['upload_content'],JSON_UNESCAPED_UNICODE);
+@$year = $_REQUEST['year'];
 
 @$file_dir = "../supervisor_record/upload/";
 
@@ -64,7 +65,7 @@ if(isset($_REQUEST['File_name']))
 
     if(isset($_FILES["file4"]) || isset($_REQUEST['File_name']))
     {
-        $sqlUpdate ="UPDATE `supervisor_record` SET `Update_date` = NOW(), `Update_name`= '$user', `upload_content` = '$upload_content', `file_path` = '$file'
+        $sqlUpdate ="UPDATE `supervisor_record` SET `Year` = '$year', `Update_date` = NOW(), `Update_name`= '$user', `upload_content` = '$upload_content', `file_path` = '$file'
         WHERE `Id` = '$sr_id' LIMIT 1;";
 
 

@@ -38,6 +38,7 @@ $(document).ready(function(){
         },
         type: "POST",
         dataType: "JSON",
+        async: false,
         success: function (data) {
             if(data.Update_date[0] == null){
                 data.Update_date[0] = "";
@@ -45,18 +46,19 @@ $(document).ready(function(){
 //            console.log(data.phone[0])
             
             //分割曾經癮別region
-            var Arr=[];
-            var addition_arr = data.Addiction[0];
-            Arr = addition_arr.split("、"); // 根据“-”分割
-            check_addition(Arr);
+            // var Arr=[];
+            // var addition_arr = data.Addiction[0];
+            // Arr = addition_arr.split("、"); // 根据“-”分割
+            // check_addition(Arr);
             //分割主要癮別region
             var Arr2=[];
             var m_addition_arr = data.M_addiction[0];
             Arr2 = m_addition_arr.split("、"); // 根据“-”分割
+            console.log(Arr2)
             check_m_addition_arr(Arr2);
-            check_mainaddition();
+            // check_mainaddition();
             
-            check_radio(data.R_detail[0],data.L_detail[0],data.A_detail[0],data.Know_from_detail[0],data.Referral_detail[0],data.Eligible[0]);
+            check_radio(data.R_detail[0],data.L_detail[0],data.A_detail[0],data.Referral_detail[0],data.Eligible[0]);
             //endregion
             var p_arr=[];
             var phone_arr = data.R_phone[0];
@@ -119,7 +121,7 @@ $(document).ready(function(){
             $("#refphone").html(cssString7);
             //轉介人 職稱/姓名
             $("#referral_name").val(data.Referral_name[0]);
-            $("#k_place").val(data.Know_from[0]);
+            // $("#k_place").val(data.Know_from[0]);
             // $("#department").val(data.Department[0]);
             append_user();
             $("#user").val(data.Assign[0]);
@@ -135,18 +137,37 @@ $(document).ready(function(){
         }
     });
     $(".phone_question").attr("disabled",true);
+
+
+    //有選取的 radio or checkbox 字會變紅 region
+    $("input[type='radio']").each(function(i,n){
+
+        if($(this).is(":checked"))
+        {
+            $(".radio_label").eq(i).css("color", "red");
+        }
+    });
+
+    $("input[type='checkbox']").each(function(i,n){
+
+        if($(this).is(":checked"))
+        {
+            $(".ckecked_label").eq(i).css("color", "red");
+        }
+    });
+    //endregion 
 });
 
 //endregion  
 
 //判斷radio是否有值，就選取region
-function check_radio(r_detail,l_detail,a_detail,k_detail,Referral_detail,e_detail){
+function check_radio(r_detail,l_detail,a_detail,Referral_detail,e_detail){
 //    console.log(r_detail,l_detail,a_detail,k_detail,Referral_detail,e_detail)
     //取radio所有值
     var r_radio =document.getElementsByName('r_type[]');
     var l_radio =document.getElementsByName('l_type[]');
     var a_radio =document.getElementsByName('a_type[]');
-    var k_radio =document.getElementsByName('k_type[]');
+    // var k_radio =document.getElementsByName('k_type[]');
     // var w_radio =document.getElementsByName('w_type[]');
     var ref_radio =document.getElementsByName('ref_type[]');
     var e_radio =document.getElementsByName('e_type[]');
@@ -156,7 +177,7 @@ function check_radio(r_detail,l_detail,a_detail,k_detail,Referral_detail,e_detai
     var r_len = r_radio.length;
     var l_len = l_radio.length;
     var a_len = a_radio.length;
-    var k_len = k_radio.length;
+    // var k_len = k_radio.length;
     var ref_len = ref_radio.length;
     var e_len = e_radio.length;
 
@@ -199,13 +220,13 @@ function check_radio(r_detail,l_detail,a_detail,k_detail,Referral_detail,e_detai
            e_radio[i].checked = true;
         }    
     }
-    for (i = 0; i < k_len; i++)
-    {
-        if (k_radio[i].value == k_detail)
-        {
-           k_radio[i].checked = true;
-        }    
-    }
+    // for (i = 0; i < k_len; i++)
+    // {
+    //     if (k_radio[i].value == k_detail)
+    //     {
+    //        k_radio[i].checked = true;
+    //     }    
+    // }
  
 }
 //endregion
@@ -265,7 +286,7 @@ var stau = false;
                 Name:$("#name").val(),
                 Gender:$("#gender").val(),
                 Object_type:$("#object_type").val(),
-                Addition:addition,
+                // Addition:addition,
                 main_radio:main_val,
                 Age:$("#age").val(),
                 a_val:a_val,
@@ -279,8 +300,8 @@ var stau = false;
                 ref_val:ref_val,
                 Referral_phone:refphone_val,
                 Referral_name:$("#referral_name").val(),
-                Know_from:$("#k_place").val(),
-                k_val:k_val,
+                // Know_from:$("#k_place").val(),
+                // k_val:k_val,
                 e_val:e_val,
                 Assign:$("#user").val(),
                 Phone_note:$("#note").val(),
@@ -319,7 +340,7 @@ function check_update_personal_data()
     var name = $("#name").val();
     var age = $("#age").val();
     var address = $("#address").val();
-    var addition_checkbox =  $("input[type=checkbox][name='addition[]']:checked").length;
+    // var addition_checkbox =  $("input[type=checkbox][name='addition[]']:checked").length;
     var main_checkbox =  $("input[type=checkbox][name='main[]']:checked").length;
 
     var errorstr = "";
@@ -337,9 +358,9 @@ function check_update_personal_data()
         errorstr += "未填寫居住地!\r\n";
     }
 
-    if (addition_checkbox <=0) {
-        errorstr += "未勾選曾經使用物質!\r\n";
-    }
+    // if (addition_checkbox <=0) {
+    //     errorstr += "未勾選曾經使用物質!\r\n";
+    // }
 
     if (main_checkbox <=0) {
         errorstr += "未勾選目前使用物質!\r\n";
@@ -376,7 +397,7 @@ function check_radio_value(){
     var ref_radio =document.getElementsByName('ref_type[]');
     var e_radio =document.getElementsByName('e_type[]');
     var main_radio =document.getElementsByName('main[]');
-    var addition_radio =document.getElementsByName('addition[]');
+    // var addition_radio =document.getElementsByName('addition[]');
     //長度
     var phone_len = phone_radio.length;
     var refphone_len = refphone_radio.length;
@@ -387,7 +408,7 @@ function check_radio_value(){
     var ref_len = ref_radio.length;
     var e_len = e_radio.length;
     var main_len = main_radio.length;
-    var addition_len = addition_radio.length;
+    // var addition_len = addition_radio.length;
     
     phone_val= new Array();
     
@@ -421,19 +442,19 @@ function check_radio_value(){
         }    
     }
 
-    for (i = 0; i < addition_len; i++)
-    {
-        if (addition_radio[i].checked == true)
-        {
-            addition_val = addition_radio[i].value;
-           if(addition_val == "其他"){
-            addition_val = $("#other").val();
-           }
-            break;
-        }else{
-            addition_val = "";
-        }    
-    }
+    // for (i = 0; i < addition_len; i++)
+    // {
+    //     if (addition_radio[i].checked == true)
+    //     {
+    //         addition_val = addition_radio[i].value;
+    //        if(addition_val == "其他"){
+    //         addition_val = $("#other").val();
+    //        }
+    //         break;
+    //     }else{
+    //         addition_val = "";
+    //     }    
+    // }
 
     for (i = 0; i < r_len; i++)
     {
@@ -945,19 +966,19 @@ function reservation_rec_new(){
                 //    //endregion
 
                 //判斷是否勾選傳入陣列region
-                var checkbox =document.getElementsByName('addition[]');
-                var len = checkbox.length;
-                var addition = new Array();
-                for (i = 0; i < len; i++)
-                {
-                    if (checkbox[i].checked == true)
-                    {
-                        addition.push(checkbox[i].value);
-                    }    
-                }
-                if($("#other").val() != ""){
-                    addition.push($("#other").val());
-                }
+                // var checkbox =document.getElementsByName('addition[]');
+                // var len = checkbox.length;
+                // var addition = new Array();
+                // for (i = 0; i < len; i++)
+                // {
+                //     if (checkbox[i].checked == true)
+                //     {
+                //         addition.push(checkbox[i].value);
+                //     }    
+                // }
+                // if($("#other").val() != ""){
+                //     addition.push($("#other").val());
+                // }
                 //endregion
 
                 //新增至面訪總表region
@@ -971,7 +992,7 @@ function reservation_rec_new(){
                                 Name:$("#name").val(),
                                 Gender:$("#gender").val(),
                                 Object_type:$("#object_type").val(),
-                                Addiction:addition,
+                                // Addiction:addition,
                                 M_addiction:main_val,
 
                                 Age:$("#age").val(),
@@ -985,8 +1006,8 @@ function reservation_rec_new(){
 
                                 Referral:$("#referral").val(),
                                 ref_val:ref_val,
-                                Know_from:$("#k_place").val(),
-                                Know_from_detail:k_val,
+                                // Know_from:$("#k_place").val(),
+                                // Know_from_detail:k_val,
 
                                 Eligible:e_val,
                                 Assign:$("#user").val(),
@@ -1190,7 +1211,7 @@ function add_new(){
                         Name:$("#name").val(),
                         Gender:$("#gender").val(),
                         nObject_type:$("#object_type").val(),
-                        nAddition:addition,
+                        // nAddition:addition,
                         main_radio:main_val,
                         address:$("#address").val(),
                         nInfo_Name:$("#ninfo_name").val(),
@@ -1206,8 +1227,8 @@ function add_new(){
                         a_val:a_val,
                         l_val:l_val,
                         ref_val:ref_val,
-                        Know_from:$("#k_place").val(),
-                        k_val:k_val,
+                        // Know_from:$("#k_place").val(),
+                        // k_val:k_val,
                         e_val:e_val,
                     },
                     type: "POST",
@@ -1621,12 +1642,12 @@ function check_m_addition_arr(Arr){
     {
         for(j = 0;j < len; j++){
             if (Arr[i] == checkbox[j].value)
-            {
+            {   
                 checkbox[j].checked = true;
                 $('#addition'+j+'').attr("hidden",false);
             }else{
-                if(Arr[i] =="鴉片"|| Arr[i] =="嗎啡"|| Arr[i] =="海洛因"|| Arr[i] =="古柯鹼"|| Arr[i] =="安非他命"|| Arr[i] =="大麻"|| Arr[i] =="搖頭丸"|| Arr[i] =="FM2藥丸"|| Arr[i] =="K他命"|| Arr[i] =="酒精"){
-//                    console.log(checkbox[j].value);
+                if(Arr[i] =="鴉片"|| Arr[i] =="嗎啡"|| Arr[i] =="海洛因"|| Arr[i] =="古柯鹼"|| Arr[i] =="安非他命"|| Arr[i] =="大麻"|| Arr[i] =="搖頭丸"|| Arr[i] =="FM2藥丸"|| Arr[i] =="K他命"|| Arr[i] =="酒精"|| Arr[i] =="強力膠"|| Arr[i] =="檳榔"|| Arr[i] =="菸"|| Arr[i] =="精神藥物")
+                {
                     $("#other_main").val("");
                 }else{
                     checkbox[14].checked = true;
@@ -1935,6 +1956,20 @@ function check_trans_to_opencase_value()
     var caseid_repeat = check_case_isrepeat();
     var errorstr = "";
 
+
+    var case_id_c_2 = "none";
+    if (open_case_t_sn.replace(/\s*/g, "") != '') {
+
+        if(open_case_t_sn.includes("ER"))
+        {
+            case_id_c_2 = open_case_t_sn.replace("ER", "")
+        }
+        else if(open_case_t_sn.includes("A"))
+        {
+            case_id_c_2 = open_case_t_sn.replace("A", "")
+        }
+    }
+
     if (open_case_t_sn == null) {
         errorstr += "未填寫開案編號!\r\n";
     }
@@ -1950,7 +1985,7 @@ function check_trans_to_opencase_value()
         {
             errorstr += "開案編號重複!!!\r\n";
         }
-        if (open_case_t_sn.replace(/\s*/g, "") == '') {
+        if (open_case_t_sn.replace(/\s*/g, "") == '' || case_id_c_2.replace(/\s*/g, "") == '') {
             errorstr += "未填寫開案編號!\r\n";
         }
         if (open_case_type.replace(/\s*/g, "") == '') {
@@ -2257,21 +2292,21 @@ $("#preview_word2").on('click',function(){
     });
 
 //選擇曾使用物質被選擇主要戒治物質同步顯示region
-$("input[name='addition[]']").on('click', function(){
-    check_mainaddition();
-});
+// $("input[name='addition[]']").on('click', function(){
+//     check_mainaddition();
+// });
 
-function check_mainaddition(){
-    $("input[name='addition[]']").each(function(index,element) {
-        if($(this).is(":checked") == true){
-            $('#addition'+index+'').attr("hidden",false);
-        }else{
-            $('#addition'+index+'').attr("hidden",true);
-            $('input[name="main[]"][value=' +$(this).val()+ ']').attr('checked', false);
-//            console.log($(this).val())
-        }
-    });
-}
+// function check_mainaddition(){
+//     $("input[name='addition[]']").each(function(index,element) {
+//         if($(this).is(":checked") == true){
+//             $('#addition'+index+'').attr("hidden",false);
+//         }else{
+//             $('#addition'+index+'').attr("hidden",true);
+//             $('input[name="main[]"][value=' +$(this).val()+ ']').attr('checked', false);
+// //            console.log($(this).val())
+//         }
+//     });
+// }
 //endregion
 
 //新增生活問卷總表region

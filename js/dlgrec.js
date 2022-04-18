@@ -12,12 +12,6 @@ $.ajax({
             cssString += 
                     '<tr id="'+value.Id+'">' +
                         '<td style="text-align:center">' + value.dlgrec_date + '</td>' +
-                        '<td style="text-align:center">' + value.bf_num + '</td>' +
-                        '<td style="text-align:center">' + value.al_num + '</td>' +
-                        '<td style="text-align:center">' + value.em_num + '</td>' +
-                        '<td style="text-align:center">' + value.lp_num + '</td>' +
-                        '<td style="text-align:center">' + value.leave_num + '</td>' +
-                        '<td style="text-align:center">' + value.dlgrec_11 + '</td>' +
                         '<td style="text-align:center">' + value.dlg_manager + '</td>' +
                         '<td style="text-align:center">' + value.social_worker + '</td>' +
                         '<td style="text-align:center">' + value.supervise + '</td>' +
@@ -26,12 +20,6 @@ $.ajax({
             $("#dlg_manager").append('<option value="'+value.dlg_manager+'">'+value.dlg_manager+'</option>');
 
             $("#social_worker").append('<option value="'+value.social_worker+'">'+value.social_worker+'</option>');
-
-            $("#bf_num").append('<option value="'+value.bf_num+'">'+value.bf_num+'</option>');
-            $("#al_num").append('<option value="'+value.al_num+'">'+value.al_num+'</option>');
-            $("#em_num").append('<option value="'+value.em_num+'">'+value.em_num+'</option>');
-            $("#lp_num").append('<option value="'+value.lp_num+'">'+value.lp_num+'</option>');
-            $("#leave_num").append('<option value="'+value.leave_num+'">'+value.leave_num+'</option>');
         });
 
         //找出所有查詢表格下拉式選單，將內容排序、加上"所有查詢"、去除重複值

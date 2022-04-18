@@ -96,14 +96,31 @@ check_sql_date_format = function(date) {
 //endregion
 
 
+//取得url id值region
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        vars[key] = value;
+    });
+    return vars;
+}
+//endregion
+
+
+var sr_year = getUrlVars()["year"];
+
+
 //團督紀錄表格region
 $.ajax({
     url: "database/find_data_supervisor_record.php",
     type: "POST",
     dataType: "JSON",
+    data:{
+        year:sr_year
+    },
     async: false,//啟用同步請求
     success: function (data) {
-        // console.log(data)
+        console.log(data)
         var cssString = "";
 
         $.each(data,function(index,value){
@@ -142,7 +159,7 @@ $.ajax({
 
                     if(datan.name == 'upload_rec_date')
                     {
-                        cssString += '<td style="text-align:center">' + trans_to_Tw(datan.value) + '</td>';
+                        cssString += '<td style="text-align:center">' + datan.value + '</td>';
                     }
                     else if(datan.name == 'upload_title_name')
                     {
@@ -166,7 +183,7 @@ $.ajax({
         
         //點擊table tr 進入詳細頁面
         $(".table-hover tbody").on("click","tr",function () {
-            window.location.href = 'supervisor_record_detail.php?id='+$(this).attr("id")+'&sr_id='+$(this).attr("sr_id")+'&rec_type='+$(this).attr("rec_type")+'';
+            window.location.href = 'supervisor_record_detail.php?year='+sr_year+'&id='+$(this).attr("id")+'&sr_id='+$(this).attr("sr_id")+'&rec_type='+$(this).attr("rec_type")+'';
         });
     },
     

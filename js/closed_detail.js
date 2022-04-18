@@ -19,6 +19,7 @@ $(document).ready(function(){
         },
         type: "POST",
         dataType: "JSON",
+        async: false,
         success: function (data) {
             // console.log(data)
 
@@ -62,6 +63,16 @@ $(document).ready(function(){
         }
     });
     $(".closed_question").attr("disabled",true);
+
+    //有選取的 radio or checkbox 字會變紅 region
+    $("input[name*='closed_reason']").each(function(i,n){
+
+        if($(this).is(":checked"))
+        {
+            $(".link_label_closed_reason").eq(i).css("color", "red");
+        }
+    });
+    //endregion 
 });
 
 //endregion  
@@ -177,6 +188,7 @@ function check_updat_closed_data()
     return errorstr;
 }
 //endregion
+
 
 //呼叫user方法region
 function append_user(){             

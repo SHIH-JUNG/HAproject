@@ -10,7 +10,7 @@ $Way_detail = $_POST['Way_detail'];
 $Name = $_POST['Name'];
 $Gender = $_POST['Gender'];
 $Object_type = $_POST['Object_type'];
-$Addition = $_POST['Addition'];
+// $Addition = $_POST['Addition'];
 @$main_radio = $_POST['main_radio'];
 $Age = $_POST['Age'];
 @$a_val = $_POST['a_val'];
@@ -26,20 +26,20 @@ $Referral = $_POST['Referral'];
 @$Referral_phone = $_POST['Referral_phone'];
 
 $Referral_name = $_POST['Referral_name'];
-$Know_from = $_POST['Know_from'];
-@$k_val = $_POST['k_val'];
+// $Know_from = $_POST['Know_from'];
+// @$k_val = $_POST['k_val'];
 @$e_val = $_POST['e_val'];
 $Assign = $_POST['Assign'];
 $Phone_note = $_POST['Phone_note'];
 
-if(!empty($Addition))
-{
-    $Addiction = implode("、",$Addition);
-}
-else
-{
-    $Addiction = '';
-}
+// if(!empty($Addition))
+// {
+//     $Addiction = implode("、",$Addition);
+// }
+// else
+// {
+//     $Addiction = '';
+// }
 
 if(!empty($main_radio))
 {
@@ -69,7 +69,7 @@ else
 }
 
 $sqlUpdate ="UPDATE `consult` SET `Way`='$Way', `Way_detail`='$Way_detail', `Object_type` = '$Object_type',
- `Addiction` = '$Addiction', `M_addiction` = '$Main_radio',
+  `M_addiction` = '$Main_radio',
   `Age` = '$Age',`A_detail` = '$a_val', `Address` = '$Address', `L_detail` = '$l_val',
    `Info_Name` = '$Info_Name', `Relationship_detail` = '$Relationship_detail', `R_detail` = '$r_val',
     `R_phone` = '$R_Phone', `Eligible` = '$e_val',`Assign` = '$Assign',
@@ -77,8 +77,7 @@ $sqlUpdate ="UPDATE `consult` SET `Way`='$Way', `Way_detail`='$Way_detail', `Obj
 
 
 $sqlUpdate .="UPDATE `consult` SET `Name` = '$Name', `Gender` = '$Gender', `Referral` = '$Referral',`Referral_detail` = '$ref_val',
-     `Referral_phone` = '$Referral_Phone', `Referral_name` = '$Referral_name', `Know_from`= '$Know_from',
-      `Know_from_detail` = '$k_val' WHERE `Phone_id` = '$Phone_id' ORDER BY `consult`.`Create_date` ASC;";
+     `Referral_phone` = '$Referral_Phone', `Referral_name` = '$Referral_name' WHERE `Phone_id` = '$Phone_id' ORDER BY `consult`.`Create_date` ASC;";
 if(mysqli_multi_query($conn, $sqlUpdate)){
     echo true;
 }else{

@@ -10,7 +10,7 @@ include("sql_connect.php");
 $Name = $_POST['Name'];
 @$Gender = $_POST['Gender'];
 @$Object_type = $_POST['Object_type'];
-@$Addiction = $_POST['Addiction'];
+// @$Addiction = $_POST['Addiction'];
 @$M_addiction = $_POST['M_addiction'];
 
 @$Age = $_POST['Age'];
@@ -24,8 +24,8 @@ $Name = $_POST['Name'];
 
 @$Referral = $_POST['Referral'];
 @$Referral_detail = $_POST['ref_val'];
-@$Know_from = $_POST['Know_from'];
-@$Know_from_detail = $_POST['Know_from_detail'];
+// @$Know_from = $_POST['Know_from'];
+// @$Know_from_detail = $_POST['Know_from_detail'];
 
 @$Eligible = $_POST['Eligible'];
 @$Assign = $_POST['Assign'];
@@ -45,14 +45,14 @@ $user = $_SESSION['name'];
 // @$Date_y = $_POST['Date_y'];
 // @$Date_m = $_POST['Date_m'];
 
-if(!empty($Addiction))
-{
-    @$Addiction = implode("、",$Addiction);
-}
-else
-{
-    $Addiction = '';
-}
+// if(!empty($Addiction))
+// {
+//     @$Addiction = implode("、",$Addiction);
+// }
+// else
+// {
+//     $Addiction = '';
+// }
 
 if(!empty($R_phone))
 {
@@ -97,10 +97,10 @@ else
 // $counter_text =mysqli_fetch_row($select_counter);
 // $counter = $counter_text[0]+1;
 
-$sql = "INSERT INTO `consult` (`Phone_id`,`Way`,`Way_detail`,`Name`,`Gender`,`Object_type`,`Addiction`,`M_addiction`,`Age`,`A_detail`,`Address`,`L_detail`,`Info_Name`,`Relationship_detail`,`R_detail`,`R_phone`,`Referral`,`Referral_detail`,`Know_from`,`Know_from_detail`,`Eligible`,`Assign`,`Location`,`Location_detail`,`Start_date`,`End_date`,`Start_time`,`End_time`,`One_user_name`,`Two_user_name`,`Remark`,`Create_date`,`Create_name`) VALUES
- ('$Phone_id','$Way','$Way_detail','$Name','$Gender','$Object_type','$Addiction','$M_addiction',
+$sql = "INSERT INTO `consult` (`Phone_id`,`Way`,`Way_detail`,`Name`,`Gender`,`Object_type`,`M_addiction`,`Age`,`A_detail`,`Address`,`L_detail`,`Info_Name`,`Relationship_detail`,`R_detail`,`R_phone`,`Referral`,`Referral_detail`,`Eligible`,`Assign`,`Location`,`Location_detail`,`Start_date`,`End_date`,`Start_time`,`End_time`,`One_user_name`,`Two_user_name`,`Remark`,`Create_date`,`Create_name`) VALUES
+ ('$Phone_id','$Way','$Way_detail','$Name','$Gender','$Object_type','$M_addiction',
  '$Age','$A_detail','$Address','$L_detail','$Info_Name','$Relationship_detail','$R_detail','$R_phone',
- '$Referral','$Referral_detail','$Know_from','$Know_from_detail',
+ '$Referral','$Referral_detail',
  '$Eligible','$Assign',
  '$Location','$Location_detail',
  '$Add_date','$End_date','$Start_time','$End_time',

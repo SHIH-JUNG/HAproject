@@ -1,7 +1,9 @@
 <?php
 include("sql_connect.php"); 
 //region 抓資料
-$note = "SELECT * FROM `supervisor_record` ORDER BY `supervisor_record`.`Id` ASC;";
+$year = $_POST['year'];
+
+$note = "SELECT * FROM `supervisor_record` Where `Year` = '$year' ORDER BY `supervisor_record`.`Id` ASC;";
 
 //宣告空的陣列
 $datas = array();

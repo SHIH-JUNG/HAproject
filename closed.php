@@ -130,7 +130,7 @@ word-break: keep-all;/*必須*/
 
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">社工員：</td>
                                                             <td class="text-left">
-                                                                <select id="assign" rel="7" class="filter search">
+                                                                <select id="assign" rel="6" class="filter search">
                                                                     <!-- <option value="">所有</option> -->
                                                                 </select>
                                                             </td>
@@ -148,14 +148,14 @@ word-break: keep-all;/*必須*/
                                                             </td>
 
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">結案日期：</td>
-                                                            <td class="text-left">
+                                                            <td colspan="3" class="text-left">
                                                                 <input id="closed_min_date" name="closed_date" class="" type="date" placeholder="結案日期搜尋">
                                                                 <label>～</label>
                                                                 <input id="closed_max_date" name="closed_date" class="" type="date" placeholder="結案日期搜尋"> 
                                                             </td>
 
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">備註：</td>
-                                                            <td class="text-left"><input id="filter_remark" rel="6" name="filter_remark" class="filter search" type="text" placeholder="備註搜尋"></td>
+                                                            <!-- <td class="text-right" style="background-color:rgb(255 201 54)">備註：</td>
+                                                            <td class="text-left"><input id="filter_remark" rel="6" name="filter_remark" class="filter search" type="text" placeholder="備註搜尋"></td> -->
                                                         </tr>
                                                         <tr>
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">姓名：</td>
@@ -164,7 +164,15 @@ word-break: keep-all;/*必須*/
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">結案原因：</td>
                                                             <td colspan="3" class="text-left">
                                                                 <select id="closed_r" rel="5" class="filter search">
-                                                                    <!-- <option value="">所有</option> -->
+                                                                    <!-- <option value="">所有</option>
+                                                                    <option value="達到目標，已無需要在服務">達到目標，已無需要在服務</option>
+                                                                    <option value="穩定就業三個月，以達到目標">穩定就業三個月，以達到目標</option>
+                                                                    <option value="個案者死亡">個案者死亡</option>
+                                                                    <option value="再次入監無法合作">再次入監無法合作</option>
+                                                                    <option value="無意願接受服務">無意願接受服務</option>
+                                                                    <option value="失去聯絡">失去聯絡</option>
+                                                                    <option value="轉介其他資源單位，並且已達處遇目標">轉介其他資源單位，並且已達處遇目標</option>
+                                                                    <option value="其他">其他</option> -->
                                                                 </select>
                                                             </td>
                                                         </tr>
@@ -198,7 +206,7 @@ word-break: keep-all;/*必須*/
                                                                 <th>開案日期</th>
                                                                 <th>結案日期</th>
                                                                 <th>結案原因</th>
-                                                                <th>備註</th>
+                                                                <!-- <th>備註</th> -->
                                                                 <th>社工員</th>
                                                                 <th>督導簽章</th>
                                                             </tr>

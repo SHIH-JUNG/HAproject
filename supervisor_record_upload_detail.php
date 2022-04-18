@@ -10,7 +10,7 @@
         </tr>
         <tr style="text-align:left">
             <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">上傳日期</td>
-            <td style="border-bottom: solid 1px;"><input class="sr_question" id="upload_rec_date" name="upload_rec_date" type="date"></td>
+            <td style="border-bottom: solid 1px;"><input class="sr_question" id="upload_rec_date" name="upload_rec_date" datepicker="ch_datepicker" type="text"></td>
         </tr>
         <tr style="text-align:left">
             <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">檔案上傳</td>

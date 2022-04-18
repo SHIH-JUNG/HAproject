@@ -29,7 +29,7 @@ if($("#call_datetime").val() != "" && $("#name").val() != ""){
                 Name:$("#name").val(),
                 Gender:$("#gender").val(),
                 Object_type: $("#object_type").val(),
-                Addition:addition,
+                // Addition:addition,
                 main_radio:main_val,
                 Age:$("#age").val(),
                 a_val:a_val,
@@ -43,8 +43,8 @@ if($("#call_datetime").val() != "" && $("#name").val() != ""){
                 ref_val:ref_val,
                 Referral_phone:refphone_val,
                 Referral_name:$("#referral_name").val(),
-                Know_from:$("#k_place").val(),
-                k_val:k_val,
+                // Know_from:$("#k_place").val(),
+                // k_val:k_val,
                 e_val:e_val,
                 Assign:$("#user").val(),
                 Phone_note:$("#note").val(),
@@ -136,7 +136,7 @@ function check_radio(){
     var r_radio =document.getElementsByName('r_type[]');
     var l_radio =document.getElementsByName('l_type[]');
     var a_radio =document.getElementsByName('a_type[]');
-    var k_radio =document.getElementsByName('k_type[]');
+    // var k_radio =document.getElementsByName('k_type[]');
     var ref_radio =document.getElementsByName('ref_type[]');
     var e_radio =document.getElementsByName('e_type[]');
     //長度
@@ -145,7 +145,7 @@ function check_radio(){
     var r_len = r_radio.length;
     var l_len = l_radio.length;
     var a_len = a_radio.length;
-    var k_len = k_radio.length;
+    // var k_len = k_radio.length;
     var ref_len = ref_radio.length;
     var e_len = e_radio.length;
 
@@ -213,17 +213,17 @@ function check_radio(){
             ref_val= "";
         } 
     }
-    for (i = 0; i < k_len; i++)
-    {
-        if (k_radio[i].checked == true)
-        {
-           k_val = k_radio[i].value;
-            break;
-    //        console.log(w_val)
-        }else{
-            k_val = "";
-        }    
-    }
+    // for (i = 0; i < k_len; i++)
+    // {
+    //     if (k_radio[i].checked == true)
+    //     {
+    //        k_val = k_radio[i].value;
+    //         break;
+    // //        console.log(w_val)
+    //     }else{
+    //         k_val = "";
+    //     }    
+    // }
 
     for (i = 0; i < e_len; i++)
     {
@@ -236,7 +236,7 @@ function check_radio(){
             e_val = "";
         }    
     }
-    console.log(phone_val,refphone_val,r_val,l_val,a_val,ref_val,k_val,e_val);
+    // console.log(phone_val,refphone_val,r_val,l_val,a_val,ref_val,k_val,e_val);
 }
 //endregion
 

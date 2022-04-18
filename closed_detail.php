@@ -63,6 +63,8 @@
     padding: 0;
     padding-top: 15px;
     }
+
+
 </style>
 
 <body>
@@ -222,13 +224,13 @@
                                                                             <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">結案原因</td>
                                                                                 <td style="border-bottom: solid 1px;">
-                                                                                <input class="closed_question" name="closed_reason" style="zoom: 1.5" type="radio" value="達到目標，已無需要在服務"><label>達到目標，已無需要在服務</label>
-                                                                                    <input class="closed_question" name="closed_reason" style="zoom: 1.5" type="radio" value="穩定就業三個月，以達到目標"><label>穩定就業三個月，以達到目標</label>
-                                                                                    <input class="closed_question" name="closed_reason" style="zoom: 1.5" type="radio" value="個案者死亡"><label>個案者死亡</label>
-                                                                                    <input class="closed_question" name="closed_reason" style="zoom: 1.5" type="radio" value="再次入監無法合作"><label>再次入監無法合作</label>
-                                                                                    <input class="closed_question" name="closed_reason" style="zoom: 1.5" type="radio" value="無意願接受服務"><label>無意願接受服務</label><br/>
-                                                                                    <input class="closed_question" name="closed_reason" style="zoom: 1.5" type="radio" value="失去聯絡（一個月連繫三次均聯繫不上或三個月，每月連繫三次均聯繫不上）"><label>失去聯絡（一個月連繫三次均聯繫不上或三個月，每月連繫三次均聯繫不上）</label>
-                                                                                    <input class="closed_question" name="closed_reason" style="zoom: 1.5" type="radio" value="轉介其他資源單位，並且已達處遇目標"><label>轉介其他資源單位，並且已達處遇目標。</label>
+                                                                                    <input class="closed_question" name="closed_reason" style="zoom: 1.5" type="radio" value="達到目標，已無需要在服務"><label class="link_label_closed_reason">達到目標，已無需要在服務</label>
+                                                                                    <input class="closed_question" name="closed_reason" style="zoom: 1.5" type="radio" value="穩定就業三個月，以達到目標"><label class="link_label_closed_reason">穩定就業三個月，以達到目標</label>
+                                                                                    <input class="closed_question" name="closed_reason" style="zoom: 1.5" type="radio" value="個案者死亡"><label class="link_label_closed_reason">個案者死亡</label>
+                                                                                    <input class="closed_question" name="closed_reason" style="zoom: 1.5" type="radio" value="再次入監無法合作"><label class="link_label_closed_reason">再次入監無法合作</label>
+                                                                                    <input class="closed_question" name="closed_reason" style="zoom: 1.5" type="radio" value="無意願接受服務"><label class="link_label_closed_reason">無意願接受服務</label><br/>
+                                                                                    <input class="closed_question" name="closed_reason" style="zoom: 1.5" type="radio" value="失去聯絡（一個月連繫三次均聯繫不上或三個月，每月連繫三次均聯繫不上）"><label class="link_label_closed_reason">失去聯絡（一個月連繫三次均聯繫不上或三個月，每月連繫三次均聯繫不上）</label>
+                                                                                    <input class="closed_question" name="closed_reason" style="zoom: 1.5" type="radio" value="轉介其他資源單位，並且已達處遇目標"><label class="link_label_closed_reason">轉介其他資源單位，並且已達處遇目標。</label>
                                                                                     <div>
                                                                                         <input class="closed_question" name="closed_reason" style="zoom: 1.5" type="radio" value="other"><label>其他</label>
                                                                                         <input class="closed_question" id="closed_reason_other" style="width:75%;" type="text">

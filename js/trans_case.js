@@ -37,7 +37,7 @@ $(document).ready(function(){
 
     //region 顯示諮詢個案編號、開案編號、個案屬性
     $("#unopencase_id").html(unopencase_id);
-    $("#case_id").val(case_id);
+    $("#case_id").html(case_id);
     $("#case_property").val(case_property);
     $("#object_type").val(object_type);
 
@@ -70,8 +70,8 @@ $("#trans_case").on('click',function(){
     {
         swal({
             title: check_update_trans_opencase_data()+"上述資料尚未填寫完畢是否送出？",
-            text: "提示：未填寫完畢將會新增至首頁行事曆提醒",
-            type: "warning",
+            // text: "提示：未填寫完畢將會新增至首頁行事曆提醒",
+            type: "error",
             showCancelButton: true,
             confirmButtonColor: "#DD6B55",
             confirmButtonText: "送出",
@@ -104,7 +104,7 @@ $("#trans_case").on('click',function(){
 //檢查新增個案表格有無未填寫欄位，若有未填寫欄位將會在點擊新增按鈕時提示region
 function check_update_trans_opencase_data()
 {
-    var case_id = $("#case_id").val();
+    // var case_id = $("#case_id").val();
     var create_date = $("#create_date").val();
     var object_type = $("#object_type").val();
     var case_property = $("#case_property").val();
@@ -119,9 +119,9 @@ function check_update_trans_opencase_data()
     var warningstr = "";
 
     if (warningstr == "") {
-        if (case_id == null || case_id.replace(/\s*/g, "") == '') {
-            warningstr += "開案編號\r\n";
-        }
+        // if (case_id == null || case_id.replace(/\s*/g, "") == '') {
+        //     warningstr += "開案編號\r\n";
+        // }
         if (create_date == null || create_date.replace(/\s*/g, "") == '') {
             warningstr += "登入日期\r\n";
         }
@@ -166,7 +166,7 @@ function trans_to_opendata_database()
         type: "POST",
         data:{
             Phone_id:$("#unopencase_id").text(),
-            Case_id:$("#case_id").val(),
+            Case_id:$("#case_id").text(),
             Case_create_date:$("#create_date").val(),
             Object_type:$("#object_type").val(),
             Case_property:$("#case_property").val(),

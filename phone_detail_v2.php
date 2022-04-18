@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="css/bootstrap-table.min.css">
 
     <meta charset="UTF-8" />
-    <!--    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />-->
+    <!--    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalabel=no" />-->
     <meta name="description" content="快樂聯盟資管系統">
     <meta name="author" content="HANG">
     <meta HTTP-EQUIV="pragma" CONTENT="no-cache">
@@ -233,57 +233,31 @@
                                                                                     </select>
                                                                                 </td>
                                                                             </tr>
-                                                                            <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline"><i style="color:red;">※</i>曾經使用物質</td>
-                                                                                <td style="">
-                                                                                    一級毒品：
-                                                                                    <input class="phone_question" name="addition[]" style="zoom: 1.5" type="checkbox" value="海洛因"><label>海洛因</label>
-                                                                                    <input class="phone_question" name="addition[]" style="zoom: 1.5" type="checkbox" value="鴉片"><label>鴉片</label>
-                                                                                    <input class="phone_question" name="addition[]" style="zoom: 1.5" type="checkbox" value="嗎啡"><label>嗎啡</label>
-                                                                                    <input class="phone_question" name="addition[]" style="zoom: 1.5" type="checkbox" value="古柯鹼"><label>古柯鹼</label>
-                                                                                    <br>
-                                                                                    二級毒品：
-                                                                                    <input class="phone_question" name="addition[]" style="zoom: 1.5" type="checkbox" value="安非他命"><label>安非他命</label>
-                                                                                    <input class="phone_question" name="addition[]" style="zoom: 1.5" type="checkbox" value="大麻"><label>大麻</label>
-                                                                                    <input class="phone_question" name="addition[]" style="zoom: 1.5" type="checkbox" value="搖頭丸"><label>搖頭丸</label>
-                                                                                    <br>
-                                                                                    三級毒品：
-                                                                                    <input class="phone_question" name="addition[]" style="zoom: 1.5" type="checkbox" value="K他命"><label>K他命</label>
-                                                                                    <input class="phone_question" name="addition[]" style="zoom: 1.5" type="checkbox" value="FM2藥丸"><label>FM2藥丸</label>
-                                                                                    <br>
-                                                                                    <input class="phone_question" name="addition[]" style="zoom: 1.5" type="checkbox" value="酒精">酒精
-                                                                                    <input class="phone_question" name="addition[]" style="zoom: 1.5" type="checkbox" value="強力膠">強力膠
-                                                                                    <input class="phone_question" name="addition[]" style="zoom: 1.5" type="checkbox" value="檳榔">檳榔
-                                                                                    <input class="phone_question" name="addition[]" style="zoom: 1.5" type="checkbox" value="菸">菸
-                                                                                    <input class="phone_question" name="addition[]" style="zoom: 1.5" type="checkbox" value="精神藥物">精神藥物
-                                                                                    <br>
-                                                                                    <input class="phone_question" name="addition[]" style="zoom: 1.5" type="checkbox" value="其他">其他：<input class="phone_question" id="other" type="text" value="">
-                                                                                </td>
-                                                                            </tr>
+                                                                    
                                                                             <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline"><i style="color:red;">※</i>目前使用物質</td>
                                                                                 <td style="">
                                                                                     一級毒品：
-                                                                                    <label id="addition0" hidden><input class="phone_question" name="main[]" style="zoom: 1.5" type="checkbox" value="海洛因">海洛因</label>
-                                                                                    <label id="addition1" hidden><input class="phone_question" name="main[]" style="zoom: 1.5" type="checkbox" value="鴉片">鴉片</label>
-                                                                                    <label id="addition2" hidden><input class="phone_question" name="main[]" style="zoom: 1.5" type="checkbox" value="嗎啡">嗎啡</label>
-                                                                                    <label id="addition3" hidden><input class="phone_question" name="main[]" style="zoom: 1.5" type="checkbox" value="古柯鹼">古柯鹼</label>
+                                                                                    <label id="addition0" hidden><input class="phone_question" name="main[]" style="zoom: 1.5" type="checkbox" value="海洛因"><label class="ckecked_label">海洛因</label></label>
+                                                                                    <label id="addition1" hidden><input class="phone_question" name="main[]" style="zoom: 1.5" type="checkbox" value="鴉片"><label class="ckecked_label">鴉片</label></label>
+                                                                                    <label id="addition2" hidden><input class="phone_question" name="main[]" style="zoom: 1.5" type="checkbox" value="嗎啡"><label class="ckecked_label">嗎啡</label></label>
+                                                                                    <label id="addition3" hidden><input class="phone_question" name="main[]" style="zoom: 1.5" type="checkbox" value="古柯鹼"><label class="ckecked_label">古柯鹼</label></label>
                                                                                     <br>
                                                                                     二級毒品：
-                                                                                    <label id="addition4" hidden><input class="phone_question" name="main[]" style="zoom: 1.5" type="checkbox" value="安非他命">安非他命</label>
-                                                                                    <label id="addition5" hidden><input class="phone_question" name="main[]" style="zoom: 1.5" type="checkbox" value="大麻">大麻</label>
-                                                                                    <label id="addition6" hidden><input class="phone_question" name="main[]" style="zoom: 1.5" type="checkbox" value="搖頭丸">搖頭丸</label>
+                                                                                    <label id="addition4" hidden><input class="phone_question" name="main[]" style="zoom: 1.5" type="checkbox" value="安非他命"><label class="ckecked_label">安非他命</label></label>
+                                                                                    <label id="addition5" hidden><input class="phone_question" name="main[]" style="zoom: 1.5" type="checkbox" value="大麻"><label class="ckecked_label">大麻</label></label>
+                                                                                    <label id="addition6" hidden><input class="phone_question" name="main[]" style="zoom: 1.5" type="checkbox" value="搖頭丸"><label class="ckecked_label">搖頭丸</label></label>
                                                                                     <br>
                                                                                     三級毒品：
-                                                                                    <label id="addition7" hidden><input class="phone_question" name="main[]" style="zoom: 1.5" type="checkbox" value="K他命">K他命</label>
-                                                                                    <label id="addition8" hidden><input class="phone_question" name="main[]" style="zoom: 1.5" type="checkbox" value="FM2藥丸">FM2藥丸</label>
+                                                                                    <label id="addition7" hidden><input class="phone_question" name="main[]" style="zoom: 1.5" type="checkbox" value="K他命"><label class="ckecked_label">K他命</label></label>
+                                                                                    <label id="addition8" hidden><input class="phone_question" name="main[]" style="zoom: 1.5" type="checkbox" value="FM2藥丸"><label class="ckecked_label">FM2藥丸</label></label>
                                                                                     <br>
-                                                                                    <label id="addition9" hidden><input class="phone_question" name="main[]" style="zoom: 1.5" type="checkbox" value="酒精">酒精</label>
-                                                                                    <label id="addition10" hidden><input class="phone_question" name="main[]" style="zoom: 1.5" type="checkbox" value="強力膠">強力膠</label>
-                                                                                    <label id="addition11" hidden><input class="phone_question" name="main[]" style="zoom: 1.5" type="checkbox" value="檳榔">檳榔</label>
-                                                                                    <label id="addition12" hidden><input class="phone_question" name="main[]" style="zoom: 1.5" type="checkbox" value="菸">菸</label>
-                                                                                    <label id="addition13" hidden><input class="phone_question" name="main[]" style="zoom: 1.5" type="checkbox" value="精神藥物">精神藥物</label>
-                                                                                    <label id="addition14" hidden><input class="phone_question" name="main[]" style="zoom: 1.5" type="checkbox" value="其他">其他：
+                                                                                    <label id="addition9" hidden><input class="phone_question" name="main[]" style="zoom: 1.5" type="checkbox" value="酒精"><label class="ckecked_label">酒精</label></label>
+                                                                                    <label id="addition10" hidden><input class="phone_question" name="main[]" style="zoom: 1.5" type="checkbox" value="強力膠"><label class="ckecked_label">強力膠</label></label>
+                                                                                    <label id="addition11" hidden><input class="phone_question" name="main[]" style="zoom: 1.5" type="checkbox" value="檳榔"><label class="ckecked_label">檳榔</label></label>
+                                                                                    <label id="addition12" hidden><input class="phone_question" name="main[]" style="zoom: 1.5" type="checkbox" value="菸"><label class="ckecked_label">菸</label></label>
+                                                                                    <label id="addition13" hidden><input class="phone_question" name="main[]" style="zoom: 1.5" type="checkbox" value="精神藥物"><label class="ckecked_label">精神藥物</label></label>
+                                                                                    <label id="addition14" hidden><input class="phone_question" name="main[]" style="zoom: 1.5" type="checkbox" value="其他"><label class="ckecked_label">其他：</label>
                                                                                         <input class="phone_question" id="other_main" type="text" value=""></label>
                                                                                 </td>
                                                                             </tr>
@@ -293,14 +267,14 @@
                                                                                     <input class="phone_question" id="age" type="text" maxlength="2" oninput="value=value.replace(/[^\d]/g,'')">歲
                                                                                     <br>
                                                                                     <label>分類：</label>
-                                                                                    <input class="phone_question" name="a_type[]" style="zoom: 1.5" type="radio" value="10歲以下"><label>10歲以下</label>
-                                                                                    <input class="phone_question" name="a_type[]" style="zoom: 1.5" type="radio" value="10-19歲"><label>10-19歲</label>
-                                                                                    <input class="phone_question" name="a_type[]" style="zoom: 1.5" type="radio" value="20-29歲"><label>20-29歲</label>
-                                                                                    <input class="phone_question" name="a_type[]" style="zoom: 1.5" type="radio" value="30-39歲"><label>30-39歲</label>
-                                                                                    <input class="phone_question" name="a_type[]" style="zoom: 1.5" type="radio" value="40-49歲"><label>40-49歲</label>
-                                                                                    <input class="phone_question" name="a_type[]" style="zoom: 1.5" type="radio" value="50-59歲"><label>50-59歲</label>
-                                                                                    <input class="phone_question" name="a_type[]" style="zoom: 1.5" type="radio" value="60歲以上"><label>60歲以上</label>
-                                                                                    <input class="phone_question" name="a_type[]" style="zoom: 1.5" type="radio" value="不明"><label>不明</label>
+                                                                                    <input class="phone_question" name="a_type[]" style="zoom: 1.5" type="radio" value="10歲以下"><label class="radio_label">10歲以下</label>
+                                                                                    <input class="phone_question" name="a_type[]" style="zoom: 1.5" type="radio" value="10-19歲"><label class="radio_label">10-19歲</label>
+                                                                                    <input class="phone_question" name="a_type[]" style="zoom: 1.5" type="radio" value="20-29歲"><label class="radio_label">20-29歲</label>
+                                                                                    <input class="phone_question" name="a_type[]" style="zoom: 1.5" type="radio" value="30-39歲"><label class="radio_label">30-39歲</label>
+                                                                                    <input class="phone_question" name="a_type[]" style="zoom: 1.5" type="radio" value="40-49歲"><label class="radio_label">40-49歲</label>
+                                                                                    <input class="phone_question" name="a_type[]" style="zoom: 1.5" type="radio" value="50-59歲"><label class="radio_label">50-59歲</label>
+                                                                                    <input class="phone_question" name="a_type[]" style="zoom: 1.5" type="radio" value="60歲以上"><label class="radio_label">60歲以上</label>
+                                                                                    <input class="phone_question" name="a_type[]" style="zoom: 1.5" type="radio" value="不明"><label class="radio_label">不明</label>
                                                                                 </td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
@@ -309,12 +283,12 @@
                                                                                     <input class="phone_question" id="address" type="text">
                                                                                     <br>
                                                                                     <label>分類：</label>
-                                                                                    <input class="phone_question" name="l_type[]" style="zoom: 1.5" type="radio" value="北部"><label>北部</label>
-                                                                                    <input class="phone_question" name="l_type[]" style="zoom: 1.5" type="radio" value="中部"><label>中部</label>
-                                                                                    <input class="phone_question" name="l_type[]" style="zoom: 1.5" type="radio" value="南部"><label>南部</label>
-                                                                                    <input class="phone_question" name="l_type[]" style="zoom: 1.5" type="radio" value="東部"><label>東部</label>
-                                                                                    <input class="phone_question" name="l_type[]" style="zoom: 1.5" type="radio" value="離島"><label>離島</label>
-                                                                                    <input class="phone_question" name="l_type[]" style="zoom: 1.5" type="radio" value="國外"><label>國外</label>
+                                                                                    <input class="phone_question" name="l_type[]" style="zoom: 1.5" type="radio" value="北部"><label class="radio_label">北部</label>
+                                                                                    <input class="phone_question" name="l_type[]" style="zoom: 1.5" type="radio" value="中部"><label class="radio_label">中部</label>
+                                                                                    <input class="phone_question" name="l_type[]" style="zoom: 1.5" type="radio" value="南部"><label class="radio_label">南部</label>
+                                                                                    <input class="phone_question" name="l_type[]" style="zoom: 1.5" type="radio" value="東部"><label class="radio_label">東部</label>
+                                                                                    <input class="phone_question" name="l_type[]" style="zoom: 1.5" type="radio" value="離島"><label class="radio_label">離島</label>
+                                                                                    <input class="phone_question" name="l_type[]" style="zoom: 1.5" type="radio" value="國外"><label class="radio_label">國外</label>
                                                                                 </td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
@@ -327,16 +301,16 @@
                                                                                     <input class="phone_question" id="relationship" type="text">
                                                                                     <br>
                                                                                     <label>分類：</label>
-                                                                                    <input class="phone_question" name="r_type[]" style="zoom: 1.5" type="radio" value="配偶"><label>配偶</label>
-                                                                                    <input class="phone_question" name="r_type[]" style="zoom: 1.5" type="radio" value="父母"><label>父母</label>
-                                                                                    <input class="phone_question" name="r_type[]" style="zoom: 1.5" type="radio" value="手足"><label>手足</label>
-                                                                                    <input class="phone_question" name="r_type[]" style="zoom: 1.5" type="radio" value="子女"><label>子女</label>
-                                                                                    <input class="phone_question" name="r_type[]" style="zoom: 1.5" type="radio" value="親戚"><label>親戚</label>
-                                                                                    <input class="phone_question" name="r_type[]" style="zoom: 1.5" type="radio" value="社工"><label>社工</label>
-                                                                                    <input class="phone_question" name="r_type[]" style="zoom: 1.5" type="radio" value="教會"><label>教會</label>
-                                                                                    <input class="phone_question" name="r_type[]" style="zoom: 1.5" type="radio" value="朋友"><label>朋友</label>
-                                                                                    <input class="phone_question" name="r_type[]" style="zoom: 1.5" type="radio" value="本人"><label>本人</label>
-                                                                                    <div><input class="phone_question" name="r_type[]" style="zoom: 1.5" type="radio" value="其他"><label>其他</label></div>
+                                                                                    <input class="phone_question" name="r_type[]" style="zoom: 1.5" type="radio" value="配偶"><label class="radio_label">配偶</label>
+                                                                                    <input class="phone_question" name="r_type[]" style="zoom: 1.5" type="radio" value="父母"><label class="radio_label">父母</label>
+                                                                                    <input class="phone_question" name="r_type[]" style="zoom: 1.5" type="radio" value="手足"><label class="radio_label">手足</label>
+                                                                                    <input class="phone_question" name="r_type[]" style="zoom: 1.5" type="radio" value="子女"><label class="radio_label">子女</label>
+                                                                                    <input class="phone_question" name="r_type[]" style="zoom: 1.5" type="radio" value="親戚"><label class="radio_label">親戚</label>
+                                                                                    <input class="phone_question" name="r_type[]" style="zoom: 1.5" type="radio" value="社工"><label class="radio_label">社工</label>
+                                                                                    <input class="phone_question" name="r_type[]" style="zoom: 1.5" type="radio" value="教會"><label class="radio_label">教會</label>
+                                                                                    <input class="phone_question" name="r_type[]" style="zoom: 1.5" type="radio" value="朋友"><label class="radio_label">朋友</label>
+                                                                                    <input class="phone_question" name="r_type[]" style="zoom: 1.5" type="radio" value="本人"><label class="radio_label">本人</label>
+                                                                                    <div><input class="phone_question" name="r_type[]" style="zoom: 1.5" type="radio" value="其他"><label class="radio_label">其他</label></div>
                                                                                 </td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
@@ -353,17 +327,17 @@
                                                                                     <input class="phone_question" id="referral" type="text">
                                                                                     <br>
                                                                                     <label>分類：</label>
-                                                                                    <input class="phone_question" name="ref_type[]" style="zoom: 1.5" type="radio" value="醫院"><label>醫院</label>
-                                                                                    <input class="phone_question" name="ref_type[]" style="zoom: 1.5" type="radio" value="矯正機關"><label>矯正機關</label>
-                                                                                    <input class="phone_question" name="ref_type[]" style="zoom: 1.5" type="radio" value="自行求助"><label>自行求助</label>
-                                                                                    <input class="phone_question" name="ref_type[]" style="zoom: 1.5" type="radio" value="衛政"><label>衛政</label>
-                                                                                    <input class="phone_question" name="ref_type[]" style="zoom: 1.5" type="radio" value="民間社福機構"><label>民間社福機構</label>
-                                                                                    <input class="phone_question" name="ref_type[]" style="zoom: 1.5" type="radio" value="社福機構"><label>毒防中心</label>
-                                                                                    <input class="phone_question" name="ref_type[]" style="zoom: 1.5" type="radio" value="戒毒機構"><label>警政</label>
-                                                                                    <input class="phone_question" name="ref_type[]" style="zoom: 1.5" type="radio" value="親友"><label>教會</label>
-                                                                                    <input class="phone_question" name="ref_type[]" style="zoom: 1.5" type="radio" value="教會"><label>社政</label>
-                                                                                    <input class="phone_question" name="ref_type[]" style="zoom: 1.5" type="radio" value="其他"><label>其他</label>
-                                                                                    <input class="phone_question" name="ref_type[]" style="zoom: 1.5" type="radio" value="社區"><label>社區</label>
+                                                                                    <input class="phone_question" name="ref_type[]" style="zoom: 1.5" type="radio" value="醫院"><label class="radio_label">醫院</label>
+                                                                                    <input class="phone_question" name="ref_type[]" style="zoom: 1.5" type="radio" value="矯正機關"><label class="radio_label">矯正機關</label>
+                                                                                    <input class="phone_question" name="ref_type[]" style="zoom: 1.5" type="radio" value="自行求助"><label class="radio_label">自行求助</label>
+                                                                                    <input class="phone_question" name="ref_type[]" style="zoom: 1.5" type="radio" value="衛政"><label class="radio_label">衛政</label>
+                                                                                    <input class="phone_question" name="ref_type[]" style="zoom: 1.5" type="radio" value="民間社福機構"><label class="radio_label">民間社福機構</label>
+                                                                                    <input class="phone_question" name="ref_type[]" style="zoom: 1.5" type="radio" value="社福機構"><label class="radio_label">毒防中心</label>
+                                                                                    <input class="phone_question" name="ref_type[]" style="zoom: 1.5" type="radio" value="戒毒機構"><label class="radio_label">警政</label>
+                                                                                    <input class="phone_question" name="ref_type[]" style="zoom: 1.5" type="radio" value="親友"><label class="radio_label">教會</label>
+                                                                                    <input class="phone_question" name="ref_type[]" style="zoom: 1.5" type="radio" value="教會"><label class="radio_label">社政</label>
+                                                                                    <input class="phone_question" name="ref_type[]" style="zoom: 1.5" type="radio" value="其他"><label class="radio_label">其他</label>
+                                                                                    <input class="phone_question" name="ref_type[]" style="zoom: 1.5" type="radio" value="社區"><label class="radio_label">社區</label>
                                                                                 </td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
@@ -378,30 +352,30 @@
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline">職稱/姓名</td>
                                                                                 <td style=""><input class="phone_question" id="referral_name" oninput="value=value.replace(/[\d]/g,'')" type="text"></td>
                                                                             </tr>
-                                                                            <tr style="text-align:left">
+                                                                            <!-- <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline">得知快樂聯盟管道</td>
                                                                                 <td style="">
                                                                                     <input class="phone_question" id="k_place" type="text">
                                                                                     <br>
                                                                                     <label>分類：</label>
-                                                                                    <input class="phone_question" name="k_type[]" style="zoom: 1.5" type="radio" value="網路"><label>網路</label>
-                                                                                    <input class="phone_question" name="k_type[]" style="zoom: 1.5" type="radio" value="醫院"><label>醫院</label>
-                                                                                    <input class="phone_question" name="k_type[]" style="zoom: 1.5" type="radio" value="監所"><label>監所</label>
-                                                                                    <input class="phone_question" name="k_type[]" style="zoom: 1.5" type="radio" value="舊個案"><label>舊個案</label>
-                                                                                    <input class="phone_question" name="k_type[]" style="zoom: 1.5" type="radio" value="社福機構"><label>社福機構</label>
-                                                                                    <input class="phone_question" name="k_type[]" style="zoom: 1.5" type="radio" value="戒毒機構"><label>戒毒機構</label>
-                                                                                    <input class="phone_question" name="k_type[]" style="zoom: 1.5" type="radio" value="親友"><label>親友</label>
-                                                                                    <input class="phone_question" name="k_type[]" style="zoom: 1.5" type="radio" value="教會"><label>教會</label>
-                                                                                    <input class="phone_question" name="k_type[]" style="zoom: 1.5" type="radio" value="其他"><label>其他</label>
-                                                                                    <input class="phone_question" name="k_type[]" style="zoom: 1.5" type="radio" value="不明"><label>不明</label>
+                                                                                    <input class="phone_question" name="k_type[]" style="zoom: 1.5" type="radio" value="網路"><label class="radio_label">網路</label>
+                                                                                    <input class="phone_question" name="k_type[]" style="zoom: 1.5" type="radio" value="醫院"><label class="radio_label">醫院</label>
+                                                                                    <input class="phone_question" name="k_type[]" style="zoom: 1.5" type="radio" value="監所"><label class="radio_label">監所</label>
+                                                                                    <input class="phone_question" name="k_type[]" style="zoom: 1.5" type="radio" value="舊個案"><label class="radio_label">舊個案</label>
+                                                                                    <input class="phone_question" name="k_type[]" style="zoom: 1.5" type="radio" value="社福機構"><label class="radio_label">社福機構</label>
+                                                                                    <input class="phone_question" name="k_type[]" style="zoom: 1.5" type="radio" value="戒毒機構"><label class="radio_label">戒毒機構</label>
+                                                                                    <input class="phone_question" name="k_type[]" style="zoom: 1.5" type="radio" value="親友"><label class="radio_label">親友</label>
+                                                                                    <input class="phone_question" name="k_type[]" style="zoom: 1.5" type="radio" value="教會"><label class="radio_label">教會</label>
+                                                                                    <input class="phone_question" name="k_type[]" style="zoom: 1.5" type="radio" value="其他"><label class="radio_label">其他</label>
+                                                                                    <input class="phone_question" name="k_type[]" style="zoom: 1.5" type="radio" value="不明"><label class="radio_label">不明</label>
                                                                                 </td>
-                                                                            </tr>
+                                                                            </tr> -->
                                                                             <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline">是否符合開案</td>
                                                                                 <td style="text-align:left">
-                                                                                    <input class="phone_question" name="e_type[]" style="zoom: 1.5" type="radio" value="是"><label>是</label>
-                                                                                    <input class="phone_question" name="e_type[]" style="zoom: 1.5" type="radio" value="否"><label>否</label>
-                                                                                    <input class="phone_question" name="e_type[]" style="zoom: 1.5" type="radio" value="不明"><label>不明</label>
+                                                                                    <input class="phone_question" name="e_type[]" style="zoom: 1.5" type="radio" value="是"><label class="radio_label">是</label>
+                                                                                    <input class="phone_question" name="e_type[]" style="zoom: 1.5" type="radio" value="否"><label class="radio_label">否</label>
+                                                                                    <input class="phone_question" name="e_type[]" style="zoom: 1.5" type="radio" value="不明"><label class="radio_label">不明</label>
                                                                                 </td>
                                                                             </tr>
                                                                             <tr style="text-align:left">

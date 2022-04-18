@@ -201,7 +201,7 @@ word-break: keep-all;/*必須*/
 
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">符合開案：</td>
                                                             <td class="text-left">
-                                                                <select rel="14" class="filter search">
+                                                                <select rel="13" class="filter search">
                                                                     <option value="">所有</option>
                                                                     <option value="是">是</option>
                                                                     <option value="否">否</option>
@@ -245,20 +245,10 @@ word-break: keep-all;/*必須*/
                                                                 </select>
                                                             </td>
 
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">得知管道：</td>
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">負責同工：</td>
                                                             <td class="text-left">
-                                                                <select rel="13" class="filter search">
-                                                                    <option value="">所有</option>
-                                                                    <option value="網路">網路</option>
-                                                                    <option value="醫院">醫院</option>
-                                                                    <option value="監所">監所</option>
-                                                                    <option value="舊個案">舊個案</option>
-                                                                    <option value="社福機構">社福機構</option>
-                                                                    <option value="戒毒機構">戒毒機構</option>
-                                                                    <option value="朋友">朋友</option>
-                                                                    <option value="教會">教會</option>
-                                                                    <option value="其他">其他</option>
-                                                                    <option value="不明">不明</option>
+                                                                <select id="assign_n" rel="14" class="filter search">
+                                                                    
                                                                 </select>                                                            
                                                             </td>
                                                         </tr>
@@ -299,7 +289,7 @@ word-break: keep-all;/*必須*/
                                                                 <th>年齡區間</th>
                                                                 <th>居住縣市</th>
                                                                 <th>聯絡人與案主關係</th>
-                                                                <th>得知管道</th>
+                                                                <!-- <th>得知管道</th> -->
                                                                 <th>是否符合開案</th>
                                                                 <th>負責同工</th>
                                                             </tr>

@@ -50,19 +50,21 @@ var new_address_arr=[];
                             '<td style="text-align:center"></td>' +
                             '<td style="text-align:center">' + data.Gender[index] + '</td>' +
                             '<td style="text-align:center">' + data.Object_type[index] + '</td>' +
-                            '<td style="text-align:center">' + data.Addiction[index] + '</td>' +
+                            '<td style="text-align:center">' + data.M_addiction[index] + '</td>' +
                             '<td style="text-align:center">' + data.A_detail[index] + '</td>' +
                             '<td style="text-align:center">' + data.Address[index].substring(0,3) + '</td>' +
                             // '<td style="text-align:center">' + data.Referral_detail[index] + '</td>' +
                             '<td style="text-align:center">' + data.R_detail[index] + '</td>' +
                             // '<td style="text-align:center">' + data.Relationship_detail[index] + '</td>' +
-                            '<td style="text-align:center">' + data.Know_from_detail[index] + '</td>' +
+                            // '<td style="text-align:center">' + data.Know_from_detail[index] + '</td>' +
                             '<td style="text-align:center">' + data.Eligible[index] + '</td>' +    
                             '<td style="text-align:center">' + data.Assign[index] + '</td>' +   
                         '</tr>'
+                        
                 //將Phone_id加入編號的option選項內
                 $("#phone_id").append('<option value="'+data.Phone_id[index]+'">'+data.Phone_id[index]+'</option>');
-                $("#phone_count").append('<option value="'+data.Count[index]+'">'+data.Count[index]+'</option>');
+                $("#phone_count").append('<option value="'+data.phone_count[index]+'">'+data.phone_count[index]+'</option>');
+                $("#assign_n").append('<option value="'+data.Assign[index]+'">'+data.Assign[index]+'</option>');
                 //將地址分割出縣市名稱
                 local_str = data.Address[index];
                 if(local_str.indexOf("縣") != -1 || local_str.indexOf("市") != -1)
@@ -83,43 +85,35 @@ var new_address_arr=[];
                 });
                     
                 //console.log(address_arr);
-                //option小到大排序
-                $('#phone_id option').sort(function(a,b){
-                    var aText = $(a).text().toUpperCase();
-                    var bText = $(b).text().toUpperCase();
-                    if(aText>bText) return 1;
-                    if(aText<bText) return -1;
-                    return 0;
-                }).appendTo('#phone_id')
+                //找出所有查詢表格下拉式選單，將內容排序、加上"所有查詢"、去除重複值
+            var filter_select = $("select.filter")
 
-                //最前面新增"所有"選像
-                $('#phone_id').prepend("<option value='' selected='selected'>所有</option>");
-                
-                //option小到大排序
-                $('#phone_count option').sort(function(a,b){
-                    var aText = $(a).text().toUpperCase();
-                    var bText = $(b).text().toUpperCase();
-                    if(aText>bText) return 1;
-                    if(aText<bText) return -1;
-                    return 0;
-                }).appendTo('#phone_count')
-                
-            //最前面新增"所有"選像
-            $('#phone_count').prepend("<option value='' selected='selected'>所有</option>");
+            $.each(filter_select,function(i,v){
 
-            $("#phone_id").children().each(function() {
-                text = $(this).text();
-                if($("select#phone_id option:contains("+text+")").length > 1){
-                    $("select#phone_id option:contains("+text+"):gt(0)").remove();
+                var this_id = $(this).attr("id");
+
+                if(this_id!=undefined)
+                {
+                     //option小到大排序
+                    $('#'+this_id+' option').sort(function(a,b){
+                        var aText = $(a).text().toUpperCase();
+                        var bText = $(b).text().toUpperCase();
+                        if(aText>bText) return 1;
+                        if(aText<bText) return -1;
+                        return 0;
+                    }).appendTo('#'+this_id+'')
+
+                    //最前面新增"所有"選像
+                    $('#'+this_id+'').prepend("<option value='' selected='selected'>所有</option>");
+
+                    $("#"+this_id+"").children().each(function() {
+                        text = $(this).text();
+                        if($("select#"+this_id+" option:contains("+text+")").length > 1){
+                            $("select#"+this_id+" option:contains("+text+"):gt(0)").remove();
+                        }
+                        //    console.log(text)
+                    });
                 }
-//                    console.log(text)
-            });
-            $("#phone_count").children().each(function() {
-                text = $(this).text();
-                if($("select#phone_count option:contains("+text+")").length > 1){
-                    $("select#phone_count option:contains("+text+"):gt(0)").remove();
-                }
-//                    console.log(text)
             });
 
             //印出表格

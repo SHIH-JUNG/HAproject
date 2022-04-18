@@ -131,7 +131,7 @@ input[type=number] {
                                                                 </td>
                                                             </tr>
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">開案編號</td>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>開案編號</td>
                                                                 <td style="border-bottom: solid 1px;"><input id="case_id" type="text"></td>
                                                             </tr>
                                                             <tr class="text-align:left">

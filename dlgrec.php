@@ -121,61 +121,21 @@ word-break: keep-all;/*必須*/
                                                                 <input id="max_date" name="fillin_date" class="" type="date" placeholder="日期搜尋"> 
                                                             </td>
 
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">管理員/生活輔導員：</td>
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">同儕生輔員/生活輔導員：</td>
                                                             <td class="text-left">
-                                                                <select id="dlg_manager" rel="7" class="filter search">
+                                                                <select id="dlg_manager" rel="1" class="filter search">
                                                                     <!-- <option value="">所有</option> -->
                                                                 </select>
                                                             </td>
 
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">社工員：</td>
                                                             <td class="text-left">
-                                                                <select id="social_worker" rel="8" class="filter search">
+                                                                <select id="social_worker" rel="2" class="filter search">
                                                                     <!-- <option value="">所有</option> -->
                                                                 </select>
                                                             </td>
                                                         </tr>
                                                        
-                                                        <tr>
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">早餐人數：</td>
-                                                            <td class="text-left">
-                                                                <select id="bf_num" rel="1" class="filter search">
-                                                                    <!-- <option value="">所有</option> -->
-                                                                </select>
-                                                            </td>
-
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">午餐人數：</td>
-                                                            <td class="text-left">
-                                                                <select id="al_num" rel="2" class="filter search">
-                                                                    <!-- <option value="">所有</option> -->
-                                                                </select>
-                                                            </td>
-
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">晚餐人數：</td>
-                                                            <td class="text-left">
-                                                                <select id="em_num" rel="3" class="filter search">
-                                                                    <!-- <option value="">所有</option> -->
-                                                                </select>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">當日入住人數：</td>
-                                                            <td class="text-left">
-                                                                <select id="lp_num" rel="4" class="filter search">
-                                                                    <!-- <option value="">所有</option> -->
-                                                                </select>
-                                                            </td>
-
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">請假人數：</td>
-                                                            <td class="text-left">
-                                                                <select id="leave_num" rel="5" class="filter search">
-                                                                    <!-- <option value="">所有</option> -->
-                                                                </select>
-                                                            </td>
-
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">備註：</td>
-                                                            <td class="text-left"><input id="filter_remark" rel="6" name="filter_remark" class="filter search" type="text" placeholder="備註搜尋"></td>
-                                                        </tr>
                                                         <tr>
                                                             <td colspan="8" class="text-right">
                                                                 <button onclick="location.reload();">重置搜尋</button><span> </span> 
@@ -201,13 +161,7 @@ word-break: keep-all;/*必須*/
                                                             </tr>
                                                             <tr style="background-color:rgb(255 201 54);">
                                                                 <th>日期</th>
-                                                                <th>早餐人數</th>
-                                                                <th>午餐人數</th>
-                                                                <th>晚餐人數</th>
-                                                                <th>當日入住人數</th>
-                                                                <th>請假人數</th>
-                                                                <th>備註</th>
-                                                                <th>管理員/生活輔導員</th>
+                                                                <th>同儕生輔員/生活輔導員</th>
                                                                 <th>社工員</th>
                                                                 <th>督導</th>
                                                             </tr>

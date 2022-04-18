@@ -190,7 +190,7 @@
                                                                         </tr>
                                                                         <tr style="text-align:left">
                                                                             <td colspan="2" style="border-bottom: solid 1px;">
-                                                                                <label for="dlg_manager">管理員/生活輔導員：</label><input class="dlgrec_question" style="width:10em;" id="dlg_manager" type="text">
+                                                                                <label for="dlg_manager">同儕生輔員/生活輔導員：</label><input class="dlgrec_question" style="width:10em;" id="dlg_manager" type="text">
                                                                                 <label for="social_worker">社工員：</label><input class="dlgrec_question" style="width:10em;" id="social_worker" type="text">
                                                                                 <label for="supervise">督導：</label><input class="dlgrec_question" style="width:10em;" id="supervise" type="text">
                                                                             </td>

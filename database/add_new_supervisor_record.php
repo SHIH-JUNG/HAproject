@@ -5,13 +5,13 @@ session_start();
 include("sql_connect.php");
 
 $record_content = json_encode($_POST['record_content'],JSON_UNESCAPED_UNICODE);
-
+$year = $_POST['year'];
 
 $user = $_SESSION['name'];
 
 
-$sql = "INSERT INTO `supervisor_record` (`record_content`,`Create_date`,`Create_name`) VALUES
- ('$record_content', Now(), '$user');";
+$sql = "INSERT INTO `supervisor_record` (`Year`, `record_content`,`Create_date`,`Create_name`) VALUES
+ ('$year', '$record_content', Now(), '$user');";
 	if(mysqli_query($conn,$sql)){
         echo true;
     }else{

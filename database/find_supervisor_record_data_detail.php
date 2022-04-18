@@ -2,9 +2,10 @@
 include("sql_connect.php"); 
 
 $sr_id = $_POST['sr_id']; 
+$year = $_POST['year'];
 
 //region 抓資料
-$note = "SELECT * FROM `supervisor_record` WHERE `Id` = '$sr_id' ORDER BY `supervisor_record`.`Id` ASC;";
+$note = "SELECT * FROM `supervisor_record` WHERE `Id` = '$sr_id' AND `Year` = '$year' ORDER BY `supervisor_record`.`Id` ASC;";
 
 //宣告空的陣列
 $datas = array();

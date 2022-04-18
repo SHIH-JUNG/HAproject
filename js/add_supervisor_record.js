@@ -1,6 +1,8 @@
 //datepicker創建 region
 datepicker_create = function(selector_id) {
 
+
+
     $('#'+selector_id).datepicker({
         changeYear: true,
         changeMonth: true,
@@ -39,7 +41,8 @@ datepicker_create = function(selector_id) {
             }, 10);
         }
     });
-    
+    $('#'+selector_id).datepicker("setDate", 'today');
+
 }
 //endregion
 
@@ -70,8 +73,6 @@ trans_to_EN =  function(endate) {
 
 $(document).ready(function () {
 
-    var datetoday = moment().format('YYYY-MM-DD');
-    $("#upload_rec_date").val(datetoday);
 
     //將input datepicker屬性名稱為ch_datepicker創建datepicker初始化 region
     $("input[datepicker='ch_datepicker']").each(function(){
@@ -84,7 +85,11 @@ $(document).ready(function () {
 }); 
 
 test1 = function() {
-   
+    console.log("test1")
+    var meeting_date_year_split = $("#meeting_date").val().split('年');
+    console.log(meeting_date_year_split[0])
+    var upload_rec_date_year_split = $("#upload_rec_date").val().split('年');
+    console.log(upload_rec_date_year_split[0])
 }
 
 
@@ -101,6 +106,9 @@ $("#rec_add_new").on('click',function(){
     });
 
     var form = $('#form_a').serializeArray();
+
+    var meeting_date_year_split = $("#meeting_date").val().split('年');
+
 
 
     // console.log(form)
@@ -129,7 +137,8 @@ $("#rec_add_new").on('click',function(){
             url: "database/add_new_supervisor_record.php",
             type: "POST",
             data:{
-                record_content:form
+                record_content:form,
+                year:meeting_date_year_split[0]
             },
 //            dataType: "JSON",
             success: function (data) {
@@ -140,7 +149,7 @@ $("#rec_add_new").on('click',function(){
                         title: '新增成功!',
                         allowOutsideClick: false //不可點背景關閉
                         }).then(function () {
-                            window.location.replace("supervisor_record.php"); 
+                            window.location.href = 'supervisor_record.php?year='+meeting_date_year_split[0];
                         })
                 }
                 else{
@@ -379,6 +388,9 @@ function submit_form_data_upload() {
         }
     }
 
+    var upload_rec_date_year_split = $("#upload_rec_date").val().split('年');
+
+     form_data.append("year", upload_rec_date_year_split[0]);
      form_data.append("upload_content", JSON.stringify(form));
 
      for (var pair of form_data.entries()) {
@@ -401,7 +413,7 @@ function submit_form_data_upload() {
                     title: '新增成功!',
                     allowOutsideClick: false //不可點背景關閉
                     }).then(function () {
-                        window.location.replace("supervisor_record.php"); 
+                        window.location.href = 'supervisor_record.php?year='+upload_rec_date_year_split[0];
                     })
             }
             else{

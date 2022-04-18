@@ -13,14 +13,14 @@ $("#case_add_new").on('click',function(){
         stau = true;
     }
 
-    if (check_update_currentcase_data() != "") 
-    {
+    // if (check_update_currentcase_data() != "") 
+    // {
             
-        wstau = false;
-    }
-    else {
-        wstau = true;
-    }
+    //     wstau = false;
+    // }
+    // else {
+    //     wstau = true;
+    // }
 
     if(!stau)
     {
@@ -31,39 +31,7 @@ $("#case_add_new").on('click',function(){
     }
     else
     { 
-        if(!wstau)
-        {
-            swal({
-                title: check_update_currentcase_data()+"上述資料尚未填寫完畢是否送出？",
-                text: "提示：未填寫完畢將會新增至首頁行事曆提醒",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#DD6B55",
-                confirmButtonText: "送出",
-                cancelButtonText: "取消",
-                showConfirmButton: true,
-                showCancelButton: true
-            }).then(function(result) {
-                if (result) {
-                    //若尚未填寫完畢，新增提醒至行事曆
-                    // add_new_caseedit_calendar();
-                    //新增至開案個案
-                    add_new_current_case_database();
-                }
-            }, function(dismiss){
-                if(dismiss == 'cancel'){
-                    swal({
-                        title:'已取消送出',
-                        type:'success',                        
-                    })
-                }
-            }).catch(swal.noop)
-        }
-        else
-        {
-            add_new_current_case_database();
-        }
-        
+        add_new_current_case_database();
     }
 });
 //endregion
@@ -134,6 +102,21 @@ function check_current_case_value()
     var caseid_repeat = check_case_isrepeat();
     var errorstr = "";
 
+    var case_id_c_2 = "none";
+    if (case_id.replace(/\s*/g, "") != '') {
+
+        if(case_id.includes("ER"))
+        {
+            case_id_c_2 = case_id.replace("ER", "")
+        }
+        else if(case_id.includes("A"))
+        {
+            case_id_c_2 = case_id.replace("A", "")
+        }
+    }
+
+    console.log(case_id_c_2)
+
     if (case_id == null) {
         errorstr += "未填寫開案編號!\r\n";
     }
@@ -149,7 +132,7 @@ function check_current_case_value()
         {
             errorstr += "開案編號重複!!!\r\n";
         }
-        if (case_id.replace(/\s*/g, "") == '') {
+        if (case_id.replace(/\s*/g, "") == ''  || case_id_c_2.replace(/\s*/g, "") == '') {
             errorstr += "未填寫開案編號!\r\n";
         }
         if (case_property.replace(/\s*/g, "") == '') {

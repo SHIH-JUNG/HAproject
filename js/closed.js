@@ -12,7 +12,11 @@ $.ajax({
 
             if(value.Closed_reason.includes("other"))
             {
-                value.Closed_reason = value.Closed_reason.replace("other", "");
+                value.Closed_reason = value.Closed_reason.replace("other", "其他：");
+            }
+            else if(value.Closed_reason.includes("失去聯絡"))
+            {
+                value.Closed_reason = "失去聯絡";
             }
 
             cssString += 
@@ -23,7 +27,7 @@ $.ajax({
                         '<td style="text-align:center">' + value.Open_date + '</td>' +
                         '<td style="text-align:center">' + value.Closed_date + '</td>' +
                         '<td style="text-align:center">' + value.Closed_reason + '</td>' +
-                        '<td style="text-align:center">' + value.Remark + '</td>' +
+                        // '<td style="text-align:center">' + value.Remark + '</td>' +
                         '<td style="text-align:center">' + value.Assign + '</td>' +
                         '<td style="text-align:center">' + value.Supervise + '</td>' +
                     '</tr>'

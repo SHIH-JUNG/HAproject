@@ -10,7 +10,7 @@ $Way_detail = $_POST['Way_detail'];
 $Name = $_POST['Name'];
 $Gender = $_POST['Gender'];
 $Object_type = $_POST['Object_type'];
-@$Addition = $_POST['Addition'];
+// @$Addition = $_POST['Addition'];
 @$main_radio = $_POST['main_radio'];
 @$Age = $_POST['Age'];
 @$a_val = $_POST['a_val'];
@@ -24,8 +24,8 @@ $Object_type = $_POST['Object_type'];
 @$ref_val = $_POST['ref_val'];
 @$Referral_phone = $_POST['Referral_phone'];
 @$Referral_name = $_POST['Referral_name'];
-@$Know_from= $_POST['Know_from'];
-@$k_val = $_POST['k_val'];
+// @$Know_from= $_POST['Know_from'];
+// @$k_val = $_POST['k_val'];
 @$e_val = $_POST['e_val'];
 @$Assign = $_POST['Assign'];
 $user = $_SESSION['name'];
@@ -34,11 +34,11 @@ $date_y = $_POST['date_y'];
 $date_m = $_POST['date_m'];
 
 
-if(!empty($Addition)){
-@$Addiction_A = implode("、",$Addition);
-}else{
-    $Addiction_A = $Addition;
-}
+// if(!empty($Addition)){
+// @$Addiction_A = implode("、",$Addition);
+// }else{
+//     $Addiction_A = $Addition;
+// }
 
 if(!empty($main_radio)){
 @$Main_radio = implode("、",$main_radio);
@@ -83,11 +83,11 @@ $Count = "SELECT COUNT(`Phone_id`) FROM `consult` WHERE `Phone_id`='$Phone_id'";
 @$count_text = mysqli_fetch_row($select_count);
 @$Count = ($count_text[0]+1);
 
-$sql = "INSERT INTO `consult` (`Phone_id`,`Call_datetime`,`Way`,`Way_detail`,`Name`,`Gender`,`Object_type`,`Addiction`,`M_addiction`,`Age`,`A_detail`,`Address`,`L_detail`,`Info_Name`,`Relationship_detail`,`R_detail`,`R_phone`,`Referral`,`Referral_detail`,`Referral_phone`,`Referral_name`,`Know_from`,`Know_from_detail`,`Eligible`,`Assign`,`Phone_note`,`Count`,`Is_firstadd`,`Create_date`,`Create_name`) VALUES
+$sql = "INSERT INTO `consult` (`Phone_id`,`Call_datetime`,`Way`,`Way_detail`,`Name`,`Gender`,`Object_type`,`M_addiction`,`Age`,`A_detail`,`Address`,`L_detail`,`Info_Name`,`Relationship_detail`,`R_detail`,`R_phone`,`Referral`,`Referral_detail`,`Referral_phone`,`Referral_name`,`Eligible`,`Assign`,`Phone_note`,`Count`,`Is_firstadd`,`Create_date`,`Create_name`) VALUES
  ('$Phone_id','$Call_datetime','$Way','$Way_detail','$Name','$Gender','$Object_type',
- '$Addiction_A','$Main_radio','$Age', '$a_val' ,'$Address','$l_val','$Info_Name',
+ '$Main_radio','$Age', '$a_val' ,'$Address','$l_val','$Info_Name',
  '$Relationship_detail','$r_val','$Phone','$Referral','$ref_val','$Referral_Phone',
- '$Referral_name','$Know_from','$k_val','$e_val',
+ '$Referral_name','$e_val',
  '$Assign','$Phone_note',
  '$Count',1,Now(),'$user')";
 	if(mysqli_query($conn,$sql)){
