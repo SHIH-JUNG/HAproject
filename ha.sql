@@ -574,6 +574,30 @@ INSERT INTO `ha_phone` (`Id`, `Phone_id`, `Call_datetime`, `Way`, `Way_detail`, 
 (55, 5, '2021-12-31 00:00:00', '電訪', '', 'Deny', '不明', '兒少', '大麻、FM2藥丸', '大麻', '', '30-39歲', '高雄縣', '南部', 'denyfa', '父母', '', '09852233', '自行求助', '自行求助', '', '', '', '醫院', '', '社工員2', 'te', '2', '2021-12-31 00:00:00', '園主任', '2022-01-08 11:53:58', '園主任'),
 (57, 6, '2021-10-15 08:29:00', '面訪', '家訪', 'yukia', '女', '愛滋感染者', '海洛因、安非他命、大麻', '海洛因、大麻', '36', '30-39歲', '彰化縣田中鎮西路里斗中路一段152號', '中部', 'fein', '男友', '配偶', '07123912', '自行求助', '自行求助', '', '', '', '教會', '', '社工員2', 'test', '1', '2022-01-21 19:41:49', '園主任', '2022-01-21 19:41:49', ''),
 (58, 2, '2021-11-30 00:00:00', '', '', 'Allen', '男', '愛滋感染者', '古柯鹼、安非他命、K他命', 'K他命', '', '30-39歲', '新北市', '北部', 'Allen', '本人', '', '09852154', '矯正署', '矯正機關', '123', '矯正署人員', '', '醫院', '是', '社工組長', 'teqweqdw', '7', '2022-01-25 17:12:28', '園主任', '2022-01-25 17:12:28', '');
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `members_assemble`
+--
+
+CREATE TABLE `members_assemble` (
+  `Id` int(240) NOT NULL,
+  `record_content` longtext NOT NULL,
+  `upload_content` longtext NOT NULL,
+  `file_path` varchar(2000) NOT NULL,
+  `Create_date` datetime NOT NULL,
+  `Create_name` varchar(30) NOT NULL,
+  `Update_date` datetime NOT NULL,
+  `Update_name` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `members_assemble`
+--
+
+INSERT INTO `members_assemble` (`Id`, `record_content`, `upload_content`, `file_path`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
+(1, '[{\"name\":\"title_name\",\"value\":\"第test次會議大會\"},{\"name\":\"ceo_name\",\"value\":\"tt執行長\"},{\"name\":\"attendees\",\"value\":\"ttt出席人員\"},{\"name\":\"record\",\"value\":\"ttt團督記錄f\"},{\"name\":\"meeting_date\",\"value\":\"111年04月04日\"},{\"name\":\"meeting_time\",\"value\":\"14:30\"},{\"name\":\"place\",\"value\":\"tr地點\"},{\"name\":\"suggest\",\"value\":\"ttt督導建議\"},{\"name\":\"next_focus\",\"value\":\"ttt下次團督重點ss\"}]', '', '', '2022-04-18 13:39:40', 'Timo', '2022-04-18 20:09:23', '社工員1'),
+(2, '', '\"[{\"name\":\"upload_title_name\",\"value\":\"(upload)第test次會議大會\"},{\"name\":\"upload_rec_date\",\"value\":\"2022-04-01\"},{\"name\":\"upload_rec_remark\",\"value\":\"test備註ssa\"},{\"name\":\"customFile1\",\"value\":\"login eng.png\"}]\"', '../members_assemble/upload/login eng.png', '2022-04-18 13:39:40', 'Pate', '2022-04-18 20:09:51', '社工員1');
 
 -- --------------------------------------------------------
 
@@ -582,19 +606,21 @@ INSERT INTO `ha_phone` (`Id`, `Phone_id`, `Call_datetime`, `Way`, `Way_detail`, 
 --
 
 CREATE TABLE `published` (
-  `id` int(30) NOT NULL,
-  `date_publish` datetime NOT NULL,
-  `unit` varchar(100) NOT NULL,
-  `num_publish` int(100) NOT NULL,
-  `subject` varchar(100) NOT NULL
+  `Id` int(11) NOT NULL,
+  `Date_publish` datetime NOT NULL,
+  `Unit` varchar(100) NOT NULL,
+  `Num_publish` int(100) NOT NULL,
+  `Subject` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- 傾印資料表的資料 `published`
 --
 
-INSERT INTO `published` (`id`, `date_publish`, `unit`, `num_publish`, `subject`) VALUES
-(1, '2022-03-18 04:19:18', '123', 456, '4565');
+INSERT INTO `published` (`Id`, `Date_publish`, `Unit`, `Num_publish`, `Subject`) VALUES
+(7, '0000-00-00 00:00:00', 'jjj', 7, '444'),
+(8, '0000-00-00 00:00:00', 'jjj', 7, '444'),
+(9, '0000-00-00 00:00:00', 'jjj', 7, '444');
 
 -- --------------------------------------------------------
 
@@ -603,21 +629,23 @@ INSERT INTO `published` (`id`, `date_publish`, `unit`, `num_publish`, `subject`)
 --
 
 CREATE TABLE `received` (
-  `id` int(30) NOT NULL,
-  `subject` varchar(50) NOT NULL,
-  `date_come` datetime NOT NULL,
-  `unit_come` varchar(100) NOT NULL,
-  `words_receive` varchar(100) NOT NULL,
-  `num_receive` int(100) NOT NULL
+  `Id` int(11) NOT NULL,
+  `Subject` varchar(50) NOT NULL,
+  `Date_come` datetime NOT NULL,
+  `Unit_come` varchar(100) NOT NULL,
+  `Words_receive` varchar(100) NOT NULL,
+  `Num_receive` int(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- 傾印資料表的資料 `received`
 --
 
-INSERT INTO `received` (`id`, `subject`, `date_come`, `unit_come`, `words_receive`, `num_receive`) VALUES
+INSERT INTO `received` (`Id`, `Subject`, `Date_come`, `Unit_come`, `Words_receive`, `Num_receive`) VALUES
 (1, '無', '2022-03-17 10:12:23', '無', '無', 1),
-(2, '無', '2022-03-15 10:12:23', '無', '無', 1);
+(2, '無', '2022-03-15 10:12:23', '無', '無', 2),
+(3, '無', '2022-03-17 10:12:23', '無', '無', 3),
+(4, '無', '2022-03-15 10:12:23', '無', '無', 4);
 
 -- --------------------------------------------------------
 
@@ -877,6 +905,30 @@ INSERT INTO `user_info` (`Id`, `Account`, `Password`, `Name`, `Authority`, `Date
 (23, 'grace08', '0000', '力聖臨', 1, '2021-03-18 13:29:11', '毘努伊勒家園', '生活輔導員'),
 (24, 'test', 'test', '花花', 1, '2021-03-06 17:04:49', '行政中心', '組長');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `volunteer`
+--
+
+CREATE TABLE `volunteer` (
+  `Id` int(11) NOT NULL,
+  `Year` int(4) NOT NULL,
+  `Name` varchar(10) NOT NULL,
+  `Serv_type` varchar(10) NOT NULL,
+  `Serv_time` text NOT NULL,
+  `Time_all` int(200) NOT NULL,
+  `Rece_hours` varchar(10) NOT NULL,
+  `Serv_award` varchar(10) NOT NULL,
+  `Honor_card` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `volunteer`
+--
+
+INSERT INTO `volunteer` (`Id`, `Year`, `Name`, `Serv_type`, `Serv_time`, `Time_all`, `Rece_hours`, `Serv_award`, `Honor_card`) VALUES
+(27, 110, 'Amy', '電腦', '周一早上 9:00-12:00', 54456, '是', '是', '是');
 --
 -- 已傾印資料表的索引
 --
@@ -966,16 +1018,22 @@ ALTER TABLE `ha_phone`
   ADD PRIMARY KEY (`Id`) USING BTREE;
 
 --
+-- Indexes for table `members_assemble`
+--
+ALTER TABLE `members_assemble`
+  ADD PRIMARY KEY (`Id`);
+
+--
 -- 資料表索引 `published`
 --
 ALTER TABLE `published`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`Id`);
 
 --
 -- 資料表索引 `received`
 --
 ALTER TABLE `received`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`Id`);
 
 --
 -- 資料表索引 `scale`
@@ -1019,6 +1077,14 @@ ALTER TABLE `tw_counties`
 ALTER TABLE `user_info`
   ADD PRIMARY KEY (`Id`);
 
+--
+-- Indexes for table `volunteer`
+--
+ALTER TABLE `volunteer`
+  ADD PRIMARY KEY (`Id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
 --
 -- 在傾印的資料表使用自動遞增(AUTO_INCREMENT)
 --
@@ -1108,16 +1174,22 @@ ALTER TABLE `ha_phone`
   MODIFY `Id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
+-- AUTO_INCREMENT for table `members_assemble`
+--
+ALTER TABLE `members_assemble`
+  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- 使用資料表自動遞增(AUTO_INCREMENT) `published`
 --
 ALTER TABLE `published`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `received`
 --
 ALTER TABLE `received`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `scale`
@@ -1160,6 +1232,12 @@ ALTER TABLE `tw_counties`
 --
 ALTER TABLE `user_info`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- AUTO_INCREMENT for table `volunteer`
+--
+ALTER TABLE `volunteer`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
