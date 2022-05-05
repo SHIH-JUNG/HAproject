@@ -125,6 +125,26 @@ function load_each_form()
                                 '<td>'+value.Remark+'</td>'+
                             '</tr>';
                         }
+                        else if(form_name=="resource")
+                        {
+                            cssstring += 
+                            '<tr name="'+form_name+'_num[]" id="'+value.Case_pid+"_"+value.Id+"_"+value.Phone_id+"_"+value.Case_id+'">'+
+                                '<td>'+value.Form_Create_date+'</td>'+
+                                '<td><a href="'+value.Url+'&form_id='+value.Id+'&form_type='+value.Form_name+'">點擊進入</a></td>'+
+                                '<td>'+value.Remark+'</td>'+
+                            '</tr>';
+                        }
+                        else if(form_name=="interlocution")
+                        {
+                            cssstring += 
+                            '<tr name="'+form_name+'_num[]" id="'+value.Case_pid+"_"+value.Id+"_"+value.Phone_id+"_"+value.Case_id+'">'+
+                                '<td>'+value.Form_Create_date+'</td>'+
+                                othercssstring+
+                                '<td><a href="'+value.Url+'&form_id='+value.Id+'&form_type='+value.Form_name+'">點擊進入</a></td>'+
+                                '<td>'+value.Remark+'</td>'+
+                            '</tr>';
+                        }
+                        
                         else
                         {
                             cssstring += 
@@ -197,6 +217,7 @@ function load_forms_other_row(form_type,index)
     switch (form_type) {
         case 'familyship':
         case 'BSRS5':
+        case 'interlocution':
             str +=
             '<td name="'+form_type+index+'"></td>'+
             '<td name="'+form_type+index+'"></td>';
@@ -212,6 +233,7 @@ function load_forms_other_row(form_type,index)
             break;
 
         case 'health':
+        case 'resource':
             str +='';
             break;
 
@@ -248,16 +270,46 @@ form_add_new = function(obj){
     //除了 建立日期、填表日期、最末端的量表內容，三位置之外都生成 空的td標籤
     empty_td = empty_td.repeat(th_len-3);
 
-    var cssstring = 
-                    '<tr name="'+num_name+'">'+
-                        '<td><span id="create_date_'+obj_name+num+'">'+timenow+'</span></td>'+
-                        '<td><input id="fillin_date_'+obj_name+num+'" type="date"></td>'+
-                        empty_td+
-                        '<td><input id="remark'+obj_name+num+'" type="text"></td>'+
-                    '</tr>'+
-                    '<tr>'+
-                    '<td colspan="'+th_len+'"><button onClick="store('+num+',&quot;'+obj_name+'&quot;);">儲存</button> <button onClick="location.reload();">取消</button></td>'+
-                    '</tr>';
+    if(obj_name=="resource")
+    {
+        var cssstring = 
+        '<tr name="'+num_name+'">'+
+            '<td><span id="create_date_'+obj_name+num+'">'+timenow+'</span></td>'+
+            '<td></td>'+
+            '<td><input id="remark'+obj_name+num+'" type="text"></td>'+
+        '</tr>'+
+        '<tr>'+
+        '<td colspan="'+th_len+'"><button onClick="store('+num+',&quot;'+obj_name+'&quot;);">儲存</button> <button onClick="location.reload();">取消</button></td>'+
+        '</tr>';
+
+    }
+    else if(obj_name=="interlocution")
+    {
+        var cssstring = 
+        '<tr name="'+num_name+'">'+
+            '<td><span id="create_date_'+obj_name+num+'">'+timenow+'</span></td>'+
+            '<td></td>'+
+            empty_td+
+            '<td><input id="remark'+obj_name+num+'" type="text"></td>'+
+        '</tr>'+
+        '<tr>'+
+        '<td colspan="'+th_len+'"><button onClick="store('+num+',&quot;'+obj_name+'&quot;);">儲存</button> <button onClick="location.reload();">取消</button></td>'+
+        '</tr>';
+    }
+    else
+    {
+        var cssstring = 
+        '<tr name="'+num_name+'">'+
+            '<td><span id="create_date_'+obj_name+num+'">'+timenow+'</span></td>'+
+            '<td><input id="fillin_date_'+obj_name+num+'" type="date"></td>'+
+            empty_td+
+            '<td><input id="remark'+obj_name+num+'" type="text"></td>'+
+        '</tr>'+
+        '<tr>'+
+        '<td colspan="'+th_len+'"><button onClick="store('+num+',&quot;'+obj_name+'&quot;);">儲存</button> <button onClick="location.reload();">取消</button></td>'+
+        '</tr>';
+    }
+
 
         //對應的tobody內寫入cssstring
         $("#"+obj_tbody).append(cssstring);

@@ -351,6 +351,12 @@ function check_file_exist(){
         case 'health':
             
             break;
+        case 'interlocution':
+                var interlocution_date = $('input[name="interlocution_date"]').val();
+                var interlocution_assign_name = $('input[name="assign_name"]').val();
+                other_info_arr.push({name:form_tpye,value:interlocution_date});
+                other_info_arr.push({name:form_tpye,value:interlocution_assign_name});
+            break;
 
         default:
             
@@ -507,6 +513,44 @@ function submit_data()
         form_data.append("health_rec", JSON.stringify(form_health_arr));
     }
 
+    if(form_type=="resource")
+    {
+        form_resource_arr = new Array();
+
+        $(".form_resource table").each(function(index, name){
+            var get_tab_id = $(this).attr("id");
+            var name_arr1 = $("[name='"+get_tab_id+"&resource_rec_1[]']");
+        
+            var arr_len  = name_arr1.length;
+        
+            var arr1 = new Array();
+           
+            for (i = 0; i < arr_len; i++)
+            {
+                arr1.push(name_arr1[i].value); 
+            } 
+            
+            var isstrspace = 0;
+
+            arr1.forEach(function(item, index, arr) {
+                if (item==null || item=="") {
+                    isstrspace ++
+                }
+            });
+
+            if(isstrspace!=arr_len)
+            {
+                form_resource_arr.push({name:name_arr1.attr("name"),value:arr1})
+            }
+        });
+
+        form_data.append("answer", JSON.stringify(form_resource_arr));
+    }
+    else
+    {
+        form_data.append("answer", JSON.stringify(form));
+    }
+
     var other_info = other_info_push(form_type);
 
     if(other_info.length>0)
@@ -551,7 +595,7 @@ function submit_data()
     form_data.append("Case_name", name);
     form_data.append("Case_pid", pid);
 
-    form_data.append("answer", JSON.stringify(form));
+    // form_data.append("answer", JSON.stringify(form));
 
     for (var pair of form_data.entries()) {
         console.log(pair[0]+ ', ' + pair[1]); 
@@ -633,7 +677,7 @@ function load_all_forms_data(type_name,url_str)
             // console.log(data)
 
             //程式執行條件為 非剛創建的量表
-            if(data!='')
+            if(data!='' && form_type != "resource")
             {
                 //將ajax結果轉為json
                 var data_json = JSON.parse("[" +data[0].answer.replace('\"\[', '\[').replace('\]\"', '\]') + "]");
@@ -785,6 +829,21 @@ function load_all_forms_data(type_name,url_str)
                     });
 
                 }
+            }
+
+            if(form_type == "resource")
+            {
+                var data_json_resource = JSON.parse("[" +data[0].answer.replace('\"\[\{', '\[\{').replace('\}\]\"', '\}\]') + "]");
+
+                console.log(data_json_resource[0])
+                // console.log(data_json_resource[0])
+                //依據input的type類型名稱寫入資料，file類型名稱另外寫 region
+                $.each(data_json_resource[0], function (i, datan) {
+                    $.each(datan.value, function (e, v) {
+                        $("input[name='"+datan.name+"']").eq(e).val(v);                            
+                    });
+                });
+
             }
 
            
@@ -960,6 +1019,44 @@ function submit_form_data() {
         form_data.append("health_rec", JSON.stringify(form_health_arr));
     }
 
+    if(form_type=="resource")
+    {
+        form_resource_arr = new Array();
+
+        $(".form_resource table").each(function(index, name){
+            var get_tab_id = $(this).attr("id");
+            var name_arr1 = $("[name='"+get_tab_id+"&resource_rec_1[]']");
+        
+            var arr_len  = name_arr1.length;
+        
+            var arr1 = new Array();
+           
+            for (i = 0; i < arr_len; i++)
+            {
+                arr1.push(name_arr1[i].value); 
+            } 
+            
+            var isstrspace = 0;
+
+            arr1.forEach(function(item, index, arr) {
+                if (item==null || item=="") {
+                    isstrspace ++
+                }
+            });
+
+            if(isstrspace!=arr_len)
+            {
+                form_resource_arr.push({name:name_arr1.attr("name"),value:arr1})
+            }
+        });
+
+        form_data.append("answer", JSON.stringify(form_resource_arr));
+    }
+    else
+    {
+        form_data.append("answer", JSON.stringify(form));
+    }
+
     //將其他摘要訊息添加至form_data，other_info用來顯示在case_all.php的各量表摘要表格上
     var other_info = other_info_push(form_type);
 
@@ -1000,7 +1097,7 @@ function submit_form_data() {
     form_data.append("Case_name", name);
     form_data.append("Case_pid", pid);
 
-    form_data.append("answer", JSON.stringify(form));
+    
     //endregion
 
     // for (var pair of form_data.entries()) {
@@ -1123,6 +1220,11 @@ $("#preview").on('click', function(){
 
 var url = 'case_all.php?name='+name+'&pid='+pid+'&date='+date+'&property='+property+'&type='+type+'&id='+phone_id+'&open_id='+open_id+'&referral='+referral+'&case_Create_date='+case_Create_date+'&unopen_type='+unopen_type+'&birth='+birth+'';
 $("#history").attr('href',url);
+
+history_back_btn = function() {
+    location.href=url;
+}
+
 
 var url2 = 'case_all_all.php?id='+phone_id+'&open_id='+open_id+'';
 $("#history2").attr('href',url2);

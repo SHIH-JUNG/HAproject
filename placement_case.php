@@ -73,7 +73,11 @@
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span><a href="">開案個案</a></span></li>
+                        <li><span><a href="">開案管理</a></span></li>
+                        <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+                        </svg>
+                        <li><span><a href="placement_case.php">安置評估</a></span></li>
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
@@ -105,7 +109,7 @@
                                                 <div class="col-sm-12">
                                                     <table class="table table-bordered NOline">
                                                         <tr>
-                                                            <td class="text-right" style="background-color:rgb(255 201 54);">編號：</td>
+                                                            <td class="text-right" style="background-color:rgb(255 201 54);">開案編號：</td>
                                                             <td class="text-left">
                                                                 <!-- <select id="open_id" rel="0" class="filter search">
                                                                     <option value="">所有</option>
@@ -113,7 +117,7 @@
                                                                 <input id="open_id" rel="0" class="filter search" type="text" placeholder="編號搜尋">
                                                             </td>
                                                            
-                                                            <td class="text-right" style="background-color:rgb(255 201 54);">個案分級：</td>
+                                                            <!-- <td class="text-right" style="background-color:rgb(255 201 54);">個案分級：</td>
                                                             <td class="text-left">
                                                                 <select rel="2" class="filter search">
                                                                     <option value="">所有</option>
@@ -121,47 +125,54 @@
                                                                     <option value="B">B</option>
                                                                     <option value="C">C</option>
                                                                 </select>
-                                                            </td>
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">開案日期：</td>
-                                                            <td class="text-left">
-                                                                <input id="min_date" rel="" name="pcall_date" class="" type="date" placeholder="開案日期搜尋">
-                                                                <label>～</label>
-                                                                <input id="max_date" rel="" name="pcall_date" class="" type="date" placeholder="開案日期搜尋">
-                                                            </td>
+                                                            </td> -->
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">姓名：</td>
-                                                            <td class="text-left"><input id="name" rel="3" name="pname" class="filter search" type="text" placeholder="姓名搜尋"></td>
+                                                            <td class="text-left"><input id="name" rel="5" name="pname" class="filter search" type="text" placeholder="姓名搜尋"></td>
+
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">登入日期：</td>
+                                                            <td class="text-left">
+                                                                <input id="c_min_date" rel="" name="c_date" class="" type="date" placeholder="登入日期搜尋">
+                                                                <label>～</label>
+                                                                <input id="c_max_date" rel="" name="c_date" class="" type="date" placeholder="登入日期搜尋">
+                                                            </td>
+
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">身分證字號：</td>
+                                                            <td class="text-left">
+                                                                <input id="pid" rel="8" class="filter search" type="text" placeholder="身分證字號搜尋">
+                                                            </td>
                                                         </tr>
                                                         <tr>
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">個案屬性：</td>
                                                             <td class="text-left">
-                                                                <select rel="4" class="filter search">
+                                                                <select rel="3" class="filter search">
                                                                     <option value="">所有</option>
-                                                                    <option value="家園">家園</option>
+                                                                    <option value="安置家園">安置家園</option>
                                                                     <option value="自立宿舍">自立宿舍</option>
                                                                     <option value="社區">社區</option>
                                                                     <option value="藥癮家庭">藥癮家庭</option>
                                                                     <option value="藥癮者">藥癮者</option>
-                                                                    <option value="兒少">兒少</option>
+                                                                    <option value="親子教育">親子教育</option>
                                                                 </select>
                                                             </td>
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">服務對象類別：</td>
                                                             <td class="text-left">
-                                                                <select rel="5" class="filter search">
+                                                                <select rel="2" class="filter search">
                                                                     <option value="">所有</option>
-                                                                    <option value="一般藥癮者">一般藥癮者</option>
                                                                     <option value="愛滋感染者">愛滋感染者</option>
-                                                                    <option value="家庭">家庭</option>
-                                                                    <option value="兒少">兒少</option>
+                                                                    <option value="一般藥癮者">一般藥癮者</option>
+                                                                    <option value="藥癮家庭">藥癮家庭</option>
+                                                                    <option value="親職兒少">親職兒少</option>
                                                                 </select>
                                                             </td>
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">年齡：</td>
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">開案日期：</td>
                                                             <td class="text-left">
-                                                                <input rel="" id="min" name="min" class="search" type="text" placeholder="最小年齡"><label>～</label>
-                                                                <input rel="" id="max" name="max" class="search" type="text" placeholder="最大年齡">
+                                                                <input id="o_min_date" rel="" name="o_date" class="" type="date" placeholder="開案日期搜尋">
+                                                                <label>～</label>
+                                                                <input id="o_max_date" rel="" name="o_date" class="" type="date" placeholder="開案日期搜尋">
                                                             </td>
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">轉介來源：</td>
                                                             <td class="text-left">
-                                                                <select rel="7" class="filter search">
+                                                                <select rel="9" class="filter search">
                                                                     <option value="">所有</option>
                                                                     <option value="醫院">醫院</option>
                                                                     <option value="矯正機關">矯正機關</option>
@@ -189,11 +200,11 @@
                                             <div class="text-center"><h4>安置評估一覽表</h4></div>
                                             <div class="table-wrap">
                                                 <div class="table-responsive">
-                                                    <table class="table display table-hover" style="font-size:15px;font-family:微軟正黑體;width:100%" id="tab_case" data-toolbar="#toolbar">                                                       
+                                                    <table class="table display table-hover" style="font-size:15px;font-family:微軟正黑體;width:100%" id="tab_placement_case" data-toolbar="#toolbar">                                                       
                                                     <thead>
                                                             <tr>
                                                                 <th class="text-right" colspan="15">
-                                                                            <a href="add_case.php"><button style="font-size:15px" type="button" class="btn btn-default"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                                            <a href="add_placement_case.php"><button style="font-size:15px" type="button" class="btn btn-default"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                                             <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
                                                                             <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z" />
                                                                             <path fill-rule="evenodd" d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5z" />
@@ -202,16 +213,19 @@
                                                             </tr>
                                                             <tr style="background-color:rgb(255 201 54)">
                                                                 <th>開案編號</th>
-                                                                <th>開案日期</th>
-                                                                <th>個案分級</th> 
-                                                                <th>個案姓名</th>
-                                                                <th>個案屬性</th>
+                                                                <th>登入日期</th>
                                                                 <th>服務對象類別</th>
-                                                                <th>年齡</th>
+                                                                <th>個案屬性</th>
+                                                                <th>開案日期</th>
+                                                                <!-- <th>個案分級</th>  -->
+                                                                <th>姓名</th>
+                                                                <th>電話</th>
+                                                                <th>出生年月日</th>
+                                                                <th>身分證字號</th>
                                                                 <th>轉介來源</th>
                                                             </tr>
                                                         </thead>
-                                                        <tbody style="text-align:center" id="open_case"></tbody>
+                                                        <tbody style="text-align:center" id="open_placement_case"></tbody>
                                                     </table>
                                                     <div class="text-center">
                                                         <span id="count_people"></span>
@@ -259,8 +273,8 @@
     <script src="javascript/sweetalert2/core-js.js"></script>
     <!-- ================== 登出設定 ================== -->
     <script src='js/logout.js'></script>
-    <!-- ================== case.js ================== -->
-    <script src='js/current_case.js'></script>
+    <!-- ================== placement_case.js ================== -->
+    <script src='js/placement_case.js'></script>
     <!-- ================== moment ================== -->
     <script src='javascript/moment2.29.0.min.js'></script>
     <!-- ================== table ================== -->

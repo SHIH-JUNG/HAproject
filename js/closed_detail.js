@@ -8,10 +8,13 @@ function getUrlVars() {
 }
 //endregion
 
-//抓個別特定結案個案表region
+closed_id = getUrlVars()["closed_id"];
+
+supervise_msg_arr = [];
+
+//抓個別特定結案表region
 $(document).ready(function(){
 
-    var closed_id = getUrlVars()["closed_id"];
     $.ajax({
         url: "database/find_closed_data_detail.php",
         data:{
@@ -24,6 +27,8 @@ $(document).ready(function(){
             // console.log(data)
 
             $.each(data,function(index,value){
+
+                var supervise_sign_file_val = value.Supervise_signature.replace("\.\.\/signature\/", "");
 
                 $("#closed_id").html(value.Closed_id);
                 $("#name").val(value.Name);
@@ -50,7 +55,14 @@ $(document).ready(function(){
                 append_user();
                 $("#user").val(value.Assign);
 
-                $("#supervise_signature").val(value.Supervise_signature);
+                $("#supervise").val(value.Supervise)
+
+
+                $("#supervise_signature_simg").text("點擊顯示簽名圖片")
+                $("#supervise_signature_simg").attr("href", "./signature/"+supervise_sign_file_val)
+
+                supervise_msg_arr.push(value.Supervise_sign_msg)
+                supervise_msg_arr.push(value.Supervise_sign_time)
 
                 $("#adate").html(value.Create_date);
                 $("#applicant").html(value.Create_name);
@@ -73,12 +85,124 @@ $(document).ready(function(){
         }
     });
     //endregion 
+
+    //jsignature插件初始化 region
+    jsignature_initialization("supervise");
+    //endregion  
+
+    //隱藏jsignature畫布區域 region
+    $("#supervise_signature_area").hide();
+    $("#social_worker_signature_area").hide();
+    //endregion  
 });
 
 //endregion  
 
+sign_msg_model = function(sign_type_name) {
+    //手動新增按鈕點擊跳出模態框
+    $('#myModal').on('shown.bs.modal', function () {
+        $('#'+sign_type_name).trigger('focus');
+    });
 
-//更新結案個案表基本資料region
+    // console.log(social_worker_msg_arr)
+    // console.log(supervise_msg_arr)
+
+    switch (sign_type_name) {
+        case 'supervise':
+                var type_name = "督導";
+                $(".sign_msg").text(supervise_msg_arr[0]);
+                $(".sign_msg_time").val(supervise_msg_arr[1]);
+            break;
+    
+        case 'social_worker':
+                var type_name = "社工員";
+                $(".sign_msg").text(social_worker_msg_arr[0]);
+                $(".sign_msg_time").val(social_worker_msg_arr[1]);
+            break;
+    }
+
+    $(".sign_msg_td_name").text(type_name+"簽名留言內容");
+}
+
+
+//jsignature插件初始化 region
+function jsignature_initialization(init_name) {
+    var $sigdiv = $("#"+init_name+"_signature");
+    $sigdiv.jSignature({'UndoButton':true}); // 初始化jSignature插件-属性用","隔开
+    // $sigdiv.jSignature({'decor-color':'red'}); // 初始化jSignature插件-设置横线颜色
+    // $sigdiv.jSignature({'lineWidth':"6"});// 初始化jSignature插件-设置横线粗细
+    // $sigdiv.jSignature({"decor-color":"transparent"});// 初始化jSignature插件-去掉横线
+    // $sigdiv.jSignature({'UndoButton':true});// 初始化jSignature插件-撤销功能
+    // $sigdiv.jSignature({'height': 100, 'width': 200}); // 初始化jSignature插件-设置书写范围(大小)
+
+    $("#"+init_name+"_signature").bind('change', function(e){
+        var datapair = $sigdiv.jSignature("getData", "image");
+        $("#"+init_name+"_images").attr('src','data:' + datapair[0] + "," + datapair[1]);
+    })
+
+    $("#"+init_name+"_signature_submit").click(function(){
+
+        var ajax_url = 'database/update_closed_data_detail_signature.php';
+
+        var src_data = $("#"+init_name+"_images").attr('src');
+        // console.log(src);
+        if(src_data){
+            $.ajax({
+                type:'post',
+                url:ajax_url,
+                data:{
+                    closed_id:closed_id,
+                    src_data:src_data,
+                    sign_msg:$("#"+init_name+"_signature_msg").val(),
+                    sign_type:init_name
+                },
+                async:false,
+                success:function(data){
+                    // console.log(data);
+                    if(data){
+                        swal({
+                            title:'送出簽名成功！',
+                            type:'success',                        
+                        }).then(function(){
+                            location.reload();
+                        }) 
+                    }else{
+                        swal({
+                            title:'生成簽名圖片失敗！請聯絡負責單位',
+                            type:'error',
+                        })
+                    }
+                }
+            });
+        }else{
+            alert('簽名圖片檔不能為空！');return false;
+        }
+    });
+    $("#"+init_name+"_reset").click(function(){
+        $("#"+init_name+"_signature").jSignature("reset"); //重置画布，可以进行重新作画
+        $("#"+init_name+"_images").attr('src','');
+    });
+}
+//endregion
+
+//按督導簽名，顯示簽名畫布 region
+$("#supervise_signature_btn").on('click',function(){
+    $("#supervise_signature_area").show();
+    $("#collapseTwo").hide();
+});
+//endregion
+
+//在簽名畫布區域按取消，返回詳細資料，並自動滾動卷軸至最頂部 region
+show_main_panel = function() {
+    $("#supervise_signature_area").hide();
+    $("#social_worker_signature_area").hide();
+    $("#collapseTwo").show();
+    // $('html, body').scrollTop(0);
+}
+//endregion
+
+
+//更新結案表基本資料region
 $("#closed_update").on('click',function(){
 
 var closed_id = getUrlVars()["closed_id"];
@@ -154,7 +278,7 @@ var stau = false;
 
 });
 
-//結案個案表(update)的必填欄位 region
+//結案表(update)的必填欄位 region
 function check_updat_closed_data()
 {
     var closed_date = $("#closed_date").val();
@@ -213,7 +337,7 @@ function cancel(){
 }
 //endregion
 
-//結案個案總表格鎖定控制region
+//結案總表格鎖定控制region
 function closed_edit(){
     $('.closed_question').attr('disabled', false);
     $('#edit_div').attr('hidden', true);

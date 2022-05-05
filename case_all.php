@@ -86,7 +86,15 @@
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
+                        <li><span><a href="">開案管理</a></span></li>
+                        <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+                        </svg>
                         <li><span><a href="current_case.php">開案個案</a></span></li>
+                        <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+                        </svg>
+                        <li><span><a href="current_case.php">開案個案一覽表</a></span></li>
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
@@ -126,6 +134,11 @@
                                                 <li class="nav-item" role="presentation">
                                                     <a class="nav-link" id="profile-tab" data-toggle="pill" href="#two" role="tab" aria-selected="false">
                                                         <b>會談紀錄</b>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item" role="presentation">
+                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#eleven" role="tab" aria-selected="false">
+                                                        <b>社會資源應用表格</b>
                                                     </a>
                                                 </li>
                                                 <li class="nav-item" role="presentation">
@@ -224,6 +237,31 @@
                                                             </div>
                                                         </div>
                                                         <button id="interlocution_add_new" type="button" class="btn btn-default" onclick="form_add_new(this)">新增</button>
+                                                        <button onclick="location.reload();" class="btn btn-default">返回</button>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane fade" id="eleven" role="tabpanel" aria-labelledby="profile-tab">
+                                                    <div class="col-sm-12 text-center">
+                                                        <div class="table-wrap">
+                                                            <div class="table-responsive">
+                                                                <div>
+                                                                    <H3>社會資源應用表格</H3>
+                                                                </div>
+                                                                <div>
+                                                                    姓名：<span class="case_name"></span>
+                                                                    ，開案日期：<span class="case_date"></span>
+                                                                    ，服務對象類別：<span class="case_object_type"></span>
+                                                                    ，個案屬性：<span class="case_property_type"></span>
+                                                                </div>
+                                                                <table id="resource_all" style="width:auto;" class="table table-bordered">
+                                                                    <th>建立日期</th>
+                                                                    <th>表格內容</th>
+                                                                    <th>備註</th>
+                                                                    <tbody id="resource_full_add"></tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                        <button id="resource_add_new" type="button" class="btn btn-default" onclick="form_add_new(this)">新增</button>
                                                         <button onclick="location.reload();" class="btn btn-default">返回</button>
                                                     </div>
                                                 </div>
@@ -450,11 +488,11 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="text-right">       
+                                                <!-- <div class="text-right">       
                                                     <button id="add_new_inside" style="font-size:15px" type="button" class="btn btn-default">新增至在園家屬關懷一覽表</button>
                                                     <button id="end" style="font-size:15px" type="button" class="btn btn-default">新增至離園一覽表(結案)</button>
                                                     <button id="train" style="font-size:15px" type="button" class="btn btn-default">新增至培訓一覽表(結案)</button>
-                                                </div>
+                                                </div> -->
                                             </div>
                                         </div>
                                     </div>

@@ -31,6 +31,8 @@
 {
 word-break: keep-all;/*必須*/
 }
+
+.preview {position:absolute;background:#fff;padding:10px;display:none;}  
 </style>
 <!--<SVG>引入bootstrap icon-->
 
@@ -85,7 +87,11 @@ word-break: keep-all;/*必須*/
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span>生輔紀錄</span></li>
+                        <li><span><a href="dlgrec.php">生輔紀錄</a></span></li>
+                        <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+                        </svg>
+                        <li><span>生輔紀錄一覽表</span></li>
                     </ol>
                     <!--/麵包屑-->
                 </div>
@@ -160,6 +166,7 @@ word-break: keep-all;/*必須*/
                                                                 </th>
                                                             </tr>
                                                             <tr style="background-color:rgb(255 201 54);">
+                                                                <th>簽核狀態</th>
                                                                 <th>日期</th>
                                                                 <th>同儕生輔員/生活輔導員</th>
                                                                 <th>社工員</th>

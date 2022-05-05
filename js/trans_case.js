@@ -8,7 +8,7 @@ function getUrlVars() {
 }
 //endregion
 
-//獲取本網址從諮詢個案詳細資料網頁(phone_detail_v2.php)傳過來的屬性值region
+//獲取本網址從簡短諮詢服務詳細資料網頁(phone_detail_v2.php)傳過來的屬性值region
 var unopen_type = decodeURI(getUrlVars()["unopen_type"]);
 var unopencase_id = getUrlVars()["id"];
 var case_id = getUrlVars()["case_id"];
@@ -31,11 +31,11 @@ var tran_case_referral = (typeof tran_case_referral === undefined) ? '' : decode
 
 console.log(tran_case_name, tran_case_phone, tran_case_pid, tran_case_birth, tran_case_referral)
 
-//獲取諮詢個案既有的資料顯示在新增個案表格中region
+//獲取簡短諮詢服務既有的資料顯示在新增個案表格中region
 $(document).ready(function(){
     var datetoday = moment().format('YYYY-MM-DD');
 
-    //region 顯示諮詢個案編號、開案編號、個案屬性
+    //region 顯示簡短諮詢服務編號、開案編號、個案屬性
     $("#unopencase_id").html(unopencase_id);
     $("#case_id").html(case_id);
     $("#case_property").val(case_property);

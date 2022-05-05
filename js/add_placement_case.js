@@ -1,0 +1,292 @@
+//新增至開案個案region
+$("#placement_case_add_new").on('click',function(){
+    var stau = false;
+
+    var wstau = false;
+
+    if (check_current_case_value() != "") 
+    {
+            
+        stau = false;
+    }
+    else {
+        stau = true;
+    }
+
+    // if (check_update_currentcase_data() != "") 
+    // {
+            
+    //     wstau = false;
+    // }
+    // else {
+    //     wstau = true;
+    // }
+
+    if(!stau)
+    {
+        swal({
+            title:check_current_case_value(),
+            type:'error'
+          })
+    }
+    else
+    { 
+        add_new_current_case_database();
+    }
+});
+//endregion
+
+//檢查新增個案表格有無未填寫欄位，若有未填寫欄位將會在點擊新增按鈕時提示region
+function check_update_currentcase_data()
+{
+    var case_id = $("#case_id").val();
+    var create_date = $("#create_date").val();
+    var object_type = $("#object_type").val();
+    var case_property = $("#case_property").val();
+    var open_case_date = $("#open_case_date").val();
+    var name = $("#name").val();
+    var phone = $("#phone").val();
+    var birth = $("#birth").val();
+    var pid = $("#pid").val();
+    // var case_grade = $("#case_grade").val();
+    var referral = $("#referral").val();
+
+    var warningstr = "";
+
+    if (warningstr == "") {
+        // if (case_id == null || case_id.replace(/\s*/g, "") == '') {
+        //     warningstr += "開案編號\r\n";
+        // }
+        if (create_date == null || create_date.replace(/\s*/g, "") == '') {
+            warningstr += "登入日期\r\n";
+        }
+        // if (object_type == null || object_type.replace(/\s*/g, "") == '') {
+        //     warningstr += "服務對象類別\r\n";
+        // }
+        // if (case_property == null || case_property.replace(/\s*/g, "") == '') {
+        //     warningstr += "個案屬性\r\n";
+        // }
+        if (open_case_date == null || open_case_date.replace(/\s*/g, "") == '') {
+            warningstr += "開案日期\r\n";
+        }
+        if (name == null || name.replace(/\s*/g, "") == '') {
+            warningstr += "姓名\r\n";
+        }
+        if (phone == null || phone.replace(/\s*/g, "") == '') {
+            warningstr += "電話\r\n";
+        }
+        if (birth == null || birth.replace(/\s*/g, "") == '') {
+            warningstr += "出生年月日\r\n";
+        }
+        // if (case_grade == null || case_grade.replace(/\s*/g, "") == '') {
+        //     warningstr += "個案分級\r\n";
+        // }
+        if (pid == null || pid.replace(/\s*/g, "") == '') {
+            warningstr += "身分證字號\r\n";
+        }
+        if (referral == null || referral.replace(/\s*/g, "") == '') {
+            warningstr += "轉介來源\r\n";
+        }
+    }
+
+    return warningstr;
+}
+//endregion
+
+//檢查欄位 新增開案個案欄位 region
+function check_current_case_value()
+{
+    var case_id = $('#case_id').val();
+    var case_property = $('#case_property').val();
+    var object_type = $('#object_type').val();
+    var caseid_repeat = check_case_isrepeat();
+    var errorstr = "";
+
+    var case_id_c_2 = "none";
+    if (case_id.replace(/\s*/g, "") != '') {
+
+        if(case_id.includes("ER"))
+        {
+            case_id_c_2 = case_id.replace("ER", "")
+        }
+        else if(case_id.includes("A"))
+        {
+            case_id_c_2 = case_id.replace("A", "")
+        }
+    }
+
+    console.log(case_id_c_2)
+
+    if (case_id == null) {
+        errorstr += "未填寫開案編號!\r\n";
+    }
+    if (case_property == null) {
+        errorstr += "未選擇個案屬性!\r\n";
+    }
+    if (object_type == null) {
+        errorstr += "未選擇服務對象類別!\r\n";
+    }
+    if (errorstr == "") {
+        // console.log(caseid_repeat)
+        if(caseid_repeat)
+        {
+            errorstr += "開案編號重複!!!\r\n";
+        }
+        if (case_id.replace(/\s*/g, "") == ''  || case_id_c_2.replace(/\s*/g, "") == '') {
+            errorstr += "未填寫開案編號!\r\n";
+        }
+        if (case_property.replace(/\s*/g, "") == '') {
+            errorstr += "未選擇個案屬性!\r\n";
+        }
+        if (object_type.replace(/\s*/g, "") == '') {
+            errorstr += "未選擇服務對象類別!\r\n";
+        }
+    }
+
+    return errorstr;
+}
+//endregion
+
+//新增至開案個案資料庫 region
+function add_new_current_case_database()
+{
+    $.ajax({
+        url: "database/add_new_placement_case.php",
+        type: "POST",
+        data:{
+            Case_id:$("#case_id").val(),
+            Case_create_date:$("#create_date").val(),
+            Object_type:$("#object_type").val(),
+            Case_property:$("#case_property").val(),
+            Open_case_date:$("#open_case_date").val(),
+            Name:$("#name").val(),
+            Phone:$("#phone").val(),
+            Birth:$("#birth").val(),
+            Case_pid:$("#pid").val(),
+            Referral:$("#referral").val(),
+            Unopen_type:'placement_case',
+        },
+//            dataType: "JSON",
+        success: function (data) {
+            console.log(data);
+            if(data == 1){
+                swal({
+                    type: 'success',
+                    title: '新增成功!',
+                    allowOutsideClick: false //不可點背景關閉
+                    }).then(function () {
+                        window.location.replace("placement_case.php"); 
+                    })
+            }else{
+                swal({
+                    type: 'error',
+                    title: '新增失敗!請聯絡負責人',
+                    allowOutsideClick: false //不可點背景關閉
+                    }).then(function () {
+                        location.reload();
+                    })
+            }  
+        },
+            error: function () {
+                alert("系統錯誤!");
+            }
+    });
+}
+//endregion
+
+// 根據服務對象類型 自動填入 開案編號 region
+$('#object_type').on('change', function() {
+
+    $("#case_id").val('');
+
+    switch (this.value) {
+        case '一般藥癮者':
+        case '藥癮家庭':   
+
+                $("#case_id").val('ER');
+            break;
+        case '親職兒少':   
+                $("#case_id").val('A');
+            break;
+        default:
+                $("#case_id").val('');
+            break;
+    }
+});
+//endregion
+
+//檢查開案編號是否重複 region
+function check_case_isrepeat() {
+    
+    var isrepeat = false;
+
+    var r_case_id = $("#case_id").val().replace(/^\s*|\s*$/g,"");
+
+    // console.log(r_case_id)
+
+    $.ajax({
+        url: "database/find_repeat_placement_caseid.php",
+        data: {
+            Open_id:r_case_id
+        },
+        type: "POST",
+        dataType: "JSON",
+        async :false,
+        success: function (data) {
+            // console.log(data)
+            if(data == 1)
+            {
+                isrepeat = true;
+            }
+            else
+            {
+                isrepeat = false;
+            }
+        },
+        error: function (e) {
+            console.log(e);
+        }
+    });
+    
+
+    return isrepeat;
+}
+//endregion
+
+
+//開案資料未填寫完畢新增行事曆提醒 region
+function add_new_caseedit_calendar() {
+
+    var get_url =document.referrer;
+
+    $.ajax({
+        url: "database/add_new_caseedit_calendar.php",
+        data:{
+            Title:title,
+            Url:get_url,
+            Start_date:start_date,
+            End_date:end_date,
+        },
+        type: "POST",
+        dataType: "JSON",
+        success: function (data) {
+            if(data == 1){
+                swal({
+                    title:'新增成功！',
+                    type:'success',                        
+                }).then(function(){
+                    location.reload();
+                }) 
+            }else{
+                swal({
+                title:'新增失敗！',
+                type:'error',
+                })
+            } 
+        },
+    error:function(e){
+        console.log("錯誤");
+    }
+    });
+}
+//endregion

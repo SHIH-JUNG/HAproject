@@ -455,7 +455,7 @@ var $table = $('#tab_all').DataTable({
     buttons: [
         {
             extend: 'excelHtml5',
-            title: '快樂聯盟諮詢個案一覽表',
+            title: '快樂聯盟簡短諮詢服務一覽表',
             text:'匯出Excel'
         },
     ]

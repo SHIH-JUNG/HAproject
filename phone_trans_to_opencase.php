@@ -99,7 +99,7 @@ input[type=number] {
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span><a href="">未開案個案</a></span></li>
+                        <li><span><a href="">未開案管理</a></span></li>
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
@@ -110,14 +110,14 @@ input[type=number] {
                             }
                             elseif($unopen_type == "phone")
                             {
-                                echo '<li><span><a href="phone.php">諮詢個案</a></span></li>';
+                                echo '<li><span><a href="phone.php">簡短諮詢服務</a></span></li>';
                             }
                             elseif($unopen_type == "counsel")
                             {
                                 echo '<li><span><a href="counsel.php">監所服務</a></span></li>';
                             }
                         ?>
-                        <!-- <li><span><a href="phone.php">諮詢個案</a></span></li> -->
+                        <!-- <li><span><a href="phone.php">簡短諮詢服務</a></span></li> -->
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
@@ -128,14 +128,14 @@ input[type=number] {
                             }
                             elseif($unopen_type == "phone")
                             {
-                                echo '<li><span><a id="history" href="javascript:history.back()">諮詢個案詳細資料</a></span></li>';
+                                echo '<li><span><a id="history" href="javascript:history.back()">簡短諮詢服務詳細資料</a></span></li>';
                             }
                             elseif($unopen_type == "counsel")
                             {
                                 echo '<li><span><a id="history" href="javascript:history.back()">監所服務詳細資料</a></span></li>';
                             }
                         ?>
-                        <!-- <li><span><a id="history" href="javascript:history.back()">諮詢個案詳細資料</a></span></li> -->
+                        <!-- <li><span><a id="history" href="javascript:history.back()">簡短諮詢服務詳細資料</a></span></li> -->
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
@@ -172,7 +172,7 @@ input[type=number] {
                                                                 </td>
                                                             </tr>
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">未開案個案編號</td>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">未開案管理編號</td>
                                                                 <td style="border-bottom: solid 1px;"><span id="unopencase_id"></span></td>
                                                             </tr>
                                                             <tr style="text-align:left">

@@ -67,7 +67,7 @@
                     </a>
                     <ul style="font-size:18px" id="case" class="collapse">
                         <li>
-                            <a href="javascript:void(0);" class="" data-toggle="collapse" data-target="#non_open">未開案個案
+                            <a href="javascript:void(0);" class="" data-toggle="collapse" data-target="#non_open">未開案管理
                                 <span class="pull-right">
                                     <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-down-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
@@ -77,7 +77,7 @@
                             <ul style="font-size:15px" id="non_open" class="collapse">
                                 <li>
                                     <li>
-                                        <a href="phone.php">諮詢個案
+                                        <a href="phone.php">簡短諮詢服務
                                         </a>
                                     </li>
                                     <li>
@@ -92,7 +92,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="javascript:void(0);" class="" data-toggle="collapse" data-target="#non_open2">開案個案
+                            <a href="javascript:void(0);" class="" data-toggle="collapse" data-target="#non_open2">開案管理
                                 <span class="pull-right">
                                     <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-down-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
@@ -106,14 +106,14 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="placement.php">安置評估
+                                        <a href="placement_case.php">安置評估
                                         </a>
                                     </li>
                                 </li>
                             </ul>
                         </li>
                         <li>
-                            <a href="closed.php">結案個案
+                            <a href="closed.php">結案
                             </a>
                         </li>
                         <li>
