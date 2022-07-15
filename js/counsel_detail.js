@@ -466,17 +466,17 @@ function reservation_rec_new(){
                     '</td>' +
                 '</tr>' +
                 '<tr style="text-align:left">' +
-                    '<td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">指派同工</td>' +
+                    '<td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">指派工作人員</td>' +
                     '<td style="">'+
                         '主：'+                                             
                             '<select class="user5" id="one_user" >'+
-                                '<option value="" disabled selected hidden>請選擇同工</option>'+
+                                '<option value="" disabled selected hidden>請選擇工作人員</option>'+
                             '</select>'+
                         '<br>'+
                         '<br>'+
                         '副：'+
                             '<select class="user5" id="two_user">'+
-                                '<option value="" disabled selected hidden>請選擇同工</option>'+
+                                '<option value="" disabled selected hidden>請選擇工作人員</option>'+
                             '</select>'+
                     '</td>' +
                 '</tr>' +
@@ -702,10 +702,10 @@ function check_open_reservation_note_value_str()
         errorstr += "未填寫預約訪談日期!\r\n";
     }
     if (one_user == null) {
-        errorstr += "未選擇主要負責同工!\r\n";
+        errorstr += "未選擇主要接案工作人員!\r\n";
     }
     // if (two_user == null) {
-    //     errorstr += "未選擇副同工!\r\n";
+    //     errorstr += "未選擇副接案工作人員!\r\n";
     // }
     if (location_detail == null && location_other == null) {
         errorstr += "未填寫訪談方式!\r\n";
@@ -718,10 +718,10 @@ function check_open_reservation_note_value_str()
             errorstr += "未填寫預約訪談日期!\r\n";
         }
         if (one_user.replace(/\s*/g, "") == '') {
-            errorstr += "未選擇主要負責同工!\r\n";
+            errorstr += "未選擇主要接案工作人員!\r\n";
         }
         // if (two_user.replace(/\s*/g, "") == '') {
-        //     errorstr += "未選擇副同工!\r\n";
+        //     errorstr += "未選擇副工作人員!\r\n";
         // }
         if (location_detail.replace(/\s*/g, "") == '' && location_other.replace(/\s*/g, "") == '') {
             errorstr += "未填寫訪談方式!\r\n";
@@ -832,17 +832,17 @@ function counsel_visit_show() {
                         '</td>' +
                     '</tr>' +
                     '<tr style="text-align:left">' +
-                        '<td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">指派同工</td>' +
+                        '<td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">指派工作人員</td>' +
                         '<td style="">'+
                             '主：'+                                             
                                 '<select class="user2 question'+value.Id+'" id="department1'+value.Id+'one_user" >'+
-                                    '<option value=""  selected hidden>請選擇同工</option>'+
+                                    '<option value=""  selected hidden>請選擇工作人員</option>'+
                                 '</select>'+
                             '<br>'+
                             '<br>'+
                             '副：'+
                                 '<select class="user2 question'+value.Id+'" id="department2'+value.Id+'two_user" >'+
-                                    '<option value=""  selected hidden>請選擇同工</option>'+
+                                    '<option value=""  selected hidden>請選擇工作人員</option>'+
                                 '</select>'+
                         '</td>' +
                     '</tr>' +
@@ -1008,7 +1008,7 @@ function check_open_phone_note_value_str2(id)
         errorstr += "未填寫連絡人電話!\r\n";
     }
     if (nuser == null) {
-        errorstr += "未選擇負責同工!\r\n";
+        errorstr += "未選擇接案工作人員!\r\n";
     }
     if (nnote == null) {
         errorstr += "未填寫通話內容!\r\n";
@@ -1027,7 +1027,7 @@ function check_open_phone_note_value_str2(id)
             errorstr += "未填寫連絡人電話!\r\n";
         }
         if (nuser.replace(/\s*/g, "") == '') {
-            errorstr += "未選擇負責同工!\r\n";
+            errorstr += "未選擇接案工作人員!\r\n";
         }
         if (nnote.replace(/\s*/g, "") == '') {
             errorstr += "未填寫通話內容!\r\n";
@@ -1053,10 +1053,10 @@ function check_open_reservation_note_value_str2(id)
         errorstr += "未填寫預約訪談日期!\r\n";
     }
     if (one_user == null) {
-        errorstr += "未選擇主要負責同工!\r\n";
+        errorstr += "未選擇主要接案工作人員!\r\n";
     }
     // if (two_user == null) {
-    //     errorstr += "未選擇副同工!\r\n";
+    //     errorstr += "未選擇副工作人員!\r\n";
     // }
     if (location_detail == null && location_other == null) {
         errorstr += "未填寫面訪方式!\r\n";
@@ -1069,10 +1069,10 @@ function check_open_reservation_note_value_str2(id)
             errorstr += "未填寫預約訪談日期!\r\n";
         }
         if (one_user.replace(/\s*/g, "") == '') {
-            errorstr += "未選擇主要負責同工!\r\n";
+            errorstr += "未選擇主要接案工作人員!\r\n";
         }
         // if (two_user.replace(/\s*/g, "") == '') {
-        //     errorstr += "未選擇副同工!\r\n";
+        //     errorstr += "未選擇副工作人員!\r\n";
         // }
         if (location_detail.replace(/\s*/g, "") == '' && location_other.replace(/\s*/g, "") == '') {
             errorstr += "未填寫面訪方式!\r\n";
@@ -1193,6 +1193,7 @@ $("#trans_to_opencase_submit").on('click',function(){
             success: function (data) {
                 // console.log(data)
                 tran_case_name = data[0].Name;
+                tran_case_gender = data[0].Gender;
                 tran_case_pid = data[0].Pid;
                 tran_case_phone = data[0].Info_phone;
                 tran_case_birth = data[0].Birth;
@@ -1204,7 +1205,7 @@ $("#trans_to_opencase_submit").on('click',function(){
             }
         });
 
-        window.location.href = 'phone_trans_to_opencase.php?unopen_type=counsel&id='+counsel_id.replace(/^\s+|\s+$/gm,'')+'&case_id='+$('#open_case_t_sn').val().replace(/^\s+|\s+$/gm,'')+'&case_property='+$('#open_case_type').val()+'&object_type='+$('#open_object_type').val()+'&tran_case_name='+tran_case_name+'&tran_case_phone='+tran_case_phone+'&tran_case_pid='+tran_case_pid+'&tran_case_birth='+tran_case_birth+'&tran_case_referral='+tran_case_referral;
+        window.location.href = 'phone_trans_to_opencase.php?unopen_type=counsel&id='+counsel_id.replace(/^\s+|\s+$/gm,'')+'&case_id='+$('#open_case_t_sn').val().replace(/^\s+|\s+$/gm,'')+'&case_property='+$('#open_case_type').val()+'&object_type='+$('#open_object_type').val()+'&tran_case_name='+tran_case_name+'&tran_case_gender='+tran_case_gender+'&tran_case_phone='+tran_case_phone+'&tran_case_pid='+tran_case_pid+'&tran_case_birth='+tran_case_birth+'&tran_case_referral='+tran_case_referral;
     }
 });
 //endregion
@@ -1213,20 +1214,40 @@ $("#trans_to_opencase_submit").on('click',function(){
 $('#open_object_type').on('change', function() {
 
     $("#open_case_t_sn").val('');
+    var object_type_val = this.value;
 
-    switch (this.value) {
-        case '一般藥癮者':
-        case '藥癮家庭':   
+    // 自動查詢沒使用過的編號
+    $.ajax({
+        url: "database/find_trans_automatic_id.php",
+        data:{
+            keyword:object_type_val,
+        },
+        type: "POST",
+        dataType: "JSON",
+        async :false,
+        success: function (data) {
+           console.log(data)
+           var str_id = (parseInt(data[0].Case_id)+1).toString();
 
-                $("#open_case_t_sn").val('ER');
-            break;
-        case '親職兒少':   
-                $("#open_case_t_sn").val('A');
-            break;
-        default:
-                $("#open_case_t_sn").val('');
-            break;
-    }
+           
+           switch (object_type_val) {
+            case '一般藥癮者':
+            case '藥癮家庭':   
+                    $("#open_case_t_sn").val("RE"+str_id);
+                break;
+            case '愛滋感染者':
+            case '親職兒少':
+                    $("#open_case_t_sn").val(str_id);
+                break;
+            default:
+                    $("#open_case_t_sn").val("");
+                break;
+           }
+        },
+        error:function(e){
+            console.log(e);
+        }
+    });
 });
 //endregion
 
@@ -1243,13 +1264,9 @@ function check_trans_to_opencase_value()
     var case_id_c_2 = "none";
     if (open_case_t_sn.replace(/\s*/g, "") != '') {
 
-        if(open_case_t_sn.includes("ER"))
+        if(open_case_t_sn.includes("RE"))
         {
-            case_id_c_2 = open_case_t_sn.replace("ER", "")
-        }
-        else if(open_case_t_sn.includes("A"))
-        {
-            case_id_c_2 = open_case_t_sn.replace("A", "")
+            case_id_c_2 = open_case_t_sn.replace("RE", "")
         }
     }
 
@@ -1257,10 +1274,10 @@ function check_trans_to_opencase_value()
         errorstr += "未填寫開案編號!\r\n";
     }
     if (open_case_type == null) {
-        errorstr += "未選擇個案屬性!\r\n";
+        errorstr += "未選擇類別屬性!\r\n";
     }
     if (open_object_type == null) {
-        errorstr += "未選擇服務對象類別!\r\n";
+        errorstr += "未選擇個案類別!\r\n";
     }
     if (errorstr == "") {
         // console.log(caseid_repeat)
@@ -1272,10 +1289,10 @@ function check_trans_to_opencase_value()
             errorstr += "未填寫開案編號!\r\n";
         }
         if (open_case_type.replace(/\s*/g, "") == '') {
-            errorstr += "未選擇個案屬性!\r\n";
+            errorstr += "未選擇類別屬性!\r\n";
         }
         if (open_object_type.replace(/\s*/g, "") == '') {
-            errorstr += "未選擇服務對象類別!\r\n";
+            errorstr += "未選擇個案類別!\r\n";
         }
     }
 

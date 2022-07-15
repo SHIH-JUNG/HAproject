@@ -36,6 +36,8 @@
         word-break: keep-all;
         /*必須*/
     }
+
+    .preview {position:absolute;background:#fff;padding:10px;display:none;} 
 </style>
 <!--<SVG>引入bootstrap icon-->
 
@@ -141,6 +143,7 @@
                                                             <tr style="background-color:rgb(255 201 54);">
                                                                 <th>標題</th>
                                                                 <th>日期</th>
+                                                                <th>督導簽章</th>
                                                                 <!-- <th>會議記錄</th> -->
                                                             </tr>
                                                         </thead>

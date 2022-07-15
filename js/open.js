@@ -1758,7 +1758,7 @@ var num = getUrlVars()["num"];
                     if(data.job[index] == "社工"){
                         cssString5 +=
                             '<tr>' +
-                                '<td style="text-align:center" colspan="2">一般會談同工 '+data.write_user[index]+' 評估(第一層級)</td>' +
+                                '<td style="text-align:center" colspan="2">一般會談工作人員 '+data.write_user[index]+' 評估(第一層級)</td>' +
                             '</tr>' +
                             '<tr>' +
                                 '<td class="text-right" rowspan="7">綜合評估內容</td>' +
@@ -1965,7 +1965,7 @@ $("#add_check").on('click', function () {
         if($("#job_title").text() == " 社工"){
             cssString +=
                 '<tr>' +
-                    '<td style="text-align:center" colspan="2">一般會談同工評估(第一層級)</td>' +
+                    '<td style="text-align:center" colspan="2">一般會談工作人員評估(第一層級)</td>' +
                 '</tr>' +
                 '<tr>' +
                     '<td class="text-right" rowspan="7">綜合評估內容</td>' +

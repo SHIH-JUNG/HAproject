@@ -64,7 +64,11 @@
     padding-top: 15px;
     }
 
-
+    button#reopencase {
+        background-color: tomato;
+        color: white !important;
+        font-weight: bold;
+    }
 </style>
 
 <body>
@@ -316,6 +320,11 @@
                                                                             </div>
                                                                             <div class="text-center col-sm-4">
                                                                                 <button style="font-size:20px;" id="preview_word2" class="btn btn-default">預覽匯出</button>
+                                                                            </div>
+                                                                            <div class="text-right col-sm-4" style="padding-right:0;">
+                                                                                <button type="button" id="reopencase" class="btn btn-default" style="font-size:20px" onclick="reopencase();">
+                                                                                    再次開案
+                                                                                </button>
                                                                             </div>
                                                                         </div>
                                                                     </div>

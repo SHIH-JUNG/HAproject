@@ -61,10 +61,10 @@ function check_update_currentcase_data()
             warningstr += "登入日期\r\n";
         }
         // if (object_type == null || object_type.replace(/\s*/g, "") == '') {
-        //     warningstr += "服務對象類別\r\n";
+        //     warningstr += "個案類別\r\n";
         // }
         // if (case_property == null || case_property.replace(/\s*/g, "") == '') {
-        //     warningstr += "個案屬性\r\n";
+        //     warningstr += "類別屬性\r\n";
         // }
         if (open_case_date == null || open_case_date.replace(/\s*/g, "") == '') {
             warningstr += "開案日期\r\n";
@@ -99,32 +99,32 @@ function check_current_case_value()
     var case_id = $('#case_id').val();
     var case_property = $('#case_property').val();
     var object_type = $('#object_type').val();
+    var case_grade = $('#case_grade').val();
     var caseid_repeat = check_case_isrepeat();
     var errorstr = "";
 
     var case_id_c_2 = "none";
     if (case_id.replace(/\s*/g, "") != '') {
 
-        if(case_id.includes("ER"))
+        if(case_id.includes("RE"))
         {
-            case_id_c_2 = case_id.replace("ER", "")
-        }
-        else if(case_id.includes("A"))
-        {
-            case_id_c_2 = case_id.replace("A", "")
+            case_id_c_2 = case_id.replace("RE", "")
         }
     }
 
-    console.log(case_id_c_2)
+    // console.log(case_id_c_2)
 
     if (case_id == null) {
         errorstr += "未填寫開案編號!\r\n";
     }
     if (case_property == null) {
-        errorstr += "未選擇個案屬性!\r\n";
+        errorstr += "未選擇類別屬性!\r\n";
     }
     if (object_type == null) {
-        errorstr += "未選擇服務對象類別!\r\n";
+        errorstr += "未選擇個案類別!\r\n";
+    }
+    if (case_grade == null) {
+        errorstr += "未選擇個案分級!\r\n";
     }
     if (errorstr == "") {
         // console.log(caseid_repeat)
@@ -136,10 +136,13 @@ function check_current_case_value()
             errorstr += "未填寫開案編號!\r\n";
         }
         if (case_property.replace(/\s*/g, "") == '') {
-            errorstr += "未選擇個案屬性!\r\n";
+            errorstr += "未選擇類別屬性!\r\n";
         }
         if (object_type.replace(/\s*/g, "") == '') {
-            errorstr += "未選擇服務對象類別!\r\n";
+            errorstr += "未選擇個案類別!\r\n";
+        }
+        if (case_grade.replace(/\s*/g, "") == '') {
+            errorstr += "未選擇個案分級!\r\n";
         }
     }
 
@@ -157,6 +160,7 @@ function add_new_current_case_database()
             Case_id:$("#case_id").val(),
             Case_create_date:$("#create_date").val(),
             Object_type:$("#object_type").val(),
+            Case_grade:$('#case_grade').val(),
             Case_property:$("#case_property").val(),
             Open_case_date:$("#open_case_date").val(),
             Name:$("#name").val(),
@@ -198,20 +202,40 @@ function add_new_current_case_database()
 $('#object_type').on('change', function() {
 
     $("#case_id").val('');
+    var object_type_val = this.value;
+    
+    // 自動查詢沒使用過的編號
+    $.ajax({
+        url: "database/find_placement_automatic_id.php",
+        data:{
+            keyword:object_type_val,
+        },
+        type: "POST",
+        dataType: "JSON",
+        async :false,
+        success: function (data) {
+           console.log(data)
+           var str_id = (parseInt(data[0].Case_id)+1).toString();
 
-    switch (this.value) {
-        case '一般藥癮者':
-        case '藥癮家庭':   
-
-                $("#case_id").val('ER');
-            break;
-        case '親職兒少':   
-                $("#case_id").val('A');
-            break;
-        default:
-                $("#case_id").val('');
-            break;
-    }
+           
+           switch (object_type_val) {
+            case '一般藥癮者':
+            case '藥癮家庭':   
+                    $("#case_id").val("RE"+str_id);
+                break;
+            case '愛滋感染者':
+            case '親職兒少':
+                    $("#case_id").val(str_id);
+                break;
+            default:
+                    $("#case_id").val("");
+                break;
+           }
+        },
+        error:function(e){
+            console.log(e);
+        }
+    });
 });
 //endregion
 

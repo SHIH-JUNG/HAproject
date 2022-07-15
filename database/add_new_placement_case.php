@@ -6,6 +6,7 @@ include("sql_connect.php");
 $Case_id = $_POST['Case_id'];
 $Case_create_date = $_POST['Case_create_date'];
 $Object_type = $_POST['Object_type'];
+$Case_grade = $_POST['Case_grade'];
 $Case_property = $_POST['Case_property'];
 $Open_case_date = $_POST['Open_case_date'];
 $Name = $_POST['Name'];
@@ -18,11 +19,11 @@ $Referral = $_POST['Referral'];
 $user = $_SESSION['name'];
 
 $sql = "INSERT INTO `placement_case` (`Case_id`, `Unopen_type`,
- `Case_Create_date`,`Object_type`, `Case_property`,
+ `Case_Create_date`,`Object_type`, `Case_grade`, `Case_property`,
 `Open_case_date`, `Name`, `Phone`, `Birth`, `Case_pid`, `Referral`, `Case_state`,
 `Create_date`,`Create_name`) VALUES
  ('$Case_id', '$Unopen_type',
-  '$Case_create_date', '$Object_type', '$Case_property',
+  '$Case_create_date', '$Object_type', '$Case_grade', '$Case_property',
   '$Open_case_date', '$Name', '$Phone', '$Birth', '$Case_pid', '$Referral', '未結案',
   Now(), '$user')";
   

@@ -11,6 +11,9 @@ include("sql_connect.php");
 
 @$file = "../supervisor_record/upload/" . $_FILES["file4"]["name"];
 
+@$title = $_REQUEST['title'];
+@$rec_type = $_REQUEST['rec_type'];
+
 $user = $_SESSION['name'];
 
 
@@ -62,11 +65,31 @@ if(isset($_FILES["file4"]))
 
     if(isset($_FILES["file4"]) || isset($_REQUEST['File_name']))
     {
-        
+        $select_id_num = "SELECT MAX(Id) FROM `supervisor_record` ORDER BY `supervisor_record`.`Create_date` ASC LIMIT 1;";
+
+        $find_id_num = mysqli_query($conn,$select_id_num);
+        $id_num = mysqli_fetch_row($find_id_num);
+
+        if($id_num[0]>0)
+        {
+            $sr_id = (int)$id_num[0] + 1;
+        }
+        else
+        {
+            $sr_id = 0;
+        }
+
+        $url = 'http://localhost/HappyAlliance/HA/supervisor_record_detail.php?year='.$year.'&id='.$sr_id.'&sr_id='.$sr_id.'&rec_type='.$rec_type .'';
+
+        $start_datetime = date("Y-m-d H:s");
+        $end_datetime = date("Y-m-d H:s" ,strtotime("+2 day"));
+
         // if($_FILES["file4"]["name"] != null && $_FILES["file4"]["type"] == "application/pdf"){
         if(@$_FILES["file4"]["name"] != null || isset($_REQUEST['File_name'])){
-            $sql = "INSERT INTO `supervisor_record` (`Year`, `upload_content`, `file_path`, `Create_date`, `Create_name`) VALUES 
-            ('$year', '$upload_content', '$file', NOW(), '$user');";
+            $sql = "INSERT INTO `supervisor_record` (`Id`, `Year`, `upload_content`, `file_path`, `Create_date`, `Create_name`) VALUES 
+            ($sr_id, '$year', '$upload_content', '$file', NOW(), '$user');";
+
+            $sql .= "INSERT INTO `calendar` (`title`,`description`,`start`, `end`, `publisher`) VALUES ('$title','$url','$start_datetime', '$end_datetime', '$user')";
 
             if(mysqli_multi_query($conn,$sql)){
                 echo true;

@@ -1,3 +1,54 @@
+$(document).ready(function(){
+
+    add_screening_keywords();
+});
+
+
+// 查詢資料庫中的篩檢類別和篩檢結果，並添加到網頁前端下拉式選單中region
+function add_screening_keywords() {
+
+    $("#screening_type").empty();
+
+    $("#screening_results").empty();
+
+    $.ajax({
+        url: "database/find_screening_keywords.php",
+        data:{
+            keyword:"screening_type_keywords",
+        },
+        type: "POST",
+        dataType: "JSON",
+        success: function (data) {
+            $("#screening_type").append('<option value="">所有</option>');
+            $.each(data,function(index,value){
+                $("#screening_type").append('<option value="'+value.screening_type+'">'+value.screening_type+'</option>');
+            });
+        },
+        error:function(e){
+            console.log(e);
+        }
+    });
+
+    $.ajax({
+        url: "database/find_screening_keywords.php",
+        data:{
+            keyword:"screening_result_keywords",
+        },
+        type: "POST",
+        dataType: "JSON",
+        success: function (data) {
+            $("#screening_results").append('<option value="">所有</option>');
+            $.each(data,function(index,value){
+                $("#screening_results").append('<option value="'+value.screening_result+'">'+value.screening_result+'</option>');
+            });
+        },
+        error:function(e){
+            console.log(e);
+        }
+    });
+}
+//endregion
+
 //抓所有電話詢戒表region
 $.ajax({
     url: "database/find_data_screening.php",

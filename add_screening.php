@@ -148,7 +148,7 @@ input[type=number] {
                                                             </tr>
                                                             <tr style="text-align:left">
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>姓名</td>
-                                                                <td style="border-bottom: solid 1px;"><input id="name" type="text" oninput="value=value.replace(/[\d]/g,'')"></td>
+                                                                <td style="border-bottom: solid 1px;"><input id="name" type="text"></td>
                                                             </tr>
                                                             <tr style="text-align:left">
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>年齡</td>
@@ -197,10 +197,14 @@ input[type=number] {
                                                                 <td style="border-bottom: solid 1px;">
                                                                     <select id="screening_type" style="width:200px;">
                                                                         <option value="">請選擇</option>
-                                                                        <option value="HIV">HIV</option>
+                                                                        <!-- <option value="HIV">HIV</option>
                                                                         <option value="梅毒">梅毒</option>
-                                                                        <option value="HIV+梅毒">HIV+梅毒</option>
+                                                                        <option value="HIV+梅毒">HIV+梅毒</option> -->
                                                                     </select>
+                                                                    <br/>
+                                                                    <br/>
+                                                                    <input id="add_screening_type" type="text">
+                                                                    <button id="add_screening_type_btn">新增篩檢類型</button>
                                                                 </td>
                                                             </tr>
                                                             <tr style="text-align:left">
@@ -208,20 +212,24 @@ input[type=number] {
                                                                 <td style="border-bottom: solid 1px;">
                                                                     <select id="screening_results" style="width:200px;">
                                                                         <option value="">請選擇</option>
-                                                                        <option value="H positive">H positive</option>
+                                                                        <!-- <option value="H positive">H positive</option>
                                                                         <option value="H negative">H negative</option>
                                                                         <option value="梅 positive">梅 positive</option>
                                                                         <option value="梅 negative">梅 negative</option>
                                                                         <option value="H+梅 positive">H+梅 positive</option>
-                                                                        <option value="H+梅 negative">H+梅 negative</option>
+                                                                        <option value="H+梅 negative">H+梅 negative</option> -->
                                                                     </select>
+                                                                    <br/>
+                                                                    <br/>
+                                                                    <input id="add_screening_results" type="text">
+                                                                    <button id="add_screening_results_btn">新增篩檢結果</button>
                                                                 </td>
                                                             </tr>
                                                             <!-- <tr style="text-align:left">
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">建立者</td>
                                                                 <td style="border-bottom: solid 1px;">
                                                                     <select class="user" id="user">
-                                                                        <option value="" disabled selected hidden>請選擇同工</option>
+                                                                        <option value="" disabled selected hidden>請選擇工作人員</option>
                                                                     </select>
                                                                 </td>
                                                             </tr> -->

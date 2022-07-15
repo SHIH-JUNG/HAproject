@@ -16,6 +16,9 @@
     <link href="css/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
     <!--  table  -->
     <link rel="stylesheet" href="css/bootstrap-table.min.css">
+    <!--  日期民國  -->
+    <link data-require="jqueryui@*" rel="stylesheet" href="css/jquery-ui.css" />
+    <link href="css/dtsel.css" rel="stylesheet" />
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -92,15 +95,23 @@
                 <div class="row heading-bg  bg-green">
                     <!--麵包屑-->
                     <ol class="breadcrumb">
-                        <li><span><a href="index.php">行政管理</a></span></li>
+                        <li><span><a href="index.php">個案管理</a></span></li>
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span><a href="meeting_record.php">會議管理</a></span></li>
+                        <li><span><a href="">行政管理</a></span></li>
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span>新增類別小項</span></li>
+                        <li><span><a href="">會議管理</a></span></li>
+                        <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+                        </svg>
+                        <li><span><a href="members_assemble_yearlist.php">會員大會</a></span></li>
+                        <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+                        </svg>
+                        <li><span>新增會員大會紀錄</span></li>
                     </ol>
                     <!--/麵包屑-->
                 </div>
@@ -123,67 +134,154 @@
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-sm-12 col-xs-12">
-                                            <div class="col-sm-12 text-center">
-                                                <div class="table-wrap">
-                                                    <div class="table-responsive">
-                                                        <table style="width:auto;" class="table table-bordered">
-                                                            <tr>
-                                                                <td colspan="2">
-                                                                    <h3>新增類別小項</h3>
-                                                                </td>
-                                                            </tr>
-                                                            <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>日期</td>
-                                                                <td style="border-bottom: solid 1px;"><input id="datetime" type="datetime-local">
-                                                            </tr>
-                                                            <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>標題</td>
-                                                                <td style="border-bottom: solid 1px;"><input id="name" type="text" oninput="value=value.replace(/[\d]/g,'')"></td>
-                                                            </tr>
-                                                            <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>記錄人員</td>
-                                                                <td style="border-bottom: solid 1px;"><input id="recorder" type="text" oninput="value=value.replace(/[\d]/g,'')"></td>
-                                                            </tr>
-                                                            <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>參與人數</td>
-                                                                <td style="border-bottom: solid 1px;"><input id="number" type="text" oninput="value=value.replace(/[\d]/g,'')"></td>
-                                                            </tr>
-                                                            <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>開會內容</td>
-                                                                <td style="">
-                                                                    <textarea class="phone_question" style="height:150px;width:700px;resize: none;font-size: 20px;" name="note" id="note" placeholder="請輸入開會內容"></textarea>
-                                                                </td>
-                                                            </tr>
-                                                        </table>
-                                                        <table style="width:auto;" class="table table-bordered">
-                                                            <tr>
-                                                                <td colspan="2">
-                                                                    <h3>類別小項檔案上傳</h3>
-                                                                </td>
-                                                            </tr>
-                                                            <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>檔案上傳</td>
-                                                                <td style="border-bottom: solid 1px;">
-                                                                    <form method="post" enctype="multipart/form-data" action="update_supervisor_record.php">
-                                                                        <input type="file" name="my_file">
-                                                                        <br>
-                                                                        <input type="submit" value="Upload">
-                                                                        <input type="reset" value="Reset">
-                                                                    </form>
-                                                                </td>
-                                                            </tr>
-                                                        </table>
+                                            <div class="text-center">
+                                                <h4 id="form_type">新增會員大會紀錄</h4>
+                                            </div>
+                                            <br>
+                                            <ul style="font-size:17px" class="nav nav-tabs" id="myTab" role="tablist">
+                                                <li class="nav-item active" role="presentation">
+                                                    <a class="nav-link" id="home-tab" data-toggle="pill" href="#one" role="tab" aria-selected="true">
+                                                        <b>填寫會員大會紀錄</b>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item" role="presentation">
+                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#two" role="tab" aria-selected="false">
+                                                        <b>上傳會員大會紀錄</b>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                            <div class="tab-content" id="myTabContent">
+                                                <div class="tab-pane fade in active" id="one" role="tabpanel" aria-labelledby="home-tab">
+                                                    <div class="panel-body">
+                                                    </div>
+                                                    <div class="table-wrap">
+                                                        <div class="table-responsive col-sm-12 text-center">
+                                                            <form id="form_a" class="form">
+                                                                <table style="width:70%;" class="table table-bordered">
+                                                                    <tr>
+                                                                        <td colspan="2">
+                                                                            <h3>新增會員大會紀錄</h3>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr style="text-align:left">
+                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">會員大會記錄標題</td>
+                                                                        <td style="border-bottom: solid 1px;"><input id="title_name" name="title_name" type="text" style="width:37em;"></td>
+                                                                    </tr>
+                                                                    <tr style="text-align:left">
+                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">主持人</td>
+                                                                        <td style="border-bottom: solid 1px;"><input id="ceo_name" name="ceo_name" type="text" style="width:37em;"></td>
+                                                                    </tr>
+                                                                    <tr style="text-align:left">
+                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">出席人員</td>
+                                                                        <td>
+                                                                            <textarea style="height:7em;width:37em;resize: none;font-size: 20px;" id="attendees" name="attendees" placeholder="請輸入出席人員"></textarea>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr style="text-align:left">
+                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">會員大會記錄</td>
+                                                                        <td style="border-bottom: solid 1px;"><input id="record" name="record" type="text" style="width:37em;"></td>
+                                                                    </tr>
+                                                                    <tr style="text-align:left">
+                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">日期</td>
+                                                                        <td style="border-bottom: solid 1px;"><input id="meeting_date" name="meeting_date" datepicker="ch_datepicker" type="text"></td>
+                                                                    </tr>
+                                                                    <tr style="text-align:left">
+                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">時間</td>
+                                                                        <td style="border-bottom: solid 1px;"><input id="meeting_time" name="meeting_time" type="time"></td>
+                                                                    </tr>
+                                                                    <tr style="text-align:left">
+                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">地點</td>
+                                                                        <td style="border-bottom: solid 1px;"><input id="place" name="place" type="text" style="width:37em;"></td>
+                                                                    </tr>
+                                                                    <tr style="text-align:left">
+                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white">會員大會建議</td>
+                                                                        <td>
+                                                                            <textarea style="height:10em;width:700px;resize: none;font-size: 20px;" id="suggest" name="suggest" placeholder="請輸入會員大會建議"></textarea>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr style="text-align:left">
+                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white">下次會員大會重點</td>
+                                                                        <td>
+                                                                            <textarea style="height:16em;width:700px;resize: none;font-size: 20px;" id="next_focus" name="next_focus" placeholder="請輸入下次會員大會重點"></textarea>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                                </from>
+
+                                                                <br>
+                                                                <button id="rec_add_new" style="font-size:15px" type="button" class="btn btn-default"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-check" viewBox="0 0 16 16">
+                                                                        <path d="M10.854 7.854a.5.5 0 0 0-.708-.708L7.5 9.793 6.354 8.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
+                                                                        <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
+                                                                    </svg>新增</button>
+                                                                <a href="javascript:history.back()"><button style="font-size:15px" type="button" class="btn btn-default"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-excel" viewBox="0 0 16 16">
+                                                                            <path d="M5.884 6.68a.5.5 0 1 0-.768.64L7.349 10l-2.233 2.68a.5.5 0 0 0 .768.64L8 10.781l2.116 2.54a.5.5 0 0 0 .768-.641L8.651 10l2.233-2.68a.5.5 0 0 0-.768-.64L8 9.219l-2.116-2.54z" />
+                                                                            <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
+                                                                        </svg>取消</button></a>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <br>
-                                                <button id="members_assemble.php" style="font-size:15px" type="button" class="btn btn-default"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-check" viewBox="0 0 16 16">
-                                                        <path d="M10.854 7.854a.5.5 0 0 0-.708-.708L7.5 9.793 6.354 8.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
-                                                        <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
-                                                    </svg>新增</button>
-                                                <a href="members_assemble.php"><button style="font-size:15px" type="button" class="btn btn-default"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-excel" viewBox="0 0 16 16">
-                                                            <path d="M5.884 6.68a.5.5 0 1 0-.768.64L7.349 10l-2.233 2.68a.5.5 0 0 0 .768.64L8 10.781l2.116 2.54a.5.5 0 0 0 .768-.641L8.651 10l2.233-2.68a.5.5 0 0 0-.768-.64L8 9.219l-2.116-2.54z" />
+                                                <div class="tab-pane fade" id="two" role="tabpanel" aria-labelledby="profile-tab">
+                                                    <div class="panel-body">
+                                                    </div>
+                                                    <div class="table-wrap">
+                                                        <div class="table-responsive col-sm-12 text-center">
+                                                            <form action=""></form>
+                                                            <form id="form_b" class="form" action="">
+                                                                <table style="width:70%;" class="table table-bordered">
+                                                                    <tr>
+                                                                        <td colspan="2">
+                                                                            <h3>上傳會員大會記錄</h3>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr style="text-align:left">
+                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">會員大會記錄標題</td>
+                                                                        <td style="border-bottom: solid 1px;"><input id="upload_title_name" name="upload_title_name" type="text" style="width:37em;"></td>
+                                                                    </tr>
+                                                                    <tr style="text-align:left">
+                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">上傳日期</td>
+                                                                        <td style="border-bottom: solid 1px;"><input id="upload_rec_date" name="upload_rec_date" datepicker="ch_datepicker" type="text"></td>
+                                                                    </tr>
+                                                                    <tr style="text-align:left">
+                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">檔案上傳</td>
+                                                                        <td style="border-bottom: solid 1px;">
+                                                                            <div class="col-sm-12">
+                                                                                <div class="text-left">
+                                                                                    <input name="customFile1" type="file" class="form-control" />
+                                                                                    <br>
+                                                                                    <div id="customFile1"></div>
+                                                                                    <img src="" id="customFile1_img" style="display:none;" />
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr style="text-align:left">
+                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white">備註</td>
+                                                                        <td>
+                                                                            <textarea style="height:10em;width:700px;resize: none;font-size: 20px;" id="upload_rec_remark" name="upload_rec_remark" placeholder="請輸入備註"></textarea>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </form>
+                                                            <br>
+                                                            <button id="rec_add_new_upload" style="font-size:15px" type="button" class="btn btn-default"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-check" viewBox="0 0 16 16">
+                                                                    <path d="M10.854 7.854a.5.5 0 0 0-.708-.708L7.5 9.793 6.354 8.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
+                                                                    <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
+                                                                </svg>新增</button>
+                                                            <a href="javascript:history.back()"><button style="font-size:15px" type="button" class="btn btn-default"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-excel" viewBox="0 0 16 16">
+                                                                        <path d="M5.884 6.68a.5.5 0 1 0-.768.64L7.349 10l-2.233 2.68a.5.5 0 0 0 .768.64L8 10.781l2.116 2.54a.5.5 0 0 0 .768-.641L8.651 10l2.233-2.68a.5.5 0 0 0-.768-.64L8 9.219l-2.116-2.54z" />
+                                                                        <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
+                                                                    </svg>取消</button></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- <div class="col-sm-12 text-center">
+                                                    <br />
+                                                    <br />
+                                                    <button style="font-size:15px" type="button" class="btn btn-default" onclick="test1()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-check" viewBox="0 0 16 16">
+                                                            <path d="M10.854 7.854a.5.5 0 0 0-.708-.708L7.5 9.793 6.354 8.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
                                                             <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
-                                                        </svg>取消</button></a>
+                                                        </svg>test1</button>
+                                                </div> -->
                                             </div>
                                         </div>
                                     </div>
@@ -223,8 +321,14 @@
     <!-- ================== table ================== -->
     <script src="javascript/bootstrap1.18.0-table.min.js"></script>
     <script src="javascript/bootstrap-table1.11.1-zh-TW.min.js"></script>
-    <!-- ================== add_phone.js ================== -->
-    <script src="js/#.js"></script>
+    <!-- 日期民國-->
+    <script src="javascript/jquery-ui.min.js"></script>
+    <script src="javascript/datepickerTw2.js"></script>
+
+    <!-- ================== add_members_assemble.js ================== -->
+    <script src="js/add_members_assemble.js"></script>
+
+
 </body>
 
 </html>

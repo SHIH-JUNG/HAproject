@@ -7,10 +7,12 @@ $Phone_id = $_POST['Phone_id'];
 $Case_id = $_POST['Case_id'];
 $Case_create_date = $_POST['Case_create_date'];
 $Object_type = $_POST['Object_type'];
+$Case_grade = $_POST['Case_grade'];
 $Case_property = $_POST['Case_property'];
 $Open_case_date = $_POST['Open_case_date'];
 $Name = $_POST['Name'];
 @$Phone = $_POST['Phone'];
+$Gender = $_POST['Gender'];
 $Birth = $_POST['Birth'];
 $Case_pid = $_POST['Case_pid'];
 $Referral = $_POST['Referral'];
@@ -19,12 +21,12 @@ $Referral = $_POST['Referral'];
 $user = $_SESSION['name'];
 
 $sql = "INSERT INTO `current_case` (`Case_id`,`Phone_id`, `Unopen_type`,
- `Case_Create_date`,`Object_type`, `Case_property`,
-`Open_case_date`, `Name`, `Phone`, `Birth`, `Case_pid`, `Referral`, `Case_state`,
+ `Case_Create_date`,`Object_type`, `Case_grade`, `Case_property`,
+`Open_case_date`, `Name`, `Gender`, `Phone`, `Birth`, `Case_pid`, `Referral`, `Case_state`,
 `Create_date`,`Create_name`) VALUES
  ('$Case_id', '$Phone_id', '$Unopen_type',
-  '$Case_create_date', '$Object_type', '$Case_property',
-  '$Open_case_date', '$Name', '$Phone', '$Birth', '$Case_pid', '$Referral', '未結案',
+  '$Case_create_date', '$Object_type', '$Case_grade', '$Case_property',
+  '$Open_case_date', '$Name', '$Gender', '$Phone', '$Birth', '$Case_pid', '$Referral', '未結案',
   Now(), '$user')";
   
 	if(mysqli_query($conn,$sql)){

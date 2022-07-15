@@ -57,9 +57,141 @@ $(document).ready(function(){
         }
     });
     $(".screening_question").attr("disabled",true);
+    
+    add_screening_keywords();
+});
+//endregion
+
+// 查詢資料庫中的篩檢類別和篩檢結果，並添加到網頁前端下拉式選單中region
+function add_screening_keywords() {
+
+    $("#screening_type").empty();
+
+    $("#screening_results").empty();
+
+    $.ajax({
+        url: "database/find_screening_keywords.php",
+        data:{
+            keyword:"screening_type_keywords",
+        },
+        type: "POST",
+        dataType: "JSON",
+        success: function (data) {
+            $("#screening_type").append('<option value="">所有</option>');
+            $.each(data,function(index,value){
+                $("#screening_type").append('<option value="'+value.screening_type+'">'+value.screening_type+'</option>');
+            });
+        },
+        error:function(e){
+            console.log(e);
+        }
+    });
+
+    $.ajax({
+        url: "database/find_screening_keywords.php",
+        data:{
+            keyword:"screening_result_keywords",
+        },
+        type: "POST",
+        dataType: "JSON",
+        success: function (data) {
+            $("#screening_results").append('<option value="">所有</option>');
+            $.each(data,function(index,value){
+                $("#screening_results").append('<option value="'+value.screening_result+'">'+value.screening_result+'</option>');
+            });
+        },
+        error:function(e){
+            console.log(e);
+        }
+    });
+}
+//endregion
+
+
+// 新增篩檢類別和篩檢結果至資料庫，並刷新添加到網頁前端下拉式選單中region
+$("#add_screening_type_btn").on('click',function(){
+
+    if($("#add_screening_type").val()=="")
+    {
+        return false;
+    }
+    else
+    {
+        $.ajax({
+            url: "database/add_screening_keywords.php",
+            data:{
+                keyword:"screening_type",
+                add_keyword:$("#add_screening_type").val()
+            },
+            type: "POST",
+            dataType: "JSON",
+            success: function (data) {
+                if(data == 1){
+                    add_screening_keywords();
+                    $("#add_screening_type").val('');
+                    swal({
+                        type: 'success',
+                        title: '新增成功!',
+                        allowOutsideClick: false //不可點背景關閉
+                        })
+                }else{
+                    swal({
+                        type: 'error',
+                        title: '新增失敗!請聯絡負責人',
+                        allowOutsideClick: false //不可點背景關閉
+                        })
+                }  
+            },
+            error:function(e){
+                console.log(e);
+                alert("系統錯誤!");
+            }
+        });
+    }
 });
 
-//endregion  
+
+$("#add_screening_results_btn").on('click',function(){
+    if($("#add_screening_results").val()=="")
+    {
+        return false;
+    }
+    else
+    {
+        $.ajax({
+            url: "database/add_screening_keywords.php",
+            data:{
+                keyword:"screening_result",
+                add_keyword:$("#add_screening_results").val()
+            },
+            type: "POST",
+            dataType: "JSON",
+            success: function (data) {
+                if(data == 1){
+                    add_screening_keywords();
+                    $("#add_screening_results").val('');
+                    swal({
+                        type: 'success',
+                        title: '新增成功!',
+                        allowOutsideClick: false //不可點背景關閉
+                        })
+                }else{
+                    swal({
+                        type: 'error',
+                        title: '新增失敗!請聯絡負責人',
+                        allowOutsideClick: false //不可點背景關閉
+                        })
+                }  
+            },
+            error:function(e){
+                console.log(e);
+                alert("系統錯誤!");
+            }
+        });
+    }
+});
+//endregion
+  
 
 //判斷radio是否有值，就選取region
 function check_radio(a_detail){
@@ -308,6 +440,7 @@ $("#trans_to_opencase_submit").on('click',function(){
             success: function (data) {
                 // console.log(data)
                 tran_case_name = data.Name[0];
+                tran_case_gender = data.Gender[0];
                 // tran_case_pid = data.Pid[0];
                 tran_case_phone = data.Phone[0];
                 // tran_case_birth = data.Birth[0];
@@ -318,7 +451,7 @@ $("#trans_to_opencase_submit").on('click',function(){
             }
         });
 
-        window.location.href = 'phone_trans_to_opencase.php?unopen_type=screening&id='+screening_id.replace(/^\s+|\s+$/gm,'')+'&case_id='+$('#open_case_t_sn').val().replace(/^\s+|\s+$/gm,'')+'&case_property='+$('#open_case_type').val()+'&object_type='+$('#open_object_type').val()+'&tran_case_name='+tran_case_name+'&tran_case_phone='+tran_case_phone+'&tran_case_pid=&tran_case_birth=&tran_case_referral=';
+        window.location.href = 'phone_trans_to_opencase.php?unopen_type=screening&id='+screening_id.replace(/^\s+|\s+$/gm,'')+'&case_id='+$('#open_case_t_sn').val().replace(/^\s+|\s+$/gm,'')+'&case_property='+$('#open_case_type').val()+'&object_type='+$('#open_object_type').val()+'&tran_case_name='+tran_case_name+'&tran_case_gender='+tran_case_gender+'&tran_case_phone='+tran_case_phone+'&tran_case_pid=&tran_case_birth=&tran_case_referral=';
     }
 });
 //endregion
@@ -327,20 +460,39 @@ $("#trans_to_opencase_submit").on('click',function(){
 $('#open_object_type').on('change', function() {
 
     $("#open_case_t_sn").val('');
+    var object_type_val = this.value;
 
-    switch (this.value) {
-        case '一般藥癮者':
-        case '藥癮家庭':   
+    $.ajax({
+        url: "database/find_trans_automatic_id.php",
+        data:{
+            keyword:object_type_val,
+        },
+        type: "POST",
+        dataType: "JSON",
+        async :false,
+        success: function (data) {
+           console.log(data)
+           var str_id = (parseInt(data[0].Case_id)+1).toString();
 
-                $("#open_case_t_sn").val('ER');
-            break;
-        case '親職兒少':   
-                $("#open_case_t_sn").val('A');
-            break;
-        default:
-                $("#open_case_t_sn").val('');
-            break;
-    }
+           
+           switch (object_type_val) {
+            case '一般藥癮者':
+            case '藥癮家庭':   
+                    $("#open_case_t_sn").val("RE"+str_id);
+                break;
+            case '愛滋感染者':
+            case '親職兒少':
+                    $("#open_case_t_sn").val(str_id);
+                break;
+            default:
+                    $("#open_case_t_sn").val("");
+                break;
+           }
+        },
+        error:function(e){
+            console.log(e);
+        }
+    });
 });
 //endregion
 
@@ -357,13 +509,9 @@ function check_trans_to_opencase_value()
     var case_id_c_2 = "none";
     if (open_case_t_sn.replace(/\s*/g, "") != '') {
 
-        if(open_case_t_sn.includes("ER"))
+        if(open_case_t_sn.includes("RE"))
         {
-            case_id_c_2 = open_case_t_sn.replace("ER", "")
-        }
-        else if(open_case_t_sn.includes("A"))
-        {
-            case_id_c_2 = open_case_t_sn.replace("A", "")
+            case_id_c_2 = open_case_t_sn.replace("RE", "")
         }
     }
 
@@ -371,10 +519,10 @@ function check_trans_to_opencase_value()
         errorstr += "未填寫開案編號!\r\n";
     }
     if (open_case_type == null) {
-        errorstr += "未選擇個案屬性!\r\n";
+        errorstr += "未選擇類別屬性!\r\n";
     }
     if (open_object_type == null) {
-        errorstr += "未選擇服務對象類別!\r\n";
+        errorstr += "未選擇個案類別!\r\n";
     }
     if (errorstr == "") {
         // console.log(caseid_repeat)
@@ -386,10 +534,10 @@ function check_trans_to_opencase_value()
             errorstr += "未填寫開案編號!\r\n";
         }
         if (open_case_type.replace(/\s*/g, "") == '') {
-            errorstr += "未選擇個案屬性!\r\n";
+            errorstr += "未選擇類別屬性!\r\n";
         }
         if (open_object_type.replace(/\s*/g, "") == '') {
-            errorstr += "未選擇服務對象類別!\r\n";
+            errorstr += "未選擇個案類別!\r\n";
         }
     }
 

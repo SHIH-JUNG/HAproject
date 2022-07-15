@@ -143,8 +143,8 @@
                                                                 <div>
                                                                     姓名：<span class="case_name"></span>
                                                                     ，開案日期：<span class="case_date"></span>
-                                                                    ，服務對象類別：<span class="case_object_type"></span>
-                                                                    ，個案屬性：<span class="case_property_type"></span>
+                                                                    ，個案類別：<span class="case_object_type"></span>
+                                                                    ，類別屬性：<span class="case_property_type"></span>
                                                                 </div>
                                                                 <table id="settlement_all" style="width:auto;" class="table table-bordered">
                                                                     <th>建立日期</th>

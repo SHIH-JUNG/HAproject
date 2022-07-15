@@ -105,7 +105,7 @@
                                                         <tr>
                                                             <th data-width="65" data-width-unit="%">標題</th>
                                                             <th data-width="20" data-width-unit="%">日期</th>
-                                                            <th data-width="15" data-width-unit="%">負責人</th>
+                                                            <th data-width="15" data-width-unit="%">承辦人員</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody id="ann"></tbody>
@@ -136,7 +136,7 @@
                                                         <tr>
                                                             <th data-width="65" data-width-unit="%">標題</th>
                                                             <th data-width="20" data-width-unit="%">日期</th>
-                                                            <th data-width="15" data-width-unit="%">負責人</th>
+                                                            <th data-width="15" data-width-unit="%">承辦人員</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody id="sign_info"></tbody>
@@ -167,7 +167,7 @@
                                                         <tr>
                                                             <th data-width="65" data-width-unit="%">標題</th>
                                                             <th data-width="20" data-width-unit="%">日期</th>
-                                                            <th data-width="15" data-width-unit="%">負責人</th>
+                                                            <th data-width="15" data-width-unit="%">承辦人員</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody id="sign_check"></tbody>
@@ -198,7 +198,7 @@
                                                         <tr>
                                                             <th data-width="65" data-width-unit="%">標題</th>
                                                             <th data-width="20" data-width-unit="%">日期</th>
-                                                            <th data-width="15" data-width-unit="%">負責人</th>
+                                                            <!-- <th data-width="15" data-width-unit="%">承辦人員</th> -->
                                                         </tr>
                                                     </thead>
                                                     <tbody id="sign_check"></tbody>
@@ -301,7 +301,7 @@
                                         <textarea class="col-sm-12" id="up_description" style="height:100px;margin-top:5px;resize: none" type="text"></textarea>
                                     </div>
                                     <div class="col-sm-12 text-center">
-                                        <a id="site"><button id="btn" hidden>連結至個案</button></a>
+                                        <a id="site"><button id="btn" hidden>連至網址</button></a>
                                     </div>
                                     <div id="start_time" class="col-sm-12 text-center">
                                         <div class="col-sm-12">

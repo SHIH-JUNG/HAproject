@@ -12,14 +12,14 @@ function getUrlVars() {
 var name = decodeURIComponent(getUrlVars()["name"]);
 var pid =getUrlVars()["pid"];
 var date = getUrlVars()["date"];
-// var grade = getUrlVars()["grade"];
+var grade = getUrlVars()["grade"];
 var property = decodeURIComponent(getUrlVars()["property"]);
 var type = decodeURIComponent(getUrlVars()["type"]);
 var phone_id = getUrlVars()["id"];
 var open_id = getUrlVars()["open_id"];
 // var addition =decodeURIComponent(getUrlVars()["addition"]);
 // var age = decodeURIComponent(getUrlVars()["age"]);
-// var gender =decodeURIComponent(getUrlVars()["gender"]);
+var gender =decodeURIComponent(getUrlVars()["gender"]);
 
 var referral = decodeURIComponent(getUrlVars()["referral"]);
 var case_Create_date = getUrlVars()["case_Create_date"];
@@ -30,7 +30,7 @@ var form_id = getUrlVars()["form_id"];
 var form_type = decodeURIComponent(getUrlVars()["form_type"]);
 
 
-//當量表分數改變(選項)的時候，重算分數
+//當量表分數改變(選項)的時候，重算分數 region
 $("input[name*='answer']").change( function(event) {
     
     //加總所有選項分數
@@ -43,8 +43,9 @@ $("input[name*='answer']").change( function(event) {
         BSRS5_answer_score_evaluation();
     }
 });
+//endregion
 
-//量表分數計算region
+//量表分數計算 region
 function answer_score_counting() {
     var t_score = 0;
 
@@ -110,6 +111,59 @@ function BSRS5_answer_score_evaluation() {
         $("input[name='treatment_status']").last().prop("checked",false);
     }
     
+}
+//endregion
+
+
+//生活品質問卷量表 當量表分數改變(選項)的時候，重算分數 region
+// part 1
+$("input[name*='life_answer']").change( function(event) {
+    
+    // console.log("life_answer")
+
+    //加總所有選項分數
+    life_answer_score_counting_part1();
+});
+// part 2
+$("input[name*='customRange']").change( function(event) {
+    
+    // console.log("life_answer")
+
+    //加總所有選項分數
+    life_answer_score_counting_part2();
+});
+//endregion
+
+// 生活品質問卷量表分數計算 region
+// part 1
+function life_answer_score_counting_part1() {
+    var t_score = 0;
+
+    $("input[name*='life_answer']").each(function(i,n){
+
+        if($(this).is(":checked"))
+        {
+            var score = parseInt($(this).val())
+            t_score += score;
+        }
+    });
+
+    $("#life_answer_score1").val(t_score);
+    // console.log(t_score)
+}
+// part 2
+function life_answer_score_counting_part2() {
+    var t_score = 0;
+
+    $("input[name*='customRange']").each(function(i,n){
+
+        var score = parseInt(this.value)
+        t_score += score;
+        
+    });
+
+    $("#life_answer_score2").val(t_score);
+    // console.log(t_score)
 }
 //endregion
 
@@ -284,7 +338,13 @@ function check_file_exist(){
         case 'life':
 
             var w_test = $('input[name="w_test"]:checked').val();
+            var life_answer_score1 = $('input[name="life_answer_score1"]').val();
+            var life_answer_score2 = $('input[name="life_answer_score2"]').val();
+            var total_answer_score = parseInt(life_answer_score1) + parseInt(life_answer_score2);
             
+            // other_info_arr.push({name:form_tpye,value:"總分："+total_answer_score+"分。第一部分："+life_answer_score1+"分，第二部分："+life_answer_score2+"分。"});
+            other_info_arr.push({name:form_tpye,value:total_answer_score});
+
             if(w_test==undefined)
             {
                 other_info_arr.push({name:form_tpye,value:''});
@@ -353,8 +413,11 @@ function check_file_exist(){
             break;
         case 'interlocution':
                 var interlocution_date = $('input[name="interlocution_date"]').val();
+                var interlocution_ques = $('textarea[name="interlocution_ques"]').val();
                 var interlocution_assign_name = $('input[name="assign_name"]').val();
+
                 other_info_arr.push({name:form_tpye,value:interlocution_date});
+                other_info_arr.push({name:form_tpye,value:interlocution_ques});
                 other_info_arr.push({name:form_tpye,value:interlocution_assign_name});
             break;
 
@@ -624,7 +687,7 @@ $(document).ready(function () {
     //個案評估表自動填入資料
     $("#name").val(name);
     $("#pid").val(decodeURIComponent(pid));
-    // $("input[name='sex'][value='"+gender+"生']").attr('checked',true);
+    $("input[name='sex'][value='"+gender+"生']").attr('checked',true);
     $("#open_date").val(decodeURIComponent(date));
     // $("#age").val(decodeURIComponent(age));
 
@@ -654,7 +717,13 @@ $(document).ready(function () {
 
     //計算各量表 分數
     answer_score_counting();
-  
+
+    //手動新增按鈕點擊跳出模態框
+    $('#trans_grade_model').on('shown.bs.modal', function () {
+        $('#trans_grade').trigger('focus');
+    });  
+
+    $("#case_grade").val(decodeURIComponent(grade));
 });
 //endregion
 
@@ -701,6 +770,11 @@ function load_all_forms_data(type_name,url_str)
                             //text填值語法格式
                             case "text":
                                 $("input[name='"+datan.name+"']").val(datan.value);
+                                break;
+                            // range填值語法格式
+                            case "range":
+                                $("input[name='"+datan.name+"']").val(datan.value);
+                                $("input[name='"+datan.name+"']").next().val(datan.value);
                                 break;
                             case "file":
                                     //file類型跳過，下面再後續處理
@@ -1218,7 +1292,7 @@ $("#preview").on('click', function(){
 
 //設定麵包屑返回region
 
-var url = 'case_all.php?name='+name+'&pid='+pid+'&date='+date+'&property='+property+'&type='+type+'&id='+phone_id+'&open_id='+open_id+'&referral='+referral+'&case_Create_date='+case_Create_date+'&unopen_type='+unopen_type+'&birth='+birth+'';
+var url = 'case_all.php?name='+name+'&gender='+gender+'&pid='+pid+'&date='+date+'&property='+property+'&type='+type+'&grade='+ grade+'&id='+phone_id+'&open_id='+open_id+'&referral='+referral+'&case_Create_date='+case_Create_date+'&unopen_type='+unopen_type+'&birth='+birth+'';
 $("#history").attr('href',url);
 
 history_back_btn = function() {
@@ -1231,81 +1305,81 @@ $("#history2").attr('href',url2);
 
 //endregion
 
-    //結案region
-    $("#end").on('click', function () {
-        var name = decodeURIComponent(getUrlVars()["name"]);
-        var pid =getUrlVars()["pid"];
-        var date = getUrlVars()["date"];
-        // var grade = getUrlVars()["grade"];
-        var property = decodeURIComponent(getUrlVars()["property"]);
-        var type = decodeURIComponent(getUrlVars()["type"]);
-        var phone_id = getUrlVars()["id"];
-        var open_id = getUrlVars()["open_id"];
-        // var addition =decodeURIComponent(getUrlVars()["addition"]);
-        // var age = decodeURIComponent(getUrlVars()["age"]);
-        // var gender =decodeURIComponent(getUrlVars()["gender"]);
+$("#trans_grade_submit").on('click', function () {
 
-        var referral = decodeURIComponent(getUrlVars()["referral"]);
-        var case_Create_date = getUrlVars()["case_Create_date"];
-        var unopen_type = decodeURIComponent(getUrlVars()["unopen_type"]);
-        var birth = getUrlVars()["birth"];
-
-        var form_id = getUrlVars()["form_id"];
-        var form_type = decodeURIComponent(getUrlVars()["form_type"]);
-        var Today=new Date();
-        var twdate = (Today.getFullYear()-1911)+'-'+('0'+(Today.getMonth()+1)).substr(-2)+'-'+('0'+Today.getDate()).substr(-2);
-        swal({
-            title: '確認結案？',
-            text: "結案後將新增至離園一覽表",
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            allowOutsideClick: false, //不可點背景關閉
-            confirmButtonText: '確認！',
-            cancelButtonText: '取消'
-        }).then(function (isConfirm) {
-            if (isConfirm) {
-                $.ajax({
-                    url: "database/add_end.php",
-                    data: {
-                        face_id: face_id,
-                        open_id:open_id,
-                        house:house,
-                        name:name,
-                        leave_date:twdate,
-                        leave_stage:$("#stage_end").val(),
-                        main_addition:addition,
-                        end_status:"未結案",
-                        enter_date:$("#date").text(),
-                    },
-                    type: "POST",
-                    dataType: "JSON",
-                    success: function (data) {
-                        if (data == 1) {
-                            swal({
-                                title: '結案成功！',
-                                type: 'success',
-                            }).then(function () {
-                                location.reload();
-                            })
-                        } else {
-                            swal({
-                                title: '結案失敗！',
-                                type: 'error',
-                            })
-                        }
-                    },
-                    error: function (e) {
-                        console.log(e);
+    swal({
+        title: '確認轉級？',
+        text: "送出資料後將轉跳至個案紀錄頁面。",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        allowOutsideClick: false, //不可點背景關閉
+        confirmButtonText: '確認！',
+        cancelButtonText: '取消'
+    }).then(function (isConfirm) {
+        if (isConfirm) {
+            $.ajax({
+                url: "database/update_case_trans_grade.php",
+                data: {
+                    Case_id:open_id,
+                    Case_pid:pid,
+                    Case_grade:$("#case_grade").val(),
+                },
+                type: "POST",
+                dataType: "JSON",
+                success: function (data) {
+                    if (data == 1) {
+                        swal({
+                            title: '轉級成功！',
+                            type: 'success',
+                        }).then(function () {
+                            window.location.href=url2;
+                        })
+                    } else {
+                        swal({
+                            title: '轉級失敗！',
+                            type: 'error',
+                        })
                     }
-                });
-            }
-
-        });
+                },
+                error: function (e) {
+                    console.log(e);
+                }
+            }); 
+        }
     });
-    //endregion
+});
 
+
+
+//結案region
+$("#end").on('click', function () {
+    swal({
+        title: '確認結案？',
+        text: "將轉跳至新增結案頁面。",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        allowOutsideClick: false, //不可點背景關閉
+        confirmButtonText: '確認！',
+        cancelButtonText: '取消'
+    }).then(function (isConfirm) {
+        if (isConfirm) {
+
+            var end_indicator_text = $("[name*='end_indicator']").val();
+            var diagnose_main_text = $("[name*='diagnose_main']").val();
+            var case_closed_yes_text = $("[name*='case_closed_yes']").val();
+            
+            // alert(end_indicator_text)
+            // alert(diagnose_main_text)
+            // alert(case_closed_yes_text)
+            window.location.href = 'trans_closed.php?name='+name+'&gender='+gender+'&open_id='+open_id+'&open_date='+date+'&main_issue='+diagnose_main_text+'&closed_reason='+end_indicator_text+'&closed_remark='+case_closed_yes_text+'';
+        }
+
+    });
+});
 //endregion
 
 //跳轉至個案會談紀錄region

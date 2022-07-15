@@ -48,7 +48,7 @@
                                 </li>
                                 <li class="nav-item" role="presentation">
                                     <a class="nav-link" id="profile-tab" data-toggle="pill" href="#three" role="tab" aria-selected="false">
-                                        <b>問題陳述/問題分析與診斷/處遇計畫/資源與轉介/結案評估</b>
+                                        <b>問題陳述/問題分析與診斷/處遇計畫/資源與轉介/成效評估</b>
                                     </a>
                                 </li>
                             </ul>
@@ -466,7 +466,7 @@
                                 <div class="tab-pane fade" id="three" role="tabpanel" aria-labelledby="profile-tab">
                                     <div class="col-sm-12">
                                         <div style="margin-top:15px" class="text-center">
-                                            <h4>問題陳述/問題分析與診斷/處遇計畫/資源與轉介/結案評估</h4>
+                                            <h4>問題陳述/問題分析與診斷/處遇計畫/資源與轉介/成效評估</h4>
                                         </div>
                                     </div>
                                     <div class="panel-body">
@@ -528,21 +528,21 @@
                                                     </tr>
                                                     <tr>
                                                         <td rowspan="2" style="background-color:rgb(255 201 54);text-align:left;">診斷問題</td>
-                                                        <td style="background-color:rgb(255 201 54);text-align:left;">主要</td>
+                                                        <td style="background-color:rgb(255 201 54);text-align:left;">主要問題</td>
                                                         <td>
                                                             <div class="col-sm-12">
                                                                 <div class="text-left">
-                                                                    <textarea style="width:100%;resize: none;font-size: 20px;" name="diagnose_main" id="diagnose_main" placeholder="主要"></textarea>
+                                                                    <textarea style="width:100%;resize: none;font-size: 20px;" name="diagnose_main" id="diagnose_main" placeholder="主要問題"></textarea>
                                                                 </div>
                                                             </div>
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td style="background-color:rgb(255 201 54);text-align:left;">次要</td>
+                                                        <td style="background-color:rgb(255 201 54);text-align:left;">次要問題</td>
                                                         <td>
                                                             <div class="col-sm-12">
                                                                 <div class="text-left">
-                                                                    <textarea style="width:100%;resize: none;font-size: 20px;" name="diagnose_minor" id="diagnose_minor" placeholder="次要"></textarea>
+                                                                    <textarea style="width:100%;resize: none;font-size: 20px;" name="diagnose_minor" id="diagnose_minor" placeholder="次要問題"></textarea>
                                                                 </div>
                                                             </div>
                                                         </td>
@@ -647,9 +647,11 @@
                                     <button style="font-size:20px" id="add_settlement_detail" class="btn btn-default">儲存</button>
                                     <button style="font-size:20px" onclick="history_back_btn();" class="btn btn-default">返回</button>
                                     <button style="font-size:20px" id="preview" class="btn btn-default">預覽匯出</button>
-                                    <button style="font-size:20px" onclick="test()" class="btn btn-default">測試</button>
+                                    <!-- <button style="font-size:20px" onclick="test()" class="btn btn-default">測試</button> -->
                                 </div>
                                 <div class="text-right">
+                                    <button style="font-size:20px" id="trans_grade" type="button" class="btn btn-default">轉級</button>
+                                    <button style="font-size:20px" id="trans_case" type="button" class="btn btn-default">轉案</button>
                                     <button style="font-size:20px" id="end" type="button" class="btn btn-default">結案</button>
                                 </div>
                             </div>

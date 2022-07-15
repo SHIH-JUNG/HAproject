@@ -139,17 +139,7 @@ input[type=number] {
                                                                 </td>
                                                             </tr>
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>開案編號</td>
-                                                                <td style="border-bottom: solid 1px;"><input id="case_id" type="text"></td>
-                                                            </tr>
-                                                            <tr class="text-align:left">
-                                                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>登入日期</td>
-                                                            <td class="text-left">
-                                                                <input id="create_date" type="date">
-                                                            </td>
-                                                            </tr>
-                                                            <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>服務對象類別</td>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>個案類別</td>
                                                                 <td style="border-bottom: solid 1px;">
                                                                     <select id="object_type" style="width:200px;">
                                                                         <option value="">請選擇</option>
@@ -161,7 +151,34 @@ input[type=number] {
                                                                 </td>
                                                             </tr>
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>個案屬性</td>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>開案編號</td>
+                                                                <td style="border-bottom: solid 1px;"><input id="case_id" type="text"></td>
+                                                            </tr>
+                                                            <tr class="text-align:left">
+                                                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>登入日期</td>
+                                                            <td class="text-left">
+                                                                <input id="create_date" type="date">
+                                                            </td>
+                                                            </tr>
+                                                            <tr class="text-align:left">
+                                                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>開案日期</td>
+                                                            <td class="text-left">
+                                                                <input id="open_case_date" type="date">
+                                                            </td>
+                                                            </tr>
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>個案分級</td>
+                                                                <td style="border-bottom: solid 1px;">
+                                                                    <select id="case_grade" style="width:200px;">
+                                                                        <option value="">請選擇</option>
+                                                                        <option value="A">A</option>
+                                                                        <option value="B">B</option>
+                                                                        <option value="C">C</option>
+                                                                    </select>
+                                                                </td>
+                                                            </tr>
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>類別屬性</td>
                                                                 <td style="border-bottom: solid 1px;">
                                                                     <select id="case_property" style="width:160px;">
                                                                     <option value="">請選擇</option>
@@ -173,13 +190,6 @@ input[type=number] {
                                                                     <option value="親子教育">親子教育</option> -->
                                                                     </select>
                                                                 </td>
-                                                            </tr>
-
-                                                            <tr class="text-align:left">
-                                                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>開案日期</td>
-                                                            <td class="text-left">
-                                                                <input id="open_case_date" type="date">
-                                                            </td>
                                                             </tr>
                                                             <tr style="text-align:left">
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>姓名</td>
@@ -199,18 +209,6 @@ input[type=number] {
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>身分證字號</td>
                                                                 <td style="border-bottom: solid 1px;"><input id="pid" type="text"></td>
                                                             </tr>
-                                                            <!-- <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>個案分級</td>
-                                                                <td style="border-bottom: solid 1px;">
-                                                                    <select id="case_grade" style="width:200px;">
-                                                                        <option value="">請選擇</option>
-                                                                        <option value="A">A</option>
-                                                                        <option value="B">B</option>
-                                                                        <option value="C">C</option>
-                                                                    </select>
-                                                                </td>
-                                                            </tr> -->
-                                                            
                                                             <tr style="text-align:left">
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white">轉介來源</td>
                                                                 <td style="border-bottom: solid 1px;">

@@ -17,20 +17,22 @@ var form_type_arr = [];
 var name = decodeURIComponent(getUrlVars()["name"]);
 var pid =getUrlVars()["pid"];
 var date = getUrlVars()["date"];
-// var grade = getUrlVars()["grade"];
+var grade = getUrlVars()["grade"];
 var property = decodeURIComponent(getUrlVars()["property"]);
 var type = decodeURIComponent(getUrlVars()["type"]);
 var phone_id = getUrlVars()["id"];
 var open_id = getUrlVars()["open_id"];
 // var addition =decodeURIComponent(getUrlVars()["addition"]);
 // var age = decodeURIComponent(getUrlVars()["age"]);
-// var gender =decodeURIComponent(getUrlVars()["gender"]);
+var gender =decodeURIComponent(getUrlVars()["gender"]);
 
 var referral = decodeURIComponent(getUrlVars()["referral"]);
 var case_Create_date = getUrlVars()["case_Create_date"];
 var unopen_type = decodeURIComponent(getUrlVars()["unopen_type"]);
 var birth = getUrlVars()["birth"];
 
+case_url = 'case_detail.php?name='+name+'&gender='+gender+'&pid='+pid+'&date='+date+'&property='+ property +'&type='+ type+'&grade='+ grade+'&id='+phone_id+'&open_id='+open_id+'&referral='+referral+'&case_Create_date='+case_Create_date+'&unopen_type='+unopen_type+'&birth='+birth+'';
+// console.log(case_url);
 // console.log(name, date, grade, property, type, phone_id, open_id, addition, age, gender);
 $(".case_name").text(name);
 $(".case_date").text(date);
@@ -121,7 +123,7 @@ function load_each_form()
                                 '<td>'+value.Form_Create_date+'</td>'+
                                 '<td>線上建檔</td>'+
                                 othercssstring+
-                                '<td><a href="'+value.Url+'&form_id='+value.Id+'&form_type='+value.Form_name+'">點擊進入</a></td>'+
+                                '<td><a href="'+case_url+'&form_id='+value.Id+'&form_type='+value.Form_name+'">點擊進入</a></td>'+
                                 '<td>'+value.Remark+'</td>'+
                             '</tr>';
                         }
@@ -130,7 +132,7 @@ function load_each_form()
                             cssstring += 
                             '<tr name="'+form_name+'_num[]" id="'+value.Case_pid+"_"+value.Id+"_"+value.Phone_id+"_"+value.Case_id+'">'+
                                 '<td>'+value.Form_Create_date+'</td>'+
-                                '<td><a href="'+value.Url+'&form_id='+value.Id+'&form_type='+value.Form_name+'">點擊進入</a></td>'+
+                                '<td><a href="'+case_url+'&form_id='+value.Id+'&form_type='+value.Form_name+'">點擊進入</a></td>'+
                                 '<td>'+value.Remark+'</td>'+
                             '</tr>';
                         }
@@ -140,7 +142,7 @@ function load_each_form()
                             '<tr name="'+form_name+'_num[]" id="'+value.Case_pid+"_"+value.Id+"_"+value.Phone_id+"_"+value.Case_id+'">'+
                                 '<td>'+value.Form_Create_date+'</td>'+
                                 othercssstring+
-                                '<td><a href="'+value.Url+'&form_id='+value.Id+'&form_type='+value.Form_name+'">點擊進入</a></td>'+
+                                '<td><a href="'+case_url+'&form_id='+value.Id+'&form_type='+value.Form_name+'">點擊進入</a></td>'+
                                 '<td>'+value.Remark+'</td>'+
                             '</tr>';
                         }
@@ -152,7 +154,7 @@ function load_each_form()
                                 '<td>'+value.Form_Create_date+'</td>'+
                                 '<td>'+value.Fillin_date+'</td>'+
                                 othercssstring+
-                                '<td><a href="'+value.Url+'&form_id='+value.Id+'&form_type='+value.Form_name+'">點擊進入</a></td>'+
+                                '<td><a href="'+case_url+'&form_id='+value.Id+'&form_type='+value.Form_name+'">點擊進入</a></td>'+
                                 '<td>'+value.Remark+'</td>'+
                             '</tr>';
                         }
@@ -215,15 +217,20 @@ function load_forms_other_row(form_type,index)
 {
     var str = "";
     switch (form_type) {
+        case 'interlocution':
+            str +=
+            '<td name="'+form_type+index+'"></td>'+
+            '<td name="'+form_type+index+'"></td>'+
+            '<td name="'+form_type+index+'"></td>';
+            break;
         case 'familyship':
         case 'BSRS5':
-        case 'interlocution':
+        case 'life':
             str +=
             '<td name="'+form_type+index+'"></td>'+
             '<td name="'+form_type+index+'"></td>';
             break;
 
-        case 'life':
         case 'case':
         case 'satif':
         case 'employment_satif':
@@ -327,14 +334,14 @@ function store(num, form_name){
     var name = decodeURIComponent(getUrlVars()["name"]);
     var pid =getUrlVars()["pid"];
     var date = getUrlVars()["date"];
-    // var grade = getUrlVars()["grade"];
+    var grade = getUrlVars()["grade"];
     var property = decodeURIComponent(getUrlVars()["property"]);
     var type = decodeURIComponent(getUrlVars()["type"]);
     var phone_id = getUrlVars()["id"];
     var open_id = getUrlVars()["open_id"];
     // var addition =decodeURIComponent(getUrlVars()["addition"]);
     // var age = decodeURIComponent(getUrlVars()["age"]);
-    // var gender =decodeURIComponent(getUrlVars()["gender"]);
+    var gender =decodeURIComponent(getUrlVars()["gender"]);
     
     var referral = decodeURIComponent(getUrlVars()["referral"]);
     var case_Create_date = getUrlVars()["case_Create_date"];
@@ -361,7 +368,7 @@ function store(num, form_name){
             Create_date:create_date,
             Fillin_date:fillin_date,
             Remark:remark,
-            Url:'case_detail.php?name='+name+'&pid='+pid+'&date='+date+'&property='+ property +'&type='+ type+'&id='+phone_id+'&open_id='+open_id+'&referral='+referral+'&case_Create_date='+case_Create_date+'&birth='+birth+'&unopen_type='+unopen_type+'',
+            Url:'case_detail.php?name='+name+'&gender='+gender+'&pid='+pid+'&date='+date+'&property='+ property +'&type='+ type+'&grade='+ grade+'&id='+phone_id+'&open_id='+open_id+'&referral='+referral+'&case_Create_date='+case_Create_date+'&unopen_type='+unopen_type+'&birth='+birth+'',
         },
         type: "POST",
         dataType: "JSON",
@@ -543,14 +550,14 @@ function i_store(num, form_name){
     var name = decodeURIComponent(getUrlVars()["name"]);
     var pid =getUrlVars()["pid"];
     var date = getUrlVars()["date"];
-    // var grade = getUrlVars()["grade"];
+    var grade = getUrlVars()["grade"];
     var property = decodeURIComponent(getUrlVars()["property"]);
     var type = decodeURIComponent(getUrlVars()["type"]);
     var phone_id = getUrlVars()["id"];
     var open_id = getUrlVars()["open_id"];
     // var addition =decodeURIComponent(getUrlVars()["addition"]);
     // var age = decodeURIComponent(getUrlVars()["age"]);
-    // var gender =decodeURIComponent(getUrlVars()["gender"]);
+    var gender =decodeURIComponent(getUrlVars()["gender"]);
     
     var referral = decodeURIComponent(getUrlVars()["referral"]);
     var case_Create_date = getUrlVars()["case_Create_date"];
@@ -682,14 +689,14 @@ $("#end").on('click', function () {
     var name = decodeURIComponent(getUrlVars()["name"]);
     var pid =getUrlVars()["pid"];
     var date = getUrlVars()["date"];
-    // var grade = getUrlVars()["grade"];
+    var grade = getUrlVars()["grade"];
     var property = decodeURIComponent(getUrlVars()["property"]);
     var type = decodeURIComponent(getUrlVars()["type"]);
     var phone_id = getUrlVars()["id"];
     var open_id = getUrlVars()["open_id"];
     // var addition =decodeURIComponent(getUrlVars()["addition"]);
     // var age = decodeURIComponent(getUrlVars()["age"]);
-    // var gender =decodeURIComponent(getUrlVars()["gender"]);
+    var gender =decodeURIComponent(getUrlVars()["gender"]);
     
     var referral = decodeURIComponent(getUrlVars()["referral"]);
     var case_Create_date = getUrlVars()["case_Create_date"];

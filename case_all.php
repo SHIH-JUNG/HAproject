@@ -194,8 +194,8 @@
                                                                 <div>
                                                                     姓名：<span class="case_name"></span>
                                                                     ，開案日期：<span class="case_date"></span>
-                                                                    ，服務對象類別：<span class="case_object_type"></span>
-                                                                    ，個案屬性：<span class="case_property_type"></span>
+                                                                    ，個案類別：<span class="case_object_type"></span>
+                                                                    ，類別屬性：<span class="case_property_type"></span>
                                                                 </div>
                                                                 <table id="case_all" style="width:auto;" class="table table-bordered">
                                                                     <th>建立日期</th>
@@ -223,12 +223,13 @@
                                                                 <div>
                                                                     姓名：<span class="case_name"></span>
                                                                     ，開案日期：<span class="case_date"></span>
-                                                                    ，服務對象類別：<span class="case_object_type"></span>
-                                                                    ，個案屬性：<span class="case_property_type"></span>
+                                                                    ，個案類別：<span class="case_object_type"></span>
+                                                                    ，類別屬性：<span class="case_property_type"></span>
                                                                 </div>
                                                                 <table id="interlocution_all" style="width:auto;" class="table table-bordered">
                                                                     <th>建立日期</th>
                                                                     <th>會談日期</th>
+                                                                    <th>問題陳述</th>
                                                                     <th>社工/關懷員</th>
                                                                     <th>會談紀錄內容</th>
                                                                     <th>備註</th>
@@ -250,8 +251,8 @@
                                                                 <div>
                                                                     姓名：<span class="case_name"></span>
                                                                     ，開案日期：<span class="case_date"></span>
-                                                                    ，服務對象類別：<span class="case_object_type"></span>
-                                                                    ，個案屬性：<span class="case_property_type"></span>
+                                                                    ，個案類別：<span class="case_object_type"></span>
+                                                                    ，類別屬性：<span class="case_property_type"></span>
                                                                 </div>
                                                                 <table id="resource_all" style="width:auto;" class="table table-bordered">
                                                                     <th>建立日期</th>
@@ -275,12 +276,13 @@
                                                                 <div>
                                                                     姓名：<span class="case_name"></span>
                                                                     ，開案日期：<span class="case_date"></span>
-                                                                    ，服務對象類別：<span class="case_object_type"></span>
-                                                                    ，個案屬性：<span class="case_property_type"></span>
+                                                                    ，個案類別：<span class="case_object_type"></span>
+                                                                    ，類別屬性：<span class="case_property_type"></span>
                                                                 </div>
                                                                 <table id="life_all" style="width:auto;" class="table table-bordered">
                                                                     <th>建立日期</th>
                                                                     <th>填表日期</th>
+                                                                    <th>總分</th>
                                                                     <th>前/後測</th>
                                                                     <th>量表內容</th>
                                                                     <th>備註</th>
@@ -303,8 +305,8 @@
                                                                 <div>
                                                                     姓名：<span class="case_name"></span>
                                                                     ，開案日期：<span class="case_date"></span>
-                                                                    ，服務對象類別：<span class="case_object_type"></span>
-                                                                    ，個案屬性：<span class="case_property_type"></span>
+                                                                    ，個案類別：<span class="case_object_type"></span>
+                                                                    ，類別屬性：<span class="case_property_type"></span>
                                                                 </div>
                                                                 <div>
                                                                 <table id="health_all" style="width:auto;" class="table table-bordered">
@@ -357,8 +359,8 @@
                                                                 <div>
                                                                     姓名：<span class="case_name"></span>
                                                                     ，開案日期：<span class="case_date"></span>
-                                                                    ，服務對象類別：<span class="case_object_type"></span>
-                                                                    ，個案屬性：<span class="case_property_type"></span>
+                                                                    ，個案類別：<span class="case_object_type"></span>
+                                                                    ，類別屬性：<span class="case_property_type"></span>
                                                                 </div>
                                                                 <div>
                                                                 <table id="employment_satif_all" style="width:auto;" class="table table-bordered">
@@ -386,8 +388,8 @@
                                                                 <div>
                                                                     姓名：<span class="case_name"></span>
                                                                     ，開案日期：<span class="case_date"></span>
-                                                                    ，服務對象類別：<span class="case_object_type"></span>
-                                                                    ，個案屬性：<span class="case_property_type"></span>
+                                                                    ，個案類別：<span class="case_object_type"></span>
+                                                                    ，類別屬性：<span class="case_property_type"></span>
                                                                 </div>
                                                                 <div>
                                                                 <table id="satif_all" style="width:auto;" class="table table-bordered">
@@ -415,8 +417,8 @@
                                                                 <div>
                                                                     姓名：<span class="case_name"></span>
                                                                     ，開案日期：<span class="case_date"></span>
-                                                                    ，服務對象類別：<span class="case_object_type"></span>
-                                                                    ，個案屬性：<span class="case_property_type"></span>
+                                                                    ，個案類別：<span class="case_object_type"></span>
+                                                                    ，類別屬性：<span class="case_property_type"></span>
                                                                 </div>
                                                                 <div>
                                                                 <table id="familyship_all" style="width:auto;" class="table table-bordered">
@@ -469,8 +471,8 @@
                                                                 <div>
                                                                     姓名：<span class="case_name"></span>
                                                                     ，開案日期：<span class="case_date"></span>
-                                                                    ，服務對象類別：<span class="case_object_type"></span>
-                                                                    ，個案屬性：<span class="case_property_type"></span>
+                                                                    ，個案類別：<span class="case_object_type"></span>
+                                                                    ，類別屬性：<span class="case_property_type"></span>
                                                                 </div>
                                                                 <table id="settlement_all" style="width:auto;" class="table table-bordered">
                                                                     <th>建立日期</th>

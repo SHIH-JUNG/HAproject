@@ -35,7 +35,7 @@ $("#inside_add_new").on('click', function(){
                             '<option value="" disabled selected hidden>請選擇部門</option>'+
                         '</select>'+
                         '<select class="user" id="user'+num+'">'+
-                            '<option value="" disabled selected hidden>請選擇同工</option>'+
+                            '<option value="" disabled selected hidden>請選擇工作人員</option>'+
                         '</select>'+
                     '</td>'+
                     '<td>'+

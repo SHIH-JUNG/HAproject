@@ -11,16 +11,35 @@
                     </a>
                     <ul style="font-size:18px" id="administration" class="collapse">
                         <li>
-                            <a href="received.php">收文
+                            <a href="received_yearlist.php">收文
                             </a>
                         </li>
                         <li>
-                            <a href="published.php">發文
+                            <a href="published_yearlist.php">發文
                             </a>
                         </li>
                         <li>
-                            <a href="staff_manag.php">員工管理
+                            <a href="javascript:void(0);" class="active" data-toggle="collapse" data-target="#staff_non_open" aria-expanded="true">員工管理
+                                <span class="pull-right">
+                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-down-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"></path>
+                                    </svg>
+                                </span>
                             </a>
+                            <ul style="font-size: 15px;" id="staff_non_open" class="collapse" aria-expanded="true">
+                                <li>
+                                    <a href="resume_list.php">履歷表檔案
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="training_list.php">在職訓練
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="day_off_list.php">請假系統
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                         <li>
                             <a href="volunteer.php">志工管理
@@ -41,19 +60,34 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="board_supervisor.php">理監事會議
+                                        <a href="board_supervisor_yearlist.php">理監事會議
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="members_assemble.php">會員大會
+                                        <a href="members_assemble_yearlist.php">會員大會
                                         </a>
                                     </li>
                                 </li>
                             </ul>
                         </li>
                         <li>
-                            <a href="accounting_record.php">會計管理
+                            <a href="javascript:void(0);" class="" data-toggle="collapse" data-target="#accounting_non_open">會計管理
+                                <span class="pull-right">
+                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-down-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"></path>
+                                    </svg>
+                                </span>
                             </a>
+                            <ul style="font-size:15px" id="accounting_non_open" class="collapse">
+                                <li>
+                                    <a href="accounting_record_cash_yearlist.php">零用金紀錄
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="accounting_record_report_yearlist.php">報表紀錄
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </li>
@@ -77,7 +111,7 @@
                             <ul style="font-size:15px" id="non_open" class="collapse">
                                 <li>
                                     <li>
-                                        <a href="phone.php">簡短諮詢服務
+                                        <a href="phone.php">簡短服務
                                         </a>
                                     </li>
                                     <li>
@@ -132,11 +166,11 @@
                     </a>
                     <ul style="font-size:18px" id="plan" class="collapse" data-toggle="collapse">
                         <li>
-                            <a href="#">方案活動
+                            <a href="#">方案計畫
                             </a>
                         </li>
                         <li>
-                            <a href="#">方案計畫
+                            <a href="#">方案活動
                             </a>
                         </li>
                         <li>

@@ -271,7 +271,7 @@
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">建立者</td>
                                                                                 <td style="border-bottom: solid 1px;">
                                                                                     <select class="user" id="user">
-                                                                                        <option value="" disabled selected hidden>請選擇同工</option>
+                                                                                        <option value="" disabled selected hidden>請選擇工作人員</option>
                                                                                     </select>
                                                                                 </td>
                                                                             </tr> -->

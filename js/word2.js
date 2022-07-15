@@ -63,7 +63,7 @@ $("#export_excel").on('click',function(){
                             '</td>' +
                         '</tr>' +
                         '<tr style="text-align:left">' +
-                            '<td style="text-align:right;background-color:#ACD6FF;border-bottom-color: white;border-right-color: white;">指派同工</td>' +
+                            '<td style="text-align:right;background-color:#ACD6FF;border-bottom-color: white;border-right-color: white;">指派工作人員</td>' +
                             '<td>'+
                                 '<span>主：'+data.one_user_name[index]+'</span>'+
                                 '<br>'+

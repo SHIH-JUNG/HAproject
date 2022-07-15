@@ -33,6 +33,16 @@
         </tr>
         <tr style="text-align:left">
             <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline">
+                <label>督導簽章</label>
+            </td>
+            <td style="">
+                <input class="closed_question" style="width:15em;" id="supervise" type="text"><button style="margin:.5em;margin-right:3em;color:red;" type="button" id="supervise_signature_btn">簽名</button>
+                <button style="margin:.5em;" type="button" id="supervise_signature_msg_btn" onclick="sign_msg_model('supervise');" data-toggle="modal" data-target="#myModal">查看留言</button>
+                <a src="" id="supervise_signature_simg" style="color:blue;" target="_blank" alt="簽名圖片連結"></a>
+            </td>
+        </tr>
+        <tr style="text-align:left">
+            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline">
                 <label>建立日期</label>
             </td>
             <td style="">

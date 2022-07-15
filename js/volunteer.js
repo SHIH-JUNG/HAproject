@@ -1,13 +1,158 @@
-//抓所有電話詢戒表region
+//取得url id值region
+function getUrlVars() {
+  var vars = {};
+  var parts = window.location.href.replace(
+    /[?&]+([^=&]+)=([^&]*)/gi,
+    function (m, key, value) {
+      vars[key] = value;
+    }
+  );
+  return vars;
+}
+//endregion
+
+//datepicker創建 region
+datepicker_create = function (selector_id) {
+  if (selector_id.includes("birth")) {
+    $("#" + selector_id).datepicker({
+      changeYear: true,
+      changeMonth: true,
+      currentText: "今天",
+      dateFormat: "R.mm.dd",
+      showButtonPanel: true,
+      yearRange: "-109:+0",
+      onClose: function (dateText) {
+        // console.log($('#'+selector_id).val());
+        // console.log(trans_to_EN(dateText));
+      },
+      beforeShow: function (input, inst) {
+        var $this = $(this);
+        var cal = inst.dpDiv;
+        var outerh = $this.outerHeight();
+        if ($this.offset().top > 1200) {
+          outerh = outerh * 4;
+        } else {
+          outerh = outerh * 3;
+        }
+        // console.log($this.offset().top)
+        // console.log(outerh)
+
+        var top = $this.offset().top - outerh;
+        var left = $this.offset().left - 10;
+        setTimeout(function () {
+          cal.css({
+            top: top,
+            left: left,
+          });
+        }, 10);
+      },
+    });
+  } else {
+    $("#" + selector_id).datepicker({
+      changeYear: true,
+      changeMonth: true,
+      currentText: "今天",
+      dateFormat: "R.mm.dd",
+      showButtonPanel: true,
+      minDate: new Date(new Date().getFullYear() - 10, 0, 1),
+      maxDate: new Date(new Date().getFullYear() + 10, 11, 31),
+      onClose: function (dateText) {
+        // console.log($('#'+selector_id).val());
+        // console.log(trans_to_EN(dateText));
+      },
+      beforeShow: function (input, inst) {
+        var $this = $(this);
+        var cal = inst.dpDiv;
+        var outerh = $this.outerHeight();
+        if ($this.offset().top > 1200) {
+          outerh = outerh * 4;
+        } else {
+          outerh = outerh * 3;
+        }
+        // console.log($this.offset().top)
+        // console.log(outerh)
+
+        var top = $this.offset().top - outerh;
+        var left = $this.offset().left - 10;
+        setTimeout(function () {
+          cal.css({
+            top: top,
+            left: left,
+          });
+        }, 10);
+      },
+    });
+  }
+};
+//endregion
+
+//將日期轉為民國年格式111.03.07 region
+trans_to_Tw = function (endate) {
+  var strAry = endate.split("-");
+
+  if (parseInt(strAry[0]) > 1911) {
+    strAry[0] = parseInt(strAry[0]) - 1911;
+  }
+
+  return strAry.join(".");
+};
+//endregion
+
+//將日期轉為西元年格式2022-03-07(mysql date格式) region
+trans_to_EN = function (endate) {
+  var strAry = endate.split(".");
+
+  if (parseInt(strAry[0]) < 1911) {
+    strAry[0] = parseInt(strAry[0]) + 1911;
+  }
+
+  return strAry.join("-");
+};
+//endregion
+
+//檢查SQL撈出來的日期格式region
+check_sql_date_format = function (date) {
+  if (date == "0000-00-00") {
+    date = "";
+  } else {
+    date = trans_to_Tw(date);
+  }
+
+  return date;
+};
+
+//取得url id值region
+function getUrlVars() {
+  var vars = {};
+  var parts = window.location.href.replace(
+    /[?&]+([^=&]+)=([^&]*)/gi,
+    function (m, key, value) {
+      vars[key] = value;
+    }
+  );
+  return vars;
+}
+//endregion
+
+//團督紀錄表格region
+// var vo_year = getUrlVars()["year"];
+
+
 $.ajax({
   url: "database/find_data_volunteer.php",
   type: "POST",
   dataType: "JSON",
+  // data: {
+  //   year: vo_year,
+  // },
   async: false, //啟用同步請求
   success: function (data) {
     var cssString = "";
     // console.log(data)
     $.each(data, function (index, value) {
+
+      // var update_date = value.Update_date != "0000-00-00" ? value.Update_date : "";
+
       cssString +=
         '<tr id="' +
         value.Id +
@@ -36,6 +181,18 @@ $.ajax({
         '<td style="text-align:center">' +
         value.Honor_card +
         "</td>" +
+        // '<td style="text-align:center">' +
+        // value.Create_date +
+        // "</td>" +
+        // '<td style="text-align:center">' +
+        // value.Create_name +
+        // "</td>" +
+        // '<td style="text-align:center">' +
+        // update_date+ 
+        // "</td>" +
+        // '<td style="text-align:center">' +
+        // value.Update_name +
+        // "</td>" +
         "</tr>";
 
       $("#year").append(
@@ -60,9 +217,9 @@ $.ajax({
           value.Serv_time +
           "</option>"
       );
-      $("#time_all").append(
-        '<option value="' + value.Time_all + '">' + value.Time_all + "</option>"
-      );
+      // $("#time_all").append(
+      //   '<option value="' + value.Time_all + '">' + value.Time_all + "</option>"
+      // );
       $("#rece_hours").append(
         '<option value="' +
           value.Rece_hours +
@@ -82,6 +239,34 @@ $.ajax({
           value.Honor_card +
           '">' +
           value.Honor_card +
+          "</option>"
+      );
+      $("#create_date").append(
+        '<option value="' +
+          value.Create_date +
+          '">' +
+          value.Create_date +
+          "</option>"
+      );
+      $("#create_name").append(
+        '<option value="' +
+          value.Create_name +
+          '">' +
+          value.Create_name +
+          "</option>"
+      );
+      $("#update_date").append(
+        '<option value="' +
+          value.Update_date +
+          '">' +
+          value.Update_date +
+          "</option>"
+      );
+      $("#update_name").append(
+        '<option value="' +
+          value.Update_name +
+          '">' +
+          value.Update_name +
           "</option>"
       );
     });
@@ -132,7 +317,11 @@ $.ajax({
     //點擊table tr 進入詳細頁面
     $(".table-hover tbody").on("click", "tr", function () {
       window.location.href =
-        "volunteer_detail.php?volunteer_id=" + $(this).attr("id") + "";
+        "volunteer_detail.php?vo_id=" +
+        $(this).attr("id") +
+        // "&year=" +
+        // vo_year +
+        "";
     });
   },
 
@@ -188,28 +377,46 @@ var $table = $("#tab_all").DataTable({
 });
 
 //範圍搜尋region
-function parseTime(t) {
-  var d = new Date();
-  var time = t.match(/(\d+)(?::(\d\d))?\s*(p?)/);
-  d.setHours(parseInt(time[1]) + (time[3] ? 12 : 0));
-  d.setMinutes(parseInt(time[2]) || 0);
-  return d;
-}
+// function parseTime(t) {
+//   var d = new Date();
+//   var time = t.match(/(\d+)(?::(\d\d))?\s*(p?)/);
+//   d.setHours(parseInt(time[1]) + (time[3] ? 12 : 0));
+//   d.setMinutes(parseInt(time[2]) || 0);
+//   return d;
+// }
 
-var date_range = function (settings, data, dataIndex) {
-  var min_date = parseInt(Date.parse($("#min_date").val()), 10);
-  var max_date = parseInt(Date.parse($("#max_date").val()), 10);
-  var date = parseInt(Date.parse(data[0])) || 0; // use data for the date column
+// var date_range = function (settings, data, dataIndex) {
+//   var min_date = parseInt(Date.parse($("#min_date").val()), 10);
+//   var max_date = parseInt(Date.parse($("#max_date").val()), 10);
+//   var date = parseInt(Date.parse(data[0])) || 0; // use data for the date column
+//   if (
+//     (isNaN(min_date) && isNaN(max_date)) ||
+//     (isNaN(min_date) && date <= max_date) ||
+//     (min_date <= date && isNaN(max_date)) ||
+//     (min_date <= date && date <= max_date)
+//   ) {
+//     return true;
+//   }
+//   return false;
+// };
+
+
+var hours_range = function (settings, data, dataIndex) {
+  var min_time_all = parseInt($("#min_time_all").val(), 10);
+  var max_time_all = parseInt($("#max_time_all").val(), 10);
+  var hours = parseInt(data[4]) || 0; // use data for the date column
+  
   if (
-    (isNaN(min_date) && isNaN(max_date)) ||
-    (isNaN(min_date) && date <= max_date) ||
-    (min_date <= date && isNaN(max_date)) ||
-    (min_date <= date && date <= max_date)
+    (isNaN(min_time_all) && isNaN(max_time_all)) ||
+    (isNaN(min_time_all) && hours <= max_time_all) ||
+    (min_time_all <= hours && isNaN(max_time_all)) ||
+    (min_time_all <= hours && hours <= max_time_all)
   ) {
     return true;
   }
   return false;
 };
+
 
 //endregion
 
@@ -219,27 +426,32 @@ $("#count_people2").text("，人數：" + $table.column(0).data().unique().count
 //endregion
 
 //額外設定select
-$("select.filter").on("change", function () {
-  var rel = $(this).attr("rel");
-  if (this.value != "") {
-    //格式：.serch(該欄位值, 是否啟用正則表達式匹配, 是否關閉智能查詢, 是否開啟不區分大小寫)
-    //須完全匹配option的value值 設定option.value 使用正則符號匹配，ex:"^" + this.value+ "$"
-    //前端注意option value內有特殊字元須加入轉義字 ex:H+梅 positive => H\+梅 positive
-    $table
-      .columns(rel)
-      .search("^" + this.value + "$", true, false, true)
-      .draw();
-  } else {
-    $table.columns(rel).search(this.value).draw();
-  }
-});
-$("#min, #max").keyup(function () {
-  $.fn.dataTable.ext.search.push(age_range);
-  $table.draw();
-});
-$("#min_date, #max_date").on("change", function () {
-  //    console.log($('#min_date').val())
-  $.fn.dataTable.ext.search.push(date_range);
+// $("select.filter").on("change", function () {
+//   var rel = $(this).attr("rel");
+//   if (this.value != "") {
+//     //格式：.serch(該欄位值, 是否啟用正則表達式匹配, 是否關閉智能查詢, 是否開啟不區分大小寫)
+//     //須完全匹配option的value值 設定option.value 使用正則符號匹配，ex:"^" + this.value+ "$"
+//     //前端注意option value內有特殊字元須加入轉義字 ex:H+梅 positive => H\+梅 positive
+//     $table
+//       .columns(rel)
+//       .search("^" + this.value + "$", true, false, true)
+//       .draw();
+//   } else {
+//     $table.columns(rel).search(this.value).draw();
+//   }
+// });
+// $("#min, #max").keyup(function () {
+//   $.fn.dataTable.ext.search.push(age_range);
+//   $table.draw();
+// });
+// $("#min_date, #max_date").on("change", function () {
+//   //    console.log($('#min_date').val())
+//   $.fn.dataTable.ext.search.push(hours_range);
+//   $table.draw();
+// });
+
+$("#min_time_all, #max_time_all").keyup(function () {
+  $.fn.dataTable.ext.search.push(hours_range);
   $table.draw();
 });
 

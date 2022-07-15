@@ -110,14 +110,14 @@ input[type=number] {
                             }
                             elseif($unopen_type == "phone")
                             {
-                                echo '<li><span><a href="phone.php">簡短諮詢服務</a></span></li>';
+                                echo '<li><span><a href="phone.php">簡短服務</a></span></li>';
                             }
                             elseif($unopen_type == "counsel")
                             {
                                 echo '<li><span><a href="counsel.php">監所服務</a></span></li>';
                             }
                         ?>
-                        <!-- <li><span><a href="phone.php">簡短諮詢服務</a></span></li> -->
+                        <!-- <li><span><a href="phone.php">簡短服務</a></span></li> -->
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
@@ -128,14 +128,14 @@ input[type=number] {
                             }
                             elseif($unopen_type == "phone")
                             {
-                                echo '<li><span><a id="history" href="javascript:history.back()">簡短諮詢服務詳細資料</a></span></li>';
+                                echo '<li><span><a id="history" href="javascript:history.back()">簡短服務詳細資料</a></span></li>';
                             }
                             elseif($unopen_type == "counsel")
                             {
                                 echo '<li><span><a id="history" href="javascript:history.back()">監所服務詳細資料</a></span></li>';
                             }
                         ?>
-                        <!-- <li><span><a id="history" href="javascript:history.back()">簡短諮詢服務詳細資料</a></span></li> -->
+                        <!-- <li><span><a id="history" href="javascript:history.back()">簡短服務詳細資料</a></span></li> -->
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
@@ -179,14 +179,8 @@ input[type=number] {
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>開案編號</td>
                                                                 <td style="border-bottom: solid 1px;"><span id="case_id"></span></td>
                                                             </tr>
-                                                            <tr class="text-align:left">
-                                                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>登入日期</td>
-                                                            <td class="text-left">
-                                                                <input id="create_date" type="date">
-                                                            </td>
-                                                            </tr>
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>服務對象類別</td>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>個案類別</td>
                                                                 <td style="border-bottom: solid 1px;">
                                                                     <select id="object_type" style="width:200px;">
                                                                         <option value="">請選擇</option>
@@ -198,7 +192,24 @@ input[type=number] {
                                                                 </td>
                                                             </tr>
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>個案屬性</td>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>個案分級</td>
+                                                                <td style="border-bottom: solid 1px;">
+                                                                    <select id="case_grade" style="width:200px;">
+                                                                        <option value="">請選擇</option>
+                                                                        <option value="A">A</option>
+                                                                        <option value="B">B</option>
+                                                                        <option value="C">C</option>
+                                                                    </select>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>登入日期</td>
+                                                                <td class="text-left">
+                                                                    <input id="create_date" type="date">
+                                                                </td>
+                                                            </tr>
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>類別屬性</td>
                                                                 <td style="border-bottom: solid 1px;">
                                                                     <select id="case_property" style="width:160px;">
                                                                     <option value="">請選擇</option>
@@ -223,6 +234,17 @@ input[type=number] {
                                                                 <td style="border-bottom: solid 1px;"><input id="name" type="text"></td>
                                                             </tr>
                                                             <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>性別</td>
+                                                                <td style="border-bottom: solid 1px;">
+                                                                    <select id="gender" style="width:200px;">
+                                                                        <option value="">請選擇</option>
+                                                                        <option value="男">男</option>
+                                                                        <option value="女">女</option>
+                                                                        <option value="跨性別">跨性別</option>
+                                                                    </select>
+                                                                </td>
+                                                            </tr>
+                                                            <tr style="text-align:left">
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>電話</td>
                                                                 <td style="border-bottom: solid 1px;"><input id="phone" type="text"></td>
                                                             </tr>
@@ -236,17 +258,7 @@ input[type=number] {
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>身分證字號</td>
                                                                 <td style="border-bottom: solid 1px;"><input id="pid" type="text"></td>
                                                             </tr>
-                                                            <!-- <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>個案分級</td>
-                                                                <td style="border-bottom: solid 1px;">
-                                                                    <select id="case_grade" style="width:200px;">
-                                                                        <option value="">請選擇</option>
-                                                                        <option value="A">A</option>
-                                                                        <option value="B">B</option>
-                                                                        <option value="C">C</option>
-                                                                    </select>
-                                                                </td>
-                                                            </tr> -->
+                                                           
                                                             
                                                             <tr style="text-align:left">
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white">轉介來源</td>

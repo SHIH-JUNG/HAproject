@@ -16,6 +16,9 @@
     <link href="css/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
     <!--  table  -->
     <link rel="stylesheet" href="css/bootstrap-table.min.css">
+    <!--  日期民國  -->
+    <link data-require="jqueryui@*" rel="stylesheet" href="css/jquery-ui.css" />
+    <link href="css/dtsel.css" rel="stylesheet" />
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -100,7 +103,7 @@
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span>新增志工管理</span></li>
+                        <li><span>新增志工</span></li>
                     </ol>
                     <!--/麵包屑-->
                 </div>
@@ -132,18 +135,15 @@
                                                                     <h3>新增志工</h3>
                                                                 </td>
                                                             </tr>
+
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>年度</td>
-                                                                <td style="border-bottom: solid 1px;"><input id="call_datetime" type="datetime-local">
-                                                            </tr>
-                                                            <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>姓名</td>
-                                                                <td style="border-bottom: solid 1px;"><input id="Name" type="text" oninput="value=value.replace(/[\d]/g,'')"></td>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>志工姓名</td>
+                                                                <td style="border-bottom: solid 1px;"><input id="name" class="re_question" type="text"></td>
                                                             </tr>
                                                             <tr style="text-align:left">
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">服務項目</td>
                                                                 <td style="border-bottom: solid 1px;">
-                                                                    <select id="way_detail">
+                                                                    <select id="serv_type">
                                                                         <option value="電腦">電腦</option>
                                                                         <option value="美工">美工</option>
                                                                         <option value="活動">活動</option>
@@ -157,28 +157,28 @@
                                                             <tr style="text-align:left">
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">服務時間</td>
                                                                 <td style="border-bottom: solid 1px;">
-                                                                    <select id="way_detail">
-                                                                        <option value="周一早上(9:00-12:00)">周一早上(9:00-12:00)</option>
-                                                                        <option value="周一下午(13:00-12:00)">周一下午(13:00-12:00)</option>
-                                                                        <option value="周二早上(9:00-12:00)">周二早上(9:00-12:00)</option>
-                                                                        <option value="周二下午(13:00-12:00)">周二下午(13:00-12:00)</option>
-                                                                        <option value="周三早上(9:00-12:00)">周三早上(9:00-12:00)</option>
-                                                                        <option value="周三下午(13:00-12:00)">周三下午(13:00-12:00)</option>
-                                                                        <option value="周四早上(9:00-12:00)">周四早上(9:00-12:00)</option>
-                                                                        <option value="周四下午(13:00-12:00)">周四下午(13:00-12:00)</option>
-                                                                        <option value="周五早上(9:00-12:00)">周五早上(9:00-12:00)</option>
-                                                                        <option value="周五下午(13:00-12:00)">周五下午(13:00-12:00)</option>
+                                                                    <select id="serv_time">
+                                                                        <option value="周一早上9:00-12:00">周一早上9:00-12:00</option>
+                                                                        <option value="周一下午13:00-12:00">周一下午13:00-12:00</option>
+                                                                        <option value="周二早上9:00-12:00">周二早上9:00-12:00</option>
+                                                                        <option value="周二下午13:00-12:00">周二下午13:00-12:00</option>
+                                                                        <option value="周三早上9:00-12:00">周三早上9:00-12:00</option>
+                                                                        <option value="周三下午13:00-12:00">周三下午13:00-12:00</option>
+                                                                        <option value="周四早上9:00-12:00">周四早上9:00-12:00</option>
+                                                                        <option value="周四下午13:00-12:00">周四下午13:00-12:00</option>
+                                                                        <option value="周五早上9:00-12:00">周五早上9:00-12:00</option>
+                                                                        <option value="周五下午13:00-12:00">周五下午13:00-12:00</option>
                                                                     </select>
                                                                 </td>
                                                             </tr>
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>目前服務時數</td>
-                                                                <td style="border-bottom: solid 1px;"><input id="service_time" type="text" oninput="value=value.replace(/[\d]/g,'')"></td>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>服務總時數</td>
+                                                                <td style="border-bottom: solid 1px;"><input id="time_all" class="re_question" type="text"></td>
                                                             </tr>
                                                             <tr style="text-align:left">
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">是否領取時數條</td>
                                                                 <td style="border-bottom: solid 1px;">
-                                                                    <select id="way_detail">
+                                                                    <select id="rece_hours">
                                                                         <option value="是">是</option>
                                                                         <option value="否">否</option>
                                                                     </select>
@@ -187,7 +187,7 @@
                                                             <tr style="text-align:left">
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">是否領取服務獎狀</td>
                                                                 <td style="border-bottom: solid 1px;">
-                                                                    <select id="way_detail">
+                                                                    <select id="serv_award">
                                                                         <option value="是">是</option>
                                                                         <option value="否">否</option>
                                                                     </select>
@@ -196,17 +196,22 @@
                                                             <tr style="text-align:left">
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">是否持有志工榮譽卡</td>
                                                                 <td style="border-bottom: solid 1px;">
-                                                                    <select id="way_detail">
+                                                                    <select id="honor_card">
                                                                         <option value="是">是</option>
                                                                         <option value="否">否</option>
                                                                     </select>
                                                                 </td>
                                                             </tr>
+                                                            <!-- <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>創建日期</td>
+                                                                <td style="border-bottom: solid 1px;"><input id="create_date" class="re_question" name="ch_datepicker" type="text"></td>
+                                                            </tr> -->
+
                                                         </table>
                                                     </div>
                                                 </div>
                                                 <br>
-                                                <button id="volunteer_add_new" style="font-size:15px" type="button" class="btn btn-default"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-check" viewBox="0 0 16 16">
+                                                <button id="vo_add_new" style="font-size:15px" type="button" class="btn btn-default"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-check" viewBox="0 0 16 16">
                                                         <path d="M10.854 7.854a.5.5 0 0 0-.708-.708L7.5 9.793 6.354 8.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
                                                         <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
                                                     </svg>新增</button>
@@ -253,8 +258,11 @@
     <!-- ================== table ================== -->
     <script src="javascript/bootstrap1.18.0-table.min.js"></script>
     <script src="javascript/bootstrap-table1.11.1-zh-TW.min.js"></script>
+    <!-- 日期民國-->
+    <script src="javascript/jquery-ui.min.js"></script>
+    <script src="javascript/datepickerTw2.js"></script>
     <!-- ================== add_phone.js ================== -->
-    <script src="js/#.js"></script>
+    <script src="js/add_volunteer.js"></script>
 </body>
 
 </html>

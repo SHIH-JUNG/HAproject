@@ -8,7 +8,7 @@ function getUrlVars() {
 }
 //endregion
 
-//獲取本網址從簡短諮詢服務詳細資料網頁(phone_detail_v2.php)傳過來的屬性值region
+//獲取本網址從簡短服務詳細資料網頁(phone_detail_v2.php)傳過來的屬性值region
 var unopen_type = decodeURI(getUrlVars()["unopen_type"]);
 var unopencase_id = getUrlVars()["id"];
 var case_id = getUrlVars()["case_id"];
@@ -23,25 +23,47 @@ var object_type = decodeURI(getUrlVars()["object_type"]);
 
 
 var tran_case_name = (typeof tran_case_name === undefined) ? '' : decodeURI(getUrlVars()["tran_case_name"]);
+var tran_case_gender = (typeof tran_case_gender === undefined) ? '' : decodeURI(getUrlVars()["tran_case_gender"]);
 var tran_case_phone = (typeof tran_case_phone === undefined) ? '' : decodeURI(getUrlVars()["tran_case_phone"]);
 var tran_case_pid = (typeof tran_case_pid === undefined) ? '' : decodeURI(getUrlVars()["tran_case_pid"]);
 var tran_case_birth = (typeof tran_case_birth === undefined) ? '' : decodeURI(getUrlVars()["tran_case_birth"]);
 var tran_case_referral = (typeof tran_case_referral === undefined) ? '' : decodeURI(getUrlVars()["tran_case_referral"]);
 //endregion
 
-console.log(tran_case_name, tran_case_phone, tran_case_pid, tran_case_birth, tran_case_referral)
+// console.log(tran_case_name, tran_case_phone, tran_case_pid, tran_case_birth, tran_case_referral)
 
-//獲取簡短諮詢服務既有的資料顯示在新增個案表格中region
+console.log(tran_case_gender)
+
+if(tran_case_gender.includes('男'))
+{
+    tran_case_gender="男";
+}
+else if(tran_case_gender.includes('女'))
+{
+    tran_case_gender="女";
+}
+else if(tran_case_gender.includes('跨性別'))
+{
+    tran_case_gender="跨性別";
+}
+else
+{
+    tran_case_gender="";
+}
+
+
+//獲取簡短服務既有的資料顯示在新增個案表格中region
 $(document).ready(function(){
     var datetoday = moment().format('YYYY-MM-DD');
 
-    //region 顯示簡短諮詢服務編號、開案編號、個案屬性
+    //region 顯示簡短服務編號、開案編號、類別屬性
     $("#unopencase_id").html(unopencase_id);
     $("#case_id").html(case_id);
     $("#case_property").val(case_property);
     $("#object_type").val(object_type);
 
     $("#name").val(tran_case_name);
+    $("#gender").val(tran_case_gender);
     $("#phone").val(tran_case_phone);
     $("#referral").val(tran_case_referral);
     $("#birth").val(tran_case_birth);
@@ -110,10 +132,11 @@ function check_update_trans_opencase_data()
     var case_property = $("#case_property").val();
     var open_case_date = $("#open_case_date").val();
     var name = $("#name").val();
+    var gender = $("#gender").val();
     var phone = $("#phone").val();
     var birth = $("#birth").val();
     var pid = $("#pid").val();
-    // var case_grade = $("#case_grade").val();
+    var case_grade = $("#case_grade").val();
     var referral = $("#referral").val();
 
     var warningstr = "";
@@ -126,10 +149,10 @@ function check_update_trans_opencase_data()
             warningstr += "登入日期\r\n";
         }
         if (object_type == null || object_type.replace(/\s*/g, "") == '') {
-            warningstr += "服務對象類別\r\n";
+            warningstr += "個案類別\r\n";
         }
         if (case_property == null || case_property.replace(/\s*/g, "") == '') {
-            warningstr += "個案屬性\r\n";
+            warningstr += "類別屬性\r\n";
         }
         if (open_case_date == null || open_case_date.replace(/\s*/g, "") == '') {
             warningstr += "開案日期\r\n";
@@ -137,15 +160,18 @@ function check_update_trans_opencase_data()
         if (name == null || name.replace(/\s*/g, "") == '') {
             warningstr += "姓名\r\n";
         }
+        if (gender == null || gender.replace(/\s*/g, "") == '') {
+            warningstr += "性別\r\n";
+        }
         if (phone == null || phone.replace(/\s*/g, "") == '') {
             warningstr += "電話\r\n";
         }
         if (birth == null || birth.replace(/\s*/g, "") == '') {
             warningstr += "出生年月日\r\n";
         }
-        // if (case_grade == null || case_grade.replace(/\s*/g, "") == '') {
-        //     warningstr += "個案分級\r\n";
-        // }
+        if (case_grade == null || case_grade.replace(/\s*/g, "") == '') {
+            warningstr += "個案分級\r\n";
+        }
         if (pid == null || pid.replace(/\s*/g, "") == '') {
             warningstr += "身分證字號\r\n";
         }
@@ -169,9 +195,11 @@ function trans_to_opendata_database()
             Case_id:$("#case_id").text(),
             Case_create_date:$("#create_date").val(),
             Object_type:$("#object_type").val(),
+            Case_grade:$("#case_grade").val(),
             Case_property:$("#case_property").val(),
             Open_case_date:$("#open_case_date").val(),
             Name:$("#name").val(),
+            Gender:$("#gender").val(),
             Phone:$("#phone").val(),
             Birth:$("#birth").val(),
             Case_pid:$("#pid").val(),

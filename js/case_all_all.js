@@ -32,7 +32,7 @@ $(document).ready(function () {
 //                            '<td><input id="date_self'+value.number+'" type="date" value="'+value.date_self+'"></td>'+
                     '<td>'+value.Name+'</td>'+
                     '<td>'+value.Open_case_date+'</td>'+
-                    '<td><a href="case_all.php?name='+value.Name+'&pid='+value.Case_pid+'&date='+value.Open_case_date+'&property='+ value.Case_property +'&type='+ value.Object_type+'&id='+value.Phone_id+'&open_id='+value.Case_id+'&referral='+value.Referral+'&case_Create_date='+value.Case_Create_date+'&unopen_type='+value.Unopen_type+'&birth='+value.Birth+'">點擊進入</a></td>'+
+                    '<td><a href="case_all.php?name='+value.Name+'&gender='+value.Gender+'&pid='+value.Case_pid+'&date='+value.Open_case_date+'&property='+ value.Case_property +'&type='+ value.Object_type+'&grade='+ value.Case_grade+'&id='+value.Phone_id+'&open_id='+value.Case_id+'&referral='+value.Referral+'&case_Create_date='+value.Case_Create_date+'&unopen_type='+value.Unopen_type+'&birth='+value.Birth+'">點擊進入</a></td>'+
 //                            '<td><button>修改</button></td>'
 //                            '<td><button onClick="update('+value.number+');">修改</button></td>'+
                 '</tr>'

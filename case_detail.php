@@ -137,6 +137,38 @@
             <!--/網頁內容-->
         </div>
     </div>
+
+
+        <!--\ Modal -->
+        <div class="modal fade" id="trans_grade_model" tabindex="-1" role="dialog" aria-labelledby="trans_grade_modelLabel" data-backdrop="static">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="trans_grade_modelLabel">個案轉級</h4>
+                </div>
+                <div class="modal-body">
+                    <table id="all_data" style="width:auto;margin:0 auto;" class="table table-bordered">
+                        <tr style="text-align:left">
+                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>個案分級</td>
+                            <td style="border-bottom: solid 1px;">
+                                <select id="case_grade" style="width:200px;">
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="C">C</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="trans_grade_submit" class="btn btn-default">確認轉級</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal /-->
+    
     <!-- /#wrapper -->
     <!-- JavaScript -->
     <!-- Bootstrap and jQuery -->

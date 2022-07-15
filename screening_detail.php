@@ -199,7 +199,7 @@
                                                                             </tr>
                                                                             <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>姓名</td>
-                                                                                <td style="border-bottom: solid 1px;"><input class="screening_question" id="name" type="text" oninput="value=value.replace(/[\d]/g,'')"></td>
+                                                                                <td style="border-bottom: solid 1px;"><input class="screening_question" id="name" type="text"></td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>年齡</td>
@@ -252,6 +252,10 @@
                                                                                         <option value="梅毒">梅毒</option>
                                                                                         <option value="HIV+梅毒">HIV+梅毒</option>
                                                                                     </select>
+                                                                                    <br/>
+                                                                                    <br/>
+                                                                                    <input id="add_screening_type" type="text">
+                                                                                    <button id="add_screening_type_btn">新增篩檢類型</button>
                                                                                 </td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
@@ -266,13 +270,17 @@
                                                                                         <option value="H+梅 positive">H+梅 positive</option>
                                                                                         <option value="H+梅 negative">H+梅 negative</option>
                                                                                     </select>
+                                                                                    <br/>
+                                                                                    <br/>
+                                                                                    <input id="add_screening_results" type="text">
+                                                                                    <button id="add_screening_results_btn">新增篩檢結果</button>
                                                                                 </td>
                                                                             </tr>
                                                                             <!-- <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">建立者</td>
                                                                                 <td style="border-bottom: solid 1px;">
                                                                                     <select class="user" id="user">
-                                                                                        <option value="" disabled selected hidden>請選擇同工</option>
+                                                                                        <option value="" disabled selected hidden>請選擇工作人員</option>
                                                                                     </select>
                                                                                 </td>
                                                                             </tr> -->
@@ -394,11 +402,7 @@
                 <div class="modal-body">
                     <table id="all_data" style="width:auto;margin:0 auto;" class="table table-bordered">
                         <tr style="text-align:left">
-                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline"><i style="color:red;">※</i>開案編號</td>
-                            <td style=""><input class="trans_to_opencase_question" id="open_case_t_sn" type="text"></td>
-                        </tr>
-                        <tr style="text-align:left">
-                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>服務對象類別</td>
+                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>個案類別</td>
                             <td style="border-bottom: solid 1px;">
                                 <select class="trans_to_opencase_question" id="open_object_type" style="width:200px;">
                                     <option value="">請選擇</option>
@@ -410,7 +414,11 @@
                             </td>
                         </tr>
                         <tr style="text-align:left">
-                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>個案屬性</td>
+                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline"><i style="color:red;">※</i>開案編號</td>
+                            <td style=""><input class="trans_to_opencase_question" id="open_case_t_sn" type="text"></td>
+                        </tr>
+                        <tr style="text-align:left">
+                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>類別屬性</td>
                             <td style="border-bottom: solid 1px;">
                                 <select class="trans_to_opencase_question" id="open_case_type" style="width:200px;">
                                     <option value="">請選擇</option>

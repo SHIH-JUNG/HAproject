@@ -313,6 +313,11 @@ function check_updat_closed_data()
 }
 //endregion
 
+// 再次開案連結 region
+reopencase = function() {
+    window.location.href = 'reopencase.php?closed_id='+closed_id+'';
+}
+//endregion
 
 //呼叫user方法region
 function append_user(){             

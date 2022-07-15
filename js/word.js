@@ -69,7 +69,7 @@ $(document).ready(function(){
                                     '<td ><span>'+data.phone[index]+'</span></td>' +
                                 '</tr>' +
                                 '<tr style="text-align:left">' +
-                                    '<td style="text-align:right;background-color:#ACD6FF;border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>同工</td>' +
+                                    '<td style="text-align:right;background-color:#ACD6FF;border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>接案工作人員</td>' +
                                     '<td >'+
                                         '<span>'+data.department[index] +'</span> <span>'+ data.assign[index]+'</span>'+
                                     '</td>' +

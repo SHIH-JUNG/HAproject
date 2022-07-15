@@ -397,17 +397,17 @@ $(document).ready(function () {
 //     "</td>" +
 //     "</tr>" +
 //     '<tr style="text-align:left">' +
-//     '<td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">指派同工</td>' +
+//     '<td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">指派工作人員</td>' +
 //     '<td style="">' +
 //     "主：" +
 //     '<select class="user5" id="one_user" >' +
-//     '<option value="" disabled selected hidden>請選擇同工</option>' +
+//     '<option value="" disabled selected hidden>請選擇工作人員</option>' +
 //     "</select>" +
 //     "<br>" +
 //     "<br>" +
 //     "副：" +
 //     '<select class="user5" id="two_user">' +
-//     '<option value="" disabled selected hidden>請選擇同工</option>' +
+//     '<option value="" disabled selected hidden>請選擇工作人員</option>' +
 //     "</select>" +
 //     "</td>" +
 //     "</tr>" +
@@ -656,10 +656,10 @@ $(document).ready(function () {
 //     errorstr += "未填寫預約訪談日期!\r\n";
 //   }
 //   if (one_user == null) {
-//     errorstr += "未選擇主要負責同工!\r\n";
+//     errorstr += "未選擇主要負責工作人員!\r\n";
 //   }
 //   // if (two_user == null) {
-//   //     errorstr += "未選擇副同工!\r\n";
+//   //     errorstr += "未選擇副工作人員!\r\n";
 //   // }
 //   if (location_detail == null && location_other == null) {
 //     errorstr += "未填寫訪談方式!\r\n";
@@ -672,10 +672,10 @@ $(document).ready(function () {
 //       errorstr += "未填寫預約訪談日期!\r\n";
 //     }
 //     if (one_user.replace(/\s*/g, "") == "") {
-//       errorstr += "未選擇主要負責同工!\r\n";
+//       errorstr += "未選擇主要負責工作人員!\r\n";
 //     }
 //     // if (two_user.replace(/\s*/g, "") == '') {
-//     //     errorstr += "未選擇副同工!\r\n";
+//     //     errorstr += "未選擇副工作人員!\r\n";
 //     // }
 //     if (
 //       location_detail.replace(/\s*/g, "") == "" &&
@@ -815,7 +815,7 @@ $(document).ready(function () {
 //           "</td>" +
 //           "</tr>" +
 //           '<tr style="text-align:left">' +
-//           '<td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">指派同工</td>' +
+//           '<td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">指派工作人員</td>' +
 //           '<td style="">' +
 //           "主：" +
 //           '<select class="user2 question' +
@@ -823,7 +823,7 @@ $(document).ready(function () {
 //           '" id="department1' +
 //           value.Id +
 //           'one_user" >' +
-//           '<option value=""  selected hidden>請選擇同工</option>' +
+//           '<option value=""  selected hidden>請選擇工作人員</option>' +
 //           "</select>" +
 //           "<br>" +
 //           "<br>" +
@@ -833,7 +833,7 @@ $(document).ready(function () {
 //           '" id="department2' +
 //           value.Id +
 //           'two_user" >' +
-//           '<option value=""  selected hidden>請選擇同工</option>' +
+//           '<option value=""  selected hidden>請選擇工作人員</option>' +
 //           "</select>" +
 //           "</td>" +
 //           "</tr>" +

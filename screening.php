@@ -161,11 +161,11 @@ word-break: keep-all;/*必須*/
                                                     
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">篩檢類型：</td>
                                                             <td class="text-left">
-                                                                <select rel="8" class="filter search">
-                                                                    <option value="">所有</option>
+                                                                <select rel="8" class="filter search" id="screening_type">
+                                                                    <!-- <option value="">所有</option>
                                                                     <option value="HIV">HIV</option>
                                                                     <option value="梅毒">梅毒</option>
-                                                                    <option value="HIV\+梅毒">HIV+梅毒</option>
+                                                                    <option value="HIV\+梅毒">HIV+梅毒</option> -->
                                                                 </select>
                                                             </td>
 
@@ -189,14 +189,14 @@ word-break: keep-all;/*必須*/
 
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">篩檢結果：</td>
                                                             <td class="text-left">
-                                                                <select rel="9" class="filter search">
-                                                                    <option value="">所有</option>
+                                                                <select rel="9" class="filter search" id="screening_results">
+                                                                    <!-- <option value="">所有</option>
                                                                     <option value="H positive">H positive</option>
                                                                     <option value="H negative">H negative</option>
                                                                     <option value="梅 positive">梅 positive</option>
                                                                     <option value="梅 negative">梅 negative</option>
                                                                     <option value="H\+梅 positive">H+梅 positive</option>
-                                                                    <option value="H\+梅 negative">H+梅 negative</option>
+                                                                    <option value="H\+梅 negative">H+梅 negative</option> -->
                                                                 </select>
                                                             </td>
 

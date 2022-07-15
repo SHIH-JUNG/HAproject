@@ -2,7 +2,7 @@ $(function() {
     imagePreview();  
 });
 
-//抓所有電話詢戒表region
+//抓所有結案資料 region
 $.ajax({
     url: "database/find_data_closed.php",
     type: "POST",

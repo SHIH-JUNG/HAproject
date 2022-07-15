@@ -114,11 +114,11 @@
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span><a href="">簡短諮詢服務</a></span></li>
+                        <li><span><a href="">簡短服務</a></span></li>
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span><a href="phone.php">簡短諮詢服務一覽表</a></span></li>
+                        <li><span><a href="phone.php">簡短服務一覽表</a></span></li>
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
@@ -155,7 +155,7 @@
                                                 <ul style="font-size:17px" class="nav nav-tabs" id="myTab" role="tablist">
                                                     <li class="nav-item active" role="presentation" id="phone_rec_all">
                                                         <a class="nav-link" id="home-tab" data-toggle="pill" href="#one" role="tab" aria-selected="true">
-                                                            <b>簡短諮詢服務紀錄</b>
+                                                            <b>簡短服務紀錄</b>
                                                         </a>
                                                     </li>
                                                     
@@ -173,7 +173,7 @@
                                                                 <div class="panel-heading" id="headingTwo">
                                                                     <h2 class="mb-0">
                                                                         <button class="btn btn-link btn-block collapsed" type="button" data-toggle="collapse" data-parent="#myTabContent" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                                                            <span style="color:black;font-size:17px">簡短諮詢服務紀錄</span>
+                                                                            <span style="color:black;font-size:17px">簡短服務紀錄</span>
                                                                         </button>
                                                                     </h2>
                                                                 </div>
@@ -383,13 +383,13 @@
                                                                                 </td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline"><i style="color:red;">※</i>接案同工</td>
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline"><i style="color:red;">※</i>接案工作人員</td>
                                                                                 <td style="">
                                                                                     <!-- <select class="department phone_question" id="department">
                                                                                         <option value="" disabled selected hidden>請選擇部門</option>
                                                                                     </select> -->
                                                                                     <select class="user phone_question" id="user">
-                                                                                        <option value="" disabled selected hidden>請選擇同工</option>
+                                                                                        <option value="" disabled selected hidden>請選擇工作人員</option>
                                                                                     </select>
                                                                                 </td>
                                                                             </tr>
@@ -518,12 +518,8 @@
                 </div>
                 <div class="modal-body">
                     <table id="all_data" style="width:auto;margin:0 auto;" class="table table-bordered">
-                        <tr style="text-align:left">
-                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline"><i style="color:red;">※</i>開案編號</td>
-                            <td style=""><input class="trans_to_opencase_question" id="open_case_t_sn" type="text"></td>
-                        </tr>
-                        <tr style="text-align:left">
-                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>服務對象類別</td>
+                    <tr style="text-align:left">
+                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>個案類別</td>
                             <td style="border-bottom: solid 1px;">
                                 <select class="trans_to_opencase_question" id="open_object_type" style="width:200px;">
                                     <option value="">請選擇</option>
@@ -535,7 +531,11 @@
                             </td>
                         </tr>
                         <tr style="text-align:left">
-                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>個案屬性</td>
+                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline"><i style="color:red;">※</i>開案編號</td>
+                            <td style=""><input class="trans_to_opencase_question" id="open_case_t_sn" type="text"></td>
+                        </tr>
+                        <tr style="text-align:left">
+                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>類別屬性</td>
                             <td style="border-bottom: solid 1px;">
                                 <select class="trans_to_opencase_question" id="open_case_type" style="width:200px;">
                                     <option value="">請選擇</option>

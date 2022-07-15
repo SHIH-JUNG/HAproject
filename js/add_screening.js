@@ -1,3 +1,139 @@
+$(document).ready(function(){
+
+    add_screening_keywords();
+});
+
+// 查詢資料庫中的篩檢類別和篩檢結果，並添加到網頁前端下拉式選單中region
+function add_screening_keywords() {
+
+    $("#screening_type").empty();
+
+    $("#screening_results").empty();
+
+    $.ajax({
+        url: "database/find_screening_keywords.php",
+        data:{
+            keyword:"screening_type_keywords",
+        },
+        type: "POST",
+        dataType: "JSON",
+        success: function (data) {
+            $("#screening_type").append('<option value="">所有</option>');
+            $.each(data,function(index,value){
+                $("#screening_type").append('<option value="'+value.screening_type+'">'+value.screening_type+'</option>');
+            });
+        },
+        error:function(e){
+            console.log(e);
+        }
+    });
+
+    $.ajax({
+        url: "database/find_screening_keywords.php",
+        data:{
+            keyword:"screening_result_keywords",
+        },
+        type: "POST",
+        dataType: "JSON",
+        success: function (data) {
+            $("#screening_results").append('<option value="">所有</option>');
+            $.each(data,function(index,value){
+                $("#screening_results").append('<option value="'+value.screening_result+'">'+value.screening_result+'</option>');
+            });
+        },
+        error:function(e){
+            console.log(e);
+        }
+    });
+}
+//endregion
+
+
+
+// 新增篩檢類別和篩檢結果至資料庫，並刷新添加到網頁前端下拉式選單中region
+$("#add_screening_type_btn").on('click',function(){
+
+    if($("#add_screening_type").val()=="")
+    {
+        return false;
+    }
+    else
+    {
+        $.ajax({
+            url: "database/add_screening_keywords.php",
+            data:{
+                keyword:"screening_type",
+                add_keyword:$("#add_screening_type").val()
+            },
+            type: "POST",
+            dataType: "JSON",
+            success: function (data) {
+                if(data == 1){
+                    add_screening_keywords();
+                    $("#add_screening_type").val('');
+                    swal({
+                        type: 'success',
+                        title: '新增成功!',
+                        allowOutsideClick: false //不可點背景關閉
+                        })
+                }else{
+                    swal({
+                        type: 'error',
+                        title: '新增失敗!請聯絡負責人',
+                        allowOutsideClick: false //不可點背景關閉
+                        })
+                }  
+            },
+            error:function(e){
+                console.log(e);
+                alert("系統錯誤!");
+            }
+        });
+    }
+});
+
+
+$("#add_screening_results_btn").on('click',function(){
+    if($("#add_screening_results").val()=="")
+    {
+        return false;
+    }
+    else
+    {
+        $.ajax({
+            url: "database/add_screening_keywords.php",
+            data:{
+                keyword:"screening_result",
+                add_keyword:$("#add_screening_results").val()
+            },
+            type: "POST",
+            dataType: "JSON",
+            success: function (data) {
+                if(data == 1){
+                    add_screening_keywords();
+                    $("#add_screening_results").val('');
+                    swal({
+                        type: 'success',
+                        title: '新增成功!',
+                        allowOutsideClick: false //不可點背景關閉
+                        })
+                }else{
+                    swal({
+                        type: 'error',
+                        title: '新增失敗!請聯絡負責人',
+                        allowOutsideClick: false //不可點背景關閉
+                        })
+                }  
+            },
+            error:function(e){
+                console.log(e);
+                alert("系統錯誤!");
+            }
+        });
+    }
+});
+//endregion
+
 //新增篩檢資料region
 $("#screening_add_new").on('click',function(){
 

@@ -441,12 +441,8 @@
                 </div>
                 <div class="modal-body">
                     <table id="all_data" style="width:auto;margin:0 auto;" class="table table-bordered">
-                        <tr style="text-align:left">
-                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline"><i style="color:red;">※</i>開案編號</td>
-                            <td style=""><input class="trans_to_opencase_question" id="open_case_t_sn" type="text"></td>
-                        </tr>
-                        <tr style="text-align:left">
-                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>服務對象類別</td>
+                    <tr style="text-align:left">
+                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>個案類別</td>
                             <td style="border-bottom: solid 1px;">
                                 <select class="trans_to_opencase_question" id="open_object_type" style="width:200px;">
                                     <option value="">請選擇</option>
@@ -456,9 +452,13 @@
                                     <option value="親職兒少">親職兒少</option>
                                 </select>
                             </td>
+                        </tr>    
+                        <tr style="text-align:left">
+                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline"><i style="color:red;">※</i>開案編號</td>
+                            <td style=""><input class="trans_to_opencase_question" id="open_case_t_sn" type="text"></td>
                         </tr>
                         <tr style="text-align:left">
-                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>個案屬性</td>
+                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>類別屬性</td>
                             <td style="border-bottom: solid 1px;">
                                 <select class="trans_to_opencase_question" id="open_case_type" style="width:200px;">
                                     <option value="">請選擇</option>

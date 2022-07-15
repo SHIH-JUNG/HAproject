@@ -38,6 +38,11 @@
         width:12em;
     }
 
+    .resourcetab_tb tr td input[type="date"]
+    {
+        border:none;
+    }
+
 </style>
 <div style="zoom:80%" class="row">
     <div class="col-md-12">
@@ -92,11 +97,13 @@
                                     <button style="font-size:20px" id="add_resource_detail" class="btn btn-default">儲存</button>
                                     <button style="font-size:20px" onclick="history_back_btn();" class="btn btn-default">返回</button>
                                     <button style="font-size:20px" id="preview" class="btn btn-default">預覽匯出</button>
-                                    <button style="font-size:20px" onclick="test()" class="btn btn-default">測試</button>
+                                    <!-- <button style="font-size:20px" onclick="test()" class="btn btn-default">測試</button> -->
                                 </div>
-                                <div class="text-right">
+                                <!-- <div class="text-right">
+                                    <button style="font-size:20px" id="trans_grade" type="button" class="btn btn-default">轉級</button>
+                                    <button style="font-size:20px" id="trans_case" type="button" class="btn btn-default">轉案</button>
                                     <button style="font-size:20px" id="end" type="button" class="btn btn-default">結案</button>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>

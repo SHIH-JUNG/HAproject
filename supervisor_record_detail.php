@@ -225,6 +225,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <?php include("signnature_canvas.php"); ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -239,6 +240,38 @@
 
         </div>
     </div>
+
+    <!--\ Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel" class="sign_msg_td_name">簽名留言</h4>
+                </div>
+                <div class="modal-body">
+                    <table id="all_data" style="width:auto;margin:0 auto;" class="table table-bordered">
+                        <tr style="text-align:left">
+                            <td class="sign_msg_td_name" style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">簽名留言內容</td>
+                            <td style="border-bottom: solid 1px;">
+                                <textarea style="width:100%;resize: none;font-size: 20px;min-height:10em;" class="sign_msg" disabled="disabled"></textarea>
+                            </td>
+                        </tr>
+                        <tr style="text-align:left">
+                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">留言時間</td>
+                            <td style="border-bottom: solid 1px;">
+                                <input style="width:15em;" class="sign_msg_time" type="datetime" disabled="disabled">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal /-->
 
     <!-- /#wrapper -->
     <!-- JavaScript -->
@@ -272,6 +305,8 @@
     <!-- 日期民國-->
     <script src="javascript/jquery-ui.min.js"></script>
     <script src="javascript/datepickerTw2.js"></script>
+    <!-- ================== jSignature ================== -->
+    <script src="jSignature/jSignature.min.js"></script>
     <!-- ================== detail ================== -->
     <script type="text/javascript" src="js/supervisor_record_detail.js"></script>
 

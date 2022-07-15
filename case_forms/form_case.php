@@ -23,6 +23,12 @@
     {
         min-height:16em;
     }
+
+    button#end {
+        background-color: tomato;
+        color: white !important;
+        font-weight: bold;
+    }
 </style>
 <div style="zoom:80%" class="row">
     <div class="col-md-12">
@@ -53,7 +59,7 @@
                                 </li>
                                 <li class="nav-item" role="presentation">
                                     <a class="nav-link" id="profile-tab" data-toggle="pill" href="#four" role="tab" aria-selected="false">
-                                        <b>結案評估</b>
+                                        <b>成效評估</b>
                                     </a>
                                 </li>
                             </ul>
@@ -592,21 +598,21 @@
                                                     </tr>
                                                     <tr>
                                                         <td rowspan="2" style="background-color:rgb(255 201 54);text-align:left;">診斷問題</td>
-                                                        <td style="background-color:rgb(255 201 54);text-align:left;">主要</td>
+                                                        <td style="background-color:rgb(255 201 54);text-align:left;">主要問題</td>
                                                         <td>
                                                             <div class="col-sm-12">
                                                                 <div class="text-left">
-                                                                    <textarea style="width:100%;resize: none;font-size: 20px;" name="diagnose_main" id="diagnose_main" placeholder="主要"></textarea>
+                                                                    <textarea style="width:100%;resize: none;font-size: 20px;" name="diagnose_main" id="diagnose_main" placeholder="主要問題"></textarea>
                                                                 </div>
                                                             </div>
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td style="background-color:rgb(255 201 54);text-align:left;">次要</td>
+                                                        <td style="background-color:rgb(255 201 54);text-align:left;">次要問題</td>
                                                         <td>
                                                             <div class="col-sm-12">
                                                                 <div class="text-left">
-                                                                    <textarea style="width:100%;resize: none;font-size: 20px;" name="diagnose_minor" id="diagnose_minor" placeholder="次要"></textarea>
+                                                                    <textarea style="width:100%;resize: none;font-size: 20px;" name="diagnose_minor" id="diagnose_minor" placeholder="次要問題"></textarea>
                                                                 </div>
                                                             </div>
                                                         </td>
@@ -650,7 +656,7 @@
                                 <div class="tab-pane fade" id="four" role="tabpanel" aria-labelledby="profile-tab">
                                     <div class="col-sm-12">
                                         <div style="margin-top:15px" class="text-center">
-                                            <h4>結案評估</h4>
+                                            <h4>成效評估</h4>
                                         </div>
                                     </div>
                                     <div class="panel-body">
@@ -788,21 +794,72 @@
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td style="background-color:rgb(255 201 54);text-align:right;">7.</td>
-                                                        <td colspan="2">
-                                                            <table>
+                                                        <td rowspan="2" style="background-color:rgb(255 201 54);text-align:right;">7.</td>
+                                                        <td style="background-color:rgb(255 201 54);text-align:left;">結案指標</td>
+                                                        <td colspan="6">
+                                                            <table style="width:100%;">
                                                                 <tr>
                                                                     <td>
-                                                                        <input name="case_closed_radio" style="zoom: 1.5" value="結案" type="radio"><span>結案：</span><input style="width:18em;" name="case_closed_yes" id="case_closed_yes" type="text">
+                                                                        <input name="end_indicator" style="zoom: 1.5" value="達到目標，已無需要在服務" type="radio">
+                                                                        <span>達到目標，已無需要在服務</span>
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>
-                                                                        <input name="case_closed_radio" style="zoom: 1.5" value="暫不結案" type="radio"><span>暫不結案,持續服務（至</span>
+                                                                        <input name="end_indicator" style="zoom: 1.5" value="穩定就業三個月，以達到目標" type="radio">
+                                                                        <span>穩定就業三個月，以達到目標</span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <input name="end_indicator" style="zoom: 1.5" value="個案者死亡" type="radio">
+                                                                        <span>個案者死亡</span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <input name="end_indicator" style="zoom: 1.5" value="再次入監無法合作" type="radio">
+                                                                        <span>再次入監無法合作</span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <input name="end_indicator" style="zoom: 1.5" value="無意願接受服務" type="radio">
+                                                                        <span>無意願接受服務</span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <input name="end_indicator" style="zoom: 1.5" value="失去聯絡（一個月連繫三次均聯繫不上或三個月，每月連繫三次均聯繫不上）" type="radio">
+                                                                        <span>失去聯絡（一個月連繫三次均聯繫不上或三個月，每月連繫三次均聯繫不上）</span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <input name="end_indicator" style="zoom: 1.5" value="轉介其他資源單位，並已達成處遇目標" type="radio">
+                                                                        <span>轉介其他資源單位，並已達成處遇目標</span>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="2">
+                                                            <table>
+                                                                <tr>
+                                                                    <td>
+                                                                        <input name="case_closed_radio" style="zoom: 1.5" value="結案" type="radio"><span>結案，原因：</span><input style="width:30em;" name="case_closed_yes" id="case_closed_yes" type="text">
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <br/>
+                                                                        <input name="case_closed_radio" style="zoom: 1.5" value="暫不結案" type="radio"><span>暫不結案，持續服務（至</span>
                                                                         <input style="width:3em;" name="case_closed_year" id="case_closed_year" type="text"><span>年</span>
                                                                         <input style="width:3em;" name="case_closed_month" id="case_closed_month" type="text"><span>月</span>
                                                                         <input style="width:3em;" name="case_closed_day" id="case_closed_day" type="text"><span>日）&emsp;</span>
-                                                                        <input style="width:3em;" name="case_closed_totalmonth" id="case_closed_totalmonth" type="text"><span>個月,再評估結案。</span>
+                                                                        <input style="width:3em;" name="case_closed_totalmonth" id="case_closed_totalmonth" type="text"><span>個月，再評估結案。</span>
+                                                                        <br/><span>備註：</span><input style="width:30em;" name="case_closed_remark" id="case_closed_remark" type="text">
                                                                     </td>
                                                                 </tr>
                                                             </table>
@@ -818,9 +875,11 @@
                                     <button style="font-size:20px" id="add_case_detail" class="btn btn-default">儲存</button>
                                     <button style="font-size:20px" onclick="history_back_btn();" class="btn btn-default">返回</button>
                                     <button style="font-size:20px" id="preview" class="btn btn-default">預覽匯出</button>
-                                    <button style="font-size:20px" onclick="test()" class="btn btn-default">測試</button>
+                                    <!-- <button style="font-size:20px" onclick="test()" class="btn btn-default">測試</button> -->
                                 </div>
                                 <div class="text-right">
+                                    <button style="font-size:20px" id="trans_grade" type="button" class="btn btn-default" data-toggle="modal" data-target="#trans_grade_model">轉級</button>
+                                    <button style="font-size:20px" id="trans_case" type="button" class="btn btn-default">轉案</button>
                                     <button style="font-size:20px" id="end" type="button" class="btn btn-default">結案</button>
                                 </div>
                             </div>

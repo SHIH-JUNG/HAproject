@@ -1,5 +1,6 @@
 <?php session_start(); ?>
 <?php include("database/check_authority.php"); ?>
+<?php @$vo_year =  $_GET['year']; ?>
 <!DOCTYPE html>
 <html>
 
@@ -115,11 +116,12 @@
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span><a href="volunteer.php">行政管理</a></span></li>
+                        <li><span><a href="">行政管理</a></span></li>
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span><a href="volunteer.php">志工管理</a></span></li>
+                        <!-- <?php echo "<li><span><a href='volunteer.php?year=" . trim($vo_year) . "'>" . trim($vo_year) . "年度志工資料</a></span></li>"; ?> -->
+                        <li><span><a href="volunteer.php">年度志工資料</a></span></li>
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
@@ -147,6 +149,18 @@
                                     <div class="row">
                                         <div class="col-sm-12 col-xs-12">
                                             <div class="col-sm-12">
+                                                <ul style="font-size:17px" class="nav nav-tabs" id="myTab" role="tablist">
+                                                    <li class="nav-item active" role="presentation">
+                                                        <a class="nav-link" id="home-tab" data-toggle="pill" href="#one" role="tab" aria-selected="true">
+                                                            <b>志工詳細資料</b>
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item" role="presentation">
+                                                        <a class="nav-link" id="profile-tab" data-toggle="pill" href="#two" role="tab" aria-selected="false">
+                                                            <b>志工時數異動紀錄</b>
+                                                        </a>
+                                                    </li>
+                                                </ul>
                                                 <div class="tab-content" id="myTabContent">
                                                     <div class="tab-pane fade in active" id="one" role="tabpanel" aria-labelledby="home-tab">
                                                         <div class="accordion" id="accordionExample">
@@ -162,17 +176,17 @@
                                                                     <div class="panel-body scr_container">
                                                                         <table id="all_data" style="width:55%;display:table !important;" class="table table-bordered">
                                                                             <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>年度</td>
-                                                                                <td style="border-bottom: solid 1px;"><input id="year" class="counsel_question" type="text"></td>
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">年度</td>
+                                                                                <td style="border-bottom: solid 1px;"><input id="year" class="vo_question" type="number"></td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>姓名</td>
-                                                                                <td style="border-bottom: solid 1px;"><input id="name" class="counsel_question" type="text"></td>
+                                                                                <td style="border-bottom: solid 1px;"><input id="name" class="vo_question" type="text"></td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>服務項目</td>
                                                                                 <td style="border-bottom: solid 1px;">
-                                                                                    <select id="serv_type" class="counsel_question" style="width:200px;">
+                                                                                    <select id="serv_type" class="vo_question">
                                                                                         <option value="電腦">電腦</option>
                                                                                         <option value="美工">美工</option>
                                                                                         <option value="活動">活動</option>
@@ -184,51 +198,86 @@
                                                                                 </td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">服務時間</td>
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>服務時間</td>
                                                                                 <td style="border-bottom: solid 1px;">
-                                                                                    <select id="serv_time">
-                                                                                        <option value="周一早上(9:00-12:00)">周一早上(9:00-12:00)</option>
-                                                                                        <option value="周一下午(13:00-12:00)">周一下午(13:00-12:00)</option>
-                                                                                        <option value="周二早上(9:00-12:00)">周二早上(9:00-12:00)</option>
-                                                                                        <option value="周二下午(13:00-12:00)">周二下午(13:00-12:00)</option>
-                                                                                        <option value="周三早上(9:00-12:00)">周三早上(9:00-12:00)</option>
-                                                                                        <option value="周三下午(13:00-12:00)">周三下午(13:00-12:00)</option>
-                                                                                        <option value="周四早上(9:00-12:00)">周四早上(9:00-12:00)</option>
-                                                                                        <option value="周四下午(13:00-12:00)">周四下午(13:00-12:00)</option>
-                                                                                        <option value="周五早上(9:00-12:00)">周五早上(9:00-12:00)</option>
-                                                                                        <option value="周五下午(13:00-12:00)">周五下午(13:00-12:00)</option>
+                                                                                    <select id="serv_time" class="vo_question">
+                                                                                        <option value="周一早上9:00-12:00">周一早上9:00-12:00</option>
+                                                                                        <option value="周一下午13:00-12:00">周一下午13:00-12:00</option>
+                                                                                        <option value="周二早上9:00-12:00">周二早上9:00-12:00</option>
+                                                                                        <option value="周二下午13:00-12:00">周二下午13:00-12:00</option>
+                                                                                        <option value="周三早上9:00-12:00">周三早上9:00-12:00</option>
+                                                                                        <option value="周三下午13:00-12:00">周三下午13:00-12:00</option>
+                                                                                        <option value="周四早上9:00-12:00">周四早上9:00-12:00</option>
+                                                                                        <option value="周四下午13:00-12:00">周四下午13:00-12:00</option>
+                                                                                        <option value="周五早上9:00-12:00">周五早上9:00-12:00</option>
+                                                                                        <option value="周五下午13:00-12:00">周五下午13:00-12:00</option>
                                                                                     </select>
                                                                                 </td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>目前服務時數</td>
-                                                                                <td style="border-bottom: solid 1px;"><input id="time_all" type="text" oninput="value=value.replace(/[\d]/g,'')"></td>
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">目前服務時數</td>
+                                                                                <td style="border-bottom: solid 1px;">
+                                                                                    <input id="time_all" type="number" class="vo_question">
+                                                                                    <button style="margin:.5em;margin-left:3em;color:red;" type="button" id="add_time_all_btn" data-toggle="modal" data-target="#myModal">添加時數</button>
+                                                                                </td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">是否領取時數條</td>
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>是否領取時數條</td>
                                                                                 <td style="border-bottom: solid 1px;">
-                                                                                    <select id="rece_hours">
+                                                                                    <select id="rece_hours" class="vo_question">
                                                                                         <option value="是">是</option>
                                                                                         <option value="否">否</option>
                                                                                     </select>
                                                                                 </td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">是否領取服務獎狀</td>
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>是否領取服務獎狀</td>
                                                                                 <td style="border-bottom: solid 1px;">
-                                                                                    <select id="serv_award">
+                                                                                    <select id="serv_award" class="vo_question">
                                                                                         <option value="是">是</option>
                                                                                         <option value="否">否</option>
                                                                                     </select>
                                                                                 </td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">是否持有志工榮譽卡</td>
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>是否持有志工榮譽卡</td>
                                                                                 <td style="border-bottom: solid 1px;">
-                                                                                    <select id="honor_card">
+                                                                                    <select id="honor_card" class="vo_question">
                                                                                         <option value="是">是</option>
                                                                                         <option value="否">否</option>
                                                                                     </select>
+                                                                                </td>
+                                                                            </tr>
+
+                                                                            <tr style="text-align:left">
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">創建日期</td>
+                                                                                <td style="border-bottom: solid 1px;"><input id="create_date" name="ch_datepicker" type="text" disabled="disabled"></td>
+                                                                            </tr>
+
+                                                                            <tr style="text-align:left">
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">創建者</td>
+                                                                                <td style="border-bottom: solid 1px;"><input id="create_name" type="text" disabled="disabled"></td>
+                                                                            </tr>
+
+                                                                            <tr style="text-align:left">
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">更新日期</td>
+                                                                                <td style="border-bottom: solid 1px;"><input id="update_date" name="ch_datepicker" type="text" disabled="disabled"></td>
+                                                                            </tr>
+
+                                                                            <tr style="text-align:left">
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">更新者</td>
+                                                                                <td style="border-bottom: solid 1px;"><input id="update_name" type="text" disabled="disabled"></td>
+                                                                            </tr>
+
+                                                                            <tr>
+                                                                                <td colspan="2">
+                                                                                    <div id="edit_div">
+                                                                                        <button style="font-size:20px" id="vo_edit" class="btn btn-default" onclick="vo_edit();">編輯</button>
+                                                                                    </div>
+                                                                                    <div id="save_div" hidden>
+                                                                                        <button style="font-size:20px" id="vo_update" class="btn btn-default">修改</button>
+                                                                                        <button style="font-size:20px" id="vo_cancel" class="btn btn-default" onclick="vo_cancel();">取消</button>
+                                                                                    </div>
                                                                                 </td>
                                                                             </tr>
                                                                         </table>
@@ -244,6 +293,43 @@
                                                                                     轉案(新增至開案個案)
                                                                                 </button>
                                                                             </div> -->
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane fade" id="two" role="tabpanel" aria-labelledby="profile-tab">
+                                                        <div class="accordion" id="accordionExample">
+                                                            <div class="panel panel-default">
+                                                                <div class="panel-heading" id="headingTwo">
+                                                                    <h2 class="mb-0">
+                                                                        <button class="btn btn-link btn-block collapsed" type="button" data-toggle="collapse" data-parent="#myTabContent" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                                            <span style="color:black;font-size:17px">志工時數異動紀錄</span>
+                                                                        </button>
+                                                                    </h2>
+                                                                </div>
+                                                                <div id="collapseTwo" class="collapse in" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                                                    <div class="panel-body scr_container">
+                                                                        <table id="record_all_data" style="width:95%;display:table !important;" class="table table-bordered">
+                                                                            <thead>
+                                                                                <tr style="background-color:rgb(255 201 54);">
+                                                                                    <th>異動時數</th>
+                                                                                    <th>備註</th>
+                                                                                    <th>異動人員</th>
+                                                                                    <th>異動日期</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody id="call_record_view"></tbody>
+                                                                        </table>
+
+                                                                        <div class="col-sm-12" style="padding-left:0;padding-right:0;margin-top:3em;">
+                                                                            <div class="text-center col-sm-4" style="padding-left:0;">
+                                                                            </div>
+                                                                            <div class="text-center col-sm-4">
+                                                                                <button style="font-size:20px;" id="preview_word3" class="btn btn-default">預覽匯出</button>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
 
@@ -267,42 +353,35 @@
     </div>
 
     <!--\ Modal -->
-    <!-- <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">新增至開案個案</h4>
+                    <h4 class="modal-title" id="myModalLabel" class="add_hours_board">志工時數添加</h4>
                 </div>
                 <div class="modal-body">
-                    <table id="all_data" style="width:auto;margin:0 auto;" class="table table-bordered">
+                    <table id="add_hours_board" style="width:auto;margin:0 auto;" class="table table-bordered">
                         <tr style="text-align:left">
-                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline">開案編號</td>
-                            <td style=""><input class="trans_to_opencase_question" id="open_case_t_sn" type="text"></td>
+                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>新增時數</td>
+                            <td style="border-bottom: solid 1px;">
+                                <input id="add_hours" type="number">
+                            </td>
                         </tr>
                         <tr style="text-align:left">
-                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>個案屬性</td>
+                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">備註</td>
                             <td style="border-bottom: solid 1px;">
-                                <select class="trans_to_opencase_question" id="open_case_type" style="width:200px;">
-                                    <option value="">請選擇</option>
-                                    <option value="安置家園">安置家園</option>
-                                    <option value="自立宿舍">自立宿舍</option>
-                                    <option value="社區">社區</option>
-                                    <option value="藥癮家庭">藥癮家庭</option>
-                                    <option value="藥癮者">藥癮者</option>
-                                    <option value="親子教育">親子教育</option>
-                                </select>
+                                <textarea style="width:100%;resize: none;font-size: 20px;min-height:10em;" id="add_hours_remark"></textarea>
                             </td>
                         </tr>
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" id="trans_to_opencase_submit" class="btn btn-default">開案建立</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
+                    <button type="button" class="btn btn-default" onclick="add_hours();">新增時數</button>
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>
     <!-- Modal /-->
 
     <!-- /#wrapper -->

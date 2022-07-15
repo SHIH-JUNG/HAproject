@@ -45,6 +45,7 @@ function check_update_currentcase_data()
     var case_property = $("#case_property").val();
     var open_case_date = $("#open_case_date").val();
     var name = $("#name").val();
+    var gender = $("#gender").val();
     var phone = $("#phone").val();
     var birth = $("#birth").val();
     var pid = $("#pid").val();
@@ -61,16 +62,19 @@ function check_update_currentcase_data()
             warningstr += "登入日期\r\n";
         }
         // if (object_type == null || object_type.replace(/\s*/g, "") == '') {
-        //     warningstr += "服務對象類別\r\n";
+        //     warningstr += "個案類別\r\n";
         // }
         // if (case_property == null || case_property.replace(/\s*/g, "") == '') {
-        //     warningstr += "個案屬性\r\n";
+        //     warningstr += "類別屬性\r\n";
         // }
         if (open_case_date == null || open_case_date.replace(/\s*/g, "") == '') {
             warningstr += "開案日期\r\n";
         }
         if (name == null || name.replace(/\s*/g, "") == '') {
             warningstr += "姓名\r\n";
+        }
+        if (gender == null || gender.replace(/\s*/g, "") == '') {
+            warningstr += "性別\r\n";
         }
         if (phone == null || phone.replace(/\s*/g, "") == '') {
             warningstr += "電話\r\n";
@@ -96,35 +100,68 @@ function check_update_currentcase_data()
 //檢查欄位 新增開案個案欄位 region
 function check_current_case_value()
 {
-    var case_id = $('#case_id').val();
-    var case_property = $('#case_property').val();
-    var object_type = $('#object_type').val();
+    var case_id = $("#case_id").val();
+    var create_date = $("#create_date").val();
+    var object_type = $("#object_type").val();
+    var case_property = $("#case_property").val();
+    var open_case_date = $("#open_case_date").val();
+    var name = $("#name").val();
+    var gender = $("#gender").val();
+    var phone = $("#phone").val();
+    var birth = $("#birth").val();
+    var pid = $("#pid").val();
+    var case_grade = $("#case_grade").val();
+    var referral = $("#referral").val();
+
     var caseid_repeat = check_case_isrepeat();
     var errorstr = "";
 
     var case_id_c_2 = "none";
     if (case_id.replace(/\s*/g, "") != '') {
 
-        if(case_id.includes("ER"))
+        if(case_id.includes("RE"))
         {
-            case_id_c_2 = case_id.replace("ER", "")
-        }
-        else if(case_id.includes("A"))
-        {
-            case_id_c_2 = case_id.replace("A", "")
+            case_id_c_2 = case_id.replace("RE", "")
         }
     }
 
-    console.log(case_id_c_2)
+    // console.log(case_id_c_2)
 
     if (case_id == null) {
         errorstr += "未填寫開案編號!\r\n";
     }
-    if (case_property == null) {
-        errorstr += "未選擇個案屬性!\r\n";
+    if (create_date == null) {
+        errorstr += "未填寫登入日期!\r\n";
     }
     if (object_type == null) {
-        errorstr += "未選擇服務對象類別!\r\n";
+        errorstr += "未選擇個案類別!\r\n";
+    }
+    if (case_property == null) {
+        errorstr += "未選擇類別屬性!\r\n";
+    }
+    if (open_case_date == null) {
+        errorstr += "未填寫開案日期!\r\n";
+    }
+    if (name == null) {
+        errorstr += "未填寫姓名!\r\n";
+    }
+    if (gender == null) {
+        errorstr += "未填寫性別!\r\n";
+    }
+    if (phone == null) {
+        errorstr += "未填寫電話!\r\n";
+    }
+    if (birth == null) {
+        errorstr += "未填寫出生年月日!\r\n";
+    }
+    if (case_grade == null) {
+        errorstr += "未選擇個案分級!\r\n";
+    }
+    if (pid == null) {
+        errorstr += "未選擇身分證字號!\r\n";
+    }
+    if (referral == null) {
+        errorstr += "未選擇轉介來源!\r\n";
     }
     if (errorstr == "") {
         // console.log(caseid_repeat)
@@ -135,11 +172,38 @@ function check_current_case_value()
         if (case_id.replace(/\s*/g, "") == ''  || case_id_c_2.replace(/\s*/g, "") == '') {
             errorstr += "未填寫開案編號!\r\n";
         }
-        if (case_property.replace(/\s*/g, "") == '') {
-            errorstr += "未選擇個案屬性!\r\n";
+        if (create_date.replace(/\s*/g, "") == '') {
+            errorstr += "未填寫登入日期!\r\n";
         }
         if (object_type.replace(/\s*/g, "") == '') {
-            errorstr += "未選擇服務對象類別!\r\n";
+            errorstr += "未選擇個案類別!\r\n";
+        }
+        if (case_property.replace(/\s*/g, "") == '') {
+            errorstr += "未選擇類別屬性!\r\n";
+        }
+        if (open_case_date.replace(/\s*/g, "") == '') {
+            errorstr += "未填寫開案日期!\r\n";
+        }
+        if (name.replace(/\s*/g, "") == '') {
+            errorstr += "未填寫姓名!\r\n";
+        }
+        if (gender.replace(/\s*/g, "") == '') {
+            errorstr += "未填寫性別!\r\n";
+        }
+        if (phone.replace(/\s*/g, "") == '') {
+            errorstr += "未填寫電話!\r\n";
+        }
+        if (birth.replace(/\s*/g, "") == '') {
+            errorstr += "未填寫出生年月日!\r\n";
+        }
+        if (case_grade.replace(/\s*/g, "") == '') {
+            errorstr += "未選擇個案分級!\r\n";
+        }
+        if (pid.replace(/\s*/g, "") == '') {
+            errorstr += "未選擇身分證字號!\r\n";
+        }
+        if (referral.replace(/\s*/g, "") == '') {
+            errorstr += "未選擇轉介來源!\r\n";
         }
     }
 
@@ -158,9 +222,11 @@ function add_new_current_case_database()
             Case_id:$("#case_id").val(),
             Case_create_date:$("#create_date").val(),
             Object_type:$("#object_type").val(),
+            Case_grade:$('#case_grade').val(),
             Case_property:$("#case_property").val(),
             Open_case_date:$("#open_case_date").val(),
             Name:$("#name").val(),
+            Gender:$("#gender").val(),
             Phone:$("#phone").val(),
             Birth:$("#birth").val(),
             Case_pid:$("#pid").val(),
@@ -199,20 +265,40 @@ function add_new_current_case_database()
 $('#object_type').on('change', function() {
 
     $("#case_id").val('');
+    var object_type_val = this.value;
 
-    switch (this.value) {
-        case '一般藥癮者':
-        case '藥癮家庭':   
+    // 自動查詢沒使用過的編號
+    $.ajax({
+        url: "database/find_trans_automatic_id.php",
+        data:{
+            keyword:object_type_val,
+        },
+        type: "POST",
+        dataType: "JSON",
+        async :false,
+        success: function (data) {
+        //    console.log(data)
+           var str_id = (parseInt(data[0].Case_id)+1).toString();
 
-                $("#case_id").val('ER');
-            break;
-        case '親職兒少':   
-                $("#case_id").val('A');
-            break;
-        default:
-                $("#case_id").val('');
-            break;
-    }
+           
+           switch (object_type_val) {
+            case '一般藥癮者':
+            case '藥癮家庭':   
+                    $("#case_id").val("RE"+str_id);
+                break;
+            case '愛滋感染者':
+            case '親職兒少':
+                    $("#case_id").val(str_id);
+                break;
+            default:
+                    $("#case_id").val("");
+                break;
+           }
+        },
+        error:function(e){
+            console.log(e);
+        }
+    });
 });
 //endregion
 
@@ -223,7 +309,7 @@ function check_case_isrepeat() {
 
     var r_case_id = $("#case_id").val().replace(/^\s*|\s*$/g,"");
 
-    // console.log(r_case_id)
+    console.log(r_case_id)
 
     $.ajax({
         url: "database/find_repeat_caseid.php",

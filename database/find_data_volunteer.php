@@ -1,7 +1,10 @@
 <?php
 include("sql_connect.php"); 
 //region 抓資料
-$note = "SELECT * FROM `volunteer`;";
+// $year = $_POST['year'];
+
+// $note = "SELECT * FROM `volunteer` Where `Year` = '$year' ORDER BY `volunteer`.`Id` ASC;;";
+$note = "SELECT * FROM `volunteer` ORDER BY `volunteer`.`Year` DESC;";
 
 //宣告空的陣列
 $datas = array();

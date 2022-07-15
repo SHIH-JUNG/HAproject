@@ -102,11 +102,11 @@ input[type=number] {
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span><a href="phone.php">簡短諮詢服務</a></span></li>
+                        <li><span><a href="phone.php">簡短服務</a></span></li>
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span>新增簡短諮詢服務紀錄</span></li>
+                        <li><span>新增簡短服務紀錄</span></li>
                     </ol>
                     <!--/麵包屑-->
                 </div>
@@ -135,7 +135,7 @@ input[type=number] {
                                                         <table style="width:auto;" class="table table-bordered">
                                                             <tr>
                                                                 <td colspan="2">
-                                                                    <h3>新增簡短諮詢服務紀錄</h3>
+                                                                    <h3>新增簡短服務紀錄</h3>
                                                                 </td>
                                                             </tr>
                                                             <tr style="text-align:left">
@@ -353,13 +353,13 @@ input[type=number] {
                                                                 </td>
                                                             </tr>
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>接案同工</td>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>接案工作人員</td>
                                                                 <td style="border-bottom: solid 1px;">
                                                                     <!-- <select class="department" id="department">
                                                                         <option value="" disabled selected hidden>請選擇部門</option>
                                                                     </select> -->
                                                                     <select class="user" id="user">
-                                                                        <option value="" disabled selected hidden>請選擇同工</option>
+                                                                        <option value="" disabled selected hidden>請選擇工作人員</option>
                                                                     </select>
 <!--                                                                <input id="user" type="text">-->
                                                                 </td>
