@@ -205,6 +205,14 @@
                                                                             <textarea style="height:16em;width:700px;resize: none;font-size: 20px;" id="next_focus" name="next_focus" placeholder="請輸入下次理監事會議重點"></textarea>
                                                                         </td>
                                                                     </tr>
+                                                                    <tr style="text-align:left">
+                                                                        <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;">督導(簽核)</td>
+                                                                        <td style="border-bottom: solid 1px;">
+                                                                            <select name="supervise" id="supervise" style="width:160px;">
+                                                                                <option value="">請選擇</option>
+                                                                            </select>
+                                                                        </td>
+                                                                    </tr>
                                                                 </table>
                                                                 </from>
 
@@ -258,6 +266,14 @@
                                                                         <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white">備註</td>
                                                                         <td>
                                                                             <textarea style="height:10em;width:700px;resize: none;font-size: 20px;" id="upload_rec_remark" name="upload_rec_remark" placeholder="請輸入備註"></textarea>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr style="text-align:left">
+                                                                        <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;">督導(簽核)</td>
+                                                                        <td style="border-bottom: solid 1px;">
+                                                                            <select name="upload_rec_supervise" id="upload_rec_supervise" style="width:160px;">
+                                                                                <option value="">請選擇</option>
+                                                                            </select>
                                                                         </td>
                                                                     </tr>
                                                                 </table>
@@ -332,3 +348,4 @@
 </body>
 
 </html>
+<?php include("database/timeout_logout.php"); ?>

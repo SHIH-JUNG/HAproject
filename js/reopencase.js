@@ -12,6 +12,18 @@ closed_id = getUrlVars()["closed_id"];
 
 // 當網頁載入時 region
 $(document).ready(function(){
+    $.ajax({
+        type:'POST',
+        url:'database/find_check_user.php',
+        dataType: "JSON",
+        async: false,//啟用同步請求
+        success: function (data) {
+            // console.log('test',data)
+            for (var index in data.Id) {
+                $("#case_user").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+            }
+        },
+    });
 
     // 再次開案現有資料自動填入 region
     $.ajax({
@@ -28,11 +40,12 @@ $(document).ready(function(){
 
 
 
-                // $("#case_id").val(value.Case_id);
+                $("#case_id").val(value.Case_id);
                 // $("#create_date").val(value.Case_Create_date);
-                // $("#object_type").val(value.Object_type);
+                $("#object_type").val(value.Object_type);
                 $('#case_grade').val(value.Case_grade);
                 $("#case_property").val(value.Case_property);
+                $("#case_stage").val(value.Case_stage);
                 // $("#open_case_date").val(value.Open_case_date);
                 $("#name").val(value.Name);
                 $("#gender").val(value.Gender);
@@ -40,6 +53,7 @@ $(document).ready(function(){
                 $("#birth").val(value.Birth);
                 $("#pid").val(value.Case_pid);
                 $("#referral").val(value.Referral);
+                $("#case_user").val(value.Case_assign);
             });
         },
         error:function(e){
@@ -86,6 +100,7 @@ function check_current_case_value()
     var create_date = $("#create_date").val();
     var object_type = $("#object_type").val();
     var case_property = $("#case_property").val();
+    var case_stage = $("#case_stage").val();
     var open_case_date = $("#open_case_date").val();
     var name = $("#name").val();
     var gender = $("#gender").val();
@@ -95,7 +110,7 @@ function check_current_case_value()
     var case_grade = $("#case_grade").val();
     var referral = $("#referral").val();
 
-    var caseid_repeat = check_case_isrepeat();
+    // var caseid_repeat = check_case_isrepeat();
     var errorstr = "";
 
     var case_id_c_2 = "none";
@@ -120,6 +135,12 @@ function check_current_case_value()
     }
     if (case_property == null) {
         errorstr += "未選擇類別屬性!\r\n";
+    }
+    if(case_property.replace(/\s*/g, "") == '自立宿舍' || case_property.replace(/\s*/g, "") == '安置家園')
+    {
+        if (case_stage == null) {
+            errorstr += "未填寫類別屬性階段!\r\n";
+        }
     }
     if (open_case_date == null) {
         errorstr += "未填寫開案日期!\r\n";
@@ -147,10 +168,10 @@ function check_current_case_value()
     }
     if (errorstr == "") {
         // console.log(caseid_repeat)
-        if(caseid_repeat)
-        {
-            errorstr += "開案編號重複!!!\r\n";
-        }
+        // if(caseid_repeat)
+        // {
+        //     errorstr += "開案編號重複!!!\r\n";
+        // }
         if (case_id.replace(/\s*/g, "") == ''  || case_id_c_2.replace(/\s*/g, "") == '') {
             errorstr += "未填寫開案編號!\r\n";
         }
@@ -162,6 +183,12 @@ function check_current_case_value()
         }
         if (case_property.replace(/\s*/g, "") == '') {
             errorstr += "未選擇類別屬性!\r\n";
+        }
+        if(case_property.replace(/\s*/g, "") == '自立宿舍' || case_property.replace(/\s*/g, "") == '安置家園')
+        {
+            if (case_stage.replace(/\s*/g, "") == '') {
+                errorstr += "未填寫類別屬性階段!\r\n";
+            }
         }
         if (open_case_date.replace(/\s*/g, "") == '') {
             errorstr += "未填寫開案日期!\r\n";
@@ -206,6 +233,7 @@ function add_new_current_case_database()
             Object_type:$("#object_type").val(),
             Case_grade:$('#case_grade').val(),
             Case_property:$("#case_property").val(),
+            Case_stage:$("#case_stage").val(),
             Open_case_date:$("#open_case_date").val(),
             Name:$("#name").val(),
             Gender:$("#gender").val(),
@@ -214,6 +242,7 @@ function add_new_current_case_database()
             Case_pid:$("#pid").val(),
             Referral:$("#referral").val(),
             Unopen_type:'reopencase',
+            Case_user:$("#case_user").val(),
         },
 //            dataType: "JSON",
         success: function (data) {
@@ -243,81 +272,5 @@ function add_new_current_case_database()
 }
 //endregion
 
-// 根據服務對象類型 自動填入 開案編號 region
-$('#object_type').on('change', function() {
 
-    $("#case_id").val('');
-    var object_type_val = this.value;
 
-    // 自動查詢沒使用過的編號
-    $.ajax({
-        url: "database/find_trans_automatic_id.php",
-        data:{
-            keyword:object_type_val,
-        },
-        type: "POST",
-        dataType: "JSON",
-        async :false,
-        success: function (data) {
-        //    console.log(data)
-           var str_id = (parseInt(data[0].Case_id)+1).toString();
-
-           
-           switch (object_type_val) {
-            case '一般藥癮者':
-            case '藥癮家庭':   
-                    $("#case_id").val("RE"+str_id);
-                break;
-            case '愛滋感染者':
-            case '親職兒少':
-                    $("#case_id").val(str_id);
-                break;
-            default:
-                    $("#case_id").val("");
-                break;
-           }
-        },
-        error:function(e){
-            console.log(e);
-        }
-    });
-});
-//endregion
-
-//檢查開案編號是否重複 region
-function check_case_isrepeat() {
-    
-    var isrepeat = false;
-
-    var r_case_id = $("#case_id").val().replace(/^\s*|\s*$/g,"");
-
-    console.log(r_case_id)
-
-    $.ajax({
-        url: "database/find_repeat_caseid.php",
-        data: {
-            Open_id:r_case_id
-        },
-        type: "POST",
-        dataType: "JSON",
-        async :false,
-        success: function (data) {
-            // console.log(data)
-            if(data == 1)
-            {
-                isrepeat = true;
-            }
-            else
-            {
-                isrepeat = false;
-            }
-        },
-        error: function (e) {
-            console.log(e);
-        }
-    });
-    
-
-    return isrepeat;
-}
-//endregion

@@ -215,6 +215,7 @@
                                                                 <th>個案類別</th>
                                                                 <th>個案分級</th> 
                                                                 <th>類別屬性</th>
+                                                                <th>類別屬性<br/>階段</th>
                                                                 <th>開案日期</th>
                                                                 <th>姓名</th>
                                                                 <th>電話</th>
@@ -280,3 +281,4 @@
     <script src="javascript/bootstrap-table1.11.1-zh-TW.min.js"></script>
 </body>
 </html>
+<?php include("database/timeout_logout.php"); ?>

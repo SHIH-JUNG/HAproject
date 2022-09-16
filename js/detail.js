@@ -1947,7 +1947,7 @@ $('#open_object_type').on('change', function() {
         dataType: "JSON",
         async :false,
         success: function (data) {
-           console.log(data)
+        //    console.log(data)
            var str_id = (parseInt(data[0].Case_id)+1).toString();
 
            

@@ -1,5 +1,6 @@
 <?php session_start(); ?>
 <?php include("database/check_authority.php"); ?>
+<?php @$re_year =  $_GET['year']; ?>
 <!DOCTYPE html>
 <html>
 
@@ -17,8 +18,8 @@
     <!--  table  -->
     <!--    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.css">-->
     <!-- ================== 匯出EXCEL ================== -->
-    <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
-    <link href="https://cdn.datatables.net/buttons/1.5.1/css/buttons.dataTables.min.css" rel="stylesheet" />
+    <link href="css/jquery.dataTables1.10.16.min.css" rel="stylesheet" />
+    <link href="css/buttons.dataTables1.5.1.min.css" rel="stylesheet" />
 
     <meta charset="UTF-8" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -82,11 +83,15 @@
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span><a href="">行政管理</a></span></li>
+                        <li><span><a href="received_yeralist">行政管理</a></span></li>
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span>收文</span></li>
+                        <li><span><a href="received_yeralist.php">收文</a></span></li>
+                        <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+                        </svg>
+                        <li><span><?php echo trim($re_year); ?>年度收文資料</span></li>
                     </ol>
                     <!--/麵包屑-->
                 </div>
@@ -116,41 +121,24 @@
                                                     <table style="font-size:20px;font-family:微軟正黑體;width:100%" class="table table-bordered NOline">
                                                         <tr>
 
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">收文檔號：</td>
-                                                            <td class="text-left">
-                                                                <select id="num_receive" rel="0" class="filter search">
-                                                                    <!-- <option value="">所有</option> -->
-                                                                </select>
-                                                            </td>
-
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">來文日期：</td>
                                                             <td class="text-left">
-                                                                <input id="min_date" rel="1" name="pcall_date" class="" type="date" placeholder="來文日期搜尋">
+                                                                <input id="received_min_date" name="received_date" class="" type="date" placeholder="來文日期搜尋">
                                                                 <label>～</label>
-                                                                <input id="max_date" rel="1" name="pcall_date" class="" type="date" placeholder="來文日期搜尋">
+                                                                <input id="received_max_date" name="received_date" class="" type="date" placeholder="來文日期搜尋">
                                                             </td>
 
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">來文單位：</td>
-                                                            <td class="text-left">
-                                                                <select id="unit_come" rel="2" class="filter search">
-                                                                    <!-- <option value="">所有</option> -->
-                                                                </select>
-                                                            </td>
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">來文檔號：</td>
+                                                            <td class="text-left"><input id="num_receive" rel="3" name="num_receive" class="filter search" style="width:150px;" type="text" placeholder="檔號搜尋"></td>
+
                                                         </tr>
                                                         <tr>
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">主旨：</td>
-                                                            <td class="text-left">
-                                                                <select id="words_receive" rel="3" class="filter search">
-                                                                    <!-- <option value="X">X</option> -->
-                                                                </select>
-                                                            </td>
 
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">收文字號：</td>
-                                                            <td class="text-left">
-                                                                <select id="subject" rel="4" class="filter search">
-                                                                    <!-- <option value="">所有</option> -->
-                                                                </select>
-                                                            </td>
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">來文單位：</td>
+                                                            <td class="text-left"><input id="unit" rel="4" name="unit" class="filter search" style="width:150px;" type="text" placeholder="單位搜尋"></td>
+
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">主旨：</td>
+                                                            <td class="text-left"><input id="subject" rel="5" name="subject" class="filter search" style="width:150px;" type="text" placeholder="主旨搜尋"></td>
 
                                                             <td colspan="10" class="text-right">
                                                                 <button onclick="location.reload();">重置搜尋</button><span> </span>
@@ -175,11 +163,15 @@
                                                                 </th>
                                                             </tr>
                                                             <tr style="background-color:rgb(255 201 54);">
-                                                                <th>收文檔號</th>
                                                                 <th>來文日期</th>
+                                                                <th>來文檔號</th>
                                                                 <th>來文單位</th>
-                                                                <th>收文字號</th>
                                                                 <th>主旨</th>
+                                                                <th>創建日期</th>
+                                                                <th>創建者</th>
+                                                                <th>更新日期</th>
+                                                                <th>更新者</th>
+                                                                <th>督導簽章</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody id="call_view"></tbody>
@@ -188,51 +180,6 @@
                                                         <span id="count_people"></span>
                                                         <span id="count_people2"></span>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <br>
-
-                                            <div>
-                                                <h4>簽核</h4>
-                                            </div>
-                                            <div class="table-wrap">
-                                                <div class="table-responsive">
-                                                    <table class="table display table-hover dataTable no-footer" style="font-size:15px;font-family:微軟正黑體;width:100%" id="audit_all" data-toolbar="#toolbar">
-                                                        <thead>
-                                                            <tr>
-                                                                <th class="text-left">
-                                                                    <button style="font-size:15px" type="button" class="btn btn-default"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                                            <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
-                                                                            <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z" />
-                                                                            <path fill-rule="evenodd" d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5z" />
-                                                                        </svg>上傳</button></a>
-                                                                </th>
-                                                                <th class="text-right" colspan="8">
-                                                                    <button style="font-size:15px" type="button" class="btn btn-default"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                                            <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
-                                                                            <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z" />
-                                                                            <path fill-rule="evenodd" d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5z" />
-                                                                        </svg>重新整理</button></a>
-                                                                    <button style="font-size:15px" type="button" class="btn btn-default"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                                            <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
-                                                                            <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z" />
-                                                                            <path fill-rule="evenodd" d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5z" />
-                                                                        </svg>全部刪除</button></a>
-                                                                </th>
-                                                            </tr>
-                                                            <tr style="background-color:rgb(255 201 54);">
-                                                                <th>□</th>
-                                                                <th>編號</th>
-                                                                <th>資訊名稱</th>
-                                                                <th>提交者</th>
-                                                                <th>提交日期</th>
-                                                                <th>讀取日期</th>
-                                                                <th>審核日期</th>
-                                                                <th>當前狀態</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody id="received_all"></tbody>
-                                                    </table>
                                                 </div>
                                             </div>
                                         </div>
@@ -253,10 +200,10 @@
     <script src="javascript/jquery.min.js"></script>
     <script src="javascript/bootstrap.min.js"></script>
     <!-- ================== 匯出EXCEL ================== -->
-    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+    <script src="javascript/jquery.dataTables1.10.16.min.js"></script>
+    <script src="javascript/dataTables1.2.2.buttons.min.js"></script>
+    <script src="javascript/jszip2.5.0.min.js"></script>
+    <script src="javascript/buttons1.2.2.html5.min.js"></script>
     <!-- 表格 JavaScript -->
     <!--
     <script src="javascript/jquery.dataTables.min.js"></script>
@@ -279,8 +226,8 @@
     <!-- ================== moment ================== -->
     <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.0/moment.min.js'></script>
     <!-- ================== table ================== -->
-    <script src="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.js"></script>
-    <script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/locale/bootstrap-table-zh-TW.min.js"></script>
+    <script src="javascript/bootstrap1.18.0-table.min.js"></script>
+    <script src="javascript/bootstrap-table1.11.1-zh-TW.min.js"></script>
     <!-- ================== phone ================== -->
     <script type="text/javascript" src="js/received.js"></script>
     <!-- ================== 地區選擇下拉 ================== -->
@@ -298,3 +245,4 @@
 </script>
 
 </html>
+<?php include("database/timeout_logout.php"); ?>

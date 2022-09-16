@@ -89,7 +89,7 @@
                                                     <tr>
                                                         <td style="background-color:rgb(255 201 54);text-align:left;">電話</td>
                                                         <td colspan="1">
-                                                            <input style="width:85%;" name="phone_mobile" id="phone_mobile" type="text">
+                                                            <input style="width:85%;" name="phone" id="phone" type="text">
                                                         </td>
                                                         <td style="background-color:rgb(255 201 54);text-align:left;">住址</td>
                                                         <td colspan="5">

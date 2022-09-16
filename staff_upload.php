@@ -15,7 +15,7 @@
   <!-- ================== CSS bootstrap-select ================== -->
   <link href="css/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
   <!--  table  -->
-  <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.css">
+  <link rel="stylesheet" href="css/bootstrap-table.min.css">
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -224,12 +224,13 @@
       <!-- ================== 登出設定 ================== -->
       <script src='js/logout.js'></script>
       <!-- ================== moment ================== -->
-      <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.0/moment.min.js'></script>
+      <script src='javascript/moment2.29.0.min.js'></script>
       <!-- ================== table ================== -->
-      <script src="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.js"></script>
-      <script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/locale/bootstrap-table-zh-TW.min.js"></script>
+      <script src="javascript/bootstrap1.18.0-table.min.js"></script>
+      <script src="javascript/bootstrap-table1.11.1-zh-TW.min.js"></script>
       <!-- ================== add_phone.js ================== -->
       <script src="js/#.js"></script>
 </body>
 
 </html>
+<?php include("database/timeout_logout.php"); ?>

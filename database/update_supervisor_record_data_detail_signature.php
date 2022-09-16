@@ -6,7 +6,7 @@ $sign_msg = $_POST['sign_msg'];
 $sign_type = $_POST['sign_type'];
 
 $user = $_SESSION['name'];
-
+$sign_url = $_POST['sign_url'];
 
 /*  base64格式编码转换为图片并保存对应文件夹 */  
 $base64_content = $_POST['src_data'];
@@ -43,8 +43,18 @@ switch ($sign_type) {
 
 //转换为图片文件
 if (file_put_contents($new_file,base64_decode($base64_content[1]))){
-	$sqlUpdate ="UPDATE `supervisor_record` SET $sql_str WHERE `Id` = '$sr_id' ORDER BY `supervisor_record`.`Create_date` ASC LIMIT 1;";
-    if(mysqli_query($conn, $sqlUpdate)){
+	$sqlUpdate ="UPDATE `supervisor_record` SET $sql_str WHERE `Id` = '$sr_id' AND `Supervise` = '$user' ORDER BY `supervisor_record`.`Create_date` ASC LIMIT 1;";
+
+    if(mysqli_multi_query($conn, $sqlUpdate)){
+        echo true;
+    }else{
+        echo false;
+        echo "{$note} 語法執行失敗，錯誤訊息：" . mysqli_error($conn);
+    }  
+
+    $sqlUpdate .="UPDATE `signature_notice` SET `Sign_state`='已簽核' WHERE `Url` = '$sign_url' AND `Signer`='$user' ORDER BY `signature_notice`.`Id` ASC LIMIT 1;";
+
+    if(mysqli_multi_query($conn, $sqlUpdate)){
         echo true;
     }else{
         echo false;
@@ -53,6 +63,8 @@ if (file_put_contents($new_file,base64_decode($base64_content[1]))){
 }else{ 
 	return false;  
 }  
+
+
 
 
 

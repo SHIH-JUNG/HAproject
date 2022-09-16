@@ -16,6 +16,10 @@
     <link href="css/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
     <!--  table  -->
     <link rel="stylesheet" href="css/bootstrap-table.min.css">
+    <!--  日期民國  -->
+    <link data-require="jqueryui@*" rel="stylesheet" href="css/jquery-ui.css" />
+    <link href="css/dtsel.css" rel="stylesheet" />
+
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -96,11 +100,11 @@
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span><a href="published.php">發文</a></span></li>
+                        <li><span><a href="published_yearlist.php">發文紀錄</a></span></li>
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span>新增發文紀錄</span></li>
+                        <li><span>新增發文</span></li>
                     </ol>
                     <!--/麵包屑-->
                 </div>
@@ -132,50 +136,37 @@
                                                                     <h3>新增發文紀錄</h3>
                                                                 </td>
                                                             </tr>
+
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>發文標題</td>
+                                                                <td style="border-bottom: solid 1px;"><input id="title_name" class="pu_question" type="text"></td>
+                                                            </tr>
                                                             <tr style="text-align:left">
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>發文日期</td>
-                                                                <td style="border-bottom: solid 1px;"><input id="call_datetime" type="datetime-local">
+                                                                <td style="border-bottom: solid 1px;"><input id="published_date" class="pu_question" name="ch_datepicker" type="text"></td>
+                                                            </tr>
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>主旨</td>
+                                                                <td style="border-bottom: solid 1px;"><input id="subject" class="pu_question" type="text"></td>
                                                             </tr>
                                                             <tr style="text-align:left">
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>受文單位</td>
-                                                                <td style="border-bottom: solid 1px;">
-                                                                    <select id="way">
-                                                                        <option value="X">X</option>
-                                                                        <option value="X">X</option>
-                                                                    </select>
-                                                                </td>
+                                                                <td style="border-bottom: solid 1px;"><input id="unit" class="pu_question" type="text"></td>
                                                             </tr>
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">發文字號 </td>
-                                                                <td style="border-bottom: solid 1px;">
-                                                                    <select id="way_detail">
-                                                                        <option value="">X</option>
-                                                                        <option value="X">X</option>
-                                                                        <option value="X">X</option>
-                                                                        <option value="X">X</option>
-                                                                    </select>
-                                                                </td>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>發文字號</td>
+                                                                <td style="border-bottom: solid 1px;"><input id="num_publish" class="pu_question" type="text"></td>
                                                             </tr>
-                                                            <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">主旨 </td>
-                                                                <td style="border-bottom: solid 1px;">
-                                                                    <select id="way_detail">
-                                                                        <option value="">X</option>
-                                                                        <option value="X">X</option>
-                                                                        <option value="X">X</option>
-                                                                        <option value="X">X</option>
-                                                                    </select>
-                                                                </td>
-                                                            </tr>
+
                                                         </table>
                                                     </div>
                                                 </div>
                                                 <br>
-                                                <button id="phone_add_new" style="font-size:15px" type="button" class="btn btn-default"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-check" viewBox="0 0 16 16">
+                                                <button id="pu_add_new" style="font-size:15px" type="button" class="btn btn-default"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-check" viewBox="0 0 16 16">
                                                         <path d="M10.854 7.854a.5.5 0 0 0-.708-.708L7.5 9.793 6.354 8.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
                                                         <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
                                                     </svg>新增</button>
-                                                <a href="phone.php"><button style="font-size:15px" type="button" class="btn btn-default"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-excel" viewBox="0 0 16 16">
+                                                <a href="published_yearlist.php"><button style="font-size:15px" type="button" class="btn btn-default"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-excel" viewBox="0 0 16 16">
                                                             <path d="M5.884 6.68a.5.5 0 1 0-.768.64L7.349 10l-2.233 2.68a.5.5 0 0 0 .768.64L8 10.781l2.116 2.54a.5.5 0 0 0 .768-.641L8.651 10l2.233-2.68a.5.5 0 0 0-.768-.64L8 9.219l-2.116-2.54z" />
                                                             <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
                                                         </svg>取消</button></a>
@@ -218,8 +209,12 @@
     <!-- ================== table ================== -->
     <script src="javascript/bootstrap1.18.0-table.min.js"></script>
     <script src="javascript/bootstrap-table1.11.1-zh-TW.min.js"></script>
+    <!-- 日期民國-->
+    <script src="javascript/jquery-ui.min.js"></script>
+    <script src="javascript/datepickerTw.js"></script>
     <!-- ================== add_phone.js ================== -->
-    <script src="js/add_received.js"></script>
+    <script src="js/add_published.js"></script>
 </body>
 
 </html>
+<?php include("database/timeout_logout.php"); ?>

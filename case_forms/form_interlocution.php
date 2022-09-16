@@ -74,13 +74,22 @@
                                                        <td><input name="interlocution_date" id="interlocution_date" type="date"></td>
                                                        <td>
                                                             <select name="interlocution_place" id="interlocution_place">
-                                                                <option value="">所有</option>
+                                                                <option value=""></option>
                                                                 <option value="電訪">電訪</option>
                                                                 <option value="面訪">面訪</option>
                                                                 <option value="家訪">家訪</option>
                                                             </select>     
                                                        </td>
                                                        <td>
+                                                            <select name="interlocution_ques_type" id="interlocution_ques_type"></select>
+                                                            <br/>
+                                                            <br/>
+                                                            <div>
+                                                                <input style="width:65%;" id="add_interlocution_ques_type" type="text">
+                                                                <button id="add_interlocution_ques_type_btn" onclick="insert_ques_type_keywords();return false;">新增問題類型</button>
+                                                            </div>
+                                                            <br/>
+                                                            <br/>
                                                             <textarea style="min-height:26em;height:auto;width:100%;resize: none;font-size: 20px;" name="interlocution_ques" id="interlocution_ques" placeholder="請輸入個案問題"></textarea>
                                                        </td>
                                                        <td>
@@ -107,7 +116,7 @@
                                     <button style="font-size:20px" id="add_interlocution_detail" class="btn btn-default">儲存</button>
                                     <button style="font-size:20px" onclick="history_back_btn();" class="btn btn-default">返回</button>
                                     <button style="font-size:20px" id="preview" class="btn btn-default">預覽匯出</button>
-                                    <!-- <button style="font-size:20px" onclick="test()" class="btn btn-default">測試</button> -->
+                                    <button style="font-size:20px" onclick="test()" class="btn btn-default">測試</button>
                                 </div>
                                 <!-- <div class="text-right">
                                     <button style="font-size:20px" id="trans_grade" type="button" class="btn btn-default">轉級</button>

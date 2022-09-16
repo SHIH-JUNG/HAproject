@@ -280,3 +280,4 @@
     <script src="javascript/bootstrap-table1.11.1-zh-TW.min.js"></script>
 </body>
 </html>
+<?php include("database/timeout_logout.php"); ?>

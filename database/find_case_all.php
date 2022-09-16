@@ -1,18 +1,18 @@
 <?php
 include("sql_connect.php");
 $Open_id = $_POST['Open_id'];
-@$Phone_id = $_POST['Phone_id'];
+@$Id = $_POST['Id'];
 @$Form_type = $_POST['Form_type'];
 
 //宣告空的陣列
 $datas = array();
 if (!empty($Form_type))
 {
-  $find_four_all = "SELECT *,DATE(`form_all_info`.`Create_date`) AS Form_Create_date FROM `form_all_info` WHERE `Phone_id` = '$Phone_id' AND `Case_id` = '$Open_id'AND `Form_name` = '$Form_type' ORDER BY `form_all_info`.`Id` ASC";
+  $find_four_all = "SELECT *,DATE(`form_all_info`.`Create_date`) AS Form_Create_date FROM `form_all_info` WHERE `Case_seqid` = '$Id' AND `Case_id` = '$Open_id'AND `Form_name` = '$Form_type' ORDER BY `form_all_info`.`Id` ASC";
 }
 else
 {
-  $find_four_all = "SELECT DISTINCT `Form_name` FROM `form_all_info` WHERE `Phone_id` = '$Phone_id' AND `Case_id` = '$Open_id' ORDER BY `form_all_info`.`Id` ASC";
+  $find_four_all = "SELECT DISTINCT `Form_name` FROM `form_all_info` WHERE `Case_seqid` = '$Id' AND `Case_id` = '$Open_id' ORDER BY `form_all_info`.`Id` ASC";
 }
 
 

@@ -2,16 +2,17 @@
 include("sql_connect.php"); 
 // @$face_id = $_POST['face_id'];
 @$Phone_id = $_POST['Phone_id'];
+@$Id = $_POST['Id'];
 // @$four_id = $_POST['four_id'];
 @$Open_id = $_POST['Open_id'];
 // $Phone_id = '4';
 // $Open_id = '2';
 //region 抓資料
 if($Open_id != "" && $Phone_id != ""){
-    $sql = "SELECT *,DATE(`current_case`.`Open_case_date`) AS Open_case_date FROM `current_case` WHERE `Phone_id`='$Phone_id' AND `Case_id`='$Open_id' ORDER BY `current_case`.`Open_case_date` ASC";
+    $sql = "SELECT *,DATE(`current_case`.`Open_case_date`) AS Open_case_date FROM `current_case` WHERE `Id`='$Id' AND `Case_id`='$Open_id' AND `Case_state` = '未結案' ORDER BY `current_case`.`Open_case_date` DESC";
 }
 else if($Open_id != ""){
-  $sql = "SELECT *,DATE(`current_case`.`Open_case_date`) AS Open_case_date FROM `current_case` WHERE `Case_id`='$Open_id' ORDER BY `current_case`.`Open_case_date` ASC";
+  $sql = "SELECT *,DATE(`current_case`.`Open_case_date`) AS Open_case_date FROM `current_case` WHERE `Case_id`='$Open_id' ORDER BY `current_case`.`Open_case_date` DESC";
 }
 else{
     $sql = "SELECT *,DATE(`current_case`.`Open_case_date`) AS Open_case_date FROM `current_case` WHERE `Case_state` = '未結案' ORDER BY `current_case`.`Open_case_date` DESC";

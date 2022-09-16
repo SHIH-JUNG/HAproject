@@ -226,7 +226,9 @@ input[type=number] {
                                                             <tr style="text-align:left">
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>社工員</td>
                                                                 <td style="border-bottom: solid 1px;">
-                                                                    <input id="user" type="text">
+                                                                    <select id="user" style="width:160px;">
+                                                                        <!-- <option value="">請選擇</option> -->
+                                                                    </select>
                                                                 </td>
                                                             </tr>
                                                         </table>
@@ -290,3 +292,4 @@ input[type=number] {
 </body>
 
 </html>
+<?php include("database/timeout_logout.php"); ?>

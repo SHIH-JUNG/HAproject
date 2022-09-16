@@ -1,7 +1,7 @@
 <?php
 include("sql_connect.php"); 
 //region 抓資料
-$note = "SELECT * FROM `volunteer`;";
+$note = "SELECT * FROM `resume` ORDER BY `resume`.`Id` ASC;";
 
 //宣告空的陣列
 $datas = array();

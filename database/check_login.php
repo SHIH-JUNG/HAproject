@@ -21,13 +21,21 @@ if($id != null && $pw !=null){
         $_SESSION['name'] = $row[3];
         $_SESSION['department'] = $row[6];
         $_SESSION['job'] = $row[7];
+
+        $_SESSION['login']= 10;
+        $a = session_id();
+
         echo true;
-	}else{
+	}
+    else
+    {
         echo false;
     }
 }else{
     echo false;
 }
+
+
 
 //   print_r($row);
 //   echo $_SESSION['authority'];

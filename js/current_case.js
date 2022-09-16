@@ -15,12 +15,13 @@ $.ajax({
         $.each(data,function(index,value){
 
             cssString += 
-            '<tr name="'+ value.Name +'" date="'+ value.Open_case_date +'" property="'+ value.Case_property +'" type="'+ value.Object_type +'" id="'+value.Phone_id+'" openid="'+value.Case_id+'" pid="'+value.Case_pid+'">' +
+            '<tr name="'+ value.Name +'" date="'+ value.Open_case_date +'" property="'+ value.Case_property +'" type="'+ value.Object_type +'" phoneid="'+value.Phone_id+'" id="'+value.Id+'" openid="'+value.Case_id+'" pid="'+value.Case_pid+'">' +
                 '<td style="text-align:center">' + value.Case_id + '</td>' +
                 '<td style="text-align:center">' + value.Case_Create_date + '</td>' +
                 '<td style="text-align:center">' + value.Object_type + '</td>' +
                 '<td style="text-align:center">' + value.Case_grade + '</td>' +
                 '<td style="text-align:center">' + value.Case_property + '</td>' +
+                '<td style="text-align:center">' + value.Case_stage + '</td>' +
                 '<td style="text-align:center">' + value.Open_case_date + '</td>' +
                 '<td style="text-align:center">' + value.Name + '</td>' +
                 '<td style="text-align:center">' + value.Phone + '</td>' +

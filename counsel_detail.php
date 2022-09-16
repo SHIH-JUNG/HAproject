@@ -520,3 +520,4 @@
 </body>
 
 </html>
+<?php include("database/timeout_logout.php"); ?>

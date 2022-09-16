@@ -205,14 +205,26 @@
                                                                             <textarea style="height:16em;width:700px;resize: none;font-size: 20px;" id="next_focus" name="next_focus" placeholder="請輸入下次團督重點"></textarea>
                                                                         </td>
                                                                     </tr>
+                                                                    <tr style="text-align:left">
+                                                                        <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;">督導(簽核)</td>
+                                                                        <td style="border-bottom: solid 1px;">
+                                                                            <select name="supervise" id="supervise" style="width:160px;">
+                                                                                <option value="">請選擇</option>
+                                                                            </select>
+                                                                        </td>
+                                                                    </tr>
                                                                 </table>
-                                                                </from>
+                                                            </from>
 
                                                                 <br>
                                                                 <button id="rec_add_new" style="font-size:15px" type="button" class="btn btn-default"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-check" viewBox="0 0 16 16">
                                                                         <path d="M10.854 7.854a.5.5 0 0 0-.708-.708L7.5 9.793 6.354 8.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
                                                                         <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
                                                                     </svg>新增</button>
+                                                                    <!-- <button onclick="test1()" style="font-size:15px" type="button" class="btn btn-default"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-check" viewBox="0 0 16 16">
+                                                                        <path d="M10.854 7.854a.5.5 0 0 0-.708-.708L7.5 9.793 6.354 8.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
+                                                                        <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
+                                                                    </svg>測試</button> -->
                                                                 <a href="javascript:history.back()"><button style="font-size:15px" type="button" class="btn btn-default"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-excel" viewBox="0 0 16 16">
                                                                             <path d="M5.884 6.68a.5.5 0 1 0-.768.64L7.349 10l-2.233 2.68a.5.5 0 0 0 .768.64L8 10.781l2.116 2.54a.5.5 0 0 0 .768-.641L8.651 10l2.233-2.68a.5.5 0 0 0-.768-.64L8 9.219l-2.116-2.54z" />
                                                                             <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
@@ -246,7 +258,7 @@
                                                                         <td style="border-bottom: solid 1px;">
                                                                             <div class="col-sm-12">
                                                                                 <div class="text-left">
-                                                                                    <input name="customFile1" type="file" class="form-control" />
+                                                                                    <input name="customFile1" type="file" class="form-control"/>
                                                                                     <br>
                                                                                     <div id="customFile1"></div>
                                                                                     <img src="" id="customFile1_img" style="display:none;" />
@@ -258,6 +270,14 @@
                                                                         <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white">備註</td>
                                                                         <td>
                                                                             <textarea style="height:10em;width:700px;resize: none;font-size: 20px;" id="upload_rec_remark" name="upload_rec_remark" placeholder="請輸入備註"></textarea>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr style="text-align:left">
+                                                                        <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;">督導(簽核)</td>
+                                                                        <td style="border-bottom: solid 1px;">
+                                                                            <select name="upload_rec_supervise" id="upload_rec_supervise" style="width:160px;">
+                                                                                <option value="">請選擇</option>
+                                                                            </select>
                                                                         </td>
                                                                     </tr>
                                                                 </table>
@@ -294,6 +314,8 @@
             <!--/網頁內容-->
         </div>
     </div>
+
+
     <!-- /#wrapper -->
     <!-- JavaScript -->
     <!-- Bootstrap and jQuery -->
@@ -332,3 +354,4 @@
 </body>
 
 </html>
+<?php include("database/timeout_logout.php"); ?>

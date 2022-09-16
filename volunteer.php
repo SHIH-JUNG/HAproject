@@ -16,10 +16,10 @@
     <!-- ================== CSS bootstrap-select ================== -->
     <link href="css/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
     <!--  table  -->
-    <!--    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.css">-->
+    <!--    <link rel="stylesheet" href="css/bootstrap-table.min.css">-->
     <!-- ================== 匯出EXCEL ================== -->
-    <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
-    <link href="https://cdn.datatables.net/buttons/1.5.1/css/buttons.dataTables.min.css" rel="stylesheet" />
+    <link href="css/jquery.dataTables1.10.16.min.css" rel="stylesheet" />
+    <link href="css/buttons.dataTables1.5.1.min.css" rel="stylesheet" />
 
     <meta charset="UTF-8" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -91,7 +91,7 @@
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span><?php echo trim($vo_year); ?>年度志工資料</span></li>
+                        <li><span>志工資料</span></li>
                     </ol>
                     <!--/麵包屑-->
                 </div>
@@ -248,10 +248,10 @@
     <script src="javascript/jquery.min.js"></script>
     <script src="javascript/bootstrap.min.js"></script>
     <!-- ================== 匯出EXCEL ================== -->
-    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+    <script src="javascript/jquery.dataTables1.10.16.min.js"></script>
+    <script src="javascript/dataTables1.2.2.buttons.min.js"></script>
+    <script src="javascript/jszip2.5.0.min.js"></script>
+    <script src="javascript/buttons1.2.2.html5.min.js"></script>
     <!-- 表格 JavaScript -->
     <!--
     <script src="javascript/jquery.dataTables.min.js"></script>
@@ -274,8 +274,8 @@
     <!-- ================== moment ================== -->
     <script src='javascript/moment2.29.0.min.js'></script>
     <!-- ================== table ================== -->
-    <script src="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.js"></script>
-    <script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/locale/bootstrap-table-zh-TW.min.js"></script>
+    <script src="javascript/bootstrap1.18.0-table.min.js"></script>
+    <script src="javascript/bootstrap-table1.11.1-zh-TW.min.js"></script>
     <!-- ================== phone ================== -->
     <script type="text/javascript" src="js/volunteer.js"></script>
     <!-- ================== 地區選擇下拉 ================== -->
@@ -293,3 +293,4 @@
 </script>
 
 </html>
+<?php include("database/timeout_logout.php"); ?>

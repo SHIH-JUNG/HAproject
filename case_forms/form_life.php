@@ -412,7 +412,7 @@
                                                     <tr>
                                                         <td colspan="4">
                                                             <div class="text-right">
-                                                                <span>總分：</span>
+                                                                <span>得分：</span>
                                                                 <input style="width:6em;" name="life_answer_score1" id="life_answer_score1" type="text" />
                                                             </div>
                                                         </td>
@@ -515,7 +515,7 @@
                                                     <tr>
                                                         <td colspan="4">
                                                             <div class="text-right">
-                                                                <span>總分：</span>
+                                                                <span>得分：</span>
                                                                 <input style="width:6em;" name="life_answer_score2" id="life_answer_score2" type="text" />
                                                             </div>
                                                         </td>

@@ -4,6 +4,7 @@
 //只要此頁面上有用到連接MySQL就要include它
 include("sql_connect.php");
 $Open_case_id = $_POST['Open_case_id'];
+$Open_case_seqid = $_POST['Open_case_seqid'];
 $Closed_id = $_POST['Closed_id'];
 $Name = $_POST['Name'];
 $Gender = $_POST['Gender'];
@@ -18,13 +19,13 @@ $Assign = $_POST['Assign'];
 $user = $_SESSION['name'];
 
 $sql ="UPDATE `current_case` SET `Case_state` = '已結案', `Close_case_date` = '$Closed_date',
- `Update_name` = '$user', `Update_date` = NOW() WHERE `Case_id` = '$Open_case_id' ORDER BY `current_case`.`Create_date` ASC LIMIT 1;";
+ `Update_name` = '$user', `Update_date` = NOW() WHERE `Case_id` = '$Open_case_id' AND `Id` = '$Open_case_seqid' ORDER BY `current_case`.`Create_date` ASC LIMIT 1;";
 
-$sql .= "INSERT INTO `closed` (`Open_case_id`, `Closed_id`, `Open_date`, `Closed_date`,
+$sql .= "INSERT INTO `closed` (`Open_case_seqid`, `Open_case_id`, `Closed_id`, `Open_date`, `Closed_date`,
  `Name`, `Gender`, `Main_issue`, `Intervention`,
 `Closed_reason`, `Remark`, `Assign`,
 `Create_date`,`Create_name`) VALUES
- ('$Open_case_id', '$Closed_id', '$Open_date', '$Closed_date',
+ ('$Open_case_seqid', '$Open_case_id', '$Closed_id', '$Open_date', '$Closed_date',
   '$Name', '$Gender', '$Main_issue', '$Intervention',
   '$Closed_reason', '$Remark', '$Assign', Now(), '$user')";
   

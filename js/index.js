@@ -113,6 +113,51 @@ const notyf = new Notyf();
         });
 //endregion
 
+//簽核通知 region
+$.ajax({
+    url: "database/find_signature_notice.php",
+    type: "POST",
+    dataType: "JSON",
+    async: false,//啟用同步請求
+    success: function (data) {
+        console.log(data);
+        var cssString = "";
+        $.each(data,function(index,value){
+
+        var tr_color = "";
+        var url = value.Url;
+
+        console.log(url);
+            switch (value.Sign_state) {
+                case "未簽核":
+                    tr_color = "#FF9797";
+                    break;
+                case "已簽核":
+                    tr_color = "#00EC00";
+                    break;
+                default:
+                    tr_color = "#00EC00";
+                    break;
+            }
+
+            cssString += 
+                    '<tr style="background-color:'+tr_color+';">' +
+                    '<td style="LINE-HEIGHT:1px">' + value.Title + '</td>' +
+                    '<td style="LINE-HEIGHT:1px">' + value.Timestamp + '</td>' +
+                    '<td style="LINE-HEIGHT:1px">' + value.Assign + '</td>' +
+                    '<td style="LINE-HEIGHT:1px">' + value.Signer + '</td>' +
+                    '<td style="LINE-HEIGHT:1px">' + value.Sign_state + '</td>' +
+                    '<td>' + '<a style="text-decoration: underline;" href="'+value.Url+'">查看</a>' + '</td>' +
+                    '</tr>'
+        });
+        $("#sign_notice").html(cssString);
+    },
+    error: function (e) {
+        notyf.alert('伺服器錯誤,無法載入' + e);
+    }
+});
+//endregion  
+
 //新增公告region
     $("#ann_cancel").click(function(){
         $('#add_ann_m').modal('show'); 

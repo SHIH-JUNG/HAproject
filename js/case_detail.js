@@ -15,7 +15,7 @@ var date = getUrlVars()["date"];
 var grade = getUrlVars()["grade"];
 var property = decodeURIComponent(getUrlVars()["property"]);
 var type = decodeURIComponent(getUrlVars()["type"]);
-var phone_id = getUrlVars()["id"];
+var id = getUrlVars()["id"];
 var open_id = getUrlVars()["open_id"];
 // var addition =decodeURIComponent(getUrlVars()["addition"]);
 // var age = decodeURIComponent(getUrlVars()["age"]);
@@ -28,7 +28,6 @@ var birth = getUrlVars()["birth"];
 
 var form_id = getUrlVars()["form_id"];
 var form_type = decodeURIComponent(getUrlVars()["form_type"]);
-
 
 //當量表分數改變(選項)的時候，重算分數 region
 $("input[name*='answer']").change( function(event) {
@@ -138,6 +137,7 @@ $("input[name*='customRange']").change( function(event) {
 // part 1
 function life_answer_score_counting_part1() {
     var t_score = 0;
+    var index = 0;
 
     $("input[name*='life_answer']").each(function(i,n){
 
@@ -145,11 +145,13 @@ function life_answer_score_counting_part1() {
         {
             var score = parseInt($(this).val())
             t_score += score;
+            index += 1;
         }
     });
 
-    $("#life_answer_score1").val(t_score);
+    $("#life_answer_score1").val(Math.floor((t_score/index) * 100) / 100);
     // console.log(t_score)
+    // console.log(index)
 }
 // part 2
 function life_answer_score_counting_part2() {
@@ -164,6 +166,89 @@ function life_answer_score_counting_part2() {
 
     $("#life_answer_score2").val(t_score);
     // console.log(t_score)
+}
+//endregion
+
+// 存放會談紀錄 已存在的問題類型關鍵字
+window.exist_ques_type_keywords = new Array();
+
+// 查詢資料庫中的會談紀錄 問題類型關鍵字，並添加到網頁前端下拉式選單中region
+function add_form_interlocution_ques_type_keywords() {
+
+    $("#add_interlocution_ques_type").empty();
+
+    $.ajax({
+        url: "database/find_form_interlocution_ques_type_keywords.php",
+        type: "POST",
+        dataType: "JSON",
+        success: function (data) {
+            if(exist_ques_type_keywords.length==0)
+            {
+                $("#interlocution_ques_type").append('<option value=""></option>');
+            }
+            if(!exist_ques_type_keywords.includes($("#add_interlocution_ques_type").val()))
+            {
+                $.each(data,function(index,value){
+                    $("#interlocution_ques_type").append('<option value="'+value.Ques_type+'">'+value.Ques_type+'</option>');
+                    exist_ques_type_keywords.push(value.Ques_type)
+                });
+            }
+            // console.log(exist_ques_type_keywords);
+        },
+        error:function(e){
+            console.log("error");
+        }
+    });
+}
+//endregion
+
+
+
+// 新增會談紀錄 問題類型關鍵字 至資料庫，並刷新添加到網頁前端下拉式選單中region
+insert_ques_type_keywords = function() {
+    
+    if($("#add_interlocution_ques_type").val()=="" || exist_ques_type_keywords.includes($("#add_interlocution_ques_type").val()))
+    {
+        swal({
+            type: 'warning', 
+            title: '未輸入新增問題類型，或該類型已存在!',
+            allowOutsideClick: false //不可點背景關閉
+        })
+        return false;
+    }
+    else
+    {
+        $.ajax({
+            url: "database/add_form_interlocution_ques_type_keywords.php",
+            data:{
+                add_keyword:$("#add_interlocution_ques_type").val()
+            },
+            type: "POST",
+            dataType: "JSON",
+            // async: false,
+            success: function (data) {
+                if(data == 1){                    
+                    add_form_interlocution_ques_type_keywords();
+                    $("#add_interlocution_ques_type").val('');
+                    swal({
+                        type: 'success', 
+                        title: '新增成功!',
+                        allowOutsideClick: false //不可點背景關閉
+                        })
+                }else{
+                    swal({
+                        type: 'error',
+                        title: '新增失敗!請聯絡負責人',
+                        allowOutsideClick: false //不可點背景關閉
+                        })
+                }  
+            },
+            error:function(e){
+                console.log(e);
+                console.log("系統錯誤!");
+            }
+        });
+    }
 }
 //endregion
 
@@ -338,12 +423,51 @@ function check_file_exist(){
         case 'life':
 
             var w_test = $('input[name="w_test"]:checked').val();
-            var life_answer_score1 = $('input[name="life_answer_score1"]').val();
-            var life_answer_score2 = $('input[name="life_answer_score2"]').val();
-            var total_answer_score = parseInt(life_answer_score1) + parseInt(life_answer_score2);
+            var life_answer_score1 = parseFloat($('input[name="life_answer_score1"]').val());
+            var life_answer_score2 = parseFloat($('input[name="life_answer_score2"]').val());
+            // var total_answer_score = parseFloat(life_answer_score1) + parseFloat(life_answer_score2);
+            var score1_index = "";
+
+            if(life_answer_score1>0 && life_answer_score1<=1)
+            {
+                score1_index = "極不滿意";
+            }
+            else if(life_answer_score1>1 && life_answer_score1<=1.9)
+            {
+                score1_index = "介於為極不滿意至不滿意";
+            }
+            else if(life_answer_score1>1.9 && life_answer_score1<=2)
+            {
+                score1_index = "不滿意";
+            }
+            else if(life_answer_score1>2 && life_answer_score1<=2.9)
+            {
+                score1_index = "介於為不滿意至普通";
+            }
+            else if(life_answer_score1>2.9 && life_answer_score1<3.1)
+            {
+                score1_index = "普通";
+            }
+            else if(life_answer_score1>=3.1 && life_answer_score1<=3.9)
+            {
+                score1_index = "介於為普通(中等程度滿意)至滿意";
+            }
+            else if(life_answer_score1>3.9 && life_answer_score1<4.1)
+            {
+                score1_index = "滿意";
+            }
+            else if(life_answer_score1>=4.1 && life_answer_score1<=4.9)
+            {
+                score1_index = "介於為滿意至極滿意(非常滿意)";
+            }
+            else if(life_answer_score1>=5)
+            {
+                score1_index = "極滿意(非常滿意)";
+            }
             
-            // other_info_arr.push({name:form_tpye,value:"總分："+total_answer_score+"分。第一部分："+life_answer_score1+"分，第二部分："+life_answer_score2+"分。"});
-            other_info_arr.push({name:form_tpye,value:total_answer_score});
+            other_info_arr.push({name:form_tpye,value:"<div>第一部分得分："+life_answer_score1+"分，結果："+score1_index+"。<br/>第二部分得分："+life_answer_score2+"分。</div>"});
+
+            // other_info_arr.push({name:form_tpye,value:total_answer_score});
 
             if(w_test==undefined)
             {
@@ -652,11 +776,14 @@ function submit_data()
          }
      }
 
-    form_data.append("Case_id", open_id);
-    form_data.append("Form_id", form_id);
-    form_data.append("Form_type", form_type);
-    form_data.append("Case_name", name);
-    form_data.append("Case_pid", pid);
+     var case_report_datas = get_case_report_datas(form_type);
+
+     form_data.append("Case_id", open_id);
+     form_data.append("Form_id", form_id);
+     form_data.append("Form_type", form_type);
+     form_data.append("Case_name", name);
+     form_data.append("Case_pid", pid);
+     form_data.append("Case_report", JSON.stringify(case_report_datas));
 
     // form_data.append("answer", JSON.stringify(form));
 
@@ -670,7 +797,7 @@ function submit_data()
 //網頁載入 region
 $(document).ready(function () {
     //填入資料region
-    
+
     //各量表依據form_type自動更新麵包屑名稱
     $("#form_type_name").text($("#form_type").text());
 
@@ -689,6 +816,9 @@ $(document).ready(function () {
     $("#pid").val(decodeURIComponent(pid));
     $("input[name='sex'][value='"+gender+"生']").attr('checked',true);
     $("#open_date").val(decodeURIComponent(date));
+    $("#birth").val(birth);
+    $("#age").val(getAge(birth.split('-'))[0]);
+
     // $("#age").val(decodeURIComponent(age));
 
     //填寫日期自動帶入
@@ -697,6 +827,9 @@ $(document).ready(function () {
         var timenow = moment().format('YYYY-MM-DD');
         $(this).val(timenow);
     });
+
+    // 載入 會談紀錄表 問題類型
+    add_form_interlocution_ques_type_keywords();
 
     var url = "";
 
@@ -721,10 +854,92 @@ $(document).ready(function () {
     //手動新增按鈕點擊跳出模態框
     $('#trans_grade_model').on('shown.bs.modal', function () {
         $('#trans_grade').trigger('focus');
+    });
+    $('#trans_user_model').on('shown.bs.modal', function () {
+        $('#trans_case').trigger('focus');
     });  
 
     $("#case_grade").val(decodeURIComponent(grade));
+
+    $.ajax({
+        type:'POST',
+        url:'database/find_check_user.php',
+        dataType: "JSON",
+        async: false,//啟用同步請求
+        success: function (data) {
+            // console.log('test',data)
+            for (var index in data.Id) {
+                $("#case_user").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+            }
+        },
+    });
+
+
+    $.ajax({
+        url: "database/find_case.php",
+        data: {
+            Open_id:open_id,
+            Id:id
+        },
+        type: "POST",
+        dataType: "JSON",
+        async: false,//啟用同步請求
+        success: function (data) {
+            // console.log(data);
+            var PhoneStartstr = data[0].Phone.indexOf("09");
+            
+
+            if(PhoneStartstr == 0)
+            {
+                //表示是以09開頭
+                $("#phone_mobile").val(data[0].Phone);
+            }
+            else if(PhoneStartstr == -1)
+            {
+                //表示不是以09開頭
+                $("#phone_home").val(data[0].Phone);
+            }
+            else
+            {
+                $("#phone").val(data[0].Phone);
+            }
+            $("#phone").val(data[0].Phone);
+            
+            $("#case_stage").val(data[0].Case_stage);
+            $("#case_user").val(data[0].Case_assign);
+
+        },
+        error: function (e) {
+                alert('伺服器錯誤,無法載入' + e);
+         }
+    });
 });
+//endregion
+
+// 從出生年月日計算年齡 region
+function getAge(birthday) {
+    // 新建日期对象
+    let date = new Date()
+    // 今天日期，数组，同 birthday
+    let today = [date.getFullYear(), date.getMonth() + 1, date.getDate()]
+    // 分别计算年月日差值
+    let age = today.map((value, index) => {
+        return value - birthday[index]
+    })
+    // 当天数为负数时，月减 1，天数加上月总天数
+    if (age[2] < 0) {
+        // 简单获取上个月总天数的方法，不会错
+        let lastMonth = new Date(today[0], today[1], 0)
+        age[1]--
+        age[2] += lastMonth.getDate()
+    }
+    // 当月数为负数时，年减 1，月数加上 12
+    if (age[1] < 0) {
+        age[0]--
+        age[1] += 12
+    }
+    return age
+}
 //endregion
 
 //載入各量表 資料 region
@@ -741,7 +956,7 @@ function load_all_forms_data(type_name,url_str)
             Case_pid:pid,
         },
         dataType: "JSON",
-        async: false, //啟用同步請求
+        // async: false, //啟用同步請求
         success: function (data) {
             // console.log(data)
 
@@ -756,6 +971,7 @@ function load_all_forms_data(type_name,url_str)
 
                     //獲取name值對應的input類型
                     var inputs_type = $("input[name='"+datan.name+"']").attr('type');
+                    
 
                     //根據對應的類型選擇js語法填入資料
                     if(inputs_type!=undefined)
@@ -787,7 +1003,7 @@ function load_all_forms_data(type_name,url_str)
                     else //若不是input標籤
                     {
                         //其他 select、textarea
-                        $("[name='"+datan.name+"']").val(datan.value);
+                        $("[name='"+datan.name+"']").val(datan.value); 
                     }
                     
 
@@ -996,232 +1212,368 @@ $("#add_"+form_type+"_detail").on('click', function () {
 });
 //endregion
 
-//送出量表資料region
-function submit_form_data() {
-    var form_type = getUrlVars()["form_type"];
+// 存放監聽表單的子元素變動事件的列表
+window.listen_form_change = new Array();
 
-    //先執行 出入矯正機關 計算約共幾年幾月
-    calculation_date();
 
-    //去掉資料內前後端多餘的空白，file類型須排除，否則報錯
-    $('input, textarea').each(function(){
-        if($(this).attr('type')!='file')
-        {
-            $(this).val(jQuery.trim($(this).val()));
-        }
-    });
+// 監聽表單內容變動事件 region
+$(".form").children().change(function () {
+    // var form_type = getUrlVars()["form_type"];
+    var form_id = $(this).parents("form").attr("id");
+    // console.log($(this).parents("form").attr("id"));
     
-    //創立FormData Oject
-    //傳輸 input type="file"類型檔案需用FormData Oject格式傳送ajax
-    var form_data = new FormData();
+    listen_form_change.push(form_id)
+});
+//endregion
 
-    //獲取File Object
-    var customfile = $('[type="file"]').prop('files');
-    // console.log(typeof customfile)
-
-    //獲取所有form的資料轉為serializeArray
-    var form = $('.form').serializeArray();
-
-    //form serializeArray物件合併input type="file"類型物件 (serializeArray不會將input type="file"類型資料加入，需額外設定)
-    if(file_name.length==0)
-    {
-        var input_files_len = $('[type="file"]');
-        var inputs_files_value = $('[type="file"]').attr("value");
-        var inputs_files_name = $('[type="file"]').attr("name");
-
-        if(inputs_files_value!=undefined)
-        {
-            for(var i=0;i<input_files_len.length;i++)
-            {
-                file_name.push({name:inputs_files_name,value:inputs_files_value}); 
-            }
-        }
-
-        form = form.concat(file_name);
-    }
-    else
-    {
-        form = form.concat(file_name);
-    }
-
-    if(form_type=="health")
-    {
-        form_health_arr = new Array();
-
-        $(".form_health table").each(function(index, name){
-            var get_tab_id = $(this).attr("id");
-            var name_arr1 = $("[name='"+get_tab_id+"&medical_rec_1[]']");
-            var name_arr2 = $("[name='"+get_tab_id+"&medical_rec_2[]']");
-        
-            var arr_len  = name_arr1.length;
-            var arr2_len  = name_arr2.length;
-        
-            var arr1 = new Array();
-            var arr2 = new Array();
-           
-            for (i = 0; i < arr_len; i++)
-            {
-                arr1.push(name_arr1[i].value); 
-            } 
-            
-            for (i = 0; i < arr2_len; i++)
-            {
-                arr2.push(name_arr2[i].value); 
-            }
-            var isstrspace = 0;
-
-            arr1.forEach(function(item, index, arr) {
-                if (item==null || item=="") {
-                    isstrspace ++
-                }
-            });
-
-            arr2.forEach(function(item, index, arr) {
-                if (item==null || item=="") {
-                    isstrspace ++
-                }
-            });
-
-            if(isstrspace!=(arr_len+arr2_len))
-            {
-                form_health_arr.push({name:name_arr1.attr("name"),value:arr1})
-                form_health_arr.push({name:name_arr2.attr("name"),value:arr2})
-            }
-        });
-        // var form_health_arr = $('.form_health').serializeArray();
-
-        form_data.append("health_rec", JSON.stringify(form_health_arr));
-    }
-
-    if(form_type=="resource")
-    {
-        form_resource_arr = new Array();
-
-        $(".form_resource table").each(function(index, name){
-            var get_tab_id = $(this).attr("id");
-            var name_arr1 = $("[name='"+get_tab_id+"&resource_rec_1[]']");
-        
-            var arr_len  = name_arr1.length;
-        
-            var arr1 = new Array();
-           
-            for (i = 0; i < arr_len; i++)
-            {
-                arr1.push(name_arr1[i].value); 
-            } 
-            
-            var isstrspace = 0;
-
-            arr1.forEach(function(item, index, arr) {
-                if (item==null || item=="") {
-                    isstrspace ++
-                }
-            });
-
-            if(isstrspace!=arr_len)
-            {
-                form_resource_arr.push({name:name_arr1.attr("name"),value:arr1})
-            }
-        });
-
-        form_data.append("answer", JSON.stringify(form_resource_arr));
-    }
-    else
-    {
-        form_data.append("answer", JSON.stringify(form));
-    }
-
-    //將其他摘要訊息添加至form_data，other_info用來顯示在case_all.php的各量表摘要表格上
-    var other_info = other_info_push(form_type);
-
-    // console.log(other_info)
-    // console.log(other_info.length)
-    if(other_info.length>0)
-    {
-        form_data.append("other_info", JSON.stringify(other_info));
-    }
-
-    //將填寫日期添加至form_data，fillin_date用來顯示在case_all.php的各量表摘要表格上
-    form_data.append("Fillin_date", $("input[name*='fillin_date']").val());
-
-    //將 以下資料添加到 FormData Oject region
-
-    //若量表無 input type="file"類型資料 則不執行該迴圈
-    //量表沒有input type="file"類型資料，customfile會顯示undefined，customfile.length會報錯
-    //量表存在input type="file"類型資料，但無任何檔案上傳customfile.length會顯示0
-    if(customfile!=undefined)
-    {
-        if(customfile.length!=0)
-        {
-            for(var i=0; i<customfile.length; i++){
-                form_data.append("file4", customfile[i]);
-                // console.log(customfile[i])
-            }
-        }
-        else
-        {
-            //載入量表『無重新上傳檔案』情況下按儲存，則加入File_name供後端程式判斷
-            form_data.append("File_name", $('[type="file"]').attr("value"));
-        }
-    }
-
-    form_data.append("Case_id", open_id);
-    form_data.append("Form_id", form_id);
-    form_data.append("Form_type", form_type);
-    form_data.append("Case_name", name);
-    form_data.append("Case_pid", pid);
-
+// 根據表單類型儲存工作報表所需記數 region
+function get_case_report_datas(form_type) {
     
-    //endregion
+    var report_datas = [];
+    var count_type = "";
+    var open_case_date = "";
+    var case_name = "";
+    var case_grade = "";
+    var case_state = "";
+    var case_assign = "";
 
-    // for (var pair of form_data.entries()) {
-    //     console.log(pair[0]+ ', ' + pair[1]); 
-    // }
-
-    //傳輸 FormData Oject 格式資料ajax須設定如下
     $.ajax({
-        type: 'POST',
-        url: 'database/add_update_case_detail_form.php',
-        // data: {
-        //     Case_id:open_id,
-        //     Form_id:form_id,
-        //     Form_type:form_type,
-        //     Case_name:name,
-        //     Case_pid:pid,
-        //     answer:form
-        // },
-        data:form_data,
-        contentType:false,
-        cache:false,
-        processData:false,
-        async:true,
+        url: "database/find_current_case_for_report.php",
+        type: "POST",
+        data: {
+            Case_seqid:id,
+            Case_id:open_id,
+        },
+        dataType: "JSON",
+        async: false, //啟用同步請求
         success: function (data) {
             // console.log(data)
-            //console.log(typeof data)
-            if(data == 1){
-                swal({
-                    title:'上傳成功！',
-                    type:'success',                        
-                }).then(function(){
-                    location.reload();
-                }) 
-            }
-           else
-           {
-                swal({
-                    title:'上傳失敗！請聯絡負責單位',
-                    type:'error',
-                })
-            }
+            open_case_date = data[0].Open_case_date;
+            case_name = data[0].Name;
+            case_grade = data[0].Case_grade;
+            case_state = data[0].Case_state;
+            case_assign = data[0].Case_assign;
         },
         error: function (e) {
-            console.log(e);
+            console.log(e)
             swal({
                 title:'上傳失敗！請聯絡負責單位',
                 type:'error',
             })
         }
     });
+
+
+    switch (form_type) {
+        case "case":
+            if(listen_form_change.includes("form_4"))
+            {
+                count_type = "Case_closed_count";
+            }
+            else if(listen_form_change.length>0)
+            {
+                count_type = "Case_count";
+            }
+        
+            
+            break;
+        case "interlocution":
+            if(listen_form_change.length>0)
+            {
+                var interlocution_place = $("#interlocution_place").val();
+
+                switch (interlocution_place) {
+                    case "電訪":
+                            count_type = "Interlocution_phone_count";
+                        break;
+                    case "面訪":
+                            count_type = "Interlocution_face_count";
+                        break;
+                    case "家訪":
+                            count_type = "Interlocution_home_count";
+                        break;
+                    default:
+                        break;
+                }
+            }
+           
+            break;
+        case "employment_satif":
+            if(listen_form_change.length>0)
+            {
+                count_type = "Employment_satif_count";
+            }
+            
+            break;
+        default:
+            break;
+    }
+
+    report_datas.push({form_type:form_type
+        , count_type:count_type
+        , case_seqid:id
+        , case_id:open_id
+        , form_id:form_id
+        , open_case_date:open_case_date
+        , name:case_name
+        , case_grade:case_grade
+        , case_state:case_state
+        , case_assign:case_assign});
+
+    return report_datas;
+}
+//endregion
+
+// 防五秒內重複送出表單
+window.submit_detail_click = true;
+
+//送出量表資料region
+function submit_form_data() {
+    if(submit_detail_click)
+    {
+        submit_detail_click = false;
+
+        var form_type = getUrlVars()["form_type"];
+
+        //先執行 出入矯正機關 計算約共幾年幾月
+        calculation_date();
+
+        //去掉資料內前後端多餘的空白，file類型須排除，否則報錯
+        $('input, textarea').each(function(){
+            if($(this).attr('type')!='file')
+            {
+                $(this).val(jQuery.trim($(this).val()));
+            }
+        });
+
+        //將 以下資料添加到 FormData Oject region
+
+        //創立FormData Oject
+        //傳輸 input type="file"類型檔案需用FormData Oject格式傳送ajax
+        var form_data = new FormData();
+
+        //獲取File Object
+        var customfile = $('[type="file"]').prop('files');
+        // console.log(typeof customfile)
+
+        //獲取所有form的資料轉為serializeArray
+        var form = $('.form').serializeArray();
+
+        //form serializeArray物件合併input type="file"類型物件 (serializeArray不會將input type="file"類型資料加入，需額外設定)
+        if(file_name.length==0)
+        {
+            var input_files_len = $('[type="file"]');
+            var inputs_files_value = $('[type="file"]').attr("value");
+            var inputs_files_name = $('[type="file"]').attr("name");
+
+            if(inputs_files_value!=undefined)
+            {
+                for(var i=0;i<input_files_len.length;i++)
+                {
+                    file_name.push({name:inputs_files_name,value:inputs_files_value}); 
+                }
+            }
+
+            form = form.concat(file_name);
+        }
+        else
+        {
+            form = form.concat(file_name);
+        }
+
+
+        // 健康管理評估表
+        if(form_type=="health")
+        {
+            form_health_arr = new Array();
+
+            $(".form_health table").each(function(index, name){
+                var get_tab_id = $(this).attr("id");
+                var name_arr1 = $("[name='"+get_tab_id+"&medical_rec_1[]']");
+                var name_arr2 = $("[name='"+get_tab_id+"&medical_rec_2[]']");
+            
+                var arr_len  = name_arr1.length;
+                var arr2_len  = name_arr2.length;
+            
+                var arr1 = new Array();
+                var arr2 = new Array();
+            
+                for (i = 0; i < arr_len; i++)
+                {
+                    arr1.push(name_arr1[i].value); 
+                } 
+                
+                for (i = 0; i < arr2_len; i++)
+                {
+                    arr2.push(name_arr2[i].value); 
+                }
+                var isstrspace = 0;
+
+                arr1.forEach(function(item, index, arr) {
+                    if (item==null || item=="") {
+                        isstrspace ++
+                    }
+                });
+
+                arr2.forEach(function(item, index, arr) {
+                    if (item==null || item=="") {
+                        isstrspace ++
+                    }
+                });
+
+                if(isstrspace!=(arr_len+arr2_len))
+                {
+                    form_health_arr.push({name:name_arr1.attr("name"),value:arr1})
+                    form_health_arr.push({name:name_arr2.attr("name"),value:arr2})
+                }
+            });
+            // var form_health_arr = $('.form_health').serializeArray();
+
+            form_data.append("health_rec", JSON.stringify(form_health_arr));
+        }
+
+        // 社會資源應用表格
+        if(form_type=="resource")
+        {
+            form_resource_arr = new Array();
+
+            $(".form_resource table").each(function(index, name){
+                var get_tab_id = $(this).attr("id");
+                var name_arr1 = $("[name='"+get_tab_id+"&resource_rec_1[]']");
+            
+                var arr_len  = name_arr1.length;
+            
+                var arr1 = new Array();
+            
+                for (i = 0; i < arr_len; i++)
+                {
+                    arr1.push(name_arr1[i].value); 
+                } 
+                
+                var isstrspace = 0;
+
+                arr1.forEach(function(item, index, arr) {
+                    if (item==null || item=="") {
+                        isstrspace ++
+                    }
+                });
+
+                if(isstrspace!=arr_len)
+                {
+                    form_resource_arr.push({name:name_arr1.attr("name"),value:arr1})
+                }
+            });
+
+            form_data.append("answer", JSON.stringify(form_resource_arr));
+        }
+        else
+        {
+            form_data.append("answer", JSON.stringify(form));
+        }
+
+        //將其他摘要訊息添加至form_data，other_info用來顯示在case_all.php的各量表摘要表格上
+        var other_info = other_info_push(form_type);
+
+        // console.log(other_info)
+        // console.log(other_info.length)
+        if(other_info.length>0)
+        {
+            form_data.append("other_info", JSON.stringify(other_info));
+        }
+
+        //將填寫日期添加至form_data，fillin_date用來顯示在case_all.php的各量表摘要表格上
+        form_data.append("Fillin_date", $("input[name*='fillin_date']").val());
+
+
+        //若量表無 input type="file"類型資料 則不執行該迴圈
+        //量表沒有input type="file"類型資料，customfile會顯示undefined，customfile.length會報錯
+        //量表存在input type="file"類型資料，但無任何檔案上傳customfile.length會顯示0
+        if(customfile!=undefined)
+        {
+            if(customfile.length!=0)
+            {
+                for(var i=0; i<customfile.length; i++){
+                    form_data.append("file4", customfile[i]);
+                    // console.log(customfile[i])
+                }
+            }
+            else
+            {
+                //載入量表『無重新上傳檔案』情況下按儲存，則加入File_name供後端程式判斷
+                form_data.append("File_name", $('[type="file"]').attr("value"));
+            }
+        }
+
+        // 獲取工作報表所需記數內容
+        var case_report_datas = get_case_report_datas(form_type);
+
+
+        form_data.append("Case_id", open_id);
+        form_data.append("Form_id", form_id);
+        form_data.append("Form_type", form_type);
+        form_data.append("Case_name", name);
+        form_data.append("Case_pid", pid);
+        form_data.append("Case_report", JSON.stringify(case_report_datas));
+        
+        //endregion
+
+        // for (var pair of form_data.entries()) {
+        //     console.log(pair[0]+ ', ' + pair[1]); 
+        // }
+
+        //傳輸 FormData Oject 格式資料ajax須設定如下
+        $.ajax({
+            type: 'POST',
+            url: 'database/add_update_case_detail_form.php',
+            // data: {
+            //     Case_id:open_id,
+            //     Form_id:form_id,
+            //     Form_type:form_type,
+            //     Case_name:name,
+            //     Case_pid:pid,
+            //     answer:form
+            // },
+            data:form_data,
+            contentType:false,
+            cache:false,
+            processData:false,
+            async:true,
+            success: function (data) {
+                console.log(data)
+                //console.log(typeof data)
+                if(data == 1){
+                    swal({
+                        title:'上傳成功！',
+                        type:'success',                        
+                    }).then(function(){
+                        location.reload();
+                    }) 
+                }
+            else
+            {
+                    swal({
+                        title:'上傳失敗！請聯絡負責單位',
+                        type:'error',
+                    })
+                }
+            },
+            error: function (e) {
+                console.log(e);
+                swal({
+                    title:'上傳失敗！請聯絡負責單位',
+                    type:'error',
+                })
+            }
+        });
+
+
+        setTimeout(function() {
+            submit_detail_click = true;
+        }, 5000);//五秒内不能重复点击
+
+    }
+    
+
 }
 //endregion
 
@@ -1286,13 +1638,13 @@ calculation_date = function() {
 //按下預覽匯出region
 $("#preview").on('click', function(){
 
-    location.href = 'four_preview.php?id='+phone_id+'&open_id='+open_id+'&pid='+pid+'&form_id='+form_id+'&form_type='+form_type+'';
+    location.href = 'four_preview.php?id='+id+'&open_id='+open_id+'&pid='+pid+'&form_id='+form_id+'&form_type='+form_type+'';
 });
 //endregion
 
 //設定麵包屑返回region
 
-var url = 'case_all.php?name='+name+'&gender='+gender+'&pid='+pid+'&date='+date+'&property='+property+'&type='+type+'&grade='+ grade+'&id='+phone_id+'&open_id='+open_id+'&referral='+referral+'&case_Create_date='+case_Create_date+'&unopen_type='+unopen_type+'&birth='+birth+'';
+var url = 'case_all.php?name='+name+'&gender='+gender+'&pid='+pid+'&date='+date+'&property='+property+'&type='+type+'&grade='+ grade+'&id='+id+'&open_id='+open_id+'&referral='+referral+'&case_Create_date='+case_Create_date+'&unopen_type='+unopen_type+'&birth='+birth+'';
 $("#history").attr('href',url);
 
 history_back_btn = function() {
@@ -1300,11 +1652,12 @@ history_back_btn = function() {
 }
 
 
-var url2 = 'case_all_all.php?id='+phone_id+'&open_id='+open_id+'';
+var url2 = 'case_all_all.php?id='+id+'&open_id='+open_id+'';
 $("#history2").attr('href',url2);
 
 //endregion
 
+// 轉級 region
 $("#trans_grade_submit").on('click', function () {
 
     swal({
@@ -1324,7 +1677,9 @@ $("#trans_grade_submit").on('click', function () {
                 data: {
                     Case_id:open_id,
                     Case_pid:pid,
+                    Id:id,
                     Case_grade:$("#case_grade").val(),
+                    Case_stage:$("#case_stage").val(),
                 },
                 type: "POST",
                 dataType: "JSON",
@@ -1350,8 +1705,56 @@ $("#trans_grade_submit").on('click', function () {
         }
     });
 });
+//endregion
 
+// 轉案 region
+$("#trans_user_submit").on('click', function () {
 
+    swal({
+        title: '確認轉案？',
+        text: "送出資料後將轉跳至個案紀錄頁面。",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        allowOutsideClick: false, //不可點背景關閉
+        confirmButtonText: '確認！',
+        cancelButtonText: '取消'
+    }).then(function (isConfirm) {
+        if (isConfirm) {
+            $.ajax({
+                url: "database/update_case_trans_user.php",
+                data: {
+                    Case_id:open_id,
+                    Case_pid:pid,
+                    Id:id,
+                    Case_user:$("#case_user").val(),
+                },
+                type: "POST",
+                dataType: "JSON",
+                success: function (data) {
+                    if (data == 1) {
+                        swal({
+                            title: '轉級成功！',
+                            type: 'success',
+                        }).then(function () {
+                            window.location.href=url2;
+                        })
+                    } else {
+                        swal({
+                            title: '轉級失敗！',
+                            type: 'error',
+                        })
+                    }
+                },
+                error: function (e) {
+                    console.log(e);
+                }
+            }); 
+        }
+    });
+});
+//endregion
 
 //結案region
 $("#end").on('click', function () {
@@ -1375,7 +1778,7 @@ $("#end").on('click', function () {
             // alert(end_indicator_text)
             // alert(diagnose_main_text)
             // alert(case_closed_yes_text)
-            window.location.href = 'trans_closed.php?name='+name+'&gender='+gender+'&open_id='+open_id+'&open_date='+date+'&main_issue='+diagnose_main_text+'&closed_reason='+end_indicator_text+'&closed_remark='+case_closed_yes_text+'';
+            window.location.href = 'trans_closed.php?name='+name+'&gender='+gender+'&id='+id+'&open_id='+open_id+'&open_date='+date+'&main_issue='+diagnose_main_text+'&closed_reason='+end_indicator_text+'&closed_remark='+case_closed_yes_text+'';
         }
 
     });

@@ -12,6 +12,7 @@ function getUrlVars() {
 var name = decodeURI(getUrlVars()["name"]);
 var gender = decodeURI(getUrlVars()["gender"]);
 var open_id = getUrlVars()["open_id"];
+var open_seqid = getUrlVars()["id"];
 var open_date = getUrlVars()["open_date"];
 var main_issue = (typeof main_issue === undefined) ? '' : decodeURI(getUrlVars()["main_issue"]);
 var closed_reason = (typeof closed_reason === undefined) ? '' : decodeURI(getUrlVars()["closed_reason"]);
@@ -42,6 +43,19 @@ $(document).ready(function(){
     // $("#intervention").val();
     $("[name='closed_reason'][value='"+closed_reason+"']").attr('checked',true);
     $("#remark").val(closed_remark);
+
+    $.ajax({
+        type:'POST',
+        url:'database/find_check_user.php',
+        dataType: "JSON",
+        async: false,//啟用同步請求
+        success: function (data) {
+            // console.log('test',data)
+            for (var index in data.Id) {
+                $("#user").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+            }
+        },
+    });
     $("#user").val(assign_name);
 
     //獲取最新的結案案號
@@ -165,6 +179,7 @@ function trans_closed_database()
         type: "POST",
         data:{
             Open_case_id:open_id,
+            Open_case_seqid:open_seqid,
             Closed_id:$("#closed_id").val(),
             Name:$("#name").val(),
             Gender:$("#gender").val(),

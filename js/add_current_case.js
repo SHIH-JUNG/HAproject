@@ -1,3 +1,17 @@
+$.ajax({
+    type:'POST',
+    url:'database/find_check_user.php',
+    dataType: "JSON",
+    async: false,//啟用同步請求
+    success: function (data) {
+        // console.log('test',data)
+        for (var index in data.Id) {
+            $("#case_user").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+            $("#case_user").val(assign_name);
+        }
+    },
+});
+
 //新增至開案個案region
 $("#case_add_new").on('click',function(){
     var stau = false;
@@ -104,6 +118,7 @@ function check_current_case_value()
     var create_date = $("#create_date").val();
     var object_type = $("#object_type").val();
     var case_property = $("#case_property").val();
+    var case_stage = $("#case_stage").val();
     var open_case_date = $("#open_case_date").val();
     var name = $("#name").val();
     var gender = $("#gender").val();
@@ -138,6 +153,12 @@ function check_current_case_value()
     }
     if (case_property == null) {
         errorstr += "未選擇類別屬性!\r\n";
+    }
+    if(case_property.replace(/\s*/g, "") == '自立宿舍' || case_property.replace(/\s*/g, "") == '安置家園')
+    {
+        if (case_stage == null) {
+            errorstr += "未填寫類別屬性階段!\r\n";
+        }
     }
     if (open_case_date == null) {
         errorstr += "未填寫開案日期!\r\n";
@@ -180,6 +201,12 @@ function check_current_case_value()
         }
         if (case_property.replace(/\s*/g, "") == '') {
             errorstr += "未選擇類別屬性!\r\n";
+        }
+        if(case_property.replace(/\s*/g, "") == '自立宿舍' || case_property.replace(/\s*/g, "") == '安置家園')
+        {
+            if (case_stage.replace(/\s*/g, "") == '') {
+                errorstr += "未填寫類別屬性階段!\r\n";
+            }
         }
         if (open_case_date.replace(/\s*/g, "") == '') {
             errorstr += "未填寫開案日期!\r\n";
@@ -224,6 +251,7 @@ function add_new_current_case_database()
             Object_type:$("#object_type").val(),
             Case_grade:$('#case_grade').val(),
             Case_property:$("#case_property").val(),
+            Case_stage:$("#case_stage").val(),
             Open_case_date:$("#open_case_date").val(),
             Name:$("#name").val(),
             Gender:$("#gender").val(),
@@ -232,6 +260,7 @@ function add_new_current_case_database()
             Case_pid:$("#pid").val(),
             Referral:$("#referral").val(),
             Unopen_type:'case',
+            Case_user:$("#case_user").val(),
         },
 //            dataType: "JSON",
         success: function (data) {

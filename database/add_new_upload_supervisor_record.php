@@ -14,6 +14,9 @@ include("sql_connect.php");
 @$title = $_REQUEST['title'];
 @$rec_type = $_REQUEST['rec_type'];
 
+@$signer = $_REQUEST['signer'];
+@$rec_date_time = $_REQUEST['rec_date_time'];
+
 $user = $_SESSION['name'];
 
 
@@ -79,17 +82,19 @@ if(isset($_FILES["file4"]))
             $sr_id = 0;
         }
 
-        $url = 'http://localhost/HappyAlliance/HA/supervisor_record_detail.php?year='.$year.'&id='.$sr_id.'&sr_id='.$sr_id.'&rec_type='.$rec_type .'';
+        $url = 'supervisor_record_detail.php?year='.$year.'&id='.$sr_id.'&sr_id='.$sr_id.'&rec_type='.$rec_type .'';
 
         $start_datetime = date("Y-m-d H:s");
         $end_datetime = date("Y-m-d H:s" ,strtotime("+2 day"));
 
         // if($_FILES["file4"]["name"] != null && $_FILES["file4"]["type"] == "application/pdf"){
         if(@$_FILES["file4"]["name"] != null || isset($_REQUEST['File_name'])){
-            $sql = "INSERT INTO `supervisor_record` (`Id`, `Year`, `upload_content`, `file_path`, `Create_date`, `Create_name`) VALUES 
-            ($sr_id, '$year', '$upload_content', '$file', NOW(), '$user');";
+            $sql = "INSERT INTO `supervisor_record` (`Id`, `Year`, `upload_content`, `file_path`, `Create_date`, `Create_name`, `Supervise`) VALUES 
+            ($sr_id, '$year', '$upload_content', '$file', NOW(), '$user', '$signer');";
 
-            $sql .= "INSERT INTO `calendar` (`title`,`description`,`start`, `end`, `publisher`) VALUES ('$title','$url','$start_datetime', '$end_datetime', '$user')";
+            // $sql .= "INSERT INTO `calendar` (`title`,`description`,`start`, `end`, `publisher`) VALUES ('$title','$url','$start_datetime', '$end_datetime', '$user')";
+            $sql .= "INSERT INTO `signature_notice` (`Title`,`Url`,`Timestamp`, `Assign`, `Signer`, `Sign_state`, `Type`, `Create_date`, `Create_name`) 
+            VALUES ('$title','$url','$rec_date_time', '$user', '$signer', '未簽核', 'supervisor_record', Now(), '$user')";
 
             if(mysqli_multi_query($conn,$sql)){
                 echo true;

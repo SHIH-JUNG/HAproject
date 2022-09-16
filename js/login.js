@@ -74,7 +74,8 @@ $(function () {
                         title: '登入成功!',
                         allowOutsideClick: false //不可點背景關閉
                         }).then(function () {
-                            window.location.replace("index.php"); 
+                            // window.location.replace("index.php"); 
+                            window.location.replace("save_login.php"); 
                         })
                     
                }else{

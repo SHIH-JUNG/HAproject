@@ -20,9 +20,9 @@ $find_time_hours = mysqli_query($conn,$select_time_hours);
 $time_hours = mysqli_fetch_row($find_time_hours);
 
 
-if($time_hours[0]>0)
+if($time_hours[0]>=0)
 {
-    $time_all = (int)$Add_hours + (int)$time_hours[0];
+    $time_all = (float)$Add_hours + (float)$time_hours[0];
     
     
 }

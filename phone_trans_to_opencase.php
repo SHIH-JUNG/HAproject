@@ -222,7 +222,10 @@ input[type=number] {
                                                                     </select>
                                                                 </td>
                                                             </tr>
-
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>類別屬性階段</td>
+                                                                <td style="border-bottom: solid 1px;"><input id="case_stage" type="text"></td>
+                                                            </tr>
                                                             <tr class="text-align:left">
                                                             <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>開案日期</td>
                                                             <td class="text-left">
@@ -280,6 +283,14 @@ input[type=number] {
                                                                 </select>
                                                                 </td>
                                                             </tr>
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white"><i style="color:red;">※</i>個案負責人</td>
+                                                                <td style="border-bottom: solid 1px;">
+                                                                <select id="case_user" style="width:160px;">
+                                                                    <!-- <option value="">請選擇</option> -->
+                                                                </select>
+                                                                </td>
+                                                            </tr>
                                                         </table>
                                                     </div>
                                                 </div>
@@ -331,8 +342,13 @@ input[type=number] {
     <!-- ================== table ================== -->
     <script src="javascript/bootstrap1.18.0-table.min.js"></script>
     <script src="javascript/bootstrap-table1.11.1-zh-TW.min.js"></script>
+    <script>
+        //設定js變數抓取使用者名稱
+        var assign_name = '<?php echo $_SESSION["name"]; ?>';
+    </script>
     <!-- ================== trans_case.js ================== -->
     <script src="js/trans_case.js"></script>
 </body>
 
 </html>
+<?php include("database/timeout_logout.php"); ?>

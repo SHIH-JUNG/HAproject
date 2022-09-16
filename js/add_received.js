@@ -1,53 +1,145 @@
-//新增詢戒電話表region
-$("#phone_add_new").on("click", function () {
-  //分割年月region
-  var Arr = [];
-  var date = $("#call_datetime").val();
-  Arr = date.split("-"); // 根据“-”分割
+//datepicker創建 region
+datepicker_create = function (selector_id) {
+  if (selector_id == "birth") {
+    $("#" + selector_id).datepicker({
+      changeYear: true,
+      changeMonth: true,
+      currentText: "今天",
+      dateFormat: "R.mm.dd",
+      showButtonPanel: true,
+      yearRange: "-109:+0",
+      onClose: function (dateText) {
+        console.log($("#" + selector_id).val());
+        console.log(trans_to_EN(dateText));
+      },
+      beforeShow: function (input, inst) {
+        var $this = $(this);
+        var cal = inst.dpDiv;
+        var outerh = $this.outerHeight();
+        if ($this.offset().top > 1200) {
+          outerh = outerh * 4;
+        } else {
+          outerh = outerh * 3;
+        }
+        // console.log($this.offset().top)
+        // console.log(outerh)
 
-  y = Arr[0];
-  m = Arr[1];
-  console.log("Arr[0]" + y);
-  console.log("Arr[1]" + m);
+        var top = $this.offset().top - outerh;
+        var left = $this.offset().left - 10;
+        setTimeout(function () {
+          cal.css({
+            top: top,
+            left: left,
+          });
+        }, 10);
+      },
+    });
+  } else {
+    $("#" + selector_id).datepicker({
+      changeYear: true,
+      changeMonth: true,
+      currentText: "今天",
+      dateFormat: "R.mm.dd",
+      showButtonPanel: true,
+      minDate: new Date(new Date().getFullYear(), new Date().getMonth() - 3, 1),
+      maxDate: new Date(new Date().getFullYear() + 3, 11, 31),
+      onClose: function (dateText) {
+        // console.log($('#'+selector_id).val());
+        // console.log(trans_to_EN(dateText));
+      },
+      beforeShow: function (input, inst) {
+        var $this = $(this);
+        var cal = inst.dpDiv;
+        var outerh = $this.outerHeight();
+        if ($this.offset().top > 1200) {
+          outerh = outerh * 4;
+        } else {
+          outerh = outerh * 3;
+        }
+        // console.log($this.offset().top)
+        // console.log(outerh)
+
+        var top = $this.offset().top - outerh;
+        var left = $this.offset().left - 10;
+        setTimeout(function () {
+          cal.css({
+            top: top,
+            left: left,
+          });
+        }, 10);
+      },
+    });
+  }
+};
+//endregion
+
+//將日期轉為民國年格式111.03.07 region
+trans_to_Tw = function (endate) {
+  var strAry = endate.split(".");
+
+  if (parseInt(strAry[0]) > 1911) {
+    strAry[0] = parseInt(strAry[0]) - 1911;
+  }
+
+  return strAry.join(".");
+};
+//endregion
+
+//將日期轉為西元年格式2022-03-07(mysql date格式) region
+trans_to_EN = function (endate) {
+  var strAry = endate.split(".");
+
+  if (parseInt(strAry[0]) < 1911) {
+    strAry[0] = parseInt(strAry[0]) + 1911;
+  }
+
+  return strAry.join("-");
+};
+//endregion
+
+$(document).ready(function () {
+  //將input name名稱為ch_datepicker創建datepicker初始化 region
+  $("input[name='ch_datepicker']").each(function () {
+    var this_id = $(this).attr("id");
+    datepicker_create(this_id);
+  });
   //endregion
-  check_checkbox(); //判斷是否勾選傳入陣列
-  check_radio();
-  check_main_checkbox(); //判斷主要戒治物質值
-  //console.log(r_val, a_val, l_val ,w_val ,k_val , main_val );
-  //var county = $("#twzipcode").twzipcode('get','county');
-  if ($("#call_datetime").val() != "" && $("#name").val() != "") {
-    //    console.log(phone_val);
+});
+
+//新增來文紀錄region
+$("#re_add_new").on("click", function () {
+  var stau = false;
+
+  var received_date_year_split = $("#received_date").val().split(".");
+
+  if (check_add_received_data() != "") {
+    stau = false;
+  } else {
+    stau = true;
+  }
+  console.log(stau);
+
+  if (!stau) {
+    swal({
+      title: check_add_received_data(),
+      type: "error",
+    });
+  } else {
     $.ajax({
-      url: "database/add_new_phone.php",
+      url: "database/add_new_received.php",
       type: "POST",
       data: {
-        Call_datetime: $("#call_datetime").val(),
-        Way: $("#way").val(),
-        Way_detail: $("#way_detail").val(),
-        Name: $("#name").val(),
-        Gender: $("#gender").val(),
-        Object_type: $("#object_type").val(),
-        Addition: addition,
-        main_radio: main_val,
-        Age: $("#age").val(),
-        a_val: a_val,
-        Address: $("#address").val(),
-        l_val: l_val,
-        Info_Name: $("#info_name").val(),
-        Relationship_detail: $("#relationship").val(),
-        r_val: r_val,
-        R_phone: phone_val,
-        Referral: $("#referral").val(),
-        ref_val: ref_val,
-        Referral_phone: refphone_val,
-        Referral_name: $("#referral_name").val(),
-        Know_from: $("#k_place").val(),
-        k_val: k_val,
-        e_val: e_val,
-        Assign: $("#user").val(),
-        Phone_note: $("#note").val(),
-        date_y: y,
-        date_m: m,
+        // Id: $("#id").val(),
+        Year: received_date_year_split[0],
+        Title_name: $("#title_name").val(),
+        Received_date: trans_to_EN($("#received_date").val()),
+        Subject: $("#subject").val(),
+        Unit: $("#unit").val(),
+        Num_receive: $("#num_receive").val(),
+        // Create_date: trans_to_EN($("#create_date").val()),
+        // Create_name: $("#create_name").val(),
+        // Update_date: trans_to_EN($("#update_date").val()),
+        // Update_name: $("#update_name").val(),
       },
       //            dataType: "JSON",
       success: function (data) {
@@ -58,7 +150,7 @@ $("#phone_add_new").on("click", function () {
             title: "新增成功!",
             allowOutsideClick: false, //不可點背景關閉
           }).then(function () {
-            window.location.replace("phone.php");
+            window.location.replace("received_yearlist.php");
           });
         } else {
           swal({
@@ -66,207 +158,87 @@ $("#phone_add_new").on("click", function () {
             title: "新增失敗!請聯絡負責人",
             allowOutsideClick: false, //不可點背景關閉
           }).then(function () {
-            window.location.replace("phone.php");
+            window.location.replace("received_yearlist.php");
           });
         }
       },
-      error: function () {
+      error: function (e) {
         alert("系統錯誤!");
+        console.log(e);
       },
     });
-  } else {
-    swal({
-      title: "請至少填寫來電日期和姓名!",
-      type: "error",
-    });
   }
-  //    console.log($("#checkbox1").val());
 });
 //endregion
 
-//判斷曾戒治物質傳入陣列region
-function check_checkbox() {
-  var checkbox = document.getElementsByName("addition[]");
-  var len = checkbox.length;
-  addition = new Array();
-  for (i = 0; i < len; i++) {
-    if (checkbox[i].checked == true) {
-      if (checkbox[i].value == "其他") {
-        addition.push($("#other").val());
-      } else {
-        addition.push(checkbox[i].value);
-      }
+//檢查來文紀錄的必填欄位region
+function check_add_received_data() {
+  var title_name = $("#title_name").val();
+  var received_date = $("#received_date").val();
+  var unit = $("#unit").val();
+  var num_receive = $("#num_receive").val();
+  var subject = $("#subject").val();
+
+  var errorstr = "";
+
+  if (title_name == null) {
+    errorstr += "未填寫來文記錄標題!\r\n";
+  }
+  if (received_date == null) {
+    errorstr += "未填寫來文日期!\r\n";
+  }
+  if (unit == null) {
+    errorstr += "未填寫受文單位!\r\n";
+  }
+  if (num_receive == null) {
+    errorstr += "未填寫來文字號!\r\n";
+  }
+  if (subject == null) {
+    errorstr += "未填寫主旨!\r\n";
+  }
+
+  if (errorstr == "") {
+    if (title_name.replace(/\s*/g, "") == "") {
+      errorstr += "未填寫來文記錄標題!\r\n";
+    }
+    if (received_date.replace(/\s*/g, "") == "") {
+      errorstr += "未填寫來文日期!\r\n";
+    }
+    if (unit.replace(/\s*/g, "") == "") {
+      errorstr += "未填寫受文單位!\r\n";
+    }
+    if (num_receive.replace(/\s*/g, "") == "") {
+      errorstr += "未填寫來文字號!\r\n";
+    }
+    if (subject.replace(/\s*/g, "") == "") {
+      errorstr += "未填寫主旨!\r\n";
     }
   }
+
+  return errorstr;
 }
 //endregion
 
-//判斷主要戒治物質多選region
-function check_main_checkbox() {
-  var checkbox2 = document.getElementsByName("main[]");
-  var len = checkbox2.length;
-  main_val = new Array();
-  for (i = 0; i < len; i++) {
-    if (checkbox2[i].checked == true) {
-      if (checkbox2[i].value == "其他") {
-        main_val.push($("#other_main").val());
-      } else {
-        main_val.push(checkbox2[i].value);
-      }
-    }
-  }
+// // 呼叫user方法region
+// $.ajax({
+//   type: "POST",
+//   url: "database/find_check_user.php",
+//   dataType: "JSON",
+//   async: false, //啟用同步請求
+//   success: function (data) {
+//     for (var index in data.Id) {
+//       $(".user").append(
+//         '<option value="' +
+//           data.Name[index] +
+//           '">' +
+//           data.Name[index] +
+//           "</option>"
+//       );
+//     }
+//   },
+//   error: function (e) {
+//     console.log(e);
+//   },
+// });
 
-  //    console.log(main_val)
-}
-//endregion
-
-//判斷radio多值region
-function check_radio() {
-  //取radio所有值
-  var phone_radio = document.getElementsByName("phone[]");
-  var refphone_radio = document.getElementsByName("refphone[]");
-  var r_radio = document.getElementsByName("r_type[]");
-  var l_radio = document.getElementsByName("l_type[]");
-  var a_radio = document.getElementsByName("a_type[]");
-  var k_radio = document.getElementsByName("k_type[]");
-  var ref_radio = document.getElementsByName("ref_type[]");
-  var e_radio = document.getElementsByName("e_type[]");
-  //長度
-  var phone_len = phone_radio.length;
-  var refphone_len = refphone_radio.length;
-  var r_len = r_radio.length;
-  var l_len = l_radio.length;
-  var a_len = a_radio.length;
-  var k_len = k_radio.length;
-  var ref_len = ref_radio.length;
-  var e_len = e_radio.length;
-
-  phone_val = new Array();
-
-  for (i = 0; i < phone_len; i++) {
-    if (phone_radio[i].value != "") {
-      phone_val.push(phone_radio[i].value);
-    }
-  }
-
-  refphone_val = new Array();
-
-  for (i = 0; i < refphone_len; i++) {
-    if (refphone_radio[i].value != "") {
-      refphone_val.push(refphone_radio[i].value);
-    }
-  }
-
-  for (i = 0; i < r_len; i++) {
-    if (r_radio[i].checked == true) {
-      r_val = r_radio[i].value;
-      break;
-      //        console.log(w_val)
-    } else {
-      r_val = "";
-    }
-  }
-  for (i = 0; i < l_len; i++) {
-    if (l_radio[i].checked == true) {
-      l_val = l_radio[i].value;
-      break;
-      //        console.log(w_val)
-    } else {
-      l_val = "";
-    }
-  }
-  for (i = 0; i < a_len; i++) {
-    if (a_radio[i].checked == true) {
-      a_val = a_radio[i].value;
-      break;
-      //        console.log(w_val)
-    } else {
-      a_val = "";
-    }
-  }
-  for (i = 0; i < ref_len; i++) {
-    if (ref_radio[i].checked == true) {
-      ref_val = ref_radio[i].value;
-      break;
-      //        console.log(w_val)
-    } else {
-      ref_val = "";
-    }
-  }
-  for (i = 0; i < k_len; i++) {
-    if (k_radio[i].checked == true) {
-      k_val = k_radio[i].value;
-      break;
-      //        console.log(w_val)
-    } else {
-      k_val = "";
-    }
-  }
-
-  for (i = 0; i < e_len; i++) {
-    if (e_radio[i].checked == true) {
-      e_val = e_radio[i].value;
-      break;
-      //        console.log(w_val)
-    } else {
-      e_val = "";
-    }
-  }
-  console.log(
-    phone_val,
-    refphone_val,
-    r_val,
-    l_val,
-    a_val,
-    ref_val,
-    k_val,
-    e_val
-  );
-}
-//endregion
-
-//新增電話按鈕region
-$("#add_phone").on("click", function () {
-  $("#new_phone").append(
-    '<br><br><input name="phone[]" type="number" placeholder="次要" max="10">'
-  );
-});
-//endregion
-
-//呼叫user方法region
-$.ajax({
-  type: "POST",
-  url: "database/find_check_user.php",
-  dataType: "JSON",
-  async: false, //啟用同步請求
-  success: function (data) {
-    for (var index in data.Id) {
-      $(".user").append(
-        '<option value="' +
-          data.Name[index] +
-          '">' +
-          data.Name[index] +
-          "</option>"
-      );
-    }
-  },
-  error: function (e) {
-    console.log(e);
-  },
-});
-
-//endregion
-
-//endregion
-
-//選擇曾使用物質被選擇主要戒治物質同步顯示region
-$("input[name='addition[]']").on("click", function () {
-  $("input[name='addition[]']").each(function (index, element) {
-    if ($(this).is(":checked") == true) {
-      $("#addition" + index + "").attr("hidden", false);
-    } else {
-      $("#addition" + index + "").attr("hidden", true);
-    }
-  });
-});
 //endregion

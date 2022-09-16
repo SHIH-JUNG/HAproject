@@ -1,5 +1,6 @@
 <?php session_start(); ?>
 <?php include("database/check_authority.php"); ?>
+<?php @$re_year =  $_GET['year']; ?>
 <!DOCTYPE html>
 <html>
 
@@ -115,15 +116,19 @@
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span><a href="">行政管理</a></span></li>
+                        <li><span><a href="received_yearlist.php">行政管理</a></span></li>
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span><a href="">收文</a></span></li>
+                        <li><span><a href="received_yearlist.php">收文</a></span></li>
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span>詳細資料</span></li>
+                        <?php echo "<li><span><a href='received.php?year=" . trim($re_year) . "'>" . trim($re_year) . "年度收文資料</a></span></li>"; ?>
+                        <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+                        </svg>
+                        <li><span>收文詳細資料</span></li>
                     </ol>
                     <!--/麵包屑-->
                 </div>
@@ -146,26 +151,26 @@
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-sm-12 col-xs-12">
-                                            <div>
+                                            <!-- <div>
                                                 <div>
-                                                    <h4>詳細資料</h4>
+                                                    <h4>收文詳細資料</h4>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             <div class="col-sm-12">
-                                                <ul style="font-size:17px" class="nav nav-tabs" id="myTab" role="tablist">
-                                                    <li class="nav-item active" role="presentation" id="counsel_rec_all">
+                                                <!-- <ul style="font-size:17px" class="nav nav-tabs" id="myTab" role="tablist">
+                                                    <li class="nav-item active" role="presentation" id="re_rec_all">
                                                         <a class="nav-link" id="home-tab" data-toggle="pill" href="#one" role="tab" aria-selected="true">
-                                                            <b>收文紀錄</b>
+                                                            <b>收文詳細資料</b>
                                                         </a>
                                                     </li>
 
-                                                    <!-- <li id="open_rec">
+                                                    <li id="open_rec">
                                                         <a href="javascript:addNewTag()">
                                                             <b>+</b>
                                                         </a>
-                                                    </li> -->
+                                                    </li>
 
-                                                </ul>
+                                                </ul> -->
                                                 <div class="tab-content" id="myTabContent">
                                                     <div class="tab-pane fade in active" id="one" role="tabpanel" aria-labelledby="home-tab">
                                                         <div class="accordion" id="accordionExample">
@@ -173,7 +178,7 @@
                                                                 <div class="panel-heading" id="headingTwo">
                                                                     <h2 class="mb-0">
                                                                         <button class="btn btn-link btn-block collapsed" type="button" data-toggle="collapse" data-parent="#myTabContent" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                                                            <span style="color:black;font-size:17px">收文紀錄</span>
+                                                                            <span style="color:black;font-size:17px">收文詳細資料</span>
                                                                         </button>
                                                                     </h2>
                                                                 </div>
@@ -181,34 +186,64 @@
                                                                     <div class="panel-body scr_container">
                                                                         <table id="all_data" style="width:55%;display:table !important;" class="table table-bordered">
                                                                             <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>收文檔號</td>
-                                                                                <td style="border-bottom: solid 1px;"><input id="num_receive" class="counsel_question" type="text"></td>
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>年度</td>
+                                                                                <td style="border-bottom: solid 1px;"><input id="year" class="re_question" type="text"></td>
+                                                                            </tr>
+                                                                            <tr style="text-align:left">
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>來文標題</td>
+                                                                                <td style="border-bottom: solid 1px;"><input id="title_name" class="re_question" type="text"></td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>來文日期</td>
-                                                                                <td style="border-bottom: solid 1px;"><input id="date_come" class="counsel_question" type="datetime-local"></td>
-                                                                            </tr>
-                                                                            <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>來文單位</td>
-                                                                                <td style="border-bottom: solid 1px;"><input id="unit_come" class="counsel_question" type="text"></td>
-                                                                            </tr>
-                                                                            <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>收文字號</td>
-                                                                                <td style="border-bottom: solid 1px;"><input id="words_receive" class="counsel_question" type="text"></td>
+                                                                                <td style="border-bottom: solid 1px;"><input id="received_date" class="re_question" name="ch_datepicker" type="text"></td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>主旨</td>
-                                                                                <td style="border-bottom: solid 1px;"><input id="subject" class="counsel_question" type="text"></td>
+                                                                                <td style="border-bottom: solid 1px;"><input id="subject" class="re_question" type="text"></td>
+                                                                            </tr>
+                                                                            <tr style="text-align:left">
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>來文單位</td>
+                                                                                <td style="border-bottom: solid 1px;"><input id="unit" class="re_question" type="text"></td>
+                                                                            </tr>
+                                                                            <tr style="text-align:left">
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>收文字號</td>
+                                                                                <td style="border-bottom: solid 1px;"><input id="num_receive" class="re_question" type="text"></td>
+                                                                            </tr>
+                                                                            <tr style="text-align:left">
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>創建日期</td>
+                                                                                <td style="border-bottom: solid 1px;"><input id="create_date" class="re_question" name="ch_datepicker" type="text"></td>
+                                                                            </tr>
+                                                                            <tr style="text-align:left">
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>創建者</td>
+                                                                                <td style="border-bottom: solid 1px;"><input id="create_name" class="re_question" type="text"></td>
+                                                                            </tr>
+                                                                            <tr style="text-align:left">
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>更新日期</td>
+                                                                                <td style="border-bottom: solid 1px;"><input id="update_date" class="re_question" name="ch_datepicker" type="text"></td>
+                                                                            </tr>
+                                                                            <tr style="text-align:left">
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>更新者</td>
+                                                                                <td style="border-bottom: solid 1px;"><input id="update_name" class="re_question" type="text"></td>
+                                                                            </tr>
+                                                                            <tr style="text-align:left">
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline">
+                                                                                    <label>督導簽章</label>
+                                                                                </td>
+                                                                                <td style="">
+                                                                                    <input class="re_question" style="width:15em;" id="supervise" type="text"><button style="margin:.5em;margin-right:3em;color:red;" type="button" id="supervise_signature_btn">簽名</button>
+                                                                                    <button style="margin:.5em;" type="button" id="supervise_signature_msg_btn" onclick="sign_msg_model('supervise');" data-toggle="modal" data-target="#myModal">查看留言</button>
+                                                                                    <a src="" id="supervise_signature_simg" style="color:blue;" target="_blank" alt="簽名圖片連結"></a>
+                                                                                </td>
                                                                             </tr>
 
                                                                             <tr>
                                                                                 <td colspan="2">
                                                                                     <div id="edit_div">
-                                                                                        <button style="font-size:20px" id="counsel_edit" class="btn btn-default" onclick="counsel_edit();">編輯</button>
+                                                                                        <button style="font-size:20px" id="re_edit" class="btn btn-default" onclick="re_edit();">編輯</button>
                                                                                     </div>
                                                                                     <div id="save_div" hidden>
-                                                                                        <button style="font-size:20px" id="counsel_update" class="btn btn-default">修改</button>
-                                                                                        <button style="font-size:20px" id="counsel_cancel" class="btn btn-default" onclick="counsel_cancel();">取消</button>
+                                                                                        <button style="font-size:20px" id="re_update" class="btn btn-default">修改</button>
+                                                                                        <button style="font-size:20px" id="re_cancel" class="btn btn-default" onclick="re_cancel();">取消</button>
                                                                                     </div>
                                                                                 </td>
                                                                             </tr>
@@ -227,11 +262,11 @@
                                                                             </div> -->
                                                                         </div>
                                                                     </div>
-
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <?php include("signnature_canvas.php"); ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -248,42 +283,35 @@
     </div>
 
     <!--\ Modal -->
-    <!-- <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">新增至開案個案</h4>
+                    <h4 class="modal-title" id="myModalLabel" class="sign_msg_td_name">簽名留言</h4>
                 </div>
                 <div class="modal-body">
                     <table id="all_data" style="width:auto;margin:0 auto;" class="table table-bordered">
                         <tr style="text-align:left">
-                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline">開案編號</td>
-                            <td style=""><input class="trans_to_opencase_question" id="open_case_t_sn" type="text"></td>
+                            <td class="sign_msg_td_name" style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">簽名留言內容</td>
+                            <td style="border-bottom: solid 1px;">
+                                <textarea style="width:100%;resize: none;font-size: 20px;min-height:10em;" class="sign_msg" disabled="disabled"></textarea>
+                            </td>
                         </tr>
                         <tr style="text-align:left">
-                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>個案屬性</td>
+                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">留言時間</td>
                             <td style="border-bottom: solid 1px;">
-                                <select class="trans_to_opencase_question" id="open_case_type" style="width:200px;">
-                                    <option value="">請選擇</option>
-                                    <option value="安置家園">安置家園</option>
-                                    <option value="自立宿舍">自立宿舍</option>
-                                    <option value="社區">社區</option>
-                                    <option value="藥癮家庭">藥癮家庭</option>
-                                    <option value="藥癮者">藥癮者</option>
-                                    <option value="親子教育">親子教育</option>
-                                </select>
+                                <input style="width:15em;" class="sign_msg_time" type="datetime" disabled="disabled">
                             </td>
                         </tr>
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" id="trans_to_opencase_submit" class="btn btn-default">開案建立</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">關閉</button> -->
-    <!-- </div>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
+                </div>
+            </div>
+        </div>
     </div>
-    </div>
-    </div> -->
     <!-- Modal /-->
 
     <!-- /#wrapper -->
@@ -318,9 +346,12 @@
     <!-- 日期民國-->
     <script src="javascript/jquery-ui.min.js"></script>
     <script src="javascript/datepickerTw.js"></script>
+    <!-- ================== jSignature ================== -->
+    <script src="jSignature/jSignature.min.js"></script>
     <!-- ================== detail ================== -->
     <script type="text/javascript" src="js/received_detail.js"></script>
 
 </body>
 
 </html>
+<?php include("database/timeout_logout.php"); ?>

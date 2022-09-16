@@ -206,7 +206,15 @@ $(document).ready(function () {
 
 
         $("#supervise_signature_simg").text("點擊顯示簽名圖片")
-        $("#supervise_signature_simg").attr("href", "./board_supervisor/signature/"+supervise_sign_file_val)
+
+        if(supervise_sign_file_val=="")
+        {
+          $("#supervise_signature_simg").attr("onclick", "javascript:alert('未簽名'); return false;")
+        }
+        else
+        {
+          $("#supervise_signature_simg").attr("href", "./board_supervisor/signature/"+supervise_sign_file_val)
+        }
 
         supervise_msg_arr.push(value.Supervise_sign_msg)
         supervise_msg_arr.push(value.Supervise_sign_time)
@@ -302,7 +310,8 @@ function jsignature_initialization(init_name) {
                   bs_id: bs_id,
                   src_data:src_data,
                   sign_msg:$("#"+init_name+"_signature_msg").val(),
-                  sign_type:init_name
+                  sign_type:init_name,
+                  sign_url:window.location.href.split("HA\/")[1],
               },
               async:false,
               success:function(data){

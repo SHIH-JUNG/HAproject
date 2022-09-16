@@ -246,3 +246,4 @@ word-break: keep-all;/*必須*/
 </script>
 
 </html>
+<?php include("database/timeout_logout.php"); ?>

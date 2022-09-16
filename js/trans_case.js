@@ -70,8 +70,22 @@ $(document).ready(function(){
     $("#pid").val(tran_case_pid);
 
     $("#create_date").val(datetoday);
+    $("#open_case_date").val(datetoday);
     //endregion
 
+    $.ajax({
+        type:'POST',
+        url:'database/find_check_user.php',
+        dataType: "JSON",
+        async: false,//啟用同步請求
+        success: function (data) {
+            // console.log('test',data)
+            for (var index in data.Id) {
+                $("#case_user").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+                $("#case_user").val(assign_name);
+            }
+        },
+    });
 });
 
 
@@ -130,6 +144,7 @@ function check_update_trans_opencase_data()
     var create_date = $("#create_date").val();
     var object_type = $("#object_type").val();
     var case_property = $("#case_property").val();
+    var case_stage = $("#case_stage").val();
     var open_case_date = $("#open_case_date").val();
     var name = $("#name").val();
     var gender = $("#gender").val();
@@ -153,6 +168,12 @@ function check_update_trans_opencase_data()
         }
         if (case_property == null || case_property.replace(/\s*/g, "") == '') {
             warningstr += "類別屬性\r\n";
+        }
+        if(case_property.replace(/\s*/g, "") == '自立宿舍' || case_property.replace(/\s*/g, "") == '安置家園')
+        {
+            if (case_stage == null || case_stage.replace(/\s*/g, "") == '') {
+                errorstr += "未填寫類別屬性階段!\r\n";
+            }
         }
         if (open_case_date == null || open_case_date.replace(/\s*/g, "") == '') {
             warningstr += "開案日期\r\n";
@@ -197,6 +218,7 @@ function trans_to_opendata_database()
             Object_type:$("#object_type").val(),
             Case_grade:$("#case_grade").val(),
             Case_property:$("#case_property").val(),
+            Case_stage:$("#case_stage").val(),
             Open_case_date:$("#open_case_date").val(),
             Name:$("#name").val(),
             Gender:$("#gender").val(),
@@ -205,6 +227,7 @@ function trans_to_opendata_database()
             Case_pid:$("#pid").val(),
             Referral:$("#referral").val(),
             Unopen_type:unopen_type,
+            Case_user:$("#case_user").val(),
         },
 //            dataType: "JSON",
         success: function (data) {

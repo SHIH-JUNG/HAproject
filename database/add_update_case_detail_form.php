@@ -13,6 +13,18 @@ $Case_pid = $_REQUEST['Case_pid'];
 @$answer = json_encode($_REQUEST['answer'],JSON_UNESCAPED_UNICODE);
 @$other_info = json_encode($_REQUEST['other_info'],JSON_UNESCAPED_UNICODE);
 
+@$Case_report = json_decode($_REQUEST['Case_report'], true);
+@$Case_report  = $Case_report[0];
+@$count_type = $Case_report["count_type"];
+@$r_case_seqid = $Case_report["case_seqid"];
+@$r_case_id = $Case_report["case_id"];
+@$r_form_id = $Case_report["form_id"];
+@$r_open_case_date = $Case_report["open_case_date"];
+@$r_name = $Case_report["name"];
+@$r_case_grade = $Case_report["case_grade"];
+@$r_case_state = $Case_report["case_state"];
+@$r_case_assign = $Case_report["case_assign"];
+
 if(!isset($_REQUEST['health_rec']))
 {
     $health_rec = "";
@@ -30,6 +42,11 @@ $user = $_SESSION['name'];
 
 @$other_info_sql = "UPDATE `form_all_info` SET `Fillin_date` = '$Fillin_date', `Other_info` = '$other_info', `Update_date` = NOW(), `Update_name`= '$user'
 WHERE `Case_id` = '$Case_id' AND `Id` = '$Form_id' AND `Form_name` = '$Form_type' AND `Case_pid` = '$Case_pid' LIMIT 1;";
+
+@$case_report_sql = "INSERT INTO `case_report` (`Case_seqid`, `Case_id` ,`Form_id` ,`Open_case_date` ,`Name` ,`Case_grade` ,`Case_state`,
+`$count_type` ,`Case_assign`, `Create_date` ,`Create_name`) VALUES
+('$r_case_seqid', '$r_case_id', '$r_form_id', '$r_open_case_date'
+ ,'$r_name', '$r_case_grade', '$r_case_state', 1, '$r_case_assign', Now(), '$user');";
 
 
 if (!is_dir($file_dir)) {
@@ -57,7 +74,6 @@ if(isset($_FILES["file4"]))
     // }
 
     if ($_FILES["file4"]["error"] > 0) {
-
         echo false;
 
     } else {
@@ -89,8 +105,13 @@ if($form_id_num[0]>0)
                 $sqlUpdate .= $other_info_sql;
             }
 
+            @$sqlUpdate .= $case_report_sql;
+
             if(mysqli_multi_query($conn, $sqlUpdate)){
+                // echo $sqlUpdate;
+                // echo "a";
                 echo true;
+                
             }else{
                 echo false;
             }
@@ -110,7 +131,11 @@ if($form_id_num[0]>0)
             $sqlUpdate .= $other_info_sql;           
         }
 
+        @$sqlUpdate .= $case_report_sql;
+
         if(mysqli_multi_query($conn, $sqlUpdate)){
+            // echo $sqlUpdate;
+            // echo "b";
             echo true;
         }else{
             echo false;
@@ -144,7 +169,11 @@ else
                 $sql .=  $other_info_sql;        
             }
 
+            @$sql .= $case_report_sql;
+
             if(mysqli_multi_query($conn,$sql)){
+                // echo $sql;
+                // echo "c";
                 echo true;
             }else{
                 echo false;
@@ -167,8 +196,13 @@ else
             $sql .=  $other_info_sql;           
         }
 
+        @$sql .= $case_report_sql;
+
         if(mysqli_multi_query($conn,$sql)){
+            // echo $sql;
+            // echo "d";
             echo true;
+            
         }else{
             echo false;
         }

@@ -879,7 +879,7 @@
                                 </div>
                                 <div class="text-right">
                                     <button style="font-size:20px" id="trans_grade" type="button" class="btn btn-default" data-toggle="modal" data-target="#trans_grade_model">轉級</button>
-                                    <button style="font-size:20px" id="trans_case" type="button" class="btn btn-default">轉案</button>
+                                    <button style="font-size:20px" id="trans_case" type="button" class="btn btn-default" data-toggle="modal" data-target="#trans_user_model">轉案</button>
                                     <button style="font-size:20px" id="end" type="button" class="btn btn-default">結案</button>
                                 </div>
                             </div>

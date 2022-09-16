@@ -115,7 +115,7 @@
 
                                                         <td style="background-color:rgb(255 201 54);text-align:left;">聯絡電話</td>
                                                         <td colspan="3">
-                                                            <input style="width:85%;" name="phone_mobile" id="phone_mobile" type="text">
+                                                            <input style="width:85%;" name="phone" id="phone" type="text">
                                                         </td>
                                                     </tr>
 

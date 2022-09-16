@@ -127,10 +127,7 @@ $.ajax({
         var record_content_json = JSON.parse("[" + value.record_content + "]");
         // console.log(record_content_json)
         $.each(record_content_json[0], function (i, datan) {
-          if (datan.name == "meeting_date") {
-            cssString +=
-              '<td style="text-align:center">' + datan.value + "</td>";
-          } else if (datan.name == "title_name") {
+          if (datan.name == "meeting_date" || datan.name == "title_name") {
             cssString +=
               '<td style="text-align:center">' + datan.value + "</td>";
           } else {
@@ -150,10 +147,7 @@ $.ajax({
         );
         // console.log(upload_content_json)
         $.each(upload_content_json[0], function (i, datan) {
-          if (datan.name == "upload_rec_date") {
-            cssString +=
-              '<td style="text-align:center">' + datan.value + "</td>";
-          } else if (datan.name == "upload_title_name") {
+          if (datan.name == "upload_rec_date" || datan.name == "upload_title_name") {
             cssString +=
               '<td style="text-align:center">' + datan.value + "</td>";
           } else {

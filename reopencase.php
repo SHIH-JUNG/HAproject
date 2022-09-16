@@ -179,13 +179,13 @@
                                                             <tr class="text-align:left">
                                                             <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>登入日期</td>
                                                             <td class="text-left">
-                                                                <input id="create_date" type="date">
+                                                                <input id="create_date" type="date" value="<?php echo date('Y-m-d'); ?>">
                                                             </td>
                                                             </tr>
                                                             <tr class="text-align:left">
                                                             <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>開案日期</td>
                                                             <td class="text-left">
-                                                                <input id="open_case_date" type="date">
+                                                                <input id="open_case_date" type="date" value="<?php echo date('Y-m-d'); ?>">
                                                             </td>
                                                             </tr>
                                                             <tr style="text-align:left">
@@ -212,6 +212,10 @@
                                                                     <option value="親子教育">親子教育</option> -->
                                                                     </select>
                                                                 </td>
+                                                            </tr>
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>類別屬性階段</td>
+                                                                <td style="border-bottom: solid 1px;"><input id="case_stage" type="text"></td>
                                                             </tr>
                                                             <tr style="text-align:left">
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>姓名</td>
@@ -259,6 +263,14 @@
                                                                     <option value="社政">社政</option>
                                                                     <option value="社區">社區</option>
                                                                     <option value="其他">其他</option>
+                                                                </select>
+                                                                </td>
+                                                            </tr>
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white"><i style="color:red;">※</i>個案負責人</td>
+                                                                <td style="border-bottom: solid 1px;">
+                                                                <select id="case_user" style="width:160px;">
+                                                                    <!-- <option value="">請選擇</option> -->
                                                                 </select>
                                                                 </td>
                                                             </tr>
@@ -323,3 +335,4 @@
 </body>
 
 </html>
+<?php include("database/timeout_logout.php"); ?>

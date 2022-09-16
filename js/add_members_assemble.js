@@ -73,7 +73,22 @@ $(document).ready(function () {
     datepicker_create(this_id);
   });
   //endregion
+
+  $.ajax({
+    type:'POST',
+    url:'database/find_check_user.php',
+    dataType: "JSON",
+    async: false,//啟用同步請求
+    success: function (data) {
+        // console.log('test',data)
+        for (var index in data.Id) {
+            $("[id*=supervise]").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+        }
+    },
+  });
 });
+
+
 
 test1 = function () {
   console.log("test1");
@@ -82,6 +97,12 @@ test1 = function () {
   var upload_rec_date_year_split = $("#upload_rec_date").val().split("年");
   console.log(upload_rec_date_year_split[0]);
 };
+
+// 民國年轉換日期格式yyyy-dd-mm region
+function split_date(date) {
+  return parseInt(date.split("年")[0])+1911+"-"+date.split("年")[1].split("月")[0]+"-"+date.split("年")[1].split("月")[1].split("日")[0]; 
+}
+//endregion
 
 //新增會議記錄region
 $("#rec_add_new").on("click", function () {
@@ -120,6 +141,8 @@ $("#rec_add_new").on("click", function () {
         year: meeting_date_year_split[0],
         title:title,
         rec_type:'fillin',
+        signer:$("#supervise").val(),
+        rec_date_time:split_date($("#meeting_date").val())+" "+$("#meeting_time").val(),
       },
       //            dataType: "JSON",
       success: function (data) {
@@ -306,10 +329,25 @@ $("#rec_add_new_upload").on("click", function () {
         )
         .catch(swal.noop);
     } else {
-      submit_form_data_upload();
+      var stau = false;
+
+      if (check_add_rec_data_upload() != "") {
+        stau = false;
+      } else {
+        stau = true;
+      }
+
+      if (!stau) {
+        swal({
+          title: check_add_rec_data_upload(),
+          type: "error",
+        });
+      } else {
+        submit_form_data_upload();
+      }
     }
   } else {
-    submit_form_data_upload();
+    return false;
   }
 });
 //endregion
@@ -356,6 +394,8 @@ function submit_form_data_upload() {
   form_data.append("upload_content", JSON.stringify(form));
   form_data.append("title", '會員大會記錄簽核：'+$("#upload_title_name").val());
   form_data.append("rec_type", 'upload');
+  form_data.append("signer", $("#upload_rec_supervise").val());
+  form_data.append("rec_date_time", split_date($("#meeting_date").val())+" 00:00");
   
   for (var pair of form_data.entries()) {
     console.log(pair[0] + ", " + pair[1]);
@@ -398,17 +438,24 @@ function submit_form_data_upload() {
 
 //檢查會議記錄的必填欄位region
 function check_add_rec_data() {
+  var title_name = $("#title_name").val();
   var ceo_name = $("#ceo_name").val();
   var attendees = $("#attendees").val();
   var record = $("#record").val();
   var meeting_date = $("#meeting_date").val();
   var meeting_time = $("#meeting_time").val();
   var place = $("#place").val();
+  var suggest = $("#suggest").val();
+  var next_focus = $("#next_focus").val();
+  var supervise = $("#supervise").val();
 
   var errorstr = "";
-
+  
+  if (title_name == null) {
+    errorstr += "未填寫會員大會記錄標題!\r\n";
+  }
   if (ceo_name == null) {
-    errorstr += "未填寫執行長!\r\n";
+    errorstr += "未填寫主持人!\r\n";
   }
   if (attendees == null) {
     errorstr += "未填寫出席人員!\r\n";
@@ -425,9 +472,21 @@ function check_add_rec_data() {
   if (place == null) {
     errorstr += "未填寫地點!\r\n";
   }
+  if (suggest == null) {
+    errorstr += "未填寫會員大會建議	!\r\n";
+  }
+  if (next_focus == null) {
+    errorstr += "未填寫下次會員大會重點!\r\n";
+  }
+  if (supervise == null) {
+    errorstr += "未選擇督導!\r\n";
+  }
   if (errorstr == "") {
+    if (title_name.replace(/\s*/g, "") == "") {
+      errorstr += "未填寫會員大會記錄標題!\r\n";
+    }
     if (ceo_name.replace(/\s*/g, "") == "") {
-      errorstr += "未填寫執行長!\r\n";
+      errorstr += "未填寫主持人!\r\n";
     }
     if (attendees.replace(/\s*/g, "") == "") {
       errorstr += "未填寫出席人員!\r\n";
@@ -443,6 +502,45 @@ function check_add_rec_data() {
     }
     if (place.replace(/\s*/g, "") == "") {
       errorstr += "未填寫地點!\r\n";
+    }
+    if (suggest.replace(/\s*/g, "") == "") {
+      errorstr += "未填寫會員大會建議	!\r\n";
+    }
+    if (next_focus.replace(/\s*/g, "") == "") {
+      errorstr += "未填寫下次會員大會重點!\r\n";
+    }
+    if (supervise.replace(/\s*/g, "") == "") {
+      errorstr += "未選擇督導!\r\n";
+    }
+  }
+
+  return errorstr;
+}
+//endregion
+
+//檢查會議記錄的必填欄位 upload region
+function check_add_rec_data_upload() {
+  var upload_title_name = $("#upload_title_name").val();
+  var customFile = $("[name*=customFile]").prop("files").length;
+  var upload_rec_supervise = $("#upload_rec_supervise").val();
+
+  var errorstr = "";
+
+  if(upload_title_name == null) {
+    errorstr += "未填寫會議記錄標題!\r\n";
+  }
+  if(customFile == 0) {
+    errorstr += "未上傳會議記錄檔案!\r\n";
+  }
+  if (upload_rec_supervise == null) {
+    errorstr += "未選擇督導!\r\n";
+  }
+  if (errorstr == "") {
+    if(upload_title_name.replace(/\s*/g, "") == "") {
+      errorstr += "未填寫會議記錄標題!\r\n";
+    }
+    if (upload_rec_supervise.replace(/\s*/g, "") == "") {
+      errorstr += "未選擇督導!\r\n";
     }
   }
 

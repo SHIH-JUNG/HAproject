@@ -20,8 +20,7 @@
     <link href="css/jquery.dataTables1.10.16.min.css" rel="stylesheet" />
     <link href="css/buttons.dataTables1.5.1.min.css" rel="stylesheet" />
     <!--  日期民國  -->
-    <link data-require="jqueryui@*" data-semver="1.10.0" rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.0/css/smoothness/jquery-ui-1.10.0.custom.min.css" />
-
+    <link data-require="jqueryui@*" rel="stylesheet" href="css/jquery-ui.css" />
     <meta charset="UTF-8" />
     <!--    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />-->
     <meta name="description" content="快樂聯盟資管系統">
@@ -196,6 +195,7 @@
                                                                     ，開案日期：<span class="case_date"></span>
                                                                     ，個案類別：<span class="case_object_type"></span>
                                                                     ，類別屬性：<span class="case_property_type"></span>
+                                                                    ，接案工作人員：<span class="case_user"></span>
                                                                 </div>
                                                                 <table id="case_all" style="width:auto;" class="table table-bordered">
                                                                     <th>建立日期</th>
@@ -209,7 +209,7 @@
                                                         </div>
                                                         <div class="text-center">
                                                             <button id="case_add_new" type="button" class="btn btn-default" onclick="form_add_new(this)">新增</button>
-                                                            <button onclick="location.reload();" class="btn btn-default">返回</button>
+                                                            <button onclick="history.back();" class="btn btn-default">返回</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -225,6 +225,7 @@
                                                                     ，開案日期：<span class="case_date"></span>
                                                                     ，個案類別：<span class="case_object_type"></span>
                                                                     ，類別屬性：<span class="case_property_type"></span>
+                                                                    ，接案工作人員：<span class="case_user"></span>
                                                                 </div>
                                                                 <table id="interlocution_all" style="width:auto;" class="table table-bordered">
                                                                     <th>建立日期</th>
@@ -238,7 +239,7 @@
                                                             </div>
                                                         </div>
                                                         <button id="interlocution_add_new" type="button" class="btn btn-default" onclick="form_add_new(this)">新增</button>
-                                                        <button onclick="location.reload();" class="btn btn-default">返回</button>
+                                                        <button onclick="history.back();" class="btn btn-default">返回</button>
                                                     </div>
                                                 </div>
                                                 <div class="tab-pane fade" id="eleven" role="tabpanel" aria-labelledby="profile-tab">
@@ -253,6 +254,7 @@
                                                                     ，開案日期：<span class="case_date"></span>
                                                                     ，個案類別：<span class="case_object_type"></span>
                                                                     ，類別屬性：<span class="case_property_type"></span>
+                                                                    ，接案工作人員：<span class="case_user"></span>
                                                                 </div>
                                                                 <table id="resource_all" style="width:auto;" class="table table-bordered">
                                                                     <th>建立日期</th>
@@ -263,7 +265,7 @@
                                                             </div>
                                                         </div>
                                                         <button id="resource_add_new" type="button" class="btn btn-default" onclick="form_add_new(this)">新增</button>
-                                                        <button onclick="location.reload();" class="btn btn-default">返回</button>
+                                                        <button onclick="history.back();" class="btn btn-default">返回</button>
                                                     </div>
                                                 </div>
                                                 <div class="tab-pane fade" id="three" role="tabpanel" aria-labelledby="profile-tab">
@@ -278,11 +280,12 @@
                                                                     ，開案日期：<span class="case_date"></span>
                                                                     ，個案類別：<span class="case_object_type"></span>
                                                                     ，類別屬性：<span class="case_property_type"></span>
+                                                                    ，接案工作人員：<span class="case_user"></span>
                                                                 </div>
                                                                 <table id="life_all" style="width:auto;" class="table table-bordered">
                                                                     <th>建立日期</th>
                                                                     <th>填表日期</th>
-                                                                    <th>總分</th>
+                                                                    <th>得分/結果</th>
                                                                     <th>前/後測</th>
                                                                     <th>量表內容</th>
                                                                     <th>備註</th>
@@ -291,7 +294,7 @@
                                                             </div>
                                                         </div>
                                                         <button id="life_add_new" class="btn btn-default" onclick="form_add_new(this)">新增</button>
-                                                        <button onclick="location.reload();" class="btn btn-default">返回</button>
+                                                        <button onclick="history.back();" class="btn btn-default">返回</button>
                                                     </div>
                                                 </div>
 
@@ -307,6 +310,7 @@
                                                                     ，開案日期：<span class="case_date"></span>
                                                                     ，個案類別：<span class="case_object_type"></span>
                                                                     ，類別屬性：<span class="case_property_type"></span>
+                                                                    ，接案工作人員：<span class="case_user"></span>
                                                                 </div>
                                                                 <div>
                                                                 <table id="health_all" style="width:auto;" class="table table-bordered">
@@ -320,7 +324,7 @@
                                                             </div>
                                                         </div>
                                                         <button id="health_add_new" class="btn btn-default" onclick="form_add_new(this)">新增</button>
-                                                        <button onclick="location.reload();" class="btn btn-default">返回</button>
+                                                        <button onclick="history.back();" class="btn btn-default">返回</button>
                                                     </div>
                                                 </div>
 
@@ -345,7 +349,7 @@
                                                             </div>
                                                         </div>
                                                         <button id="sullen_add_new" class="btn btn-default" onclick="form_upload_new(this)">新增</button>
-                                                        <button onclick="location.reload();" class="btn btn-default">返回</button>
+                                                        <button onclick="history.back();" class="btn btn-default">返回</button>
                                                     </div>
                                                 </div>
 
@@ -361,6 +365,7 @@
                                                                     ，開案日期：<span class="case_date"></span>
                                                                     ，個案類別：<span class="case_object_type"></span>
                                                                     ，類別屬性：<span class="case_property_type"></span>
+                                                                    ，接案工作人員：<span class="case_user"></span>
                                                                 </div>
                                                                 <div>
                                                                 <table id="employment_satif_all" style="width:auto;" class="table table-bordered">
@@ -375,7 +380,7 @@
                                                             </div>
                                                         </div>
                                                         <button id="employment_satif_add_new" class="btn btn-default" onclick="form_add_new(this)">新增</button>
-                                                        <button onclick="location.reload();" class="btn btn-default">返回</button>
+                                                        <button onclick="history.back();" class="btn btn-default">返回</button>
                                                     </div>
                                                 </div>
                                                 <div class="tab-pane fade" id="seven" role="tabpanel" aria-labelledby="profile-tab">
@@ -390,6 +395,7 @@
                                                                     ，開案日期：<span class="case_date"></span>
                                                                     ，個案類別：<span class="case_object_type"></span>
                                                                     ，類別屬性：<span class="case_property_type"></span>
+                                                                    ，接案工作人員：<span class="case_user"></span>
                                                                 </div>
                                                                 <div>
                                                                 <table id="satif_all" style="width:auto;" class="table table-bordered">
@@ -404,7 +410,7 @@
                                                             </div>
                                                         </div>
                                                         <button id="satif_add_new" class="btn btn-default" onclick="form_add_new(this)">新增</button>
-                                                        <button onclick="location.reload();" class="btn btn-default">返回</button>
+                                                        <button onclick="history.back();" class="btn btn-default">返回</button>
                                                     </div>
                                                 </div>
                                                 <div class="tab-pane fade" id="eight" role="tabpanel" aria-labelledby="profile-tab">
@@ -419,6 +425,7 @@
                                                                     ，開案日期：<span class="case_date"></span>
                                                                     ，個案類別：<span class="case_object_type"></span>
                                                                     ，類別屬性：<span class="case_property_type"></span>
+                                                                    ，接案工作人員：<span class="case_user"></span>
                                                                 </div>
                                                                 <div>
                                                                 <table id="familyship_all" style="width:auto;" class="table table-bordered">
@@ -434,7 +441,7 @@
                                                             </div>
                                                         </div>
                                                         <button id="familyship_add_new" class="btn btn-default" onclick="form_add_new(this)">新增</button>
-                                                        <button onclick="location.reload();" class="btn btn-default">返回</button>
+                                                        <button onclick="history.back();" class="btn btn-default">返回</button>
                                                     </div>
                                                 </div>
                                                 <div class="tab-pane fade" id="night" role="tabpanel" aria-labelledby="profile-tab">
@@ -458,7 +465,7 @@
                                                             </div>
                                                         </div>
                                                         <button id="BSRS5_add_new" class="btn btn-default" onclick="form_BSRS5_add_new(this)">新增</button>
-                                                        <button onclick="location.reload();" class="btn btn-default">返回</button>
+                                                        <button onclick="history.back();" class="btn btn-default">返回</button>
                                                     </div>
                                                 </div>
                                                 <div class="tab-pane fade" id="ten" role="tabpanel" aria-labelledby="profile-tab">
@@ -473,6 +480,7 @@
                                                                     ，開案日期：<span class="case_date"></span>
                                                                     ，個案類別：<span class="case_object_type"></span>
                                                                     ，類別屬性：<span class="case_property_type"></span>
+                                                                    ，接案工作人員：<span class="case_user"></span>
                                                                 </div>
                                                                 <table id="settlement_all" style="width:auto;" class="table table-bordered">
                                                                     <th>建立日期</th>
@@ -486,7 +494,7 @@
                                                         </div>
                                                         <div class="text-center">
                                                             <button id="settlement_add_new" type="button" class="btn btn-default" onclick="form_add_new(this)">新增</button>
-                                                            <button onclick="location.reload();" class="btn btn-default">返回</button>
+                                                            <button onclick="history.back();" class="btn btn-default">返回</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -553,3 +561,4 @@
 </body>
 
 </html>
+<?php include("database/timeout_logout.php"); ?>

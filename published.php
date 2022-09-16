@@ -1,5 +1,6 @@
 <?php session_start(); ?>
 <?php include("database/check_authority.php"); ?>
+<?php @$pu_year =  $_GET['year']; ?>
 <!DOCTYPE html>
 <html>
 
@@ -17,8 +18,8 @@
     <!--  table  -->
     <!--    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.css">-->
     <!-- ================== 匯出EXCEL ================== -->
-    <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
-    <link href="https://cdn.datatables.net/buttons/1.5.1/css/buttons.dataTables.min.css" rel="stylesheet" />
+    <link href="css/jquery.dataTables1.10.16.min.css" rel="stylesheet" />
+    <link href="css/buttons.dataTables1.5.1.min.css" rel="stylesheet" />
 
     <meta charset="UTF-8" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -86,7 +87,11 @@
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span>發文</span></li>
+                        <li><span><a href="published_yeralist.php">發文</a></span></li>
+                        <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+                        </svg>
+                        <li><span><?php echo trim($pu_year); ?>年度發文資料</span></li>
                     </ol>
                     <!--/麵包屑-->
                 </div>
@@ -110,6 +115,46 @@
                                 <div class="panel-body">
                                     <div class="table-wrap">
                                         <div class="table-responsive">
+                                            <h4>查詢</h4>
+                                            <div　class="col-sm-12" id="toolbar">
+                                                <div class="col-sm-12">
+                                                    <table style="font-size:20px;font-family:微軟正黑體;width:100%" class="table table-bordered NOline">
+                                                        <tr>
+
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">發文標題：</td>
+                                                            <td class="text-left">
+                                                                <select id="title_name" rel="1" class="filter search">
+                                                                    <!-- <option value="">所有</option> -->
+                                                                </select>
+                                                            </td>
+
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">發文日期：</td>
+                                                            <td class="text-left">
+                                                                <input id="published_min_date" rel="2" name="pcall_date" class="" type="date" placeholder="發文日期搜尋">
+                                                                <label>～</label>
+                                                                <input id="published_max_date" rel="2" name="pcall_date" class="" type="date" placeholder="發文日期搜尋">
+                                                            </td>
+
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">發文文號：</td>
+                                                            <td class="text-left">
+                                                                <select id="num_publish" rel="3" class="filter search">
+                                                                    <!-- <option value="">所有</option> -->
+                                                                </select>
+                                                            </td>
+
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">主旨：</td>
+                                                            <td class="text-left"><input id="subject" rel="5" name="subject" class="filter search" style="width:150px;" type="text" placeholder="主旨搜尋"></td>
+
+                                                            <td colspan="10" class="text-right">
+                                                                <button onclick="location.reload();">重置搜尋</button><span> </span>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <br>
                                             <h4>目錄</h4>
                                             <div class="table-wrap">
                                                 <div class="table-responsive">
@@ -125,11 +170,15 @@
                                                                 </th>
                                                             </tr>
                                                             <tr style="background-color:rgb(255 201 54);">
-                                                                <th>編號</th>
+                                                                <th>發文標題</th>
                                                                 <th>發文日期</th>
-                                                                <th>受文單位</th>
-                                                                <th>發文字號</th>
+                                                                <th>發文文號</th>
                                                                 <th>主旨</th>
+                                                                <th>創建日期</th>
+                                                                <th>創建者</th>
+                                                                <th>更新日期</th>
+                                                                <th>更新者</th>
+                                                                <th>督導簽章</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody id="call_view"></tbody>
@@ -158,10 +207,10 @@
     <script src="javascript/jquery.min.js"></script>
     <script src="javascript/bootstrap.min.js"></script>
     <!-- ================== 匯出EXCEL ================== -->
-    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+    <script src="javascript/jquery.dataTables1.10.16.min.js"></script>
+    <script src="javascript/dataTables1.2.2.buttons.min.js"></script>
+    <script src="javascript/jszip2.5.0.min.js"></script>
+    <script src="javascript/buttons1.2.2.html5.min.js"></script>
     <!-- 表格 JavaScript -->
     <!--
     <script src="javascript/jquery.dataTables.min.js"></script>
@@ -184,8 +233,8 @@
     <!-- ================== moment ================== -->
     <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.0/moment.min.js'></script>
     <!-- ================== table ================== -->
-    <script src="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.js"></script>
-    <script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/locale/bootstrap-table-zh-TW.min.js"></script>
+    <script src="javascript/bootstrap1.18.0-table.min.js"></script>
+    <script src="javascript/bootstrap-table1.11.1-zh-TW.min.js"></script>
     <!-- ================== phone ================== -->
     <script type="text/javascript" src="js/published.js"></script>
     <!-- ================== 地區選擇下拉 ================== -->
@@ -203,3 +252,4 @@
 </script>
 
 </html>
+<?php include("database/timeout_logout.php"); ?>
