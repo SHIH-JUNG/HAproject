@@ -778,12 +778,19 @@ function submit_data()
 
      var case_report_datas = get_case_report_datas(form_type);
 
-     form_data.append("Case_id", open_id);
-     form_data.append("Form_id", form_id);
-     form_data.append("Form_type", form_type);
-     form_data.append("Case_name", name);
-     form_data.append("Case_pid", pid);
-     form_data.append("Case_report", JSON.stringify(case_report_datas));
+    var case_report2_datas = get_case_report2_datas();
+
+    form_data.append("Case_id", open_id);
+    form_data.append("Form_id", form_id);
+    form_data.append("Form_type", form_type);
+    form_data.append("Case_name", name);
+    form_data.append("Case_pid", pid);
+    form_data.append("Case_report", JSON.stringify(case_report_datas));
+    
+    if(form_type=="case")
+    {
+        form_data.append("Case_report2", JSON.stringify(case_report2_datas));
+    }
 
     // form_data.append("answer", JSON.stringify(form));
 
@@ -1324,6 +1331,42 @@ function get_case_report_datas(form_type) {
 }
 //endregion
 
+function get_case_report2_datas() {
+    var report_datas2 = [];
+
+    var birth = $('[name="birth"]').val();
+    var sex = $('[name="sex"]:checked').val();
+    var residence = $('[name="residence"]').val();
+    var education = $('[name="education"]:checked').val();
+    var drug_record = $('[name="drug_record"]:checked').val();
+    var drug_record_value = "";
+
+    switch (drug_record) {
+        case "0":
+            drug_record_value = "海洛因";
+            break;
+        case "1":
+            drug_record_value = "安非他命";
+            break;
+        case "2":
+            drug_record_value = "美沙冬";
+            break;
+        case "3":
+            drug_record_value = "其他";
+            break;
+    }
+
+    report_datas2.push({birth:birth
+        , sex:sex
+        , residence:residence
+        , education:education
+        , drug_record:drug_record_value
+        , case_referral:referral});
+
+    return report_datas2;
+}
+
+
 // 防五秒內重複送出表單
 window.submit_detail_click = true;
 
@@ -1507,6 +1550,7 @@ function submit_form_data() {
         // 獲取工作報表所需記數內容
         var case_report_datas = get_case_report_datas(form_type);
 
+        var case_report2_datas = get_case_report2_datas();
 
         form_data.append("Case_id", open_id);
         form_data.append("Form_id", form_id);
@@ -1515,6 +1559,11 @@ function submit_form_data() {
         form_data.append("Case_pid", pid);
         form_data.append("Case_report", JSON.stringify(case_report_datas));
         
+        if(form_type=="case")
+        {
+            form_data.append("Case_report2", JSON.stringify(case_report2_datas));
+        }
+
         //endregion
 
         // for (var pair of form_data.entries()) {

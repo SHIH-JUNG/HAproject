@@ -1,10 +1,10 @@
 <?php 
 include("sql_connect.php"); 
 
-@$Id = $_POST['Case_seqid'];
-@$Case_id = $_POST['Case_id'];
+// @$Id = $_POST['Case_seqid'];
+// @$Case_id = $_POST['Case_id'];
 
-$sql = "SELECT *,DATE(`current_case`.`Open_case_date`) AS Open_case_date FROM `current_case` WHERE `Id`='$Id' AND `Case_id`='$Case_id' ORDER BY `current_case`.`Open_case_date` DESC LIMIT 1;";
+$sql = "SELECT *, YEAR(Create_date) AS Year FROM `form_case_report` ORDER BY `form_case_report`.`Update_date` DESC;";
 
 //宣告空的陣列
 $datas = array();

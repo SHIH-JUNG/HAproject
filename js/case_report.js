@@ -199,37 +199,29 @@ $(document).ready(function () {
         dataType: "JSON",
         async: false,//啟用同步請求
         success: function (data) {
-            var cssString = "";
+            console.log(data)
+            var cssString2 = "";
             var year = "";
             $.each(data,function(index,value){
 
-                cssString += 
+                year = parseInt(value.Year) - 1911;
+
+                cssString2 += 
                 '<tr cr_one_id="'+value.Id+'">' +
-                    '<td style="text-align:center">' + trans_to_Tw(value.Open_case_date.split(" ")[0]) + '</td>' +
-                    '<td style="text-align:center">' + value.Case_id + '</td>' +
-                    '<td style="text-align:center">' + value.Name + '</td>' +
-                    '<td style="text-align:center">' + value.Case_grade + '</td>' +
-                    '<td style="text-align:center">' + value.Case_count + '</td>' +
-                    '<td style="text-align:center">' + value.Interlocution_phone_count + '</td>' +
-                    '<td style="text-align:center">' + value.Interlocution_home_count + '</td>' +
-                    '<td style="text-align:center">' + value.Interlocution_face_count + '</td>' +
-                    '<td style="text-align:center">' + value.Case_closed_count + '</td>' +
-                    '<td style="text-align:center">' + value.Case_state + '</td>' +
+                    '<td style="text-align:center">' + year + '</td>' +
+                    '<td style="text-align:center">' + get_age(value.Birth) + '</td>' +
+                    '<td style="text-align:center">' + value.Gender + '</td>' +
+                    '<td style="text-align:center">' + value.Address + '</td>' +
+                    '<td style="text-align:center">' + value.Education + '</td>' +
+                    '<td style="text-align:center">' + value.Drug_record + '</td>' +
+                    '<td style="text-align:center">' + value.Referral + '</td>' +
+                    '<td style="text-align:center">' + value.Demand + '</td>' +
+                    '<td style="text-align:center">' + value.Case_assign + '</td>' +
                 '</tr>'
 
-                year = trans_to_Tw(value.Create_date.split(" ")[0]).split("年")[0];
             });
 
-            // console.log(year)
-
-            $("#report_date_title").text("日期："+year+"年1月1日 ~ "+year+"年12月31日");
-            $("#report_case_assign").text("社工：所有");
-
-            $("#case_report1").html(cssString);
-                //點擊table tr 進入詳細頁面
-                // $(".table-hover tbody").on("click","tr",function () {
-                //     window.location.href = 'case_all_all.php?id='+$(this).attr("id")+'&open_id='+$(this).attr("openid")+'';
-                // });
+            $("#case_report2").html(cssString2);
         },
         error: function (e) {
             notyf.alert('伺服器錯誤,無法載入');
@@ -440,7 +432,21 @@ check_case_report_date_filter = function(min_date, max_date) {
 }
 //endregion
 
+get_age = function(birth) {
+    var age = "0";
 
+    birth = Date.parse(birth.replace('/-/g', "/"));
+
+    if (birth) 
+    {
+        var year = 1000 * 60 * 60 * 24 * 365;
+        var now = new Date();
+        var birthday = new Date(birth);
+        age = parseInt((now - birthday) / year);
+    }
+
+    return age;
+}
 
 
 
