@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2022-09-19 14:34:15
+-- 產生時間： 2022-09-19 14:36:57
 -- 伺服器版本： 10.4.24-MariaDB
 -- PHP 版本： 7.4.29
 
@@ -1098,6 +1098,7 @@ CREATE TABLE `resume` (
   `NDA_file_date` date NOT NULL,
   `Diploma_date` date NOT NULL,
   `PA_file_date` date NOT NULL,
+  `Remark` varchar(2000) NOT NULL,
   `Create_date` datetime NOT NULL,
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime DEFAULT current_timestamp(),
@@ -1108,8 +1109,8 @@ CREATE TABLE `resume` (
 -- 傾印資料表的資料 `resume`
 --
 
-INSERT INTO `resume` (`Id`, `Account_id`, `Account`, `Name`, `Entry_date`, `On_or_off`, `Resigned_date`, `Employment_contract_date`, `NDA_file_date`, `Diploma_date`, `PA_file_date`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
-(1, 1, 'text1', '社工員1', '2021-06-10', 1, NULL, '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '2022-09-19 13:25:18', '社工組長', '2022-09-19 19:26:10', '');
+INSERT INTO `resume` (`Id`, `Account_id`, `Account`, `Name`, `Entry_date`, `On_or_off`, `Resigned_date`, `Employment_contract_date`, `NDA_file_date`, `Diploma_date`, `PA_file_date`, `Remark`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
+(1, 1, 'text1', '社工員1', '2021-06-10', 1, NULL, '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '', '2022-09-19 13:25:18', '社工組長', '2022-09-19 19:26:10', '');
 
 -- --------------------------------------------------------
 
