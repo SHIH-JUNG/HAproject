@@ -131,21 +131,20 @@
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">姓名：</td>
                                                             <td class="text-left"><input id="name" rel="0" class="filter search" type="text" placeholder="姓名搜尋"></td>
 
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">檔案上傳日期：</td>
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">入職日(年度)：</td>
                                                             <td class="text-left">
-                                                                <input id="upload_min_date" rel="" type="text" name="ch_datepicker" style="width: 8em;" placeholder="上傳日期搜尋"><label>～</label>
-                                                                <input id="upload_max_date" rel="" type="text" name="ch_datepicker" style="width: 8em;" placeholder="上傳日期搜尋">
+                                                                <input id="entry_min_year" rel="" type="number" style="width: 8em;" placeholder="入職日搜尋"><label>～</label>
+                                                                <input id="entry_max_year" rel="" type="number" style="width: 8em;" placeholder="入職日搜尋">
                                                             </td>
-
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">入職日：</td>
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">入職日(月份)：</td>
                                                             <td class="text-left">
-                                                                <input id="entry_min_date" rel="" type="text" name="ch_datepicker" style="width: 8em;" placeholder="入職日搜尋"><label>～</label>
-                                                                <input id="entry_max_date" rel="" type="text" name="ch_datepicker" style="width: 8em;" placeholder="入職日搜尋">
+                                                                <input id="entry_min_month" rel="" type="number" style="width: 8em;" placeholder="入職日搜尋"><label>～</label>
+                                                                <input id="entry_max_month" rel="" type="number" style="width: 8em;" placeholder="入職日搜尋">
                                                             </td>
 
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">是否在職：</td>
                                                             <td class="text-left">
-                                                                <select rel="3" class="filter search">
+                                                                <select rel="4" class="filter search">
                                                                     <option value="">所有</option>
                                                                     <option value="是">是</option>
                                                                     <option value="否">否</option>
@@ -155,7 +154,7 @@
                                                         <tr>
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">雇傭契約是否上傳：</td>
                                                             <td class="text-left">
-                                                                <select rel="4" class="filter search">
+                                                                <select rel="5" class="filter search">
                                                                     <option value="">所有</option>
                                                                     <option value="是">是</option>
                                                                     <option value="否">否</option>
@@ -164,7 +163,7 @@
 
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">保密契約是否上傳：</td>
                                                             <td class="text-left">
-                                                                <select rel="5" class="filter search">
+                                                                <select rel="6" class="filter search">
                                                                     <option value="">所有</option>
                                                                     <option value="是">是</option>
                                                                     <option value="否">否</option>
@@ -173,7 +172,7 @@
 
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">畢業證書是否上傳：</td>
                                                             <td class="text-left">
-                                                                <select rel="6" class="filter search">
+                                                                <select rel="7" class="filter search">
                                                                     <option value="">所有</option>
                                                                     <option value="是">是</option>
                                                                     <option value="否">否</option>
@@ -182,7 +181,7 @@
 
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">考績是否上傳：</td>
                                                             <td class="text-left">
-                                                                <select rel="7" class="filter search">
+                                                                <select rel="8" class="filter search">
                                                                     <option value="">所有</option>
                                                                     <option value="是">是</option>
                                                                     <option value="否">否</option>
@@ -211,13 +210,14 @@
                                                                                 <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
                                                                                 <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z" />
                                                                                 <path fill-rule="evenodd" d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5z" />
-                                                                            </svg>新增</button></a>
+                                                                            </svg>新增員工資料</button></a>
                                                                 </th>
                                                             </tr>
                                                             <tr style="background-color:rgb(255 201 54);">
                                                                 <th>姓名</th>
-                                                                <th>檔案上傳日期</th>
                                                                 <th>入職日</th>
+                                                                <th>入職日(年度)</th>
+                                                                <th>入職日(月份)</th>
                                                                 <th>是否在職</th>
                                                                 <th>雇傭契約是否上傳</th>
                                                                 <th>保密契約是否上傳</th>
@@ -231,9 +231,9 @@
                                                         <span id="count_people"></span>
                                                         <span id="count_people2"></span>
                                                     </div>
-
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -254,7 +254,7 @@
     <!-- ================== 匯出EXCEL ================== -->
     <script src="javascript/jquery.dataTables1.10.16.min.js"></script>
     <script src="javascript/dataTables1.2.2.buttons.min.js"></script>
-    <!-- <script src="javascript/jszip2.5.0.min.js"></script> -->
+    <script src="javascript/jszip2.5.0.min.js"></script>
     <script src="javascript/buttons1.2.2.html5.min.js"></script>
     <!-- 表格 JavaScript -->
     <!--
