@@ -16,7 +16,7 @@
     <!-- ================== CSS bootstrap-select ================== -->
     <link href="css/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
     <!--  table  -->
-    <!--    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.css">-->
+    <!--    <link rel="stylesheet" href="css/bootstrap-table.min.css">-->
     <!-- ================== 匯出EXCEL ================== -->
     <link href="css/jquery.dataTables1.10.16.min.css" rel="stylesheet" />
     <link href="css/buttons.dataTables1.5.1.min.css" rel="stylesheet" />
@@ -224,7 +224,7 @@
     <!-- ================== 登出設定 ================== -->
     <script src='js/logout.js'></script>
     <!-- ================== moment ================== -->
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.0/moment.min.js'></script>
+    <script src='javascript/moment2.29.0.min.js'></script>
     <!-- ================== table ================== -->
     <script src="javascript/bootstrap1.18.0-table.min.js"></script>
     <script src="javascript/bootstrap-table1.11.1-zh-TW.min.js"></script>

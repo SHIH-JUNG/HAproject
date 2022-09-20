@@ -33,7 +33,7 @@ if($Time_all!=$time_hours[0])
 {
     $Time_all = $Time_all;
 
-    $diff = (int)$Time_all - (int)$time_hours[0];
+    $diff = bcsub($Time_all, $time_hours[0], 1);
     
     $diff_remark_str = "目前服務時數由".$time_hours[0]."更改為".$Time_all."(".$diff.")。資料異動者：".$user."，異動時間：".date("Y-m-d H:i:s")."。";
 

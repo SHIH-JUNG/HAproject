@@ -16,7 +16,7 @@
     <!-- ================== CSS bootstrap-select ================== -->
     <link href="css/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
     <!--  table  -->
-    <!--    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.css">-->
+    <!--    <link rel="stylesheet" href="css/bootstrap-table.min.css">-->
     <!-- ================== 匯出EXCEL ================== -->
     <link href="css/jquery.dataTables1.10.16.min.css" rel="stylesheet" />
     <link href="css/buttons.dataTables1.5.1.min.css" rel="stylesheet" />

@@ -172,13 +172,13 @@
                 </svg>
             </span>
         </a>
-        <ul style="font-size:18px" id="plan" class="collapse" data-toggle="collapse">
+        <ul style="font-size:18px" id="plan" class="collapse">
             <li>
-                <a href="#">方案計畫
+                <a href="program_plan.php">方案計畫
                 </a>
             </li>
             <li>
-                <a href="#">方案活動
+                <a href="program_act.php">方案活動
                 </a>
             </li>
             <li>

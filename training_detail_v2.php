@@ -535,7 +535,7 @@
                             </td>
                         </tr>
                         <tr style="text-align:left">
-                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>個案屬性</td>
+                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>類別屬性</td>
                             <td style="border-bottom: solid 1px;">
                                 <select class="trans_to_opencase_question" id="open_case_type" style="width:200px;">
                                     <option value="">請選擇</option>
