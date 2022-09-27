@@ -1,5 +1,5 @@
 <?php session_start(); ?>
-<?php include("database/check_authority.php"); ?>
+<?php include("database/check_authority.php"); ?><?php include("no_cache.php"); ?>
 <?php @$day_name =  $_GET['name']; ?>
 <!DOCTYPE html>
 <html>

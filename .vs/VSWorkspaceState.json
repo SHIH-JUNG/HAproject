@@ -1,6 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\database",
+    "\\js"
   ],
+  "SelectedNode": "\\js\\add_supervisor_record.js",
   "PreviewInSolutionExplorer": false
 }

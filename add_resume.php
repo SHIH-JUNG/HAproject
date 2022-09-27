@@ -1,5 +1,5 @@
 <?php session_start(); ?>
-<?php include("database/check_authority.php"); ?>
+<?php include("database/check_authority.php"); ?><?php include("no_cache.php"); ?>
 <!DOCTYPE html>
 <html>
 
@@ -47,6 +47,11 @@
     /* Firefox */
     input[type=number] {
         -moz-appearance: textfield;
+    }
+
+    .form-control
+    {
+        border: 1px solid #000;
     }
 
     /*隱藏input number上下箭頭/*/
@@ -136,6 +141,7 @@
                                                     </div>
                                                     <div class="table-wrap">
                                                         <div class="table-responsive col-sm-12 text-center">
+                                                            <form id="resume_form" data-toggle="validator" role="form" autocomplete="new-password">
                                                                 <table style="width:55%;" class="table table-bordered">
                                                                     <tr>
                                                                         <td colspan="2">
@@ -145,61 +151,140 @@
 
                                                                     <tr style="text-align:left">
                                                                         <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>帳號</td>
-                                                                        <td style="border-bottom: solid 1px;"><input id="name" type="text"></td>
+                                                                        <td style="border-bottom: solid 1px;">
+                                                                            <div class="form-group  col-sm-6">
+                                                                                <input class="form-control" id="account" placeholder="設定網站帳號" type="text" pattern="^[A-Za-z0-9]+$" maxlength="50" required data-pattern-error="帳號只接受英文字母、數字">
+                                                                                <div class="help-block with-errors"></div>
+                                                                            </div>
+                                                                        </td>
                                                                     </tr>
 
                                                                     <tr style="text-align:left">
                                                                         <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>密碼</td>
-                                                                        <td style="border-bottom: solid 1px;"><input id="name" type="text"></td>
+                                                                        <td style="border-bottom: solid 1px;">
+                                                                            <div class="form-group  col-sm-6">
+                                                                                <input class="form-control" id="user_password" placeholder="設定網站密碼" autocomplete="new-password" type="password" pattern="^(?=.*\d)(?=.*[a-zA-Z]).{6,}$" maxlength="50" required data-pattern-error="密碼請輸入含有英文字母及數字的密碼，至少六個字元。">
+                                                                                <div class="help-block with-errors"></div>
+                                                                            </div>
+                                                                        </td>
                                                                     </tr>
 
                                                                     <tr style="text-align:left">
                                                                         <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>再一次輸入密碼</td>
-                                                                        <td style="border-bottom: solid 1px;"><input id="name" type="text"></td>
+                                                                        <td style="border-bottom: solid 1px;">
+                                                                            <div class="form-group  col-sm-6">
+                                                                                <input class="form-control" id="user_password_again" placeholder="確認密碼" type="password" required data-error="密碼未吻合" data-match="#user_password">
+                                                                                <div class="help-block with-errors"></div>
+                                                                            </div>
+                                                                        </td>
                                                                     </tr>
 
                                                                     <tr style="text-align:left">
                                                                         <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>信箱</td>
-                                                                        <td style="border-bottom: solid 1px;"><input id="name" type="text"></td>
+                                                                        <td style="border-bottom: solid 1px;">
+                                                                            <div class="form-group col-sm-8">
+                                                                                <input type="email" class="form-control" id="email" placeholder="輸入信箱" data-error="Email格式無效" required>
+                                                                                <div class="help-block with-errors"></div>
+                                                                            </div>
+                                                                        </td>
                                                                     </tr>
 
                                                                     <tr style="text-align:left">
                                                                         <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>員工姓名</td>
-                                                                        <td style="border-bottom: solid 1px;"><input id="name" type="text"></td>
+                                                                        <td style="border-bottom: solid 1px;">
+                                                                            <div class="form-group col-sm-4">
+                                                                                <input type="text" class="form-control" id="user_name" placeholder="請輸入員工姓名" data-error="請輸入姓名" required>
+                                                                                <div class="help-block with-errors"></div>
+                                                                            </div>
+                                                                        </td>
                                                                     </tr>
 
                                                                     <tr style="text-align:left">
                                                                         <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>入職日</td>
-                                                                        <td style="border-bottom: solid 1px;"><input id="entry_date" name="ch_datepicker" type="text"></td>
+                                                                        <td style="border-bottom: solid 1px;">
+                                                                            <div class="form-group col-sm-4">
+                                                                                <input type="text" class="form-control" id="entry_date" name="ch_datepicker" placeholder="請輸入職日期" data-error="請輸入職日期" required>
+                                                                                <div class="help-block with-errors"></div>
+                                                                            </div>
+                                                                        </td>
                                                                     </tr>
 
                                                                     <tr style="text-align:left">
                                                                         <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">是否在職</td>
                                                                         <td style="border-bottom: solid 1px;">
-                                                                            <select id="on_or_off" style="width:200px;">
-                                                                                <option value="是">是</option>
-                                                                                <option value="否">否</option>
-                                                                            </select>
+                                                                            <div class="form-group col-sm-3">
+                                                                                <select id="on_or_off" class="form-control" style="width:200px;">
+                                                                                    <option value="是">是</option>
+                                                                                    <option value="否">否</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    
+                                                                    <tr style="text-align:left">
+                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">履歷表檔案</td>
+                                                                        <td style="border-bottom: solid 1px;">
+                                                                            <div class="col-sm-8">
+                                                                                <div class="text-left">
+                                                                                    <input name="resume_file" type="file" class="form-control"/>
+                                                                                    <br>
+                                                                                    <div id="resume_file"></div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+
+                                                                    <tr style="text-align:left">
+                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">保密契約</td>
+                                                                        <td style="border-bottom: solid 1px;">
+                                                                            <div class="col-sm-8">
+                                                                                <div class="text-left">
+                                                                                    <input name="nda_file" type="file" class="form-control"/>
+                                                                                    <br>
+                                                                                    <div id="nda_file"></div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+
+                                                                    <tr style="text-align:left">
+                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">畢業證書</td>
+                                                                        <td style="border-bottom: solid 1px;">
+                                                                            <div class="col-sm-8">
+                                                                                <div class="text-left">
+                                                                                    <input name="diploma_file" type="file" class="form-control"/>
+                                                                                    <br>
+                                                                                    <div id="diploma_file"></div>
+                                                                                </div>
+                                                                            </div>
                                                                         </td>
                                                                     </tr>
 
                                                                     <tr style="text-align:left">
                                                                         <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white">備註</td>
                                                                         <td>
-                                                                            <textarea style="height:10em;width:700px;resize: none;font-size: 20px;" id="remark" name="remark" placeholder="請輸入備註"></textarea>
+                                                                            <div class="form-group col-sm-3">
+                                                                                <textarea style="height:10em;width:700px;resize: none;font-size: 20px;" id="remark" class="form-control" name="remark" placeholder="請輸入備註"></textarea>
+                                                                            </div>
                                                                         </td>
                                                                     </tr>
                                                                 </table>
-
                                                                 <br>
-                                                                <button id="res_add_new" style="font-size:15px" type="button" class="btn btn-default"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-check" viewBox="0 0 16 16">
+                                                                <button id="res_add_new" style="font-size:15px" type="submit" class="btn btn-default"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-check" viewBox="0 0 16 16">
                                                                         <path d="M10.854 7.854a.5.5 0 0 0-.708-.708L7.5 9.793 6.354 8.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
                                                                         <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
                                                                     </svg>新增</button>
                                                                 <a href="resume_list.php"><button style="font-size:15px" type="button" class="btn btn-default"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-excel" viewBox="0 0 16 16">
                                                                             <path d="M5.884 6.68a.5.5 0 1 0-.768.64L7.349 10l-2.233 2.68a.5.5 0 0 0 .768.64L8 10.781l2.116 2.54a.5.5 0 0 0 .768-.641L8.651 10l2.233-2.68a.5.5 0 0 0-.768-.64L8 9.219l-2.116-2.54z" />
                                                                             <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
-                                                                        </svg>取消</button></a>
+                                                                        </svg>取消</button>
+                                                                </a>
+                                                                <button style="font-size:15px" type="button" class="btn btn-default" onclick="test(); return false;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-check" viewBox="0 0 16 16">
+                                                                        <path d="M10.854 7.854a.5.5 0 0 0-.708-.708L7.5 9.793 6.354 8.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
+                                                                        <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
+                                                                    </svg>測試</button>
+                                                            </form>
+                                                                
                                                         </div>
                                                     </div>
                                                 </div>
@@ -220,6 +305,8 @@
     <!-- Bootstrap and jQuery -->
     <script src="javascript/jquery.min.js"></script>
     <script src="javascript/bootstrap.min.js"></script>
+    <script src="javascript/validator.min.js"></script>
+    
     <!-- 表格 JavaScript -->
     <script src="javascript/jquery.dataTables.min.js"></script>
     <script src="javascript/dataTables-data.js"></script>

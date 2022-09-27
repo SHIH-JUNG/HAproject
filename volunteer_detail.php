@@ -1,5 +1,5 @@
 <?php session_start(); ?>
-<?php include("database/check_authority.php"); ?>
+<?php include("database/check_authority.php"); ?><?php include("no_cache.php"); ?>
 <?php @$vo_year =  $_GET['year']; ?>
 <!DOCTYPE html>
 <html>

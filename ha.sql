@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2022-09-20 12:08:21
+-- 產生時間： 2022-09-22 13:49:05
 -- 伺服器版本： 10.4.24-MariaDB
 -- PHP 版本： 7.4.29
 
@@ -890,7 +890,8 @@ INSERT INTO `login_record` (`Id`, `Login_timestamp`, `Login_account`, `Login_aut
 (74, '2022-09-19 18:48:30', 'text1', '1', '社工員1', '22.9917,120.2148', 1),
 (75, '2022-09-20 14:15:48', 'text1', '1', '社工員1', '22.9917,120.2148', 1),
 (76, '2022-09-20 17:46:24', 'text1', '1', '社工員1', '22.9917,120.2148', 0),
-(77, '2022-09-20 17:46:37', 'test5', '3', '園主任', '22.9917,120.2148', 1);
+(77, '2022-09-20 17:46:37', 'test5', '3', '園主任', '22.9917,120.2148', 1),
+(78, '2022-09-22 15:32:17', 'test5', '3', '園主任', '22.9917,120.2148', 1);
 
 -- --------------------------------------------------------
 
@@ -1200,13 +1201,14 @@ CREATE TABLE `resume` (
   `Account_id` int(244) NOT NULL,
   `Account` varchar(100) NOT NULL,
   `Name` varchar(30) NOT NULL,
-  `Entry_date` date NOT NULL,
-  `On_or_off` tinyint(1) NOT NULL,
+  `Entry_date` varchar(100) NOT NULL,
+  `On_or_off` varchar(10) NOT NULL,
   `Resigned_date` date DEFAULT NULL,
-  `Employment_contract_date` date NOT NULL,
-  `NDA_file_date` date NOT NULL,
-  `Diploma_date` date NOT NULL,
-  `PA_file_date` date NOT NULL,
+  `Resume_datas_date` date DEFAULT NULL,
+  `Employment_contract_date` date DEFAULT NULL,
+  `NDA_file_date` date DEFAULT NULL,
+  `Diploma_date` date DEFAULT NULL,
+  `PA_file_date` date DEFAULT NULL,
   `Remark` varchar(2000) NOT NULL,
   `Create_date` datetime NOT NULL,
   `Create_name` varchar(30) NOT NULL,
@@ -1218,8 +1220,8 @@ CREATE TABLE `resume` (
 -- 傾印資料表的資料 `resume`
 --
 
-INSERT INTO `resume` (`Id`, `Account_id`, `Account`, `Name`, `Entry_date`, `On_or_off`, `Resigned_date`, `Employment_contract_date`, `NDA_file_date`, `Diploma_date`, `PA_file_date`, `Remark`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
-(1, 1, 'text1', '社工員1', '2021-06-10', 1, NULL, '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '', '2022-09-19 13:25:18', '社工組長', '2022-09-19 19:26:10', '');
+INSERT INTO `resume` (`Id`, `Account_id`, `Account`, `Name`, `Entry_date`, `On_or_off`, `Resigned_date`, `Resume_datas_date`, `Employment_contract_date`, `NDA_file_date`, `Diploma_date`, `PA_file_date`, `Remark`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
+(1, 1, 'text1', '社工員1', '110年06月10日', '是', NULL, NULL, NULL, NULL, NULL, NULL, '', '2022-09-19 13:25:18', '社工組長', '2022-09-19 19:26:10', '');
 
 -- --------------------------------------------------------
 
@@ -1444,7 +1446,7 @@ CREATE TABLE `supervisor_record` (
 
 INSERT INTO `supervisor_record` (`Id`, `Year`, `record_content`, `upload_content`, `file_path`, `Supervise`, `Supervise_signature`, `Supervise_sign_msg`, `Supervise_sign_time`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
 (1, '109', '[{\"name\":\"title_name\",\"value\":\"第1次團督紀錄\"},{\"name\":\"ceo_name\",\"value\":\"tt執行長\"},{\"name\":\"attendees\",\"value\":\"ttt出席人員\"},{\"name\":\"record\",\"value\":\"ttt團督記錄f\"},{\"name\":\"meeting_date\",\"value\":\"109年09月09日\"},{\"name\":\"meeting_time\",\"value\":\"14:30\"},{\"name\":\"place\",\"value\":\"tr地點\"},{\"name\":\"suggest\",\"value\":\"ttt督導建議\"},{\"name\":\"next_focus\",\"value\":\"ttt下次團督重點ss\"}]', '', '', '園主任', '../supervisor_record/signature/1657547034.png', 'test督導\n留言', '2022-07-11 21:43:54', '2022-04-13 20:31:29', '園主任', '2022-07-06 10:20:30', '社工員1'),
-(2, '109', '', '\"[{\"name\":\"upload_title_name\",\"value\":\"uploadtt會議記錄標題11\"},{\"name\":\"upload_rec_date\",\"value\":\"109年07月23日\"},{\"name\":\"upload_rec_remark\",\"value\":\"test備註ssa\"},{\"name\":\"customFile1\",\"value\":\"abc123.PNG\"}]\"', '../supervisor_record/upload/abc123.PNG', '', '', '', '0000-00-00 00:00:00', '2022-04-13 20:32:06', '園主任', '2022-04-18 10:09:39', '園主任'),
+(2, '109', '', '\"[{\"name\":\"upload_title_name\",\"value\":\"uploadtt會議記錄標題11\"},{\"name\":\"upload_rec_date\",\"value\":\"109年07月23日\"},{\"name\":\"upload_rec_remark\",\"value\":\"test備註ssa\"},{\"name\":\"customFile1\",\"value\":\"abc123.PNG\"}]\"', '../supervisor_record/upload/abc123.PNG', '', '', '', '0000-00-00 00:00:00', '2022-04-13 20:32:06', '園主任', '2022-09-22 18:20:17', '園主任'),
 (3, '110', '[{\"name\":\"title_name\",\"value\":\"第11次團督紀錄\"},{\"name\":\"ceo_name\",\"value\":\"執行長415\"},{\"name\":\"attendees\",\"value\":\"出席人員a、出席人員b\"},{\"name\":\"record\",\"value\":\"出席人員c\"},{\"name\":\"meeting_date\",\"value\":\"110年12月09日\"},{\"name\":\"meeting_time\",\"value\":\"09:40\"},{\"name\":\"place\",\"value\":\"辦公室\"},{\"name\":\"suggest\",\"value\":\"無\"},{\"name\":\"next_focus\",\"value\":\"無\"}]', '', '', '', '', '', '0000-00-00 00:00:00', '2022-04-15 22:45:12', '園主任', '2022-07-07 20:28:54', '社工員1'),
 (4, '110', '[{\"name\":\"title_name\",\"value\":\"第5次團督紀錄\"},{\"name\":\"ceo_name\",\"value\":\"執行長415\"},{\"name\":\"attendees\",\"value\":\"tttt\"},{\"name\":\"record\",\"value\":\"tttt1\"},{\"name\":\"meeting_date\",\"value\":\"110年02月11日\"},{\"name\":\"meeting_time\",\"value\":\"00:20\"},{\"name\":\"place\",\"value\":\"tttp\"},{\"name\":\"suggest\",\"value\":\"n\"},{\"name\":\"next_focus\",\"value\":\"n\"}]', '', '', '', '', '', '0000-00-00 00:00:00', '2022-04-15 23:18:30', '園主任', '2022-04-15 23:23:05', '園主任'),
 (5, '109', '[{\"name\":\"title_name\",\"value\":\"test會議記錄標題1\"},{\"name\":\"ceo_name\",\"value\":\"sss\"},{\"name\":\"attendees\",\"value\":\"sss1\"},{\"name\":\"record\",\"value\":\"ss1\"},{\"name\":\"meeting_date\",\"value\":\"109年01月15日\"},{\"name\":\"meeting_time\",\"value\":\"13:20\"},{\"name\":\"place\",\"value\":\"ssssplace\"},{\"name\":\"suggest\",\"value\":\"ssssn\"},{\"name\":\"next_focus\",\"value\":\"sssn\"}]', '', '', '', '', '', '0000-00-00 00:00:00', '2022-04-15 23:20:20', '園主任', '0000-00-00 00:00:00', ''),
@@ -1537,40 +1539,45 @@ INSERT INTO `tw_counties` (`Id`, `Area`, `Counties_Cities`) VALUES
 
 CREATE TABLE `user_info` (
   `Id` int(11) NOT NULL,
+  `Resum_id` int(244) NOT NULL,
   `Account` varchar(50) NOT NULL,
   `Password` varchar(50) NOT NULL,
   `Name` varchar(10) NOT NULL,
   `Authority` int(11) NOT NULL,
   `Date` datetime NOT NULL DEFAULT current_timestamp(),
   `Department` varchar(10) NOT NULL,
-  `Job` varchar(10) NOT NULL
+  `Job` varchar(10) NOT NULL,
+  `Create_date` datetime DEFAULT NULL,
+  `Create_name` varchar(30) NOT NULL,
+  `Update_date` datetime DEFAULT current_timestamp(),
+  `Update_name` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- 傾印資料表的資料 `user_info`
 --
 
-INSERT INTO `user_info` (`Id`, `Account`, `Password`, `Name`, `Authority`, `Date`, `Department`, `Job`) VALUES
-(1, 'text1', '123', '社工員1', 1, '2021-03-06 17:04:49', '行政中心', '社工'),
-(2, 'text2', '456', '社工員2', 1, '2020-10-05 21:12:04', '行政中心', '社工'),
-(3, 'test3', '789', '社工組長', 2, '2020-10-05 21:12:04', '行政中心', '組長'),
-(5, 'test5', '258', '園主任', 3, '2020-10-05 21:12:04', '伯特利家園', '主任'),
-(6, 'test6', '369', '執行長', 4, '2020-10-05 21:12:04', '行政中心', '執行長'),
-(10, 'grace12', '0000', '歐陽美悌', 1, '2021-02-05 11:47:28', '行政中心', '行政人員'),
-(11, 'grace75', '0000', '林鈺舒', 1, '2021-02-05 11:49:26', '行政中心', '社工助理'),
-(12, 'grace66', '0000', '丘培民', 1, '2021-02-05 11:49:47', '行政中心', '社工'),
-(13, 'grace69', '0000', '邱怡玲', 1, '2021-02-05 11:52:06', '行政中心', '社工'),
-(14, 'grace78', '0000', '許文瀞', 1, '2021-02-05 11:52:49', '行政中心', '組長'),
-(15, 'grace39', '0000', '張簡卉筑', 2, '2021-02-05 11:53:21', '行政中心', '社工組長'),
-(16, 'grace01', '0000', '李國揚', 4, '2021-03-18 13:21:20', '行政中心', '執行長'),
-(17, 'grace02', '0000', '苗長青', 4, '2021-03-18 13:23:31', '行政中心', '執行長秘書'),
-(18, 'grace03', '0000', '吳智文', 3, '2021-03-18 13:24:33', '伯特利家園', '主任'),
-(19, 'grace04', '0000', '李萬榮', 1, '2021-03-18 13:25:50', '伯特利家園', '生活輔導員'),
-(20, 'grace05', '0000', '晏傳恕', 1, '2021-03-18 13:27:08', '伯特利家園', '生活輔導員'),
-(21, 'grace06', '0000', '施朝根', 3, '2021-03-18 13:27:42', '毘努伊勒家園', '主任'),
-(22, 'grace07', '0000', '洪勝霖', 1, '2021-03-18 13:28:18', '毘努伊勒家園', '生活輔導組長'),
-(23, 'grace08', '0000', '力聖臨', 1, '2021-03-18 13:29:11', '毘努伊勒家園', '生活輔導員'),
-(24, 'test', 'test', '花花', 1, '2021-03-06 17:04:49', '行政中心', '組長');
+INSERT INTO `user_info` (`Id`, `Resum_id`, `Account`, `Password`, `Name`, `Authority`, `Date`, `Department`, `Job`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
+(1, 0, 'text1', '123', '社工員1', 1, '2021-03-06 17:04:49', '行政中心', '社工', NULL, '', '2022-09-22 19:36:25', ''),
+(2, 0, 'text2', '456', '社工員2', 1, '2020-10-05 21:12:04', '行政中心', '社工', NULL, '', '2022-09-22 19:36:25', ''),
+(3, 0, 'test3', '789', '社工組長', 2, '2020-10-05 21:12:04', '行政中心', '組長', NULL, '', '2022-09-22 19:36:25', ''),
+(5, 0, 'test5', '258', '園主任', 3, '2020-10-05 21:12:04', '伯特利家園', '主任', NULL, '', '2022-09-22 19:36:25', ''),
+(6, 0, 'test6', '369', '執行長', 4, '2020-10-05 21:12:04', '行政中心', '執行長', NULL, '', '2022-09-22 19:36:25', ''),
+(10, 0, 'grace12', '0000', '歐陽美悌', 1, '2021-02-05 11:47:28', '行政中心', '行政人員', NULL, '', '2022-09-22 19:36:25', ''),
+(11, 0, 'grace75', '0000', '林鈺舒', 1, '2021-02-05 11:49:26', '行政中心', '社工助理', NULL, '', '2022-09-22 19:36:25', ''),
+(12, 0, 'grace66', '0000', '丘培民', 1, '2021-02-05 11:49:47', '行政中心', '社工', NULL, '', '2022-09-22 19:36:25', ''),
+(13, 0, 'grace69', '0000', '邱怡玲', 1, '2021-02-05 11:52:06', '行政中心', '社工', NULL, '', '2022-09-22 19:36:25', ''),
+(14, 0, 'grace78', '0000', '許文瀞', 1, '2021-02-05 11:52:49', '行政中心', '組長', NULL, '', '2022-09-22 19:36:25', ''),
+(15, 0, 'grace39', '0000', '張簡卉筑', 2, '2021-02-05 11:53:21', '行政中心', '社工組長', NULL, '', '2022-09-22 19:36:25', ''),
+(16, 0, 'grace01', '0000', '李國揚', 4, '2021-03-18 13:21:20', '行政中心', '執行長', NULL, '', '2022-09-22 19:36:25', ''),
+(17, 0, 'grace02', '0000', '苗長青', 4, '2021-03-18 13:23:31', '行政中心', '執行長秘書', NULL, '', '2022-09-22 19:36:25', ''),
+(18, 0, 'grace03', '0000', '吳智文', 3, '2021-03-18 13:24:33', '伯特利家園', '主任', NULL, '', '2022-09-22 19:36:25', ''),
+(19, 0, 'grace04', '0000', '李萬榮', 1, '2021-03-18 13:25:50', '伯特利家園', '生活輔導員', NULL, '', '2022-09-22 19:36:25', ''),
+(20, 0, 'grace05', '0000', '晏傳恕', 1, '2021-03-18 13:27:08', '伯特利家園', '生活輔導員', NULL, '', '2022-09-22 19:36:25', ''),
+(21, 0, 'grace06', '0000', '施朝根', 3, '2021-03-18 13:27:42', '毘努伊勒家園', '主任', NULL, '', '2022-09-22 19:36:25', ''),
+(22, 0, 'grace07', '0000', '洪勝霖', 1, '2021-03-18 13:28:18', '毘努伊勒家園', '生活輔導組長', NULL, '', '2022-09-22 19:36:25', ''),
+(23, 0, 'grace08', '0000', '力聖臨', 1, '2021-03-18 13:29:11', '毘努伊勒家園', '生活輔導員', NULL, '', '2022-09-22 19:36:25', ''),
+(24, 0, 'test', 'test', '花花', 1, '2021-03-06 17:04:49', '行政中心', '組長', NULL, '', '2022-09-22 19:36:25', '');
 
 -- --------------------------------------------------------
 
@@ -2006,7 +2013,7 @@ ALTER TABLE `form_interlocution_queskeywords`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `login_record`
 --
 ALTER TABLE `login_record`
-  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `members_assemble`
