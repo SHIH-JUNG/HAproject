@@ -131,39 +131,15 @@
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">姓名：</td>
                                                             <td class="text-left"><input id="name" rel="0" class="filter search" type="text" placeholder="姓名搜尋"></td>
 
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">入職日(年度)：</td>
+                                                            <!-- <td class="text-right" style="background-color:rgb(255 201 54)">入職日(年度)：</td>
                                                             <td class="text-left">
                                                                 <input id="entry_min_year" rel="" type="number" style="width: 8em;" placeholder="入職日搜尋"><label>～</label>
                                                                 <input id="entry_max_year" rel="" type="number" style="width: 8em;" placeholder="入職日搜尋">
-                                                            </td>
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">入職日(月份)：</td>
+                                                            </td> -->
+                                                           
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">履歷表檔案是否上傳：</td>
                                                             <td class="text-left">
-                                                                <input id="entry_min_month" rel="" type="number" style="width: 8em;" placeholder="入職日搜尋"><label>～</label>
-                                                                <input id="entry_max_month" rel="" type="number" style="width: 8em;" placeholder="入職日搜尋">
-                                                            </td>
-
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">是否在職：</td>
-                                                            <td class="text-left">
-                                                                <select rel="4" class="filter search">
-                                                                    <option value="">所有</option>
-                                                                    <option value="是">是</option>
-                                                                    <option value="否">否</option>
-                                                                </select>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">雇傭契約是否上傳：</td>
-                                                            <td class="text-left">
-                                                                <select rel="5" class="filter search">
-                                                                    <option value="">所有</option>
-                                                                    <option value="是">是</option>
-                                                                    <option value="否">否</option>
-                                                                </select>
-                                                            </td>
-
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">保密契約是否上傳：</td>
-                                                            <td class="text-left">
-                                                                <select rel="6" class="filter search">
+                                                                <select rel="3" class="filter search">
                                                                     <option value="">所有</option>
                                                                     <option value="是">是</option>
                                                                     <option value="否">否</option>
@@ -172,7 +148,41 @@
 
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">畢業證書是否上傳：</td>
                                                             <td class="text-left">
-                                                                <select rel="7" class="filter search">
+                                                                <select rel="6" class="filter search">
+                                                                    <option value="">所有</option>
+                                                                    <option value="是">是</option>
+                                                                    <option value="否">否</option>
+                                                                </select>
+                                                            </td>
+
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">保密契約是否上傳：</td>
+                                                            <td class="text-left">
+                                                                <select rel="5" class="filter search">
+                                                                    <option value="">所有</option>
+                                                                    <option value="是">是</option>
+                                                                    <option value="否">否</option>
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">入職日(月份)：</td>
+                                                            <td class="text-left">
+                                                                <input id="entry_min" rel="" type="text" name="ch_datepicker" style="width: 8em;" placeholder="入職日搜尋"><label>～</label>
+                                                                <input id="entry_max" rel="" type="text" name="ch_datepicker" style="width: 8em;" placeholder="入職日搜尋">
+                                                            </td>
+
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">是否在職：</td>
+                                                            <td class="text-left">
+                                                                <select rel="2" class="filter search">
+                                                                    <option value="">所有</option>
+                                                                    <option value="是">是</option>
+                                                                    <option value="否">否</option>
+                                                                </select>
+                                                            </td>
+
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">雇傭契約是否上傳：</td>
+                                                            <td class="text-left">
+                                                                <select rel="4" class="filter search">
                                                                     <option value="">所有</option>
                                                                     <option value="是">是</option>
                                                                     <option value="否">否</option>
@@ -181,15 +191,20 @@
 
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">考績是否上傳：</td>
                                                             <td class="text-left">
-                                                                <select rel="8" class="filter search">
+                                                                <select rel="7" class="filter search">
                                                                     <option value="">所有</option>
                                                                     <option value="是">是</option>
                                                                     <option value="否">否</option>
                                                                 </select>
                                                             </td>
 
-                                                        </tr>
+                                                            <!-- <td class="text-right" style="background-color:rgb(255 201 54)">入職日(月份)：</td>
+                                                            <td class="text-left">
+                                                                <input id="entry_min_month" rel="" type="number" style="width: 8em;" placeholder="入職日搜尋"><label>～</label>
+                                                                <input id="entry_max_month" rel="" type="number" style="width: 8em;" placeholder="入職日搜尋">
+                                                            </td> -->
 
+                                                        </tr>
                                                         <tr>
                                                             <td colspan="8" class="text-right">
                                                                 <button onclick="location.reload();">重置搜尋</button><span> </span>
@@ -216,9 +231,10 @@
                                                             <tr style="background-color:rgb(255 201 54);">
                                                                 <th>姓名</th>
                                                                 <th>入職日</th>
-                                                                <th>入職日(年度)</th>
-                                                                <th>入職日(月份)</th>
+                                                                <!-- <th>入職日(年度)</th>
+                                                                <th>入職日(月份)</th> -->
                                                                 <th>是否在職</th>
+                                                                <th>履歷表檔案是否上傳</th>
                                                                 <th>雇傭契約是否上傳</th>
                                                                 <th>保密契約是否上傳</th>
                                                                 <th>畢業證書是否上傳</th>
@@ -282,7 +298,7 @@
     <script src="javascript/bootstrap-table1.11.1-zh-TW.min.js"></script>
     <!-- 日期民國-->
     <script src="javascript/jquery-ui.min.js"></script>
-    <script src="javascript/datepickerTw.js"></script>
+    <script src="javascript/datepickerTw2.js"></script>
     <!-- ================== counsel ================== -->
     <script type="text/javascript" src="js/resume.js"></script>
     <!-- ================== 地區選擇下拉 ================== -->

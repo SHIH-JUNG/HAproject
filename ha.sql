@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2022-09-22 13:49:05
+-- 產生時間： 2022-09-28 16:11:09
 -- 伺服器版本： 10.4.24-MariaDB
 -- PHP 版本： 7.4.29
 
@@ -891,7 +891,11 @@ INSERT INTO `login_record` (`Id`, `Login_timestamp`, `Login_account`, `Login_aut
 (75, '2022-09-20 14:15:48', 'text1', '1', '社工員1', '22.9917,120.2148', 1),
 (76, '2022-09-20 17:46:24', 'text1', '1', '社工員1', '22.9917,120.2148', 0),
 (77, '2022-09-20 17:46:37', 'test5', '3', '園主任', '22.9917,120.2148', 1),
-(78, '2022-09-22 15:32:17', 'test5', '3', '園主任', '22.9917,120.2148', 1);
+(78, '2022-09-22 15:32:17', 'test5', '3', '園主任', '22.9917,120.2148', 1),
+(79, '2022-09-27 16:49:32', 'test5', '園主任', '258', '22.6483444,120.3262535', 1),
+(80, '2022-09-27 21:49:08', 'text1', '1', '社工員1', '22.6483444,120.3262535', 1),
+(81, '2022-09-27 22:33:32', 'text1', '1', '社工員1', '22.6483444,120.3262535', 0),
+(82, '2022-09-28 20:57:57', 'text1', '1', '社工員1', '22.6483444,120.3262535', 1);
 
 -- --------------------------------------------------------
 
@@ -1221,7 +1225,8 @@ CREATE TABLE `resume` (
 --
 
 INSERT INTO `resume` (`Id`, `Account_id`, `Account`, `Name`, `Entry_date`, `On_or_off`, `Resigned_date`, `Resume_datas_date`, `Employment_contract_date`, `NDA_file_date`, `Diploma_date`, `PA_file_date`, `Remark`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
-(1, 1, 'text1', '社工員1', '110年06月10日', '是', NULL, NULL, NULL, NULL, NULL, NULL, '', '2022-09-19 13:25:18', '社工組長', '2022-09-19 19:26:10', '');
+(1, 1, 'text1', '社工員1', '110年06月10日', '是', NULL, NULL, NULL, NULL, NULL, NULL, '', '2022-09-19 13:25:18', '社工組長', '2022-09-19 19:26:10', ''),
+(2, 25, 'testuser', 'jia', '111年09月14日', '是', NULL, '2022-09-27', NULL, '0000-00-00', '2022-09-27', NULL, 'test備註0927', '2022-09-27 21:58:13', '社工員1', '2022-09-27 21:58:13', '');
 
 -- --------------------------------------------------------
 
@@ -1242,6 +1247,14 @@ CREATE TABLE `resume_forms` (
   `Update_date` datetime DEFAULT current_timestamp(),
   `Update_name` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- 傾印資料表的資料 `resume_forms`
+--
+
+INSERT INTO `resume_forms` (`Id`, `Resume_id`, `Resume_name`, `File_type`, `File_year`, `File_path`, `Remark`, `Upload_date`, `Upload_name`, `Update_date`, `Update_name`) VALUES
+(1, 2, 'jia', 'file_A', '111', '../jia_testuser_111年09月14日/resume_datas/test履歷檔案.txt', 'test備註0927', '2022-09-27 00:00:00', '社工員1', '2022-09-27 21:58:13', ''),
+(2, 2, 'jia', 'file_D', '111', '../jia_testuser_111年09月14日/resume_datas/test畢業證書.docx', 'test備註0927', '2022-09-27 00:00:00', '社工員1', '2022-09-27 21:58:13', '');
 
 -- --------------------------------------------------------
 
@@ -1539,7 +1552,7 @@ INSERT INTO `tw_counties` (`Id`, `Area`, `Counties_Cities`) VALUES
 
 CREATE TABLE `user_info` (
   `Id` int(11) NOT NULL,
-  `Resum_id` int(244) NOT NULL,
+  `Resume_id` int(244) NOT NULL,
   `Account` varchar(50) NOT NULL,
   `Password` varchar(50) NOT NULL,
   `Name` varchar(10) NOT NULL,
@@ -1557,7 +1570,7 @@ CREATE TABLE `user_info` (
 -- 傾印資料表的資料 `user_info`
 --
 
-INSERT INTO `user_info` (`Id`, `Resum_id`, `Account`, `Password`, `Name`, `Authority`, `Date`, `Department`, `Job`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
+INSERT INTO `user_info` (`Id`, `Resume_id`, `Account`, `Password`, `Name`, `Authority`, `Date`, `Department`, `Job`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
 (1, 0, 'text1', '123', '社工員1', 1, '2021-03-06 17:04:49', '行政中心', '社工', NULL, '', '2022-09-22 19:36:25', ''),
 (2, 0, 'text2', '456', '社工員2', 1, '2020-10-05 21:12:04', '行政中心', '社工', NULL, '', '2022-09-22 19:36:25', ''),
 (3, 0, 'test3', '789', '社工組長', 2, '2020-10-05 21:12:04', '行政中心', '組長', NULL, '', '2022-09-22 19:36:25', ''),
@@ -1577,7 +1590,8 @@ INSERT INTO `user_info` (`Id`, `Resum_id`, `Account`, `Password`, `Name`, `Autho
 (21, 0, 'grace06', '0000', '施朝根', 3, '2021-03-18 13:27:42', '毘努伊勒家園', '主任', NULL, '', '2022-09-22 19:36:25', ''),
 (22, 0, 'grace07', '0000', '洪勝霖', 1, '2021-03-18 13:28:18', '毘努伊勒家園', '生活輔導組長', NULL, '', '2022-09-22 19:36:25', ''),
 (23, 0, 'grace08', '0000', '力聖臨', 1, '2021-03-18 13:29:11', '毘努伊勒家園', '生活輔導員', NULL, '', '2022-09-22 19:36:25', ''),
-(24, 0, 'test', 'test', '花花', 1, '2021-03-06 17:04:49', '行政中心', '組長', NULL, '', '2022-09-22 19:36:25', '');
+(24, 0, 'test', 'test', '花花', 1, '2021-03-06 17:04:49', '行政中心', '組長', NULL, '', '2022-09-22 19:36:25', ''),
+(25, 2, 'testuser', 'jia123456', 'jia', 1, '2022-09-27 21:58:13', '', '', '2022-09-27 21:58:13', '社工員1', '2022-09-27 21:58:13', '');
 
 -- --------------------------------------------------------
 
@@ -2013,7 +2027,7 @@ ALTER TABLE `form_interlocution_queskeywords`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `login_record`
 --
 ALTER TABLE `login_record`
-  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `members_assemble`
@@ -2079,13 +2093,13 @@ ALTER TABLE `received`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `resume`
 --
 ALTER TABLE `resume`
-  MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `resume_forms`
 --
 ALTER TABLE `resume_forms`
-  MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `screening`
@@ -2139,7 +2153,7 @@ ALTER TABLE `tw_counties`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `user_info`
 --
 ALTER TABLE `user_info`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `volunteer`

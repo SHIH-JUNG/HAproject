@@ -4,8 +4,8 @@ include("sql_connect.php");
 $Resume_id = $_POST['Resume_id'];
 
 //region 抓資料
-// $note = "SELECT * FROM `resume_forms` WHERE `Resume_id` = '$Resume_id' ORDER BY `resume_forms`.`Id` DESC;";
-$note = "SELECT * FROM `supervisor_record` ORDER BY `supervisor_record`.`Id` DESC;";
+$note = "SELECT * FROM `resume_forms` WHERE `Resume_id` = '$Resume_id' ORDER BY `resume_forms`.`Id` DESC;";
+// $note = "SELECT * FROM `supervisor_record` ORDER BY `supervisor_record`.`Id` DESC;";
 
 //宣告空的陣列
 $datas = array();

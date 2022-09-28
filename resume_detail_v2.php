@@ -149,13 +149,89 @@
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-sm-12 col-xs-12">
+                                        <ul style="font-size:17px" class="nav nav-tabs" id="myTab" role="tablist">
+                                                <li class="nav-item active" role="presentation">
+                                                    <a class="nav-link" id="home-tab" data-toggle="pill" href="#one" role="tab" aria-selected="true">
+                                                        <b>員工履歷檔案詳細資料</b>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item" role="presentation">
+                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#two" role="tab" aria-selected="false">
+                                                        <b>歷年雇傭契約&考績檔案</b>
+                                                    </a>
+                                                </li>
+                                            </ul>
                                             <div class="tab-content" id="myTabContent">
+
                                                 <div class="tab-pane fade in active" id="one" role="tabpanel" aria-labelledby="home-tab">
+                                                    <div class="col-sm-12 text-center">
+                                                        <div class="panel-body">
+                                                        </div>
+                                                        <div class="table-wrap">
+                                                            <div class="table-responsive col-sm-12 text-center">
+                                                                <table style="width:70%;" class="table table-bordered">
+                                                                    <tr>
+                                                                        <td colspan="2">
+                                                                            <h3>員工履歷檔案詳細資料</h3>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr style="text-align:left">
+                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">會議記錄標題</td>
+                                                                        <td style="border-bottom: solid 1px;"><input id="upload_title_name" name="upload_title_name" type="text" style="width:37em;"></td>
+                                                                    </tr>
+                                                                    <tr style="text-align:left">
+                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">上傳日期</td>
+                                                                        <td style="border-bottom: solid 1px;"><input id="upload_rec_date" name="upload_rec_date" datepicker="ch_datepicker" type="text"></td>
+                                                                    </tr>
+                                                                    <tr style="text-align:left">
+                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">檔案上傳</td>
+                                                                        <td style="border-bottom: solid 1px;">
+                                                                            <div class="col-sm-12">
+                                                                                <div class="text-left">
+                                                                                    <input name="customFile1" type="file" class="form-control" />
+                                                                                    <br>
+                                                                                    <div id="customFile1"></div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr style="text-align:left">
+                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white">備註</td>
+                                                                        <td>
+                                                                            <textarea style="height:10em;width:700px;resize: none;font-size: 20px;" id="upload_rec_remark" name="upload_rec_remark" placeholder="請輸入備註"></textarea>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr style="text-align:left">
+                                                                        <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;">督導(簽核)</td>
+                                                                        <td style="border-bottom: solid 1px;">
+                                                                            <select name="upload_rec_supervise" id="upload_rec_supervise" style="width:160px;">
+                                                                                <option value="">請選擇</option>
+                                                                            </select>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td colspan="2">
+                                                                            <div id="edit_div">
+                                                                                <button style="font-size:20px" id="screening_edit" class="btn btn-default" onclick="screening_edit();">編輯</button>
+                                                                            </div>
+                                                                            <div id="save_div" hidden>
+                                                                                <button style="font-size:20px" id="screening_update" class="btn btn-default">修改</button>           
+                                                                                <button style="font-size:20px" id="screening_cancel" class="btn btn-default" onclick="screening_cancel();">取消</button>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="tab-pane fade" id="two" role="tabpanel" aria-labelledby="profile-tab">
                                                     <div class="col-sm-12 text-center">
                                                         <div class="table-wrap">
                                                             <div class="table-responsive">
                                                                 <div>
-                                                                    <H3>員工履歷檔案詳細資料</H3>
+                                                                    <H3>歷年雇傭契約&考績檔案</H3>
                                                                 </div>
                                                                 <div>
                                                                     員工姓名：<span class="employee_name">社工員1</span>
@@ -166,20 +242,21 @@
                                                                 <table id="case_all" style="width:100%;" class="table table-bordered">
                                                                     <th>年度</th>
                                                                     <th>雇傭契約</th>
-                                                                    <th>保密契約</th>
-                                                                    <th>畢業證書</th>
+                                                                    <!-- <th>保密契約</th> -->
+                                                                    <!-- <th>畢業證書</th> -->
                                                                     <th>考績</th>
                                                                     <th>備註</th>
                                                                     <th></th>
                                                                     <tbody id="all_files"></tbody>
                                                                 </table>
                                                             </div>
-                                                            <div class="text-center">
+                                                            <!-- <div class="text-center">
                                                                 <button onclick="history.back();" class="btn btn-default">返回</button>
-                                                            </div>
+                                                            </div> -->
                                                         </div>
                                                     </div>
                                                 </div>
+
                                             </div>
                                         </div>
                                     </div>

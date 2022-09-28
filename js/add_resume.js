@@ -60,33 +60,34 @@ test = function() {
 //  });
 //  console.log(file_name)
 
-var form_data = new FormData();
+// var form_data = new FormData();
 
-$("input[type='file']").each(function(index, element) {
-  var resume_files = $(this).prop("files");
-  console.log(resume_files.length)
+// $("input[type='file']").each(function(index, element) {
+//   var resume_files = $(this).prop("files");
+//   console.log(resume_files.length)
   
-  if (resume_files != undefined) {
-    if (resume_files.length != 0) {
-      for (var i = 0; i < resume_files.length; i++) {
-        form_data.append("resume_files"+index, resume_files[i]);
-        console.log(resume_files[i])
-      }
-    } else {
-      //載入量表『無重新上傳檔案』情況下按儲存，則加入File_name供後端程式判斷
-      form_data.append("File_name", get_resume_files);
-    }
-  }
-});
+//   if (resume_files != undefined) {
+//     if (resume_files.length != 0) {
+//       for (var i = 0; i < resume_files.length; i++) {
+//         form_data.append("resume_files"+index, resume_files[i]);
+//         console.log(resume_files[i])
+//       }
+//     } else {
+//       //載入量表『無重新上傳檔案』情況下按儲存，則加入File_name供後端程式判斷
+//       form_data.append("File_name", get_resume_files);
+//     }
+//   }
+// });
  
 
-  var get_resume_files = get_files_name_value();
+//   var get_resume_files = get_files_name_value();
 
-  form_data.append("File_name", JSON.stringify(get_resume_files));
+//   form_data.append("File_name", JSON.stringify(get_resume_files));
 
-  for (var pair of form_data.entries()) {
-    console.log(pair[0] + ", " + pair[1]);
-  }
+//   for (var pair of form_data.entries()) {
+//     console.log(pair[0] + ", " + pair[1]);
+//   }
+
 }
 
 $(document).ready(function () {

@@ -13,14 +13,14 @@ if($id != null && $pw !=null){
     $result = mysqli_query($conn,$sql);
     $row = @mysqli_fetch_row($result);
 //搜尋資料庫資料	
-	if($row[1] == $id && $row[2] == $pw)
+	if($row[2] == $id && $row[3] == $pw)
 	{
         //將帳號寫入session，方便驗證使用者身份
 		$_SESSION['Account'] = $id; 
-        $_SESSION['authority'] = $row[4];
-        $_SESSION['name'] = $row[3];
-        $_SESSION['department'] = $row[6];
-        $_SESSION['job'] = $row[7];
+        $_SESSION['authority'] = $row[5];
+        $_SESSION['name'] = $row[4];
+        $_SESSION['department'] = $row[7];
+        $_SESSION['job'] = $row[8];
 
         $_SESSION['login']= 10;
         $a = session_id();

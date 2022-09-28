@@ -20,6 +20,12 @@ window.this_year = the_day.getFullYear() - 1911;
 
 //網頁載入 region
 $(document).ready(function () {
+    
+    load_files();
+});
+
+
+function load_files() {
     $.ajax({
         url: "database/find_resume_forms_data_detail.php",
         data:{
@@ -38,8 +44,8 @@ $(document).ready(function () {
             else
             {
                 $.each(data,function(index,value){
-                    // file_year_arr.push(value.File_year);
-                    file_year_arr.push(value.Year);
+                    file_year_arr.push(value.File_year);
+                    // file_year_arr.push(value.Year);
                 });
             }
 
@@ -75,8 +81,6 @@ $(document).ready(function () {
                 '<br/><a href="./upload/test履歷表.pdf" style="text-decoration:none;color:blue;" target="_blank">test履歷表.pdf</a>'+
             '</div>' 
         +'</td>'
-        +'<td>'+ '<input name="'+(file_year_min + i)+'_customFile" type="file" class="form-control resum_forms_question"/>' + '<div id="'+(file_year_min + i) + '_1_customFile"></div>' +'</td>'
-        +'<td>'+ '<input name="'+(file_year_min + i)+'_customFile" type="file" class="form-control resum_forms_question"/>' + '<div id="'+(file_year_min + i) + '_2_customFile"></div>' +'</td>'
         +'<td>'+ '<input name="'+(file_year_min + i)+'_customFile" type="file" class="form-control resum_forms_question" multiple="multiple"/>' + '<div id="'+(file_year_min + i) + '_3_customFile"></div>' +'</td>'
         +'<td>'+ '<textarea style="height:150px;width:100%;resize: none;font-size: 20px;" name="'+(file_year_min + i)+'_remark" class="resum_forms_question" placeholder="備註"></textarea>' +'</td>'
         +'<td><button  type="button" onclick="update_row(this)">修改</button></td>'
@@ -85,4 +89,4 @@ $(document).ready(function () {
 
     $("#all_files").html(tab_str);
     $(".resum_forms_question").attr("disabled",true);
-});
+}

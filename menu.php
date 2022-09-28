@@ -147,10 +147,6 @@
                 <a href="placement_case.php">安置評估
                 </a>
             </li>
-            <li>
-                <a href="case_report.php">服務報表
-                </a>
-            </li>
     </li>
     </ul>
     </li>
@@ -160,6 +156,10 @@
     </li>
     <li>
         <a href="dlgrec.php">生輔紀錄
+        </a>
+    </li>
+    <li>
+        <a href="case_report.php">服務報表
         </a>
     </li>
     </ul>

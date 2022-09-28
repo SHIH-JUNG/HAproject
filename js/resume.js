@@ -1,10 +1,65 @@
-$(document).ready(function () {
+//datepicker創建 region
+datepicker_create = function (selector_id) {
+  $("#" + selector_id).datepicker({
+    changeYear: true,
+    changeMonth: true,
+    currentText: "今天",
+    dateFormat: "R年mm月dd日",
+    showButtonPanel: true,
+    minDate: new Date(
+      new Date().getFullYear() - 2,
+      new Date().getMonth() - 3,
+      1
+    ),
+    maxDate: new Date(new Date().getFullYear() + 3, 11, 31),
+    onClose: function (dateText) {
+      // console.log($('#'+selector_id).val());
+      // console.log(trans_to_EN(dateText));
+    },
+    beforeShow: function (input, inst) {
+      var $this = $(this);
+      var cal = inst.dpDiv;
+      var outerh = $this.outerHeight();
+      if ($this.offset().top > 1200) {
+        outerh = outerh * 4;
+      } else {
+        outerh = outerh * 3;
+      }
+      // console.log($this.offset().top)
+      // console.log(outerh)
 
+      var top = $this.offset().top - outerh;
+      var left = $this.offset().left - 10;
+      setTimeout(function () {
+        cal.css({
+          top: top,
+          left: left,
+        });
+      }, 10);
+    },
+  });
+  // $("#" + selector_id).datepicker("setDate", "today");
+};
+//endregion
+
+// 民國年轉換日期格式yyyy-dd-mm region
+function split_date(date) {
+  return parseInt(date.split("年")[0])+1911+"-"+date.split("年")[1].split("月")[0]+"-"+date.split("年")[1].split("月")[1].split("日")[0]; 
+}
+//endregion
+
+$(document).ready(function () {
+  //將input name名稱為ch_datepicker創建datepicker初始化 region
+  $("input[name='ch_datepicker']").each(function () {
+    var this_id = $(this).attr("id");
+    datepicker_create(this_id);
+  });
+  //endregion
   
 });
 
 // 轉換4個檔案的上傳日期，判斷今年是否已上傳檔案 region
-file_showing_format_trans = function(files_date) {
+file_showing_format_trans = function(files_date, file_type) {
 
   var today = new Date();
 
@@ -12,19 +67,41 @@ file_showing_format_trans = function(files_date) {
 
   var file_staus = "-";
 
-  var files_date_year = files_date.split("-")[0] || 0;
+  // console.log(files_date)
 
-  
+  if(files_date!=null)
+  {
+    var files_date_year = files_date.split("-")[0] || 0;
 
-  if(files_date == "0000-00-00" || parseInt(files_date_year) < this_year)
+    if(file_type == 0)
+    {
+      if(files_date == "0000-00-00" || parseInt(files_date_year) < this_year)
+      {
+        file_staus = "否";
+      }
+      else if(parseInt(files_date_year) == this_year)
+      {
+        file_staus = "是";
+      }
+    }
+    else if(file_type==1)
+    {
+      if(files_date == "0000-00-00")
+      {
+        file_staus = "否";
+      }
+      else
+      {
+        file_staus = "是";
+      }
+    }
+    
+  }
+  else
   {
     file_staus = "否";
   }
-  else if(parseInt(files_date_year) == this_year)
-  {
-    file_staus = "是";
-  }
-  
+
   // console.log(file_staus)
 
   return file_staus;
@@ -101,37 +178,38 @@ $.ajax({
 
     $.each(data, function (index, value) {
 
-      var on_or_off = "";
-      on_or_off = value.On_or_off == '0' ? '否' : '是';
-
+    
       cssString +=
         '<tr id="' + value.Id + '">' +
           '<td style="text-align:center">' +
             value.Name +
           '</td>' +
           '<td style="text-align:center">' +
-            trans_to_Tw(value.Entry_date) +
+            value.Entry_date +
+          '</td>' +
+          // '<td style="text-align:center">' +
+          //  value.Entry_date.split("年")[0] +
+          // '</td>' +
+          // '<td style="text-align:center">' +
+          //   value.Entry_date.split("年")[1].split("月")[0] +
+          // '</td>' +
+          '<td style="text-align:center">' +
+            value.On_or_off +
           '</td>' +
           '<td style="text-align:center">' +
-           (parseInt(value.Entry_date.split("-")[0]) - 1911) +
+            file_showing_format_trans(value.Resume_datas_date, 1) +
           '</td>' +
           '<td style="text-align:center">' +
-            value.Entry_date.split("-")[1] +
+            file_showing_format_trans(value.Employment_contract_date, 0) +
           '</td>' +
           '<td style="text-align:center">' +
-            on_or_off +
+            file_showing_format_trans(value.NDA_file_date, 1) +
           '</td>' +
           '<td style="text-align:center">' +
-            file_showing_format_trans(value.Employment_contract_date) +
+            file_showing_format_trans(value.Diploma_date, 1) +
           '</td>' +
           '<td style="text-align:center">' +
-            file_showing_format_trans(value.NDA_file_date) +
-          '</td>' +
-          '<td style="text-align:center">' +
-            file_showing_format_trans(value.Diploma_date) +
-          '</td>' +
-          '<td style="text-align:center">' +
-            file_showing_format_trans(value.PA_file_date) +
+            file_showing_format_trans(value.PA_file_date, 0) +
           '</td>' +
         '</tr>';
     });
@@ -211,6 +289,55 @@ var date_range = (
       }
       return false;
   });
+
+
+  // var entry_year_range = (
+  //   function( settings, data, dataIndex ) {
+  //       var min_date = parseInt($('#entry_min_year').val());
+  //       var max_date = parseInt($('#entry_max_year').val());
+  //       var date = parseInt(data[2]) || 0; // use data for the date column
+  //       // console.log(date)
+  //       if ( ( isNaN( min_date ) && isNaN( max_date ) ) ||
+  //            ( isNaN( min_date ) && date <= max_date ) ||
+  //            ( min_date <= date   && isNaN( max_date ) ) ||
+  //            ( min_date <= date   && date <= max_date ) )
+  //       {
+  //           return true;
+  //       }
+  //       return false;
+  //   });
+
+  //   var entry_month_range = (
+  //     function( settings, data, dataIndex ) {
+  //         var min_date = parseInt($('#entry_min_month').val());
+  //         var max_date = parseInt($('#entry_max_month').val());
+  //         var date = parseInt(data[3]) || 0; // use data for the date column
+  //         // console.log(date)
+  //         if ( ( isNaN( min_date ) && isNaN( max_date ) ) ||
+  //              ( isNaN( min_date ) && date <= max_date ) ||
+  //              ( min_date <= date   && isNaN( max_date ) ) ||
+  //              ( min_date <= date   && date <= max_date ) )
+  //         {
+  //             return true;
+  //         }
+  //         return false;
+  //     });
+
+    var entry_date_range = (
+      function( settings, data, dataIndex ) {
+          var min_date = parseInt(Date.parse( split_date($('#entry_min').val())), 10 );
+          var max_date = parseInt(Date.parse( split_date($('#entry_max').val())), 10 );
+          var date = parseInt(Date.parse( split_date(data[1]) )) || 0; // use data for the date column
+          // console.log(date)
+          if ( ( isNaN( min_date ) && isNaN( max_date ) ) ||
+               ( isNaN( min_date ) && date <= max_date ) ||
+               ( min_date <= date   && isNaN( max_date ) ) ||
+               ( min_date <= date   && date <= max_date ) )
+          {
+              return true;
+          }
+          return false;
+      });
 //endregion
 
 //預設總人數人次region
@@ -230,6 +357,24 @@ $('#min, #max').keyup( function() {
 $('#min_date, #max_date').on('change', function() {
 //    console.log($('#min_date').val())
   $.fn.dataTable.ext.search.push(date_range);
+  $table.draw();
+} ); 
+
+// $('#entry_min_year, #entry_max_year').on('change', function() {
+//   //    console.log($('#entry_min_year').val())
+//     $.fn.dataTable.ext.search.push(entry_year_range);
+//     $table.draw();
+//   } ); 
+
+// $('#entry_min_month, #entry_max_month').on('change', function() {
+//   //    console.log($('#entry_min_month').val())
+//     $.fn.dataTable.ext.search.push(entry_month_range);
+//     $table.draw();
+//   } ); 
+
+$('#entry_min, #entry_max').on('change', function() {
+//    console.log($('#entry_min').val())
+  $.fn.dataTable.ext.search.push(entry_date_range);
   $table.draw();
 } ); 
 
