@@ -21,7 +21,7 @@
     <link href="css/dtsel.css" rel="stylesheet" />
 
     <meta charset="UTF-8" />
-    <!--    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />-->
+       <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="description" content="快樂聯盟資管系統">
     <meta name="author" content="HANG">
     <meta HTTP-EQUIV="pragma" CONTENT="no-cache">
@@ -65,6 +65,11 @@
     .panel-body.scr_container {
         padding: 0;
         padding-top: 15px;
+    }
+
+    .form-control
+    {
+        border: 1px solid #000;
     }
 </style>
 
@@ -176,21 +181,80 @@
                                                                         </td>
                                                                     </tr>
                                                                     <tr style="text-align:left">
-                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">會議記錄標題</td>
-                                                                        <td style="border-bottom: solid 1px;"><input id="upload_title_name" name="upload_title_name" type="text" style="width:37em;"></td>
-                                                                    </tr>
-                                                                    <tr style="text-align:left">
-                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">上傳日期</td>
-                                                                        <td style="border-bottom: solid 1px;"><input id="upload_rec_date" name="upload_rec_date" datepicker="ch_datepicker" type="text"></td>
-                                                                    </tr>
-                                                                    <tr style="text-align:left">
-                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">檔案上傳</td>
+                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">帳號</td>
                                                                         <td style="border-bottom: solid 1px;">
-                                                                            <div class="col-sm-12">
+                                                                            <div class="form-group col-sm-4">
+                                                                                <span id="account"></span>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr style="text-align:left">
+                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>員工姓名</td>
+                                                                        <td style="border-bottom: solid 1px;">
+                                                                            <div class="form-group col-sm-4">
+                                                                                <input id="user_name" class="resume_question" type="text">
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr style="text-align:left">
+                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>入職日</td>
+                                                                        <td style="border-bottom: solid 1px;">
+                                                                            <div class="form-group col-sm-4">
+                                                                                <input id="entry_date" class="resume_question" name="ch_datepicker" type="text">
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr style="text-align:left">
+                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">是否在職</td>
+                                                                        <td style="border-bottom: solid 1px;">
+                                                                            <div class="form-group col-sm-3">
+                                                                                <select id="on_or_off" class="resume_question">
+                                                                                    <option value="是">是</option>
+                                                                                    <option value="否">否</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr style="text-align:left">
+                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">離職日</td>
+                                                                        <td style="border-bottom: solid 1px;">
+                                                                            <div class="form-group col-sm-4">
+                                                                                <input id="resigned_date" class="resume_question" name="ch_datepicker" type="text">
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr style="text-align:left">
+                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">履歷表檔案</td>
+                                                                        <td style="border-bottom: solid 1px;">
+                                                                            <div class="col-sm-8">
                                                                                 <div class="text-left">
-                                                                                    <input name="customFile1" type="file" class="form-control" />
+                                                                                    <input name="resume_file" type="file" class="resume_question form-control">
                                                                                     <br>
-                                                                                    <div id="customFile1"></div>
+                                                                                    <div id="resume_file"></div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr style="text-align:left">
+                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">保密契約</td>
+                                                                        <td style="border-bottom: solid 1px;">
+                                                                            <div class="col-sm-8">
+                                                                                <div class="text-left">
+                                                                                    <input name="nda_file" type="file" class="resume_question form-control">
+                                                                                    <br>
+                                                                                    <div id="nda_file"></div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr style="text-align:left">
+                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">畢業證書</td>
+                                                                        <td style="border-bottom: solid 1px;">
+                                                                            <div class="col-sm-8">
+                                                                                <div class="text-left">
+                                                                                    <input name="diploma_file" type="file" class="resume_question form-control">
+                                                                                    <br>
+                                                                                    <div id="diploma_file"></div>
                                                                                 </div>
                                                                             </div>
                                                                         </td>
@@ -198,25 +262,19 @@
                                                                     <tr style="text-align:left">
                                                                         <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white">備註</td>
                                                                         <td>
-                                                                            <textarea style="height:10em;width:700px;resize: none;font-size: 20px;" id="upload_rec_remark" name="upload_rec_remark" placeholder="請輸入備註"></textarea>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr style="text-align:left">
-                                                                        <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;">督導(簽核)</td>
-                                                                        <td style="border-bottom: solid 1px;">
-                                                                            <select name="upload_rec_supervise" id="upload_rec_supervise" style="width:160px;">
-                                                                                <option value="">請選擇</option>
-                                                                            </select>
+                                                                            <div class="form-group col-sm-10">
+                                                                                <textarea style="height:10em;width:100%;" id="remark" class="resume_question" name="remark" placeholder="請輸入備註"></textarea>
+                                                                            </div>
                                                                         </td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td colspan="2">
                                                                             <div id="edit_div">
-                                                                                <button style="font-size:20px" id="screening_edit" class="btn btn-default" onclick="screening_edit();">編輯</button>
+                                                                                <button style="font-size:20px" id="resume_edit" class="btn btn-default" onclick="resume_edit();">編輯</button>
                                                                             </div>
                                                                             <div id="save_div" hidden>
-                                                                                <button style="font-size:20px" id="screening_update" class="btn btn-default">修改</button>           
-                                                                                <button style="font-size:20px" id="screening_cancel" class="btn btn-default" onclick="screening_cancel();">取消</button>
+                                                                                <button style="font-size:20px" id="resume_update" class="btn btn-default" onclick="resume_update();">修改</button>           
+                                                                                <button style="font-size:20px" id="resume_cancel" class="btn btn-default" onclick="resume_cancel();">取消</button>
                                                                             </div>
                                                                         </td>
                                                                     </tr>
@@ -301,7 +359,7 @@
     <script src="js/jQuery-TWzipcode-master/jquery.twzipcode.min.js"></script>
     <!-- 日期民國-->
     <script src="javascript/jquery-ui.min.js"></script>
-    <script src="javascript/datepickerTw.js"></script>
+    <script src="javascript/datepickerTw2.js"></script>
     <!-- ================== detail ================== -->
     <script type="text/javascript" src="js/resume_detail_v2.js"></script>
 

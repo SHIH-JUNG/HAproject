@@ -28,7 +28,7 @@ if($id_num[0]>0)
 }
 else
 {
-    $resume_seq_id = 0;
+    $resume_seq_id = 1;
 }
 
 $select_id_num2 = "SELECT MAX(Id) FROM `user_info` ORDER BY `user_info`.`Create_date` ASC LIMIT 1;";
@@ -42,12 +42,12 @@ if($id_num2[0]>0)
 }
 else
 {
-    $user_info_id = 0;
+    $user_info_id = 1;
 }
 
 
 // 員工建立檔案路徑
-@$file_dir = "../".$Name."_".$Account."_".$Entry_date."/resume_datas/";
+@$file_dir = "../resume/resume_user".$resume_seq_id."_".$Account."/resume_datas/";
 
 $file_0 = "";
 $file_0_date = NULL;
@@ -68,7 +68,7 @@ if (!is_dir($file_dir)) {
 // 判斷履歷表檔案上傳 類型 file_A
 if (isset($_FILES["resume_files0"]))
 {
-    @$file_0 = "../".$Name."_".$Account."_".$Entry_date."/resume_datas/" . $_FILES["resume_files0"]["name"];
+    @$file_0 = "../resume/resume_user".$resume_seq_id."_".$Account."/resume_datas/" . $_FILES["resume_files0"]["name"];
 
     @$file_0_date = date("Y-m-d");
 
@@ -79,7 +79,7 @@ if (isset($_FILES["resume_files0"]))
         //設定檔案上傳路徑，選擇指定資料夾
         move_uploaded_file(
             $_FILES["resume_files0"]["tmp_name"],
-            "../".$Name."_".$Account."_".$Entry_date."/resume_datas/" . $_FILES["resume_files0"]["name"]
+            "../resume/resume_user".$resume_seq_id."_".$Account."/resume_datas/" . $_FILES["resume_files0"]["name"]
         );
     }
 
@@ -93,9 +93,9 @@ if (isset($_FILES["resume_files0"]))
 // 判斷保密契約上傳 類型 file_C
 if (isset($_FILES["resume_files1"]))
 {
-    @$file_1 = "../".$Name."_".$Account."_".$Entry_date."/resume_datas/" . $_FILES["resume_files1"]["name"];
+    @$file_1 = "../resume/resume_user".$resume_seq_id."_".$Account."/resume_datas/" . $_FILES["resume_files1"]["name"];
     
-    @$file_1_dat = date("Y-m-d");
+    @$file_1_date = date("Y-m-d");
 
     if ($_FILES["resume_files1"]["error"] > 0) {
 
@@ -104,7 +104,7 @@ if (isset($_FILES["resume_files1"]))
         //設定檔案上傳路徑，選擇指定資料夾
         move_uploaded_file(
             $_FILES["resume_files1"]["tmp_name"],
-            "../".$Name."_".$Account."_".$Entry_date."/resume_datas/" . $_FILES["resume_files1"]["name"]
+            "../resume/resume_user".$resume_seq_id."_".$Account."/resume_datas/" . $_FILES["resume_files1"]["name"]
         );
     }
 
@@ -118,7 +118,7 @@ if (isset($_FILES["resume_files1"]))
 // 判斷畢業證書上傳 類型 file_D
 if (isset($_FILES["resume_files2"]))
 {
-    @$file_2 = "../".$Name."_".$Account."_".$Entry_date."/resume_datas/" . $_FILES["resume_files2"]["name"];
+    @$file_2 = "../resume/resume_user".$resume_seq_id."_".$Account."/resume_datas/" . $_FILES["resume_files2"]["name"];
     
     @$file_2_date = date("Y-m-d");
     
@@ -129,7 +129,7 @@ if (isset($_FILES["resume_files2"]))
         //設定檔案上傳路徑，選擇指定資料夾
         move_uploaded_file(
             $_FILES["resume_files2"]["tmp_name"],
-            "../".$Name."_".$Account."_".$Entry_date."/resume_datas/" . $_FILES["resume_files2"]["name"]
+            "../resume/resume_user".$resume_seq_id."_".$Account."/resume_datas/" . $_FILES["resume_files2"]["name"]
         );
     }
 
