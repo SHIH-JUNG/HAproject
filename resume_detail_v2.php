@@ -292,9 +292,9 @@
                                                                     <H3>歷年雇傭契約&考績檔案</H3>
                                                                 </div>
                                                                 <div>
-                                                                    員工姓名：<span class="employee_name">社工員1</span>
-                                                                    ，入職日期：<span class="entry_date">110年06月10日</span>
-                                                                    ，最近上傳日期：<span class="recently_upload_date">-</span>
+                                                                    員工姓名：<span class="employee_name">---</span>
+                                                                    ，入職日期：<span class="entry_date">---年--月--日</span>
+                                                                    ，最近上傳日期：<span class="recently_upload_date">---年--月--日</span>
                                                                     ，今年檔案上傳數：<span class="this_year_file_upload_num">0</span>
                                                                 </div>
                                                                 <table id="case_all" style="width:100%;" class="table table-bordered">

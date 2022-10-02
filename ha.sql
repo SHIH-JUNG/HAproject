@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2022-09-29 11:54:51
+-- 產生時間： 2022-10-02 14:13:27
 -- 伺服器版本： 10.4.24-MariaDB
 -- PHP 版本： 7.4.29
 
@@ -1226,7 +1226,7 @@ CREATE TABLE `resume` (
 --
 
 INSERT INTO `resume` (`Id`, `Account_id`, `Account`, `Name`, `Entry_date`, `On_or_off`, `Resigned_date`, `Resume_datas_date`, `Employment_contract_date`, `NDA_file_date`, `Diploma_date`, `PA_file_date`, `Remark`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
-(1, 25, 'testuser', 'jia', '111年09月08日', '是', '', '2022-09-29', NULL, '2022-09-29', '2022-09-29', NULL, 'test0908', '2022-09-29 17:47:27', '園主任', '2022-09-29 17:52:44', '園主任');
+(1, 25, 'testuser', 'jia', '111年09月08日', '是', '', '2022-09-29', '2022-10-02', '2022-09-29', '2022-09-29', '2022-10-02', 'test0908', '2022-09-29 17:47:27', '園主任', '2022-10-02 19:32:02', '社工員1');
 
 -- --------------------------------------------------------
 
@@ -1255,7 +1255,12 @@ CREATE TABLE `resume_forms` (
 INSERT INTO `resume_forms` (`Id`, `Resume_id`, `Resume_name`, `File_type`, `File_year`, `File_path`, `Remark`, `Upload_date`, `Upload_name`, `Update_date`, `Update_name`) VALUES
 (1, 1, 'jia', 'file_A', '111', '../resume/resume_user1_testuser/resume_datas/test履歷檔案.txt', 'test0908jiaa', '2022-09-29 00:00:00', '園主任', '2022-09-29 00:00:00', '園主任'),
 (2, 1, 'jia', 'file_D', '111', '../resume/resume_user1_testuser/resume_datas/test畢業證書.xdp', 'test0908jiaa', '2022-09-29 00:00:00', '園主任', '2022-09-29 00:00:00', '園主任'),
-(3, 1, 'jia', 'file_C', '111', '../resume/resume_user1_testuser/resume_datas/保密契約.xdp', 'test0908jiaa', '2022-09-29 00:00:00', '園主任', '2022-09-29 17:48:39', '');
+(3, 1, 'jia', 'file_C', '111', '../resume/resume_user1_testuser/resume_datas/保密契約.xdp', 'test0908jiaa', '2022-09-29 00:00:00', '園主任', '2022-09-29 17:48:39', ''),
+(4, 1, 'jia', 'file_E', '111', '../resume/resume_user1_testuser/resume_datas/考績111.pub', 'tespaA111', '2022-10-02 00:00:00', '社工員1', '2022-10-02 00:00:00', '社工員1'),
+(5, 1, 'jia', 'file_B', '111', '../resume/resume_user1_testuser/resume_datas/雇傭契約111a.docx', 'tespaA111a', '2022-10-02 00:00:00', '社工員1', '2022-10-02 00:00:00', '社工員1'),
+(6, 1, 'jia', 'file_B', '109', '../resume/resume_user1_testuser/resume_datas/雇傭契約109.docx', '', '2020-10-02 00:00:00', '社工員1', '2022-10-02 00:00:00', '社工員1'),
+(7, 1, 'jia', 'file_E', '110', '../resume/resume_user1_testuser/resume_datas/考績110.pub', 'ttt110', '2022-10-02 00:00:00', '社工員1', '2022-10-02 19:31:25', ''),
+(8, 1, 'jia', 'file_E', '109', '../resume/resume_user1_testuser/resume_datas/考績109.pub', '', '2022-10-02 00:00:00', '社工員1', '2022-10-02 19:32:02', '');
 
 -- --------------------------------------------------------
 
@@ -1572,7 +1577,7 @@ CREATE TABLE `user_info` (
 --
 
 INSERT INTO `user_info` (`Id`, `Resume_id`, `Account`, `Password`, `Name`, `Authority`, `Date`, `Department`, `Job`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
-(1, 0, 'text1', '123', 'jia', 1, '2021-03-06 17:04:49', '行政中心', '社工', NULL, '', '2022-09-29 17:52:44', '園主任'),
+(1, 0, 'text1', '123', 'jia', 1, '2021-03-06 17:04:49', '行政中心', '社工', NULL, '', '2022-10-02 19:32:02', '社工員1'),
 (2, 0, 'text2', '456', '社工員2', 1, '2020-10-05 21:12:04', '行政中心', '社工', NULL, '', '2022-09-22 19:36:25', ''),
 (3, 0, 'test3', '789', '社工組長', 2, '2020-10-05 21:12:04', '行政中心', '組長', NULL, '', '2022-09-22 19:36:25', ''),
 (5, 0, 'test5', '258', '園主任', 3, '2020-10-05 21:12:04', '伯特利家園', '主任', NULL, '', '2022-09-22 19:36:25', ''),
@@ -2100,7 +2105,7 @@ ALTER TABLE `resume`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `resume_forms`
 --
 ALTER TABLE `resume_forms`
-  MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `screening`

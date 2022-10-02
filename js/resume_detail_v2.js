@@ -49,14 +49,28 @@ datepicker_create = function (selector_id) {
       },
     });
     // $("#" + selector_id).datepicker("setDate", "today");
-  };
-  //endregion
+};
+//endregion
   
-  // 民國年轉換日期格式yyyy-dd-mm region
-  function split_date(date) {
-    return parseInt(date.split("年")[0])+1911+"-"+date.split("年")[1].split("月")[0]+"-"+date.split("年")[1].split("月")[1].split("日")[0]; 
+// 民國年轉換日期格式yyyy-dd-mm region
+function split_date(date) {
+  return parseInt(date.split("年")[0])+1911+"-"+date.split("年")[1].split("月")[0]+"-"+date.split("年")[1].split("月")[1].split("日")[0]; 
+}
+//endregion
+
+//將日期轉為民國年格式111年03月07日 region
+trans_to_Tw = function (endate) {
+
+  var strDate = endate.split(" ");
+  var strAry = strDate[0].split("-");
+
+  if (parseInt(strAry[0]) > 1911) {
+    strAry[0] = parseInt(strAry[0]) - 1911;
   }
-  //endregion
+
+  return strAry[0] + "年" + strAry[1] + "月" + strAry[2] + "日";
+};
+//endregion
 
 const notyf = new Notyf();
 
@@ -80,9 +94,10 @@ $(document).ready(function () {
     });
     //endregion
 
-    load_resume_datas();
 
     load_files();
+
+    load_resume_datas();
 
 });
 
@@ -112,7 +127,9 @@ function load_files() {
             }
 
             // 從小到大排序
-            file_year_arr.sort((a, b) => a - b)
+            // file_year_arr.sort((a, b) => a - b)
+            // 從大到小排序
+            file_year_arr.sort((a, b) => b - a)
         },
         error:function(e){
             notyf.alert('伺服器錯誤,無法載入');
@@ -126,7 +143,7 @@ function load_files() {
     // console.log(file_year_arr[0])
     // console.log(file_year_arr[file_year_arr.length - 1])
 
-    window.file_year_min = parseInt(file_year_arr[0]);
+    window.file_year_min = parseInt(file_year_arr[file_year_arr.length - 1]);
     // window.file_year_max = parseInt(file_year_arr[file_year_arr.length - 1]);
 
     var count = this_year - file_year_min;
@@ -136,22 +153,37 @@ function load_files() {
 
     for(var i=0; i<=count; i++)
     {
-        tab_str += '<tr id="'+(file_year_min + i)+'">'
-        +'<td>'+ (file_year_min + i) +'</td>'
-        +'<td>'+ '<input name="'+(file_year_min + i)+'_customFile" type="file" class="resume_forms_question'+(file_year_min + i)+' form-control"/>' + 
-            '<div id="'+(file_year_min + i) + '_0_customFile">'+
-                '<br/><a href="./upload/test履歷表.pdf" style="text-decoration:none;color:blue;" target="_blank">test履歷表.pdf</a>'+
-            '</div>' 
-        +'</td>'
-        +'<td>'+ '<input name="'+(file_year_min + i)+'_customFile" type="file" class="resume_forms_question'+(file_year_min + i)+' form-control" multiple="multiple"/>' + '<div id="'+(file_year_min + i) + '_3_customFile"></div>' +'</td>'
-        +'<td>'+ '<textarea style="height:150px;width:100%;resize: none;font-size: 20px;" name="'+(file_year_min + i)+'_remark" class="resume_forms_question'+(file_year_min + i)+'" placeholder="備註"></textarea>' +'</td>'
+        tab_str += '<tr id="'+(this_year - i)+'">'
+        +'<td>'+ (this_year - i) +'</td>'
+
+        + '<td>'
+          + '<div class="col-sm-8">'
+            + '<div class="text-left">'
+                + '<input name="employment_contract_'+(this_year - i)+'" type="file" class="resume_forms_question'+(this_year - i)+' form-control"/>'
+                + '<br/>'
+                + '<div id="employment_contract_'+(this_year - i) + '"></div>'
+            + '</div>'
+          + '</div>'            
+        + '</td>'
+        
+        + '<td>'
+          + '<div class="col-sm-8">'
+            + '<div class="text-left">'
+                + '<input name="PA_file_'+(this_year - i)+'" type="file" class="resume_forms_question'+(this_year - i)+' form-control"/>' 
+                + '<br/>'
+                + '<div id="PA_file_'+(this_year - i) + '"></div>'
+            + '</div>'
+          + '</div>'            
+        + '</td>'
+
+        +'<td>'+ '<textarea style="height:150px;width:100%;resize: none;font-size: 20px;" name="remark_'+(this_year - i)+'" class="resume_forms_question'+(this_year - i)+'" placeholder="備註"></textarea>' +'</td>'
         +'<td>'
-            +'<div id="edit_div'+(file_year_min + i)+'">'
-                +'<button style="font-size:20px" id="resume_forms_edit'+(file_year_min + i)+'" class="btn btn-default" onclick="resume_forms_edit('+(file_year_min + i)+');">編輯</button>'
+            +'<div id="edit_div'+(this_year - i)+'">'
+                +'<button style="font-size:20px" id="resume_forms_edit'+(this_year - i)+'" class="btn btn-default" onclick="resume_forms_edit('+(this_year - i)+');">編輯</button>'
             +'</div>'
-            +'<div id="save_div'+(file_year_min + i)+'" hidden>'
-                +'<button style="font-size:20px" onclick="update_row(this)" class="btn btn-default">修改</button><br/><br/>'           
-                +'<button style="font-size:20px" id="resume_forms_cancel'+(file_year_min + i)+'" class="btn btn-default" onclick="resume_forms_cancel('+(file_year_min + i)+');">取消</button>'
+            +'<div id="save_div'+(this_year - i)+'" hidden>'
+                +'<button style="font-size:20px" onclick="update_row('+(this_year - i)+')" class="btn btn-default">修改</button><br/><br/>'           
+                +'<button style="font-size:20px" id="resume_forms_cancel'+(this_year - i)+'" class="btn btn-default" onclick="resume_forms_cancel('+(this_year - i)+');">取消</button>'
             +'</div>'
         +'</td>'
         +'</tr>';
@@ -183,6 +215,12 @@ function load_resume_datas() {
                 $("#resigned_date").val(value.Resigned_date);
                 $("#on_or_off").val(value.On_or_off);
                 $("#remark").val(value.Remark);
+
+                var employee_name = value.Name || "---";
+                var entry_date = value.Entry_date || "---年--月--日";
+
+                $(".employee_name").text(employee_name);
+                $(".entry_date").text(entry_date);
             });
             
             
@@ -203,51 +241,83 @@ function load_resume_datas() {
         dataType: "JSON",
         async: false,//啟用同步請求
         success: function (data) {
-            // console.log(data)
+            console.log(data.length)
+
+            var this_year_file_upload_num = 0;
+            var recently_upload_date = "---年--月--日";
 
             $.each(data,function(index,value){
-               
+
+              if(parseInt(value.File_year) == this_year)
+              {
+                this_year_file_upload_num += 1;
+              }
+
+              if(index == (data.length - 1))
+              {
+                recently_upload_date = trans_to_Tw(value.Update_date);
+              }
+
+
                 switch (value.File_type) {
                     // 履歷表檔案
                     case "file_A":
                         var resume_file_path = value.File_path.replace("../", "./");
                         var resume_file_name = value.File_path.split("/");
-                        $("[name='resume_file']").attr("value", resume_file_name[4]);
+                        $("[name='resume_file']").attr("value", resume_file_name[resume_file_name.length - 1]);
                         $("#resume_file").html(
                             '<a href="'+resume_file_path+'" style="text-decoration:none;color:blue;" target="_blank">'
-                            +resume_file_path
+                            +resume_file_name[resume_file_name.length - 1]
                             +'</a>');
                         break;
                     // 雇傭契約
                     case "file_B":
-                    
+                        var resume_file_path = value.File_path.replace("../", "./");
+                        var resume_file_name = value.File_path.split("/");
+                        $("[name='employment_contract_"+value.File_year+"']").attr("value", resume_file_name[resume_file_name.length - 1]);
+                        $("#employment_contract_"+value.File_year+"").html(
+                          '<a href="'+resume_file_path+'" style="text-decoration:none;color:blue;" target="_blank">'
+                          +resume_file_name[resume_file_name.length - 1]
+                          +'</a>');
+                        $("[name='remark_"+value.File_year+"']").val(value.Remark);
                         break;
                     // 保密契約
                     case "file_C":
                         var resume_file_path = value.File_path.replace("../", "./");
                         var resume_file_name = value.File_path.split("/");
-                        $("[name='nda_file']").attr("value", resume_file_name[4]);
+                        $("[name='nda_file']").attr("value", resume_file_name[resume_file_name.length - 1]);
                         $("#nda_file").html(
                             '<a href="'+resume_file_path+'" style="text-decoration:none;color:blue;" target="_blank">'
-                            +resume_file_path
+                            +resume_file_name[resume_file_name.length - 1]
                             +'</a>');
                         break;
                     // 畢業證書
                     case "file_D":
                         var resume_file_path = value.File_path.replace("../", "./");
                         var resume_file_name = value.File_path.split("/");
-                        $("[name='diploma_file']").attr("value", resume_file_name[4]);
+                        $("[name='diploma_file']").attr("value", resume_file_name[resume_file_name.length - 1]);
                         $("#diploma_file").html(
                             '<a href="'+resume_file_path+'" style="text-decoration:none;color:blue;" target="_blank">'
-                            +resume_file_path
+                            +resume_file_name[resume_file_name.length - 1]
                             +'</a>');
                         break;
                     // 考績檔案
                     case "file_E":
-                
+                        var resume_file_path = value.File_path.replace("../", "./");
+                        var resume_file_name = value.File_path.split("/");
+                        $("[name='PA_file_"+value.File_year+"']").attr("value", resume_file_name[resume_file_name.length - 1]);
+                        $("#PA_file_"+value.File_year+"").html(
+                            '<a href="'+resume_file_path+'" style="text-decoration:none;color:blue;" target="_blank">'
+                            +resume_file_name[resume_file_name.length - 1]
+                            +'</a>');
+                          $("[name='remark_"+value.File_year+"']").val(value.Remark);
                         break;
                 }
+
             });
+
+            $(".this_year_file_upload_num").text(this_year_file_upload_num);
+            $(".recently_upload_date").text(recently_upload_date);
         },
         error:function(e){
             notyf.alert('伺服器錯誤,無法載入');
@@ -408,6 +478,83 @@ function check_updat_resume_user_data() {
       }
     
       return errorstr;
+}
+
+update_row = function(row_year) {
+  //去掉資料內前後端多餘的空白，file類型須排除，否則報錯
+  $("input, textarea").each(function () {
+    if ($(this).attr("type") != "file") {
+        $(this).val(jQuery.trim($(this).val()));
+    }
+  });
+  var form_data = new FormData();
+
+  $("input.resume_forms_question"+row_year+"[type='file']").each(function(index, element) {
+      var resume_forms_files = $(this).prop("files");
+
+      if (resume_forms_files != undefined) {
+        if (resume_forms_files.length != 0) {
+          for (var i = 0; i < resume_forms_files.length; i++) {
+            form_data.append("resume_forms_files"+index, resume_forms_files[i]);
+            // console.log(resume_forms_files[i])
+          }
+        } 
+      }
+  });
+
+  form_data.append("Resume_id", resume_id);
+  form_data.append("Account", $("#account").text());
+  form_data.append("Name", $("#user_name").val());
+
+  form_data.append("Remark",$("[name='remark_"+row_year+"']").val());
+  form_data.append("File_year",row_year);
+
+
+  // for (var pair of form_data.entries()) {
+  //   console.log(pair[0] + ", " + pair[1]);
+  // }
+
+
+  $.ajax({
+      url: "database/update_resume_forms_data_detail.php",
+      type: "POST",
+      data: form_data,
+      contentType: false,
+      cache: false,
+      processData: false,
+      async: true,
+    success: function (data) {
+      // console.log(data);
+      if (data == 1) {
+        swal({
+          type: "success",
+          title: "修改成功!",
+          allowOutsideClick: false, //不可點背景關閉
+        }).then(function () {
+          window.location.href =
+            "resume_detail_v2.php?"+
+            "&id=" +
+            resume_id +
+            "";
+        });
+      } else {
+        swal({
+          type: "error",
+          title: "修改失敗!請聯絡負責人",
+          allowOutsideClick: false, //不可點背景關閉
+        });
+      }
+    },
+    error: function (e) {
+      console.log(e)
+      swal({
+          type: "error",
+          title: "修改失敗!請聯絡負責人",
+          allowOutsideClick: false, //不可點背景關閉
+      });
+    },
+  });
+   
 }
 
 // 顯示檔名 region

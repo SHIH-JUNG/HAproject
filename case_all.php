@@ -209,7 +209,7 @@
                                                         </div>
                                                         <div class="text-center">
                                                             <button id="case_add_new" type="button" class="btn btn-default" onclick="form_add_new(this)">新增</button>
-                                                            <button onclick="history.back();" class="btn btn-default">返回</button>
+                                                            <button onclick="back_case_all_all();" class="btn btn-default">返回</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -239,7 +239,7 @@
                                                             </div>
                                                         </div>
                                                         <button id="interlocution_add_new" type="button" class="btn btn-default" onclick="form_add_new(this)">新增</button>
-                                                        <button onclick="history.back();" class="btn btn-default">返回</button>
+                                                        <button onclick="back_case_all_all();" class="btn btn-default">返回</button>
                                                     </div>
                                                 </div>
                                                 <div class="tab-pane fade" id="eleven" role="tabpanel" aria-labelledby="profile-tab">
@@ -265,7 +265,7 @@
                                                             </div>
                                                         </div>
                                                         <button id="resource_add_new" type="button" class="btn btn-default" onclick="form_add_new(this)">新增</button>
-                                                        <button onclick="history.back();" class="btn btn-default">返回</button>
+                                                        <button onclick="back_case_all_all();" class="btn btn-default">返回</button>
                                                     </div>
                                                 </div>
                                                 <div class="tab-pane fade" id="three" role="tabpanel" aria-labelledby="profile-tab">
@@ -294,7 +294,7 @@
                                                             </div>
                                                         </div>
                                                         <button id="life_add_new" class="btn btn-default" onclick="form_add_new(this)">新增</button>
-                                                        <button onclick="history.back();" class="btn btn-default">返回</button>
+                                                        <button onclick="back_case_all_all();" class="btn btn-default">返回</button>
                                                     </div>
                                                 </div>
 
@@ -324,7 +324,7 @@
                                                             </div>
                                                         </div>
                                                         <button id="health_add_new" class="btn btn-default" onclick="form_add_new(this)">新增</button>
-                                                        <button onclick="history.back();" class="btn btn-default">返回</button>
+                                                        <button onclick="back_case_all_all();" class="btn btn-default">返回</button>
                                                     </div>
                                                 </div>
 
@@ -349,7 +349,7 @@
                                                             </div>
                                                         </div>
                                                         <button id="sullen_add_new" class="btn btn-default" onclick="form_upload_new(this)">新增</button>
-                                                        <button onclick="history.back();" class="btn btn-default">返回</button>
+                                                        <button onclick="back_case_all_all();" class="btn btn-default">返回</button>
                                                     </div>
                                                 </div>
 
@@ -380,7 +380,7 @@
                                                             </div>
                                                         </div>
                                                         <button id="employment_satif_add_new" class="btn btn-default" onclick="form_add_new(this)">新增</button>
-                                                        <button onclick="history.back();" class="btn btn-default">返回</button>
+                                                        <button onclick="back_case_all_all();" class="btn btn-default">返回</button>
                                                     </div>
                                                 </div>
                                                 <div class="tab-pane fade" id="seven" role="tabpanel" aria-labelledby="profile-tab">
@@ -410,7 +410,7 @@
                                                             </div>
                                                         </div>
                                                         <button id="satif_add_new" class="btn btn-default" onclick="form_add_new(this)">新增</button>
-                                                        <button onclick="history.back();" class="btn btn-default">返回</button>
+                                                        <button onclick="back_case_all_all();" class="btn btn-default">返回</button>
                                                     </div>
                                                 </div>
                                                 <div class="tab-pane fade" id="eight" role="tabpanel" aria-labelledby="profile-tab">
@@ -441,7 +441,7 @@
                                                             </div>
                                                         </div>
                                                         <button id="familyship_add_new" class="btn btn-default" onclick="form_add_new(this)">新增</button>
-                                                        <button onclick="history.back();" class="btn btn-default">返回</button>
+                                                        <button onclick="back_case_all_all();" class="btn btn-default">返回</button>
                                                     </div>
                                                 </div>
                                                 <div class="tab-pane fade" id="night" role="tabpanel" aria-labelledby="profile-tab">
@@ -465,7 +465,7 @@
                                                             </div>
                                                         </div>
                                                         <button id="BSRS5_add_new" class="btn btn-default" onclick="form_BSRS5_add_new(this)">新增</button>
-                                                        <button onclick="history.back();" class="btn btn-default">返回</button>
+                                                        <button onclick="back_case_all_all();" class="btn btn-default">返回</button>
                                                     </div>
                                                 </div>
                                                 <div class="tab-pane fade" id="ten" role="tabpanel" aria-labelledby="profile-tab">
@@ -494,7 +494,7 @@
                                                         </div>
                                                         <div class="text-center">
                                                             <button id="settlement_add_new" type="button" class="btn btn-default" onclick="form_add_new(this)">新增</button>
-                                                            <button onclick="history.back();" class="btn btn-default">返回</button>
+                                                            <button onclick="back_case_all_all();" class="btn btn-default">返回</button>
                                                         </div>
                                                     </div>
                                                 </div>

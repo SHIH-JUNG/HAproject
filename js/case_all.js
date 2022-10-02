@@ -69,15 +69,15 @@ $(document).ready(function () {
     //設定麵包屑返回region
     var url = 'case_all_all.php?id='+id+'&open_id='+open_id+'';
     $("#history").attr('href',url);
-
     //獲取有資料的量表
     load_form_type_array();
 
-
-    // load_interactive_pdf();
-    // load_petty_cash_pdf();
 });
 //endregion
+
+back_case_all_all = function() {
+    window.location.href = 'case_all_all.php?id='+id+'&open_id='+open_id+'';
+}
 
 function load_form_type_array()
 {
