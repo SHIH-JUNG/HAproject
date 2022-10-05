@@ -249,7 +249,7 @@ $("#rec_add_new").on("click", function () {
   //endregion
 
 
-  //檢查會議記錄的必填欄位region
+  //檢查必填欄位region
 function check_add_rec_data(form_class) {
 
     var invoice_date = $("#invoice_date").val();

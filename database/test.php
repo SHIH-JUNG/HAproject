@@ -1,26 +1,49 @@
+<?php session_start(); ?>
 <?php 
+include("sql_connect.php");
 
-// 檔名格式 標題_日期.副檔名
-$file_prop = "履歷表檔案_20220108.pdf";
-
-
-function get_file_name_and_date($file)
-{
-  // 分割副檔名 -> 標題_日期
-  $file_name  = explode(".",$file);
-  // 分割檔名 -> 標題、日期
-  $file_title = explode("_",$file_name[0])[0];
-  $file_date = explode("_",$file_name[0])[1];
-
-  return array($file_title, $file_date);
+function isJson($string) {
+  json_decode($string);
+  return json_last_error() === JSON_ERROR_NONE;
 }
 
-$get_file_array = get_file_name_and_date($file_prop);
+@$sql_find_case_info = "SELECT `answer` FROM `forms` WHERE `Case_seqid` = '6' AND `Case_id` = 'RE111' AND `Form_type` = 'interlocution' ORDER BY `forms`.`Id` DESC;";
 
-// $get_file_array[0] 檔案標題，ex：履歷表檔案
-echo $get_file_array[0];
-// $get_file_array[1] 檔案日期，ex：20220108
-echo $get_file_array[1];
+//宣告空的陣列
+$datas = array();
 
+$select_all = mysqli_query($conn, $sql_find_case_info);
 
+//如果請求成功
+if ($select_all)
+{
+  //使用 mysqli_num_rows 方法，判別執行的語法，其取得的資料量，是否大於0
+  if (mysqli_num_rows($select_all) > 0)
+  {
+    //取得的量大於0代表有資料
+    //while迴圈會根據查詢筆數，決定跑的次數
+    //mysqli_fetch_assoc 方法取得 一筆值
+    while ($row = mysqli_fetch_assoc($select_all))
+    {
+      $datas[] = $row;
+    }
+  }
+}
+
+// print_r($datas);
+// echo '<pre>';
+// echo $datas[0]['answer'];
+// echo '<pre>';
+// echo $datas[1]['answer'];
+// echo '<pre>';
+// echo $datas[2]['answer'];
+
+// echo '<pre>';
+// echo $datas[2]['answer'];
+
+// echo count($datas[2]['answer']);
+$obj = str_replace(array('"[', ']"'), '', $datas[2]['answer']);
+echo $obj;
+$obj = json_decode($obj, true);
+echo is_array($obj);
 ?>

@@ -4,6 +4,7 @@
 //只要此頁面上有用到連接MySQL就要include它
 include("sql_connect.php");
 
+$Case_seqid = $_REQUEST['Case_seqid'];
 $Case_id = $_REQUEST['Case_id'];
 $Form_id = $_REQUEST['Form_id'];
 $Form_type = $_REQUEST['Form_type'];
@@ -26,6 +27,34 @@ $Case_pid = $_REQUEST['Case_pid'];
 @$r_case_grade = $Case_report["case_grade"];
 @$r_case_state = $Case_report["case_state"];
 @$r_case_assign = $Case_report["case_assign"];
+
+
+// @$sql_find_case_info = "SELECT `answer` FROM `forms` WHERE `Case_seqid` = '$Case_seqid' AND `Case_id` = '$Case_id' AND `Form_type` = 'case' ORDER BY `forms`.`Id` DESC;";
+
+// $find_all_info = mysqli_query($conn,$sql_find_case_info);
+// $result_nums = mysql_num_rows($find_all_info);
+
+
+// if($result_nums > 0)
+// {
+//     while ($row = mysqli_fetch_row($find_all_info))
+//     {
+//         echo $row[0];
+//     }
+// }
+
+// @$sql_find_case_info = "SELECT `answer` FROM `forms` WHERE `Case_seqid` = '$Case_seqid' AND `Case_id` = '$Case_id' AND `Form_type` ='interlocution' ORDER BY `forms`.`Id` DESC;";
+
+// $find_all_info = mysqli_query($conn,$sql_find_case_info);
+// $result_nums = mysql_num_rows($find_all_info);
+// $case_all_info = mysqli_fetch_row($find_all_info);
+
+// if($result_nums > 0)
+// {
+
+// }
+
+
 
 // 工作報表2欄位內容
 @$Case_report2 = json_decode($_REQUEST['Case_report2'], true);
@@ -63,11 +92,24 @@ $case_report_sql = "";
 
 // count_type判斷資料有無異動，有異動才新增資料進資料庫
 if($count_type!="")
-{
-    @$case_report_sql = "INSERT INTO `case_report` (`Case_seqid`, `Case_id` ,`Form_id` ,`Open_case_date` ,`Name` ,`Case_grade` ,`Case_state`,
-    `$count_type` ,`Case_assign`, `Create_date` ,`Create_name`) VALUES
-    ('$r_case_seqid', '$r_case_id', '$r_form_id', '$r_open_case_date'
-     ,'$r_name', '$r_case_grade', '$r_case_state', 1, '$r_case_assign', Now(), '$user');";
+{   
+    // 依據個案的表單序號 查詢今天有無紀錄 若已經有紀錄則不寫入資料庫
+    $sql_find_case_report = "SELECT count(*) FROM `case_report` WHERE `Case_seqid` = '$r_case_seqid' AND `Case_id` = '$r_case_id' AND `Form_id` = '$r_form_id' AND `$count_type`=1 AND TO_DAYS(`Create_date`)= TO_DAYS(NOW());";
+
+    $find_num_case_report = mysqli_query($conn,$sql_find_case_report);
+    $form_id_num_cr = mysqli_fetch_row($find_num_case_report);
+
+    if($form_id_num_cr[0]>0)
+    {
+        @$case_report_sql = "";
+    }
+    else
+    {
+        @$case_report_sql = "INSERT INTO `case_report` (`Case_seqid`, `Case_id` ,`Form_id` ,`Open_case_date` ,`Name` ,`Case_grade` ,`Case_state`,
+        `$count_type` ,`Case_assign`, `Create_date` ,`Create_name`) VALUES
+        ('$r_case_seqid', '$r_case_id', '$r_form_id', '$r_open_case_date'
+         ,'$r_name', '$r_case_grade', '$r_case_state', 1, '$r_case_assign', Now(), '$user');";
+    }
 }
 //endregion
 
@@ -229,8 +271,8 @@ else // 第一次新增至 forms 資料庫，執行insert
         
         // if($_FILES["file4"]["name"] != null && $_FILES["file4"]["type"] == "application/pdf"){
         if(@$_FILES["file4"]["name"] != null || isset($_REQUEST['File_name'])){
-            $sql = "INSERT INTO `forms` (`Case_id`, `Form_id`, `Form_type`, `Case_name`, `Case_pid`, `Create_date`, `Create_name`, `answer`, `file_path`, `Health_rec`) VALUES 
-            ('$Case_id', '$Form_id', '$Form_type', '$Case_name', '$Case_pid',
+            $sql = "INSERT INTO `forms` (`Case_seqid`, `Case_id`, `Form_id`, `Form_type`, `Case_name`, `Case_pid`, `Create_date`, `Create_name`, `answer`, `file_path`, `Health_rec`) VALUES 
+            ('$Case_seqid', '$Case_id', '$Form_id', '$Form_type', '$Case_name', '$Case_pid',
             NOW(), '$user',
             '$answer', '$file', '$health_rec');";
 
@@ -259,8 +301,8 @@ else // 第一次新增至 forms 資料庫，執行insert
     }
     else
     {
-        $sql = "INSERT INTO `forms` (`Case_id`, `Form_id`, `Form_type`, `Case_name`, `Case_pid`, `Create_date`, `Create_name`, `answer`, `Health_rec`) VALUES 
-        ('$Case_id', '$Form_id', '$Form_type', '$Case_name', '$Case_pid',
+        $sql = "INSERT INTO `forms` (`Case_seqid`, `Case_id`, `Form_id`, `Form_type`, `Case_name`, `Case_pid`, `Create_date`, `Create_name`, `answer`, `Health_rec`) VALUES 
+        ('$Case_seqid', '$Case_id', '$Form_id', '$Form_type', '$Case_name', '$Case_pid',
         NOW(), '$user',
         '$answer', '$health_rec');";
 

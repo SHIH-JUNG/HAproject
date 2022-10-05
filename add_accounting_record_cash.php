@@ -310,7 +310,7 @@
     <!-- 日期民國-->
     <script src="javascript/jquery-ui.min.js"></script>
     <script src="javascript/datepickerTw3.js"></script>
-    <!-- ================== add_phone.js ================== -->
+    <!-- ================== add_accounting_record_cash.js ================== -->
     <script src="js/add_accounting_record_cash.js"></script>
 </body>
 

@@ -3,7 +3,7 @@ include("sql_connect.php");
 
 
 //region 抓資料
-$note = "SELECT DISTINCT `Year` FROM `accounting_record` ORDER BY `accounting_record`.`Year` ASC;";
+$note = "SELECT DISTINCT `Report_year` AS Year FROM `accounting_record_report` ORDER BY `accounting_record_report`.`Report_year` ASC;";
 
 //宣告空的陣列
 $datas = array();

@@ -1,5 +1,6 @@
 <?php session_start(); ?>
 <?php include("database/check_authority.php"); ?><?php include("no_cache.php"); ?>
+<?php @$rec_year =  $_GET['year']; ?>
 <!DOCTYPE html>
 <html>
 
@@ -94,7 +95,7 @@
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span>報表紀錄</span></li>
+                        <li><span><?php echo trim($rec_year); ?>年度報表紀錄</span></li>
                     </ol>
                     <!--/麵包屑-->
                 </div>
@@ -118,30 +119,263 @@
                                 <div class="panel-body">
                                     <div class="table-wrap">
                                         <div class="table-responsive">
-                                            <h4>會計管理</h4>
-                                            <div class="table-wrap">
-                                                <div class="table-responsive">
-                                                    <table class="table display table-hover dataTable no-footer" style="font-size:15px;font-family:微軟正黑體;width:100%" id="tab_all" data-toolbar="#toolbar">
+                                            <h4><?php echo trim($rec_year); ?>年度報表紀錄</h4>
+                                            <br/>
+                                            <ul style="font-size:17px" class="nav nav-tabs" id="myTab" role="tablist">
+                                                <li class="nav-item active" role="presentation">
+                                                    <a class="nav-link" id="home-tab" data-toggle="pill" href="#one" role="tab" aria-selected="true">
+                                                        <b>月報表</b>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item" role="presentation">
+                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#two" role="tab" aria-selected="false">
+                                                        <b>季報表</b>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item" role="presentation">
+                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#three" role="tab" aria-selected="false">
+                                                        <b>上半年報表</b>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item" role="presentation">
+                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#four" role="tab" aria-selected="false">
+                                                        <b>下半年報表</b>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item" role="presentation">
+                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#five" role="tab" aria-selected="false">
+                                                        <b>年報表</b>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item" role="presentation">
+                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#six" role="tab" aria-selected="false">
+                                                        <b>現金報表</b>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item" role="presentation">
+                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#seven" role="tab" aria-selected="false">
+                                                        <b>記帳士報表</b>
+                                                    </a>
+                                                </li>
+                                            </ul>
+
+                                            <div class="tab-content" id="myTabContent">
+                                                <div class="tab-pane fade in active" id="one" role="tabpanel" aria-labelledby="home-tab">
+                                                    <table class="table display table-hover dataTable no-footer" style="font-size:15px;font-family:微軟正黑體;width:100%" name="tab_all" id="tab_all_1" data-toolbar="#toolbar">
                                                         <thead>
                                                             <tr>
-                                                                <th class="text-right" colspan="16">
-                                                                    <a href="add_accounting_record_report.php"><button style="font-size:15px" type="button" class="btn btn-default"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                                <th colspan="16">
+                                                                    <div class="text-center">
+                                                                        <b>月報表</b>
+                                                                    </div>
+                                                                    <div class="text-right">
+                                                                        <a href="add_accounting_record_report.php"><button style="font-size:15px" type="button" class="btn btn-default"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                                                 <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
                                                                                 <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z" />
                                                                                 <path fill-rule="evenodd" d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5z" />
-                                                                            </svg>新增</button></a>
+                                                                            </svg>新增</button>
+                                                                        </a>
+                                                                    </div>
                                                                 </th>
                                                             </tr>
                                                             <tr style="background-color:rgb(255 201 54);">
-                                                                <th>上傳日期</th>
-                                                                <th>報表詳細資料</th>
+                                                                <th>報表標題</th>
+                                                                <th>上傳日期</th><th>檔案</th><th>詳細內容</th>
                                                             </tr>
                                                         </thead>
-                                                        <tbody id="call_view"></tbody>
+                                                        <tbody id="call_view_1"></tbody>
                                                     </table>
                                                     <div class="text-center">
-                                                        <span id="count_people"></span>
-                                                        <span id="count_people2"></span>
+                                                        <span class="count_people"></span>
+                                                        <span class="count_people2"></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="tab-pane fade" id="two" role="tabpanel" aria-labelledby="profile-tab">
+                                                    <table class="table display table-hover dataTable no-footer" style="font-size:15px;font-family:微軟正黑體;width:100%" name="tab_all" id="tab_all_2" data-toolbar="#toolbar">
+                                                        <thead>
+                                                            <tr>
+                                                                <th colspan="16">
+                                                                    <div class="text-center">
+                                                                        <b>季報表</b>
+                                                                    </div>
+                                                                    <div class="text-right">
+                                                                        <a href="add_accounting_record_report.php"><button style="font-size:15px" type="button" class="btn btn-default"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                                                <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
+                                                                                <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z" />
+                                                                                <path fill-rule="evenodd" d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5z" />
+                                                                            </svg>新增</button>
+                                                                        </a>
+                                                                    </div>
+                                                                </th>
+                                                            </tr>
+                                                            <tr style="background-color:rgb(255 201 54);">
+                                                                <th>報表標題</th>
+                                                                <th>上傳日期</th><th>檔案</th><th>詳細內容</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="call_view_2"></tbody>
+                                                    </table>
+                                                    <div class="text-center">
+                                                        <span class="count_people"></span>
+                                                        <span class="count_people2"></span>
+                                                    </div>
+                                                </div>
+                                            
+
+                                                <div class="tab-pane fade" id="three" role="tabpanel" aria-labelledby="profile-tab">
+                                                    <table class="table display table-hover dataTable no-footer" style="font-size:15px;font-family:微軟正黑體;width:100%" name="tab_all" id="tab_all_3" data-toolbar="#toolbar">
+                                                        <thead>
+                                                            <tr>
+                                                                <th colspan="16">
+                                                                    <div class="text-center">
+                                                                        <b>上半年報表</b>
+                                                                    </div>
+                                                                    <div class="text-right">
+                                                                        <a href="add_accounting_record_report.php"><button style="font-size:15px" type="button" class="btn btn-default"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                                                <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
+                                                                                <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z" />
+                                                                                <path fill-rule="evenodd" d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5z" />
+                                                                            </svg>新增</button>
+                                                                        </a>
+                                                                    </div>
+                                                                </th>
+                                                            </tr>
+                                                            <tr style="background-color:rgb(255 201 54);">
+                                                                <th>報表標題</th>
+                                                                <th>上傳日期</th><th>檔案</th><th>詳細內容</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="call_view_3"></tbody>
+                                                    </table>
+                                                    <div class="text-center">
+                                                        <span class="count_people"></span>
+                                                        <span class="count_people2"></span>
+                                                    </div>
+                                                </div>
+                                                
+
+                                                <div class="tab-pane fade" id="four" role="tabpanel" aria-labelledby="profile-tab">
+                                                    <table class="table display table-hover dataTable no-footer" style="font-size:15px;font-family:微軟正黑體;width:100%" name="tab_all" id="tab_all_4" data-toolbar="#toolbar">
+                                                        <thead>
+                                                            <tr>
+                                                                <th colspan="16">
+                                                                    <div class="text-center">
+                                                                        <b>下半年報表</b>
+                                                                    </div>
+                                                                    <div class="text-right">
+                                                                        <a href="add_accounting_record_report.php"><button style="font-size:15px" type="button" class="btn btn-default"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                                                <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
+                                                                                <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z" />
+                                                                                <path fill-rule="evenodd" d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5z" />
+                                                                            </svg>新增</button>
+                                                                        </a>
+                                                                    </div>
+                                                                </th>
+                                                            </tr>
+                                                            <tr style="background-color:rgb(255 201 54);">
+                                                                <th>報表標題</th>
+                                                                <th>上傳日期</th><th>檔案</th><th>詳細內容</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="call_view_4"></tbody>
+                                                    </table>
+                                                    <div class="text-center">
+                                                        <span class="count_people"></span>
+                                                        <span class="count_people2"></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="tab-pane fade" id="five" role="tabpanel" aria-labelledby="profile-tab">
+                                                    <table class="table display table-hover dataTable no-footer" style="font-size:15px;font-family:微軟正黑體;width:100%" name="tab_all" id="tab_all_5" data-toolbar="#toolbar">
+                                                        <thead>
+                                                            <tr>
+                                                                <th colspan="16">
+                                                                    <div class="text-center">
+                                                                        <b>年報表</b>
+                                                                    </div>
+                                                                    <div class="text-right">
+                                                                        <a href="add_accounting_record_report.php"><button style="font-size:15px" type="button" class="btn btn-default"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                                                <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
+                                                                                <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z" />
+                                                                                <path fill-rule="evenodd" d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5z" />
+                                                                            </svg>新增</button>
+                                                                        </a>
+                                                                    </div>
+                                                                </th>
+                                                            </tr>
+                                                            <tr style="background-color:rgb(255 201 54);">
+                                                                <th>報表標題</th>
+                                                                <th>上傳日期</th><th>檔案</th><th>詳細內容</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="call_view_5"></tbody>
+                                                    </table>
+                                                    <div class="text-center">
+                                                        <span class="count_people"></span>
+                                                        <span class="count_people2"></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="tab-pane fade" id="six" role="tabpanel" aria-labelledby="profile-tab">
+                                                    <table class="table display table-hover dataTable no-footer" style="font-size:15px;font-family:微軟正黑體;width:100%" name="tab_all" id="tab_all_6" data-toolbar="#toolbar">
+                                                        <thead>
+                                                            <tr>
+                                                                <th colspan="16">
+                                                                    <div class="text-center">
+                                                                        <b>現金報表</b>
+                                                                    </div>
+                                                                    <div class="text-right">
+                                                                        <a href="add_accounting_record_report.php"><button style="font-size:15px" type="button" class="btn btn-default"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                                                <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
+                                                                                <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z" />
+                                                                                <path fill-rule="evenodd" d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5z" />
+                                                                            </svg>新增</button>
+                                                                        </a>
+                                                                    </div>
+                                                                </th>
+                                                            </tr>
+                                                            <tr style="background-color:rgb(255 201 54);">
+                                                                <th>報表標題</th>
+                                                                <th>上傳日期</th><th>檔案</th><th>詳細內容</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="call_view_6"></tbody>
+                                                    </table>
+                                                    <div class="text-center">
+                                                        <span class="count_people"></span>
+                                                        <span class="count_people2"></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="tab-pane fade" id="seven" role="tabpanel" aria-labelledby="profile-tab">
+                                                    <table class="table display table-hover dataTable no-footer" style="font-size:15px;font-family:微軟正黑體;width:100%" name="tab_all" id="tab_all_7" data-toolbar="#toolbar">
+                                                        <thead>
+                                                            <tr>
+                                                                <th colspan="16">
+                                                                    <div class="text-center">
+                                                                        <b>記帳士報表</b>
+                                                                    </div>
+                                                                    <div class="text-right">
+                                                                        <a href="add_accounting_record_report.php"><button style="font-size:15px" type="button" class="btn btn-default"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                                                <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
+                                                                                <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z" />
+                                                                                <path fill-rule="evenodd" d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5z" />
+                                                                            </svg>新增</button>
+                                                                        </a>
+                                                                    </div>
+                                                                </th>
+                                                            </tr>
+                                                            <tr style="background-color:rgb(255 201 54);">
+                                                                <th>報表標題</th>
+                                                                <th>上傳日期</th><th>檔案</th><th>詳細內容</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="call_view_7"></tbody>
+                                                    </table>
+                                                    <div class="text-center">
+                                                        <span class="count_people"></span>
+                                                        <span class="count_people2"></span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -193,19 +427,7 @@
     <script src="javascript/bootstrap-table1.11.1-zh-TW.min.js"></script>
     <!-- ================== phone ================== -->
     <script type="text/javascript" src="js/accounting_record_report.js"></script>
-    <!-- ================== 地區選擇下拉 ================== -->
-    <!--
-    <script src="js/jQuery-TWzipcode-master/twzipcode.js"></script>
-    <script src="js/jQuery-TWzipcode-master/jquery.twzipcode.js"></script>
-    <script src="js/jQuery-TWzipcode-master/jquery.twzipcode.min.js"></script>
--->
 </body>
-<script>
-    //$("#twzipcode").twzipcode({
-    //    css: ['col-sm-12',],
-    //});
-    //$.fn.dataTable.ext.classes.sPageButton = 'btn btn-primary'; // Change Pagination Button Class
-</script>
 
 </html>
 <?php include("database/timeout_logout.php"); ?>

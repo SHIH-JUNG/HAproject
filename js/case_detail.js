@@ -778,8 +778,9 @@ function submit_data()
 
      var case_report_datas = get_case_report_datas(form_type);
 
-    var case_report2_datas = get_case_report2_datas();
+    
 
+    form_data.append("Case_seqid", id);
     form_data.append("Case_id", open_id);
     form_data.append("Form_id", form_id);
     form_data.append("Form_type", form_type);
@@ -789,6 +790,7 @@ function submit_data()
     
     if(form_type=="case")
     {
+        var case_report2_datas = get_case_report2_datas();
         form_data.append("Case_report2", JSON.stringify(case_report2_datas));
     }
 
@@ -1341,6 +1343,8 @@ function get_case_report2_datas() {
     var drug_record = $('[name="drug_record"]:checked').val();
     var drug_record_value = "";
 
+    residence = residence.substr(0, 3);
+
     switch (drug_record) {
         case "0":
             drug_record_value = "海洛因";
@@ -1361,7 +1365,8 @@ function get_case_report2_datas() {
         , residence:residence
         , education:education
         , drug_record:drug_record_value
-        , case_referral:referral});
+        , case_referral:referral
+    });
 
     return report_datas2;
 }
@@ -1550,8 +1555,9 @@ function submit_form_data() {
         // 獲取工作報表所需記數內容
         var case_report_datas = get_case_report_datas(form_type);
 
-        var case_report2_datas = get_case_report2_datas();
+        
 
+        form_data.append("Case_seqid", id);
         form_data.append("Case_id", open_id);
         form_data.append("Form_id", form_id);
         form_data.append("Form_type", form_type);
@@ -1561,6 +1567,7 @@ function submit_form_data() {
         
         if(form_type=="case")
         {
+            var case_report2_datas = get_case_report2_datas();
             form_data.append("Case_report2", JSON.stringify(case_report2_datas));
         }
 

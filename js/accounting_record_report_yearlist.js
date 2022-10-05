@@ -6,7 +6,7 @@ $(document).ready(function () {
     dataType: "JSON",
     success: function (data) {
       var cssstring = "";
-      //            console.log(data)
+      // console.log(data)
 
       $.each(data, function (index, value) {
         cssstring +=

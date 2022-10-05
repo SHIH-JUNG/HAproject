@@ -16,6 +16,9 @@
     <link href="css/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
     <!--  table  -->
     <link rel="stylesheet" href="css/bootstrap-table.min.css">
+    <!--  日期民國  -->
+    <link data-require="jqueryui@*" rel="stylesheet" href="css/jquery-ui.css" />
+    <link href="css/dtsel.css" rel="stylesheet" />
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -96,11 +99,11 @@
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span><a href="accounting_record_report_yearlist.php">會計管理</a></span></li>
+                        <li><span><a href="">會計管理</a></span></li>
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span><a href="accounting_record_report.php">報表管理</a></span></li>
+                        <li><span><a href="accounting_record_report_yearlist.php">報表管理</a></span></li>
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
@@ -127,52 +130,6 @@
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-sm-12 col-xs-12">
-                                            <div class="text-center">
-                                                <h4 id="form_type">新增會議記錄</h4>
-                                            </div>
-                                            <br>
-                                            <ul style="font-size:17px" class="nav nav-tabs" id="myTab" role="tablist">
-                                                <li class="nav-item active" role="presentation">
-                                                    <a class="nav-link" id="home-tab" data-toggle="pill" href="#one" role="tab" aria-selected="true">
-                                                        <b>月報表</b>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item" role="presentation">
-                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#two" role="tab" aria-selected="false">
-                                                        <b>季報表</b>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item" role="presentation">
-                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#three" role="tab" aria-selected="false">
-                                                        <b>上半年報表</b>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item" role="presentation">
-                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#four" role="tab" aria-selected="false">
-                                                        <b>下半年報表</b>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item" role="presentation">
-                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#five" role="tab" aria-selected="false">
-                                                        <b>年報表</b>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item" role="presentation">
-                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#six" role="tab" aria-selected="false">
-                                                        <b>現金報表</b>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item" role="presentation">
-                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#seven" role="tab" aria-selected="false">
-                                                        <b>記帳士報表</b>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item" role="presentation">
-                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#eight" role="tab" aria-selected="false">
-                                                        <b>上傳及更新紀錄</b>
-                                                    </a>
-                                                </li>
-                                            </ul>
                                             <div class="tab-content" id="myTabContent">
                                                 <div class="tab-pane fade in active" id="one" role="tabpanel" aria-labelledby="home-tab">
                                                     <div class="panel-body">
@@ -180,191 +137,64 @@
                                                     <div class="table-wrap">
                                                         <div class="table-responsive col-sm-12 text-center">
                                                             <form id="form_a" class="form" action="">
-                                                                <table style="width:55%;" class="table table-bordered">
+                                                                <table style="width:65%;" class="table table-bordered">
                                                                     <tr>
                                                                         <td colspan="2">
-                                                                            <h3>上傳月報表</h3>
+                                                                            <h3>上傳報表</h3>
                                                                         </td>
                                                                     </tr>
-
                                                                     <tr style="text-align:left">
-                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">收支損益表上傳</td>
+                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>報表類型</td>
                                                                         <td style="border-bottom: solid 1px;">
                                                                             <div class="col-sm-12">
                                                                                 <div class="text-left">
-                                                                                    <input name="income_mon" type="file" class="form-control" />
-                                                                                    <br>
-                                                                                    <div id="income_mon"></div>
-                                                                                    <img src="" id="income_mon_img" style="display:none;" />
+                                                                                    <select id="report_type">
+                                                                                        <option value=""  disabled selected>請選擇報表類型</option>
+                                                                                        <option value="月報表">月報表</option>
+                                                                                        <option value="季報表">季報表</option>
+                                                                                        <option value="上半年報表">上半年報表</option>
+                                                                                        <option value="下半年報表">下半年報表</option>
+                                                                                        <option value="年報表">年報表</option>
+                                                                                        <option value="現金報表">現金報表</option>
+                                                                                        <option value="記帳士報表">記帳士報表</option>
+                                                                                    </select>
                                                                                 </div>
                                                                             </div>
                                                                         </td>
                                                                     </tr>
                                                                     <tr style="text-align:left">
-                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">資產負債表上傳</td>
+                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>檔案上傳</td>
                                                                         <td style="border-bottom: solid 1px;">
                                                                             <div class="col-sm-12">
                                                                                 <div class="text-left">
-                                                                                    <input name="property_mon" type="file" class="form-control" />
+                                                                                    <input name="report_upload" type="file" class="form-control" />
                                                                                     <br>
-                                                                                    <div id="property_mon"></div>
-                                                                                    <img src="" id="property_mon_img" style="display:none;" />
+                                                                                    <div id="report_upload"></div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-12">
+                                                                                <div class="text-left">
+                                                                                    <span style="color:red;font-weight:bold;font-size: 0.7em;">上傳檔案格式範例：資產負債表_1110101.pdf。<br/>上傳檔案標題：資產負債表，檔案日期：111/01/01。</span>
                                                                                 </div>
                                                                             </div>
                                                                         </td>
                                                                     </tr>
                                                                     <tr style="text-align:left">
-                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white">備註</td>
-                                                                        <td>
-                                                                            <textarea style="height:10em;width:700px;resize: none;font-size: 20px;" id="upload_mon_remark" name="upload_rec_remark" placeholder="請輸入備註"></textarea>
-                                                                        </td>
-                                                                    </tr>
-                                                                </table>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="tab-pane fade" id="two" role="tabpanel" aria-labelledby="profile-tab">
-                                                    <div class="panel-body">
-                                                    </div>
-                                                    <div class="table-wrap">
-                                                        <div class="table-responsive col-sm-12 text-center">
-                                                            <form action=""></form>
-                                                            <form id="form_b" class="form" action="">
-                                                                <table style="width:55%;" class="table table-bordered">
-                                                                    <tr>
-                                                                        <td colspan="2">
-                                                                            <h3>上傳季報表</h3>
-                                                                        </td>
-                                                                    </tr>
-
-                                                                    <tr style="text-align:left">
-                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">收支損益表上傳</td>
+                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>檔案標題</td>
                                                                         <td style="border-bottom: solid 1px;">
                                                                             <div class="col-sm-12">
                                                                                 <div class="text-left">
-                                                                                    <input name="income_sea" type="file" class="form-control" />
-                                                                                    <br>
-                                                                                    <div id="income_sea"></div>
-                                                                                    <img src="" id="income_sea_img" style="display:none;" />
+                                                                                    <input id="report_title" type="text">
                                                                                 </div>
                                                                             </div>
                                                                         </td>
                                                                     </tr>
                                                                     <tr style="text-align:left">
-                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">資產負債表上傳</td>
+                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>檔案日期</td>
                                                                         <td style="border-bottom: solid 1px;">
                                                                             <div class="col-sm-12">
                                                                                 <div class="text-left">
-                                                                                    <input name="property_sea" type="file" class="form-control" />
-                                                                                    <br>
-                                                                                    <div id="property_sea"></div>
-                                                                                    <img src="" id="property_sea_img" style="display:none;" />
-                                                                                </div>
-                                                                            </div>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr style="text-align:left">
-                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white">備註</td>
-                                                                        <td>
-                                                                            <textarea style="height:10em;width:700px;resize: none;font-size: 20px;" id="upload_sea_remark" name="upload_rec_remark" placeholder="請輸入備註"></textarea>
-                                                                        </td>
-                                                                    </tr>
-                                                                </table>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="tab-pane fade" id="three" role="tabpanel" aria-labelledby="profile-tab">
-                                                    <div class="panel-body">
-                                                    </div>
-                                                    <div class="table-wrap">
-                                                        <div class="table-responsive col-sm-12 text-center">
-                                                            <form action=""></form>
-                                                            <form id="form_c" class="form" action="">
-                                                                <table style="width:55%;" class="table table-bordered">
-                                                                    <tr>
-                                                                        <td colspan="2">
-                                                                            <h3>上傳上半年報表</h3>
-                                                                        </td>
-                                                                    </tr>
-
-                                                                    <tr style="text-align:left">
-                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">收支損益表上傳</td>
-                                                                        <td style="border-bottom: solid 1px;">
-                                                                            <div class="col-sm-12">
-                                                                                <div class="text-left">
-                                                                                    <input name="income_fir_half" type="file" class="form-control" />
-                                                                                    <br>
-                                                                                    <div id="income_fir_half"></div>
-                                                                                    <img src="" id="income_fir_half_img" style="display:none;" />
-                                                                                </div>
-                                                                            </div>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr style="text-align:left">
-                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">資產負債表上傳</td>
-                                                                        <td style="border-bottom: solid 1px;">
-                                                                            <div class="col-sm-12">
-                                                                                <div class="text-left">
-                                                                                    <input name="property_fir_half" type="file" class="form-control" />
-                                                                                    <br>
-                                                                                    <div id="property_fir_half"></div>
-                                                                                    <img src="" id="property_fir_half_img" style="display:none;" />
-                                                                                </div>
-                                                                            </div>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr style="text-align:left">
-                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white">備註</td>
-                                                                        <td>
-                                                                            <textarea style="height:10em;width:700px;resize: none;font-size: 20px;" id="upload_fir_half_remark" name="upload_rec_remark" placeholder="請輸入備註"></textarea>
-                                                                        </td>
-                                                                    </tr>
-                                                                </table>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="tab-pane fade" id="four" role="tabpanel" aria-labelledby="profile-tab">
-                                                    <div class="panel-body">
-                                                    </div>
-                                                    <div class="table-wrap">
-                                                        <div class="table-responsive col-sm-12 text-center">
-                                                            <form action=""></form>
-                                                            <form id="form_d" class="form" action="">
-                                                                <table style="width:55%;" class="table table-bordered">
-                                                                    <tr>
-                                                                        <td colspan="2">
-                                                                            <h3>上傳下半年報表</h3>
-                                                                        </td>
-                                                                    </tr>
-
-                                                                    <tr style="text-align:left">
-                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">收支損益表上傳</td>
-                                                                        <td style="border-bottom: solid 1px;">
-                                                                            <div class="col-sm-12">
-                                                                                <div class="text-left">
-                                                                                    <input name="income_sec_half" type="file" class="form-control" />
-                                                                                    <br>
-                                                                                    <div id="income_sec_half"></div>
-                                                                                    <img src="" id="income_sec_half_img" style="display:none;" />
-                                                                                </div>
-                                                                            </div>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr style="text-align:left">
-                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">資產負債表上傳</td>
-                                                                        <td style="border-bottom: solid 1px;">
-                                                                            <div class="col-sm-12">
-                                                                                <div class="text-left">
-                                                                                    <input name="property_sec_half" type="file" class="form-control" />
-                                                                                    <br>
-                                                                                    <div id="property_sec_half"></div>
-                                                                                    <img src="" id="property_sec_half_img" style="display:none;" />
+                                                                                    <input id="report_date" type="text" datepicker="ch_datepicker">
                                                                                 </div>
                                                                             </div>
                                                                         </td>
@@ -373,7 +203,7 @@
                                                                     <tr style="text-align:left">
                                                                         <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white">備註</td>
                                                                         <td>
-                                                                            <textarea style="height:10em;width:700px;resize: none;font-size: 20px;" id="upload_sec_half_remark" name="upload_rec_remark" placeholder="請輸入備註"></textarea>
+                                                                            <textarea style="height:10em;width:700px;resize: none;font-size: 20px;" id="remark" placeholder="請輸入備註"></textarea>
                                                                         </td>
                                                                     </tr>
                                                                 </table>
@@ -382,217 +212,22 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="tab-pane fade" id="five" role="tabpanel" aria-labelledby="profile-tab">
-                                                    <div class="panel-body">
-                                                    </div>
-                                                    <div class="table-wrap">
-                                                        <div class="table-responsive col-sm-12 text-center">
-                                                            <form action=""></form>
-                                                            <form id="form_e" class="form" action="">
-                                                                <table style="width:55%;" class="table table-bordered">
-                                                                    <tr>
-                                                                        <td colspan="2">
-                                                                            <h3>上傳年報表</h3>
-                                                                        </td>
-                                                                    </tr>
+                                                <br>
+                                                <button id="rec_add_new" style="font-size:15px" type="button" class="btn btn-default"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-check" viewBox="0 0 16 16">
+                                                        <path d="M10.854 7.854a.5.5 0 0 0-.708-.708L7.5 9.793 6.354 8.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
+                                                        <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
+                                                    </svg>新增</button>
 
-                                                                    <tr style="text-align:left">
-                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">收支損益表上傳</td>
-                                                                        <td style="border-bottom: solid 1px;">
-                                                                            <div class="col-sm-12">
-                                                                                <div class="text-left">
-                                                                                    <input name="income_year" type="file" class="form-control" />
-                                                                                    <br>
-                                                                                    <div id="income_year"></div>
-                                                                                    <img src="" id="income_year_img" style="display:none;" />
-                                                                                </div>
-                                                                            </div>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr style="text-align:left">
-                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">資產負債表上傳</td>
-                                                                        <td style="border-bottom: solid 1px;">
-                                                                            <div class="col-sm-12">
-                                                                                <div class="text-left">
-                                                                                    <input name="property_year" type="file" class="form-control" />
-                                                                                    <br>
-                                                                                    <div id="property_year"></div>
-                                                                                    <img src="" id="property_year_img" style="display:none;" />
-                                                                                </div>
-                                                                            </div>
-                                                                        </td>
-                                                                    </tr>
-
-                                                                    <tr style="text-align:left">
-                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white">備註</td>
-                                                                        <td>
-                                                                            <textarea style="height:10em;width:700px;resize: none;font-size: 20px;" id="upload_year_remark" name="upload_rec_remark" placeholder="請輸入備註"></textarea>
-                                                                        </td>
-                                                                    </tr>
-                                                                </table>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="tab-pane fade" id="six" role="tabpanel" aria-labelledby="profile-tab">
-                                                    <div class="panel-body">
-                                                    </div>
-                                                    <div class="table-wrap">
-                                                        <div class="table-responsive col-sm-12 text-center">
-                                                            <form action=""></form>
-                                                            <form id="form_f" class="form" action="">
-                                                                <table style="width:55%;" class="table table-bordered">
-                                                                    <tr>
-                                                                        <td colspan="2">
-                                                                            <h3>上傳現金報表</h3>
-                                                                        </td>
-                                                                    </tr>
-
-                                                                    <tr style="text-align:left">
-                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">收支損益表上傳</td>
-                                                                        <td style="border-bottom: solid 1px;">
-                                                                            <div class="col-sm-12">
-                                                                                <div class="text-left">
-                                                                                    <input name="income_cash" type="file" class="form-control" />
-                                                                                    <br>
-                                                                                    <div id="income_cash"></div>
-                                                                                    <img src="" id="income_cash_img" style="display:none;" />
-                                                                                </div>
-                                                                            </div>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr style="text-align:left">
-                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">資產負債表上傳</td>
-                                                                        <td style="border-bottom: solid 1px;">
-                                                                            <div class="col-sm-12">
-                                                                                <div class="text-left">
-                                                                                    <input name="property_cash" type="file" class="form-control" />
-                                                                                    <br>
-                                                                                    <div id="property_cash"></div>
-                                                                                    <img src="" id="property_cash_img" style="display:none;" />
-                                                                                </div>
-                                                                            </div>
-                                                                        </td>
-                                                                    </tr>
-
-                                                                    <tr style="text-align:left">
-                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white">備註</td>
-                                                                        <td>
-                                                                            <textarea style="height:10em;width:700px;resize: none;font-size: 20px;" id="upload_cash_remark" name="upload_rec_remark" placeholder="請輸入備註"></textarea>
-                                                                        </td>
-                                                                    </tr>
-                                                                </table>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="tab-pane fade" id="seven" role="tabpanel" aria-labelledby="profile-tab">
-                                                    <div class="panel-body">
-                                                    </div>
-                                                    <div class="table-wrap">
-                                                        <div class="table-responsive col-sm-12 text-center">
-                                                            <form action=""></form>
-                                                            <form id="form_g" class="form" action="">
-                                                                <table style="width:55%;" class="table table-bordered">
-                                                                    <tr>
-                                                                        <td colspan="2">
-                                                                            <h3>記帳士報表</h3>
-                                                                        </td>
-                                                                    </tr>
-
-                                                                    <tr style="text-align:left">
-                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">記帳士報表(Excel)</td>
-                                                                        <td style="border-bottom: solid 1px;">
-                                                                            <div class="col-sm-12">
-                                                                                <div class="text-left">
-                                                                                    <input name="bookkeeper_exl" type="file" class="form-control" />
-                                                                                    <br>
-                                                                                    <div id="bookkeeper_exl"></div>
-                                                                                    <img src="" id="bookkeeper_exl_img" style="display:none;" />
-                                                                                </div>
-                                                                            </div>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr style="text-align:left">
-                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">記帳士報表(Scan)</td>
-                                                                        <td style="border-bottom: solid 1px;">
-                                                                            <div class="col-sm-12">
-                                                                                <div class="text-left">
-                                                                                    <input name="bookkeeper_scan" type="file" class="form-control" />
-                                                                                    <br>
-                                                                                    <div id="bookkeeper_scan"></div>
-                                                                                    <img src="" id="bookkeeper_scan_img" style="display:none;" />
-                                                                                </div>
-                                                                            </div>
-                                                                        </td>
-                                                                    </tr>
-
-                                                                    <tr style="text-align:left">
-                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white">備註</td>
-                                                                        <td>
-                                                                            <textarea style="height:10em;width:700px;resize: none;font-size: 20px;" id="upload_bookkeeper_remark" name="upload_bookkeeper_remark" placeholder="請輸入備註"></textarea>
-                                                                        </td>
-                                                                    </tr>
-                                                                </table>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="tab-pane fade" id="eight" role="tabpanel" aria-labelledby="profile-tab">
-                                                    <div class="panel-body">
-                                                    </div>
-                                                    <div class="table-wrap">
-                                                        <div class="table-responsive col-sm-12 text-center">
-                                                            <form action=""></form>
-                                                            <form id="form_h" class="form" action="">
-                                                                <table style="width:55%;" class="table table-bordered">
-                                                                    <tr>
-                                                                        <td colspan="2">
-                                                                            <h3>上傳及更新紀錄</h3>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr style="text-align:left">
-                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">上傳日期</td>
-                                                                        <td style="border-bottom: solid 1px;"><input id="create_date" name="create_date" type="text" name="ch_datepicker"></td>
-                                                                    </tr>
-                                                                    <tr style="text-align:left">
-                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">上傳者</td>
-                                                                        <td style="border-bottom: solid 1px;"><input id="create_name" name="create_name" type="text"></td>
-                                                                    </tr>
-                                                                    <tr style="text-align:left">
-                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">更新日期</td>
-                                                                        <td style="border-bottom: solid 1px;"><input id="update_date" name="update_date" type="text" name="ch_datepicker"></td>
-                                                                    </tr>
-                                                                    <tr style="text-align:left">
-                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">更新者</td>
-                                                                        <td style="border-bottom: solid 1px;"><input id="update_name" name="update_name" type="text"></td>
-                                                                    </tr>
-                                                                </table>
-                                                            </form>
-                                                            <br>
-                                                            <button id="ar_add_new_upload" style="font-size:15px" type="button" class="btn btn-default"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-check" viewBox="0 0 16 16">
-                                                                    <path d="M10.854 7.854a.5.5 0 0 0-.708-.708L7.5 9.793 6.354 8.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
-                                                                    <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
-                                                                </svg>新增</button>
-                                                            <a href="accounting_record.php"><button style="font-size:15px" type="button" class="btn btn-default"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-excel" viewBox="0 0 16 16">
-                                                                        <path d="M5.884 6.68a.5.5 0 1 0-.768.64L7.349 10l-2.233 2.68a.5.5 0 0 0 .768.64L8 10.781l2.116 2.54a.5.5 0 0 0 .768-.641L8.651 10l2.233-2.68a.5.5 0 0 0-.768-.64L8 9.219l-2.116-2.54z" />
-                                                                        <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
-                                                                    </svg>取消</button></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- <div class="col-sm-12 text-center">
-                                                    <br />
-                                                    <br />
-                                                    <button style="font-size:15px" type="button" class="btn btn-default" onclick="test1()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-check" viewBox="0 0 16 16">
-                                                            <path d="M10.854 7.854a.5.5 0 0 0-.708-.708L7.5 9.793 6.354 8.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
+                                                <button onclick="test1();" style="font-size:15px" type="button" class="btn btn-default"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-check" viewBox="0 0 16 16">
+                                                    <path d="M10.854 7.854a.5.5 0 0 0-.708-.708L7.5 9.793 6.354 8.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
+                                                    <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
+                                                </svg>測試</button>
+                                                <a href="accounting_record_report_yearlist.php"><button style="font-size:15px" type="button" class="btn btn-default"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-excel" viewBox="0 0 16 16">
+                                                            <path d="M5.884 6.68a.5.5 0 1 0-.768.64L7.349 10l-2.233 2.68a.5.5 0 0 0 .768.64L8 10.781l2.116 2.54a.5.5 0 0 0 .768-.641L8.651 10l2.233-2.68a.5.5 0 0 0-.768-.64L8 9.219l-2.116-2.54z" />
                                                             <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
-                                                        </svg>test1</button>
-                                                </div> -->
+                                                        </svg>取消</button></a>
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -631,8 +266,11 @@
     <!-- ================== table ================== -->
     <script src="javascript/bootstrap1.18.0-table.min.js"></script>
     <script src="javascript/bootstrap-table1.11.1-zh-TW.min.js"></script>
-    <!-- ================== add_phone.js ================== -->
-    <script src="js/#.js"></script>
+    <!-- 日期民國-->
+    <script src="javascript/jquery-ui.min.js"></script>
+    <script src="javascript/datepickerTw3.js"></script>
+    <!-- ================== add_accounting_record_report.js ================== -->
+    <script src="js/add_accounting_record_report.js"></script>
 </body>
 
 </html>
