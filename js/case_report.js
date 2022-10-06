@@ -57,7 +57,7 @@ trans_to_Tw = function (endate) {
     var return_str = "";
     if(endate!="")
     {
-        var strAry = endate.split("-");
+        var strAry = endate.split("");
   
         if (parseInt(strAry[0]) > 1911) {
           strAry[0] = parseInt(strAry[0]) - 1911;
@@ -84,7 +84,7 @@ trans_to_EN = function (endate) {
         var strAry2 = strAry1[1].split("月");
         var strAry3 = strAry2[1].split("日");
 
-        return_str = (parseInt(strAry1[0]) + 1911) + "-" + strAry2[0] + "-" + strAry3[0];
+        return_str = (parseInt(strAry1[0]) + 1911) + "" + strAry2[0] + "" + strAry3[0];
     }
     else
     {
@@ -97,138 +97,6 @@ trans_to_EN = function (endate) {
   //endregion
 
 $(document).ready(function () {
-
-    // 抓今年度所有負責社工的工作報告 region
-    $.ajax({
-        url: "database/find_data_all_assign_case_report.php",
-        type: "POST",
-        dataType: "JSON",
-        async: false,//啟用同步請求
-        success: function (data) {
-            var cssString = "";
-            var year = "";
-            $.each(data,function(index,value){
-
-                cssString += 
-                '<tr cr_one_id="'+value.Id+'">' +
-                    '<td style="text-align:center">' + trans_to_Tw(value.Open_case_date.split(" ")[0]) + '</td>' +
-                    '<td style="text-align:center">' + value.Case_id + '</td>' +
-                    '<td style="text-align:center">' + value.Name + '</td>' +
-                    '<td style="text-align:center">' + value.Case_grade + '</td>' +
-                    '<td style="text-align:center">' + value.Case_count + '</td>' +
-                    '<td style="text-align:center">' + value.Interlocution_phone_count + '</td>' +
-                    '<td style="text-align:center">' + value.Interlocution_home_count + '</td>' +
-                    '<td style="text-align:center">' + value.Interlocution_face_count + '</td>' +
-                    '<td style="text-align:center">' + value.Case_closed_count + '</td>' +
-                    '<td style="text-align:center">' + value.Case_state + '</td>' +
-                '</tr>'
-
-                year = trans_to_Tw(value.Create_date.split(" ")[0]).split("年")[0];
-            });
-
-            // console.log(year)
-
-            $("#report_date_title").text("日期："+year+"年1月1日 ~ "+year+"年12月31日");
-            $("#report_case_assign").text("社工：所有");
-
-            $("#case_report1").html(cssString);
-                //點擊table tr 進入詳細頁面
-                // $(".table-hover tbody").on("click","tr",function () {
-                //     window.location.href = 'case_all_all.php?id='+$(this).attr("id")+'&open_id='+$(this).attr("openid")+'';
-                // });
-        },
-        error: function (e) {
-            notyf.alert('伺服器錯誤,無法載入');
-        }
-    });
-    //endregion
-
-    // 抓資料庫內有紀錄的所有的負責社工名稱 region
-    $.ajax({
-        url: "database/find_data_case_report.php",
-        type: "POST",
-        dataType: "JSON",
-        async: false,//啟用同步請求
-        success: function (data) {
-            var cssString = "";
-
-            $.each(data,function(index,value){
-                $("#case_assign").append('<option value="'+value.Case_assign+'">'+value.Case_assign+'</option>');
-            });
-
-            //找出所有查詢表格下拉式選單，將內容排序、加上"所有查詢"、去除重複值
-            var filter_select = $("select.r_filter")
-
-            $.each(filter_select,function(){
-                var this_id = $(this).attr("id");
-
-                if(this_id!=undefined)
-                {
-                    //option小到大排序
-                    $('#'+this_id+' option').sort(function(a,b){
-                        var aText = $(a).text().toUpperCase();
-                        var bText = $(b).text().toUpperCase();
-                        if(aText>bText) return 1;
-                        if(aText<bText) return -1;
-                        return 0;
-                    }).appendTo('#'+this_id+'')
-
-                    //最前面新增"所有"選像
-                    $('#'+this_id+'').prepend("<option value='' selected='selected'>所有</option>");
-
-                    $("#"+this_id+"").children().each(function() {
-                        text = $(this).text();
-                        if($("select#"+this_id+" option:contains("+text+")").length > 1){
-                            $("select#"+this_id+" option:contains("+text+"):gt(0)").remove();
-                        }
-                        //    console.log(text)
-                    });
-                }
-            });
-        },
-        error: function (e) {
-            notyf.alert('伺服器錯誤,無法載入' );
-        }
-    });
-    //endregion
-
-    // 抓取個案評估表資料分析報表 region
-    $.ajax({
-        url: "database/find_data_form_case_report.php",
-        type: "POST",
-        dataType: "JSON",
-        async: false,//啟用同步請求
-        success: function (data) {
-            console.log(data)
-            var cssString2 = "";
-            var year = "";
-            $.each(data,function(index,value){
-
-                year = parseInt(value.Year) - 1911;
-
-                cssString2 += 
-                '<tr cr_one_id="'+value.Id+'">' +
-                    '<td style="text-align:center">' + year + '</td>' +
-                    '<td style="text-align:center">' + get_age(value.Birth) + '</td>' +
-                    '<td style="text-align:center">' + value.Gender + '</td>' +
-                    '<td style="text-align:center">' + value.Address + '</td>' +
-                    '<td style="text-align:center">' + value.Education + '</td>' +
-                    '<td style="text-align:center">' + value.Drug_record + '</td>' +
-                    '<td style="text-align:center">' + value.Referral + '</td>' +
-                    '<td style="text-align:center">' + value.Demand + '</td>' +
-                    '<td style="text-align:center">' + value.Case_assign + '</td>' +
-                '</tr>'
-
-            });
-
-            $("#case_report2").html(cssString2);
-        },
-        error: function (e) {
-            notyf.alert('伺服器錯誤,無法載入');
-        }
-    });
-    //endregion
-
     //將input datepicker屬性名稱為ch_datepicker創建datepicker初始化 region
     $("input[datepicker='ch_datepicker']").each(function () {
         var this_id = $(this).attr("id");
@@ -236,6 +104,287 @@ $(document).ready(function () {
     });
     //endregion
 });
+
+// 抓今年度所有負責社工的工作報告 region
+$.ajax({
+    url: "database/find_data_all_assign_case_report.php",
+    type: "POST",
+    dataType: "JSON",
+    async: false,//啟用同步請求
+    success: function (data) {
+        var cssString = "";
+        var year = "";
+        $.each(data,function(index,value){
+
+            cssString += 
+            '<tr cr_one_id="'+value.Id+'">' +
+                '<td style="text-align:center">' + trans_to_Tw(value.Open_case_date.split(" ")[0]) + '</td>' +
+                '<td style="text-align:center">' + value.Case_id + '</td>' +
+                '<td style="text-align:center">' + value.Name + '</td>' +
+                '<td style="text-align:center">' + value.Case_grade + '</td>' +
+                '<td style="text-align:center">' + value.Case_count + '</td>' +
+                '<td style="text-align:center">' + value.Interlocution_phone_count + '</td>' +
+                '<td style="text-align:center">' + value.Interlocution_home_count + '</td>' +
+                '<td style="text-align:center">' + value.Interlocution_face_count + '</td>' +
+                '<td style="text-align:center">' + value.Case_closed_count + '</td>' +
+                '<td style="text-align:center">' + value.Case_state + '</td>' +
+            '</tr>'
+
+            year = trans_to_Tw(value.Create_date.split(" ")[0]).split("年")[0];
+        });
+
+        // console.log(year)
+
+        $("#report_date_title").text("日期："+year+"年1月1日 ~ "+year+"年12月31日");
+        $("#report_case_assign").text("社工：所有");
+
+        $("#case_report1").html(cssString);
+            //點擊table tr 進入詳細頁面
+            // $(".table-hover tbody").on("click","tr",function () {
+            //     window.location.href = 'case_all_all.php?id='+$(this).attr("id")+'&open_id='+$(this).attr("openid")+'';
+            // });
+    },
+    error: function (e) {
+        notyf.alert('伺服器錯誤,無法載入');
+    }
+});
+//endregion
+
+// 抓資料庫內有紀錄的所有的負責社工名稱 region
+$.ajax({
+    url: "database/find_data_case_report.php",
+    type: "POST",
+    dataType: "JSON",
+    async: false,//啟用同步請求
+    success: function (data) {
+        var cssString = "";
+
+        $.each(data,function(index,value){
+            $("#case_assign").append('<option value="'+value.Case_assign+'">'+value.Case_assign+'</option>');
+        });
+
+        //找出所有查詢表格下拉式選單，將內容排序、加上"所有查詢"、去除重複值
+        var filter_select = $("select.r_filter")
+
+        $.each(filter_select,function(){
+            var this_id = $(this).attr("id");
+
+            if(this_id!=undefined)
+            {
+                //option小到大排序
+                $('#'+this_id+' option').sort(function(a,b){
+                    var aText = $(a).text().toUpperCase();
+                    var bText = $(b).text().toUpperCase();
+                    if(aText>bText) return 1;
+                    if(aText<bText) return -1;
+                    return 0;
+                }).appendTo('#'+this_id+'')
+
+                //最前面新增"所有"選像
+                $('#'+this_id+'').prepend("<option value='' selected='selected'>所有</option>");
+
+                $("#"+this_id+"").children().each(function() {
+                    text = $(this).text();
+                    if($("select#"+this_id+" option:contains("+text+")").length > 1){
+                        $("select#"+this_id+" option:contains("+text+"):gt(0)").remove();
+                    }
+                    //    console.log(text)
+                });
+            }
+        });
+    },
+    error: function (e) {
+        notyf.alert('伺服器錯誤,無法載入' );
+    }
+});
+//endregion
+
+// 抓取個案評估表資料分析報表 region
+$.ajax({
+    url: "database/find_data_form_case_report.php",
+    data:{
+        mode:1,
+    },
+    type: "POST",
+    dataType: "JSON",
+    async: false,//啟用同步請求
+    success: function (data_all) {
+        $.each(data_all,function(index_i,value_i){
+
+            var case_seqid = value_i.Case_seqid;
+            // console.log(case_seqid)
+
+            // var case_seqid = '1';
+            // 抓取個案評估表資料分析報表 region
+            $.ajax({
+                url: "database/find_data_form_case_report.php",
+                data:{
+                    Case_seqid:case_seqid,
+                },
+                type: "POST",
+                dataType: "JSON",
+                async: false,//啟用同步請求
+                success: function (data) {
+                    // console.log(data);
+
+                    var report_info_arr = [];
+
+                    report_info_arr.push({
+                        Year:""
+                        , Age:0
+                        , Gender:""
+                        , Address:""
+                        , Education:""
+                        , Drug_record:""
+                        , Referral:""
+                        , Demand:""
+                        , Case_assign:""
+                    });
+
+                    $.each(data,function(index,value){
+                        
+                        var year = parseInt(value.Year) - 1911;
+                        var age = get_age(value.Birth);
+
+                        report_info_arr[0].Year = year;
+
+                        if(age>0)
+                        {
+                            report_info_arr[0].Age = age;
+                        }
+
+                        if(value.Gender!="" && report_info_arr[0].Gender=="")
+                        {
+                            report_info_arr[0].Gender = value.Gender;
+                        }
+
+                        if(value.Address!="" && report_info_arr[0].Address=="")
+                        {
+                            report_info_arr[0].Address = value.Address;
+                        }
+
+                        if(value.Education!="" && report_info_arr[0].Education=="")
+                        {
+                            report_info_arr[0].Education = value.Education;
+                        }
+
+                        if(value.Drug_record!="" && report_info_arr[0].Drug_record=="")
+                        {
+                            report_info_arr[0].Drug_record = value.Drug_record;
+                        }
+
+                        if(value.Referral!="" && report_info_arr[0].Referral=="")
+                        {
+                            report_info_arr[0].Referral = value.Referral;
+                        }
+
+                        if(value.Demand!="" && report_info_arr[0].Demand != "")
+                        {
+                            report_info_arr[0].Demand += ("、" + value.Demand);
+                        }
+                        else
+                        {
+                            report_info_arr[0].Demand += value.Demand;
+                        }
+
+                        if(value.Case_assign!="" && report_info_arr[0].Case_assign=="")
+                        {
+                            report_info_arr[0].Case_assign = value.Case_assign;
+                        }
+                    });
+                    
+                    var cssString2 = "";
+
+                    cssString2 = 
+                    '<tr cr_one_id="'+index_i+'">' +
+                        '<td style="text-align:center">' + report_info_arr[0].Year + '</td>' +
+                        '<td style="text-align:center">' + report_info_arr[0].Age + '</td>' +
+                        '<td style="text-align:center">' + report_info_arr[0].Gender + '</td>' +
+                        '<td style="text-align:center">' + report_info_arr[0].Address + '</td>' +
+                        '<td style="text-align:center">' + report_info_arr[0].Education + '</td>' +
+                        '<td style="text-align:center">' + report_info_arr[0].Drug_record + '</td>' +
+                        '<td style="text-align:center">' + report_info_arr[0].Referral + '</td>' +
+                        '<td style="text-align:center">' + report_info_arr[0].Demand + '</td>' +
+                        '<td style="text-align:center">' + report_info_arr[0].Case_assign + '</td>' +
+                    '</tr>';
+
+                    $("#case_report2").append(cssString2);
+
+                    $("#years").append('<option value="'+report_info_arr[0].Year+'">'+report_info_arr[0].Year+'</option>');
+                    
+                    if(report_info_arr[0].Gender!="")
+                    {
+                        $("#gender").append('<option value="'+report_info_arr[0].Gender+'">'+report_info_arr[0].Gender+'</option>');
+                    }
+                    if(report_info_arr[0].Address!="")
+                    {
+                        $("#address").append('<option value="'+report_info_arr[0].Address+'">'+report_info_arr[0].Address+'</option>');
+                    }
+                    if(report_info_arr[0].Education!="")
+                    {
+                        $("#education").append('<option value="'+report_info_arr[0].Education+'">'+report_info_arr[0].Education+'</option>');
+                    }
+                    if(report_info_arr[0].Drug_record!="")
+                    {
+                        $("#drug_record").append('<option value="'+report_info_arr[0].Drug_record+'">'+report_info_arr[0].Drug_record+'</option>');
+                    }
+                    if(report_info_arr[0].Referral!="")
+                    {
+                        $("#referral").append('<option value="'+report_info_arr[0].Referral+'">'+report_info_arr[0].Referral+'</option>');
+                    }
+                    if(report_info_arr[0].Case_assign!="")
+                    {
+                        $("#case_user").append('<option value="'+report_info_arr[0].Case_assign+'">'+report_info_arr[0].Case_assign+'</option>');
+                    }
+                   
+
+                    // console.log(report_info_arr);
+                },
+                error: function (e) {
+                    notyf.alert('伺服器錯誤,無法載入');
+                }
+            });
+            //endregion
+        });
+
+        //找出所有查詢表格下拉式選單，將內容排序、加上"所有查詢"、去除重複值
+        var filter_select = $("select.filter")
+        
+
+        $.each(filter_select,function(){
+            var this_id = $(this).attr("id");
+            // console.log(this_id);
+            if(this_id!=undefined)
+            {
+                //option小到大排序
+                $('#'+this_id+' option').sort(function(a,b){
+                    var aText = $(a).text().toUpperCase();
+                    var bText = $(b).text().toUpperCase();
+                    if(aText>bText) return 1;
+                    if(aText<bText) return -1;
+                    return 0;
+                }).appendTo('#'+this_id+'')
+
+                //最前面新增"所有"選像
+                $('#'+this_id+'').prepend("<option value='' selected='selected'>所有</option>");
+
+                $("#"+this_id+"").children().each(function() {
+                    text = $(this).text();
+                    if($("select#"+this_id+" option:contains("+text+")").length > 1){
+                        $("select#"+this_id+" option:contains("+text+"):gt(0)").remove();
+                    }
+                    //    console.log(text)
+                });
+            }
+        });
+    },
+    error: function (e) {
+        notyf.alert('伺服器錯誤,無法載入');
+    }
+});
+//endregion
+
+
 
 // 送出報表查詢，依據報表日期 region
 submit_case_report_select = function() {
@@ -392,7 +541,9 @@ filter_date_input = function() {
                 }
                 
 
+
                 $("#report_date_title").text("日期："+$("#r_min_date").val()+"~"+$("#r_max_date").val());
+                
                 $("#report_case_assign").text("社工："+case_assign_text);
 
                 $("#case_report1").html(cssString);
@@ -427,12 +578,16 @@ check_case_report_date_filter = function(min_date, max_date) {
     {
         errormsg = "報表結束日期不能小於報表開始日期";
     }
+    else if(min_date == "" || max_date == "")
+    {
+        errormsg = "查詢時請輸入完整的報表起訖日期";
+    }
 
     return errormsg;
 }
 //endregion
 
-get_age = function(birth) {
+ function get_age(birth) {
     var age = "0";
 
     birth = Date.parse(birth.replace('/-/g', "/"));
@@ -459,7 +614,7 @@ get_age = function(birth) {
 //設定table搜尋框重整後自動填入文字 region
 
 //table設定region
-var $table = $('[id*="tab_all"]').DataTable({
+var $table_1 = $("[name='tab_all_1']").DataTable({
     "ordering": false,
     "info": true,
     "paging": true,
@@ -495,7 +650,51 @@ var $table = $('[id*="tab_all"]').DataTable({
     buttons: [
         {
             extend: 'excelHtml5',
-            title: '快樂聯盟個案服務表',
+            title: '快樂聯盟個案服務表1',
+            text:'匯出Excel'
+        },
+    ]
+});
+
+
+
+var $table = $("[name='tab_all_2']").DataTable({
+    "ordering": false,
+    "info": true,
+    "paging": true,
+    "lengthChange": false,
+    "pageLength": 10,
+    "pagingType": "simple_numbers",
+    "searching": true,
+    "dom":
+        "<'col-sm-12'tr>"+
+        "<'col-sm-6'<'text-left'i>><'col-sm-6'<'text-right'p>>"+
+        "<'col-sm-12'<'text-left'B>>",
+    language: {
+    
+        "sZeroRecords": "没有匹配结果",
+        "sInfo": "顯示 _START_ 到 _END_ 筆資料，總共有 _TOTAL_ 筆資料",
+        "sInfoEmpty": "目前共有 0 筆紀錄",
+        "sInfoFiltered": "(由 _MAX_ 筆資料结果過濾)",
+        "fnInfoCallback": function (oSettings, iStart, iEnd, iMax, iTotal, sPre) {
+            $("#count_people").text("人次："+iTotal);
+            return sPre
+        },
+        paginate: {
+            previous: '‹上一頁',
+            next:     '下一頁›'
+        },
+        aria: {
+            paginate: {
+                previous: 'Previous',
+                next:     'Next'
+            }
+        }
+    },
+    buttons: [
+        {
+            extend: 'excelHtml5',
+            title: '快樂聯盟個案服務表2',
             text:'匯出Excel'
         },
     ]
@@ -510,6 +709,23 @@ function parseTime( t ) {
     return d;
  }
 
+
+var ages_range = (function( settings, data, dataIndex ) {
+    var min_age = parseInt($('#min_age').val());
+    var max_age = parseInt($('#max_age').val());
+    var age = parseInt(data[1]) || 0; // use data for the date column
+    console.log(data[1])
+    console.log(min_age)
+    console.log(max_age)
+    if ( ( isNaN( min_age ) && isNaN( max_age ) ) ||
+         ( isNaN( min_age ) && age <= max_age ) ||
+         ( min_age <= age   && isNaN( max_age ) ) ||
+         ( min_age <= age   && age <= max_age ) )
+    {
+        return true;
+    }
+    return false;
+});
 
 //預設總人數人次region
 $(".count_people").text("人次："+$table.column(0).data().count());
@@ -533,11 +749,6 @@ $('select.filter').on('change', function () {
     
 });
 
-
-$table.on('draw', function () {
-    $(".count_people2").text("，人數："+$table.column(0, {page:'current'} ).data().unique().count());
-});
-
 $('input.filter').on('keyup change', function () {
     //    console.log(this.value);
     var rel = $(this).attr("rel");
@@ -546,6 +757,19 @@ $('input.filter').on('keyup change', function () {
     $table.columns(rel).search(this.value).draw();
 });
 //endregion
+
+
+
+$('#min_age, #max_age').on('keyup change', function() {
+    // console.log($('#min_age').val());
+    $.fn.dataTable.ext.search.push(ages_range);
+    $table.draw();
+}); 
+
+
+$table.on('draw', function () {
+    $(".count_people2").text("，人數："+$table.column(0, {page:'current'} ).data().unique().count());
+});
 
 //匯出EXCEL按鈕CSS設定 region
 $('.buttons-excel').each(function() { 

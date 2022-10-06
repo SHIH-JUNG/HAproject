@@ -50,26 +50,7 @@ word-break: keep-all;/*必須*/
     <!--/讀取進度條-->
     <div class="wrapper">
         <!-- 最上方導覽列 -->
-        <nav class="navbar navbar-inverse navbar-fixed-top">
-            <a id="toggle_nav_btn" class="toggle-left-nav-btn inline-block mr-20 pull-left" href="javascript:void(0);">
-            <i><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-list" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/></svg></i>
-            </a>
-            <a href="index.php"><img class="brand-img pull-left" src="image/HA.png" /></a>
-            <a href="index.php"><img class="brand-img pull-left" style="width:330px;height:70px" src="image/logo字.png" /></a>      
-            <ul class="nav navbar-right top-nav pull-right">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle pr-0" data-toggle="dropdown">歡迎 <span id="username"><?php echo $_SESSION['name'] ?></span><span id="job_title"><?php echo " ".$_SESSION['job']; ?></span><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-down-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/></svg></a>            
-                       <ul class="dropdown-menu user-auth-dropdown" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                        <li>
-                            <a href="#" id="Sign_out"><i><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-power" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M5.578 4.437a5 5 0 1 0 4.922.044l.5-.866a6 6 0 1 1-5.908-.053l.486.875z"/>
-                            <path fill-rule="evenodd" d="M7.5 8V1h1v7h-1z"/></svg></i> 登出</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
+        <?php include("page_nav.php"); ?>
         <!--/最上方導覽列-->
         <!--左側導覽列-->
         <?php include("menu.php"); ?>
@@ -179,7 +160,7 @@ word-break: keep-all;/*必須*/
                                                                 <p>
                                                                 <h5 id="report_date_title">日期：-年-月-日 ~ -年-月-日</h5>
                                                                 <h5 id="report_case_assign">社工：-</h5>
-                                                                <table class="table display table-hover dataTable no-footer" style="font-size:15px;font-family:微軟正黑體;width:100%" id="tab_all1" data-toolbar="#toolbar">                                                       
+                                                                <table class="table display table-hover dataTable no-footer" style="font-size:15px;font-family:微軟正黑體;width:100%" name="tab_all_1" data-toolbar="#toolbar">                                                       
                                                                     <thead>
                                                                         <tr></tr>
                                                                         <tr style="background-color:rgb(255 201 54);">
@@ -217,47 +198,47 @@ word-break: keep-all;/*必須*/
                                                                                 <td class="text-right" style="background-color:rgb(255 201 54)">年度：</td>
                                                                                 <td class="text-left">
                                                                                     <select rel="0" id="years" class="filter search">
-                                                                                        <option value="">所有</option>
+                                                                                        <!-- <option value="">所有</option> -->
                                                                                     </select>
                                                                                 </td>
 
                                                                                 <td class="text-right" style="background-color:rgb(255 201 54)">負責社工：</td>
                                                                                 <td class="text-left">
                                                                                     <select rel="8" id="case_user" class="filter search">
-                                                                                        <option value="">所有</option>
+                                                                                        <!-- <option value="">所有</option> -->
                                                                                     </select>
                                                                                 </td>
 
                                                                                 <td class="text-right" style="background-color:rgb(255 201 54);">年齡：</td>
                                                                                 <td class="text-left">
-                                                                                    <input id="min_age" class="filter search" style="width:6em;" type="number" placeholder="年齡搜尋">
+                                                                                    <input id="min_age" style="width:6em;" type="number" placeholder="年齡搜尋">
                                                                                     <label>～</label>
-                                                                                    <input id="max_age" class="filter search" style="width:6em;" type="number" placeholder="年齡搜尋">
+                                                                                    <input id="max_age" style="width:6em;" type="number" placeholder="年齡搜尋">
                                                                                 </td>
 
                                                                             </tr>
                                                                             <tr>
-                                                                            <td class="text-right" style="background-color:rgb(255 201 54)">性別：</td>
+                                                                                <td class="text-right" style="background-color:rgb(255 201 54)">性別：</td>
                                                                                 <td class="text-left">
-                                                                                    <select rel="2" class="filter search">
-                                                                                        <option value="">所有</option>
-                                                                                        <option value="男">男</option>
+                                                                                    <select rel="2" id="gender" class="filter search">
+                                                                                        <!-- <option value="">所有</option> -->
+                                                                                        <!-- <option value="男">男</option>
                                                                                         <option value="女">女</option>
-                                                                                        <option value="其他">其他</option>
+                                                                                        <option value="其他">其他</option> -->
                                                                                     </select>
                                                                                 </td>
 
                                                                                 <td class="text-right" style="background-color:rgb(255 201 54)">居住地：</td>
                                                                                 <td class="text-left">
                                                                                     <select rel="3" id="address" class="filter search">
-                                                                                        <option value="">所有</option>
+                                                                                        <!-- <option value="">所有</option> -->
                                                                                     </select>
                                                                                 </td>
 
                                                                                 <td class="text-right" style="background-color:rgb(255 201 54)">教育程度：</td>
                                                                                 <td class="text-left">
                                                                                     <select rel="4" id="education" class="filter search">
-                                                                                        <option value="">所有</option>
+                                                                                        <!-- <option value="">所有</option> -->
                                                                                     </select>
                                                                                 </td>
                                                                             </tr>
@@ -267,15 +248,15 @@ word-break: keep-all;/*必須*/
                                                                                 <td class="text-left">
                                                                                     <!-- <input rel="5" class="filter search" type="text" placeholder="使用毒品搜尋"> -->
                                                                                     <select rel="5" id="drug_record" class="filter search">
-                                                                                        <option value="">所有</option>
+                                                                                        <!-- <option value="">所有</option> -->
                                                                                     </select>
                                                                                 </td>
 
                                                                                 <td class="text-right" style="background-color:rgb(255 201 54)">個案來源：</td>
                                                                                 <td class="text-left">
-                                                                                    <select rel="6" class="filter search">
-                                                                                        <option value="">所有</option>
-                                                                                        <option value="醫院">醫院</option>
+                                                                                    <select rel="6" id="referral" class="filter search">
+                                                                                        <!-- <option value="">所有</option> -->
+                                                                                        <!-- <option value="醫院">醫院</option>
                                                                                         <option value="矯正機關">矯正機關</option>
                                                                                         <option value="自行求助">自行求助</option>
                                                                                         <option value="衛政">衛政</option>
@@ -285,7 +266,7 @@ word-break: keep-all;/*必須*/
                                                                                         <option value="教會">教會</option>
                                                                                         <option value="社政">社政</option>
                                                                                         <option value="其他">其他</option>
-                                                                                        <option value="社區">社區</option>
+                                                                                        <option value="社區">社區</option> -->
                                                                                     </select>
                                                                                 </td>
 
@@ -307,7 +288,7 @@ word-break: keep-all;/*必須*/
                                                                 <h4>個案服務分析表</h4>
                                                                 <div class="table-wrap">
                                                                     <div class="table-responsive">
-                                                                        <table class="table display table-hover dataTable no-footer" style="font-size:15px;font-family:微軟正黑體;width:100%" id="tab_all2" data-toolbar="#toolbar">                                                       
+                                                                        <table class="table display table-hover dataTable no-footer" style="font-size:15px;font-family:微軟正黑體;width:100%" name="tab_all_2" data-toolbar="#toolbar">                                                       
                                                                             <thead>
                                                                                 <tr></tr>
                                                                                 <tr style="background-color:rgb(255 201 54);">

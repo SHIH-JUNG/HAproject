@@ -28,34 +28,6 @@ $Case_pid = $_REQUEST['Case_pid'];
 @$r_case_state = $Case_report["case_state"];
 @$r_case_assign = $Case_report["case_assign"];
 
-
-// @$sql_find_case_info = "SELECT `answer` FROM `forms` WHERE `Case_seqid` = '$Case_seqid' AND `Case_id` = '$Case_id' AND `Form_type` = 'case' ORDER BY `forms`.`Id` DESC;";
-
-// $find_all_info = mysqli_query($conn,$sql_find_case_info);
-// $result_nums = mysql_num_rows($find_all_info);
-
-
-// if($result_nums > 0)
-// {
-//     while ($row = mysqli_fetch_row($find_all_info))
-//     {
-//         echo $row[0];
-//     }
-// }
-
-// @$sql_find_case_info = "SELECT `answer` FROM `forms` WHERE `Case_seqid` = '$Case_seqid' AND `Case_id` = '$Case_id' AND `Form_type` ='interlocution' ORDER BY `forms`.`Id` DESC;";
-
-// $find_all_info = mysqli_query($conn,$sql_find_case_info);
-// $result_nums = mysql_num_rows($find_all_info);
-// $case_all_info = mysqli_fetch_row($find_all_info);
-
-// if($result_nums > 0)
-// {
-
-// }
-
-
-
 // 工作報表2欄位內容
 @$Case_report2 = json_decode($_REQUEST['Case_report2'], true);
 @$Case_report2  = $Case_report2[0];
@@ -65,6 +37,7 @@ $Case_pid = $_REQUEST['Case_pid'];
 @$r_education = $Case_report2["education"];
 @$r_drug_record = $Case_report2["drug_record"];
 @$r_case_referral = $Case_report2["case_referral"];
+@$r_ques_type = $Case_report2["ques_type"];
 
 //是否有醫療表單資料
 if(!isset($_REQUEST['health_rec']))
@@ -116,18 +89,18 @@ if($count_type!="")
 // 儲存工作報表資料，顯示在case_report.php 第二張報表 region
 
 //新增語法
-@$insert_case_report2_sql = "INSERT INTO `form_case_report` (`Case_seqid`, `Case_id` ,`Form_id` ,`Open_case_date` ,`Name` ,`Birth` ,`Gender`,
+@$insert_case_report2_sql = "INSERT INTO `form_case_report` (`Case_seqid`, `Case_id` ,`Form_id` ,`Form_type` ,`Open_case_date` ,`Name` ,`Birth` ,`Gender`,
 `Address` ,`Education` ,`Drug_record` ,`Referral` ,`Demand` ,
 `Case_assign`, `Create_date` ,`Create_name`) VALUES
-('$r_case_seqid', '$r_case_id', '$r_form_id', '$r_open_case_date'
+('$r_case_seqid', '$r_case_id', '$r_form_id', '$Form_type', '$r_open_case_date'
 ,'$r_name', '$r_birth', '$r_sex'
-,'$r_residence', '$r_education', '$r_drug_record', '$r_case_referral', ''
+,'$r_residence', '$r_education', '$r_drug_record', '$r_case_referral', '$r_ques_type'
  , '$r_case_assign', Now(), '$user');";
 
 //更新語法
-@$update_case_report2_sql = "UPDATE `form_case_report` SET `Name` = '$r_name', `Birth` = '$r_birth', `Gender` = '$r_sex'
+@$update_case_report2_sql = "UPDATE `form_case_report` SET `Form_type` = '$Form_type', `Name` = '$r_name', `Birth` = '$r_birth', `Gender` = '$r_sex'
 , `Address` = '$r_residence', `Education` = '$r_education', `Drug_record` = '$r_drug_record'
-, `Referral` = '$r_case_referral', `Demand` = '', `Case_assign` = '$r_case_assign'
+, `Referral` = '$r_case_referral', `Demand` = '$r_ques_type', `Case_assign` = '$r_case_assign'
 , `Update_date` = NOW(), `Update_name`= '$user'
 WHERE `Case_seqid` = '$r_case_seqid' AND `Case_id` = '$r_case_id' AND `Form_id` = '$r_form_id' ORDER BY `Create_date` DESC;";
 
