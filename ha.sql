@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2022-10-06 13:14:43
+-- 產生時間： 2022-10-07 09:27:08
 -- 伺服器版本： 10.4.24-MariaDB
 -- PHP 版本： 7.4.29
 
@@ -954,7 +954,8 @@ INSERT INTO `login_record` (`Id`, `Login_timestamp`, `Login_account`, `Login_aut
 (86, '2022-10-05 17:51:35', 'text1', '1', 'jia', '22.6483444,120.3262535', 0),
 (87, '2022-10-05 17:52:02', 'text1', '1', '社工員1', '22.6483444,120.3262535', 0),
 (88, '2022-10-06 14:28:15', 'test5', '3', '園主任', '22.7189,120.4412', 1),
-(89, '2022-10-06 18:39:11', 'test5', '3', '園主任', '22.7189,120.4412', 0);
+(89, '2022-10-06 18:39:11', 'test5', '3', '園主任', '22.7189,120.4412', 0),
+(90, '2022-10-07 14:07:24', 'test5', '3', '園主任', '22.7189,120.4412', 1);
 
 -- --------------------------------------------------------
 
@@ -2103,7 +2104,7 @@ ALTER TABLE `form_interlocution_queskeywords`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `login_record`
 --
 ALTER TABLE `login_record`
-  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
+  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `members_assemble`
