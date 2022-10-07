@@ -4,7 +4,7 @@
     <!-- CSS-->
     <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/bootstrap4.5.2.min.css">
+    <link rel="stylesheet" href="css/bootstrap4.5.2.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <!--網頁icon-->
     <link rel="icon" href="image/HA.png" type="image/x-icon">
     <!--  sweetalert2  -->
@@ -19,9 +19,9 @@
     <title>個案管理系統</title>
 
 <!-- Bootstrap -->
-<script src="javascript/jquery-3.5.1.slim.min.js"></script>
-<script src="javascript/popper1.16.1.min.js"></script>
-<script src="javascript/bootstrap4.5.2.min.js"></script>
+<script src="javascript/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="javascript/popper1.16.1.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="javascript/bootstrap4.5.2.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 <!-- JQUERY -->
 <script src="javascript/jquery3.5.1.min.js"></script>
 <!-- -->

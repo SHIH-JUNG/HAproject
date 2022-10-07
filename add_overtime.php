@@ -1,5 +1,5 @@
 <?php session_start(); ?>
-<?php include("database/check_authority.php"); ?><?php include("no_cache.php"); ?>
+<?php include("database/check_authority.php"); ?> <?php include("no_cache.php"); ?>
 <!DOCTYPE html>
 <html>
 
@@ -60,7 +60,7 @@
     <!--/讀取進度條-->
     <div class="wrapper">
         <!-- 最上方導覽列 -->
-       <?php include("page_nav.php"); ?>
+        <?php include("page_nav.php"); ?>
         <!--/最上方導覽列-->
         <!--左側導覽列-->
         <?php include("menu.php"); ?>

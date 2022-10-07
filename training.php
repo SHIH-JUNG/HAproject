@@ -131,9 +131,16 @@
                                                                 </select>
                                                             </td>
 
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">時數：</td>
+                                                            <td class="text-left">
+                                                                <select id="hours" rel="4" class="filter search">
+                                                                    <option value="">所有</option>
+                                                                </select>
+                                                            </td>
+
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">在職訓練地點：</td>
                                                             <td class="text-left">
-                                                                <select id="place" rel="4" class="filter search">
+                                                                <select id="place" rel="5" class="filter search">
                                                                     <option value="">所有</option>
                                                                 </select>
                                                             </td>
@@ -168,6 +175,7 @@
                                                                 <th>在職訓練日期</th>
                                                                 <th>是否在職</th>
                                                                 <th>課程內容</th>
+                                                                <th>時數</th>
                                                                 <th>在職訓練地點</th>
                                                                 <th>創建日期</th>
                                                                 <th>創建者</th>

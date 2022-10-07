@@ -137,6 +137,7 @@ $(document).ready(function () {
         $("#on_or_off").val(value.On_or_off);
         $("#training_name").val(value.Training_name);
         $("#place").val(value.Place);
+        $("#hours").val(value.Hours);
         $("#remark").val(value.Remark);
         $("#create_date").val(check_sql_date_format(value.Create_date));
         $("#create_name").val(value.Create_name);
@@ -189,6 +190,7 @@ $("#tra_update").on("click", function () {
         on_or_off: $("#on_or_off"),
         training_name: $("#training_name").val(),
         place: $("#place").val(),
+        hours: $("#hours").val(),
         remark: $("#remark").val(),
         create_date: trans_to_EN($("#create_date").val()),
         create_name: $("#create_name").val(),
@@ -569,6 +571,7 @@ function reservation_rec_new() {
           // Name: $("#name").val(),
           Training_date: $("#training_date").val(),
           Training_name: $("#training_name").val(),
+          Hours: $("#hours").val(),
           Place: $("#place").val(),
           Remark: $("#remark").val(),
         },
@@ -606,6 +609,7 @@ function reservation_rec_new() {
 function check_open_reservation_note_value_str() {
   var training_date = $("#training_date").val();
   var training_name = $("#training_name").val();
+  var hours = $("#hours").val();
   var place = $("#place").val();
   var errorstr = "";
 
@@ -614,6 +618,9 @@ function check_open_reservation_note_value_str() {
   }
   if (training_name == null) {
     errorstr += "未填寫課程內容!\r\n";
+  }
+  if (hours == null) {
+    errorstr += "未填寫時數!\r\n";
   }
   if (place == null) {
     errorstr += "未填寫在職訓練地點!\r\n";
@@ -624,164 +631,164 @@ function check_open_reservation_note_value_str() {
 //endregion
 
 //檢查欄位 個人監所服務紀錄(Update) region
-function check_open_phone_note_value_str2(id) {
-  var ncall_datetime = $("#ncall_datetime" + id + "").val();
-  var ninfo_name = $("#ninfo_name" + id + "").val();
-  var nrelationship = $("#nrelationship" + id + "").val();
-  var nphone = $("#nphone" + id + "").val();
-  //   var ndepartment = $('#ndepartment'+id+'').val();
-  var nuser = $("#ndepartment" + id + "nuser").val();
-  var nnote = $("#nnote" + id + "").val();
-  var errorstr = "";
+// function check_open_phone_note_value_str2(id) {
+//   var ncall_datetime = $("#ncall_datetime" + id + "").val();
+//   var ninfo_name = $("#ninfo_name" + id + "").val();
+//   var nrelationship = $("#nrelationship" + id + "").val();
+//   var nphone = $("#nphone" + id + "").val();
+//   //   var ndepartment = $('#ndepartment'+id+'').val();
+//   var nuser = $("#ndepartment" + id + "nuser").val();
+//   var nnote = $("#nnote" + id + "").val();
+//   var errorstr = "";
 
-  if (ncall_datetime == null) {
-    errorstr += "未填寫來電日期!\r\n";
-  }
-  if (ninfo_name == null) {
-    errorstr += "未填寫個案姓名!\r\n";
-  }
-  if (nrelationship == null) {
-    errorstr += "未填寫聯絡人與案主關係!\r\n";
-  }
-  if (nphone == null) {
-    errorstr += "未填寫連絡人電話!\r\n";
-  }
-  if (nuser == null) {
-    errorstr += "未選擇負責同工!\r\n";
-  }
-  if (nnote == null) {
-    errorstr += "未填寫通話內容!\r\n";
-  }
-  if (errorstr == "") {
-    if (ncall_datetime.replace(/\s*/g, "") == "") {
-      errorstr += "未填寫來電日期!\r\n";
-    }
-    if (ninfo_name.replace(/\s*/g, "") == "") {
-      errorstr += "未填寫個案姓名!\r\n";
-    }
-    if (nrelationship.replace(/\s*/g, "") == "") {
-      errorstr += "未填寫聯絡人與案主關係!\r\n";
-    }
-    if (nphone.replace(/\s*/g, "") == "") {
-      errorstr += "未填寫連絡人電話!\r\n";
-    }
-    if (nuser.replace(/\s*/g, "") == "") {
-      errorstr += "未選擇負責同工!\r\n";
-    }
-    if (nnote.replace(/\s*/g, "") == "") {
-      errorstr += "未填寫通話內容!\r\n";
-    }
-  }
+//   if (ncall_datetime == null) {
+//     errorstr += "未填寫來電日期!\r\n";
+//   }
+//   if (ninfo_name == null) {
+//     errorstr += "未填寫個案姓名!\r\n";
+//   }
+//   if (nrelationship == null) {
+//     errorstr += "未填寫聯絡人與案主關係!\r\n";
+//   }
+//   if (nphone == null) {
+//     errorstr += "未填寫連絡人電話!\r\n";
+//   }
+//   if (nuser == null) {
+//     errorstr += "未選擇負責同工!\r\n";
+//   }
+//   if (nnote == null) {
+//     errorstr += "未填寫通話內容!\r\n";
+//   }
+//   if (errorstr == "") {
+//     if (ncall_datetime.replace(/\s*/g, "") == "") {
+//       errorstr += "未填寫來電日期!\r\n";
+//     }
+//     if (ninfo_name.replace(/\s*/g, "") == "") {
+//       errorstr += "未填寫個案姓名!\r\n";
+//     }
+//     if (nrelationship.replace(/\s*/g, "") == "") {
+//       errorstr += "未填寫聯絡人與案主關係!\r\n";
+//     }
+//     if (nphone.replace(/\s*/g, "") == "") {
+//       errorstr += "未填寫連絡人電話!\r\n";
+//     }
+//     if (nuser.replace(/\s*/g, "") == "") {
+//       errorstr += "未選擇負責同工!\r\n";
+//     }
+//     if (nnote.replace(/\s*/g, "") == "") {
+//       errorstr += "未填寫通話內容!\r\n";
+//     }
+//   }
 
-  return errorstr;
-}
+//   return errorstr;
+// }
 //endregion
 
 //檢查欄位 個人面訪紀錄(Update) region
-function check_open_reservation_note_value_str2(id) {
-  var start_date = $("#start_date" + id + "").val();
-  var one_user = $("#department1" + id + "one_user").val();
-  // var two_user = $('#department2'+id+'two_user').val();
-  var location_detail = $("#location_detail" + id + "").val();
-  var location_other = $("#other_location" + id + "").val();
-  var location_radio = $(
-    'input[type=radio][name="location' + id + '[]"]:checked'
-  ).length;
-  var errorstr = "";
+// function check_open_reservation_note_value_str2(id) {
+//   var start_date = $("#start_date" + id + "").val();
+//   var one_user = $("#department1" + id + "one_user").val();
+//   // var two_user = $('#department2'+id+'two_user').val();
+//   var location_detail = $("#location_detail" + id + "").val();
+//   var location_other = $("#other_location" + id + "").val();
+//   var location_radio = $(
+//     'input[type=radio][name="location' + id + '[]"]:checked'
+//   ).length;
+//   var errorstr = "";
 
-  if (start_date == null) {
-    errorstr += "未填寫預約訪談日期!\r\n";
-  }
-  if (one_user == null) {
-    errorstr += "未選擇主要負責同工!\r\n";
-  }
-  // if (two_user == null) {
-  //     errorstr += "未選擇副同工!\r\n";
-  // }
-  if (location_detail == null && location_other == null) {
-    errorstr += "未填寫面訪方式!\r\n";
-  }
-  if (location_radio <= 0) {
-    errorstr += "未選擇面訪方式分類!\r\n";
-  }
-  if (errorstr == "") {
-    if (start_date.replace(/\s*/g, "") == "") {
-      errorstr += "未填寫預約訪談日期!\r\n";
-    }
-    if (one_user.replace(/\s*/g, "") == "") {
-      errorstr += "未選擇主要負責同工!\r\n";
-    }
-    // if (two_user.replace(/\s*/g, "") == '') {
-    //     errorstr += "未選擇副同工!\r\n";
-    // }
-    if (
-      location_detail.replace(/\s*/g, "") == "" &&
-      location_other.replace(/\s*/g, "") == ""
-    ) {
-      errorstr += "未填寫面訪方式!\r\n";
-    }
-  }
+//   if (start_date == null) {
+//     errorstr += "未填寫預約訪談日期!\r\n";
+//   }
+//   if (one_user == null) {
+//     errorstr += "未選擇主要負責同工!\r\n";
+//   }
+//   // if (two_user == null) {
+//   //     errorstr += "未選擇副同工!\r\n";
+//   // }
+//   if (location_detail == null && location_other == null) {
+//     errorstr += "未填寫面訪方式!\r\n";
+//   }
+//   if (location_radio <= 0) {
+//     errorstr += "未選擇面訪方式分類!\r\n";
+//   }
+//   if (errorstr == "") {
+//     if (start_date.replace(/\s*/g, "") == "") {
+//       errorstr += "未填寫預約訪談日期!\r\n";
+//     }
+//     if (one_user.replace(/\s*/g, "") == "") {
+//       errorstr += "未選擇主要負責同工!\r\n";
+//     }
+//     // if (two_user.replace(/\s*/g, "") == '') {
+//     //     errorstr += "未選擇副同工!\r\n";
+//     // }
+//     if (
+//       location_detail.replace(/\s*/g, "") == "" &&
+//       location_other.replace(/\s*/g, "") == ""
+//     ) {
+//       errorstr += "未填寫面訪方式!\r\n";
+//     }
+//   }
 
-  return errorstr;
-}
+//   return errorstr;
+// }
 //endregion
 
 //更新phone_note region
-function update_phone_note(id) {
-  var stau = false;
+// function update_phone_note(id) {
+//   var stau = false;
 
-  if (check_open_phone_note_value_str2(id) != "") {
-    stau = false;
-  } else {
-    stau = true;
-  }
-  console.log(stau);
+//   if (check_open_phone_note_value_str2(id) != "") {
+//     stau = false;
+//   } else {
+//     stau = true;
+//   }
+//   console.log(stau);
 
-  if (!stau) {
-    // alert(check_open_phone_note_value_str2(id));
-    swal({
-      title: check_open_phone_note_value_str2(id),
-      type: "error",
-    });
-  } else {
-    var phone_id = getUrlVars()["phone_id"];
-    //    console.log($('#ncall_datetime'+id+'').val());
-    $.ajax({
-      url: "database/update_personal_history.php",
-      data: {
-        Id: id,
-        Phone_id: phone_id,
-        nCall_datetime: $("#ncall_datetime" + id + "").val(),
-        nInfo_Name: $("#ninfo_name" + id + "").val(),
-        nRelationship_detail: $("#nrelationship" + id + "").val(),
-        nR_phone: $("#nphone" + id + "").val(),
-        nuser: $("#ndepartment" + id + "nuser").val(),
-        nPhone_note: $("#nnote" + id + "").val(),
-      },
-      type: "POST",
-      dataType: "JSON",
-      success: function (data) {
-        //            console.log(data);
-        if (data == 1) {
-          swal({
-            title: "修改成功！",
-            type: "success",
-          }).then(function () {
-            location.reload();
-          });
-        } else {
-          swal({
-            title: "修改失敗！",
-            type: "error",
-          });
-        }
-      },
-      error: function (e) {
-        console.log(e);
-      },
-    });
-  }
-}
+//   if (!stau) {
+//     // alert(check_open_phone_note_value_str2(id));
+//     swal({
+//       title: check_open_phone_note_value_str2(id),
+//       type: "error",
+//     });
+//   } else {
+//     var phone_id = getUrlVars()["phone_id"];
+//     //    console.log($('#ncall_datetime'+id+'').val());
+//     $.ajax({
+//       url: "database/update_personal_history.php",
+//       data: {
+//         Id: id,
+//         Phone_id: phone_id,
+//         nCall_datetime: $("#ncall_datetime" + id + "").val(),
+//         nInfo_Name: $("#ninfo_name" + id + "").val(),
+//         nRelationship_detail: $("#nrelationship" + id + "").val(),
+//         nR_phone: $("#nphone" + id + "").val(),
+//         nuser: $("#ndepartment" + id + "nuser").val(),
+//         nPhone_note: $("#nnote" + id + "").val(),
+//       },
+//       type: "POST",
+//       dataType: "JSON",
+//       success: function (data) {
+//         //            console.log(data);
+//         if (data == 1) {
+//           swal({
+//             title: "修改成功！",
+//             type: "success",
+//           }).then(function () {
+//             location.reload();
+//           });
+//         } else {
+//           swal({
+//             title: "修改失敗！",
+//             type: "error",
+//           });
+//         }
+//       },
+//       error: function (e) {
+//         console.log(e);
+//       },
+//     });
+//   }
+// }
 //endregion
 
 //新增至開案個案按鈕 region
@@ -928,38 +935,38 @@ function check_trans_to_opencase_value() {
 //endregion
 
 //檢查開案編號是否重複 region
-function check_case_isrepeat() {
-  var isrepeat = false;
+// function check_case_isrepeat() {
+//   var isrepeat = false;
 
-  var r_case_id = $("#open_case_t_sn")
-    .val()
-    .replace(/^\s*|\s*$/g, "");
+//   var r_case_id = $("#open_case_t_sn")
+//     .val()
+//     .replace(/^\s*|\s*$/g, "");
 
-  // console.log(r_case_id)
+//   // console.log(r_case_id)
 
-  $.ajax({
-    url: "database/find_repeat_caseid.php",
-    data: {
-      Open_id: r_case_id,
-    },
-    type: "POST",
-    dataType: "JSON",
-    async: false,
-    success: function (data) {
-      // console.log(data)
-      if (data == 1) {
-        isrepeat = true;
-      } else {
-        isrepeat = false;
-      }
-    },
-    error: function (e) {
-      console.log(e);
-    },
-  });
+//   $.ajax({
+//     url: "database/find_repeat_caseid.php",
+//     data: {
+//       Open_id: r_case_id,
+//     },
+//     type: "POST",
+//     dataType: "JSON",
+//     async: false,
+//     success: function (data) {
+//       // console.log(data)
+//       if (data == 1) {
+//         isrepeat = true;
+//       } else {
+//         isrepeat = false;
+//       }
+//     },
+//     error: function (e) {
+//       console.log(e);
+//     },
+//   });
 
-  return isrepeat;
-}
+//   return isrepeat;
+// }
 //endregion
 
 //取消重整region

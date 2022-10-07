@@ -39,6 +39,9 @@ $.ajax({
         value.Training_name +
         "</td>" +
         '<td style="text-align:center">' +
+        value.Hours +
+        "</td>" +
+        '<td style="text-align:center">' +
         value.Place +
         "</td>" +
         '<td style="text-align:center">' +
@@ -78,6 +81,9 @@ $.ajax({
           '">' +
           value.Training_name +
           "</option>"
+      );
+      $("#hours").append(
+        '<option value="' + value.Hours + '">' + value.Hours + "</option>"
       );
       $("#place").append(
         '<option value="' + value.Place + '">' + value.Place + "</option>"

@@ -1,5 +1,5 @@
 <?php session_start(); ?>
-<?php include("database/check_authority.php"); ?><?php include("no_cache.php"); ?>
+<?php include("database/check_authority.php"); ?> <?php include("no_cache.php"); ?>
 
 <!DOCTYPE html>
 <html>
@@ -169,7 +169,15 @@
                                                                             </tr>
                                                                             <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>對象</td>
-                                                                                <td style="border-bottom: solid 1px;"><input id="person" class="program_question" type="text"></td>
+                                                                                <td style="border-bottom: solid 1px;">
+                                                                                    <select id="person" class="program_question">
+                                                                                        <option value="愛滋感染者">愛滋感染者</option>
+                                                                                        <option value="一般藥癮者">一般藥癮者</option>
+                                                                                        <option value="藥癮家庭">藥癮家庭</option>
+                                                                                        <option value="親職兒少">親職兒少</option>
+                                                                                    </select>
+                                                                                </td>
+                                                                                </td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>地點</td>

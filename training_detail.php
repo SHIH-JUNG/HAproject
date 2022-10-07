@@ -1,5 +1,5 @@
 <?php session_start(); ?>
-<?php include("database/check_authority.php"); ?><?php include("no_cache.php"); ?>
+<?php include("database/check_authority.php"); ?> <?php include("no_cache.php"); ?>
 <!DOCTYPE html>
 <html>
 
@@ -183,6 +183,11 @@
                                                                                 <tr style="text-align:left">
                                                                                     <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>課程內容</td>
                                                                                     <td style="border-bottom: solid 1px;"><input id="training_name" class="tra_question" type="text"></td>
+                                                                                </tr>
+
+                                                                                <tr style="text-align:left">
+                                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>時數</td>
+                                                                                    <td style="border-bottom: solid 1px;"><input id="hours" class="tra_question" type="text"></td>
                                                                                 </tr>
 
                                                                                 <tr style="text-align:left">
