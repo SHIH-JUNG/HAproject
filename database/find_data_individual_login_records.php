@@ -9,11 +9,11 @@ $user_name = $_SESSION['name'];
 
 if(!empty($_POST['mode']))
 {
-    $sql = "SELECT *, COUNT(*) as count FROM (SELECT * FROM `login_record` WHERE `Login_account` = '$user_aacount' AND `Login_name` = '$user_name' ORDER BY `Id` DESC LIMIT 9999) LGRC GROUP BY MONTH(LGRC.Login_timestamp) ORDER BY `Id` DESC;";
+    $sql = "SELECT *, COUNT(*) as count FROM (SELECT * FROM `login_record` WHERE `Login_account` = '$user_aacount' AND `Login_name` = '$user_name' AND `Is_day_first` = 1  ORDER BY `Id` DESC LIMIT 9999) LGRC GROUP BY MONTH(LGRC.Login_timestamp) ORDER BY `Id` DESC;";
 }
 else
 {
-    $sql = "SELECT * FROM `login_record` WHERE `Login_account` = '$user_aacount' AND `Login_name` = '$user_name' ORDER BY `Id` DESC;";
+    $sql = "SELECT * FROM `login_record` WHERE `Login_account` = '$user_aacount' AND `Login_name` = '$user_name' AND `Is_day_first` = 1 ORDER BY `Id` DESC;";
 }
 
 

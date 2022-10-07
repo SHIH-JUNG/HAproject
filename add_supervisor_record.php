@@ -84,11 +84,11 @@
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span><a href="supervisor_record_yearlist.php">團督紀錄</a></span></li>
+                        <li><span><a href="supervisor_record_yearlist.php">團督記錄</a></span></li>
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span>新增會議記錄</span></li>
+                        <li><span>新增個案研討與團督記錄</span></li>
                     </ol>
                     <!--/麵包屑-->
                 </div>
@@ -112,18 +112,18 @@
                                     <div class="row">
                                         <div class="col-sm-12 col-xs-12">
                                             <div class="text-center">
-                                                <h4 id="form_type">新增會議記錄</h4>
+                                                <h4 id="form_type">新增個案研討與團督記錄</h4>
                                             </div>
                                             <br>
                                             <ul style="font-size:17px" class="nav nav-tabs" id="myTab" role="tablist">
                                                 <li class="nav-item active" role="presentation">
                                                     <a class="nav-link" id="home-tab" data-toggle="pill" href="#one" role="tab" aria-selected="true">
-                                                        <b>填寫會議記錄</b>
+                                                        <b>填寫個案研討與團督記錄</b>
                                                     </a>
                                                 </li>
                                                 <li class="nav-item" role="presentation">
                                                     <a class="nav-link" id="profile-tab" data-toggle="pill" href="#two" role="tab" aria-selected="false">
-                                                        <b>上傳會議紀錄</b>
+                                                        <b>上傳個案研討與團督記錄</b>
                                                     </a>
                                                 </li>
                                             </ul>
@@ -137,15 +137,27 @@
                                                                 <table style="width:70%;" class="table table-bordered">
                                                                     <tr>
                                                                         <td colspan="2">
-                                                                            <h3>新增會議記錄</h3>
+                                                                            <h3>新增個案研討與團督記錄</h3>
                                                                         </td>
                                                                     </tr>
                                                                     <tr style="text-align:left">
-                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">會議記錄標題</td>
+                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">團督記錄標題</td>
                                                                         <td style="border-bottom: solid 1px;"><input id="title_name" name="title_name" type="text" style="width:37em;"></td>
                                                                     </tr>
                                                                     <tr style="text-align:left">
-                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">主持人</td>
+                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">會議日期</td>
+                                                                        <td style="border-bottom: solid 1px;"><input id="meeting_date" name="meeting_date" datepicker="ch_datepicker" type="text"></td>
+                                                                    </tr>
+                                                                    <tr style="text-align:left">
+                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">會議時間</td>
+                                                                        <td style="border-bottom: solid 1px;"><input id="meeting_time" name="meeting_time" type="time"></td>
+                                                                    </tr>
+                                                                    <tr style="text-align:left">
+                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">會議地點</td>
+                                                                        <td style="border-bottom: solid 1px;"><input id="place" name="place" type="text" style="width:37em;"></td>
+                                                                    </tr>
+                                                                    <tr style="text-align:left">
+                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">主席</td>
                                                                         <td style="border-bottom: solid 1px;"><input id="ceo_name" name="ceo_name" type="text" style="width:37em;"></td>
                                                                     </tr>
                                                                     <tr style="text-align:left">
@@ -155,21 +167,16 @@
                                                                         </td>
                                                                     </tr>
                                                                     <tr style="text-align:left">
-                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">團督記錄</td>
+                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">請假人員</td>
+                                                                        <td>
+                                                                            <textarea style="height:7em;width:37em;resize: none;font-size: 20px;" id="absent" name="absent" placeholder="請輸入請假人員"></textarea>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr style="text-align:left">
+                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">紀錄者</td>
                                                                         <td style="border-bottom: solid 1px;"><input id="record" name="record" type="text" style="width:37em;"></td>
                                                                     </tr>
-                                                                    <tr style="text-align:left">
-                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">日期</td>
-                                                                        <td style="border-bottom: solid 1px;"><input id="meeting_date" name="meeting_date" datepicker="ch_datepicker" type="text"></td>
-                                                                    </tr>
-                                                                    <tr style="text-align:left">
-                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">時間</td>
-                                                                        <td style="border-bottom: solid 1px;"><input id="meeting_time" name="meeting_time" type="time"></td>
-                                                                    </tr>
-                                                                    <tr style="text-align:left">
-                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">地點</td>
-                                                                        <td style="border-bottom: solid 1px;"><input id="place" name="place" type="text" style="width:37em;"></td>
-                                                                    </tr>
+                                                                    
                                                                     <tr style="text-align:left">
                                                                         <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white">督導建議</td>
                                                                         <td>
@@ -223,7 +230,7 @@
                                                                         </td>
                                                                     </tr>
                                                                     <tr style="text-align:left">
-                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">會議記錄標題</td>
+                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">團督記錄標題</td>
                                                                         <td style="border-bottom: solid 1px;"><input id="upload_title_name" name="upload_title_name" type="text" style="width:37em;"></td>
                                                                     </tr>
                                                                     <tr style="text-align:left">

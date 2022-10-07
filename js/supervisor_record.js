@@ -102,7 +102,7 @@ function getUrlVars() {
 
 var sr_year = getUrlVars()["year"];
 
-//團督紀錄表格region
+//團督記錄表格region
 $.ajax({
   url: "database/find_data_supervisor_record.php",
   type: "POST",

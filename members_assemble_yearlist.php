@@ -67,7 +67,7 @@
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span>會員大會</span></li>
+                        <li><span>會員大會記錄</span></li>
                     </ol>
                     <!--/麵包屑-->
                 </div>
@@ -96,7 +96,7 @@
                                                         <div class="table-wrap">
                                                             <div class="table-responsive">
                                                                 <div>
-                                                                    <H3>各年度會員大會紀錄</H3>
+                                                                    <H3>各年度會員大會記錄</H3>
                                                                 </div>
                                                                 <table id="ma_yearlist_all" style="width:auto;" class="table table-bordered">
                                                                     <th>年度</th>

@@ -1,7 +1,7 @@
 <form id="form_b" class="form" action="">
     <table id="all_data" style="width:75%;margin-bottom: 0px;" class="table table-bordered">
         <tr style="text-align:left">
-            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">會員大會標題</td>
+            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">會員大會記錄標題</td>
             <td style="border-bottom: solid 1px;"><input class="ma_question" id="upload_title_name" name="upload_title_name" type="text" style="width:37em;"></td>
         </tr>
         <tr style="text-align:left">

@@ -1,11 +1,23 @@
 <form id="form_a" class="form" action="">
     <table id="all_data" style="width:75%;margin-bottom: 0px;" class="table table-bordered">
         <tr style="text-align:left">
-            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">會議記錄標題</td>
+            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">團督記錄標題</td>
             <td style="border-bottom: solid 1px;"><input class="sr_question" id="title_name" name="title_name" type="text" style="width:37em;"></td>
         </tr>
         <tr style="text-align:left">
-            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">主持人</td>
+            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">會議日期</td>
+            <td style="border-bottom: solid 1px;"><input class="sr_question" id="meeting_date" name="meeting_date" datepicker="ch_datepicker" type="text"></td>
+        </tr>
+        <tr style="text-align:left">
+            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">會議時間</td>
+            <td style="border-bottom: solid 1px;"><input class="sr_question" id="meeting_time" name="meeting_time" type="time"></td>
+        </tr>
+        <tr style="text-align:left">
+            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">會議地點</td>
+            <td style="border-bottom: solid 1px;"><input class="sr_question" id="place" name="place" type="text" style="width:37em;"></td>
+        </tr>
+        <tr style="text-align:left">
+            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">主席</td>
             <td style="border-bottom: solid 1px;"><input class="sr_question" id="ceo_name" name="ceo_name" type="text" style="width:37em;"></td>
         </tr>
         <tr style="text-align:left">
@@ -15,20 +27,14 @@
             </td>
         </tr>
         <tr style="text-align:left">
-            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">團督記錄</td>
+            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">請假人員</td>
+            <td>
+                <textarea style="height:7em;width:37em;resize: none;font-size: 20px;" class="sr_question" id="absent" name="absent" placeholder="請輸入請假人員"></textarea>
+            </td>
+        </tr>
+        <tr style="text-align:left">
+            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">紀錄者</td>
             <td style="border-bottom: solid 1px;"><input class="sr_question" id="record" name="record" type="text" style="width:37em;"></td>
-        </tr>
-        <tr style="text-align:left">
-            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">日期</td>
-            <td style="border-bottom: solid 1px;"><input class="sr_question" id="meeting_date" name="meeting_date" datepicker="ch_datepicker" type="text"></td>
-        </tr>
-        <tr style="text-align:left">
-            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">時間</td>
-            <td style="border-bottom: solid 1px;"><input class="sr_question" id="meeting_time" name="meeting_time" type="time"></td>
-        </tr>
-        <tr style="text-align:left">
-            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">地點</td>
-            <td style="border-bottom: solid 1px;"><input class="sr_question" id="place" name="place" type="text" style="width:37em;"></td>
         </tr>
         <tr style="text-align:left">
             <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white">督導建議</td>

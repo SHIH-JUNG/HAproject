@@ -103,7 +103,7 @@
                                                             </tr>
                                                             <tr style="background-color:rgb(255 201 54);">
                                                                 <th>上傳日期</th>
-                                                                <th>團督紀錄</th>
+                                                                <th>團督記錄</th>
                                                                 <th>理監事紀錄</th>
                                                                 <th>理監事成果</th>
                                                             </tr>

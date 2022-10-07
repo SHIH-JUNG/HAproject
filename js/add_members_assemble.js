@@ -441,12 +441,13 @@ function check_add_rec_data() {
   var title_name = $("#title_name").val();
   var ceo_name = $("#ceo_name").val();
   var attendees = $("#attendees").val();
+  var absent = $("#absent").val();
   var record = $("#record").val();
   var meeting_date = $("#meeting_date").val();
   var meeting_time = $("#meeting_time").val();
   var place = $("#place").val();
-  var suggest = $("#suggest").val();
-  var next_focus = $("#next_focus").val();
+  var discuss = $("#discuss").val();
+  var motion = $("#motion").val();
   var supervise = $("#supervise").val();
 
   var errorstr = "";
@@ -455,28 +456,31 @@ function check_add_rec_data() {
     errorstr += "未填寫會員大會記錄標題!\r\n";
   }
   if (ceo_name == null) {
-    errorstr += "未填寫主持人!\r\n";
+    errorstr += "未填寫主席!\r\n";
   }
   if (attendees == null) {
     errorstr += "未填寫出席人員!\r\n";
   }
+  if (absent == null) {
+    errorstr += "未填寫請假人員!\r\n";
+  }
   if (record == null) {
-    errorstr += "未填寫會員大會記錄!\r\n";
+    errorstr += "未填寫紀錄者!\r\n";
   }
   if (meeting_date == null) {
-    errorstr += "未填寫日期!\r\n";
+    errorstr += "未填寫會議日期!\r\n";
   }
   if (meeting_time == null) {
-    errorstr += "未填寫時間!\r\n";
+    errorstr += "未填寫會議時間!\r\n";
   }
   if (place == null) {
-    errorstr += "未填寫地點!\r\n";
+    errorstr += "未填寫會議地點!\r\n";
   }
-  if (suggest == null) {
-    errorstr += "未填寫會員大會建議	!\r\n";
+  if (discuss == null) {
+    errorstr += "未填寫提案討論內容!\r\n";
   }
-  if (next_focus == null) {
-    errorstr += "未填寫下次會員大會重點!\r\n";
+  if (motion == null) {
+    errorstr += "未填寫臨時動議內容	!\r\n";
   }
   if (supervise == null) {
     errorstr += "未選擇督導!\r\n";
@@ -486,28 +490,31 @@ function check_add_rec_data() {
       errorstr += "未填寫會員大會記錄標題!\r\n";
     }
     if (ceo_name.replace(/\s*/g, "") == "") {
-      errorstr += "未填寫主持人!\r\n";
+      errorstr += "未填寫主席!\r\n";
     }
     if (attendees.replace(/\s*/g, "") == "") {
       errorstr += "未填寫出席人員!\r\n";
     }
+    if (absent.replace(/\s*/g, "") == "") {
+      errorstr += "未填寫請假人員!\r\n";
+    }
     if (record.replace(/\s*/g, "") == "") {
-      errorstr += "未填寫會員大會記錄!\r\n";
+      errorstr += "未填寫紀錄者!\r\n";
     }
     if (meeting_date.replace(/\s*/g, "") == "") {
-      errorstr += "未填寫日期!\r\n";
+      errorstr += "未填寫會議日期!\r\n";
     }
     if (meeting_time.replace(/\s*/g, "") == "") {
-      errorstr += "未填寫時間!\r\n";
+      errorstr += "未填寫會議時間!\r\n";
     }
     if (place.replace(/\s*/g, "") == "") {
-      errorstr += "未填寫地點!\r\n";
+      errorstr += "未填寫會議地點!\r\n";
     }
-    if (suggest.replace(/\s*/g, "") == "") {
-      errorstr += "未填寫會員大會建議	!\r\n";
+    if (discuss.replace(/\s*/g, "") == "") {
+      errorstr += "未填寫提案討論內容!\r\n";
     }
-    if (next_focus.replace(/\s*/g, "") == "") {
-      errorstr += "未填寫下次會員大會重點!\r\n";
+    if (motion.replace(/\s*/g, "") == "") {
+      errorstr += "未填寫臨時動議內容	!\r\n";
     }
     if (supervise.replace(/\s*/g, "") == "") {
       errorstr += "未選擇督導!\r\n";

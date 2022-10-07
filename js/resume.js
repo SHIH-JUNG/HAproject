@@ -197,6 +197,9 @@ $.ajax({
             value.On_or_off +
           '</td>' +
           '<td style="text-align:center">' +
+            value.Resigned_date +
+          '</td>' +
+          '<td style="text-align:center">' +
             file_showing_format_trans(value.Resume_datas_date, 1) +
           '</td>' +
           '<td style="text-align:center">' +

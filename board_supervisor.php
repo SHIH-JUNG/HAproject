@@ -73,11 +73,11 @@
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span><a href="board_supervisor_yearlist.php">理監事紀錄</a></span></li>
+                        <li><span><a href="board_supervisor_yearlist.php">理監事會紀錄</a></span></li>
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span><?php echo trim($rec_year); ?>年度理監事紀錄</span></li>
+                        <li><span><?php echo trim($rec_year); ?>年度理監事會紀錄</span></li>
                     </ol>
                     <!--/麵包屑-->
                 </div>
@@ -101,7 +101,7 @@
                                 <div class="panel-body">
                                     <div class="table-wrap">
                                         <div class="table-responsive">
-                                            <h4><?php echo trim($rec_year); ?>年度理監事紀錄</h4>
+                                            <h4><?php echo trim($rec_year); ?>年度理監事會紀錄</h4>
                                             <div class="table-wrap">
                                                 <div class="table-responsive">
                                                     <table class="table display table-hover dataTable no-footer" style="font-size:15px;font-family:微軟正黑體;width:100%" id="tab_all" data-toolbar="#toolbar">

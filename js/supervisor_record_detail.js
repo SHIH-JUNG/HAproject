@@ -705,6 +705,7 @@ function submit_form_data_upload() {
 function check_updat_supervisor_record_data() {
   var ceo_name = $("#ceo_name").val();
   var attendees = $("#attendees").val();
+  var absent = $("#absent").val();
   var record = $("#record").val();
   var meeting_date = $("#meeting_date").val();
   var meeting_time = $("#meeting_time").val();
@@ -713,41 +714,47 @@ function check_updat_supervisor_record_data() {
   var errorstr = "";
 
   if (ceo_name == null) {
-    errorstr += "未填寫執行長!\r\n";
+    errorstr += "未填寫主席!\r\n";
   }
   if (attendees == null) {
     errorstr += "未填寫出席人員!\r\n";
   }
+  if (absent == null) {
+    errorstr += "未填寫請假人員!\r\n";
+  }
   if (record == null) {
-    errorstr += "未填寫團督記錄!\r\n";
+    errorstr += "未填寫紀錄者!\r\n";
   }
   if (meeting_date == null) {
-    errorstr += "未填寫日期!\r\n";
+    errorstr += "未填寫會議日期!\r\n";
   }
   if (meeting_time == null) {
-    errorstr += "未填寫時間!\r\n";
+    errorstr += "未填寫會議時間!\r\n";
   }
   if (place == null) {
-    errorstr += "未填寫地點!\r\n";
+    errorstr += "未填寫會議地點!\r\n";
   }
   if (errorstr == "") {
     if (ceo_name.replace(/\s*/g, "") == "") {
-      errorstr += "未填寫執行長!\r\n";
+      errorstr += "未填寫主席!\r\n";
     }
     if (attendees.replace(/\s*/g, "") == "") {
       errorstr += "未填寫出席人員!\r\n";
     }
+    if (absent.replace(/\s*/g, "") == "") {
+      errorstr += "未填寫請假人員!\r\n";
+    }
     if (record.replace(/\s*/g, "") == "") {
-      errorstr += "未填寫團督記錄!\r\n";
+      errorstr += "未填寫紀錄者!\r\n";
     }
     if (meeting_date.replace(/\s*/g, "") == "") {
-      errorstr += "未填寫日期!\r\n";
+      errorstr += "未填寫會議日期!\r\n";
     }
     if (meeting_time.replace(/\s*/g, "") == "") {
-      errorstr += "未填寫時間!\r\n";
+      errorstr += "未填寫會議時間!\r\n";
     }
     if (place.replace(/\s*/g, "") == "") {
-      errorstr += "未填寫地點!\r\n";
+      errorstr += "未填寫會議地點!\r\n";
     }
   }
 

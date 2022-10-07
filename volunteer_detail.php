@@ -192,7 +192,7 @@
                                                                                 </td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">目前服務時數</td>
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">目前總服務時數</td>
                                                                                 <td style="border-bottom: solid 1px;">
                                                                                     <input id="time_all" type="number" class="vo_question">
                                                                                     <button style="margin:.5em;margin-left:3em;color:red;" type="button" id="add_time_all_btn" data-toggle="modal" data-target="#myModal">添加時數</button>

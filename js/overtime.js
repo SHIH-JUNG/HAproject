@@ -134,7 +134,7 @@ function getUrlVars() {
 }
 //endregion
 
-//團督紀錄表格region
+//團督記錄表格region
 // var vo_year = getUrlVars()["year"];
 
 $.ajax({

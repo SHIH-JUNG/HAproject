@@ -102,7 +102,7 @@ function getUrlVars() {
 
 var ma_year = getUrlVars()["year"];
 
-//團督紀錄表格region
+//團督記錄表格region
 $.ajax({
   url: "database/find_data_members_assemble.php",
   type: "POST",
