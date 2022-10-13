@@ -1,3 +1,5 @@
+const notyf = new Notyf();
+
 //取得url id值region
 function getUrlVars() {
     var vars = {};
@@ -75,6 +77,7 @@ $(document).ready(function(){
         },
         error:function(e){
             console.log(e);
+            notyf.alert('伺服器錯誤,無法載入');
         }
     });
     $(".dlgrec_question").attr("disabled",true);
@@ -264,20 +267,24 @@ var stau = false;
             success: function (data) {
                 if(data == 1){
                     swal({
-                        title:'修改成功！',
+                        title:'更新成功！',
                         type:'success',                        
                     }).then(function(){
                         location.reload();
                     }) 
                 }else{
                     swal({
-                        title:'修改失敗！請聯絡負責單位',
+                        title:'更新失敗！請聯絡負責單位',
                         type:'error',
                     })
                 }  
             },
             error:function(e){
                 console.log(e);
+                swal({
+                    title:'更新失敗！請聯絡負責單位',
+                    type:'error',
+                })
             }
         });
     }

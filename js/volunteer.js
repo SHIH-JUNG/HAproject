@@ -1,3 +1,5 @@
+const notyf = new Notyf();
+
 //取得url id值region
 function getUrlVars() {
   var vars = {};
@@ -327,6 +329,7 @@ $.ajax({
 
   error: function (e) {
     console.log(e);
+    notyf.alert('伺服器錯誤,無法載入');
   },
 });
 
@@ -426,20 +429,20 @@ $("#count_people2").text("，人數：" + $table.column(0).data().unique().count
 //endregion
 
 //額外設定select
-// $("select.filter").on("change", function () {
-//   var rel = $(this).attr("rel");
-//   if (this.value != "") {
-//     //格式：.serch(該欄位值, 是否啟用正則表達式匹配, 是否關閉智能查詢, 是否開啟不區分大小寫)
-//     //須完全匹配option的value值 設定option.value 使用正則符號匹配，ex:"^" + this.value+ "$"
-//     //前端注意option value內有特殊字元須加入轉義字 ex:H+梅 positive => H\+梅 positive
-//     $table
-//       .columns(rel)
-//       .search("^" + this.value + "$", true, false, true)
-//       .draw();
-//   } else {
-//     $table.columns(rel).search(this.value).draw();
-//   }
-// });
+$("select.filter").on("change", function () {
+  var rel = $(this).attr("rel");
+  if (this.value != "") {
+    //格式：.serch(該欄位值, 是否啟用正則表達式匹配, 是否關閉智能查詢, 是否開啟不區分大小寫)
+    //須完全匹配option的value值 設定option.value 使用正則符號匹配，ex:"^" + this.value+ "$"
+    //前端注意option value內有特殊字元須加入轉義字 ex:H+梅 positive => H\+梅 positive
+    $table
+      .columns(rel)
+      .search("^" + this.value + "$", true, false, true)
+      .draw();
+  } else {
+    $table.columns(rel).search(this.value).draw();
+  }
+});
 // $("#min, #max").keyup(function () {
 //   $.fn.dataTable.ext.search.push(age_range);
 //   $table.draw();

@@ -324,7 +324,7 @@ input[type=number] {
         var assign_name = '<?php echo $_SESSION["name"]; ?>';
     </script>
     <!-- ================== trans_case.js ================== -->
-    <script src="js/trans_case.js"></script>
+    <script src="js/trans_case.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
 </body>
 
 </html>

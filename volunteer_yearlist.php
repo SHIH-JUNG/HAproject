@@ -159,7 +159,7 @@
     <!-- 日期民國-->
     <script src="javascript/TW_YEAR.js"></script>
     <!-- ================== volunteer_yearlist.js ================== -->
-    <script src='js/volunteer_yearlist.js'></script>
+    <script src='js/volunteer_yearlist.js<?php echo "?".date("Y-m-d h:i:sa")?>'></script>
     <!-- ================== moment ================== -->
     <script src='javascript/moment2.29.0.min.js'></script>
     <!-- ================== table ================== -->

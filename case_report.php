@@ -74,7 +74,7 @@ word-break: keep-all;/*必須*/
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span>服務報表</span></li>
+                        <li><span>個案服務報表&服務分析表</span></li>
                     </ol>
                     <!--/麵包屑-->
                 </div>
@@ -363,7 +363,7 @@ word-break: keep-all;/*必須*/
     <!-- ================== 登出設定 ================== -->
     <script src='js/logout.js'></script>
     <!-- ================== case.js ================== -->
-    <script src='js/case_report.js'></script>
+    <script src='js/case_report.js<?php echo "?".date("Y-m-d h:i:sa")?>'></script>
     <!-- ================== moment ================== -->
     <script src='javascript/moment2.29.0.min.js'></script>
     <!-- ================== table ================== -->

@@ -1,3 +1,5 @@
+const notyf = new Notyf();
+
 // 打卡紀錄顯示 region
 $.ajax({
     url: "database/find_data_individual_login_records.php",

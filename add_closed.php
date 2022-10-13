@@ -246,7 +246,7 @@ input[type=number] {
     </script>
 
     <!-- ================== add_closed.js ================== -->
-    <script src="js/add_closed.js"></script>
+    <script src="js/add_closed.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
 </body>
 
 </html>

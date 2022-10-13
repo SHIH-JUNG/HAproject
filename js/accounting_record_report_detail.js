@@ -1,3 +1,21 @@
+//取得url id值region
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(
+      /[?&]+([^=&]+)=([^&]*)/gi,
+      function (m, key, value) {
+        vars[key] = value;
+      }
+    );
+    return vars;
+  }
+  //endregion
+
+var arr_id = getUrlVars()["id"];
+var arr_year = getUrlVars()["year"];
+
+const notyf = new Notyf();
+
 //datepicker創建 region
 datepicker_create = function (selector_id) {
     $("#" + selector_id).datepicker({
@@ -38,68 +56,69 @@ datepicker_create = function (selector_id) {
         }, 10);
       },
     });
-    if(selector_id!="withdrawal_date")
-    {
-      $("#" + selector_id).datepicker("setDate", "today");
-    }
+    // if(selector_id!="withdrawal_date")
+    // {
+    //   $("#" + selector_id).datepicker("setDate", "today");
+    // }
 };
 //endregion
 
 
 $(document).ready(function () {
+    // 抓會議記錄資料 region
+    $.ajax({
+      url: "database/find_accounting_record_report_data_detail.php",
+      data: {
+        arr_id: arr_id,
+        year: arr_year,
+      },
+      type: "POST",
+      dataType: "JSON",
+      success: function (data) {
+        console.log(data);
+
+        $.each(data, function (index, value) {
+            
+            $("#report_type").val(value.Report_type);
+            $("#report_title").val(value.Report_title);
+            $("#report_date").val(value.Report_date);
+            $("#remark").val(value.Remark);
+
+            var report_file_path = value.Report_path.replace("../", "./");
+            report_file_name = value.Report_name;
+            var a_element_content = '<a href="'+report_file_path+'" style="text-decoration:none;color:blue;" target="_blank">'
+            +report_file_name
+            +'</a><br/><br/>';
+
+
+            $("#report_upload").html(a_element_content);
+
+        });
+
+      },
+      error: function (e) {
+        notyf.alert('伺服器錯誤,無法載入');
+        console.log(e);
+      },
+    });
+
+    $(".arr_question").attr("disabled", true);
+
+
     //將input datepicker屬性名稱為ch_datepicker創建datepicker初始化 region
     $("input[datepicker='ch_datepicker']").each(function () {
       var this_id = $(this).attr("id");
       datepicker_create(this_id);
     });
     //endregion
-
 });
 
-function test1() {
-    //去掉資料內前後端多餘的空白，file類型須排除，否則報錯
-    $("input, textarea").each(function () {
-        if ($(this).attr("type") != "file") {
-            $(this).val(jQuery.trim($(this).val()));
-        }
-        });
-      
-        var form_data = new FormData();
-    
-        var report_year = $("#report_date").val().split("\/")[0];
-    
-    
-        $("input[type='file']").each(function(index, element) {
-            var report_files = $(this).prop("files");
-    
-            if (report_files != undefined) {
-              if (report_files.length != 0) {
-                for (var i = 0; i < report_files.length; i++) {
-                  form_data.append("report_files"+index, report_files[i]);
-                  // console.log(report_files[i])
-                }
-              } 
-            }
-        });
-    
-        form_data.append("Report_type", $("#report_type").val());
-        form_data.append("Report_title", $("#report_title").val());
-        form_data.append("Report_date", $("#report_date").val());
-        form_data.append("Remark",$("#remark").val());
-        form_data.append("Report_year", report_year);
-    
-        // 預覽傳到後端的資料詳細內容
-        for (var pair of form_data.entries()) {
-          console.log(pair[0] + ", " + pair[1]);
-        }
-}
 
-
-// 新增零用金資料 region
-$("#rec_add_new").on("click", function () {
+// 更新報表紀錄資料 region
+arr_update = function() {
     var stau = false;
   
-    if (check_add_rec_data() != "") {
+    if (check_update_rec_data() != "") {
       stau = false;
     } else {
       stau = true;
@@ -107,14 +126,13 @@ $("#rec_add_new").on("click", function () {
   
     if (!stau) {
       swal({
-        title: check_add_rec_data(),
+        title: check_update_rec_data(),
         type: "error",
       });
     } else {
         submit_form();
     }
-});
-//endregion
+}
 
 function submit_form() {
     //去掉資料內前後端多餘的空白，file類型須排除，否則報錯
@@ -155,7 +173,7 @@ function submit_form() {
 
 
     $.ajax({
-        url: "database/add_new_accounting_record_report.php",
+        url: "database/#.php",
         type: "POST",
         data: form_data,
         contentType: false,
@@ -167,7 +185,7 @@ function submit_form() {
           if (data == 1) {
             swal({
               type: "success",
-              title: "新增成功!",
+              title: "更新成功!",
               allowOutsideClick: false, //不可點背景關閉
             }).then(function () {
               window.location.href =
@@ -176,7 +194,7 @@ function submit_form() {
           } else {
             swal({
               type: "error",
-              title: "新增失敗!請聯絡負責人",
+              title: "更新失敗!請聯絡負責人",
               allowOutsideClick: false, //不可點背景關閉
             });
           }
@@ -185,16 +203,18 @@ function submit_form() {
             console.log(e)
             swal({
                 type: "error",
-                title: "新增失敗!請聯絡負責人",
+                title: "更新失敗!請聯絡負責人",
                 allowOutsideClick: false, //不可點背景關閉
             });
         },
       });
 }
+//endregion
+
 
 
 //檢查必填欄位region
-function check_add_rec_data() {
+function check_update_rec_data() {
 
     var report_type = $("#report_type").val();
     var report_upload = $("[name='report_upload']").val();
@@ -274,3 +294,28 @@ function trans_file_date(file_format) {
 
     return year + "/" + month + "/" + date;
 }
+
+
+// 總表格鎖定控制region
+function arr_edit() {
+    $(".arr_question").attr("disabled", false);
+    $("#edit_div").attr("hidden", true);
+    $("#save_div").attr("hidden", false);
+}
+//endregion
+
+//取消重整region
+function arr_cancel() {
+    location.reload();
+}
+//endregion
+
+//進入預覽WORD頁面region
+$("#preview_word").on("click", function () {
+    location.href = "preview_word.php?arr_id=" + arr_id + "";
+  });
+  
+  $("#preview_word2").on("click", function () {
+    location.href = "preview_word2.php?arr_id=" + arr_id + "";
+  });
+  //endregion

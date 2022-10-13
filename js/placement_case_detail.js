@@ -1,3 +1,5 @@
+const notyf = new Notyf();
+
 //取得url id值region
 function getUrlVars() {
     var vars = {};
@@ -249,6 +251,7 @@ function check_file_exist(){
              },
              error: function (e) {
                  console.log(e);
+                 notyf.alert('伺服器錯誤,無法載入');
              }
          });
      });
@@ -1200,6 +1203,10 @@ $("#history2").attr('href',url2);
                     },
                     error: function (e) {
                         console.log(e);
+                        swal({
+                            title: '結案失敗！',
+                            type: 'error',
+                        })
                     }
                 });
             }

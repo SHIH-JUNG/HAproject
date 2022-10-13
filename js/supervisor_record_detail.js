@@ -1,3 +1,5 @@
+const notyf = new Notyf();
+
 //取得url id值region
 function getUrlVars() {
   var vars = {};
@@ -97,7 +99,7 @@ check_sql_date_format = function (date) {
 //存放簽章相關留言arr
 supervise_msg_arr = [];
 
-//抓個別特定監所服務紀錄表region
+// 抓會議記錄資料 region
 $(document).ready(function () {
   $.ajax({
     url: "database/find_supervisor_record_data_detail.php",
@@ -153,13 +155,20 @@ $(document).ready(function () {
               case "file":
                 //file類型跳過，下面再後續處理
                 break;
-              default:
-                $("input[name='" + datan.name + "']").val(datan.value);
-                break;
             }
-          } //若不是input標籤
-          else {
-            //其他 select、textarea
+          }
+          
+          //若不是input標籤
+          var tag_name = $("[name='" + datan.name + "']").prop("tagName");
+
+          //其他 select、textarea
+
+          if(tag_name == "TEXTAREA")
+          {
+            $("[name='" + datan.name + "']").val(datan.value.replaceAll(";;", "\r\n"));
+          }
+          else
+          {
             $("[name='" + datan.name + "']").val(datan.value);
           }
         });
@@ -230,7 +239,7 @@ $(document).ready(function () {
       });
     },
     error: function (e) {
-      console.log("error");
+      notyf.alert('伺服器錯誤,無法載入');
     },
   });
   $(".sr_question").attr("disabled", true);
@@ -385,6 +394,17 @@ function rec_update_fillin() {
 
   var form = $("#form_a").serializeArray();
 
+  $.each(form, function (seq, element) {
+
+    var inputs_type = $("[name='"+element.name+"']").prop("tagName");
+
+    if(inputs_type == "TEXTAREA")
+    {
+      element.value = element.value.replace(/\r\n/g, ";;");
+    }
+
+  });
+
   var meeting_date_year_split = $("#meeting_date").val().split("年");
 
   // console.log(form)
@@ -417,7 +437,7 @@ function rec_update_fillin() {
         if (data == 1) {
           swal({
             type: "success",
-            title: "新增成功!",
+            title: "更新成功!",
             allowOutsideClick: false, //不可點背景關閉
           }).then(function () {
             window.location.href =
@@ -434,13 +454,17 @@ function rec_update_fillin() {
         } else {
           swal({
             type: "error",
-            title: "新增失敗!請聯絡負責人",
+            title: "更新失敗!請聯絡負責人",
             allowOutsideClick: false, //不可點背景關閉
           });
         }
       },
       error: function () {
-        alert("系統錯誤!");
+        swal({
+          type: "error",
+          title: "更新失敗!請聯絡負責人",
+          allowOutsideClick: false, //不可點背景關閉
+        });
       },
     });
   }
@@ -553,6 +577,7 @@ function check_file_exist() {
       },
       error: function (e) {
         console.log(e);
+        notyf.alert('伺服器錯誤,無法載入');
       },
     });
   });
@@ -616,6 +641,19 @@ function rec_update_upload() {
 function submit_form_data_upload() {
   var form_data = new FormData();
   var form = $("#form_b").serializeArray();
+
+  $.each(form, function (seq, element) {
+
+    var inputs_type = $("[name='"+element.name+"']").prop("tagName");
+
+    if(inputs_type == "TEXTAREA")
+    {
+      element.value = element.value.replace(/\r\n/g, ";;");
+    }
+
+  });
+
+
   var customfile = $('[type="file"]').prop("files");
 
   var upload_rec_date_year_split = $("#upload_rec_date").val().split("年");
@@ -671,7 +709,7 @@ function submit_form_data_upload() {
       if (data == 1) {
         swal({
           type: "success",
-          title: "新增成功!",
+          title: "更新成功!",
           allowOutsideClick: false, //不可點背景關閉
         }).then(function () {
           window.location.href =
@@ -688,13 +726,17 @@ function submit_form_data_upload() {
       } else {
         swal({
           type: "error",
-          title: "新增失敗!請聯絡負責人",
+          title: "更新失敗!請聯絡負責人",
           allowOutsideClick: false, //不可點背景關閉
         });
       }
     },
     error: function (e) {
-      alert("系統錯誤!");
+      swal({
+        type: "error",
+        title: "更新失敗!請聯絡負責人",
+        allowOutsideClick: false, //不可點背景關閉
+      });
       console.log(e);
     },
   });
@@ -760,6 +802,12 @@ function check_updat_supervisor_record_data() {
 
   return errorstr;
 }
+//endregion
+
+// 禁止所有輸入框輸入 反斜線符號\ region
+$("input, textarea").on("input", function() {
+  return $(this).val($(this).val().replace(/\\/g,''));
+});
 //endregion
 
 //會議記錄總表格鎖定控制region

@@ -1,5 +1,6 @@
 <?php session_start(); ?>
 <?php include("database/check_authority.php"); ?><?php include("no_cache.php"); ?>
+<?php @$rec_year =  $_GET['year']; ?>
 <!DOCTYPE html>
 <html>
 
@@ -93,23 +94,23 @@
                 <div class="row heading-bg  bg-green">
                     <!--麵包屑-->
                     <ol class="breadcrumb">
-                        <li><span><a href="index.php">首頁</a></span></li>
+                    <li><span><a href="index.php">行政管理</a></span></li>
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span><a href="">行政管理</a></span></li>
+                        <li><span><a href="">會計管理</a></span></li>
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span><a href="">員工管理</a></span></li>
+                        <li><span><a href="accounting_record_report_yearlist.php">報表紀錄</a></span></li>
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span><a href="resume.php">員工履歷一覽表</a></span></li>
+                        <?php echo "<li><span><a href='accounting_record_report.php?year=" . trim($rec_year) . "'>" . trim($rec_year) . "年度報表紀錄</a></span></li>"; ?>
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span>員工履歷檔案詳細資料</span></li>
+                        <li><span>報表紀錄詳細資料</span></li>
                     </ol>
                     <!--/麵包屑-->
                 </div>
@@ -134,12 +135,7 @@
                                         <ul style="font-size:17px" class="nav nav-tabs" id="myTab" role="tablist">
                                                 <li class="nav-item active" role="presentation">
                                                     <a class="nav-link" id="home-tab" data-toggle="pill" href="#one" role="tab" aria-selected="true">
-                                                        <b>員工履歷檔案詳細資料</b>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item" role="presentation">
-                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#two" role="tab" aria-selected="false">
-                                                        <b>歷年雇傭契約&考績檔案</b>
+                                                        <b>報表紀錄詳細資料</b>
                                                     </a>
                                                 </li>
                                             </ul>
@@ -151,143 +147,89 @@
                                                         </div>
                                                         <div class="table-wrap">
                                                             <div class="table-responsive col-sm-12 text-center">
-                                                                <table style="width:70%;" class="table table-bordered">
+                                                            <table style="width:65%;" class="table table-bordered">
                                                                     <tr>
                                                                         <td colspan="2">
-                                                                            <h3>員工履歷檔案詳細資料</h3>
+                                                                            <h3>上傳報表</h3>
                                                                         </td>
                                                                     </tr>
                                                                     <tr style="text-align:left">
-                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">帳號</td>
+                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>報表類型</td>
                                                                         <td style="border-bottom: solid 1px;">
-                                                                            <div class="form-group col-sm-4">
-                                                                                <span id="account"></span>
-                                                                            </div>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr style="text-align:left">
-                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>員工姓名</td>
-                                                                        <td style="border-bottom: solid 1px;">
-                                                                            <div class="form-group col-sm-4">
-                                                                                <input id="user_name" class="resume_question" type="text">
-                                                                            </div>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr style="text-align:left">
-                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>入職日</td>
-                                                                        <td style="border-bottom: solid 1px;">
-                                                                            <div class="form-group col-sm-4">
-                                                                                <input id="entry_date" class="resume_question" name="ch_datepicker" type="text">
-                                                                            </div>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr style="text-align:left">
-                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">是否在職</td>
-                                                                        <td style="border-bottom: solid 1px;">
-                                                                            <div class="form-group col-sm-3">
-                                                                                <select id="on_or_off" class="resume_question">
-                                                                                    <option value="是">是</option>
-                                                                                    <option value="否">否</option>
-                                                                                </select>
-                                                                            </div>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr style="text-align:left">
-                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">離職日</td>
-                                                                        <td style="border-bottom: solid 1px;">
-                                                                            <div class="form-group col-sm-4">
-                                                                                <input id="resigned_date" class="resume_question" name="ch_datepicker" type="text">
-                                                                            </div>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr style="text-align:left">
-                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">履歷表檔案</td>
-                                                                        <td style="border-bottom: solid 1px;">
-                                                                            <div class="col-sm-8">
+                                                                            <div class="col-sm-12">
                                                                                 <div class="text-left">
-                                                                                    <input name="resume_file" type="file" class="resume_question form-control">
-                                                                                    <br>
-                                                                                    <div id="resume_file"></div>
+                                                                                    <select id="report_type" class="arr_question">
+                                                                                        <option value=""  disabled selected>請選擇報表類型</option>
+                                                                                        <option value="月報表">月報表</option>
+                                                                                        <option value="季報表">季報表</option>
+                                                                                        <option value="上半年報表">上半年報表</option>
+                                                                                        <option value="下半年報表">下半年報表</option>
+                                                                                        <option value="年報表">年報表</option>
+                                                                                        <option value="現金報表">現金報表</option>
+                                                                                        <option value="記帳士報表">記帳士報表</option>
+                                                                                    </select>
                                                                                 </div>
                                                                             </div>
                                                                         </td>
                                                                     </tr>
                                                                     <tr style="text-align:left">
-                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">保密契約</td>
+                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>檔案上傳</td>
                                                                         <td style="border-bottom: solid 1px;">
-                                                                            <div class="col-sm-8">
+                                                                            <div class="col-sm-12">
                                                                                 <div class="text-left">
-                                                                                    <input name="nda_file" type="file" class="resume_question form-control">
+                                                                                    <input name="report_upload" type="file" class="arr_question form-control" />
                                                                                     <br>
-                                                                                    <div id="nda_file"></div>
+                                                                                    <div id="report_upload"></div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-12">
+                                                                                <div class="text-left">
+                                                                                    <span style="color:red;font-weight:bold;font-size: 0.7em;">上傳檔案格式範例：資產負債表_1110101.pdf。<br/>上傳檔案標題：資產負債表，檔案日期：111/01/01。</span>
                                                                                 </div>
                                                                             </div>
                                                                         </td>
                                                                     </tr>
                                                                     <tr style="text-align:left">
-                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">畢業證書</td>
+                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>檔案標題</td>
                                                                         <td style="border-bottom: solid 1px;">
-                                                                            <div class="col-sm-8">
+                                                                            <div class="col-sm-12">
                                                                                 <div class="text-left">
-                                                                                    <input name="diploma_file" type="file" class="resume_question form-control">
-                                                                                    <br>
-                                                                                    <div id="diploma_file"></div>
+                                                                                    <input id="report_title" type="text" class="arr_question">
                                                                                 </div>
                                                                             </div>
                                                                         </td>
                                                                     </tr>
+                                                                    <tr style="text-align:left">
+                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>檔案日期</td>
+                                                                        <td style="border-bottom: solid 1px;">
+                                                                            <div class="col-sm-12">
+                                                                                <div class="text-left">
+                                                                                    <input id="report_date" type="text" datepicker="ch_datepicker"  class="arr_question">
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+
                                                                     <tr style="text-align:left">
                                                                         <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white">備註</td>
                                                                         <td>
-                                                                            <div class="form-group col-sm-10">
-                                                                                <textarea style="height:10em;width:100%;" id="remark" class="resume_question" name="remark" placeholder="請輸入備註"></textarea>
-                                                                            </div>
+                                                                            <textarea style="height:10em;width:700px;resize: none;font-size: 20px;" id="remark" class="arr_question" placeholder="請輸入備註"></textarea>
                                                                         </td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <td colspan="2">
+                                                                        <td style="border-top: 0px;" colspan="2">
                                                                             <div id="edit_div">
-                                                                                <button style="font-size:20px" id="resume_edit" class="btn btn-default" onclick="resume_edit();">編輯</button>
+                                                                                <button style="font-size:20px" id="arr_edit" class="btn btn-default" onclick="arr_edit();">編輯</button>
                                                                             </div>
                                                                             <div id="save_div" hidden>
-                                                                                <button style="font-size:20px" id="resume_update" class="btn btn-default" onclick="resume_update();">修改</button>           
-                                                                                <button style="font-size:20px" id="resume_cancel" class="btn btn-default" onclick="resume_cancel();">取消</button>
+                                                                                <button style="font-size:20px" id="arr_update" class="btn btn-default" onclick="arr_update();">修改</button>
+                                                                                <button style="font-size:20px" id="arr_cancel" class="btn btn-default" onclick="arr_cancel();">取消</button>
+                                                                                <!-- <button style="font-size:20px" class="btn btn-default" onclick="test();">測試</button> -->
                                                                             </div>
                                                                         </td>
                                                                     </tr>
                                                                 </table>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="tab-pane fade" id="two" role="tabpanel" aria-labelledby="profile-tab">
-                                                    <div class="col-sm-12 text-center">
-                                                        <div class="table-wrap">
-                                                            <div class="table-responsive">
-                                                                <div>
-                                                                    <H3>歷年雇傭契約&考績檔案</H3>
-                                                                </div>
-                                                                <div>
-                                                                    員工姓名：<span class="employee_name">---</span>
-                                                                    ，入職日期：<span class="entry_date">---年--月--日</span>
-                                                                    ，最近上傳日期：<span class="recently_upload_date">---年--月--日</span>
-                                                                    ，今年檔案上傳數：<span class="this_year_file_upload_num">0</span>
-                                                                </div>
-                                                                <table id="case_all" style="width:100%;" class="table table-bordered">
-                                                                    <th>年度</th>
-                                                                    <th>雇傭契約</th>
-                                                                    <!-- <th>保密契約</th> -->
-                                                                    <!-- <th>畢業證書</th> -->
-                                                                    <th>考績</th>
-                                                                    <th>備註</th>
-                                                                    <th></th>
-                                                                    <tbody id="all_files"></tbody>
-                                                                </table>
-                                                            </div>
-                                                            <!-- <div class="text-center">
-                                                                <button onclick="history.back();" class="btn btn-default">返回</button>
-                                                            </div> -->
                                                         </div>
                                                     </div>
                                                 </div>
@@ -337,8 +279,10 @@
     <!-- 日期民國-->
     <script src="javascript/jquery-ui.min.js"></script>
     <script src="javascript/datepickerTw2.js"></script>
+    <!-- ================== jSignature ================== -->
+    <script src="jSignature/jSignature.min.js"></script>
     <!-- ================== detail ================== -->
-    <script type="text/javascript" src="js/resume_detail_v2.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
+    <script type="text/javascript" src="js/accounting_record_report_detail.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
 
 </body>
 

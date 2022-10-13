@@ -325,7 +325,7 @@
     <script src="javascript/datepickerTw2.js"></script>
 
     <!-- ================== add_members_assemble.js ================== -->
-    <script src="js/add_members_assemble.js"></script>
+    <script src="js/add_members_assemble.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
 
 
 </body>

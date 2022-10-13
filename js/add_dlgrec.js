@@ -70,7 +70,11 @@ $("#dlgrec_add_new").on('click',function(){
                 }  
             },
                 error: function (e) {
-                    alert("系統錯誤!");
+                    swal({
+                        type: 'error',
+                        title: '新增失敗!請聯絡負責人',
+                        allowOutsideClick: false //不可點背景關閉
+                    })
                     console.log(e);
                 }
         });

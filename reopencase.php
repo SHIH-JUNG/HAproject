@@ -308,7 +308,7 @@
         assign_name = '<?php echo $_SESSION["name"]; ?>';
     </script>
     <!-- ================== reopencase.js ================== -->
-    <script src="js/reopencase.js"></script>
+    <script src="js/reopencase.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
 </body>
 
 </html>

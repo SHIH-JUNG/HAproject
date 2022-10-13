@@ -159,7 +159,7 @@
     <!-- 日期民國-->
     <script src="javascript/TW_YEAR.js"></script>
     <!-- ================== day_off_list.js ================== -->
-    <script src='js/day_off_list.js'></script>
+    <script src='js/day_off_list.js<?php echo "?".date("Y-m-d h:i:sa")?>'></script>
     <!-- ================== moment ================== -->
     <script src='javascript/moment2.29.0.min.js'></script>
     <!-- ================== table ================== -->

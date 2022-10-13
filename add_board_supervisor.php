@@ -326,9 +326,7 @@
     <script src="javascript/datepickerTw2.js"></script>
 
     <!-- ================== add_board_supervisor.js ================== -->
-    <script src="js/add_board_supervisor.js"></script>
-
-
+    <script src="js/add_board_supervisor.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
 </body>
 
 </html>

@@ -241,7 +241,12 @@ $("#rec_add_new").on("click", function () {
           }
         },
         error: function (e) {
-          console.log("系統錯誤!"+e);
+          swal({
+            type: "error",
+            title: "新增失敗!請聯絡負責人",
+            allowOutsideClick: false, //不可點背景關閉
+          });
+          console.log(e);
         },
       });
     }

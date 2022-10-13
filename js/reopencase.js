@@ -1,3 +1,5 @@
+const notyf = new Notyf();
+
 //取得url id值region
 function getUrlVars() {
     var vars = {};
@@ -58,6 +60,7 @@ $(document).ready(function(){
         },
         error:function(e){
             console.log(e);
+            notyf.alert('伺服器錯誤,無法載入');
         }
     });
     //endregion
@@ -266,7 +269,13 @@ function add_new_current_case_database()
             }  
         },
             error: function () {
-                alert("系統錯誤!");
+                swal({
+                    type: 'error',
+                    title: '新增失敗!請聯絡負責人',
+                    allowOutsideClick: false //不可點背景關閉
+                }).then(function () {
+                    location.reload();
+                })
             }
     });
 }

@@ -1,3 +1,5 @@
+const notyf = new Notyf();
+
 //取得url id值region
 
 function getUrlVars() {
@@ -43,6 +45,7 @@ $(document).ready(function () {
         },
         error: function (e) {
             console.log(e);
+            notyf.alert('伺服器錯誤,無法載入');
         }
     });
 });

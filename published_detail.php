@@ -314,7 +314,7 @@
     <!-- ================== jSignature ================== -->
     <script src="jSignature/jSignature.min.js"></script>
     <!-- ================== detail ================== -->
-    <script type="text/javascript" src="js/published_detail.js"></script>
+    <script type="text/javascript" src="js/published_detail.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
 
 </body>
 

@@ -1,4 +1,6 @@
-//抓所有曾入住紀錄region
+const notyf = new Notyf();
+
+//抓所有紀錄region
 $(document).ready(function () {
   $.ajax({
     url: "database/find_sr_yearlist.php",
@@ -24,6 +26,7 @@ $(document).ready(function () {
     },
     error: function (e) {
       console.log(e);
+      notyf.alert('伺服器錯誤,無法載入');
     },
   });
 });

@@ -339,7 +339,7 @@ input[type=number] {
     <script src="javascript/datepickerTw.js"></script>
 
     <!-- ================== add_counsel.js ================== -->
-    <script src="js/add_counsel.js"></script>
+    <script src="js/add_counsel.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
 
    
 </body>

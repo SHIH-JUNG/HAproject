@@ -370,7 +370,7 @@ update_arc = function() {
           if (data == 1) {
             swal({
               type: "success",
-              title: "新增成功!",
+              title: "更新成功!",
               allowOutsideClick: false, //不可點背景關閉
             }).then(function () {
                 location.reload();
@@ -378,13 +378,17 @@ update_arc = function() {
           } else {
             swal({
               type: "error",
-              title: "新增失敗!請聯絡負責人",
+              title: "更新失敗!請聯絡負責人",
               allowOutsideClick: false, //不可點背景關閉
             });
           }
         },
         error: function () {
-          alert("系統錯誤!");
+          swal({
+            type: "error",
+            title: "更新失敗!請聯絡負責人",
+            allowOutsideClick: false, //不可點背景關閉
+          });
         },
       });
 }

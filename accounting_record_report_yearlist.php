@@ -67,7 +67,7 @@
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span>會計報表紀錄</span></li>
+                        <li><span>報表紀錄</span></li>
                     </ol>
                     <!--/麵包屑-->
                 </div>
@@ -96,7 +96,7 @@
                                                         <div class="table-wrap">
                                                             <div class="table-responsive">
                                                                 <div>
-                                                                    <H3>各年度會計報表紀錄</H3>
+                                                                    <H3>各年度報表紀錄</H3>
                                                                 </div>
                                                                 <br>
                                                                 <table id="ar_rep_yearlist_all" style="width:auto;" class="table table-bordered">
@@ -104,7 +104,7 @@
                                                                     <th>會計報表資料</th>
                                                                     <tbody id="ar_rep_yearlist_add"></tbody>
                                                                 </table>
-                                                                <button style="font-size:20px" onclick="location.href='add_accounting_record_report.php';" class="btn btn-default">新增報表資資料</button>
+                                                                <button style="font-size:20px" onclick="location.href='add_accounting_record_report.php';" class="btn btn-default">新增報表紀錄</button>
                                                                 <!-- <button style="font-size:20px" onclick="history.back();" class="btn btn-default">返回</button> -->
                                                             </div>
                                                         </div>
@@ -159,7 +159,7 @@
     <!-- 日期民國-->
     <script src="javascript/TW_YEAR.js"></script>
     <!-- ================== accounting_record_report.js ================== -->
-    <script src='js/accounting_record_report_yearlist.js'></script>
+    <script src='js/accounting_record_report_yearlist.js<?php echo "?".date("Y-m-d h:i:sa")?>'></script>
     <!-- ================== moment ================== -->
     <script src='javascript/moment2.29.0.min.js'></script>
     <!-- ================== table ================== -->

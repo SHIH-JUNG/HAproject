@@ -204,7 +204,11 @@ $("#counsel_add_new").on('click',function(){
             }  
             },
                 error: function () {
-                    alert("系統錯誤!");
+                    swal({
+                        type: 'error',
+                        title: '新增失敗!請聯絡負責人',
+                        allowOutsideClick: false //不可點背景關閉
+                    })
                 }
         });
     }

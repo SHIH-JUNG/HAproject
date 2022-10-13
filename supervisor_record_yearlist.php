@@ -158,7 +158,7 @@
     <!-- 日期民國-->
     <script src="javascript/TW_YEAR.js"></script>
     <!-- ================== supervisor_record_yearlist.js ================== -->
-    <script src='js/supervisor_record_yearlist.js'></script>
+    <script src='js/supervisor_record_yearlist.js<?php echo "?".date("Y-m-d h:i:sa")?>'></script>
     <!-- ================== moment ================== -->
     <script src='javascript/moment2.29.0.min.js'></script>
     <!-- ================== table ================== -->

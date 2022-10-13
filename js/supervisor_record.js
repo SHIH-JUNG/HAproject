@@ -1,3 +1,5 @@
+const notyf = new Notyf();
+
 $(function() {
   imagePreview();  
 });
@@ -213,6 +215,7 @@ $.ajax({
 
   error: function (e) {
     console.log(e);
+    notyf.alert('伺服器錯誤,無法載入');
   },
 });
 

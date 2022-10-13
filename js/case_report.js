@@ -1,4 +1,6 @@
 
+const notyf = new Notyf();
+
 //datepicker創建 region
 datepicker_create = function (selector_id) {
     $("#" + selector_id).datepicker({
@@ -418,6 +420,11 @@ filter_date_select = function() {
         dataType: "JSON",
         async: false,//啟用同步請求
         success: function (data) {
+            swal({
+                title:'送出查詢成功！',
+                type:'success',                        
+            })
+
             // console.log(data)
             var cssString = "";
             $.each(data,function(index,value){
@@ -461,9 +468,10 @@ filter_date_select = function() {
                 // $(".table-hover tbody").on("click","tr",function () {
                 //     window.location.href = 'case_all_all.php?id='+$(this).attr("id")+'&open_id='+$(this).attr("openid")+'';
                 // });
+
         },
         error: function (e) {
-            console.log('伺服器錯誤,無法載入');
+            notyf.alert('伺服器錯誤,無法載入');
             console.log(e);
         }
     });
@@ -506,6 +514,11 @@ filter_date_input = function() {
             dataType: "JSON",
             async: false,//啟用同步請求
             success: function (data) {
+                swal({
+                    title:'送出查詢成功！',
+                    type:'success',                        
+                })
+                
                 // console.log(data)
                 var cssString = "";
                 $.each(data,function(index,value){

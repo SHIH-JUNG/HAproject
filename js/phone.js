@@ -1,3 +1,6 @@
+
+const notyf = new Notyf();
+
 var address_arr=[];
 var new_address_arr=[];
 
@@ -127,7 +130,7 @@ var new_address_arr=[];
         },
         
         error: function (e) {
-                console.log(e);
+            notyf.alert('伺服器錯誤,無法載入');
          }
     });
 //endregion
@@ -186,7 +189,7 @@ $.each(get_tr_phoneid, function(index,val) {
             });
         },
         error: function (e) {
-                console.log(e);
+            notyf.alert('伺服器錯誤,無法載入');
          }
     });
 }); 
@@ -249,8 +252,8 @@ $.ajax({
     },
     
     error: function (e) {
-            console.log(e);
-        }
+        notyf.alert('伺服器錯誤,無法載入');
+    }
 });
 //endregion
 

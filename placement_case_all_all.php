@@ -172,7 +172,7 @@
     <!-- ================== 登出設定 ================== -->
     <script src='js/logout.js'></script>
     <!-- ================== placement_case_all_all.js ================== -->
-    <script src='js/placement_case_all_all.js'></script>
+    <script src='js/placement_case_all_all.js<?php echo "?".date("Y-m-d h:i:sa")?>'></script>
     <!-- ================== moment ================== -->
     <script src='javascript/moment2.29.0.min.js'></script>
     <!-- ================== table ================== -->

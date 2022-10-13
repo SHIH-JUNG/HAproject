@@ -1,3 +1,5 @@
+const notyf = new Notyf();
+
 //取得url id值region
 function getUrlVars() {
     var vars = {};
@@ -196,7 +198,7 @@ $(document).ready(function(){
             
         },
         error:function(e){
-            console.log("error");
+            notyf.alert('伺服器錯誤,無法載入');
         }
     });
     $(".counsel_question").attr("disabled",true);
@@ -288,20 +290,24 @@ var stau = false;
             success: function (data) {
                 if(data == 1){
                     swal({
-                        title:'修改成功！',
+                        title:'更新成功！',
                         type:'success',                        
                     }).then(function(){
                         location.reload();
                     }) 
                 }else{
                     swal({
-                        title:'修改失敗！請聯絡負責單位',
+                        title:'更新失敗！請聯絡負責單位',
                         type:'error',
                     })
                 }  
             },
             error:function(e){
                 console.log(e);
+                swal({
+                    title:'更新失敗！請聯絡負責單位',
+                    type:'error',
+                })
             }
         });
     }
@@ -630,7 +636,10 @@ function reservation_rec_new(){
                                 } 
                             },
                         error:function(e){
-                            console.log("錯誤");
+                            swal({
+                                title:'新增失敗！',
+                                type:'error',
+                            })
                         }
                         });
                 //    //endregion
@@ -673,7 +682,10 @@ function reservation_rec_new(){
                                 } 
                             },
                         error:function(e){
-                            console.log(e);
+                            swal({
+                                title:'新增失敗！',
+                                type:'error',
+                            })
                         }
                         });
                 //endregion
@@ -974,7 +986,7 @@ function counsel_visit_show() {
 
         },
         error:function(e){
-            console.log("error"+e);
+            notyf.alert('伺服器錯誤,無法載入');
         }
     });
 //endregion
@@ -1127,20 +1139,24 @@ function update_phone_note(id){
     //            console.log(data);
                 if(data == 1){
                     swal({
-                        title:'修改成功！',
+                        title:'更新成功！',
                         type:'success',                        
                     }).then(function(){
                             location.reload();
                     }) 
                 }else{
                     swal({
-                        title:'修改失敗！',
+                        title:'更新失敗！',
                         type:'error',
                         })
                 } 
             },
             error:function(e){
                 console.log(e);
+                swal({
+                    title:'更新失敗！',
+                    type:'error',
+                    })
             }
         });
     }
@@ -1201,7 +1217,7 @@ $("#trans_to_opencase_submit").on('click',function(){
                 tran_case_referral = data[0].Refferal;
             },
             error:function(e){
-                console.log("error");
+                notyf.alert('伺服器錯誤,無法載入開案所需資料!');
             }
         });
 
@@ -1245,7 +1261,7 @@ $('#open_object_type').on('change', function() {
            }
         },
         error:function(e){
-            console.log(e);
+            notyf.alert('伺服器錯誤,無法載入開案所需資料!');
         }
     });
 });
@@ -1329,7 +1345,7 @@ function check_case_isrepeat() {
             }
         },
         error: function (e) {
-            console.log(e);
+            notyf.alert('伺服器錯誤,無法載入開案所需資料!');
         }
     });
     
@@ -1521,7 +1537,10 @@ function update_add_face(id){
                 } 
             },
             error:function(e){
-                console.log("error"+e);
+                swal({
+                    title:'修改失敗！',
+                    type:'error',
+                 })
             }
         });
     }

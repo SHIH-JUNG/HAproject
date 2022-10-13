@@ -285,7 +285,7 @@ input[type=number] {
         var assign_name = '<?php echo $_SESSION["name"]; ?>';
     </script>
     <!-- ================== add_current_case.js ================== -->
-    <script src="js/add_current_case.js"></script>
+    <script src="js/add_current_case.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
 </body>
 
 </html>

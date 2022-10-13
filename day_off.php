@@ -228,7 +228,7 @@
     <script src="javascript/bootstrap1.18.0-table.min.js"></script>
     <script src="javascript/bootstrap-table1.11.1-zh-TW.min.js"></script>
     <!-- ================== phone ================== -->
-    <script type="text/javascript" src="js/day_off.js"></script>
+    <script type="text/javascript" src="js/day_off.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
     <!-- ================== 地區選擇下拉 ================== -->
     <!--
     <script src="js/jQuery-TWzipcode-master/twzipcode.js"></script>

@@ -225,7 +225,7 @@
     <script src="javascript/jquery-ui.min.js"></script>
     <script src="javascript/datepickerTw2.js"></script>
     <!-- ================== add_phone.js ================== -->
-    <script src="js/add_program_act.js"></script>
+    <script src="js/add_program_act.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
 </body>
 
 </html>

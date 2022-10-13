@@ -117,6 +117,16 @@ $("#rec_add_new").on("click", function () {
 
   var form = $("#form_a").serializeArray();
 
+  $.each(form, function (seq, element) {
+
+    var inputs_type = $("[name='"+element.name+"']").prop("tagName");
+
+    if(inputs_type == "TEXTAREA")
+    {
+      element.value = element.value.replace(/\r\n/g, ";;");
+    }
+  });
+
   var meeting_date_year_split = $("#meeting_date").val().split("年");
   var title = '團督記錄簽核：'+$("#title_name").val();
   // console.log(form)
@@ -167,7 +177,11 @@ $("#rec_add_new").on("click", function () {
         }
       },
       error: function (e) {
-        alert("系統錯誤!");
+        swal({
+          type: "error",
+          title: "新增失敗!請聯絡負責人",
+          allowOutsideClick: false, //不可點背景關閉
+        });
         console.log(e);
       },
     });
@@ -359,6 +373,17 @@ $("#rec_add_new_upload").on("click", function () {
 function submit_form_data_upload() {
   var form_data = new FormData();
   var form = $("#form_b").serializeArray();
+
+  $.each(form, function (seq, element) {
+
+    var inputs_type = $("[name='"+element.name+"']").prop("tagName");
+
+    if(inputs_type == "TEXTAREA")
+    {
+      element.value = element.value.replace(/\r\n/g, ";;");
+    }
+  });
+
   var customfile = $('[type="file"]').prop("files");
   // console.log(customfile)
 
@@ -431,7 +456,11 @@ function submit_form_data_upload() {
       }
     },
     error: function (e) {
-      alert("系統錯誤!");
+      swal({
+        type: "error",
+        title: "新增失敗!請聯絡負責人",
+        allowOutsideClick: false, //不可點背景關閉
+      });
       console.log(e);
     },
   });
@@ -555,4 +584,10 @@ function check_add_rec_data_upload() {
 
   return errorstr;
 }
+//endregion
+
+// 禁止所有輸入框輸入 反斜線符號\ region
+$("input, textarea").on("input", function() {
+  return $(this).val($(this).val().replace(/\\/g,''));
+});
 //endregion

@@ -265,7 +265,7 @@ input[type=number] {
         assign_name = '<?php echo $_SESSION["name"]; ?>';
     </script>
     <!-- ================== trans_closed.js ================== -->
-    <script src="js/trans_closed.js"></script>
+    <script src="js/trans_closed.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
 </body>
 
 </html>

@@ -403,7 +403,7 @@
     <script src="javascript/bootstrap1.18.0-table.min.js"></script>
     <script src="javascript/bootstrap-table1.11.1-zh-TW.min.js"></script>
     <!-- ================== phone ================== -->
-    <script type="text/javascript" src="js/accounting_record_report.js"></script>
+    <script type="text/javascript" src="js/accounting_record_report.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
 </body>
 
 </html>

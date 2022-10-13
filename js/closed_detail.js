@@ -258,20 +258,24 @@ var stau = false;
             success: function (data) {
                 if(data == 1){
                     swal({
-                        title:'修改成功！',
+                        title:'更新成功！',
                         type:'success',                        
                     }).then(function(){
                         location.reload();
                     }) 
                 }else{
                     swal({
-                        title:'修改失敗！請聯絡負責單位',
+                        title:'更新失敗！請聯絡負責單位',
                         type:'error',
                     })
                 }  
             },
             error:function(e){
                 console.log(e);
+                swal({
+                    title:'更新失敗！請聯絡負責單位',
+                    type:'error',
+                })
             }
         });
     }

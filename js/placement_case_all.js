@@ -1,3 +1,5 @@
+const notyf = new Notyf();
+
 //取得url id值region
 
 function getUrlVars() {
@@ -79,6 +81,7 @@ function load_form_type_array()
         },
         error: function (e) {
             console.log(e);
+            notyf.alert('伺服器錯誤,無法載入');
         }
     });
 }
@@ -183,6 +186,7 @@ function load_each_form()
             },
             error: function (e) {
                 console.log(e);
+                notyf.alert('伺服器錯誤,無法載入');
             }
         });
     });
@@ -330,6 +334,10 @@ function store(num, form_name){
         },
         error: function (e) {
             console.log(e);
+            swal({
+                title: '儲存失敗！',
+                type: 'error',
+            })
         }
     });
 }

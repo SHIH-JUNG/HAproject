@@ -173,11 +173,11 @@
     <?php
         if($values1 == "health")
         {
-            echo '<script src="js/health_other_detail.js"></script>';
+            echo '<script src="js/health_other_detail.js'."?".date("Y-m-d h:i:sa").'"></script>';
         }
     ?>
     <!-- ================== placement_case_detail.js ================== -->
-    <script src="js/placement_case_detail.js"></script>
+    <script src="js/placement_case_detail.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
 
    
 

@@ -1,4 +1,6 @@
-//抓所有四階段表region
+const notyf = new Notyf();
+
+//抓所有個案region
 $.ajax({
     url: "database/find_case.php",
     type: "POST",
@@ -76,7 +78,7 @@ $.ajax({
             });
     },
     error: function (e) {
-            alert('伺服器錯誤,無法載入' + e);
+        notyf.alert('伺服器錯誤,無法載入');
      }
 });
 //endregion

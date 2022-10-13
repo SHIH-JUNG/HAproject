@@ -256,7 +256,7 @@ word-break: keep-all;/*必須*/
     <script src="javascript/jquery-ui.min.js"></script>
     <script src="javascript/datepickerTw2.js"></script>
     <!-- ================== login_records.js ================== -->
-    <script src='js/login_records.js'></script>
+    <script src='js/login_records.js<?php echo "?".date("Y-m-d h:i:sa")?>'></script>
 </body>
 </html>
 <?php include("database/timeout_logout.php"); ?>

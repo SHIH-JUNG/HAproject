@@ -293,7 +293,7 @@ word-break: keep-all;/*必須*/
     <script src="javascript/jquery-ui.min.js"></script>
     <script src="javascript/datepickerTw.js"></script>
     <!-- ================== counsel ================== -->
-    <script type="text/javascript" src="js/counsel.js"></script>
+    <script type="text/javascript" src="js/counsel.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
     <!-- ================== 地區選擇下拉 ================== -->
     <!--
     <script src="js/jQuery-TWzipcode-master/twzipcode.js"></script>

@@ -449,7 +449,7 @@
     <script src="js/jQuery-TWzipcode-master/jquery.twzipcode.js"></script>
     <script src="js/jQuery-TWzipcode-master/jquery.twzipcode.min.js"></script>
     <!-- ================== detail ================== -->
-    <script type="text/javascript" src="js/screening_detail.js"></script>
+    <script type="text/javascript" src="js/screening_detail.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
 
 </body>
 

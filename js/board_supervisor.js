@@ -101,6 +101,7 @@ function getUrlVars() {
 //endregion
 
 var bs_year = getUrlVars()["year"];
+const notyf = new Notyf();
 
 //團督記錄表格region
 $.ajax({
@@ -204,6 +205,7 @@ $.ajax({
   },
 
   error: function (e) {
+    notyf.alert('伺服器錯誤,無法載入');
     console.log(e);
   },
 });

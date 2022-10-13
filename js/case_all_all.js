@@ -9,6 +9,8 @@ function getUrlVars() {
 }
 //endregion
 
+const notyf = new Notyf();
+
 //抓所有曾入住紀錄region
 $(document).ready(function () {
     var id = getUrlVars()["id"];
@@ -42,6 +44,7 @@ $(document).ready(function () {
             $("#case_all").append(cssstring);
         },
         error: function (e) {
+            notyf.alert('伺服器錯誤,無法載入');
             console.log(e);
         }
     });

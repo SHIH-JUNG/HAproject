@@ -192,7 +192,11 @@ function add_new_current_case_database()
             }  
         },
             error: function () {
-                alert("系統錯誤!");
+                swal({
+                    type: "error",
+                    title: "新增失敗!請聯絡負責人",
+                    allowOutsideClick: false, //不可點背景關閉
+                });
             }
     });
 }
@@ -309,7 +313,10 @@ function add_new_caseedit_calendar() {
             } 
         },
     error:function(e){
-        console.log("錯誤");
+        swal({
+            title:'新增失敗！',
+            type:'error',
+        })
     }
     });
 }

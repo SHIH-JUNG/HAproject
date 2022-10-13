@@ -9,6 +9,7 @@ function getUrlVars() {
 }
 //endregion
 
+const notyf = new Notyf();
 
 //設置存放有資料的量表名稱之陣列
 var form_type_arr = [];
@@ -56,7 +57,7 @@ $(document).ready(function () {
             $(".case_user").text(data[0].Case_assign);
         },
         error: function (e) {
-                alert('伺服器錯誤,無法載入' + e);
+            notyf.alert('伺服器錯誤,無法載入');
          }
     });
 
@@ -100,7 +101,7 @@ function load_form_type_array()
             load_each_form();
         },
         error: function (e) {
-            console.log(e);
+            notyf.alert('伺服器錯誤,無法載入');
         }
     });
 }
@@ -224,7 +225,7 @@ function load_each_form()
                 })
             },
             error: function (e) {
-                console.log(e);
+                notyf.alert('伺服器錯誤,無法載入');
             }
         });
     });
@@ -409,6 +410,10 @@ function store(num, form_name){
         },
         error: function (e) {
             console.log(e);
+            swal({
+                title: '儲存失敗！',
+                type: 'error',
+            })
         }
     });
 }
@@ -770,6 +775,10 @@ $("#end").on('click', function () {
                 },
                 error: function (e) {
                     console.log(e);
+                    swal({
+                        title: '結案失敗！',
+                        type: 'error',
+                    })
                 }
             });
         }
@@ -831,6 +840,10 @@ $("#train").on('click', function () {
                 },
                 error: function (e) {
                     console.log(e);
+                    swal({
+                        title: '結案失敗！',
+                        type: 'error',
+                    })
                 }
             });
         }
@@ -889,6 +902,10 @@ $("#add_new_inside").on('click', function () {
                 },
                 error: function (e) {
                     console.log(e);
+                    swal({
+                        title: '新增失敗！',
+                        type: 'error',
+                    })
                 }
             });
         }

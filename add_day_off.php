@@ -214,7 +214,7 @@
     <script src="javascript/jquery-ui.min.js"></script>
     <script src="javascript/datepickerTw.js"></script>
     <!-- ================== add_phone.js ================== -->
-    <script src="js/add_day_off.js"></script>
+    <script src="js/add_day_off.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
 </body>
 
 </html>

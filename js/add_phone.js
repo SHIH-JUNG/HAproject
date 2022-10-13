@@ -67,13 +67,18 @@ if($("#call_datetime").val() != "" && $("#name").val() != ""){
                         type: 'error',
                         title: '新增失敗!請聯絡負責人',
                         allowOutsideClick: false //不可點背景關閉
-                        }).then(function () {
-                            window.location.replace("phone.php"); 
                         })
+                        // .then(function () {
+                        //     window.location.replace("phone.php"); 
+                        // })
                 }  
             },
                 error: function () {
-                    alert("系統錯誤!");
+                    swal({
+                        type: "error",
+                        title: "新增失敗!請聯絡負責人",
+                        allowOutsideClick: false, //不可點背景關閉
+                    });
                 }
         });
     }else{

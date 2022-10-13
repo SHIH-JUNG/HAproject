@@ -399,7 +399,7 @@ input[type=number] {
     <script src="javascript/bootstrap1.18.0-table.min.js"></script>
     <script src="javascript/bootstrap-table1.11.1-zh-TW.min.js"></script>
     <!-- ================== add_phone.js ================== -->
-    <script src="js/add_phone.js"></script>
+    <script src="js/add_phone.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
 </body>
 
 </html>

@@ -14,6 +14,7 @@ function getUrlVars() {
 
 var arr_year = getUrlVars()["year"];
 
+const notyf = new Notyf();
 
 //檢查SQL撈出來的日期格式region
 check_sql_date_format = function (date) {
@@ -96,7 +97,7 @@ $.ajax({
         '<td style="text-align:center">' + '<a href="'+report_file_path+'" style="text-decoration:none;color:blue;" target="_blank">'
         +report_file_name
         +'</a>' + '</td>' +
-        '<td style="text-align:center">' + '<a href="accounting_record_report_detail?id='+value.Id+'" style="text-decoration: underline;color:black;">查看詳細資料</a>' + '</td>' +
+        '<td style="text-align:center">' + '<a href="accounting_record_report_detail.php?year='+arr_year+'&id='+value.Id+'" style="text-decoration: underline;color:black;">查看</a>' + '</td>' +
         '</tr>';
         
         //印出表格
@@ -105,14 +106,15 @@ $.ajax({
 
     },
     error: function (e) {
-      swal({
-        type: "error",
-        title: "系統錯誤!請聯絡負責人",
-        allowOutsideClick: false, //不可點背景關閉
-      })
+      // swal({
+      //   type: "error",
+      //   title: "系統錯誤!請聯絡負責人",
+      //   allowOutsideClick: false, //不可點背景關閉
+      // })
     //   .then(function () {
     //     history.back();
     //   });
+    notyf.alert('伺服器錯誤,無法載入');
     },
 });
 //endregion

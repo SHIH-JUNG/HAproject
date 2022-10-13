@@ -418,7 +418,7 @@ resume_update = function() {
             if (data == 1) {
               swal({
                 type: "success",
-                title: "新增成功!",
+                title: "更新成功!",
                 allowOutsideClick: false, //不可點背景關閉
               }).then(function () {
                 window.location.href =
@@ -430,7 +430,7 @@ resume_update = function() {
             } else {
               swal({
                 type: "error",
-                title: "新增失敗!請聯絡負責人",
+                title: "更新失敗!請聯絡負責人",
                 allowOutsideClick: false, //不可點背景關閉
               });
             }
@@ -439,7 +439,7 @@ resume_update = function() {
             console.log(e)
             swal({
                 type: "error",
-                title: "新增失敗!請聯絡負責人",
+                title: "更新失敗!請聯絡負責人",
                 allowOutsideClick: false, //不可點背景關閉
             });
           },
@@ -528,7 +528,7 @@ update_row = function(row_year) {
       if (data == 1) {
         swal({
           type: "success",
-          title: "修改成功!",
+          title: "更新成功!",
           allowOutsideClick: false, //不可點背景關閉
         }).then(function () {
           window.location.href =
@@ -540,7 +540,7 @@ update_row = function(row_year) {
       } else {
         swal({
           type: "error",
-          title: "修改失敗!請聯絡負責人",
+          title: "更新失敗!請聯絡負責人",
           allowOutsideClick: false, //不可點背景關閉
         });
       }
@@ -549,7 +549,7 @@ update_row = function(row_year) {
       console.log(e)
       swal({
           type: "error",
-          title: "修改失敗!請聯絡負責人",
+          title: "更新失敗!請聯絡負責人",
           allowOutsideClick: false, //不可點背景關閉
       });
     },

@@ -181,6 +181,7 @@
                                                                                     <div id="save_div" hidden>
                                                                                         <button style="font-size:20px" id="rec_update" class="btn btn-default" onclick="rec_update();">修改</button>
                                                                                         <button style="font-size:20px" id="bs_cancel" class="btn btn-default" onclick="bs_cancel();">取消</button>
+                                                                                        <!-- <button style="font-size:20px" class="btn btn-default" onclick="test();">測試</button> -->
                                                                                     </div>
                                                                                 </td>
                                                                             </tr>
@@ -281,7 +282,7 @@
     <!-- ================== jSignature ================== -->
     <script src="jSignature/jSignature.min.js"></script>
     <!-- ================== detail ================== -->
-    <script type="text/javascript" src="js/board_supervisor_detail.js"></script>
+    <script type="text/javascript" src="js/board_supervisor_detail.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
 
 </body>
 

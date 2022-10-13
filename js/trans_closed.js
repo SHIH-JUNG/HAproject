@@ -1,3 +1,5 @@
+const notyf = new Notyf();
+
 //取得url id值region
 function getUrlVars() {
     var vars = {};
@@ -56,7 +58,7 @@ $(document).ready(function(){
             }
         },
     });
-    $("#user").val(assign_name);
+    // $("#user").val(assign_name);
 
     //獲取最新的結案案號
     $.ajax({
@@ -69,7 +71,7 @@ $(document).ready(function(){
             $("#closed_id").val(str_id);
         },
         error:function(e){
-            console.log("error");
+            notyf.alert('伺服器錯誤,無法載入結案所需資料!');
         }
     });
 });
@@ -213,7 +215,13 @@ function trans_closed_database()
             }  
         },
             error: function (e) {
-                alert("系統錯誤!");
+                swal({
+                    type: 'error',
+                    title: '新增失敗!請聯絡負責人',
+                    allowOutsideClick: false //不可點背景關閉
+                }).then(function () {
+                    location.reload();
+                })
                 console.log(e)
             }
     });

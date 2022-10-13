@@ -240,15 +240,15 @@
     <?php
         if($values1 == "health")
         {
-            echo '<script src="js/health_other_detail.js"></script>';
+            echo '<script src="js/health_other_detail.js'."?".date("Y-m-d h:i:sa").'"></script>';
         }
         if($values1 == "resource")
         {
-            echo '<script src="js/resource_other_detail.js"></script>';
+            echo '<script src="js/resource_other_detail.js'."?".date("Y-m-d h:i:sa").'"></script>';
         }
     ?>
     <!-- ================== case_detail.js ================== -->
-    <script src="js/case_detail.js"></script>
+    <script src="js/case_detail.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
 
    
 

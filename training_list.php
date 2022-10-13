@@ -163,7 +163,7 @@
     <!-- 日期民國-->
     <script src="javascript/TW_YEAR.js"></script>
     <!-- ================== published_yearlist.js ================== -->
-    <script src='js/training_list.js'></script>
+    <script src='js/training_list.js<?php echo "?".date("Y-m-d h:i:sa")?>'></script>
     <!-- ================== moment ================== -->
     <script src='javascript/moment2.29.0.min.js'></script>
     <!-- ================== table ================== -->
