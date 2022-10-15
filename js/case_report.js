@@ -186,10 +186,11 @@ $.ajax({
                 $('#'+this_id+'').prepend("<option value='' selected='selected'>所有</option>");
 
                 $("#"+this_id+"").children().each(function() {
-                    text = $(this).text();
-                    if($("select#"+this_id+" option:contains("+text+")").length > 1){
-                        $("select#"+this_id+" option:contains("+text+"):gt(0)").remove();
-                    }
+                    //text = $(this).text();
+                    //if($("select#"+this_id+" option:contains("+text+")").length > 1){
+                    //    $("select#"+this_id+" option:contains("+text+"):gt(0)").remove();
+                    //}
+                    $(this).siblings('[value="' + this.value + '"]').remove();
                     //    console.log(text)
                 });
             }
@@ -371,10 +372,11 @@ $.ajax({
                 $('#'+this_id+'').prepend("<option value='' selected='selected'>所有</option>");
 
                 $("#"+this_id+"").children().each(function() {
-                    text = $(this).text();
-                    if($("select#"+this_id+" option:contains("+text+")").length > 1){
-                        $("select#"+this_id+" option:contains("+text+"):gt(0)").remove();
-                    }
+                    //text = $(this).text();
+                    //if($("select#"+this_id+" option:contains("+text+")").length > 1){
+                    //    $("select#"+this_id+" option:contains("+text+"):gt(0)").remove();
+                    //}
+                    $(this).siblings('[value="' + this.value + '"]').remove();
                     //    console.log(text)
                 });
             }

@@ -170,9 +170,9 @@ $(document).ready(function () {
           {
             $("[name='" + datan.name + "']").val(datan.value.replaceAll(";;", "\r\n"));
           }
-          else
+          else if(tag_name == "SELECT")
           {
-            $("[name='" + datan.name + "']").val(datan.value);
+           $("[name='" + datan.name + "']").val(datan.value);
           }
         });
 

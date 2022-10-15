@@ -2,11 +2,11 @@
     <table id="all_data" style="width:75%;margin-bottom: 0px;" class="table table-bordered">
         <tr style="text-align:left">
             <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">理監事會記錄標題</td>
-            <td style="border-bottom: solid 1px;"><input class="bs_question" id="upload_title_name" name="upload_title_name" type="text" style="width:37em;"></td>
+            <td style="border-bottom: solid 1px;"><div class="col-sm-10"><input class="bs_question" id="upload_title_name" name="upload_title_name" type="text" style="width:100%;"></div></td>
         </tr>
         <tr style="text-align:left">
             <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">上傳日期</td>
-            <td style="border-bottom: solid 1px;"><input class="bs_question" id="upload_rec_date" name="upload_rec_date" datepicker="ch_datepicker" type="text"></td>
+            <td style="border-bottom: solid 1px;"><div class="col-sm-10"><input class="bs_question" id="upload_rec_date" name="upload_rec_date" datepicker="ch_datepicker" type="text"></div></td>
         </tr>
         <tr style="text-align:left">
             <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">檔案上傳</td>
@@ -24,7 +24,7 @@
         <tr style="text-align:left">
             <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white">備註</td>
             <td>
-                <textarea style="height:10em;width:700px;resize: none;font-size: 20px;" class="bs_question" id="upload_rec_remark" name="upload_rec_remark" placeholder="請輸入備註"></textarea>
+                <div class="col-sm-10"><textarea style="height:10em;width:100%;resize: none;font-size: 20px;" class="bs_question" id="upload_rec_remark" name="upload_rec_remark" placeholder="請輸入備註"></div></textarea>
             </td>
         </tr>
         <tr style="text-align:left">
@@ -32,9 +32,9 @@
                 <label>督導簽章</label>
             </td>
             <td style="">
-                <input class="closed_question" style="width:15em;" id="supervise" type="text"><button style="margin:.5em;margin-right:3em;color:red;" type="button" id="supervise_signature_btn">簽名</button>
+                <div class="col-sm-10"><input class="closed_question" style="width:15em;" id="supervise" type="text"><button style="margin:.5em;margin-right:3em;color:red;" type="button" id="supervise_signature_btn">簽名</button>
                 <button style="margin:.5em;" type="button" id="supervise_signature_msg_btn" onclick="sign_msg_model('supervise');" data-toggle="modal" data-target="#myModal">查看留言</button>
-                <a src="" id="supervise_signature_simg" style="color:blue;" target="_blank" alt="簽名圖片連結"></a>
+                <a src="" id="supervise_signature_simg" style="color:blue;" target="_blank" alt="簽名圖片連結"></a></div>
             </td>
         </tr>
         <tr style="text-align:left">

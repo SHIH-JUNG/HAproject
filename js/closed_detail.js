@@ -1,3 +1,5 @@
+const notyf = new Notyf();
+
 //取得url id值region
 function getUrlVars() {
     var vars = {};
@@ -71,7 +73,7 @@ $(document).ready(function(){
             });
         },
         error:function(e){
-            console.log("error");
+            notyf.alert('伺服器錯誤,無法載入');
         }
     });
     $(".closed_question").attr("disabled",true);

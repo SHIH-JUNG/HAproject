@@ -94,10 +94,11 @@ $.ajax({
                 $('#'+this_id+'').prepend("<option value='' selected='selected'>所有</option>");
 
                 $("#"+this_id+"").children().each(function() {
-                    text = $(this).text();
-                    if($("select#"+this_id+" option:contains("+text+")").length > 1){
-                        $("select#"+this_id+" option:contains("+text+"):gt(0)").remove();
-                    }
+                    //text = $(this).text();
+                    //if($("select#"+this_id+" option:contains("+text+")").length > 1){
+                    //    $("select#"+this_id+" option:contains("+text+"):gt(0)").remove();
+                    //}
+                    $(this).siblings('[value="' + this.value + '"]').remove();
                     //    console.log(text)
                 });
             }
@@ -219,7 +220,7 @@ var date_range = (
 function( settings, data, dataIndex ) {
     var min_date = parseInt(Date.parse( $('#min_date').val()), 10 );
     var max_date = parseInt(Date.parse( $('#max_date').val()), 10 );
-    var date = parseInt(Date.parse( data[0] )) || 0; // use data for the date column
+    var date = parseInt(Date.parse( data[1] )) || 0; // use data for the date column
     if ( ( isNaN( min_date ) && isNaN( max_date ) ) ||
          ( isNaN( min_date ) && date <= max_date ) ||
          ( min_date <= date   && isNaN( max_date ) ) ||

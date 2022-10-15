@@ -126,9 +126,9 @@ word-break: keep-all;/*必須*/
                                                             <td class="text-left">
                                                                 <select rel="3" class="filter search">
                                                                     <option value="">所有</option>
-                                                                    <option value="男生">男生</option>
-                                                                    <option value="女生">女生</option>
-                                                                    <option value="跨性別">跨性別</option>
+                                                                    <option value="男">男</option>
+                                                                    <option value="女">女</option>
+                                                                    <option value="其他/非二元性別">其他/非二元性別</option>
                                                                 </select>
                                                             </td>
                                                         </tr>

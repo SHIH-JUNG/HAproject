@@ -4,7 +4,16 @@
 //只要此頁面上有用到連接MySQL就要include它
 include("sql_connect.php");
 $Open_case_id = $_POST['Open_case_id'];
-$Open_case_seqid = $_POST['Open_case_seqid'];
+
+if(!empty($_POST['Open_case_seqid']))
+{
+    $Open_case_seqid = $_POST['Open_case_seqid'];
+}
+else
+{
+    $Open_case_seqid = 0;
+}
+
 $Closed_id = $_POST['Closed_id'];
 $Name = $_POST['Name'];
 $Gender = $_POST['Gender'];

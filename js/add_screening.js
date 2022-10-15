@@ -1,3 +1,5 @@
+const notyf = new Notyf();
+
 $(document).ready(function(){
 
     add_screening_keywords();
@@ -25,6 +27,7 @@ function add_screening_keywords() {
         },
         error:function(e){
             console.log(e);
+            notyf.alert('伺服器錯誤,無法載入');
         }
     });
 
@@ -43,6 +46,7 @@ function add_screening_keywords() {
         },
         error:function(e){
             console.log(e);
+            notyf.alert('伺服器錯誤,無法載入');
         }
     });
 }
@@ -351,6 +355,7 @@ function check_add_screening_data()
             },
             error:function(e){
                 console.log(e);
+                notyf.alert('伺服器錯誤,無法載入');
             }
         });
 

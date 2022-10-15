@@ -127,6 +127,8 @@ $(document).ready(function () {
             break;
         }
 
+        // console.log(content_json[0])
+        
         $.each(content_json[0], function (i, datan) {
           //獲取name值對應的input類型
           var inputs_type = $("input[name='" + datan.name + "']").attr("type");
@@ -153,19 +155,21 @@ $(document).ready(function () {
               case "file":
                 //file類型跳過，下面再後續處理
                 break;
+              default:
+                $("input[name='" + datan.name + "']").val(datan.value);
+                break;
             }
           } 
 
           //若不是input標籤
           var tag_name = $("[name='" + datan.name + "']").prop("tagName");
-
           //其他 select、textarea
 
           if(tag_name == "TEXTAREA")
           {
             $("[name='" + datan.name + "']").val(datan.value.replaceAll(";;", "\r\n"));
           }
-          else
+          else if(tag_name == "SELECT")
           {
             $("[name='" + datan.name + "']").val(datan.value);
           }
@@ -174,7 +178,7 @@ $(document).ready(function () {
         //file類型顯示資料處理 region
         //獲取所有 type="file" 的元素
         var inputs_type_files = $('[type="file"]');
-
+        // console.log(inputs_type_files)
         //如果存在 type="file" 的元素，繼續以下動作
         if (inputs_type_files.length > 0) {
           //顯示檔案圖片、路徑

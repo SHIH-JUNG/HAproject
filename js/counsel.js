@@ -187,9 +187,10 @@ $.ajax({
 
             $("#counsel_id").children().each(function() {
                 text = $(this).text();
-                if($("select#counsel_id option:contains("+text+")").length > 1){
-                    $("select#counsel_id option:contains("+text+"):gt(0)").remove();
-                }
+                //if($("select#counsel_id option:contains("+text+")").length > 1){
+                //    $("select#counsel_id option:contains("+text+"):gt(0)").remove();
+                //}
+                $(this).siblings('[value="' + this.value + '"]').remove();
                 //    console.log(text)
             });
 

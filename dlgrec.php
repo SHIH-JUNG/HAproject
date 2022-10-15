@@ -106,14 +106,14 @@ word-break: keep-all;/*必須*/
 
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">同儕生輔員/生活輔導員：</td>
                                                             <td class="text-left">
-                                                                <select id="dlg_manager" rel="1" class="filter search">
+                                                                <select id="dlg_manager" rel="2" class="filter search">
                                                                     <!-- <option value="">所有</option> -->
                                                                 </select>
                                                             </td>
 
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">社工員：</td>
                                                             <td class="text-left">
-                                                                <select id="social_worker" rel="2" class="filter search">
+                                                                <select id="social_worker" rel="3" class="filter search">
                                                                     <!-- <option value="">所有</option> -->
                                                                 </select>
                                                             </td>

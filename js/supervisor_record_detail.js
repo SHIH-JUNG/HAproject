@@ -155,6 +155,9 @@ $(document).ready(function () {
               case "file":
                 //file類型跳過，下面再後續處理
                 break;
+              default:
+                $("input[name='" + datan.name + "']").val(datan.value);
+                break;
             }
           }
           
@@ -167,9 +170,9 @@ $(document).ready(function () {
           {
             $("[name='" + datan.name + "']").val(datan.value.replaceAll(";;", "\r\n"));
           }
-          else
+          else if(tag_name == "SELECT")
           {
-            $("[name='" + datan.name + "']").val(datan.value);
+           $("[name='" + datan.name + "']").val(datan.value);
           }
         });
 

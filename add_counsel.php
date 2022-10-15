@@ -146,9 +146,9 @@ input[type=number] {
                                                                 <td style="border-bottom: solid 1px;">
                                                                     <select id="gender" style="width:200px;">
                                                                         <option value="">請選擇</option>
-                                                                        <option value="男生">男生</option>
-                                                                        <option value="女生">女生</option>
-                                                                        <option value="跨性別">跨性別</option>
+                                                                        <option value="男">男</option>
+                                                                        <option value="女">女</option>
+                                                                        <option value="其他/非二元性別">其他/非二元性別</option>
                                                                     </select>
                                                                 </td>
                                                             </tr>

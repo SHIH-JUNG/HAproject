@@ -828,7 +828,7 @@ $(document).ready(function () {
     //個案評估表自動填入資料
     $("#name").val(name);
     $("#pid").val(decodeURIComponent(pid));
-    $("input[name='sex'][value='"+gender+"生']").attr('checked',true);
+    $("input[name='sex'][value='"+gender+"']").attr('checked',true);
     $("#open_date").val(decodeURIComponent(date));
     $("#birth").val(birth);
     $("#age").val(getAge(birth.split('-'))[0]);

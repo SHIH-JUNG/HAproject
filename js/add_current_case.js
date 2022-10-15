@@ -1,3 +1,5 @@
+const notyf = new Notyf();
+
 $.ajax({
     type:'POST',
     url:'database/find_check_user.php',
@@ -331,6 +333,7 @@ $('#object_type').on('change', function() {
         },
         error:function(e){
             console.log(e);
+            notyf.alert('伺服器錯誤,無法載入開案所需資料!');
         }
     });
 });
@@ -366,6 +369,7 @@ function check_case_isrepeat() {
         },
         error: function (e) {
             console.log(e);
+            notyf.alert('伺服器錯誤,無法載入開案所需資料!');
         }
     });
     

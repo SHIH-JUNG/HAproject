@@ -141,22 +141,28 @@
 
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">是否領取時數條：</td>
                                                             <td class="text-left">
-                                                                <select id="rece_hours" rel="5" class="filter search">
-                                                                    <!-- <option value="">所有</option> -->
+                                                                <select rel="5" class="filter search">
+                                                                    <option value="">所有</option>
+                                                                    <option value="是">是</option>
+                                                                    <option value="否">否</option>
                                                                 </select>
                                                             </td>
 
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">是否領取服務獎狀：</td>
                                                             <td class="text-left">
-                                                                <select id="serv_award" rel="6" class="filter search">
-                                                                    <!-- <option value="">所有</option> -->
+                                                                <select rel="6" class="filter search">
+                                                                    <option value="">所有</option>
+                                                                    <option value="是">是</option>
+                                                                    <option value="否">否</option>
                                                                 </select>
                                                             </td>
 
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">是否持有志工榮譽卡：</td>
                                                             <td class="text-left">
-                                                                <select id="honor_card" rel="7" class="filter search">
-                                                                    <!-- <option value="">所有</option> -->
+                                                                <select rel="7" class="filter search">
+                                                                    <option value="">所有</option>
+                                                                    <option value="是">是</option>
+                                                                    <option value="否">否</option>
                                                                 </select>
                                                             </td>
                                                         </tr>

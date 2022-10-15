@@ -123,8 +123,7 @@ word-break: keep-all;/*必須*/
                                                                     <option value="">所有</option>
                                                                     <option value="男">男</option>
                                                                     <option value="女">女</option>
-                                                                    <option value="同性">同性</option>
-                                                                    <option value="不明">不明</option>
+                                                                    <option value="其他/非二元性別">其他/非二元性別</option>
                                                                 </select>
                                                             </td>
 

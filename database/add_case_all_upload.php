@@ -3,12 +3,14 @@
 //連接資料庫
 //只要此頁面上有用到連接MySQL就要include它
 include("sql_connect.php");
-$Number = $_REQUEST['Number'];
-$Form_name = $_REQUEST['Form_name'];
-$Phone_id = $_REQUEST['Phone_id'];
+$Id = $_REQUEST['Id'];
 $Case_id = $_REQUEST['Case_id'];
 $Name = $_REQUEST['Name'];
 $Case_pid = $_REQUEST['Case_pid'];
+
+$Number = $_REQUEST['Number'];
+$Form_name = $_REQUEST['Form_name'];
+
 @$upload_info = json_encode($_REQUEST['upload_info'],JSON_UNESCAPED_UNICODE);
 
 $user = $_SESSION['name'];
@@ -56,8 +58,8 @@ if(isset($_FILES["file4"]))
 
 if($_FILES["file4"]["name"] != null)
 {
-    $sql = "INSERT INTO `form_all_info` (`Phone_id`,`Case_id`, `Case_name`, `Case_pid`,`Is_upload`,`Upload_path`, `Number`,`Form_name`,`Upload_info`,`Create_date`,`Create_name`) VALUES
-    ('$Phone_id','$Case_id',
+    $sql = "INSERT INTO `form_all_info` (`Case_seqid`, `Case_id`, `Case_name`, `Case_pid`,`Is_upload`,`Upload_path`, `Number`,`Form_name`,`Upload_info`,`Create_date`,`Create_name`) VALUES
+    ('$Id', '$Case_id',
     '$Name', '$Case_pid',
     1,'$file',
     '$Number','$Form_name',

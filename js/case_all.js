@@ -130,7 +130,7 @@ function load_each_form()
                 var cssstring ="";
 
 
-                // console.log(data)
+                console.log(data)
                 $.each(data,function(index,value){
                 
                     if(value.Is_upload==0)
@@ -183,7 +183,7 @@ function load_each_form()
                     }
                     else
                     {
-                        // console.log(value.Upload_info)
+                        console.log(value.Upload_info)
 
                         var upload_info_json = JSON.parse("[" +value.Upload_info.replace('\"\[', '\[').replace('\]\"', '\]') + "]");
                         

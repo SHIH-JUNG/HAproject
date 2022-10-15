@@ -1,3 +1,5 @@
+const notyf = new Notyf();
+
 //datepicker創建 region
 datepicker_create = function (selector_id) {
   $("#" + selector_id).datepicker({
@@ -291,6 +293,7 @@ function check_file_exist() {
       },
       error: function (e) {
         console.log(e);
+        notyf.alert('伺服器錯誤,無法載入');
       },
     });
   });
@@ -373,7 +376,7 @@ function submit_form_data_upload() {
   $.each(form, function (seq, element) {
 
     var inputs_type = $("[name='"+element.name+"']").prop("tagName");
-
+    // console.log(inputs_type)
     if(inputs_type == "TEXTAREA")
     {
       element.value = element.value.replace(/\r\n/g, ";;");

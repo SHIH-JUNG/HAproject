@@ -113,6 +113,52 @@ $(document).ready(function () {
     //endregion
 });
 
+//檢查檔名是否重複，提示使用者region
+function check_file_exist() {
+  var check_file_value = $('input[type="file"]').prop("files");
+  var warning_str = "";
+  var file_arr = [];
+  var file_n = "";
+  var exist_info = [];
+
+  for (var i = 0; i < check_file_value.length; i++) {
+    file_arr.push(check_file_value[i]["name"]);
+  }
+  $.each(file_arr, function (index, value) {
+    $.ajax({
+      url: "database/accounting_record_report_file_check.php",
+      data: {
+        file_name: value,
+      },
+      type: "POST",
+      dataType: "JSON",
+      async: false,
+      success: function (data) {
+        //  console.log(data)
+        if (data != "") {
+          $.each(data, function (index, value) {
+            file_n = data[index].file_path.replace(
+              "../accounting_record_report/upload/",
+              ""
+            );
+
+            warning_str += "已有重複檔案名稱：\n" + file_n;
+
+            exist_info.push([file_n, warning_str]);
+          });
+        } else {
+          warning_str = "";
+        }
+      },
+      error: function (e) {
+        console.log(e);
+        notyf.alert('伺服器錯誤,無法載入');
+      },
+    });
+  });
+  return exist_info;
+}
+//endregion
 
 // 更新報表紀錄資料 region
 arr_update = function() {
@@ -129,8 +175,44 @@ arr_update = function() {
         title: check_update_rec_data(),
         type: "error",
       });
-    } else {
+    } 
+    else 
+    {
+      var exist_arr = check_file_exist();
+      if(exist_arr.length != 0)
+      {
+        swal({
+          title: exist_arr[0][1],
+          text: "選擇『確認送出』覆蓋現有檔案，或是按『取消』更改檔名",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#DD6B55",
+          confirmButtonText: "確認送出",
+          cancelButtonText: "取消",
+          showConfirmButton: true,
+          showCancelButton: true,
+        })
+          .then(
+            function (result) {
+              if (result) {
+                submit_form();
+              }
+            },
+            function (dismiss) {
+              if (dismiss == "cancel") {
+                swal({
+                  title: "已取消，建議請更改檔名",
+                  type: "success",
+                });
+              }
+            }
+          )
+          .catch(swal.noop);
+      }
+      else
+      {
         submit_form();
+      }
     }
 }
 
@@ -160,6 +242,7 @@ function submit_form() {
         }
     });
 
+    form_data.append("arr_id", arr_id);
     form_data.append("Report_type", $("#report_type").val());
     form_data.append("Report_title", $("#report_title").val());
     form_data.append("Report_date", $("#report_date").val());
@@ -167,13 +250,13 @@ function submit_form() {
     form_data.append("Report_year", report_year);
 
     // 預覽傳到後端的資料詳細內容
-    // for (var pair of form_data.entries()) {
-    //   console.log(pair[0] + ", " + pair[1]);
-    // }
+    for (var pair of form_data.entries()) {
+      console.log(pair[0] + ", " + pair[1]);
+    }
 
 
     $.ajax({
-        url: "database/#.php",
+        url: "database/update_accounting_record_report_data_detail.php",
         type: "POST",
         data: form_data,
         contentType: false,
@@ -189,7 +272,7 @@ function submit_form() {
               allowOutsideClick: false, //不可點背景關閉
             }).then(function () {
               window.location.href =
-                "accounting_record_report.php?year=" + report_year;
+                "accounting_record_report_detail.php?year=" + report_year + "&id=" + arr_id;
             });
           } else {
             swal({
@@ -217,7 +300,7 @@ function submit_form() {
 function check_update_rec_data() {
 
     var report_type = $("#report_type").val();
-    var report_upload = $("[name='report_upload']").val();
+    // var report_upload = $("[name='report_upload']").val();
     var report_title = $("#report_title").val();
     var report_date = $("#report_date").val();
    
@@ -234,9 +317,9 @@ function check_update_rec_data() {
       if (report_date == null) {
           errorstr += "未填寫檔案日期!\r\n";
       }
-      if (report_upload == null) {
-          errorstr += "未選擇上傳的檔案!\r\n";
-      }
+      // if (report_upload == null) {
+      //     errorstr += "未選擇上傳的檔案!\r\n";
+      // }
       if (errorstr == "") {
           if (report_type.replace(/\s*/g, "") == "") {
               errorstr += "未選擇報表類型!\r\n";
@@ -247,9 +330,9 @@ function check_update_rec_data() {
           if (report_date.replace(/\s*/g, "") == "") {
           errorstr += "未填寫檔案日期!\r\n";
           }
-          if (report_upload.replace(/\s*/g, "") == "") {
-          errorstr += "未選擇上傳的檔案!\r\n";
-          }
+          // if (report_upload.replace(/\s*/g, "") == "") {
+          // errorstr += "未選擇上傳的檔案!\r\n";
+          // }
       }
    
      return errorstr;

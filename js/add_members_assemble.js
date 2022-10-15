@@ -1,3 +1,5 @@
+const notyf = new Notyf();
+
 //datepicker創建 region
 datepicker_create = function (selector_id) {
   $("#" + selector_id).datepicker({
@@ -292,6 +294,7 @@ function check_file_exist() {
       },
       error: function (e) {
         console.log(e);
+        notyf.alert('伺服器錯誤,無法載入');
       },
     });
   });

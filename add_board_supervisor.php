@@ -141,60 +141,62 @@
                                                                         </td>
                                                                     </tr>
                                                                     <tr style="text-align:left">
-                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">理監事會記錄標題</td>
-                                                                        <td style="border-bottom: solid 1px;"><input id="title_name" name="title_name" type="text" style="width:37em;"></td>
+                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;width:12em;">理監事會記錄標題</td>
+                                                                        <td style="border-bottom: solid 1px;"><div class="col-sm-10"><input id="title_name" name="title_name" type="text" style="width:100%;"></div></td>
                                                                     </tr>
                                                                     <tr style="text-align:left">
                                                                         <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">會議日期</td>
-                                                                        <td style="border-bottom: solid 1px;"><input id="meeting_date" name="meeting_date" datepicker="ch_datepicker" type="text"></td>
+                                                                        <td style="border-bottom: solid 1px;"><div class="col-sm-10"><input id="meeting_date" name="meeting_date" datepicker="ch_datepicker" type="text"></div></td>
                                                                     </tr>
                                                                     <tr style="text-align:left">
                                                                         <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">會議時間</td>
-                                                                        <td style="border-bottom: solid 1px;"><input id="meeting_time" name="meeting_time" type="time"></td>
+                                                                        <td style="border-bottom: solid 1px;"><div class="col-sm-10"><input id="meeting_time" name="meeting_time" type="time"></div></td>
                                                                     </tr>
                                                                     <tr style="text-align:left">
                                                                         <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">會議地點</td>
-                                                                        <td style="border-bottom: solid 1px;"><input id="place" name="place" type="text" style="width:37em;"></td>
+                                                                        <td style="border-bottom: solid 1px;"><div class="col-sm-10"><input id="place" name="place" type="text" style="width:100%;"></div></td>
                                                                     </tr>
                                                                     <tr style="text-align:left">
                                                                         <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">主席</td>
-                                                                        <td style="border-bottom: solid 1px;"><input id="ceo_name" name="ceo_name" type="text" style="width:37em;"></td>
+                                                                        <td style="border-bottom: solid 1px;"><div class="col-sm-10"><input id="ceo_name" name="ceo_name" type="text" style="width:100%;"></div></td>
                                                                     </tr>
                                                                     <tr style="text-align:left">
                                                                         <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">出席人員</td>
                                                                         <td>
-                                                                            <textarea style="height:7em;width:37em;resize: none;font-size: 20px;" id="attendees" name="attendees" placeholder="請輸入出席人員"></textarea>
+                                                                            <div class="col-sm-10"><textarea style="height:7em;width:100%;resize: none;font-size: 20px;" id="attendees" name="attendees" placeholder="請輸入出席人員"></textarea></div>
                                                                         </td>
                                                                     </tr>
                                                                     <tr style="text-align:left">
                                                                         <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">請假人員</td>
                                                                         <td>
-                                                                            <textarea style="height:7em;width:37em;resize: none;font-size: 20px;" id="absent" name="absent" placeholder="請輸入請假人員"></textarea>
+                                                                            <div class="col-sm-10"><textarea style="height:7em;width:100%;resize: none;font-size: 20px;" id="absent" name="absent" placeholder="請輸入請假人員"></textarea></div>
                                                                         </td>
                                                                     </tr>
                                                                     <tr style="text-align:left">
                                                                         <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">紀錄者</td>
-                                                                        <td style="border-bottom: solid 1px;"><input id="record" name="record" type="text" style="width:37em;"></td>
+                                                                        <td style="border-bottom: solid 1px;"><div class="col-sm-10"><textarea style="height:10em;width:100%;resize: none;font-size: 20px;" id="record" name="record" placeholder="請輸入會議記錄者"></textarea></div></td>
                                                                     </tr>
                                                                     
                                                                     <tr style="text-align:left">
                                                                         <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white">提案討論</td>
                                                                         <td>
-                                                                            <textarea style="height:10em;width:700px;resize: none;font-size: 20px;" id="discuss" name="discuss" placeholder="請輸入提案討論內容"></textarea>
+                                                                            <div class="col-sm-10"><textarea style="height:10em;width:100%;resize: none;font-size: 20px;" id="discuss" name="discuss" placeholder="請輸入提案討論內容"></textarea></div>
                                                                         </td>
                                                                     </tr>
                                                                     <tr style="text-align:left">
                                                                         <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white">臨時動議</td>
                                                                         <td>
-                                                                            <textarea style="height:16em;width:700px;resize: none;font-size: 20px;" id="motion" name="motion" placeholder="請輸入臨時動議內容"></textarea>
+                                                                            <div class="col-sm-10"><textarea style="height:16em;width:100%;resize: none;font-size: 20px;" id="motion" name="motion" placeholder="請輸入臨時動議內容"></textarea></div>
                                                                         </td>
                                                                     </tr>
                                                                     <tr style="text-align:left">
                                                                         <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;">督導(簽核)</td>
                                                                         <td style="border-bottom: solid 1px;">
-                                                                            <select name="supervise" id="supervise" style="width:160px;">
-                                                                                <option value="">請選擇</option>
-                                                                            </select>
+                                                                            <div class="col-sm-3">
+                                                                                <select name="supervise" id="supervise" style="width:100%;">
+                                                                                    <option value="">請選擇</option>
+                                                                                </select>
+                                                                            </div>
                                                                         </td>
                                                                     </tr>
                                                                 </table>
@@ -226,12 +228,12 @@
                                                                         </td>
                                                                     </tr>
                                                                     <tr style="text-align:left">
-                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">理監事會記錄標題</td>
-                                                                        <td style="border-bottom: solid 1px;"><input id="upload_title_name" name="upload_title_name" type="text" style="width:37em;"></td>
+                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;width:12em;">理監事會記錄標題</td>
+                                                                        <td style="border-bottom: solid 1px;"><div class="col-sm-10"><input id="upload_title_name" name="upload_title_name" type="text" style="width:100%;"></div></td>
                                                                     </tr>
                                                                     <tr style="text-align:left">
                                                                         <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">上傳日期</td>
-                                                                        <td style="border-bottom: solid 1px;"><input id="upload_rec_date" name="upload_rec_date" datepicker="ch_datepicker" type="text"></td>
+                                                                        <td style="border-bottom: solid 1px;"><div class="col-sm-10"><input id="upload_rec_date" name="upload_rec_date" datepicker="ch_datepicker" type="text"></div></td>
                                                                     </tr>
                                                                     <tr style="text-align:left">
                                                                         <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">檔案上傳</td>
@@ -249,15 +251,17 @@
                                                                     <tr style="text-align:left">
                                                                         <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white">備註</td>
                                                                         <td>
-                                                                            <textarea style="height:10em;width:700px;resize: none;font-size: 20px;" id="upload_rec_remark" name="upload_rec_remark" placeholder="請輸入備註"></textarea>
+                                                                            <div class="col-sm-10"><textarea style="height:10em;width:100%;resize: none;font-size: 20px;" id="upload_rec_remark" name="upload_rec_remark" placeholder="請輸入備註"></textarea></div>
                                                                         </td>
                                                                     </tr>
                                                                     <tr style="text-align:left">
                                                                         <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;">督導(簽核)</td>
                                                                         <td style="border-bottom: solid 1px;">
-                                                                            <select name="upload_rec_supervise" id="upload_rec_supervise" style="width:160px;">
-                                                                                <option value="">請選擇</option>
-                                                                            </select>
+                                                                            <div class="col-sm-3">
+                                                                                <select name="upload_rec_supervise" id="upload_rec_supervise" style="width:100%;">
+                                                                                    <option value="">請選擇</option>
+                                                                                </select>
+                                                                            </div>
                                                                         </td>
                                                                     </tr>
                                                                 </table>

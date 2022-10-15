@@ -42,13 +42,9 @@ else if(tran_case_gender.includes('女'))
 {
     tran_case_gender="女";
 }
-else if(tran_case_gender.includes('跨性別'))
-{
-    tran_case_gender="跨性別";
-}
 else
 {
-    tran_case_gender="";
+    tran_case_gender="其他/非二元性別";
 }
 
 

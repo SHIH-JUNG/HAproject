@@ -82,8 +82,9 @@
                                                         <td>
                                                             <div class="col-sm-12">
                                                                 <div class="text-left">
-                                                                    <input name="sex" style="zoom: 1.5" value="男生" type="radio"><span>男生</span>
-                                                                    <input name="sex" style="zoom: 1.5" value="女生" type="radio"><span>女生</span>
+                                                                    <input name="sex" style="zoom: 1.5" value="男" type="radio"><span>男</span>
+                                                                    <input name="sex" style="zoom: 1.5" value="女" type="radio"><span>女</span>
+                                                                    <input name="sex" style="zoom: 1.5" value="其他/非二元性別" type="radio"><span>其他/非二元性別</span>
                                                                 </div>
                                                             </div>
                                                         </td>

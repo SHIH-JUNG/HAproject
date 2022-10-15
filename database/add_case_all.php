@@ -20,7 +20,7 @@ $Form_name = $_POST['Form_name'];
 $user = $_SESSION['name'];
 
 $sql = "INSERT INTO `form_all_info` (`Case_seqid`,`Case_id`, `Case_name`, `Case_pid`,`Url`, `Number`,`Form_name`,`Fillin_date`,`Remark`,`Create_date`,`Create_name`) VALUES
- ('$Id','$Case_id',
+ ('$Id', '$Case_id',
   '$Name', '$Case_pid',
   '$Url',
   '$Number','$Form_name',

@@ -110,10 +110,11 @@ var new_address_arr=[];
                     $('#'+this_id+'').prepend("<option value='' selected='selected'>所有</option>");
 
                     $("#"+this_id+"").children().each(function() {
-                        text = $(this).text();
-                        if($("select#"+this_id+" option:contains("+text+")").length > 1){
-                            $("select#"+this_id+" option:contains("+text+"):gt(0)").remove();
-                        }
+                        //text = $(this).text();
+                        //if($("select#"+this_id+" option:contains("+text+")").length > 1){
+                        //    $("select#"+this_id+" option:contains("+text+"):gt(0)").remove();
+                        //}
+                        $(this).siblings('[value="' + this.value + '"]').remove();
                         //    console.log(text)
                     });
                 }
@@ -182,10 +183,11 @@ $.each(get_tr_phoneid, function(index,val) {
 
              //去除重複
              $("#face_count").children().each(function() {
-                text = $(this).text();
-                if($("select#face_count option:contains("+text+")").length > 1){
-                    $("select#face_count option:contains("+text+"):gt(0)").remove();
-                }
+                //text = $(this).text();
+                //if($("select#face_count option:contains("+text+")").length > 1){
+                //    $("select#face_count option:contains("+text+"):gt(0)").remove();
+                //}
+                $(this).siblings('[value="' + this.value + '"]').remove();
             });
         },
         error: function (e) {
