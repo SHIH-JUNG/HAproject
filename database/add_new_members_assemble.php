@@ -38,8 +38,8 @@ $sql = "INSERT INTO `members_assemble` (`Id`, `Year`, `record_content`,`Create_d
  ($ma_id, '$year', '$record_content', Now(), '$user', '$signer');";
 
 // $sql .= "INSERT INTO `calendar` (`title`,`description`,`start`, `end`, `publisher`) VALUES ('$title','$url','$start_datetime', '$end_datetime', '$user')";
-$sql .= "INSERT INTO `signature_notice` (`Title`,`Url`,`Timestamp`, `Assign`, `Signer`, `Sign_state`, `Type`, `Create_date`, `Create_name`) 
-VALUES ('$title','$url','$rec_date_time', '$user', '$signer', '未簽核', 'members_assemble', Now(), '$user')";
+$sql .= "INSERT INTO `signature_notice` (`Record_id`, `Title`,`Url`,`Timestamp`, `Assign`, `Signer`, `Sign_state`, `Type`, `Create_date`, `Create_name`) 
+VALUES ($ma_id, '$title','$url','$rec_date_time', '$user', '$signer', '未簽核', 'members_assemble', Now(), '$user')";
 
 	if(mysqli_multi_query($conn,$sql)){
         echo true;

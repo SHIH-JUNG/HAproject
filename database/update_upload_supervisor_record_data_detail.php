@@ -15,6 +15,22 @@ $sr_id = $_REQUEST['sr_id'];
 
 $user = $_SESSION['name'];
 
+@$assign = $_REQUEST['assign'];
+@$title = $_REQUEST['title'];
+@$signer = $_REQUEST['signer'];
+@$rec_date_time = $_REQUEST['rec_date_time'];
+
+$url = 'supervisor_record_detail.php?year='.$year.'&id='.$sr_id.'&sr_id='.$sr_id.'&rec_type=upload';
+
+
+@$signed_timestamp = $_REQUEST['signed_timestamp'];
+
+@$update_signer_sql = "";
+
+if($signed_timestamp!="0000-00-00 00:00:00")
+{
+    $update_signer_sql = ", `Supervise` = '$signer'";
+}
 
 if (!is_dir($file_dir)) {
     mkdir($file_dir, 0777, true);
@@ -65,9 +81,10 @@ if(isset($_REQUEST['File_name']))
 
     if(isset($_FILES["file4"]) || isset($_REQUEST['File_name']))
     {
-        $sqlUpdate ="UPDATE `supervisor_record` SET `Year` = '$year', `Update_date` = NOW(), `Update_name`= '$user', `upload_content` = '$upload_content', `file_path` = '$file'
+        $sqlUpdate ="UPDATE `supervisor_record` SET `Year` = '$year', `Update_date` = NOW(), `Update_name`= '$user', `upload_content` = '$upload_content' ".$update_signer_sql.", `file_path` = '$file'
         WHERE `Id` = '$sr_id' LIMIT 1;";
 
+        @$sqlUpdate .= "UPDATE `signature_notice` SET `Title` = '$title', `Url` = '$url', `Timestamp` = '$rec_date_time', `Assign` = '$assign', `Signer`='$signer', `Update_name` = '$user', `Update_date` = NOW() WHERE `Record_id` = '$sr_id' AND `Type` = 'supervisor_record' ORDER BY `signature_notice`.`Create_date` ASC LIMIT 1;";
 
         if(mysqli_multi_query($conn, $sqlUpdate)){
             echo true;

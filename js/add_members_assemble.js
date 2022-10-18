@@ -423,7 +423,7 @@ function submit_form_data_upload() {
   form_data.append("title", '會員大會記錄簽核：'+$("#upload_title_name").val());
   form_data.append("rec_type", 'upload');
   form_data.append("signer", $("#upload_rec_supervise").val());
-  form_data.append("rec_date_time", split_date($("#meeting_date").val())+" 00:00");
+  form_data.append("rec_date_time", split_date($("#upload_rec_date").val())+" 00:00");
   
   for (var pair of form_data.entries()) {
     console.log(pair[0] + ", " + pair[1]);

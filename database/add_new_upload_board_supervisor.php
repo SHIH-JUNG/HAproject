@@ -88,8 +88,8 @@ if (isset($_FILES["file4"]) || isset($_REQUEST['File_name']))
             ($bs_id, '$year', '$upload_content', '$file', NOW(), '$user', '$signer');";
             
         // $sql .= "INSERT INTO `calendar` (`title`,`description`,`start`, `end`, `publisher`) VALUES ('$title','$url','$start_datetime', '$end_datetime', '$user')";
-        $sql .= "INSERT INTO `signature_notice` (`Title`,`Url`,`Timestamp`, `Assign`, `Signer`, `Sign_state`, `Type`, `Create_date`, `Create_name`) 
-        VALUES ('$title','$url','$rec_date_time', '$user', '$signer', '未簽核', 'board_supervisor', Now(), '$user')";
+        $sql .= "INSERT INTO `signature_notice` (`Record_id`, `Title`,`Url`,`Timestamp`, `Assign`, `Signer`, `Sign_state`, `Type`, `Create_date`, `Create_name`) 
+        VALUES ($bs_id, '$title','$url','$rec_date_time', '$user', '$signer', '未簽核', 'board_supervisor', Now(), '$user')";
 
         if (mysqli_multi_query($conn, $sql)) {
             echo true;

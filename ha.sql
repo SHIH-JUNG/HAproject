@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2022-10-18 10:47:50
+-- 產生時間： 2022-10-18 15:46:24
 -- 伺服器版本： 10.4.24-MariaDB
 -- PHP 版本： 7.4.29
 
@@ -229,7 +229,9 @@ INSERT INTO `board_supervisor` (`Id`, `Year`, `record_content`, `upload_content`
 (33, '111', '', '\"[{\"name\":\"upload_title_name\",\"value\":\"test上傳會議記錄理監事會議818\"},{\"name\":\"upload_rec_date\",\"value\":\"111年08月18日\"},{\"name\":\"upload_rec_remark\",\"value\":\"檔名：tesmma33.docx818\"},{\"name\":\"upload_rec_supervise\",\"value\":\"社工組長\"},{\"name\":\"customFile1\",\"value\":\"tesmma33.docx\"}]\"', '../board_supervisor/upload/tesmma33.docx', '社工組長', '../board_supervisor/signature/1660812408.png', '社工組長簽名', '2022-08-18 16:46:48', '2022-08-18 16:38:40', '社工員1', '0000-00-00 00:00:00', ''),
 (34, '111', '[{\"name\":\"title_name\",\"value\":\"test理監事會記錄標題1007\"},{\"name\":\"meeting_date\",\"value\":\"111年10月07日\"},{\"name\":\"meeting_time\",\"value\":\"10:05\"},{\"name\":\"place\",\"value\":\"te會議地點\"},{\"name\":\"ceo_name\",\"value\":\"sss主席\"},{\"name\":\"attendees\",\"value\":\"出席人員ttt\"},{\"name\":\"absent\",\"value\":\"dad請假人員\"},{\"name\":\"record\",\"value\":\"dead紀錄者\"},{\"name\":\"discuss\",\"value\":\"aaa提案討論sdfsfs\"},{\"name\":\"motion\",\"value\":\"dd：;;  1.aadsadssa;;  2.aaaaaaaa;;3.aaassdada\"}]', '', '', '社工組長', '', '', '0000-00-00 00:00:00', '2022-10-07 21:03:01', '社工員1', '2022-10-13 15:22:24', '社工組長'),
 (35, '109', '', '\"[{\"name\":\"upload_title_name\",\"value\":\"uploadtt理監事會記錄標題1209\"},{\"name\":\"upload_rec_date\",\"value\":\"109年12月09日\"},{\"name\":\"upload_rec_remark\",\"value\":\"ttttt;;1.;;2.aaa\"},{\"name\":\"customFile1\",\"value\":\"test.bmp\"}]\"', '../board_supervisor/upload/test.bmp', '社工員2', '', '', '0000-00-00 00:00:00', '2022-10-13 16:26:15', '社工組長', '2022-10-15 22:55:43', 'jia'),
-(36, '111', '', '\"[{\"name\":\"upload_title_name\",\"value\":\"ttttt理監事會記錄標題1015\"},{\"name\":\"upload_rec_date\",\"value\":\"111年10月15日\"},{\"name\":\"upload_rec_remark\",\"value\":\"adsada44444;;備註;;備註\"},{\"name\":\"upload_rec_supervise\",\"value\":\"園主任\"},{\"name\":\"customFile1\",\"value\":\"test.bmp\"}]\"', '../board_supervisor/upload/test.bmp', '園主任', '', '', '0000-00-00 00:00:00', '2022-10-15 23:17:58', 'jia', '0000-00-00 00:00:00', '');
+(36, '111', '', '\"[{\"name\":\"upload_title_name\",\"value\":\"ttttt理監事會記錄標題1015\"},{\"name\":\"upload_rec_date\",\"value\":\"111年10月15日\"},{\"name\":\"upload_rec_remark\",\"value\":\"adsada44444;;備註;;備註\"},{\"name\":\"upload_rec_supervise\",\"value\":\"園主任\"},{\"name\":\"customFile1\",\"value\":\"test.bmp\"}]\"', '../board_supervisor/upload/test.bmp', '園主任', '', '', '0000-00-00 00:00:00', '2022-10-15 23:17:58', 'jia', '0000-00-00 00:00:00', ''),
+(37, '111', '[{\"name\":\"title_name\",\"value\":\"test理監事會記錄sign\"},{\"name\":\"meeting_date\",\"value\":\"111年10月12日\"},{\"name\":\"meeting_time\",\"value\":\"13:40\"},{\"name\":\"place\",\"value\":\"test會議地點\"},{\"name\":\"ceo_name\",\"value\":\"ttt主席\"},{\"name\":\"attendees\",\"value\":\"出席人員1;;出席人員2aa;;出席人員3\"},{\"name\":\"absent\",\"value\":\"請假人員1;;請假人員2\"},{\"name\":\"record\",\"value\":\"紀錄者1;;紀錄者2\"},{\"name\":\"discuss\",\"value\":\"提案討論12n;;提案討論asd1\"},{\"name\":\"motion\",\"value\":\"臨時動議1;;臨時動議2;;臨時動議3\"}]', '', '', '園主任', '', '', '0000-00-00 00:00:00', '2022-10-18 20:50:36', 'jia', '2022-10-18 21:24:30', 'jia'),
+(38, '110', '', '\"[{\"name\":\"upload_title_name\",\"value\":\"test理監事會記錄標題\\t_upload_sign\"},{\"name\":\"upload_rec_date\",\"value\":\"110年08月18日\"},{\"name\":\"upload_rec_remark\",\"value\":\"test;;test理監事會記錄標題\\t_upload_sign\"},{\"name\":\"customFile1\",\"value\":\"理監事會議記錄signtest.docx\"}]\"', '../board_supervisor/upload/理監事會議記錄signtest.docx', '社工組長', '', '', '0000-00-00 00:00:00', '2022-10-18 21:10:50', 'jia', '2022-10-18 21:22:56', 'jia');
 
 -- --------------------------------------------------------
 
@@ -988,7 +990,8 @@ INSERT INTO `login_record` (`Id`, `Login_timestamp`, `Login_account`, `Login_aut
 (104, '2022-10-13 14:30:24', 'test5', '3', '園主任', '22.7189,120.4412', 1),
 (105, '2022-10-14 11:04:23', 'text1', '1', '社工員1', '22.6478719,120.6119634', 1),
 (106, '2022-10-15 22:03:32', 'test5', '3', '園主任', '23.4803991,120.4242406', 1),
-(107, '2022-10-18 10:52:09', 'text1', '1', '社工員1', '22.6478721,120.6119611', 1);
+(107, '2022-10-18 10:52:09', 'text1', '1', '社工員1', '22.6478721,120.6119611', 1),
+(108, '2022-10-18 20:13:04', 'text1', '1', 'jia', '23.4803991,120.4242406', 0);
 
 -- --------------------------------------------------------
 
@@ -1019,7 +1022,8 @@ CREATE TABLE `members_assemble` (
 INSERT INTO `members_assemble` (`Id`, `Year`, `record_content`, `upload_content`, `file_path`, `Supervise`, `Supervise_signature`, `Supervise_sign_msg`, `Supervise_sign_time`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
 (1, '109', '[{\"name\":\"title_name\",\"value\":\"test會員大會記錄標題123\"},{\"name\":\"meeting_date\",\"value\":\"109年08月13日\"},{\"name\":\"meeting_time\",\"value\":\"09:00\"},{\"name\":\"place\",\"value\":\"test會議地點\"},{\"name\":\"ceo_name\",\"value\":\"主席aaa\"},{\"name\":\"attendees\",\"value\":\"aa出席人員\"},{\"name\":\"absent\",\"value\":\"bb請假人員\"},{\"name\":\"record\",\"value\":\"dasda出\"},{\"name\":\"discuss\",\"value\":\"aaaaaa提案討論\"},{\"name\":\"motion\",\"value\":\"臨時動議bbbb：;;ddd\"}]', '', '', '社工組長', '', '', '0000-00-00 00:00:00', '2022-10-07 20:57:28', '社工員1', '2022-10-13 15:44:37', '社工組長'),
 (2, '111', '', '\"[{\"name\":\"upload_title_name\",\"value\":\"test會員大會記錄標題\\tupload\"},{\"name\":\"upload_rec_date\",\"value\":\"111年04月06日\"},{\"name\":\"upload_rec_remark\",\"value\":\"test備註\"},{\"name\":\"upload_rec_supervise\",\"value\":\"園主任\"},{\"name\":\"customFile1\",\"value\":\"test2報表_1100314.docx\"}]\"', '../members_assemble/upload/test2報表_1100314.docx', '園主任', '', '', '0000-00-00 00:00:00', '2022-10-07 21:01:24', '社工員1', '0000-00-00 00:00:00', ''),
-(3, '109', '[{\"name\":\"title_name\",\"value\":\"會員大會記錄標題2\"},{\"name\":\"meeting_date\",\"value\":\"109年11月11日\"},{\"name\":\"meeting_time\",\"value\":\"13:10\"},{\"name\":\"place\",\"value\":\"會議地點BBB\"},{\"name\":\"ceo_name\",\"value\":\"主席NN\"},{\"name\":\"attendees\",\"value\":\"AA出席人員\"},{\"name\":\"absent\",\"value\":\"請假人員V\"},{\"name\":\"record\",\"value\":\"紀錄者T\"},{\"name\":\"discuss\",\"value\":\"AA提案討論\"},{\"name\":\"motion\",\"value\":\"臨時動議BSSDD\"}]', '', '', '社工組長', '', '', '0000-00-00 00:00:00', '2022-10-07 21:05:07', '社工員1', '2022-10-13 18:56:36', '社工組長');
+(3, '109', '[{\"name\":\"title_name\",\"value\":\"會員大會記錄標題2\"},{\"name\":\"meeting_date\",\"value\":\"109年11月11日\"},{\"name\":\"meeting_time\",\"value\":\"13:10\"},{\"name\":\"place\",\"value\":\"會議地點BBB\"},{\"name\":\"ceo_name\",\"value\":\"主席NN\"},{\"name\":\"attendees\",\"value\":\"AA出席人員\"},{\"name\":\"absent\",\"value\":\"請假人員V\"},{\"name\":\"record\",\"value\":\"紀錄者T\"},{\"name\":\"discuss\",\"value\":\"AA提案討論\"},{\"name\":\"motion\",\"value\":\"臨時動議BSSDD\"}]', '', '', '社工組長', '', '', '0000-00-00 00:00:00', '2022-10-07 21:05:07', '社工員1', '2022-10-13 18:56:36', '社工組長'),
+(4, '111', '', '\"[{\"name\":\"upload_title_name\",\"value\":\"test會員大會記錄標題upload_sign\"},{\"name\":\"upload_rec_date\",\"value\":\"111年09月26日\"},{\"name\":\"upload_rec_remark\",\"value\":\"test;;test會員大會記錄標題upload_sign\"},{\"name\":\"customFile1\",\"value\":\"會員大會test.docx\"}]\"', '../members_assemble/upload/會員大會test.docx', '社工組長', '', '', '0000-00-00 00:00:00', '2022-10-18 21:01:44', 'jia', '2022-10-18 21:27:59', 'jia');
 
 -- --------------------------------------------------------
 
@@ -1300,7 +1304,7 @@ CREATE TABLE `resume` (
   `Name` varchar(30) NOT NULL,
   `Entry_date` varchar(100) NOT NULL,
   `On_or_off` varchar(10) NOT NULL,
-  `Resigned_date` varchar(100) DEFAULT NULL,
+  `Resigned_date` varchar(100) NOT NULL,
   `Resume_datas_date` date DEFAULT NULL,
   `Employment_contract_date` date DEFAULT NULL,
   `NDA_file_date` date DEFAULT NULL,
@@ -1319,7 +1323,7 @@ CREATE TABLE `resume` (
 
 INSERT INTO `resume` (`Id`, `Account_id`, `Account`, `Name`, `Entry_date`, `On_or_off`, `Resigned_date`, `Resume_datas_date`, `Employment_contract_date`, `NDA_file_date`, `Diploma_date`, `PA_file_date`, `Remark`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
 (1, 25, 'testuser', 'jia', '111年09月08日', '是', '', '2022-09-29', '2022-10-02', '2022-09-29', '2022-09-29', '2022-10-02', 'test0908', '2022-09-29 17:47:27', '園主任', '2022-10-02 19:32:02', '社工員1'),
-(2, 26, 'test01', 'test001', '111年10月12日', '是', NULL, '2022-10-12', '2022-10-12', '2022-10-12', '2022-10-12', '2022-10-12', '無，測試', '2022-10-12 14:17:44', '花花', '2022-10-12 14:18:16', '花花');
+(2, 26, 'test01', 'test001', '111年10月12日', '是', '', '2022-10-12', '2022-10-12', '2022-10-12', '2022-10-12', '2022-10-12', '無，測試', '2022-10-12 14:17:44', '花花', '2022-10-12 14:18:16', '花花');
 
 -- --------------------------------------------------------
 
@@ -1453,7 +1457,8 @@ INSERT INTO `screening_type_keywords` (`Id`, `screening_type`) VALUES
 --
 
 CREATE TABLE `signature_notice` (
-  `Id` int(11) NOT NULL,
+  `Id` int(244) NOT NULL,
+  `Record_id` int(244) NOT NULL,
   `Title` varchar(1000) NOT NULL,
   `Url` text NOT NULL,
   `Timestamp` varchar(100) NOT NULL,
@@ -1471,23 +1476,28 @@ CREATE TABLE `signature_notice` (
 -- 傾印資料表的資料 `signature_notice`
 --
 
-INSERT INTO `signature_notice` (`Id`, `Title`, `Url`, `Timestamp`, `Assign`, `Signer`, `Sign_state`, `Type`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
-(7, '團督記錄簽核：test會議記錄標題818', 'supervisor_record_detail.php?year=111&id=17&sr_id=17&rec_type=fillin', '2022-08-18 16:05', '社工員1', '執行長', '未簽核', 'supervisor_record', '2022-08-18 16:10:58', '社工員1', '2022-08-18 16:10:58', ''),
-(8, '團督記錄簽核：uploadtt會議記錄標題818', 'supervisor_record_detail.php?year=111&id=18&sr_id=18&rec_type=upload', '2022-08-18 00:00', '社工員1', '園主任', '已簽核', 'supervisor_record', '2022-08-18 16:11:27', '社工員1', '2022-08-18 16:11:27', ''),
-(9, '理監事會議記錄簽核：test理監事會議會議記錄標題818', 'board_supervisor_detail.php?year=111&id=32&bs_id=32&rec_type=fillin', '2022-08-18 17:20', '園主任', '園主任', '已簽核', 'board_supervisor', '2022-08-18 16:35:25', '園主任', '2022-08-18 16:35:25', ''),
-(11, '理監事會議記錄簽核：test上傳會議記錄理監事會議818', 'board_supervisor_detail.php?year=111&id=33&bs_id=33&rec_type=upload', '2022-08-18 00:00', '社工員1', '社工組長', '已簽核', 'board_supervisor', '2022-08-18 16:38:40', '社工員1', '2022-08-18 16:38:40', ''),
-(12, '會員大會記錄簽核：test會員大會記錄標題818', 'members_assemble_detail.php?year=111&id=14&ma_id=14&rec_type=fillin', '2022-08-18 14:00', '社工員2', '社工組長', '未簽核', 'members_assemble', '2022-08-18 16:55:38', '社工員2', '2022-08-18 16:55:38', ''),
-(13, '會員大會記錄簽核：upload會員大會記錄標題818', 'members_assemble_detail.php?year=111&id=15&ma_id=15&rec_type=upload', '2022-08-18 00:00', '社工員2', '園主任', '已簽核', 'members_assemble', '2022-08-18 16:56:50', '社工員2', '2022-08-18 16:56:50', ''),
-(14, '團督記錄簽核：test會議記錄標題920', 'supervisor_record_detail.php?year=111&id=19&sr_id=19&rec_type=fillin', '2022-09-20 07:07', '園主任', '社工組長', '未簽核', 'supervisor_record', '2022-09-20 18:04:02', '園主任', '2022-09-20 18:04:02', ''),
-(15, '會員大會記錄簽核：test會員大會記錄標題	123', 'members_assemble_detail.php?year=109&id=0&ma_id=0&rec_type=fillin', '2020-08-13 09:00', '社工員1', '社工組長', '未簽核', 'members_assemble', '2022-10-07 20:57:28', '社工員1', '2022-10-07 20:57:28', ''),
-(16, '會員大會記錄簽核：test會員大會記錄標題	upload', 'members_assemble_detail.php?year=111&id=2&ma_id=2&rec_type=upload', '2022-10-07 00:00', '社工員1', '園主任', '未簽核', 'members_assemble', '2022-10-07 21:01:24', '社工員1', '2022-10-07 21:01:24', ''),
-(17, '理監事會記錄簽核：test理監事會記錄標題1007', 'board_supervisor_detail.php?year=111&id=34&bs_id=34&rec_type=fillin', '2022-10-07 10:05', '社工員1', '社工組長', '未簽核', 'board_supervisor', '2022-10-07 21:03:01', '社工員1', '2022-10-07 21:03:01', ''),
-(18, '會員大會記錄簽核：會員大會記錄標題2', 'members_assemble_detail.php?year=109&id=3&ma_id=3&rec_type=fillin', '2020-11-11 13:10', '社工員1', '社工組長', '未簽核', 'members_assemble', '2022-10-07 21:05:07', '社工員1', '2022-10-07 21:05:07', ''),
-(19, '團督記錄簽核：TEST團督記錄標題1231007', 'supervisor_record_detail.php?year=111&id=20&sr_id=20&rec_type=fillin', '2022-10-07 10:15', '社工員1', '園主任', '未簽核', 'supervisor_record', '2022-10-07 21:15:09', '社工員1', '2022-10-07 21:15:09', ''),
-(20, '理監事會議記錄簽核：uploadtt理監事會記錄標題1209', 'board_supervisor_detail.php?year=109&id=35&bs_id=35&rec_type=upload', '2022-10-13 00:00', '社工組長', '社工員2', '未簽核', 'board_supervisor', '2022-10-13 16:26:15', '社工組長', '2022-10-13 16:26:15', ''),
-(21, '理監事會記錄簽核：adasad', 'board_supervisor_detail.php?year=111&id=36&bs_id=36&rec_type=fillin', '2022-10-15 01:11', 'jia', '力聖臨', '未簽核', 'board_supervisor', '2022-10-15 23:08:50', 'jia', '2022-10-15 23:08:50', ''),
-(22, '團督記錄簽核：test團督記錄標題1015', 'supervisor_record_detail.php?year=111&id=21&sr_id=21&rec_type=fillin', '2022-10-15 00:20', 'jia', '社工組長', '未簽核', 'supervisor_record', '2022-10-15 23:16:59', 'jia', '2022-10-15 23:16:59', ''),
-(23, '理監事會議記錄簽核：ttttt理監事會記錄標題1015', 'board_supervisor_detail.php?year=111&id=36&bs_id=36&rec_type=upload', '2022-10-15 00:00', 'jia', '園主任', '未簽核', 'board_supervisor', '2022-10-15 23:17:58', 'jia', '2022-10-15 23:17:58', '');
+INSERT INTO `signature_notice` (`Id`, `Record_id`, `Title`, `Url`, `Timestamp`, `Assign`, `Signer`, `Sign_state`, `Type`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
+(7, 0, '團督記錄簽核：test會議記錄標題818', 'supervisor_record_detail.php?year=111&id=17&sr_id=17&rec_type=fillin', '2022-08-18 16:05', '社工員1', '執行長', '未簽核', 'supervisor_record', '2022-08-18 16:10:58', '社工員1', '2022-08-18 16:10:58', ''),
+(8, 0, '團督記錄簽核：uploadtt會議記錄標題818', 'supervisor_record_detail.php?year=111&id=18&sr_id=18&rec_type=upload', '2022-08-18 00:00', '社工員1', '園主任', '已簽核', 'supervisor_record', '2022-08-18 16:11:27', '社工員1', '2022-08-18 16:11:27', ''),
+(9, 0, '理監事會議記錄簽核：test理監事會議會議記錄標題818', 'board_supervisor_detail.php?year=111&id=32&bs_id=32&rec_type=fillin', '2022-08-18 17:20', '園主任', '園主任', '已簽核', 'board_supervisor', '2022-08-18 16:35:25', '園主任', '2022-08-18 16:35:25', ''),
+(11, 0, '理監事會議記錄簽核：test上傳會議記錄理監事會議818', 'board_supervisor_detail.php?year=111&id=33&bs_id=33&rec_type=upload', '2022-08-18 00:00', '社工員1', '社工組長', '已簽核', 'board_supervisor', '2022-08-18 16:38:40', '社工員1', '2022-08-18 16:38:40', ''),
+(12, 0, '會員大會記錄簽核：test會員大會記錄標題818', 'members_assemble_detail.php?year=111&id=14&ma_id=14&rec_type=fillin', '2022-08-18 14:00', '社工員2', '社工組長', '未簽核', 'members_assemble', '2022-08-18 16:55:38', '社工員2', '2022-08-18 16:55:38', ''),
+(13, 0, '會員大會記錄簽核：upload會員大會記錄標題818', 'members_assemble_detail.php?year=111&id=15&ma_id=15&rec_type=upload', '2022-08-18 00:00', '社工員2', '園主任', '已簽核', 'members_assemble', '2022-08-18 16:56:50', '社工員2', '2022-08-18 16:56:50', ''),
+(14, 0, '團督記錄簽核：test會議記錄標題920', 'supervisor_record_detail.php?year=111&id=19&sr_id=19&rec_type=fillin', '2022-09-20 07:07', '園主任', '社工組長', '未簽核', 'supervisor_record', '2022-09-20 18:04:02', '園主任', '2022-09-20 18:04:02', ''),
+(15, 0, '會員大會記錄簽核：test會員大會記錄標題	123', 'members_assemble_detail.php?year=109&id=0&ma_id=0&rec_type=fillin', '2020-08-13 09:00', '社工員1', '社工組長', '未簽核', 'members_assemble', '2022-10-07 20:57:28', '社工員1', '2022-10-07 20:57:28', ''),
+(16, 0, '會員大會記錄簽核：test會員大會記錄標題	upload', 'members_assemble_detail.php?year=111&id=2&ma_id=2&rec_type=upload', '2022-10-07 00:00', '社工員1', '園主任', '未簽核', 'members_assemble', '2022-10-07 21:01:24', '社工員1', '2022-10-07 21:01:24', ''),
+(17, 0, '理監事會記錄簽核：test理監事會記錄標題1007', 'board_supervisor_detail.php?year=111&id=34&bs_id=34&rec_type=fillin', '2022-10-07 10:05', '社工員1', '社工組長', '未簽核', 'board_supervisor', '2022-10-07 21:03:01', '社工員1', '2022-10-07 21:03:01', ''),
+(18, 0, '會員大會記錄簽核：會員大會記錄標題2', 'members_assemble_detail.php?year=109&id=3&ma_id=3&rec_type=fillin', '2020-11-11 13:10', '社工員1', '社工組長', '未簽核', 'members_assemble', '2022-10-07 21:05:07', '社工員1', '2022-10-07 21:05:07', ''),
+(19, 0, '團督記錄簽核：TEST團督記錄標題1231007', 'supervisor_record_detail.php?year=111&id=20&sr_id=20&rec_type=fillin', '2022-10-07 10:15', '社工員1', '園主任', '未簽核', 'supervisor_record', '2022-10-07 21:15:09', '社工員1', '2022-10-07 21:15:09', ''),
+(20, 0, '理監事會議記錄簽核：uploadtt理監事會記錄標題1209', 'board_supervisor_detail.php?year=109&id=35&bs_id=35&rec_type=upload', '2022-10-13 00:00', '社工組長', '社工員2', '未簽核', 'board_supervisor', '2022-10-13 16:26:15', '社工組長', '2022-10-13 16:26:15', ''),
+(21, 0, '理監事會記錄簽核：adasad', 'board_supervisor_detail.php?year=111&id=36&bs_id=36&rec_type=fillin', '2022-10-15 01:11', 'jia', '力聖臨', '未簽核', 'board_supervisor', '2022-10-15 23:08:50', 'jia', '2022-10-15 23:08:50', ''),
+(22, 0, '團督記錄簽核：test團督記錄標題1015', 'supervisor_record_detail.php?year=111&id=21&sr_id=21&rec_type=fillin', '2022-10-15 00:20', 'jia', '社工組長', '未簽核', 'supervisor_record', '2022-10-15 23:16:59', 'jia', '2022-10-15 23:16:59', ''),
+(23, 0, '理監事會議記錄簽核：ttttt理監事會記錄標題1015', 'board_supervisor_detail.php?year=111&id=36&bs_id=36&rec_type=upload', '2022-10-15 00:00', 'jia', '園主任', '未簽核', 'board_supervisor', '2022-10-15 23:17:58', 'jia', '2022-10-15 23:17:58', ''),
+(24, 37, '理監事會記錄簽核：test理監事會記錄sign', 'board_supervisor_detail.php?year=111&id=37&bs_id=37&rec_type=fillin', '2022-10-12 13:40', 'jia', '園主任', '未簽核', 'board_supervisor', '2022-10-18 20:50:36', 'jia', '2022-10-18 21:24:30', 'jia'),
+(25, 4, '會員大會記錄簽核：test會員大會記錄標題upload_sign', 'members_assemble_detail.php?year=111&id=4&ma_id=4&rec_type=upload', '2022-09-26 00:00', 'jia', '社工組長', '未簽核', 'members_assemble', '2022-10-18 21:01:44', 'jia', '2022-10-18 21:27:59', 'jia'),
+(26, 38, '理監事會記錄簽核：test理監事會記錄標題	_upload_sign', 'board_supervisor_detail.php?year=110&id=38&bs_id=38&rec_type=upload', '2021-08-18 00:00', 'jia', '社工組長', '未簽核', 'board_supervisor', '2022-10-18 21:10:50', 'jia', '2022-10-18 21:22:56', 'jia'),
+(27, 22, '團督記錄簽核：test團督記錄標題_sign', 'supervisor_record_detail.php?year=109&id=22&sr_id=22&rec_type=fillin', '2020-12-09 14:30', 'jia', '社工組長', '未簽核', 'supervisor_record', '2022-10-18 21:35:26', 'jia', '2022-10-18 21:40:21', 'jia'),
+(28, 23, '團督記錄簽核：test團督記錄標題upload_sign', 'supervisor_record_detail.php?year=110&id=23&sr_id=23&rec_type=upload', '2021-04-06 00:00', 'jia', '園主任', '未簽核', 'supervisor_record', '2022-10-18 21:38:52', 'jia', '2022-10-18 21:39:19', 'jia');
 
 -- --------------------------------------------------------
 
@@ -1591,7 +1601,9 @@ INSERT INTO `supervisor_record` (`Id`, `Year`, `record_content`, `upload_content
 (18, '111', '', '\"[{\"name\":\"upload_title_name\",\"value\":\"uploadtt會議記錄標題818\"},{\"name\":\"upload_rec_date\",\"value\":\"111年08月18日\"},{\"name\":\"upload_rec_remark\",\"value\":\"TEST檔名：1.xls818\"},{\"name\":\"upload_rec_supervise\",\"value\":\"園主任\"},{\"name\":\"customFile1\",\"value\":\"1.xls\"}]\"', '../supervisor_record/upload/1.xls', '園主任', '../supervisor_record/signature/1660810849.png', '園主任已簽名', '2022-08-18 16:20:49', '2022-08-18 16:11:27', '社工員1', '0000-00-00 00:00:00', ''),
 (19, '111', '[{\"name\":\"title_name\",\"value\":\"test會議記錄標題920\"},{\"name\":\"ceo_name\",\"value\":\"tt執行長\"},{\"name\":\"attendees\",\"value\":\"ttt\"},{\"name\":\"record\",\"value\":\"aas團督記錄\"},{\"name\":\"meeting_date\",\"value\":\"111年09月20日\"},{\"name\":\"meeting_time\",\"value\":\"07:07\"},{\"name\":\"place\",\"value\":\"test09月20日\"},{\"name\":\"suggest\",\"value\":\"督導建議920\"},{\"name\":\"next_focus\",\"value\":\"下次團督重點920\"},{\"name\":\"supervise\",\"value\":\"社工組長\"}]', '', '', '社工組長', '', '', '0000-00-00 00:00:00', '2022-09-20 18:04:02', '社工員1', '0000-00-00 00:00:00', ''),
 (20, '111', '[{\"name\":\"title_name\",\"value\":\"TEST團督記錄標題1231007\"},{\"name\":\"meeting_date\",\"value\":\"111年10月07日\"},{\"name\":\"meeting_time\",\"value\":\"10:15\"},{\"name\":\"place\",\"value\":\"test會議地點\"},{\"name\":\"ceo_name\",\"value\":\"sss主席\"},{\"name\":\"attendees\",\"value\":\"TT出席人員\"},{\"name\":\"absent\",\"value\":\"AA請假人員\"},{\"name\":\"record\",\"value\":\"SSS紀錄者\"},{\"name\":\"suggest\",\"value\":\"AAA督導建議\"},{\"name\":\"next_focus\",\"value\":\"下次團督重點AAAF\"}]', '', '', '園主任', '', '', '0000-00-00 00:00:00', '2022-10-07 21:15:09', '社工員1', '2022-10-07 21:15:19', '社工員1'),
-(21, '111', '[{\"name\":\"title_name\",\"value\":\"test團督記錄標題1015\"},{\"name\":\"meeting_date\",\"value\":\"111年10月15日\"},{\"name\":\"meeting_time\",\"value\":\"12:20\"},{\"name\":\"place\",\"value\":\"test會議地點\"},{\"name\":\"ceo_name\",\"value\":\"test主席\"},{\"name\":\"attendees\",\"value\":\"asasd出席人員;;asdadsfff\"},{\"name\":\"absent\",\"value\":\"ttt;;請假人員\"},{\"name\":\"record\",\"value\":\"tttasdas;;紀錄者\"},{\"name\":\"suggest\",\"value\":\"yyyy;;督導建議\"},{\"name\":\"next_focus\",\"value\":\"下次團督重點]]];;ffdsfs\"}]', '', '', '社工組長', '', '', '0000-00-00 00:00:00', '2022-10-15 23:16:59', 'jia', '2022-10-15 23:19:10', 'jia');
+(21, '111', '[{\"name\":\"title_name\",\"value\":\"test團督記錄標題1015\"},{\"name\":\"meeting_date\",\"value\":\"111年10月15日\"},{\"name\":\"meeting_time\",\"value\":\"12:20\"},{\"name\":\"place\",\"value\":\"test會議地點\"},{\"name\":\"ceo_name\",\"value\":\"test主席\"},{\"name\":\"attendees\",\"value\":\"asasd出席人員;;asdadsfff\"},{\"name\":\"absent\",\"value\":\"ttt;;請假人員\"},{\"name\":\"record\",\"value\":\"tttasdas;;紀錄者\"},{\"name\":\"suggest\",\"value\":\"yyyy;;督導建議\"},{\"name\":\"next_focus\",\"value\":\"下次團督重點]]];;ffdsfs\"}]', '', '', '社工組長', '', '', '0000-00-00 00:00:00', '2022-10-15 23:16:59', 'jia', '2022-10-15 23:19:10', 'jia'),
+(22, '109', '[{\"name\":\"title_name\",\"value\":\"test團督記錄標題_sign\"},{\"name\":\"meeting_date\",\"value\":\"109年12月09日\"},{\"name\":\"meeting_time\",\"value\":\"14:30\"},{\"name\":\"place\",\"value\":\"ttt會議地點\"},{\"name\":\"ceo_name\",\"value\":\"tt主席\"},{\"name\":\"attendees\",\"value\":\"aas出席人員\"},{\"name\":\"absent\",\"value\":\"請假人員;;請假人員1;;請假人員2\"},{\"name\":\"record\",\"value\":\"紀錄者1;;紀錄者2\"},{\"name\":\"suggest\",\"value\":\"督導建議test\"},{\"name\":\"next_focus\",\"value\":\"test;;下次團督重點\"}]', '', '', '社工組長', '', '', '0000-00-00 00:00:00', '2022-10-18 21:35:26', 'jia', '2022-10-18 21:40:21', 'jia'),
+(23, '110', '', '\"[{\"name\":\"upload_title_name\",\"value\":\"test團督記錄標題upload_sign\"},{\"name\":\"upload_rec_date\",\"value\":\"110年04月06日\"},{\"name\":\"upload_rec_remark\",\"value\":\"test;;;;test團督記錄標題upload_sign\"},{\"name\":\"customFile1\",\"value\":\"團督紀錄signtest.docx\"}]\"', '../supervisor_record/upload/團督紀錄signtest.docx', '園主任', '', '', '0000-00-00 00:00:00', '2022-10-18 21:38:52', 'jia', '2022-10-18 21:39:19', 'jia');
 
 -- --------------------------------------------------------
 
@@ -2118,7 +2130,7 @@ ALTER TABLE `accounting_record_report`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `board_supervisor`
 --
 ALTER TABLE `board_supervisor`
-  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `calendar`
@@ -2202,13 +2214,13 @@ ALTER TABLE `form_interlocution_queskeywords`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `login_record`
 --
 ALTER TABLE `login_record`
-  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
+  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `members_assemble`
 --
 ALTER TABLE `members_assemble`
-  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `overtime`
@@ -2298,7 +2310,7 @@ ALTER TABLE `screening_type_keywords`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `signature_notice`
 --
 ALTER TABLE `signature_notice`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `sign_notice`
@@ -2310,7 +2322,7 @@ ALTER TABLE `sign_notice`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `supervisor_record`
 --
 ALTER TABLE `supervisor_record`
-  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `training`

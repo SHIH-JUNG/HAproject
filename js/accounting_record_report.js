@@ -159,11 +159,11 @@ var $table = $("[name='tab_all']").DataTable({
       },
     },
     buttons: [
-      {
-        extend: "excelHtml5",
-        title: "快樂聯盟會計報表紀錄",
-        text: "匯出Excel",
-      },
+      // {
+      //   extend: "excelHtml5",
+      //   title: "快樂聯盟會計報表紀錄",
+      //   text: "匯出Excel",
+      // },
     ],
   });
 

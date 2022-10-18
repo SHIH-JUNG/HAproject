@@ -371,6 +371,12 @@ show_main_panel = function() {
 }
 //endregion
 
+// 民國年轉換日期格式yyyy-dd-mm region
+function split_date(date) {
+  return parseInt(date.split("年")[0])+1911+"-"+date.split("年")[1].split("月")[0]+"-"+date.split("年")[1].split("月")[1].split("日")[0]; 
+}
+//endregion
+
 // 判斷會議記錄 是屬於上傳檔案或填寫檔案 region
 function rec_update() {
   var rec_type = getUrlVars()["rec_type"];
@@ -409,7 +415,7 @@ function rec_update_fillin() {
   });
 
   var meeting_date_year_split = $("#meeting_date").val().split("年");
-
+  var title = '會員大會記錄簽核：'+$("#title_name").val();
   // console.log(form)
 
   var stau = false;
@@ -433,6 +439,12 @@ function rec_update_fillin() {
         ma_id: ma_id,
         record_content: form,
         year: meeting_date_year_split[0],
+
+        signed_timestamp:$(".sign_msg_time").val(),
+        assign:$("#applicant").text(),
+        title:title,
+        signer:$("#supervise").val(),
+        rec_date_time:split_date($("#meeting_date").val())+" "+$("#meeting_time").val(),
       },
       //            dataType: "JSON",
       success: function (data) {
@@ -693,6 +705,13 @@ function submit_form_data_upload() {
   form_data.append("ma_id", ma_id);
   form_data.append("year", upload_rec_date_year_split[0]);
   form_data.append("upload_content", JSON.stringify(form));
+  form_data.append("signed_timestamp", $(".sign_msg_time").val());
+
+  form_data.append("assign", $("#applicant").text());
+  form_data.append("title", '會員大會記錄簽核：'+$("#upload_title_name").val());
+  form_data.append("signer", $("#supervise").val());
+  form_data.append("rec_date_time", split_date($("#upload_rec_date").val())+" 00:00");
+  
 
   for (var pair of form_data.entries()) {
     console.log(pair[0] + ", " + pair[1]);
