@@ -434,7 +434,7 @@
     <script src="javascript/bootstrap-table.min.js"></script>
     <script src="javascript/bootstrap-table-zh-TW.min.js"></script>
     <!-- ================== announcement ================== -->
-    <script src="js/index.js"></script>
+    <script src="js/index.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
     <!--     ==================  時間24小時 ================== -->
     <script type="text/javascript" src="js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
     <script type="text/javascript" src="js/bootstrap-datetimepicker.zh-TW.js" charset="UTF-8"></script>

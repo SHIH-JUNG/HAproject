@@ -106,20 +106,30 @@
                                                             </td>
 
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">來文檔號：</td>
-                                                            <td class="text-left"><input id="num_receive" rel="3" name="num_receive" class="filter search" style="width:150px;" type="text" placeholder="檔號搜尋"></td>
+                                                            <td class="text-left"><input id="num_receive" rel="1" name="num_receive" class="filter search" style="width:150px;" type="text" placeholder="檔號搜尋"></td>
 
                                                         </tr>
                                                         <tr>
 
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">來文單位：</td>
-                                                            <td class="text-left"><input id="unit" rel="4" name="unit" class="filter search" style="width:150px;" type="text" placeholder="單位搜尋"></td>
+                                                            <td class="text-left"><input id="unit" rel="2" name="unit" class="filter search" style="width:150px;" type="text" placeholder="單位搜尋"></td>
 
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">主旨：</td>
-                                                            <td class="text-left"><input id="subject" rel="5" name="subject" class="filter search" style="width:150px;" type="text" placeholder="主旨搜尋"></td>
+                                                            <td class="text-left"><input id="subject" rel="3" name="subject" class="filter search" style="width:150px;" type="text" placeholder="主旨搜尋"></td>
+
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">檔案是否上傳：</td>
+                                                            <td class="text-left">
+                                                                <select rel="4" class="filter search">
+                                                                    <option value="">所有</option>
+                                                                    <option value="是">是</option>
+                                                                    <option value="否">否</option>
+                                                                </select>
+                                                            </td>
 
                                                             <td colspan="10" class="text-right">
                                                                 <button onclick="location.reload();">重置搜尋</button><span> </span>
                                                             </td>
+
                                                         </tr>
                                                     </table>
                                                 </div>
@@ -144,6 +154,7 @@
                                                                 <th>來文檔號</th>
                                                                 <th>來文單位</th>
                                                                 <th>主旨</th>
+                                                                <th>檔案是否上傳</th>
                                                                 <th>創建日期</th>
                                                                 <th>創建者</th>
                                                                 <th>更新日期</th>

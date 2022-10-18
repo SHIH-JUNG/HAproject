@@ -114,7 +114,7 @@
                                                                 <td style="border-bottom: solid 1px;"><input id="call_datetime" type="datetime-local">
                                                             </tr>
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>團督記錄</td>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>團督紀錄</td>
                                                                 <td style="border-bottom: solid 1px;">
                                                                     <select id="way">
                                                                         <option value="X">X</option>
@@ -196,7 +196,7 @@
     <script src="javascript/bootstrap1.18.0-table.min.js"></script>
     <script src="javascript/bootstrap-table1.11.1-zh-TW.min.js"></script>
     <!-- ================== add_phone.js ================== -->
-    <script src="js/#.js"></script>
+    <script src="js/#.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
 </body>
 
 </html>
