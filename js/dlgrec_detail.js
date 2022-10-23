@@ -58,9 +58,30 @@ $(document).ready(function(){
 
 
                 $("#social_worker_simg").text("點擊顯示簽名圖片")
-                $("#social_worker_simg").attr("href", "./signature/"+social_worker_sign_file_val)
+
+                if(social_worker_sign_file_val=="")
+                {
+                    $("#social_worker_simg").attr("onclick", "javascript:swal({title: '未簽名',type: 'error',}); return false;")
+                }
+                else
+                {
+                    $("#social_worker_simg").attr("href", "./signature/"+social_worker_sign_file_val)
+
+                }
+                
+
                 $("#supervise_signature_simg").text("點擊顯示簽名圖片")
-                $("#supervise_signature_simg").attr("href", "./signature/"+supervise_sign_file_val)
+
+                if(supervise_sign_file_val=="")
+                {
+                    $("#supervise_signature_simg").attr("onclick", "javascript:swal({title: '未簽名',type: 'error',}); return false;")
+                }
+                else
+                {
+                    $("#supervise_signature_simg").attr("href", "./signature/"+supervise_sign_file_val)
+
+                }
+
 
                 // console.log(value.social_worker_sign_msg)
 

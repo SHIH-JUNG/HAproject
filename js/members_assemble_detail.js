@@ -221,7 +221,7 @@ $(document).ready(function () {
 
         if(supervise_sign_file_val=="")
         {
-          $("#supervise_signature_simg").attr("onclick", "javascript:alert('未簽名'); return false;")
+          $("#supervise_signature_simg").attr("onclick", "javascript:swal({title: '未簽名',type: 'error',}); return false;")
         }
         else
         {

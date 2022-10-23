@@ -61,7 +61,16 @@ $(document).ready(function(){
 
 
                 $("#supervise_signature_simg").text("點擊顯示簽名圖片")
-                $("#supervise_signature_simg").attr("href", "./signature/"+supervise_sign_file_val)
+
+                if(supervise_sign_file_val=="")
+                {
+                    $("#supervise_signature_simg").attr("onclick", "javascript:swal({title: '未簽名',type: 'error',}); return false;")
+                }
+                else
+                {
+                    $("#supervise_signature_simg").attr("href", "./signature/"+supervise_sign_file_val)
+
+                }
 
                 supervise_msg_arr.push(value.Supervise_sign_msg)
                 supervise_msg_arr.push(value.Supervise_sign_time)
