@@ -62,6 +62,7 @@ function check_update_currentcase_data()
     var open_case_date = $("#open_case_date").val();
     var name = $("#name").val();
     var gender = $("#gender").val();
+    var sexual_orientation = $("#sexual_orientation").val();
     var phone = $("#phone").val();
     var birth = $("#birth").val();
     var pid = $("#pid").val();
@@ -91,6 +92,9 @@ function check_update_currentcase_data()
         }
         if (gender == null || gender.replace(/\s*/g, "") == '') {
             warningstr += "性別\r\n";
+        }
+        if (sexual_orientation == null || sexual_orientation.replace(/\s*/g, "") == '') {
+            warningstr += "性別傾向\r\n";
         }
         if (phone == null || phone.replace(/\s*/g, "") == '') {
             warningstr += "電話\r\n";
@@ -124,6 +128,7 @@ function check_current_case_value()
     var open_case_date = $("#open_case_date").val();
     var name = $("#name").val();
     var gender = $("#gender").val();
+    var sexual_orientation = $("#sexual_orientation").val();
     var phone = $("#phone").val();
     var birth = $("#birth").val();
     var pid = $("#pid").val();
@@ -170,6 +175,9 @@ function check_current_case_value()
     }
     if (gender == null) {
         errorstr += "未填寫性別!\r\n";
+    }
+    if (sexual_orientation == null) {
+        errorstr += "未填寫性別傾向!\r\n";
     }
     if (phone == null) {
         errorstr += "未填寫電話!\r\n";
@@ -219,6 +227,9 @@ function check_current_case_value()
         if (gender.replace(/\s*/g, "") == '') {
             errorstr += "未填寫性別!\r\n";
         }
+        if (sexual_orientation.replace(/\s*/g, "") == '') {
+            errorstr += "未填寫性別傾向!\r\n";
+        }
         if (phone.replace(/\s*/g, "") == '') {
             errorstr += "未填寫電話!\r\n";
         }
@@ -257,6 +268,7 @@ function add_new_current_case_database()
             Open_case_date:$("#open_case_date").val(),
             Name:$("#name").val(),
             Gender:$("#gender").val(),
+            Sexual_orientation:$("#sexual_orientation").val(),
             Phone:$("#phone").val(),
             Birth:$("#birth").val(),
             Case_pid:$("#pid").val(),
@@ -368,8 +380,8 @@ function check_case_isrepeat() {
             }
         },
         error: function (e) {
-            console.log(e);
-            notyf.alert('伺服器錯誤,無法載入開案所需資料!');
+            // console.log(e);
+            // notyf.alert('伺服器錯誤,無法載入開案所需資料!');
         }
     });
     

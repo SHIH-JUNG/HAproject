@@ -19,13 +19,13 @@ $.ajax({
             cssString += 
             '<tr name="'+ value.Name +'" date="'+ value.Open_case_date +'" property="'+ value.Case_property +'" type="'+ value.Object_type +'" phoneid="'+value.Phone_id+'" id="'+value.Id+'" openid="'+value.Case_id+'" pid="'+value.Case_pid+'">' +
                 '<td style="text-align:center">' + value.Case_id + '</td>' +
+                '<td style="text-align:center">' + value.Name + '</td>' +
                 '<td style="text-align:center">' + value.Case_Create_date + '</td>' +
                 '<td style="text-align:center">' + value.Object_type + '</td>' +
                 '<td style="text-align:center">' + value.Case_grade + '</td>' +
                 '<td style="text-align:center">' + value.Case_property + '</td>' +
                 '<td style="text-align:center">' + value.Case_stage + '</td>' +
                 '<td style="text-align:center">' + value.Open_case_date + '</td>' +
-                '<td style="text-align:center">' + value.Name + '</td>' +
                 '<td style="text-align:center">' + value.Phone + '</td>' +
                 '<td style="text-align:center">' + value.Birth + '</td>' +
                 '<td style="text-align:center">' + value.Case_pid + '</td>' +
@@ -131,7 +131,7 @@ var c_date_range = (
     function( settings, data, dataIndex) {
         var min_date = parseInt(Date.parse( $('#c_min_date').val()), 10 );
         var max_date = parseInt(Date.parse( $('#c_max_date').val()), 10 );
-        var date = parseInt(Date.parse( data[1] )) || 0; // use data for the date column        
+        var date = parseInt(Date.parse( data[2] )) || 0; // use data for the date column        
         if ( ( isNaN( min_date ) && isNaN( max_date ) ) ||
              ( isNaN( min_date ) && date <= max_date ) ||
              ( min_date <= date   && isNaN( max_date ) ) ||
@@ -146,7 +146,7 @@ var o_date_range = (
     function( settings, data, dataIndex) {
         var min_date = parseInt(Date.parse( $('#o_min_date').val()), 10 );
         var max_date = parseInt(Date.parse( $('#o_max_date').val()), 10 );
-        var date = parseInt(Date.parse( data[5] )) || 0; // use data for the date column        
+        var date = parseInt(Date.parse( data[7] )) || 0; // use data for the date column        
         if ( ( isNaN( min_date ) && isNaN( max_date ) ) ||
                 ( isNaN( min_date ) && date <= max_date ) ||
                 ( min_date <= date   && isNaN( max_date ) ) ||

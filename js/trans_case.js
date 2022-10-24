@@ -28,11 +28,10 @@ var tran_case_phone = (typeof tran_case_phone === undefined) ? '' : decodeURI(ge
 var tran_case_pid = (typeof tran_case_pid === undefined) ? '' : decodeURI(getUrlVars()["tran_case_pid"]);
 var tran_case_birth = (typeof tran_case_birth === undefined) ? '' : decodeURI(getUrlVars()["tran_case_birth"]);
 var tran_case_referral = (typeof tran_case_referral === undefined) ? '' : decodeURI(getUrlVars()["tran_case_referral"]);
+var tran_case_sex_o = (typeof tran_case_sex_o === undefined) ? '' : decodeURI(getUrlVars()["tran_case_sex_o"]);
 //endregion
 
 // console.log(tran_case_name, tran_case_phone, tran_case_pid, tran_case_birth, tran_case_referral)
-
-console.log(tran_case_gender)
 
 if(tran_case_gender.includes('男'))
 {
@@ -44,7 +43,7 @@ else if(tran_case_gender.includes('女'))
 }
 else
 {
-    tran_case_gender="其他/非二元性別";
+    tran_case_gender="其他";
 }
 
 
@@ -57,9 +56,9 @@ $(document).ready(function(){
     $("#case_id").html(case_id);
     $("#case_property").val(case_property);
     $("#object_type").val(object_type);
-
     $("#name").val(tran_case_name);
     $("#gender").val(tran_case_gender);
+    $("#sexual_orientation").val(tran_case_sex_o);
     $("#phone").val(tran_case_phone);
     $("#referral").val(tran_case_referral);
     $("#birth").val(tran_case_birth);
@@ -144,6 +143,7 @@ function check_update_trans_opencase_data()
     var open_case_date = $("#open_case_date").val();
     var name = $("#name").val();
     var gender = $("#gender").val();
+    var sexual_orientation = $("#sexual_orientation").val();
     var phone = $("#phone").val();
     var birth = $("#birth").val();
     var pid = $("#pid").val();
@@ -179,6 +179,9 @@ function check_update_trans_opencase_data()
         }
         if (gender == null || gender.replace(/\s*/g, "") == '') {
             warningstr += "性別\r\n";
+        }
+        if (sexual_orientation == null || sexual_orientation.replace(/\s*/g, "") == '') {
+            warningstr += "性別傾向\r\n";
         }
         if (phone == null || phone.replace(/\s*/g, "") == '') {
             warningstr += "電話\r\n";
@@ -218,6 +221,7 @@ function trans_to_opendata_database()
             Open_case_date:$("#open_case_date").val(),
             Name:$("#name").val(),
             Gender:$("#gender").val(),
+            Sexual_orientation:$("#sexual_orientation").val(),
             Phone:$("#phone").val(),
             Birth:$("#birth").val(),
             Case_pid:$("#pid").val(),

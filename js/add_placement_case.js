@@ -272,7 +272,7 @@ function check_case_isrepeat() {
             }
         },
         error: function (e) {
-            console.log(e);
+            // console.log(e);
         }
     });
     

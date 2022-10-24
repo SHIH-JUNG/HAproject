@@ -176,6 +176,7 @@ $("#counsel_add_new").on('click',function(){
                 HIV_diagnosis_date:trans_to_EN($("#HIV_diagnosis_date").val()),
                 Family_know:$("#family_know").val(),
                 Cocktail_therapy_status:$("#cocktail_therapy_status").val(),
+                Cocktail_therapy_name:$("#cocktail_therapy_name").val(),
                 Interview_date_1st:trans_to_EN($("#interview_date_1st").val()),
             },
 //            dataType: "JSON",
@@ -227,6 +228,8 @@ function check_add_counsel_data()
    var name = $("#name").val();
    var birth = $("#birth").val();
    var pid = $("#pid").val();
+   var cocktail_therapy_status = $("#cocktail_therapy_status").val();
+   var cocktail_therapy_name = $("#cocktail_therapy_name").val();
 
     var errorstr = "";
 
@@ -262,6 +265,12 @@ function check_add_counsel_data()
         }
         if (pid.replace(/\s*/g, "") == '') {
             errorstr += "未填寫身分證字號!\r\n";
+        }
+        if(cocktail_therapy_status=="是")
+        {
+            if (cocktail_therapy_name.replace(/\s*/g, "") == '') {
+                errorstr += "未填寫雞尾酒療法服用之藥物名稱!\r\n";
+            }
         }
     }
 

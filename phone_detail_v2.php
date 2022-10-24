@@ -198,7 +198,7 @@
                                                                                     <select id="gender" style="width:200px;" class="phone_question">
                                                                                         <option value="男">男</option>
                                                                                         <option value="女">女</option>
-                                                                                        <option value="其他/非二元性別">其他/非二元性別</option>
+                                                                                        <option value="其他">其他</option>
                                                                                     </select>
                                                                                 </td>
                                                                             </tr>

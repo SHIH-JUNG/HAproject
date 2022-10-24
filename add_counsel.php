@@ -148,7 +148,7 @@ input[type=number] {
                                                                         <option value="">請選擇</option>
                                                                         <option value="男">男</option>
                                                                         <option value="女">女</option>
-                                                                        <option value="其他/非二元性別">其他/非二元性別</option>
+                                                                        <option value="其他">其他</option>
                                                                     </select>
                                                                 </td>
                                                             </tr>
@@ -252,6 +252,8 @@ input[type=number] {
                                                                         <option value="是">是</option>
                                                                         <option value="否">否</option>
                                                                     </select>
+
+                                                                    <input id="cocktail_therapy_name" type="text">
                                                                 </td>
                                                             </tr>
 

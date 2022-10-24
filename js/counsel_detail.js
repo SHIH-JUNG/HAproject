@@ -181,6 +181,7 @@ $(document).ready(function(){
                 $("#HIV_diagnosis_date").val(check_sql_date_format(value.HIV_diagnosis_date));
                 $("#family_know").val(value.Family_know);
                 $("#cocktail_therapy_status").val(value.Cocktail_therapy_status);
+                $("#cocktail_therapy_name").val(value.Cocktail_therapy_name);
 
                 $("#interview_date_1st").text(check_sql_date_format(value.Interview_date_1st));
                 $("#interview_date_1st").text(check_sql_date_format(value.Interview_date_2nd));
@@ -285,6 +286,7 @@ var stau = false;
                 HIV_diagnosis_date:trans_to_EN($("#HIV_diagnosis_date").val()),
                 Family_know:$("#family_know").val(),
                 Cocktail_therapy_status:$("#cocktail_therapy_status").val(),
+                Cocktail_therapy_name:$("#cocktail_therapy_name").val(),
             },
             type: "POST",
             dataType: "JSON",
@@ -322,6 +324,8 @@ function check_updat_counsel_data()
    var name = $("#name").val();
    var birth = $("#birth").val();
    var pid = $("#pid").val();
+   var cocktail_therapy_status = $("#cocktail_therapy_status").val();
+   var cocktail_therapy_name = $("#cocktail_therapy_name").val();
 
     var errorstr = "";
 
@@ -351,6 +355,12 @@ function check_updat_counsel_data()
         }
         if (pid.replace(/\s*/g, "") == '') {
             errorstr += "未填寫身分證字號!\r\n";
+        }
+        if(cocktail_therapy_status=="是")
+        {
+            if (cocktail_therapy_name.replace(/\s*/g, "") == '') {
+                errorstr += "未填寫雞尾酒療法服用之藥物名稱!\r\n";
+            }
         }
     }
 
@@ -1175,6 +1185,7 @@ $("#trans_to_opencase_submit").on('click',function(){
     var tran_case_phone = '';
     var tran_case_birth = '';
     var tran_case_referral = '';
+    var tran_case_sex_o = '';
 
     var stau = false;
 
@@ -1216,13 +1227,14 @@ $("#trans_to_opencase_submit").on('click',function(){
                 tran_case_birth = data[0].Birth;
                 // tran_case_referral = data[0].Referral_detail;
                 tran_case_referral = data[0].Refferal;
+                tran_case_sex_o = data[0].Sexual_orientation;
             },
             error:function(e){
                 notyf.alert('伺服器錯誤,無法載入開案所需資料!');
             }
         });
 
-        window.location.href = 'phone_trans_to_opencase.php?unopen_type=counsel&id='+counsel_id.replace(/^\s+|\s+$/gm,'')+'&case_id='+$('#open_case_t_sn').val().replace(/^\s+|\s+$/gm,'')+'&case_property='+$('#open_case_type').val()+'&object_type='+$('#open_object_type').val()+'&tran_case_name='+tran_case_name+'&tran_case_gender='+tran_case_gender+'&tran_case_phone='+tran_case_phone+'&tran_case_pid='+tran_case_pid+'&tran_case_birth='+tran_case_birth+'&tran_case_referral='+tran_case_referral;
+        window.location.href = 'phone_trans_to_opencase.php?unopen_type=counsel&id='+counsel_id.replace(/^\s+|\s+$/gm,'')+'&case_id='+$('#open_case_t_sn').val().replace(/^\s+|\s+$/gm,'')+'&case_property='+$('#open_case_type').val()+'&object_type='+$('#open_object_type').val()+'&tran_case_name='+tran_case_name+'&tran_case_gender='+tran_case_gender+'&tran_case_phone='+tran_case_phone+'&tran_case_pid='+tran_case_pid+'&tran_case_birth='+tran_case_birth+'&tran_case_referral='+tran_case_referral+'&tran_case_sex_o='+tran_case_sex_o;
     }
 });
 //endregion
@@ -1243,8 +1255,20 @@ $('#open_object_type').on('change', function() {
         dataType: "JSON",
         async :false,
         success: function (data) {
-           console.log(data)
-           var str_id = (parseInt(data[0].Case_id)+1).toString();
+            var case_id = 0;
+
+            // console.log(data[0]?.Case_id)
+            if(typeof(data[0]?.Case_id) != 'undefined')
+            {
+                case_id = data[0]?.Case_id;
+            }
+            else
+            {
+                case_id = 0;
+            }
+    
+            
+            var str_id = (parseInt(case_id)+1).toString();
 
            
            switch (object_type_val) {
@@ -1346,7 +1370,7 @@ function check_case_isrepeat() {
             }
         },
         error: function (e) {
-            notyf.alert('伺服器錯誤,無法載入開案所需資料!');
+            // notyf.alert('伺服器錯誤,無法載入開案所需資料!');
         }
     });
     

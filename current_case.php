@@ -98,10 +98,10 @@
                                                                 <input id="open_id" rel="0" class="filter search" style="width:8em;" type="text" placeholder="編號搜尋">
                                                             </td>
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">姓名：</td>
-                                                            <td class="text-left"><input id="name" rel="6" name="pname" class="filter search"  style="width:7em;" type="text" placeholder="姓名搜尋"></td>
+                                                            <td class="text-left"><input id="name" rel="1" name="pname" class="filter search"  style="width:7em;" type="text" placeholder="姓名搜尋"></td>
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">個案分級：</td>
                                                             <td class="text-left">
-                                                                <select rel="3" class="filter search">
+                                                                <select rel="4" class="filter search">
                                                                     <option value="">所有</option>
                                                                     <option value="A">A</option>
                                                                     <option value="B">B</option>
@@ -117,13 +117,13 @@
 
                                                             <td class="text-right" style="background-color:rgb(255 201 54);">身分證字號：</td>
                                                             <td class="text-left">
-                                                                <input id="pid" rel="9" class="filter search" style="width:9em;" type="text" placeholder="身分證字號搜尋">
+                                                                <input id="pid" rel="10" class="filter search" style="width:9em;" type="text" placeholder="身分證字號搜尋">
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">類別屬性：</td>
                                                             <td class="text-left">
-                                                                <select rel="4" class="filter search">
+                                                                <select rel="5" class="filter search">
                                                                     <option value="">所有</option>
                                                                     <option value="安置家園">安置家園</option>
                                                                     <option value="自立宿舍">自立宿舍</option>
@@ -135,7 +135,7 @@
                                                             </td>
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">個案類別：</td>
                                                             <td class="text-left">
-                                                                <select rel="2" class="filter search">
+                                                                <select rel="3" class="filter search">
                                                                     <option value="">所有</option>
                                                                     <option value="愛滋感染者">愛滋感染者</option>
                                                                     <option value="一般藥癮者">一般藥癮者</option>
@@ -145,7 +145,7 @@
                                                             </td>
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">轉介來源：</td>
                                                             <td class="text-left">
-                                                                <select rel="10" class="filter search">
+                                                                <select rel="11" class="filter search">
                                                                     <option value="">所有</option>
                                                                     <option value="醫院">醫院</option>
                                                                     <option value="矯正機關">矯正機關</option>
@@ -192,13 +192,13 @@
                                                             </tr>
                                                             <tr style="background-color:rgb(255 201 54)">
                                                                 <th>開案編號</th>
+                                                                <th>姓名</th>
                                                                 <th>登入日期</th>
                                                                 <th>個案類別</th>
                                                                 <th>個案分級</th> 
                                                                 <th>類別屬性</th>
                                                                 <th>類別屬性<br/>階段</th>
                                                                 <th>開案日期</th>
-                                                                <th>姓名</th>
                                                                 <th>電話</th>
                                                                 <th>出生年月日</th>
                                                                 <th>身分證字號</th>

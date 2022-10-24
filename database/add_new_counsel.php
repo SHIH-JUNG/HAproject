@@ -28,6 +28,7 @@ $Pid = $_POST['Pid'];
 
 @$Family_know = $_POST['Family_know'];
 @$Cocktail_therapy_status = $_POST['Cocktail_therapy_status'];
+@$Cocktail_therapy_name = $_POST['Cocktail_therapy_name'];
 
 @$Interview_date_1st = $_POST['Interview_date_1st'];
 
@@ -46,12 +47,12 @@ if($counsel_num[0]>0)
 }
 else
 {
-    $sql = "INSERT INTO `counsel` (`Refferal`,`Counsel_id`,`Name`,`Gender`,`Sexual_orientation`,`Birth`,`Pid`,`Info_name`,`Info_phone`,`Address`,`In_prison_date`,`Out_prison_date`,`In_prison_date_2nd`,`Out_prison_date_2nd`,`In_prison_date_3rd`,`Out_prison_date_3rd`,`Is_parole`,`HIV_diagnosis_date`,`Family_know`,`Cocktail_therapy_status`,`Interview_date_1st`,`Create_date`,`Create_name`) VALUES
+    $sql = "INSERT INTO `counsel` (`Refferal`,`Counsel_id`,`Name`,`Gender`,`Sexual_orientation`,`Birth`,`Pid`,`Info_name`,`Info_phone`,`Address`,`In_prison_date`,`Out_prison_date`,`In_prison_date_2nd`,`Out_prison_date_2nd`,`In_prison_date_3rd`,`Out_prison_date_3rd`,`Is_parole`,`HIV_diagnosis_date`,`Family_know`,`Cocktail_therapy_status`, `Cocktail_therapy_name`, `Interview_date_1st`,`Create_date`,`Create_name`) VALUES
  ('$Refferal','$Counsel_id','$Name','$Gender','$Sexual_orientation','$Birth',
  '$Pid','$Info_name','$Info_phone','$Address',
  '$In_prison_date','$Out_prison_date','$In_prison_date_2nd','$Out_prison_date_2nd',
  '$In_prison_date_3rd','$Out_prison_date_3rd',
- '$Is_parole','$HIV_diagnosis_date','$Family_know','$Cocktail_therapy_status',
+ '$Is_parole','$HIV_diagnosis_date','$Family_know','$Cocktail_therapy_status', '$Cocktail_therapy_name',
  '$Interview_date_1st',Now(),'$user')";
 	if(mysqli_query($conn,$sql)){
         echo true;

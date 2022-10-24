@@ -128,7 +128,7 @@ word-break: keep-all;/*必須*/
                                                                     <option value="">所有</option>
                                                                     <option value="男">男</option>
                                                                     <option value="女">女</option>
-                                                                    <option value="其他/非二元性別">其他/非二元性別</option>
+                                                                    <option value="其他">其他</option>
                                                                 </select>
                                                             </td>
                                                         </tr>
@@ -187,7 +187,7 @@ word-break: keep-all;/*必須*/
 
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">家人是否知道感染：</td>
                                                             <td class="text-left">
-                                                                <select rel="10" class="filter search">
+                                                                <select rel="12" class="filter search">
                                                                     <option value="">所有</option>
                                                                     <option value="是">是</option>
                                                                     <option value="否">否</option>

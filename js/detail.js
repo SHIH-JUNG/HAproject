@@ -1941,7 +1941,7 @@ $("#trans_to_opencase_submit").on('click',function(){
 
         // console.log(tran_case_gender)
 
-        window.location.href = 'phone_trans_to_opencase.php?unopen_type=phone&id='+phone_id.replace(/^\s+|\s+$/gm,'')+'&case_id='+$('#open_case_t_sn').val().replace(/^\s+|\s+$/gm,'')+'&case_property='+$('#open_case_type').val()+'&object_type='+$('#open_object_type').val()+'&tran_case_name='+tran_case_name+'&tran_case_gender='+tran_case_gender+'&tran_case_phone='+tran_case_phone+'&tran_case_pid=&tran_case_birth=&tran_case_referral='+tran_case_referral;;
+        window.location.href = 'phone_trans_to_opencase.php?unopen_type=phone&id='+phone_id.replace(/^\s+|\s+$/gm,'')+'&case_id='+$('#open_case_t_sn').val().replace(/^\s+|\s+$/gm,'')+'&case_property='+$('#open_case_type').val()+'&object_type='+$('#open_object_type').val()+'&tran_case_name='+tran_case_name+'&tran_case_gender='+tran_case_gender+'&tran_case_phone='+tran_case_phone+'&tran_case_pid=&tran_case_birth=&tran_case_referral='+tran_case_referral+'&tran_case_sex_o=';
     }
 });
 //endregion
@@ -1965,7 +1965,20 @@ $('#open_object_type').on('change', function() {
         async :false,
         success: function (data) {
         //    console.log(data)
-           var str_id = (parseInt(data[0].Case_id)+1).toString();
+        var case_id = 0;
+
+        // console.log(data[0]?.Case_id)
+        if(typeof(data[0]?.Case_id) != 'undefined')
+        {
+            case_id = data[0]?.Case_id;
+        }
+        else
+        {
+            case_id = 0;
+        }
+
+        
+        var str_id = (parseInt(case_id)+1).toString();
 
            
            switch (object_type_val) {
@@ -2068,7 +2081,7 @@ function check_case_isrepeat() {
             }
         },
         error: function (e) {
-            notyf.alert('伺服器錯誤,無法載入開案所需資料!');
+            // notyf.alert('伺服器錯誤,無法載入開案所需資料!');
         }
     });
     

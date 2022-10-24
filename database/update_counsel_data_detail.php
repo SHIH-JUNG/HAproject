@@ -27,6 +27,7 @@ $Pid = $_POST['Pid'];
 
 @$Family_know = $_POST['Family_know'];
 @$Cocktail_therapy_status = $_POST['Cocktail_therapy_status'];
+@$Cocktail_therapy_name = $_POST['Cocktail_therapy_name'];
 
 $user = $_SESSION['name'];
 
@@ -35,7 +36,7 @@ $sqlUpdate ="UPDATE `counsel` SET `Refferal` = '$Refferal', `Name` = '$Name', `G
  `Birth` = '$Birth', `Pid` = '$Pid', `Info_name` = '$Info_name', `Info_phone` = '$Info_phone', `Address` = '$Address',
   `In_prison_date` = '$In_prison_date',`Out_prison_date` = '$Out_prison_date', `In_prison_date_2nd` = '$In_prison_date_2nd', `Out_prison_date_2nd` = '$Out_prison_date_2nd',
   `In_prison_date_3rd` = '$In_prison_date_3rd', `Out_prison_date_3rd` = '$Out_prison_date_3rd',
-  `Is_parole` = '$Is_parole', `HIV_diagnosis_date` = '$HIV_diagnosis_date', `Family_know` = '$Family_know', `Cocktail_therapy_status` = '$Cocktail_therapy_status',
+  `Is_parole` = '$Is_parole', `HIV_diagnosis_date` = '$HIV_diagnosis_date', `Family_know` = '$Family_know', `Cocktail_therapy_status` = '$Cocktail_therapy_status', `Cocktail_therapy_name` = '$Cocktail_therapy_name',
   `Update_name` = '$user', `Update_date` = NOW() WHERE `Counsel_id` = '$Counsel_id' AND `Id` = '$Id' ORDER BY `counsel`.`Create_date` ASC LIMIT 1;";
 if(mysqli_query($conn, $sqlUpdate)){
     echo true;

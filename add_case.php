@@ -183,7 +183,18 @@ input[type=number] {
                                                                         <option value="">請選擇</option>
                                                                         <option value="男">男</option>
                                                                         <option value="女">女</option>
-                                                                        <option value="其他/非二元性別">其他/非二元性別</option>
+                                                                        <option value="其他">其他</option>
+                                                                    </select>
+                                                                </td>
+                                                            </tr>
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>性別傾向</td>
+                                                                <td style="border-bottom: solid 1px;">
+                                                                    <select id="sexual_orientation" style="width:200px;">
+                                                                        <option value="">請選擇</option>
+                                                                        <option value="同性">同性</option>
+                                                                        <option value="異性">異性</option>
+                                                                        <option value="雙性">雙性</option>
                                                                     </select>
                                                                 </td>
                                                             </tr>

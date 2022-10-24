@@ -133,10 +133,10 @@ $.ajax({
                     tr_color = "#FF9797";
                     break;
                 case "已簽核":
-                    tr_color = "#00EC00";
+                    tr_color = "#90ee90";
                     break;
                 default:
-                    tr_color = "#00EC00";
+                    tr_color = "#90ee90";
                     break;
             }
 

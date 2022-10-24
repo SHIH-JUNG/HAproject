@@ -470,6 +470,15 @@ function check_file_exist(){
             {
                 score1_index = "極滿意(非常滿意)";
             }
+
+            if(isNaN(life_answer_score1))
+            {
+                life_answer_score1 = "-";
+            }
+            if(isNaN(life_answer_score2))
+            {
+                life_answer_score2 = "-";
+            }
             
             other_info_arr.push({name:form_tpye,value:"<div>第一部分得分："+life_answer_score1+"分，結果："+score1_index+"。<br/>第二部分得分："+life_answer_score2+"分。</div>"});
 
@@ -955,6 +964,10 @@ function getAge(birthday) {
 }
 //endregion
 
+hideContainer = function(this_el) {
+    $(this_el).hide();
+}
+
 //載入各量表 資料 region
 function load_all_forms_data(type_name,url_str)
 {
@@ -1041,7 +1054,12 @@ function load_all_forms_data(type_name,url_str)
                         $("input[name*='customFile']").eq(i).attr("value",file_val)
 
                         //檔案連結與圖片string
-                        var file_html='<a name="customFile'+(i+1)+'_a" href="./upload/'+file_val+'" style="text-decoration:none;color:blue;" target="_blank">'+file_val+'<br/><img style="vertical-align:middle;" width="auto" src="./upload/'+file_val+'"></a>';
+                        var file_html='<a name="customFile'+(i+1)+'_a" href="./upload/'+file_val+'" style="text-decoration:none;color:blue;" target="_blank">'+file_val+'<br/></a><img style="vertical-align:middle;" width="auto" onerror="hideContainer(this)" src="./upload/'+file_val+'">';
+
+                        // if()
+                        // {
+                        //     file_html += '<img style="vertical-align:middle;" width="auto" src="./upload/'+file_val+'">';
+                        // }
                         
                         //寫入該input相對應的div元素 (id="customFile^") 中顯示
                         $("#customFile"+(i+1)).html(file_html);
