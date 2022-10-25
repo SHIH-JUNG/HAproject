@@ -73,10 +73,12 @@ $(document).ready(function () {
     //獲取有資料的量表
     load_form_type_array();
 
+    tab_toggle();
 });
 //endregion
 
 back_case_all_all = function() {
+    localStorage.removeItem('activeTab');
     window.location.href = 'case_all_all.php?id='+id+'&open_id='+open_id+'';
 }
 
@@ -130,7 +132,7 @@ function load_each_form()
                 var cssstring ="";
 
 
-                console.log(data)
+                // console.log(data)
                 $.each(data,function(index,value){
                 
                     if(value.Is_upload==0)
@@ -504,8 +506,10 @@ form_BSRS5_add_new = function(obj) {
                             '<option value="線上建檔" selected>線上建檔</option>'+
                         '</select>'+
                         '</td>'+
-                        '<td><input id="score'+obj_name+num+'" type="text" style="width:5em;"></td>'+
-                        '<td><input id="dispose'+obj_name+num+'" type="text"></td>'+
+                        // '<td><input id="score'+obj_name+num+'" type="text" style="width:5em;"></td>'+
+                        // '<td><input id="dispose'+obj_name+num+'" type="text"></td>'+
+                        '<td id="score_td'+obj_name+num+'"></td>'+
+                        '<td id="dispose_td'+obj_name+num+'"></td>'+
                         '<td id="content_type'+obj_name+num+'"></td>'+
                         '<td><input id="remark'+obj_name+num+'" type="text"></td>'+
                     '</tr>'+
@@ -553,6 +557,8 @@ function select_change(option, obj_name_num, num, obj_name)
             var content_str = '<input type="file" id="file'+obj_name_num+'" name="file">';
             var store_btn_str = '<button onClick="i_store('+num+',&quot;'+obj_name+'&quot;);">儲存</button> <button onClick="location.reload();">取消</button>';
 
+            $("#score_td"+obj_name_num).html('<input id="score'+obj_name+num+'" type="text" style="width:5em;">');
+            $("#dispose_td"+obj_name_num).html('<input id="dispose'+obj_name+num+'" type="text" style="width:5em;">');
             $("#content_type"+obj_name_num).html(content_str);
             $("#store_btn"+obj_name_num).html(store_btn_str);
             break;
@@ -593,13 +599,15 @@ function i_store(num, form_name){
 
     var upload_info_arr = new Array();
 
-    $("[name*='"+form_name+"_num[]'] td").children().each(function(i,n){
+    // console.log($("#"+form_name+"_full_add [name*='"+form_name+"_num[]'] td").children())
+    $("#"+form_name+"_full_add [name*='"+form_name+"_num[]'] td").children().each(function(i,n){
         
         var td_id = $(this).attr("id");
         var td_val = $("#"+td_id).val();
         var create_date = timenow;
 
         // console.log(td_val)
+        // console.log($(this).attr("id"))
 
        if(td_id.includes("create_date") ||td_id.includes("upload_date"))
        {
@@ -705,6 +713,23 @@ function i_store(num, form_name){
     });
 }
 //endregion
+
+// page reload時保持上次的頁籤狀態 region
+function tab_toggle() {
+    $('a[data-toggle="pill"]').on('show.bs.tab', function(e) {
+        localStorage.setItem('activeTab', $(e.target).attr('href'));
+    });
+    var activeTab = localStorage.getItem('activeTab');
+    if(activeTab){
+        $('#myTab a[href="' + activeTab + '"]').tab('show');
+    }
+}
+
+$('#menu_tab_nav li a, .breadcrumb li span a').on('click',function() {
+    localStorage.removeItem('activeTab');
+});
+//endregion
+
 
 
 

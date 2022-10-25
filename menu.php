@@ -1,5 +1,5 @@
 <div class="fixed-sidebar-left">
-    <ul class="nav navbar-nav side-nav nicescroll-bar">
+    <ul class="nav navbar-nav side-nav nicescroll-bar" id="menu_tab_nav">
         <li>
             <!--class 設為 active 被選中的大項目會為黑底-->
             <a href="javascript:void(0);" class="" data-toggle="collapse" data-target="#administration">行政管理

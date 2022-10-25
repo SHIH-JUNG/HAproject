@@ -79,7 +79,7 @@ if (isset($_FILES["file4"]) || isset($_REQUEST['File_name'])) {
     $sqlUpdate = "UPDATE `board_supervisor` SET `Year` = '$year', `Update_date` = NOW(), `Update_name`= '$user', `upload_content` = '$upload_content' ".$update_signer_sql.", `file_path` = '$file'
         WHERE `Id` = '$bs_id' LIMIT 1;";
 
-    @$sqlUpdate .= "UPDATE `signature_notice` SET `Title` = '$title', `Url` = '$url', `Timestamp` = '$rec_date_time', `Assign` = '$assign', `Signer`='$signer', `Update_name` = '$user', `Update_date` = NOW() WHERE `Record_id` = '$bs_id' AND `Type` = 'board_supervisor' ORDER BY `signature_notice`.`Create_date` ASC LIMIT 1;";
+    @$sqlUpdate .= "UPDATE `signature_notice` SET `Title` = '$title', `Url` = '$url', `Timestamp` = '$rec_date_time', `Assign` = '$assign', `Signer`='$signer', `Update_name` = '$user', `Update_date` = NOW() WHERE `Sign_id` = '$bs_id' AND `Type` = 'board_supervisor' ORDER BY `signature_notice`.`Create_date` ASC LIMIT 1;";
 
     if (mysqli_multi_query($conn, $sqlUpdate)) {
         echo true;

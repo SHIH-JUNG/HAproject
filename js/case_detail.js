@@ -31,6 +31,7 @@ var form_type = decodeURIComponent(getUrlVars()["form_type"]);
 
 const notyf = new Notyf();
 
+
 //當量表分數改變(選項)的時候，重算分數 region
 $("input[name*='answer']").change( function(event) {
     
@@ -102,8 +103,8 @@ function BSRS5_answer_score_evaluation() {
     }
 
 
-    //評估附加題分數是否大於0
-    if(parseInt($("input[name='"+answer_last_ques+"']:checked").attr("value")) > 0)
+    //評估附加題分數是否大於1(中等程度)
+    if(parseInt($("input[name='"+answer_last_ques+"']:checked").attr("value")) > 1)
     {
         $("input[name='treatment_status']").last().prop("checked",true);
     }
@@ -1865,12 +1866,17 @@ $("#end").on('click', function () {
 
             var end_indicator_text = $("[name*='end_indicator']").val();
             var diagnose_main_text = $("[name*='diagnose_main']").val();
+            var diagnose_minor_text = $("[name*='diagnose_minor']").val();
             var case_closed_yes_text = $("[name*='case_closed_yes']").val();
-            
+            var customFile_text = $("[name*='customFile']").text();
+            var employment_radio_checked = $("[name*='employment_radio']:checked").val();
+            var social_adaptation_radio_checked = $("[name*='social_adaptation_radio']:checked").val();
+            // alert(customFile_text)
             // alert(end_indicator_text)
             // alert(diagnose_main_text)
             // alert(case_closed_yes_text)
-            window.location.href = 'trans_closed.php?name='+name+'&gender='+gender+'&id='+id+'&open_id='+open_id+'&open_date='+date+'&main_issue='+diagnose_main_text+'&closed_reason='+end_indicator_text+'&closed_remark='+case_closed_yes_text+'';
+            closed_href = 'trans_closed.php?name='+name+'&gender='+gender+'&id='+id+'&open_id='+open_id+'&birth='+birth+'&open_date='+date+'&main_issue='+diagnose_main_text+'&minor_issue='+diagnose_minor_text+'&closed_reason='+end_indicator_text+'&closed_remark='+case_closed_yes_text+'&file='+customFile_text+'&checked_1='+employment_radio_checked+'&checked_2='+social_adaptation_radio_checked+'';
+            window.open(closed_href);
         }
 
     });

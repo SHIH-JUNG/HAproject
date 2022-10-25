@@ -14,6 +14,8 @@ closed_id = getUrlVars()["closed_id"];
 
 supervise_msg_arr = [];
 
+window.open_id = '';
+window.open_seqid = '';
 //抓個別特定結案表region
 $(document).ready(function(){
 
@@ -31,16 +33,22 @@ $(document).ready(function(){
             $.each(data,function(index,value){
 
                 var supervise_sign_file_val = value.Supervise_signature.replace("\.\.\/signature\/", "");
-
-                $("#closed_id").html(value.Closed_id);
+                open_id = value.Open_case_id;
+                open_seqid = value.Open_case_seqid;
+                $("#open_case_id").html(value.Open_case_id);
                 $("#name").val(value.Name);
                 $("#gender").val(value.Gender);
+                $("#birth").val(value.Birth);
+
+                $("#customFile1").html('<a name="customFile_a" href="./upload/'+value.File_name+'" style="text-decoration:none;color:blue;" target="_blank">'+value.File_name+'<br/></a><img style="vertical-align:middle;" width="auto" onerror="hideContainer(this)" src="./upload/'+value.File_name+'">');
 
                 $("#open_date").val(value.Open_date);
                 $("#closed_date").val(value.Closed_date);
 
                 $("#main_issue").val(value.Main_issue);
+                $("#minor_issue").val(value.Minor_issue);
                 $("#intervention").val(value.Intervention);
+                $("#evaluation").val(value.Evaluation);
 
                 if(value.Closed_reason.includes("other"))
                 {
@@ -52,10 +60,12 @@ $(document).ready(function(){
                     $("[name='closed_reason'][value='"+value.Closed_reason+"']").attr('checked',true);
                 }
 
+                $("#closed_result").val(value.Closed_result);
+
                 $("#remark").val(value.Remark);
 
                 append_user();
-                $("#user").val(value.Assign);
+                $("#social_worker").val(value.Assign);
 
                 $("#supervise").val(value.Supervise)
 
@@ -108,6 +118,10 @@ $(document).ready(function(){
 });
 
 //endregion  
+
+hideContainer = function(this_el) {
+    $(this_el).hide();
+}
 
 sign_msg_model = function(sign_type_name) {
     //手動新增按鈕點擊跳出模態框
@@ -165,19 +179,29 @@ function jsignature_initialization(init_name) {
                     closed_id:closed_id,
                     src_data:src_data,
                     sign_msg:$("#"+init_name+"_signature_msg").val(),
-                    sign_type:init_name
-                },
+                    sign_type:init_name,
+                    sign_name:$("#"+init_name+"").val(),
+                },	
                 async:false,
                 success:function(data){
-                    // console.log(data);
-                    if(data){
+                    console.log(data);
+                    if(data.includes("noallowsign"))
+                    {
+                        swal({
+                            title:'您沒有簽名的權限！督導簽名人與當前登入帳號名稱不符',
+                            type:'error',
+                        })
+                    }
+                    else if(data){
                         swal({
                             title:'送出簽名成功！',
                             type:'success',                        
                         }).then(function(){
                             location.reload();
                         }) 
-                    }else{
+                    }
+                    else
+                    {
                         swal({
                             title:'生成簽名圖片失敗！請聯絡負責單位',
                             type:'error',
@@ -256,12 +280,18 @@ var stau = false;
             url: "database/update_closed_data_detail.php",
             data:{
                 Closed_id:closed_id,
+                Open_case_id:open_id,
+                Open_case_seqid:open_seqid,
                 Closed_date:$("#closed_date").val(),
                 Main_issue:$("#main_issue").val(),
+                Minor_issue:$("#minor_issue").val(),
                 Intervention:$("#intervention").val(),
+                Evaluation:$("#evaluation").val(),
                 Closed_reason:close_reason,
+                Closed_result:$("#closed_result").val(),
                 Remark:$("#remark").val(),
-                Assign:$("#user").val(),
+                Assign:$("#social_worker").val(),
+                Supervise:$("#supervise").val(),
                 // Supervise_signature:$("#supervise_signature").val()
             },
             type: "POST",
@@ -297,13 +327,45 @@ var stau = false;
 function check_updat_closed_data()
 {
     var closed_date = $("#closed_date").val();
+
+    var main_issue = $("#main_issue").val();
+    var minor_issue = $("#minor_issue").val();
+    var intervention = $("#intervention").val();
+    var evaluation = $("#evaluation").val();
+    
     var closed_reason_checkbox =  $("input[name='closed_reason']:checked").length;
-    var closed_reason_other = $("#closed_reason_other").val()
+    var closed_reason_other = $("#closed_reason_other").val();
+
+    var user_name = $("#social_worker").val();
+    var supervise = $("#supervise").val();
+
+    var closed_result = $("#closed_result").val();
 
     var errorstr = "";
 
     if (closed_date == null) {
         errorstr += "未填寫結案日期!\r\n";
+    }
+    if (main_issue == null) {
+        errorstr += "未填寫主要問題!\r\n";
+    }
+    if (minor_issue == null) {
+        errorstr += "未填寫次要問題!\r\n";
+    }
+    if (intervention == null) {
+        errorstr += "未填寫問題處遇!\r\n";
+    }
+    if (evaluation.replace(/\s*/g, "") == '') {
+        errorstr += "未填寫成效評估!\r\n";
+    }
+    if (user_name == null) {
+        errorstr += "未填寫社工員!\r\n";
+    }
+    if (supervise == null) {
+        errorstr += "未填寫督導!\r\n";
+    }
+    if (closed_result == null) {
+        errorstr += "未填寫結案指標內容!\r\n";
     }
     if (errorstr == "") {
         if(closed_reason_other !=null || closed_reason_other!="")
@@ -321,6 +383,27 @@ function check_updat_closed_data()
         }
         if (closed_date.replace(/\s*/g, "") == '') {
             errorstr += "未填寫結案日期!\r\n";
+        }
+        if (main_issue.replace(/\s*/g, "") == '') {
+            errorstr += "未填寫主要問題!\r\n";
+        }
+        if (minor_issue.replace(/\s*/g, "") == '') {
+            errorstr += "未填寫次要問題!\r\n";
+        }
+        if (intervention.replace(/\s*/g, "") == '') {
+            errorstr += "未填寫問題處遇!\r\n";
+        }
+        if (evaluation.replace(/\s*/g, "") == '') {
+            errorstr += "未填寫成效評估!\r\n";
+        }
+        if (user_name.replace(/\s*/g, "") == '') {
+            errorstr += "未填寫社工員!\r\n";
+        }
+        if (supervise.replace(/\s*/g, "") == '') {
+            errorstr += "未填寫督導!\r\n";
+        }
+        if (closed_result.replace(/\s*/g, "") == '') {
+            errorstr += "未填寫結案指標內容!\r\n";
         }
     }
 
@@ -344,7 +427,8 @@ function append_user(){
         success: function (data) {
             // console.log('test',data)
             for (var index in data.Id) {
-                $("#user").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+                $("#social_worker").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+                $("#supervise").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
             }
         },
     });

@@ -2,25 +2,37 @@
 session_start();
 include("sql_connect.php");
 $Closed_id = $_POST['Closed_id']; 
-
-$user = $_SESSION['name'];
+$Open_case_id = $_POST['Open_case_id'];
+$Open_case_seqid = $_POST['Open_case_seqid'];
 
 $Closed_date = $_POST['Closed_date'];
 
 $Main_issue = $_POST['Main_issue'];
+$Minor_issue = $_POST['Minor_issue'];
 $Intervention = $_POST['Intervention'];
+$Evaluation = $_POST['Evaluation'];
+
 $Closed_reason = $_POST['Closed_reason'];
+$Closed_result = $_POST['Closed_result'];
+
 $Remark = $_POST['Remark'];
 $Assign = $_POST['Assign'];
+$Supervise = $_POST['Supervise'];
 
+$user = $_SESSION['name'];
 
+$sign_closed_date = $Closed_date." 00:00";
 
-$sqlUpdate ="UPDATE `closed` SET `Closed_date` = '$Closed_date', `Main_issue` = '$Main_issue', `Intervention` = '$Intervention',
- `Closed_reason` = '$Closed_reason',
+$sqlUpdate ="UPDATE `closed` SET `Closed_date` = '$Closed_date', 
+`Main_issue` = '$Main_issue', `Minor_issue` = '$Minor_issue', `Intervention` = '$Intervention', `Evaluation` = '$Evaluation',
+ `Closed_reason` = '$Closed_reason', `Closed_result` = '$Closed_result',
   `Remark` = '$Remark',
-  `Assign` = '$Assign',
-  `Update_name` = '$user', `Update_date` = NOW() WHERE `Closed_id` = '$Closed_id' ORDER BY `closed`.`Create_date` ASC LIMIT 1;";
-if(mysqli_query($conn, $sqlUpdate)){
+  `Assign` = '$Assign', `Supervise` = '$Supervise',
+  `Update_name` = '$user', `Update_date` = NOW() WHERE `Id` = '$Closed_id' AND `Open_case_seqid` = '$Open_case_seqid' ORDER BY `closed`.`Create_date` ASC LIMIT 1;";
+
+@$sqlUpdate .= "UPDATE `signature_notice` SET `Timestamp` = '$sign_closed_date', `Assign` = '$Assign', `Signer`='$Supervise', `Update_name` = '$user', `Update_date` = NOW() WHERE `Sign_id` = '$Closed_id' AND `Type` = 'closed' ORDER BY `signature_notice`.`Create_date` ASC LIMIT 1;";
+
+if(mysqli_multi_query($conn, $sqlUpdate)){
     echo true;
 }else{
     echo false;

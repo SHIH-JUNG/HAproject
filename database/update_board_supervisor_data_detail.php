@@ -28,7 +28,7 @@ if($signed_timestamp!="0000-00-00 00:00:00")
 
 $sqlUpdate ="UPDATE `board_supervisor` SET `Year` = '$year', `record_content` = '$record_content' ".$update_signer_sql.", `Update_name` = '$user', `Update_date` = NOW() WHERE `Id` = '$bs_id' ORDER BY `board_supervisor`.`Create_date` ASC LIMIT 1;";
 
-@$sqlUpdate .= "UPDATE `signature_notice` SET `Title` = '$title', `Url` = '$url', `Timestamp` = '$rec_date_time', `Assign` = '$assign', `Signer`='$signer', `Update_name` = '$user', `Update_date` = NOW() WHERE `Record_id` = '$bs_id' AND `Type` = 'board_supervisor' ORDER BY `signature_notice`.`Create_date` ASC LIMIT 1;";
+@$sqlUpdate .= "UPDATE `signature_notice` SET `Title` = '$title', `Url` = '$url', `Timestamp` = '$rec_date_time', `Assign` = '$assign', `Signer`='$signer', `Update_name` = '$user', `Update_date` = NOW() WHERE `Sign_id` = '$bs_id' AND `Type` = 'board_supervisor' ORDER BY `signature_notice`.`Create_date` ASC LIMIT 1;";
 
 if(mysqli_multi_query($conn, $sqlUpdate)){
     echo true;

@@ -391,7 +391,7 @@ function addNewTag() {
             $(this).tab('show');
         })
 
-
+        $('#myTab a[href="#tabx0_new"]').tab('show');
 }
 //endregion
 

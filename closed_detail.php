@@ -165,16 +165,13 @@
                                                                     <div class="panel-body scr_container">
                                                                         <table id="all_data" style="width:75%;" class="table table-bordered">
                                                                             <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline">案號</td>
-                                                                                <td style=""><span id="closed_id"></span></td>
-                                                                            </tr>
-                                                                            <tr style="text-align:left">
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">案號</td>
+                                                                                <td style=""><span id="open_case_id"></span></td>
+
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>姓名</td>
                                                                                 <td style="border-bottom: solid 1px;"><input id="name" type="text" oninput="value=value.replace(/[\d]/g,'')" disabled="disabled"></td>
-                                                                            </tr>
-
-                                                                            <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">性別</td>
+                                                                                
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>性別</td>
                                                                                 <td style="border-bottom: solid 1px;">
                                                                                     <select id="gender" style="width:200px;" disabled="disabled">
                                                                                         <option value="">請選擇</option>
@@ -186,101 +183,146 @@
                                                                             </tr>
 
                                                                             <tr style="text-align:left">
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;width:10em;"><i style="color:red;">※</i>出生年月日</td>
+                                                                                <td style="border-bottom: solid 1px;"><input id="birth" type="date" disabled="disabled"></td>
+
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;width:10em;"><i style="color:red;">※</i>開案日期</td>
                                                                                 <td style="border-bottom: solid 1px;"><input id="open_date" type="date" disabled="disabled"></td>
-                                                                            </tr>
 
-                                                                            <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;width:10em;"><i style="color:red;">※</i>結案日期</td>
                                                                                 <td style="border-bottom: solid 1px;"><input class="closed_question" id="closed_date" type="date"></td>
                                                                             </tr>
-                                                                            <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white">主要問題</td>
-                                                                                <td>
-                                                                                    <textarea class="closed_question" style="min-height:200px;width:75%;resize: none;font-size: 20px;" name="main_issue" id="main_issue" placeholder="請輸入主要問題"></textarea>
-                                                                                </td>
+
+                                                                            <tr>
+                                                                            <td colspan="6" style="background-color:rgb(255 201 54);text-align:left;"><i style="color:red;">※</i>家系生態圖</td>
                                                                             </tr>
-                                                                            <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white">問題處遇</td>
-                                                                                <td>
-                                                                                    <textarea class="closed_question" style="min-height:200px;width:75%;resize: none;font-size: 20px;" name="intervention" id="intervention" placeholder="請輸入問題處遇"></textarea>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">結案原因</td>
-                                                                                <td style="border-bottom: solid 1px;">
-                                                                                    <input class="closed_question" name="closed_reason" style="zoom: 1.5" type="radio" value="達到目標，已無需要在服務"><label class="link_label_closed_reason">達到目標，已無需要在服務</label>
-                                                                                    <input class="closed_question" name="closed_reason" style="zoom: 1.5" type="radio" value="穩定就業三個月，以達到目標"><label class="link_label_closed_reason">穩定就業三個月，以達到目標</label>
-                                                                                    <input class="closed_question" name="closed_reason" style="zoom: 1.5" type="radio" value="個案者死亡"><label class="link_label_closed_reason">個案者死亡</label>
-                                                                                    <input class="closed_question" name="closed_reason" style="zoom: 1.5" type="radio" value="再次入監無法合作"><label class="link_label_closed_reason">再次入監無法合作</label>
-                                                                                    <input class="closed_question" name="closed_reason" style="zoom: 1.5" type="radio" value="無意願接受服務"><label class="link_label_closed_reason">無意願接受服務</label><br/>
-                                                                                    <input class="closed_question" name="closed_reason" style="zoom: 1.5" type="radio" value="失去聯絡（一個月連繫三次均聯繫不上或三個月，每月連繫三次均聯繫不上）"><label class="link_label_closed_reason">失去聯絡（一個月連繫三次均聯繫不上或三個月，每月連繫三次均聯繫不上）</label>
-                                                                                    <input class="closed_question" name="closed_reason" style="zoom: 1.5" type="radio" value="轉介其他資源單位，並且已達處遇目標"><label class="link_label_closed_reason">轉介其他資源單位，並且已達處遇目標。</label>
-                                                                                    <div>
-                                                                                        <input class="closed_question" name="closed_reason" style="zoom: 1.5" type="radio" value="other"><label>其他</label>
-                                                                                        <input class="closed_question" id="closed_reason_other" style="width:75%;" type="text">
+                                                                            <tr>
+                                                                                <td colspan="6">
+                                                                                    <div class="col-sm-12">
+                                                                                        <div class="text-left">
+                                                                                            <!-- <input name="customFile1" style="min-height:200px;" type="file" class="form-control" disabled="disabled"/> -->
+                                                                                            <br>
+                                                                                            <div id="customFile1"></div>
+                                                                                        </div>
                                                                                     </div>
                                                                                 </td>
                                                                             </tr>
 
+
+
                                                                             <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white">備註</td>
-                                                                                <td>
-                                                                                    <textarea class="closed_question" style="height:150px;width:75%;resize: none;font-size: 20px;" name="remark" id="remark" placeholder="請輸入備註"></textarea>
+                                                                                <td colspan="1" style="text-align:right;background-color:rgb(255 201 54);border-right-color: white"><i style="color:red;">※</i>主要問題</td>
+                                                                                <td colspan="5">
+                                                                                    <textarea class="closed_question" style="min-height:200px;width:100%;resize: none;font-size: 20px;" name="main_issue" id="main_issue" placeholder="請輸入主要問題"></textarea>
+                                                                                    <br/><span style="color:red;">*此欄位請填寫簡述問題</span>
                                                                                 </td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">社工員</td>
-                                                                                <td style="border-bottom: solid 1px;">
-                                                                                    <select class="user closed_question" id="user">
-                                                                                        <option value="" disabled selected hidden>請選擇社工員</option>
-                                                                                    </select>
+                                                                                <td colspan="1" style="text-align:right;background-color:rgb(255 201 54);border-right-color: white"><i style="color:red;">※</i>次要問題</td>
+                                                                                <td colspan="5">
+                                                                                    <textarea class="closed_question" style="min-height:200px;width:100%;resize: none;font-size: 20px;" name="minor_issue" id="minor_issue" placeholder="請輸入次要問題"></textarea>
+                                                                                    <br/><span style="color:red;">*此欄位請填寫簡述問題</span>
                                                                                 </td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline">
-                                                                                    <label>督導簽章</label>
-                                                                                </td>
-                                                                                <td style="">
-                                                                                    <input class="closed_question" style="width:15em;" id="supervise" type="text"><button style="margin:.5em;margin-right:3em;color:red;" type="button" id="supervise_signature_btn">簽名</button>
-                                                                                    <button style="margin:.5em;" type="button" id="supervise_signature_msg_btn" onclick="sign_msg_model('supervise');" data-toggle="modal" data-target="#myModal">查看留言</button>
-                                                                                    <a src="" id="supervise_signature_simg" style="color:blue;" target="_blank" alt="簽名圖片連結"></a>
+                                                                                <td colspan="1" style="text-align:right;background-color:rgb(255 201 54);border-right-color: white"><i style="color:red;">※</i>問題處遇</td>
+                                                                                <td colspan="5">
+                                                                                    <textarea class="closed_question" style="min-height:200px;width:100%;resize: none;font-size: 20px;" name="intervention" id="intervention" placeholder="請輸入問題處遇內容"></textarea>
+                                                                                    <br/><span style="color:red;">*此欄位請填寫個案針對個案各項問題所做的處遇項</span>
                                                                                 </td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline">
+                                                                                <td colspan="1" style="text-align:right;background-color:rgb(255 201 54);border-right-color: white"><i style="color:red;">※</i>成效評估</td>
+                                                                                <td colspan="5">
+                                                                                    <textarea class="closed_question" style="min-height:700px;width:100%;resize: none;font-size: 20px;" name="evaluation" id="evaluation" placeholder="請輸入成效評估內容"></textarea>
+                                                                                    <br/><span style="color:red;">*此欄位請填寫個案最後執行的狀況並寫出是否有達緩解或未達緩解；把所有測過的量表成效數值呈現(請呈現在最後面順位)，並針對各項說明量表使用「重點文字說明」成效為何做敘述，最後總體成效做說明(各項標號請依照各自內容多寡自行訂定。</span>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr style="text-align:left">
+                                                                                <td colspan="1" style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>結案原因</td>
+                                                                                <td colspan="5" style="border-bottom: solid 1px;">
+                                                                                    <input class="closed_question" name="closed_reason" style="zoom: 1.5" type="radio" value="達到目標，已無需要在服務"><label class="link_label_closed_reason">1.達到目標，已無需要在服務</label><br/>
+                                                                                    <input class="closed_question" name="closed_reason" style="zoom: 1.5" type="radio" value="穩定就業三個月，以達到目標"><label class="link_label_closed_reason">2.穩定就業三個月，以達到目標</label><br/>
+                                                                                    <input class="closed_question" name="closed_reason" style="zoom: 1.5" type="radio" value="個案者死亡"><label class="link_label_closed_reason">3.個案者死亡</label><br/>
+                                                                                    <input class="closed_question" name="closed_reason" style="zoom: 1.5" type="radio" value="再次入監無法合作"><label class="link_label_closed_reason">4.再次入監無法合作</label><br/>
+                                                                                    <input class="closed_question" name="closed_reason" style="zoom: 1.5" type="radio" value="無意願接受服務"><label class="link_label_closed_reason">5.無意願接受服務</label><br/>
+                                                                                    <input class="closed_question" name="closed_reason" style="zoom: 1.5" type="radio" value="失去聯絡（一個月連繫三次均聯繫不上或三個月，每月連繫三次均聯繫不上）"><label class="link_label_closed_reason">6.失去聯絡（一個月連繫三次均聯繫不上或三個月，每月連繫三次均聯繫不上）</label><br/>
+                                                                                    <input class="closed_question" name="closed_reason" style="zoom: 1.5" type="radio" value="轉介其他資源單位，並且已達處遇目標"><label class="link_label_closed_reason">7.轉介其他資源單位，並且已達處遇目標。</label><br/>
+                                                                                    <!-- <div>
+                                                                                        <input name="closed_reason" style="zoom: 1.5" type="radio" value="other"><label>其他</label>
+                                                                                        <input id="closed_reason_other" style="width:75%;" type="text">
+                                                                                    </div> -->
+                                                                                    <br/>
+                                                                                    <span>依據結案指標：</span><input class="closed_question" id="closed_result" type="text">
+                                                                                </td>
+                                                                            </tr>
+
+                                                                            <tr style="text-align:left">
+                                                                                <td colspan="1" style="text-align:right;background-color:rgb(255 201 54);border-right-color: white">備註</td>
+                                                                                <td colspan="5">
+                                                                                    <textarea class="closed_question" style="height:150px;width:100%;resize: none;font-size: 20px;" name="remark" id="remark" placeholder="請輸入備註"></textarea>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr style="text-align:left">
+                                                                                <td colspan="1" style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>社工員</td>
+                                                                                <td colspan="5" style="border-bottom: solid 1px;">
+                                                                                    <div class="col-sm-3">
+                                                                                        <select class="closed_question" name="social_worker" id="social_worker" style="width:100%;">
+                                                                                            <option value="">請選擇</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td colspan="1" style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>督導簽章</td>
+                                                                                <td colspan="5" style="border-bottom: solid 1px;">
+                                                                                    <div class="col-sm-3" style="margin-top: 0.6em;">
+                                                                                        <!-- <input class="closed_question" style="width:15em;" id="supervise" type="text"> -->
+                                                                                        <select class="closed_question" id="supervise" style="width:100%;">
+                                                                                                <option value="">請選擇</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                    <div class="col-sm-5">
+                                                                                        <button style="margin:.5em;color:red;float:left;" type="button" id="supervise_signature_btn">簽名</button>
+                                                                                        <button style="margin:.5em;float:left;" type="button" id="supervise_signature_msg_btn" onclick="sign_msg_model('supervise');" data-toggle="modal" data-target="#myModal">查看留言</button>
+                                                                                        <a src="" id="supervise_signature_simg" style="color:blue;display: block;margin-top: 0.6em;" target="_blank" alt="簽名圖片連結"></a>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr style="text-align:left">
+                                                                                <td colspan="1" style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline">
                                                                                     <label>建立日期</label>
                                                                                 </td>
-                                                                                <td style="">
+                                                                                <td colspan="5" style="">
                                                                                     <span id="adate"></span>
                                                                                 </td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline">
+                                                                                <td colspan="1" style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline">
                                                                                     <label>建立者</label>
                                                                                 </td>
-                                                                                <td style="">
+                                                                                <td colspan="5" style="">
                                                                                     <span id="applicant"></span>
                                                                                 </td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline">
+                                                                                <td colspan="1" style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline">
                                                                                     <label>修改日期</label>
                                                                                 </td>
-                                                                                <td style="">
+                                                                                <td colspan="5" style="">
                                                                                     <span id="udate"></span>
                                                                                 </td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;" class="NOline">
+                                                                                <td colspan="1" style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;" class="NOline">
                                                                                     <label>修改者</label>
                                                                                 </td>
-                                                                                <td>
+                                                                                <td colspan="5">
                                                                                     <span id="up_applicant"></span>
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <td colspan="2">
+                                                                                <td colspan="6">
                                                                                     <div id="edit_div">
                                                                                         <button style="font-size:20px" id="closed_edit" class="btn btn-default" onclick="closed_edit();">編輯</button>
                                                                                     </div>

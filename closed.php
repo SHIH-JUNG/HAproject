@@ -146,7 +146,7 @@ word-break: keep-all;/*必須*/
                                                             
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">結案原因：</td>
                                                             <td colspan="3" class="text-left">
-                                                                <select id="closed_r" rel="5" class="filter search">
+                                                                <select id="closed_r" rel="5" class="filter_select search">
                                                                     <!-- <option value="">所有</option>
                                                                     <option value="達到目標，已無需要在服務">達到目標，已無需要在服務</option>
                                                                     <option value="穩定就業三個月，以達到目標">穩定就業三個月，以達到目標</option>
@@ -173,7 +173,7 @@ word-break: keep-all;/*必須*/
                                                 <div class="table-responsive">
                                                     <table class="table display table-hover dataTable no-footer" style="font-size:15px;font-family:微軟正黑體;width:100%" id="tab_all" data-toolbar="#toolbar">                                                       
                                                         <thead>
-                                                            <tr>
+                                                            <!-- <tr>
                                                                 <th class="text-right" colspan="15">
                                                                            <a href="add_closed.php"><button style="font-size:15px" type="button" class="btn btn-default"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                                             <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
@@ -181,11 +181,12 @@ word-break: keep-all;/*必須*/
                                                                             <path fill-rule="evenodd" d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5z" />
                                                                         </svg>新增</button></a>
                                                                 </th>
-                                                            </tr>
+                                                            </tr> -->
                                                             <tr style="background-color:rgb(255 201 54);">
                                                                 <th>案號</th>
                                                                 <th>姓名</th>
                                                                 <th>性別</th>
+                                                                <!-- <th>出生年月日</th> -->
                                                                 <th>開案日期</th>
                                                                 <th>結案日期</th>
                                                                 <th>結案原因</th>

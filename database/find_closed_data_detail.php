@@ -7,7 +7,7 @@ $Closed_id = $_POST['Closed_id'];
 //宣告空的陣列
 $datas = array();
 
-$sql = "SELECT * FROM `closed` WHERE `Closed_id` = '$Closed_id' ORDER BY `Closed_date` ASC";
+$sql = "SELECT * FROM `closed` WHERE `Id` = '$Closed_id' ORDER BY `Closed_date` ASC";
 
 $query = mysqli_query($conn, $sql);
 

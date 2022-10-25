@@ -4,7 +4,7 @@ include("sql_connect.php");
 $closed_id = $_POST['closed_id']; 
 $sign_msg = $_POST['sign_msg'];
 $sign_type = $_POST['sign_type'];
-
+$sign_name = $_POST['sign_name'];
 $user = $_SESSION['name'];
 
 
@@ -31,10 +31,10 @@ $new_file = $new_file.time().".$type";
 
 switch ($sign_type) {
     case 'supervise':
-        $sql_str = " `supervise` = '$user', `Supervise_signature` = '$new_file', `Supervise_sign_msg` = '$sign_msg',`Supervise_sign_time` = NOW()";
+        $sql_str = " `Supervise` = '$user', `Supervise_signature` = '$new_file', `Supervise_sign_msg` = '$sign_msg',`Supervise_sign_time` = NOW()";
         break;
     case 'social_worker':
-        $sql_str = " `social_worker` = '$user', `Social_worker_signature` = '$new_file', `Social_worker_sign_msg` = '$sign_msg',`Social_worker_sign_time` = NOW()";
+        $sql_str = " `Social_worker` = '$user', `Social_worker_signature` = '$new_file', `Social_worker_sign_msg` = '$sign_msg',`Social_worker_sign_time` = NOW()";
         break;
     default:
             return false;
@@ -43,15 +43,25 @@ switch ($sign_type) {
 
 //转换为图片文件
 if (file_put_contents($new_file,base64_decode($base64_content[1]))){
-	$sqlUpdate ="UPDATE `closed` SET $sql_str WHERE `Closed_id` = '$closed_id' ORDER BY `closed`.`Create_date` ASC LIMIT 1;";
-    if(mysqli_query($conn, $sqlUpdate)){
-        echo true;
-    }else{
-        echo false;
-        echo "{$note} 語法執行失敗，錯誤訊息：" . mysqli_error($conn);
-    }  
+    if($user == $sign_name){
+        $sqlUpdate ="UPDATE `closed` SET $sql_str WHERE `Id` = '$closed_id' ORDER BY `closed`.`Create_date` ASC LIMIT 1;";
+
+        $sqlUpdate .="UPDATE `signature_notice` SET `Sign_state`='已簽核' WHERE `Sign_id` = '$closed_id' AND `Type`='closed' ORDER BY `signature_notice`.`Id` ASC LIMIT 1;";
+
+        if(mysqli_multi_query($conn, $sqlUpdate)){
+            echo true;
+        }else{
+            echo false;
+            echo "{$note} 語法執行失敗，錯誤訊息：" . mysqli_error($conn);
+        }  
+    }
+    else
+    {
+        echo "noallowsign";
+    }
+    
 }else{ 
-	return false;  
+	echo false;  
 }  
 
 

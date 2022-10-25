@@ -12,7 +12,7 @@ $.ajax({
     async: false,//啟用同步請求
     success: function (data) {
         var cssString = "";
-        // console.log(data)
+        console.log(data)
 
         $.each(data,function(index,value){
 
@@ -41,23 +41,63 @@ $.ajax({
             }
 
 
-            if(value.Closed_reason.includes("other"))
+            // if(value.Closed_reason.includes("other"))
+            // {
+            //     value.Closed_reason = value.Closed_reason.replace("other", "其他：");
+            // }
+            // else if(value.Closed_reason.includes("失去聯絡"))
+            // {
+            //     value.Closed_reason = "失去聯絡";
+            // }
+            // console.log(value.Supervise)
+
+
+            var closed_reason_arr = ['達到目標，已無需要在服務', '穩定就業三個月，以達到目標', '個案者死亡', '再次入監無法合作', '無意願接受服務', '失去聯絡（一個月連繫三次均聯繫不上或三個月，每月連繫三次均聯繫不上）', '轉介其他資源單位，並且已達處遇目標']
+
+            var closed_reason_text = '';
+
+            var other_closed_reason_text = '';
+
+            var closed_reason = '';
+
+
+            if(closed_reason_arr.indexOf(value.Closed_reason) > -1)
             {
-                value.Closed_reason = value.Closed_reason.replace("other", "其他：");
+                if(value.Closed_reason.includes("失去聯絡"))
+                {
+                    closed_reason_text = (closed_reason_arr.indexOf(value.Closed_reason) + 1 ) + "." + "失去聯絡";
+                }
+                else
+                {
+                    closed_reason_text = (closed_reason_arr.indexOf(value.Closed_reason) + 1 ) + "." + value.Closed_reason;
+                }
+
+                closed_reason = closed_reason_text;
+
+                $("#closed_r").append('<option value="'+closed_reason_text+'">'+closed_reason_text+'</option>');
             }
-            else if(value.Closed_reason.includes("失去聯絡"))
+            else if(value.Closed_reason.includes("other"))
             {
-                value.Closed_reason = "失去聯絡";
+                closed_reason_text = (closed_reason_arr.length + 1) + ".其他";
+
+                other_closed_reason_text = value.Closed_reason.replace("other", closed_reason_text + "：");
+
+                closed_reason = other_closed_reason_text;
+
+                $("#closed_r").append('<option value="'+closed_reason_text+'">'+closed_reason_text+'</option>');
             }
 
+
+
             cssString += 
-                    '<tr id="'+value.Closed_id+'">' +
+                    '<tr id="'+value.Id+'">' +
                         '<td style="text-align:center">' + value.Closed_id + '</td>' +
                         '<td style="text-align:center">' + value.Name + '</td>' +
                         '<td style="text-align:center">' + value.Gender + '</td>' +
+                        // '<td style="text-align:center">' + value.Birth + '</td>' +
                         '<td style="text-align:center">' + value.Open_date + '</td>' +
                         '<td style="text-align:center">' + value.Closed_date + '</td>' +
-                        '<td style="text-align:center">' + value.Closed_reason + '</td>' +
+                        '<td style="text-align:center">' + closed_reason + '</td>' +
                         // '<td style="text-align:center">' + value.Remark + '</td>' +
                         '<td style="text-align:center">' + value.Assign + '</td>' +
                         '<td style="text-align:center">' + value.Supervise+sign_css_str + '</td>' +
@@ -67,13 +107,13 @@ $.ajax({
 
             $("#closed_id").append('<option value="'+value.Closed_id+'">'+value.Closed_id+'</option>');
 
-            $("#closed_r").append('<option value="'+value.Closed_reason+'">'+value.Closed_reason+'</option>');
+
 
             $("#assign").append('<option value="'+value.Assign+'">'+value.Assign+'</option>');
         });
 
             //找出所有查詢表格下拉式選單，將內容排序、加上"所有查詢"、去除重複值
-            var filter_select = $("select.filter")
+            var filter_select = $("select.filter, #closed_r")
 
             $.each(filter_select,function(i,v){
 
@@ -255,7 +295,7 @@ $("#count_people2").text("，人數："+$table.column(0).data().unique().count()
 
 //額外設定select
 $('select.filter').on('change', function () {
-var rel = $(this).attr("rel");
+    var rel = $(this).attr("rel");
     if(this.value!="")
     {
         //格式：.serch(該欄位值, 是否啟用正則表達式匹配, 是否關閉智能查詢, 是否開啟不區分大小寫)
@@ -269,6 +309,23 @@ var rel = $(this).attr("rel");
     }
 
 });
+
+$('#closed_r').on('change', function () {
+        var rel = $(this).attr("rel");
+        if(this.value!="")
+        {
+            //格式：.serch(該欄位值, 是否啟用正則表達式匹配, 是否關閉智能查詢, 是否開啟不區分大小寫)
+            //須完全匹配option的value值 設定option.value 使用正則符號匹配，ex:"^" + this.value+ "$"
+            //前端注意option value內有特殊字元須加入轉義字 ex:H+梅 positive => H\+梅 positive
+            $table.columns(rel).search("^" + this.value, true, false, true).draw();
+        }
+        else
+        {
+            $table.columns(rel).search(this.value).draw();
+        }
+    
+});
+
 $('#min, #max').keyup( function() {
 $.fn.dataTable.ext.search.push(age_range);
 $table.draw();

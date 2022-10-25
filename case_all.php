@@ -103,64 +103,64 @@
                                         <div class="col-sm-12 col-xs-12">
                                             <ul style="font-size:17px" class="nav nav-tabs" id="myTab" role="tablist">
                                                 <li class="nav-item active" role="presentation">
-                                                    <a class="nav-link" id="home-tab" data-toggle="pill" href="#one" role="tab" aria-selected="true">
+                                                    <a class="nav-link" id="home-tab" data-toggle="pill" href="#case_tab" role="tab" aria-selected="true">
                                                         <b>個案評估表</b>
                                                     </a>
                                                 </li>
                                                 <li class="nav-item" role="presentation">
-                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#two" role="tab" aria-selected="false">
+                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#interlocution_tab" role="tab" aria-selected="false">
                                                         <b>會談紀錄</b>
                                                     </a>
                                                 </li>
                                                 <li class="nav-item" role="presentation">
-                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#eleven" role="tab" aria-selected="false">
+                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#resource_tab" role="tab" aria-selected="false">
                                                         <b>社會資源應用表格</b>
                                                     </a>
                                                 </li>
                                                 <li class="nav-item" role="presentation">
-                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#three" role="tab" aria-selected="false">
+                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#life_tab" role="tab" aria-selected="false">
                                                         <b>生活品質問卷</b>
                                                     </a>
                                                 </li>
 
                                                 <li class="nav-item" role="presentation">
-                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#four" role="tab" aria-selected="false">
+                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#health_tab" role="tab" aria-selected="false">
                                                         <b>健康管理評估表</b>
                                                     </a>
                                                 </li>
                                                 <li class="nav-item" role="presentation">
-                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#five" role="tab" aria-selected="false">
+                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#sullen_tab" role="tab" aria-selected="false">
                                                         <b>憂鬱量表</b>
                                                     </a>
                                                 </li>
                                                 <li class="nav-item" role="presentation">
-                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#six" role="tab" aria-selected="false">
+                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#employment_satif_tab" role="tab" aria-selected="false">
                                                         <b>就業需求評估表&就業服務滿意度調查表</b>
                                                     </a>
                                                 </li>
                                                 <li class="nav-item" role="presentation">
-                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#seven" role="tab" aria-selected="false">
+                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#satif_tab" role="tab" aria-selected="false">
                                                         <b>服務滿意度量表</b>
                                                     </a>
                                                 </li>
                                                 <li class="nav-item" role="presentation">
-                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#eight" role="tab" aria-selected="false">
+                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#familyship_tab" role="tab" aria-selected="false">
                                                         <b>家庭關係</b>
                                                     </a>
                                                 </li>
                                                 <li class="nav-item" role="presentation">
-                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#night" role="tab" aria-selected="false">
+                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#BSRS5_tab" role="tab" aria-selected="false">
                                                         <b>BSRS-5量表</b>
                                                     </a>
                                                 </li>
                                                 <li class="nav-item" role="presentation">
-                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#ten" role="tab" aria-selected="false">
+                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#settlement_tab" role="tab" aria-selected="false">
                                                         <b>安置、自立宿舍評估量表</b>
                                                     </a>
                                                 </li>
                                             </ul>
                                             <div class="tab-content" id="myTabContent">
-                                                <div class="tab-pane fade in active" id="one" role="tabpanel" aria-labelledby="home-tab">
+                                                <div class="tab-pane fade in active" id="case_tab" role="tabpanel" aria-labelledby="home-tab">
                                                     <div class="col-sm-12 text-center">
                                                         <div class="table-wrap">
                                                             <div class="table-responsive">
@@ -190,7 +190,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="tab-pane fade" id="two" role="tabpanel" aria-labelledby="profile-tab">
+                                                <div class="tab-pane fade" id="interlocution_tab" role="tabpanel" aria-labelledby="profile-tab">
                                                     <div class="col-sm-12 text-center">
                                                         <div class="table-wrap">
                                                             <div class="table-responsive">
@@ -219,7 +219,7 @@
                                                         <button onclick="back_case_all_all();" class="btn btn-default">返回</button>
                                                     </div>
                                                 </div>
-                                                <div class="tab-pane fade" id="eleven" role="tabpanel" aria-labelledby="profile-tab">
+                                                <div class="tab-pane fade" id="resource_tab" role="tabpanel" aria-labelledby="profile-tab">
                                                     <div class="col-sm-12 text-center">
                                                         <div class="table-wrap">
                                                             <div class="table-responsive">
@@ -245,7 +245,7 @@
                                                         <button onclick="back_case_all_all();" class="btn btn-default">返回</button>
                                                     </div>
                                                 </div>
-                                                <div class="tab-pane fade" id="three" role="tabpanel" aria-labelledby="profile-tab">
+                                                <div class="tab-pane fade" id="life_tab" role="tabpanel" aria-labelledby="profile-tab">
                                                     <div class="col-sm-12 text-center">
                                                         <div class="table-wrap">
                                                             <div class="table-responsive">
@@ -275,7 +275,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="tab-pane fade" id="four" role="tabpanel" aria-labelledby="profile-tab">
+                                                <div class="tab-pane fade" id="health_tab" role="tabpanel" aria-labelledby="profile-tab">
                                                     <div class="col-sm-12 text-center">
                                                         <div class="table-wrap">
                                                             <div class="table-responsive">
@@ -306,7 +306,7 @@
                                                 </div>
 
 
-                                                <div class="tab-pane fade" id="five" role="tabpanel" aria-labelledby="profile-tab">
+                                                <div class="tab-pane fade" id="sullen_tab" role="tabpanel" aria-labelledby="profile-tab">
                                                     <div class="col-sm-12 text-center">
                                                         <div class="table-wrap">
                                                             <div class="table-responsive">
@@ -330,7 +330,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="tab-pane fade" id="six" role="tabpanel" aria-labelledby="profile-tab">
+                                                <div class="tab-pane fade" id="employment_satif_tab" role="tabpanel" aria-labelledby="profile-tab">
                                                     <div class="col-sm-12 text-center">
                                                         <div class="table-wrap">
                                                             <div class="table-responsive">
@@ -360,7 +360,7 @@
                                                         <button onclick="back_case_all_all();" class="btn btn-default">返回</button>
                                                     </div>
                                                 </div>
-                                                <div class="tab-pane fade" id="seven" role="tabpanel" aria-labelledby="profile-tab">
+                                                <div class="tab-pane fade" id="satif_tab" role="tabpanel" aria-labelledby="profile-tab">
                                                     <div class="col-sm-12 text-center">
                                                         <div class="table-wrap">
                                                             <div class="table-responsive">
@@ -390,7 +390,7 @@
                                                         <button onclick="back_case_all_all();" class="btn btn-default">返回</button>
                                                     </div>
                                                 </div>
-                                                <div class="tab-pane fade" id="eight" role="tabpanel" aria-labelledby="profile-tab">
+                                                <div class="tab-pane fade" id="familyship_tab" role="tabpanel" aria-labelledby="profile-tab">
                                                     <div class="col-sm-12 text-center">
                                                         <div class="table-wrap">
                                                             <div class="table-responsive">
@@ -421,7 +421,7 @@
                                                         <button onclick="back_case_all_all();" class="btn btn-default">返回</button>
                                                     </div>
                                                 </div>
-                                                <div class="tab-pane fade" id="night" role="tabpanel" aria-labelledby="profile-tab">
+                                                <div class="tab-pane fade" id="BSRS5_tab" role="tabpanel" aria-labelledby="profile-tab">
                                                     <div class="col-sm-12 text-center">
                                                         <div class="table-wrap">
                                                             <div class="table-responsive">
@@ -445,7 +445,7 @@
                                                         <button onclick="back_case_all_all();" class="btn btn-default">返回</button>
                                                     </div>
                                                 </div>
-                                                <div class="tab-pane fade" id="ten" role="tabpanel" aria-labelledby="profile-tab">
+                                                <div class="tab-pane fade" id="settlement_tab" role="tabpanel" aria-labelledby="profile-tab">
                                                     <div class="col-sm-12 text-center">
                                                         <div class="table-wrap">
                                                             <div class="table-responsive">
