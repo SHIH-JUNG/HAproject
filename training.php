@@ -110,8 +110,8 @@
 
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">在職訓練日期：</td>
                                                             <td class="text-left">
-                                                                <input id="upload_min_date" rel="1" type="text" name="ch_datepicker" style="width: 10em;" placeholder="在職訓練日期搜尋"><label>～</label>
-                                                                <input id="upload_max_date" rel="1" type="text" name="ch_datepicker" style="width: 10em;" placeholder="在職訓練日期搜尋">
+                                                                <input id="upload_min_date" type="text" name="ch_datepicker" style="width: 10em;" placeholder="在職訓練日期搜尋"><label>～</label>
+                                                                <input id="upload_max_date" type="text" name="ch_datepicker" style="width: 10em;" placeholder="在職訓練日期搜尋">
                                                             </td>
 
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">是否在職：</td>
@@ -240,7 +240,7 @@
     <script src="javascript/bootstrap-table1.11.1-zh-TW.min.js"></script>
     <!-- 日期民國-->
     <script src="javascript/jquery-ui.min.js"></script>
-    <script src="javascript/datepickerTw.js"></script>
+    <script src="javascript/datepickerTw2.js"></script>
     <!-- ================== counsel ================== -->
     <script type="text/javascript" src="js/training.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
     <!-- ================== 地區選擇下拉 ================== -->

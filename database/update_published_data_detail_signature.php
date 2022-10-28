@@ -1,61 +1,58 @@
 <?php
 session_start();
 include("sql_connect.php");
-$pu_id = $_POST['pu_id'];
-$sign_msg = $_POST['sign_msg'];
-$sign_type = $_POST['sign_type'];
-
 $user = $_SESSION['name'];
+$Pu_id = $_REQUEST['pu_id'];
+$Year = $_REQUEST['Year'];
+$Title_name = $_REQUEST['Title_name'];
+$Published_date = $_REQUEST['Published_date'];
+$Subject = $_REQUEST['Subject'];
+$Num_publish = $_REQUEST['Num_publish'];
 
 
-/*  base64格式编码转换为图片并保存对应文件夹 */
-$base64_content = $_POST['src_data'];
-// echo $base64_content;die;
+// 上傳報表路徑
+@$file_dir = "../published/";
 
-//截取数据为数组
-$base64_content = explode(',', $base64_content);
+@$file = "";
 
-//生成目录：demo所在根目录下
-// $new_file = "./".date('Ymd',time())."/";  
-// $new_file = "../signature".date('Ymd',time())."/";  
-$new_file = "../signature/";
-if (!file_exists($new_file)) {
-    //检查是否有该文件夹，如果没有就创建，并给予最高权限  
-    mkdir($new_file, 0700);
+@$sql_file_upload = "";
+
+// 無該檔案資料夾則建立
+if (!is_dir($file_dir)) {
+    mkdir($file_dir, 0777, true);
 }
 
-//文件后缀名
-$type = 'png';
-//生成文件名：相对路径
-$new_file = $new_file . time() . ".$type";
+// 判斷報表上傳
+if (isset($_FILES["published_files0"]))
+{
+    @$file_name = $_FILES["published_files0"]["name"];
+    @$file = "../published/" . $_FILES["published_files0"]["name"];
 
-switch ($sign_type) {
-    case 'supervise':
-        $sql_str = " `supervise` = '$user', `Supervise_signature` = '$new_file', `Supervise_sign_msg` = '$sign_msg',`Supervise_sign_time` = NOW()";
-        break;
-    case 'social_worker':
-        $sql_str = " `social_worker` = '$user', `Social_worker_signature` = '$new_file', `Social_worker_sign_msg` = '$sign_msg',`Social_worker_sign_time` = NOW()";
-        break;
-    default:
-        return false;
-        break;
-}
+    
 
-//转换为图片文件
-if (file_put_contents($new_file, base64_decode($base64_content[1]))) {
-    $sqlUpdate = "UPDATE `published` SET $sql_str WHERE `Id` = '$pu_id' ORDER BY `published`.`Create_date` ASC LIMIT 1;";
-    if (mysqli_query($conn, $sqlUpdate)) {
-        echo true;
-    } else {
+    if ($_FILES["published_files0"]["error"] > 0) {
+
         echo false;
-        echo "{$note} 語法執行失敗，錯誤訊息：" . mysqli_error($conn);
+    } else {
+        //設定檔案上傳路徑，選擇指定資料夾
+        move_uploaded_file(
+            $_FILES["published_files0"]["tmp_name"],
+            "../published/" . $_FILES["published_files0"]["name"]
+        );
     }
-} else {
-    return false;
+
+    $sql_file_upload = ",`Upload_path`= '$file', `Upload_name` = '$file_name'";
 }
 
-
-
-
-
+$sqlUpdate = "UPDATE `published` SET `Published_date` = '$Published_date', `Title_name` = '$Title_name'
+".$sql_file_upload."
+,`Subject` = '$Subject',`Num_publish` = '$Num_publish', 
+`Update_name` = '$user', `Update_date` = NOW() WHERE `Id` = '$Pu_id' ORDER BY `published`.`Published_date` ASC LIMIT 1;";
+if (mysqli_query($conn, $sqlUpdate)) {
+    echo true;
+    // echo $sqlUpdate;
+} else {
+    echo false;
+    // echo $sqlUpdate;
+}
 mysqli_close($conn);

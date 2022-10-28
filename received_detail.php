@@ -189,7 +189,7 @@
                                                                             <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">檔案上傳</td>
                                                                                 <td style="border-bottom: solid 1px;">
-                                                                                    <div class="col-sm-8">
+                                                                                    <div class="col-sm-9">
                                                                                         <div class="text-left">
                                                                                             <input name="upload" type="file" class="re_question form-control">
                                                                                             <br>
@@ -216,12 +216,36 @@
                                                                             </tr>
                                                                             <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline">
-                                                                                    <label>職務代理人簽章</label>
+                                                                                    <label>督導簽章</label>
                                                                                 </td>
                                                                                 <td style="">
-                                                                                    <input class="re_question" style="width:15em;" id="substitute" type="text"><button style="margin:.5em;margin-right:3em;color:red;" type="button" onclick="signature_btn_click('substitute');">簽名</button>
-                                                                                    <button style="margin:.5em;" type="button" onclick="sign_msg_model('substitute');" data-toggle="modal" data-target="#myModal">查看留言</button>
-                                                                                    <a src="" id="substitute_signature_simg" style="color:blue;" target="_blank" alt="簽名圖片連結"></a>
+                                                                                    <div class="col-sm-3" style="margin-top: 0.6em;">
+                                                                                        <select class="re_question" id="supervise" style="width:100%;">
+                                                                                                <option value="">請選擇</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                    <div class="col-sm-9">
+                                                                                        <button style="margin:.5em;margin-right:3em;color:red;" type="button" onclick="signature_btn_click('supervise');">簽名</button>
+                                                                                        <button style="margin:.5em;" type="button" onclick="sign_msg_model('supervise');" data-toggle="modal" data-target="#myModal">查看留言</button>
+                                                                                        <a src="" id="supervise_signature_simg" style="color:blue;" target="_blank" alt="簽名圖片連結"></a>
+                                                                                    </div>   
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr style="text-align:left">
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline">
+                                                                                    <label>組長簽章</label>
+                                                                                </td>
+                                                                                <td style="">
+                                                                                    <div class="col-sm-3" style="margin-top: 0.6em;">
+                                                                                        <select class="re_question" id="leader" style="width:100%;">
+                                                                                                <option value="">請選擇</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                    <div class="col-sm-9">
+                                                                                        <button style="margin:.5em;margin-right:3em;color:red;" type="button"  onclick="signature_btn_click('leader');">簽名</button>
+                                                                                        <button style="margin:.5em;" type="button" onclick="sign_msg_model('leader');" data-toggle="modal" data-target="#myModal">查看留言</button>
+                                                                                        <a src="" id="leader_signature_simg" style="color:blue;" target="_blank" alt="簽名圖片連結"></a>
+                                                                                    </div>
                                                                                 </td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
@@ -229,19 +253,16 @@
                                                                                     <label>主管簽章</label>
                                                                                 </td>
                                                                                 <td style="">
-                                                                                    <input class="re_question" style="width:15em;" id="senior" type="text"><button style="margin:.5em;margin-right:3em;color:red;" type="button" onclick="signature_btn_click('senior');">簽名</button>
-                                                                                    <button style="margin:.5em;" type="button" onclick="sign_msg_model('senior');" data-toggle="modal" data-target="#myModal">查看留言</button>
-                                                                                    <a src="" id="senior_signature_simg" style="color:blue;" target="_blank" alt="簽名圖片連結"></a>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline">
-                                                                                    <label>督導簽章</label>
-                                                                                </td>
-                                                                                <td style="">
-                                                                                    <input class="re_question" style="width:15em;" id="supervise" type="text"><button style="margin:.5em;margin-right:3em;color:red;" type="button" onclick="signature_btn_click('supervise');">簽名</button>
-                                                                                    <button style="margin:.5em;" type="button" onclick="sign_msg_model('supervise');" data-toggle="modal" data-target="#myModal">查看留言</button>
-                                                                                    <a src="" id="supervise_signature_simg" style="color:blue;" target="_blank" alt="簽名圖片連結"></a>
+                                                                                    <div class="col-sm-3" style="margin-top: 0.6em;">
+                                                                                        <select class="re_question" id="director" style="width:100%;">
+                                                                                                <option value="">請選擇</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                    <div class="col-sm-9">
+                                                                                        <button style="margin:.5em;margin-right:3em;color:red;" type="button"  onclick="signature_btn_click('director');">簽名</button>
+                                                                                        <button style="margin:.5em;" type="button" onclick="sign_msg_model('director');" data-toggle="modal" data-target="#myModal">查看留言</button>
+                                                                                        <a src="" id="director_signature_simg" style="color:blue;" target="_blank" alt="簽名圖片連結"></a>
+                                                                                    </div>
                                                                                 </td>
                                                                             </tr>
 

@@ -35,8 +35,25 @@ trans_to_Tw = function (endate) {
 };
 //endregion
 
-$(document).ready(function () {
 
+// page reload時保持上次的頁籤狀態 region
+function tab_toggle() {
+  $('a[data-toggle="pill"]').on('show.bs.tab', function(e) {
+      localStorage.setItem('activeTab', $(e.target).attr('href'));
+  });
+  var activeTab = localStorage.getItem('activeTab');
+  if(activeTab){
+      $('#myTab a[href="' + activeTab + '"]').tab('show');
+  }
+}
+
+$('#menu_tab_nav li a, .breadcrumb li span a').on('click',function() {
+  localStorage.removeItem('activeTab');
+});
+//endregion
+
+$(document).ready(function () {
+  tab_toggle();
 });
 
 

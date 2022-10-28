@@ -257,6 +257,10 @@ $.ajax({
         '<td style="text-align:center">' +
         value.Update_name +
         "</td>" +
+        '<td style="text-align:center">' +
+        "</td>" +
+        '<td style="text-align:center">' +
+        "</td>" +
         "</tr>";
 
       $("#name").append(
@@ -491,15 +495,62 @@ function parseTime(t) {
   return d;
 }
 
-var date_range = function (settings, data, dataIndex) {
-  var min_date = parseInt(Date.parse($("#min_date").val()), 10);
-  var max_date = parseInt(Date.parse($("#max_date").val()), 10);
-  var date = parseInt(Date.parse(data[0])) || 0; // use data for the date column
+var overtime_date_range = function (settings, data, dataIndex) {
+  var min_date = parseInt(Date.parse($("#overtime_min_date").val()), 10);
+  var max_date = parseInt(Date.parse($("#overtime_max_date").val()), 10);
+  var date = parseInt(Date.parse(data[2])) || 0; // use data for the date column
   if (
     (isNaN(min_date) && isNaN(max_date)) ||
     (isNaN(min_date) && date <= max_date) ||
     (min_date <= date && isNaN(max_date)) ||
     (min_date <= date && date <= max_date)
+  ) {
+    return true;
+  }
+  return false;
+};
+
+var makeup_date_range = function (settings, data, dataIndex) {
+  var min_date = parseInt(Date.parse($("#makeup_min_date").val()), 10);
+  var max_date = parseInt(Date.parse($("#makeup_max_date").val()), 10);
+  var date = parseInt(Date.parse(data[4])) || 0; // use data for the date column
+  if (
+    (isNaN(min_date) && isNaN(max_date)) ||
+    (isNaN(min_date) && date <= max_date) ||
+    (min_date <= date && isNaN(max_date)) ||
+    (min_date <= date && date <= max_date)
+  ) {
+    return true;
+  }
+  return false;
+};
+
+var overtime_hours_range = function (settings, data, dataIndex) {
+  var min_time_all = parseInt($("#overtime_min_time").val(), 10);
+  var max_time_all = parseInt($("#overtime_max_time").val(), 10);
+  var hours = parseInt(data[3]) || 0; // use data for the date column
+  
+  if (
+    (isNaN(min_time_all) && isNaN(max_time_all)) ||
+    (isNaN(min_time_all) && hours <= max_time_all) ||
+    (min_time_all <= hours && isNaN(max_time_all)) ||
+    (min_time_all <= hours && hours <= max_time_all)
+  ) {
+    return true;
+  }
+  return false;
+};
+
+var makeup_hours_range = function (settings, data, dataIndex) {
+  var min_time_all = parseInt($("#makeup_min_time").val(), 10);
+  var max_time_all = parseInt($("#makeup_max_time").val(), 10);
+  var hours = parseInt(data[5]) || 0; // use data for the date column
+  
+  if (
+    (isNaN(min_time_all) && isNaN(max_time_all)) ||
+    (isNaN(min_time_all) && hours <= max_time_all) ||
+    (min_time_all <= hours && isNaN(max_time_all)) ||
+    (min_time_all <= hours && hours <= max_time_all)
   ) {
     return true;
   }
@@ -582,9 +633,27 @@ $("#min, #max").keyup(function () {
   $table.draw();
 });
 
-$("#birth_min_date, #birth_max_date").on("change", function () {
+$("#overtime_min_date, #overtime_max_date").on("change", function () {
   //    console.log($('#min_date').val())
-  $.fn.dataTable.ext.search.push(birth_date_range);
+  $.fn.dataTable.ext.search.push(overtime_date_range);
+  $table.draw();
+});
+
+$("#makeup_min_date, #makeup_max_date").on("change", function () {
+  //    console.log($('#min_date').val())
+  $.fn.dataTable.ext.search.push(makeup_date_range);
+  $table.draw();
+});
+
+$("#overtime_min_time, #overtime_max_time").on("change", function () {
+  //    console.log($('#min_date').val())
+  $.fn.dataTable.ext.search.push(overtime_hours_range);
+  $table.draw();
+});
+
+$("#makeup_min_time, #makeup_max_time").on("change", function () {
+  //    console.log($('#min_date').val())
+  $.fn.dataTable.ext.search.push(makeup_hours_range);
   $table.draw();
 });
 

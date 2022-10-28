@@ -1,3 +1,126 @@
+//datepicker創建 region
+datepicker_create = function (selector_id) {
+  if (selector_id == "birth") {
+    $("#" + selector_id).datepicker({
+      changeYear: true,
+      changeMonth: true,
+      currentText: "今天",
+      dateFormat: "R年mm月dd日",
+      showButtonPanel: true,
+      yearRange: "-109:+0",
+      onClose: function (dateText) {
+        console.log($("#" + selector_id).val());
+        console.log(trans_to_EN(dateText));
+      },
+      beforeShow: function (input, inst) {
+        var $this = $(this);
+        var cal = inst.dpDiv;
+        var outerh = $this.outerHeight();
+        if ($this.offset().top > 1200) {
+          outerh = outerh * 4;
+        } else {
+          outerh = outerh * 3;
+        }
+        // console.log($this.offset().top)
+        // console.log(outerh)
+
+        var top = $this.offset().top - outerh;
+        var left = $this.offset().left - 10;
+        setTimeout(function () {
+          cal.css({
+            top: top,
+            left: left,
+          });
+        }, 10);
+      },
+    });
+  } else {
+    $("#" + selector_id).datepicker({
+      changeYear: true,
+      changeMonth: true,
+      currentText: "今天",
+      dateFormat: "R年mm月dd日",
+      showButtonPanel: true,
+      // minDate: new Date(new Date().getFullYear(), new Date().getMonth() - 3, 1),
+      // maxDate: new Date(new Date().getFullYear() + 3, 11, 31),
+      yearRange: "-6:+5",
+      onClose: function (dateText) {
+        // console.log($('#'+selector_id).val());
+        // console.log(trans_to_EN(dateText));
+      },
+      beforeShow: function (input, inst) {
+        var $this = $(this);
+        var cal = inst.dpDiv;
+        var outerh = $this.outerHeight();
+        if ($this.offset().top > 1200) {
+          outerh = outerh * 4;
+        } else {
+          outerh = outerh * 3;
+        }
+        // console.log($this.offset().top)
+        // console.log(outerh)
+
+        var top = $this.offset().top - outerh;
+        var left = $this.offset().left - 10;
+        setTimeout(function () {
+          cal.css({
+            top: top,
+            left: left,
+          });
+        }, 10);
+      },
+    });
+  }
+};
+//endregion
+
+//將日期轉為民國年格式111.03.07 region
+trans_to_Tw = function (endate) {
+  var strAry = endate.split(".");
+
+  if (parseInt(strAry[0]) > 1911) {
+    strAry[0] = parseInt(strAry[0]) - 1911;
+  }
+
+  return strAry.join(".");
+};
+//endregion
+
+//將日期轉為西元年格式2022-03-07(mysql date格式) region
+trans_to_EN = function (endate) {
+  var strAry = endate.split(".");
+
+  if (parseInt(strAry[0]) < 1911) {
+    strAry[0] = parseInt(strAry[0]) + 1911;
+  }
+
+  return strAry.join("-");
+};
+//endregion
+
+// 民國年轉換日期格式yyyy-dd-mm region
+function split_date(date) {
+ if(date!=="")
+ {
+  return parseInt(date.split("年")[0])+1911+"-"+date.split("年")[1].split("月")[0]+"-"+date.split("年")[1].split("月")[1].split("日")[0];
+ }
+ else
+ {
+  return "0000-00-00";
+ }
+}
+//endregion
+
+$(document).ready(function () {
+  //將input name名稱為ch_datepicker創建datepicker初始化 region
+  $("input[name='ch_datepicker']").each(function () {
+    var this_id = $(this).attr("id");
+    datepicker_create(this_id);
+  });
+  //endregion
+});
+
+
 //取得url id值region
 function getUrlVars() {
   var vars = {};
@@ -207,20 +330,19 @@ function parseTime(t) {
   return d;
 }
 
-var date_range = function (settings, data, dataIndex) {
-  var min_date = parseInt(Date.parse($("#min_date").val()), 10);
-  var max_date = parseInt(Date.parse($("#max_date").val()), 10);
-  var date = parseInt(Date.parse(data[0])) || 0; // use data for the date column
-  if (
-    (isNaN(min_date) && isNaN(max_date)) ||
-    (isNaN(min_date) && date <= max_date) ||
-    (min_date <= date && isNaN(max_date)) ||
-    (min_date <= date && date <= max_date)
-  ) {
-    return true;
+var upload_date_range = (function( settings, data, dataIndex ) {
+  var min_date = parseInt(Date.parse( split_date($('#upload_min_date').val())), 10 );
+  var max_date = parseInt(Date.parse( split_date($('#upload_max_date').val())), 10 );
+  var date = parseInt(Date.parse( split_date(data[1]) )) || 0; // use data for the date column
+  if ( ( isNaN( min_date ) && isNaN( max_date ) ) ||
+       ( isNaN( min_date ) && date <= max_date ) ||
+       ( min_date <= date   && isNaN( max_date ) ) ||
+       ( min_date <= date   && date <= max_date ) )
+  {
+      return true;
   }
   return false;
-};
+});
 
 var time_range = function (settings, data, dataIndex) {
   // var min_time = parseInt(Date.parse( $('#min_time').val()), 10 );
@@ -298,9 +420,9 @@ $("#min, #max").keyup(function () {
   $table.draw();
 });
 
-$("#birth_min_date, #birth_max_date").on("change", function () {
+$("#upload_min_date, #upload_max_date").on("change", function () {
   //    console.log($('#min_date').val())
-  $.fn.dataTable.ext.search.push(birth_date_range);
+  $.fn.dataTable.ext.search.push(upload_date_range);
   $table.draw();
 });
 

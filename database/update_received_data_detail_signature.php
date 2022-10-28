@@ -30,15 +30,14 @@ $type = 'png';
 $new_file = $new_file . time() . ".$type";
 
 switch ($sign_type) {
-   
-    case "senior":
-        $sql_str = " `Senior` = '$user', `Senior_signature` = '$new_file', `Senior_sign_msg` = '$sign_msg',`Senior_sign_time` = NOW()";
-        break;
-    case "substitute":
-        $sql_str = " `Substitute` = '$user', `Substitute_signature` = '$new_file', `Substitute_sign_msg` = '$sign_msg',`Substitute_sign_time` = NOW()";
-        break;
     case 'supervise':
         $sql_str = " `Supervise` = '$user', `Supervise_signature` = '$new_file', `Supervise_sign_msg` = '$sign_msg',`Supervise_sign_time` = NOW()";
+        break;
+    case 'leader':
+        $sql_str = " `Leader` = '$user', `Leader_signature` = '$new_file', `Leader_sign_msg` = '$sign_msg',`Leader_sign_time` = NOW()";
+        break;
+    case 'director':
+        $sql_str = " `Director` = '$user', `Director_signature` = '$new_file', `Director_sign_msg` = '$sign_msg',`Director_sign_time` = NOW()";
         break;
     default:
         return false;

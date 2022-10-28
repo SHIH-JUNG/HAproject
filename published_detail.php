@@ -164,12 +164,21 @@
                                                                             </tr>
 
                                                                             <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>受文單位</td>
-                                                                                <td style="border-bottom: solid 1px;"><input id="unit" class="pu_question" type="text"></td>
-                                                                            </tr>
-                                                                            <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>主旨</td>
                                                                                 <td style="border-bottom: solid 1px;"><input id="subject" class="pu_question" type="text"></td>
+                                                                            </tr>
+
+                                                                            <tr style="text-align:left">
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">檔案上傳</td>
+                                                                                <td style="border-bottom: solid 1px;">
+                                                                                    <div class="col-sm-8">
+                                                                                        <div class="text-left">
+                                                                                            <input name="upload" type="file" class="pu_question form-control">
+                                                                                            <br>
+                                                                                            <div id="upload"></div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </td>
                                                                             </tr>
 
                                                                             <tr style="text-align:left">

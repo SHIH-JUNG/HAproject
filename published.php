@@ -20,6 +20,9 @@
     <!-- ================== 匯出EXCEL ================== -->
     <link href="css/jquery.dataTables1.10.16.min.css" rel="stylesheet" />
     <link href="css/buttons.dataTables1.5.1.min.css" rel="stylesheet" />
+    <!--  日期民國  -->
+    <link data-require="jqueryui@*" rel="stylesheet" href="css/jquery-ui.css" />
+    <link href="css/dtsel.css" rel="stylesheet" />
 
     <meta charset="UTF-8" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -33,6 +36,8 @@
         word-break: keep-all;
         /*必須*/
     }
+
+    .preview {position:absolute;background:#fff;padding:10px;display:none;}  
 </style>
 <!--<SVG>引入bootstrap icon-->
 
@@ -64,7 +69,7 @@
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span><a href="published_yeralist.php">發文</a></span></li>
+                        <li><span><a href="published_yearlist.php">發文</a></span></li>
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
@@ -100,29 +105,29 @@
 
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">發文標題：</td>
                                                             <td class="text-left">
-                                                                <select id="title_name" rel="1" class="filter search">
+                                                                <select id="title_name" rel="0" class="filter search">
                                                                     <!-- <option value="">所有</option> -->
                                                                 </select>
                                                             </td>
 
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">發文日期：</td>
                                                             <td class="text-left">
-                                                                <input id="published_min_date" rel="2" name="pcall_date" class="" type="date" placeholder="發文日期搜尋">
+                                                                <input id="published_min_date" name="pcall_date" datepicker="ch_datepicker" class="" type="text" placeholder="發文日期搜尋">
                                                                 <label>～</label>
-                                                                <input id="published_max_date" rel="2" name="pcall_date" class="" type="date" placeholder="發文日期搜尋">
+                                                                <input id="published_max_date" name="pcall_date" datepicker="ch_datepicker" class="" type="text" placeholder="發文日期搜尋">
                                                             </td>
 
                                                         </tr>
                                                         <tr>
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">發文文號：</td>
                                                             <td class="text-left">
-                                                                <select id="num_publish" rel="3" class="filter search">
+                                                                <select id="num_publish" rel="2" class="filter search">
                                                                     <!-- <option value="">所有</option> -->
                                                                 </select>
                                                             </td>
 
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">主旨：</td>
-                                                            <td class="text-left"><input id="subject" rel="5" name="subject" class="filter search" style="width:150px;" type="text" placeholder="主旨搜尋"></td>
+                                                            <td class="text-left"><input id="subject" rel="3" name="subject" class="filter search" style="width:150px;" type="text" placeholder="主旨搜尋"></td>
 
                                                             <td colspan="10" class="text-right">
                                                                 <button onclick="location.reload();">重置搜尋</button><span> </span>
@@ -151,11 +156,14 @@
                                                                 <th>發文日期</th>
                                                                 <th>發文文號</th>
                                                                 <th>主旨</th>
+                                                                <th>檔案是否上傳</th>
                                                                 <th>創建日期</th>
                                                                 <th>創建者</th>
                                                                 <th>更新日期</th>
                                                                 <th>更新者</th>
                                                                 <th>督導簽章</th>
+                                                                <th>組長簽章</th>
+                                                                <th>主管簽章</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody id="call_view"></tbody>
@@ -212,6 +220,9 @@
     <!-- ================== table ================== -->
     <script src="javascript/bootstrap1.18.0-table.min.js"></script>
     <script src="javascript/bootstrap-table1.11.1-zh-TW.min.js"></script>
+    <!-- 日期民國-->
+    <script src="javascript/jquery-ui.min.js"></script>
+    <script src="javascript/datepickerTw.js"></script>
     <!-- ================== phone ================== -->
     <script type="text/javascript" src="js/published.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
     <!-- ================== 地區選擇下拉 ================== -->

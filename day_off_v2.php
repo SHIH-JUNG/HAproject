@@ -115,16 +115,22 @@
 
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">補休時數：</td>
                                                             <td class="text-left">
-                                                                <select id="makeup_hours" rel="2" class="filter search">
-                                                                    <!-- <option value="">所有</option> -->
-                                                                </select>
+                                                                <!-- <select id="makeup_hours" rel="2" class="filter search">
+                                                                    <option value="">所有</option>
+                                                                </select> -->
+                                                                <input style="width:5em;" id="makeup_min_time" name="makeup_time" class="" type="number">
+                                                                <label>～</label>
+                                                                <input style="width:5em;" id="makeup_max_time" name="makeup_time" class="" type="number"> 
                                                             </td>
 
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">請假時數：</td>
                                                             <td class="text-left">
-                                                                <select id="hours" rel="3" class="filter search">
-                                                                    <!-- <option value="">所有</option> -->
-                                                                </select>
+                                                                <!-- <select id="hours" rel="3" class="filter search">
+                                                                    <option value="">所有</option>
+                                                                </select> -->
+                                                                <input style="width:5em;" id="overtime_min_time" name="overtime_time" class="" type="number">
+                                                                <label>～</label>
+                                                                <input style="width:5em;" id="overtime_max_time" name="overtime_time" class="" type="number"> 
                                                             </td>
                                                         </tr>
 
@@ -138,16 +144,16 @@
 
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">請假日期：</td>
                                                             <td class="text-left">
-                                                                <input id="overtime_date" rel="5" name="pcall_date" class="" type="date" placeholder="請假日期搜尋">
+                                                                <input id="overtime_min_date" name="overtime_date" class="" type="date" placeholder="請假日期搜尋">
                                                                 <label>～</label>
-                                                                <input id="overtime_date" rel="5" name="pcall_date" class="" type="date" placeholder="請假日期搜尋">
+                                                                <input id="overtime_max_date" name="overtime_date" class="" type="date" placeholder="請假日期搜尋">
                                                             </td>
 
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">補休日期：</td>
                                                             <td class="text-left">
-                                                                <input id="makeup_date" rel="6" name="pcall_date" class="" type="date" placeholder="補休日期搜尋">
+                                                                <input id="makeup_min_date" name="makeup_date" class="" type="date" placeholder="補休日期搜尋">
                                                                 <label>～</label>
-                                                                <input id="makeup_date" rel="6" name="pcall_date" class="" type="date" placeholder="補休日期搜尋">
+                                                                <input id="makeup_max_date" name="makeup_date" class="" type="date" placeholder="補休日期搜尋">
                                                             </td>
 
                                                             <td colspan="8" class="text-right">
