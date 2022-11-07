@@ -132,13 +132,13 @@ input[type=number] {
                                                                 </td>
                                                             </tr>
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">案號</td>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;">案號</td>
                                                                 <td style=""><span id="open_case_id"></span></td>
 
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>姓名</td>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;"><i style="color:red;">※</i>姓名</td>
                                                                 <td style="border-bottom: solid 1px;"><input id="name" type="text" oninput="value=value.replace(/[\d]/g,'')" disabled="disabled"></td>
                                                                 
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>性別</td>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;"><i style="color:red;">※</i>性別</td>
                                                                 <td style="border-bottom: solid 1px;">
                                                                     <select id="gender" style="width:200px;" disabled="disabled">
                                                                         <option value="">請選擇</option>
@@ -150,13 +150,13 @@ input[type=number] {
                                                             </tr>
 
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;width:10em;"><i style="color:red;">※</i>出生年月日</td>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;width:10em;"><i style="color:red;">※</i>出生年月日</td>
                                                                 <td style="border-bottom: solid 1px;"><input id="birth" type="date" disabled="disabled"></td>
 
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;width:10em;"><i style="color:red;">※</i>開案日期</td>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;width:10em;"><i style="color:red;">※</i>開案日期</td>
                                                                 <td style="border-bottom: solid 1px;"><input id="open_date" type="date" disabled="disabled"></td>
 
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;width:10em;"><i style="color:red;">※</i>結案日期</td>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;width:10em;"><i style="color:red;">※</i>結案日期</td>
                                                                 <td style="border-bottom: solid 1px;"><input id="closed_date" type="date"></td>
                                                             </tr>
 
@@ -206,7 +206,7 @@ input[type=number] {
                                                                 </td>
                                                             </tr>
                                                             <tr style="text-align:left">
-                                                                <td colspan="1" style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>結案原因</td>
+                                                                <td colspan="1" style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;"><i style="color:red;">※</i>結案原因</td>
                                                                 <td colspan="5" style="border-bottom: solid 1px;">
                                                                     <input name="closed_reason" style="zoom: 1.5" type="radio" value="達到目標，已無需要在服務"><label class="link_label_closed_reason">1.達到目標，已無需要在服務</label><br/>
                                                                     <input name="closed_reason" style="zoom: 1.5" type="radio" value="穩定就業三個月，以達到目標"><label class="link_label_closed_reason">2.穩定就業三個月，以達到目標</label><br/>
@@ -231,7 +231,7 @@ input[type=number] {
                                                                 </td>
                                                             </tr>
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>社工員</td>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;"><i style="color:red;">※</i>社工員</td>
                                                                 <td colspan="2" style="border-bottom: solid 1px;">
                                                                     <div class="col-sm-6">
                                                                         <select name="social_worker" id="social_worker" style="width:100%;">
@@ -240,7 +240,7 @@ input[type=number] {
                                                                     </div>
                                                                 </td>
 
-                                                                <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>督導(簽核)</td>
+                                                                <td style="text-align:right;background-color:rgb(255 0 0);border-right-color: white;"><i style="color:red;">※</i>督導(簽核)</td>
                                                                 <td colspan="2" style="border-bottom: solid 1px;">
                                                                     <div class="col-sm-6">
                                                                         <select name="supervise" id="supervise" style="width:100%;">

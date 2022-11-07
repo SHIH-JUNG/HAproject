@@ -258,7 +258,7 @@ input[type=number] {
                                                             </tr>
 
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">第一次訪談時間</td>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;">第一次訪談時間</td>
                                                                 <td style="border-bottom: solid 1px;"><input id="interview_date_1st" name="ch_datepicker" type="text"></td>
                                                             </tr>
                                                             <!-- <tr style="text-align:left">

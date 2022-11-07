@@ -165,13 +165,13 @@
                                                                     <div class="panel-body scr_container">
                                                                         <table id="all_data" style="width:75%;" class="table table-bordered">
                                                                             <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">案號</td>
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;">案號</td>
                                                                                 <td style=""><span id="open_case_id"></span></td>
 
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>姓名</td>
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;"><i style="color:red;">※</i>姓名</td>
                                                                                 <td style="border-bottom: solid 1px;"><input id="name" type="text" oninput="value=value.replace(/[\d]/g,'')" disabled="disabled"></td>
                                                                                 
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>性別</td>
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;"><i style="color:red;">※</i>性別</td>
                                                                                 <td style="border-bottom: solid 1px;">
                                                                                     <select id="gender" style="width:200px;" disabled="disabled">
                                                                                         <option value="">請選擇</option>
@@ -183,13 +183,13 @@
                                                                             </tr>
 
                                                                             <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;width:10em;"><i style="color:red;">※</i>出生年月日</td>
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;width:10em;"><i style="color:red;">※</i>出生年月日</td>
                                                                                 <td style="border-bottom: solid 1px;"><input id="birth" type="date" disabled="disabled"></td>
 
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;width:10em;"><i style="color:red;">※</i>開案日期</td>
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;width:10em;"><i style="color:red;">※</i>開案日期</td>
                                                                                 <td style="border-bottom: solid 1px;"><input id="open_date" type="date" disabled="disabled"></td>
 
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;width:10em;"><i style="color:red;">※</i>結案日期</td>
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;width:10em;"><i style="color:red;">※</i>結案日期</td>
                                                                                 <td style="border-bottom: solid 1px;"><input class="closed_question" id="closed_date" type="date"></td>
                                                                             </tr>
 
@@ -239,7 +239,7 @@
                                                                                 </td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
-                                                                                <td colspan="1" style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>結案原因</td>
+                                                                                <td colspan="1" style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;"><i style="color:red;">※</i>結案原因</td>
                                                                                 <td colspan="5" style="border-bottom: solid 1px;">
                                                                                     <input class="closed_question" name="closed_reason" style="zoom: 1.5" type="radio" value="達到目標，已無需要在服務"><label class="link_label_closed_reason">1.達到目標，已無需要在服務</label><br/>
                                                                                     <input class="closed_question" name="closed_reason" style="zoom: 1.5" type="radio" value="穩定就業三個月，以達到目標"><label class="link_label_closed_reason">2.穩定就業三個月，以達到目標</label><br/>
@@ -264,7 +264,7 @@
                                                                                 </td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
-                                                                                <td colspan="1" style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>社工員</td>
+                                                                                <td colspan="1" style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;"><i style="color:red;">※</i>社工員</td>
                                                                                 <td colspan="5" style="border-bottom: solid 1px;">
                                                                                     <div class="col-sm-3">
                                                                                         <select class="closed_question" name="social_worker" id="social_worker" style="width:100%;">
@@ -274,7 +274,7 @@
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <td colspan="1" style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>督導簽章</td>
+                                                                                <td colspan="1" style="text-align:right;background-color:rgb(255 0 0);border-right-color: white;"><i style="color:red;">※</i>督導簽章</td>
                                                                                 <td colspan="5" style="border-bottom: solid 1px;">
                                                                                     <div class="col-sm-3" style="margin-top: 0.6em;">
                                                                                         <!-- <input class="closed_question" style="width:15em;" id="supervise" type="text"> -->
@@ -290,7 +290,7 @@
                                                                                 </td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
-                                                                                <td colspan="1" style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline">
+                                                                                <td colspan="1" style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;" class="NOline">
                                                                                     <label>建立日期</label>
                                                                                 </td>
                                                                                 <td colspan="5" style="">
@@ -298,7 +298,7 @@
                                                                                 </td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
-                                                                                <td colspan="1" style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline">
+                                                                                <td colspan="1" style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;" class="NOline">
                                                                                     <label>建立者</label>
                                                                                 </td>
                                                                                 <td colspan="5" style="">
@@ -306,7 +306,7 @@
                                                                                 </td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
-                                                                                <td colspan="1" style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline">
+                                                                                <td colspan="1" style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;" class="NOline">
                                                                                     <label>修改日期</label>
                                                                                 </td>
                                                                                 <td colspan="5" style="">
@@ -384,13 +384,13 @@
                 <div class="modal-body">
                     <table id="all_data" style="width:auto;margin:0 auto;" class="table table-bordered">
                         <tr style="text-align:left">
-                            <td class="sign_msg_td_name" style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">簽名留言內容</td>
+                            <td class="sign_msg_td_name" style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;">簽名留言內容</td>
                             <td style="border-bottom: solid 1px;">
                                 <textarea style="width:100%;resize: none;font-size: 20px;min-height:10em;" class="sign_msg" disabled="disabled"></textarea>
                             </td>
                         </tr>
                         <tr style="text-align:left">
-                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">留言時間</td>
+                            <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;">留言時間</td>
                             <td style="border-bottom: solid 1px;">
                                 <input style="width:15em;" class="sign_msg_time" type="datetime" disabled="disabled">
                             </td>

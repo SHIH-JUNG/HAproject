@@ -137,7 +137,7 @@
                             </td>
                         </tr>
                         <tr class="case_stage_tr" style="text-align:left">
-                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>類別屬性階段</td>
+                            <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;"><i style="color:red;">※</i>類別屬性階段</td>
                             <td style="border-bottom: solid 1px;">
                                 <input id="case_stage" type="text">
                             </td>
@@ -163,7 +163,7 @@
                 <div class="modal-body">
                     <table style="width:auto;margin:0 auto;" class="table table-bordered">
                         <tr style="text-align:left">
-                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>更換個案負責人</td>
+                            <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;"><i style="color:red;">※</i>更換個案負責人</td>
                             <td style="border-bottom: solid 1px;">
                                 <select id="case_user" style="width:200px;">
                                     <!-- <option value="">所有</option> -->

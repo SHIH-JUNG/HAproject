@@ -198,7 +198,7 @@
                                                                 </tr>
                                                     
                                                                 <tr style="text-align:left">
-                                                                    <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;">督導(簽核)</td>
+                                                                    <td style="text-align:right;background-color:rgb(255 0 0);border-right-color: white;">督導(簽核)</td>
                                                                     <td style="border-bottom: solid 1px;">
                                                                         <div class="col-sm-3">
                                                                             <select name="supervise" id="supervise" style="width:100%;">
@@ -300,7 +300,7 @@
                                                                     </td>
                                                                 </tr>
                                                                 <tr style="text-align:left">
-                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">下次開會日期</td>
+                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;">下次開會日期</td>
                                                                     <td style="border-bottom: solid 1px;"><div class="col-sm-10"><input id="next_meeting_date" name="next_meeting_date" datepicker="ch_datepicker" type="text"></div></td>
                                                                 </tr>
                                                             </table>
@@ -320,7 +320,7 @@
                                                                     </td>
                                                                 </tr>
                                                                 <tr style="text-align:left">
-                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">閱後簽名檔案上傳</td>
+                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;">閱後簽名檔案上傳</td>
                                                                     <td style="border-bottom: solid 1px;">
                                                                         <div class="col-sm-12">
                                                                             <div class="text-left">
