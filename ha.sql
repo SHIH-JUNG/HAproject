@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2022-10-28 10:21:52
+-- 產生時間： 2022-11-07 12:13:33
 -- 伺服器版本： 10.4.24-MariaDB
 -- PHP 版本： 7.4.29
 
@@ -1090,7 +1090,9 @@ INSERT INTO `login_record` (`Id`, `Login_timestamp`, `Login_account`, `Login_aut
 (116, '2022-10-28 10:11:47', 'text1', '1', 'jia', '25.0384,121.5637', 1),
 (117, '2022-10-28 13:33:16', 'test5', '3', '園主任', '22.6478971,120.6119418', 1),
 (118, '2022-10-28 13:55:46', 'text1', '1', '社工員1', '22.6479106,120.6119313', 0),
-(119, '2022-10-28 16:18:48', 'test3', '2', '社工組長', '22.7189,120.4412', 1);
+(119, '2022-10-28 16:18:48', 'test3', '2', '社工組長', '22.7189,120.4412', 1),
+(120, '2022-10-28 16:24:47', 'test3', '2', '社工組長', '22.7189,120.4412', 0),
+(121, '2022-11-07 16:28:39', 'test3', '2', '社工組長', '22.7189,120.4412', 1);
 
 -- --------------------------------------------------------
 
@@ -1966,6 +1968,35 @@ INSERT INTO `volunteer_hours_record` (`Id`, `Volunteer_id`, `Year`, `Name`, `Add
 (35, 6, 111, 'test測試', 19, '', '111年10月12日', 1, '2022-10-12 14:36:45', '花花', '0000-00-00 00:00:00', ''),
 (36, 7, 111, '測試567', 4, '', '111年10月12日', 1, '2022-10-12 14:43:30', '花花', '0000-00-00 00:00:00', '');
 
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `volunteer_meeting`
+--
+
+CREATE TABLE `volunteer_meeting` (
+  `Id` int(244) NOT NULL,
+  `Title_name` varchar(500) NOT NULL,
+  `Meeting_date` varchar(100) NOT NULL,
+  `Meeting_time` varchar(30) NOT NULL,
+  `Meeting_place` varchar(500) NOT NULL,
+  `Expected_attendees` varchar(2000) NOT NULL,
+  `Attendees_seq_contents` varchar(2000) NOT NULL,
+  `Actual_ttendence` varchar(100) NOT NULL,
+  `Absence` varchar(100) NOT NULL,
+  `Agenda_contents` longtext NOT NULL,
+  `Proposal_contents` longtext NOT NULL,
+  `Review_suggest` varchar(2000) NOT NULL,
+  `Extempore_motion` varchar(2000) NOT NULL,
+  `Next_meeting_date` varchar(100) NOT NULL,
+  `Signin_file_path` varchar(2000) NOT NULL,
+  `Signout_file_path` varchar(2000) NOT NULL,
+  `Create_date` datetime NOT NULL,
+  `Create_name` varchar(30) NOT NULL,
+  `Update_date` datetime DEFAULT current_timestamp(),
+  `Update_name` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 --
 -- 已傾印資料表的索引
 --
@@ -2229,6 +2260,12 @@ ALTER TABLE `volunteer_hours_record`
   ADD PRIMARY KEY (`Id`);
 
 --
+-- 資料表索引 `volunteer_meeting`
+--
+ALTER TABLE `volunteer_meeting`
+  ADD PRIMARY KEY (`Id`);
+
+--
 -- 在傾印的資料表使用自動遞增(AUTO_INCREMENT)
 --
 
@@ -2344,7 +2381,7 @@ ALTER TABLE `form_interlocution_queskeywords`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `login_record`
 --
 ALTER TABLE `login_record`
-  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=120;
+  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `members_assemble`
@@ -2489,6 +2526,12 @@ ALTER TABLE `volunteer`
 --
 ALTER TABLE `volunteer_hours_record`
   MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `volunteer_meeting`
+--
+ALTER TABLE `volunteer_meeting`
+  MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
