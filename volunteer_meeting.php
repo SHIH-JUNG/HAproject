@@ -68,11 +68,11 @@
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span><a href="volunteer.php">志工資料</a></span></li>
+                        <li><span><a href="volunteer_meeting.php">志工會議記錄</a></span></li>
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span>志工一覽表</span></li>
+                        <li><span>志工會議記錄一覽表</span></li>
                     </ol>
                     <!--/麵包屑-->
                 </div>
@@ -110,64 +110,42 @@
                                                                 </select>
                                                             </td>
 
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">姓名：</td>
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">會議標題：</td>
                                                             <td class="text-left">
-                                                                <select id="name" rel="1" class="filter search">
-                                                                    <!-- <option value="">所有</option> -->
-                                                                </select>
+                                                                <input id="title_name" rel="0" class="filter search" type="text">
                                                             </td>
 
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">服務時間：</td>
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">會議日期：</td>
                                                             <td class="text-left">
-                                                                <select id="serv_time" rel="3" class="filter search">
-                                                                    <!-- <option value="">所有</option> -->
-                                                                </select>
+                                                                <input id="meeting_min_date" type="text" name="ch_datepicker" style="width: 8em;" placeholder="會議日期搜尋"><label>～</label>
+                                                                <input id="meeting_max_date" type="text" name="ch_datepicker" style="width: 8em;" placeholder="會議日期搜尋">
                                                             </td>
 
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">目前服務時數(輸入區間)：</td>
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">會議時間：</td>
                                                             <td class="text-left">
-                                                                <!-- <select id="time_all" rel="4" class="filter search">
-                                                                    <option value="">所有</option>
-                                                                </select> -->
-                                                                <input style="width:5em;" id="min_time_all" name="time_all" class="" type="number">
-                                                                <label>～</label>
-                                                                <input style="width:5em;" id="max_time_all" name="time_all" class="" type="number"> 
+                                                                <input id="meeting_min_time" type="time" name="ch_datepicker"><label>～</label>
+                                                                <input id="meeting_max_time" type="time" name="ch_datepicker">
                                                             </td>
                                                         </tr>
 
                                                         <tr>
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">服務項目：</td>
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">出席人數：</td>
                                                             <td class="text-left">
-                                                                <select id="serv_type" rel="2" class="filter search">
-                                                                    <!-- <option value="">所有</option> -->
-                                                                </select>
+                                                                <input style="width:5em;" id="ttendence_min_num" class="" type="number"><label>～</label>
+                                                                <input style="width:5em;" id="ttendence_max_num" class="" type="number">
                                                             </td>
 
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">是否領取時數條：</td>
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">請假人數：</td>
                                                             <td class="text-left">
-                                                                <select rel="5" class="filter search">
-                                                                    <option value="">所有</option>
-                                                                    <option value="是">是</option>
-                                                                    <option value="否">否</option>
-                                                                </select>
+                                                                <input style="width:5em;" id="absence_min_num" class="" type="number"><label>～</label>
+                                                                <input style="width:5em;" id="absence_max_num" class="" type="number">
                                                             </td>
 
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">是否領取服務獎狀：</td>
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">下次會議日期：</td>
                                                             <td class="text-left">
-                                                                <select rel="6" class="filter search">
-                                                                    <option value="">所有</option>
-                                                                    <option value="是">是</option>
-                                                                    <option value="否">否</option>
-                                                                </select>
-                                                            </td>
-
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">是否持有志工榮譽卡：</td>
-                                                            <td class="text-left">
-                                                                <select rel="7" class="filter search">
-                                                                    <option value="">所有</option>
-                                                                    <option value="是">是</option>
-                                                                    <option value="否">否</option>
-                                                                </select>
+                                                                <input id="next_meeting_min_date" type="text" name="ch_datepicker" style="width: 8em;" placeholder="會議日期搜尋">
+                                                                <label>～</label>
+                                                                <input id="next_meeting_max_date" type="text" name="ch_datepicker" style="width: 8em;" placeholder="會議日期搜尋"> 
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -179,14 +157,14 @@
                                                 </div>
                                             </div>
                                             <p>
-                                            <h4>志工一覽表</h4>
+                                            <h4>志工會議記錄一覽表</h4>
                                             <div class="table-wrap">
                                                 <div class="table-responsive">
                                                     <table class="table display table-hover dataTable no-footer" style="font-size:15px;font-family:微軟正黑體;width:100%" id="tab_all" data-toolbar="#toolbar">
                                                         <thead>
                                                             <tr>
                                                                 <th class="text-right" colspan="15">
-                                                                    <a href="add_volunteer.php"><button style="font-size:15px" type="button" class="btn btn-default"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                                    <a href="add_volunteer_meeting.php"><button style="font-size:15px" type="button" class="btn btn-default"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                                                 <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
                                                                                 <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z" />
                                                                                 <path fill-rule="evenodd" d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5z" />
@@ -195,17 +173,12 @@
                                                             </tr>
                                                             <tr style="background-color:rgb(255 201 54);">
                                                                 <th>年度</th>
-                                                                <th>姓名</th>
-                                                                <th>服務項目</th>
-                                                                <th>服務時間</th>
-                                                                <th>目前總服務時數</th>
-                                                                <th>是否領取時數條</th>
-                                                                <th>是否領取服務獎狀</th>
-                                                                <th>是否持有志工榮譽卡</th>
-                                                                <!-- <th>創建日期</th>
-                                                                <th>創建者</th>
-                                                                <th>更新日期</th>
-                                                                <th>更新者</th> -->
+                                                                <th>會議標題</th>
+                                                                <th>日期</th>
+                                                                <th>時間</th>
+                                                                <th>出席人數</th>
+                                                                <th>請假人數</th>
+                                                                <th>下次開會日期</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody id="call_view"></tbody>
@@ -263,8 +236,8 @@
     <!-- ================== table ================== -->
     <script src="javascript/bootstrap1.18.0-table.min.js"></script>
     <script src="javascript/bootstrap-table1.11.1-zh-TW.min.js"></script>
-    <!-- ================== phone ================== -->
-    <script type="text/javascript" src="js/volunteer.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
+    <!-- ================== volunteer_meeting ================== -->
+    <script type="text/javascript" src="js/volunteer_meeting.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
     <!-- ================== 地區選擇下拉 ================== -->
     <!--
     <script src="js/jQuery-TWzipcode-master/twzipcode.js"></script>

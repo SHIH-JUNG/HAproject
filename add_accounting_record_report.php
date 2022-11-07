@@ -109,8 +109,8 @@
                                         <div class="col-sm-12 col-xs-12">
                                             <div class="tab-content" id="myTabContent">
                                                 <div class="tab-pane fade in active" id="one" role="tabpanel" aria-labelledby="home-tab">
-                                                    <div class="panel-body">
-                                                    </div>
+                                                    <!-- <div class="panel-body">
+                                                    </div> -->
                                                     <div class="table-wrap">
                                                         <div class="table-responsive col-sm-12 text-center">
                                                             <form id="form_a" class="form" action="">
