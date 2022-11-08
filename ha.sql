@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2022-11-07 12:13:33
+-- 產生時間： 2022-11-08 14:17:23
 -- 伺服器版本： 10.4.24-MariaDB
 -- PHP 版本： 7.4.29
 
@@ -1092,7 +1092,9 @@ INSERT INTO `login_record` (`Id`, `Login_timestamp`, `Login_account`, `Login_aut
 (118, '2022-10-28 13:55:46', 'text1', '1', '社工員1', '22.6479106,120.6119313', 0),
 (119, '2022-10-28 16:18:48', 'test3', '2', '社工組長', '22.7189,120.4412', 1),
 (120, '2022-10-28 16:24:47', 'test3', '2', '社工組長', '22.7189,120.4412', 0),
-(121, '2022-11-07 16:28:39', 'test3', '2', '社工組長', '22.7189,120.4412', 1);
+(121, '2022-11-07 16:28:39', 'test3', '2', '社工組長', '22.7189,120.4412', 1),
+(122, '2022-11-07 21:12:19', 'test5', '3', '園主任', '22.6113591,120.3493158', 1),
+(123, '2022-11-08 16:59:30', 'test5', '3', '園主任', '22.6113591,120.3493158', 1);
 
 -- --------------------------------------------------------
 
@@ -1978,7 +1980,8 @@ CREATE TABLE `volunteer_meeting` (
   `Id` int(244) NOT NULL,
   `Title_name` varchar(500) NOT NULL,
   `Meeting_date` varchar(100) NOT NULL,
-  `Meeting_time` varchar(30) NOT NULL,
+  `Meeting_time_start` varchar(30) NOT NULL,
+  `Meeting_time_end` varchar(30) NOT NULL,
   `Meeting_place` varchar(500) NOT NULL,
   `Expected_attendees` varchar(2000) NOT NULL,
   `Attendees_seq_contents` varchar(2000) NOT NULL,
@@ -2381,7 +2384,7 @@ ALTER TABLE `form_interlocution_queskeywords`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `login_record`
 --
 ALTER TABLE `login_record`
-  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
+  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `members_assemble`

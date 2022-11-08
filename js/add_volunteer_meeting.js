@@ -21,12 +21,13 @@ datepicker_create = function (selector_id) {
     currentText: "今天",
     dateFormat: "R年mm月dd日",
     showButtonPanel: true,
-    minDate: new Date(
-      new Date().getFullYear() - 2,
-      new Date().getMonth() - 3,
-      1
-    ),
-    maxDate: new Date(new Date().getFullYear() + 3, 11, 31),
+    // minDate: new Date(
+    //   new Date().getFullYear() - 2,
+    //   new Date().getMonth() - 3,
+    //   1
+    // ),
+    // maxDate: new Date(new Date().getFullYear() + 3, 11, 31),
+    yearRange: "-9:+5",
     onClose: function (dateText) {
       // console.log($('#'+selector_id).val());
       // console.log(trans_to_EN(dateText));
@@ -87,7 +88,13 @@ trans_to_EN = function (endate) {
   return strAry.join("-");
 };
 //endregion
-  
+
+// 民國年轉換日期格式yyyy-dd-mm region
+function split_date(date) {
+  return parseInt(date.split("年")[0])+1911+"-"+date.split("年")[1].split("月")[0]+"-"+date.split("年")[1].split("月")[1].split("日")[0]; 
+}
+//endregion
+
 $(document).ready(function () {
   //將input datepicker屬性名稱為ch_datepicker創建datepicker初始化 region
   $("input[datepicker='ch_datepicker']").each(function () {
@@ -95,6 +102,9 @@ $(document).ready(function () {
     datepicker_create(this_id);
   });
   //endregion
+
+  // 預設會議名稱
+  $("#title_name").val(" 年第 次志工會議");
 
   $.ajax({
       type:'POST',
@@ -110,6 +120,136 @@ $(document).ready(function () {
     });
 });
 
+// 添加提案輸入框 region
+add_proposal_contents = function() {
+  var len =  $("[name='proposal_contents']").length;
+
+  var new_id = "proposal_contents_" +  (len + 1);
+
+  var new_str = '<tr>' +
+                  '<td colspan="2"><label for="'+new_id+'">提案'+toChinesNum((len + 1))+'、</label></td>' + 
+                '</tr>' +
+                '<tr>' +
+                  '<td colspan="2">' +
+                    '<textarea style="height:6em;width:100%;resize: none;font-size: 20px;" id="'+new_id+'" name="proposal_contents" placeholder="請輸入提案討論內容">決議：</textarea>' +
+                  '</td>' +
+                '</tr>' + '';
+  
+      $("#proposal_table_last_tr").before(new_str);
+
+}
+//endregion
+
+// 刪除最後一個提案輸入框 region
+minus_proposal_contents  = function() {
+
+  swal({
+    title: "確定刪除提案"+toChinesNum($("[name='proposal_contents']").length)+"？",
+    type: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#DD6B55",
+    confirmButtonText: "確認",
+    cancelButtonText: "取消",
+    showConfirmButton: true,
+    showCancelButton: true,
+  })
+    .then(
+      function (result) {
+        if (result) {
+          var len =  $("[name='proposal_contents']").length;
+
+          // console.log($("#proposal_table tr td").children())
+
+          $("#proposal_table tr td").children()[len * 2 - 1].remove();
+
+          $("#proposal_table tr td").children()[len * 2 - 2].remove();
+        }
+      }
+    )
+    .catch(swal.noop);
+}
+//endregion
+
+// 阿拉伯數字轉中文數字 region
+function toChinesNum ( num ){
+  let changeNum = [ '零' , '一' , '二' , '三' , '四' , '五' , '六' , '七' , '八' , '九' ]; //changeNum[0] = "零"           
+  let unit = [ "" , "十" , "百" , "千" , "萬" ];     
+  num = parseInt ( num );
+  let getWan = ( temp ) => {   
+  let strArr = temp . toString (). split ( "" ). reverse ();
+  let newNum = "" ; 
+  for ( var i = 0 ; i < strArr . length ; i ++) {   
+    newNum = ( i == 0 && strArr [ i ] == 0 ? "" : ( i > 0 && strArr [ i ] == 0 && strArr [ i - 1 ] == 0 ? "" : changeNum [ strArr [ i ]] + ( strArr [ i ] == 0 ? unit [                         0 ] : unit [ i ]))) + newNum ;  
+  }
+   return newNum ;
+ }
+ let overWan = Math . floor ( num / 10000 );  
+ let noWan = num % 10000 ; 
+ if ( noWan . toString (). length < 4 ) noWan = "0" + noWan ;    
+ return overWan ? getWan ( overWan ) + "萬" + getWan ( noWan ) : getWan ( num );    
+}
+//endregion
+
+// 提案內容json獲取 region
+get_proposal_contents = function() {
+
+  var proposal_contents_json = [];
+  
+  $("[name='proposal_contents']").each(function () {
+    var this_id = $(this).attr("id");
+    var this_id_val = $("#"+this_id).val();
+
+    proposal_contents_json.push({ input_id: this_id, val: this_id_val });
+  });
+
+
+  return proposal_contents_json;
+}
+//endregion
+
+// 獲取應出席人員的志工編號	 region
+get_attendees_seq_contents = function() {
+
+  var attendees_seq_contents = "";
+  var attendees_contents_arr = $("#expected_attendees").val();
+  
+  // $.each(attendees_contents_arr, function (index, value) {
+  //   $.ajax({
+  //     url: "database/find_volunteer_meeting_attendees_seq_contents.php",
+  //     data: {
+  //       attendees_name: value,
+  //     },
+  //     type: "POST",
+  //     dataType: "JSON",
+  //     async: false,
+  //     success: function (data) {
+  //       if (data != "") {
+  //         $.each(data, function (index, value) {
+
+  //           if(index == (data.length - 1))
+  //           {
+  //             attendees_seq_contents += value.volunteer_id;
+  //           }
+  //           else
+  //           {
+  //             attendees_seq_contents += value.volunteer_id + "、";
+  //           }
+  //         });
+  //       } else {
+  //         attendees_seq_contents = "";
+  //       }
+  //     },
+  //     error: function (e) {
+  //       console.log(e);
+  //       notyf.alert('伺服器錯誤,無法載入');
+  //     },
+  //   });
+  // });
+
+  return attendees_seq_contents;
+}
+//endregion
+
 //新增會議記錄region
 $("#rec_add_new").on("click", function () {
    
@@ -117,7 +257,7 @@ $("#rec_add_new").on("click", function () {
   if ($('input[type="file"]').length != 0) {
     var exist_arr = check_file_exist();
 
-    console.log(exist_arr);
+    // console.log(exist_arr);
     //如果上傳的檔案檔名重複則提示使用者
     if (exist_arr.length != 0) {
       swal({
@@ -150,7 +290,7 @@ $("#rec_add_new").on("click", function () {
     } else {
       var stau = false;
 
-      if (check_add_rec_data_upload() != "") {
+      if (check_add_rec_data_upload() != "以下為必填欄位，不能為空值!\r\n") {
         stau = false;
       } else {
         stau = true;
@@ -184,33 +324,53 @@ submit_form_data_upload = function() {
 
   var form_data = new FormData();
 
-  var get_resume_files = get_files_name_value();
+  var get_meeting_files = get_files_name_value();
 
   $("input[type='file']").each(function(index, element) {
-    var resume_files = $(this).prop("files");
-    // console.log(resume_files.length)
+    var meeting_files = $(this).prop("files");
+    // console.log(meeting_files.length)
     
-    if (resume_files != undefined) {
-      if (resume_files.length != 0) {
-        for (var i = 0; i < resume_files.length; i++) {
-          form_data.append("resume_files"+index, resume_files[i]);
-          // console.log(resume_files[i])
+    if (meeting_files != undefined) {
+      if (meeting_files.length != 0) {
+        for (var i = 0; i < meeting_files.length; i++) {
+          form_data.append("meeting_files"+index, meeting_files[i]);
+          // console.log(meeting_files[i])
         }
       } else {
         //載入量表『無重新上傳檔案』情況下按儲存，則加入File_name供後端程式判斷
-        form_data.append("File_name", JSON.stringify(get_resume_files));
+        form_data.append("File_name", JSON.stringify(get_meeting_files));
       }
     }
   });
 
-  var upload_rec_date_year_split = $("#upload_rec_date").val().split("年");
+  var meeting_date_year_split = $("#meeting_date").val().split("年");
 
-  form_data.append("year", upload_rec_date_year_split[0]);
-  form_data.append("upload_content", JSON.stringify(form));
-  form_data.append("title", '會員大會記錄簽核：'+$("#upload_title_name").val());
-  form_data.append("rec_type", 'upload');
-  form_data.append("signer", $("#upload_rec_supervise").val());
-  form_data.append("rec_date_time", split_date($("#upload_rec_date").val())+" 00:00");
+  var proposal_contents_json = get_proposal_contents();
+
+  // var attendees_seq_contents = get_attendees_seq_contents();
+
+  form_data.append("year", meeting_date_year_split[0]);
+  form_data.append("Title_name", $("#title_name").val());
+  form_data.append("Meeting_date", $("#meeting_date").val());
+  form_data.append("Meeting_time_start", $("#meeting_time_start").val());
+  form_data.append("Meeting_time_end", $("#meeting_time_end").val());
+  form_data.append("Meeting_place", $("#meeting_place").val());
+  form_data.append("Expected_attendees", $("#expected_attendees").val());
+  
+  form_data.append("Actual_ttendence", $("#actual_ttendence").val());
+  form_data.append("Absence", $("#absence").val());
+
+  form_data.append("Agenda_contents", $("#agenda_contents").val());
+  form_data.append("Proposal_contents", JSON.stringify(proposal_contents_json));
+  form_data.append("Review_suggest", $("#review_suggest").val());
+  form_data.append("Extempore_motion", $("#extempore_motion").val());
+  form_data.append("Next_meeting_date", $("#next_meeting_date").val());
+
+  form_data.append("Attendees_seq_contents", "");
+
+  form_data.append("signer", $("#supervise").val());
+  form_data.append("title", '志工會議記錄簽核：'+$("#title_name").val());
+  form_data.append("rec_date_time", split_date($("#meeting_date").val())+" 00:00");
   
   for (var pair of form_data.entries()) {
     console.log(pair[0] + ", " + pair[1]);
@@ -233,7 +393,7 @@ submit_form_data_upload = function() {
   //         allowOutsideClick: false, //不可點背景關閉
   //       }).then(function () {
   //         window.location.href =
-  //           "volunteer_meeting.php?year=" + upload_rec_date_year_split[0];
+  //           "volunteer_meeting.php";
   //       });
   //     } else {
   //       swal({
@@ -258,33 +418,42 @@ submit_form_data_upload = function() {
 
 //檢查會議記錄的必填欄位 upload region
 function check_add_rec_data_upload() {
-  var upload_title_name = $("#upload_title_name").val();
-  var customFile = $("[name*=customFile]").prop("files").length;
-  var upload_rec_supervise = $("#upload_rec_supervise").val();
+  var errorstr = "以下為必填欄位，不能為空值!\r\n";
 
-  var errorstr = "";
+  $(".fillin_need").each(function(index,element){
 
-  if(upload_title_name == null) {
-    errorstr += "未填寫會議記錄標題!\r\n";
-  }
-  if(customFile == 0) {
-    errorstr += "未上傳會議記錄檔案!\r\n";
-  }
-  if (upload_rec_supervise == null) {
-    errorstr += "未選擇督導!\r\n";
-  }
-  if (errorstr == "") {
-    if(upload_title_name.replace(/\s*/g, "") == "") {
-      errorstr += "未填寫會議記錄標題!\r\n";
+    var check_element = $(this).parent("td").siblings("td").children().children()[0];
+    var check_element_name = $(this).parent("td").text();
+    
+    var check_element_tagname = $(check_element).prop("tagName");
+    var check_element_type = $(check_element).attr("type");
+
+    if(check_element_tagname == "INPUT" && check_element_type=="file")
+    {
+      var file_len = $(check_element).prop("files").length;
+
+      if(file_len == 0)
+      {
+        errorstr += check_element_name.replace("※", "") + "\r\n";
+      }
     }
-    if (upload_rec_supervise.replace(/\s*/g, "") == "") {
-      errorstr += "未選擇督導!\r\n";
-    }
-  }
+    else
+    {
+      if($(check_element).val() == null || $(check_element).val().replace(/\s*/g, "") == "")
+      {
+        errorstr += check_element_name.replace("※", "") + "\r\n";
+      }
+    }    
+  });
 
   return errorstr;
 }
 //endregion
+
+
+test = function() {
+
+}
 
 
 // 顯示檔名 region
@@ -293,6 +462,9 @@ $("input[type='file']").change(function (event) {
   var filePath = $(this).val().split("\\");
   //獲取 file name名稱
   var name = $(this).attr("name");
+  //獲取檔案格式
+  var filetype = filePath[filePath.length - 1].split(".");
+  var ext = filetype[filetype.length - 1];
 
   //創建臨時檔案連結
   // var tmppath = URL.createObjectURL(event.target.files[0]);
@@ -312,7 +484,15 @@ $("input[type='file']").change(function (event) {
 });
 // endregion
 
-
+//檢查是否為圖片檔region
+function isAssetTypeAnImage(ext) {
+  return (
+    ["png", "jpg", "jpeg", "bmp", "gif", "webp", "psd", "svg", "tiff"].indexOf(
+      ext.toLowerCase()
+    ) !== -1
+  );
+}
+//endregion
 
 // 獲取檔案的檔名、值 region
 get_files_name_value = function() {
@@ -334,15 +514,22 @@ get_files_name_value = function() {
 
 //檢查檔名是否重複，提示使用者region
 function check_file_exist() {
-  var check_file_value = $('input[type="file"]').prop("files");
+  var check_file_value1 = $('input[name="signin_file"]').prop("files");
+  var check_file_value2 = $('input[name="signout_file"]').prop("files");
+
   var warning_str = "";
   var file_arr = [];
   var file_n = "";
   var exist_info = [];
 
-  for (var i = 0; i < check_file_value.length; i++) {
-    file_arr.push(check_file_value[i]["name"]);
+  for (var i = 0; i < check_file_value1.length; i++) {
+    file_arr.push(check_file_value1[i]["name"]);
   }
+
+  for (var i = 0; i < check_file_value2.length; i++) {
+    file_arr.push(check_file_value2[i]["name"]);
+  }
+
   $.each(file_arr, function (index, value) {
     $.ajax({
       url: "database/volunteer_meeting_file_check.php",
@@ -378,3 +565,35 @@ function check_file_exist() {
   return exist_info;
 }
 //endregion
+
+
+history_back = function() {
+  
+  swal({
+    title: "確定取消新增志工會議紀錄？",
+    text: "選擇『確認』會到志工會議記錄一覽表，或是按『取消』繼續新增會議記錄",
+    type: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#DD6B55",
+    confirmButtonText: "確認",
+    cancelButtonText: "取消",
+    showConfirmButton: true,
+    showCancelButton: true,
+  })
+    .then(
+      function (result) {
+        if (result) {
+          history.back();
+        }
+      },
+      function (dismiss) {
+        if (dismiss == "cancel") {
+          swal({
+            title: "已取消",
+            type: "success",
+          });
+        }
+      }
+    )
+    .catch(swal.noop);
+}

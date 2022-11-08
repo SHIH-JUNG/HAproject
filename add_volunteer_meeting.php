@@ -155,15 +155,15 @@
                                                                     </td>
                                                                 </tr>
                                                                 <tr style="text-align:left">
-                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;width:12em;">會議名稱</td>
+                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;width:12em;"><i class="fillin_need" style="color:red;">※</i>會議名稱</td>
                                                                     <td style="border-bottom: solid 1px;"><div class="col-sm-10"><input id="title_name" name="title_name" type="text" style="width:100%;"></div></td>
                                                                 </tr>
                                                                 <tr style="text-align:left">
-                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">會議日期</td>
+                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>會議日期</td>
                                                                     <td style="border-bottom: solid 1px;"><div class="col-sm-10"><input id="meeting_date" name="meeting_date" datepicker="ch_datepicker" type="text"></div></td>
                                                                 </tr>
                                                                 <tr style="text-align:left">
-                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">會議時間</td>
+                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>會議時間</td>
                                                                     <td style="border-bottom: solid 1px;">
                                                                         <div class="col-sm-10">
                                                                             <input id="meeting_time_start" name="meeting_time_start" type="time"><label for="meeting_time">&emsp;至&emsp;</label>
@@ -172,33 +172,31 @@
                                                                     </td>
                                                                 </tr>
                                                                 <tr style="text-align:left">
-                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">會議地點</td>
+                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>會議地點</td>
                                                                     <td style="border-bottom: solid 1px;"><div class="col-sm-10"><input id="meeting_place" name="meeting_place" type="text" style="width:100%;"></div></td>
                                                                 </tr>
 
                                                                 <tr style="text-align:left">
-                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">應出席人員</td>
+                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>應出席人員</td>
                                                                     <td>
                                                                         <div class="col-sm-10"><textarea style="height:7em;width:100%;resize: none;font-size: 20px;" id="expected_attendees" name="expected_attendees" placeholder="請輸入應出席人員"></textarea></div>
                                                                     </td>
                                                                 </tr>
 
                                                                 <tr style="text-align:left">
-                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">簽到表上傳</td>
+                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>簽到表上傳</td>
                                                                     <td style="border-bottom: solid 1px;">
-                                                                        <div class="col-sm-12">
-                                                                            <div class="text-left">
-                                                                                <input name="signin_file" type="file" class="form-control" />
-                                                                                <br>
-                                                                                <div id="signin_file"></div>
-                                                                                <img src="" id="signin_file_img" style="display:none;" />
-                                                                            </div>
+                                                                        <div class="col-sm-6">
+                                                                            <input name="signin_file" type="file" class="form-control" />
+                                                                            <br>
+                                                                            <div id="signin_file"></div>
+                                                                            <img src="" id="signin_file_img" style="display:none;" />
                                                                         </div>
                                                                     </td>
                                                                 </tr>
                                                     
                                                                 <tr style="text-align:left">
-                                                                    <td style="text-align:right;background-color:rgb(255 0 0);border-right-color: white;">督導(簽核)</td>
+                                                                    <td style="text-align:right;background-color:rgb(255 0 0);border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>督導(簽核)</td>
                                                                     <td style="border-bottom: solid 1px;">
                                                                         <div class="col-sm-3">
                                                                             <select name="supervise" id="supervise" style="width:100%;">
@@ -224,17 +222,17 @@
                                                                     </td>
                                                                 </tr>
                                                                 <tr style="text-align:left">
-                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;width:12em;">出席人數</td>
+                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;width:12em;"><i class="fillin_need" style="color:red;">※</i>出席人數</td>
                                                                     <td style="border-bottom: solid 1px;"><div class="col-sm-10"><input id="actual_ttendence" name="actual_ttendence" type="number" style="width:10em;">人</div></td>
                                                                 </tr>
                                                                 <tr style="text-align:left">
-                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;width:12em;">請假人數</td>
+                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;width:12em;"><i class="fillin_need" style="color:red;">※</i>請假人數</td>
                                                                     <td style="border-bottom: solid 1px;"><div class="col-sm-10"><input id="absence" name="absence" type="number" style="width:10em;">人</div></td>
                                                                 </tr>
                                                                 <tr style="text-align:left">
-                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white">會議議程</td>
+                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white"><i class="fillin_need" style="color:red;">※</i>會議議程</td>
                                                                     <td>
-                                                                        <div class="col-sm-10"><textarea style="height:25em;width:100%;resize: none;font-size: 20px;" id="aAgenda_contents" name="aAgenda_contents" placeholder="請輸入會議議程"></textarea></div>
+                                                                        <div class="col-sm-10"><textarea style="height:25em;width:100%;resize: none;font-size: 20px;" id="agenda_contents" name="agenda_contents" placeholder="請輸入會議議程"></textarea></div>
                                                                     </td>
                                                                 </tr>
                                                             </table>
@@ -258,7 +256,7 @@
                                                                     <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;width:12em;">提案</td>
                                                                     <td>
                                                                         <div class="col-sm-10" id="proposal_div">
-                                                                            <table style="width:100%;">
+                                                                            <table style="width:100%;" id="proposal_table">
                                                                                 <tr>
                                                                                     <td colspan="2"><label for="proposal_contents_1">提案一、</label></td>
                                                                                 </tr>
@@ -283,12 +281,16 @@
                                                                                 <tr>
                                                                                     <td colspan="2"><textarea style="height:6em;width:100%;resize: none;font-size: 20px;" id="proposal_contents_4" name="proposal_contents" placeholder="請輸入提案討論內容">決議：</textarea></td>
                                                                                 </tr>
+
+                                                                                <tr id="proposal_table_last_tr">
+                                                                                    <td colspan="2"><button style="font-size:15px; margin-right:2em;" type="button" class="btn btn-default" onclick="add_proposal_contents();">新增+</button> <button style="font-size:15px" type="button" class="btn btn-default" onclick="minus_proposal_contents();">刪除-</button></td>
+                                                                                </tr>
                                                                             </table>
                                                                         </div>
                                                                     </td>
                                                                 </tr>
                                                                 <tr style="text-align:left">
-                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white">檢討及建議</td>
+                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white"><i class="fillin_need" style="color:red;">※</i>檢討及建議</td>
                                                                     <td>
                                                                         <div class="col-sm-10"><textarea style="height:12em;width:100%;resize: none;font-size: 20px;" id="review_suggest" name="review_suggest" placeholder="請輸入檢討及建議內容"></textarea></div>
                                                                     </td>
@@ -300,7 +302,7 @@
                                                                     </td>
                                                                 </tr>
                                                                 <tr style="text-align:left">
-                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;">下次開會日期</td>
+                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>下次開會日期</td>
                                                                     <td style="border-bottom: solid 1px;"><div class="col-sm-10"><input id="next_meeting_date" name="next_meeting_date" datepicker="ch_datepicker" type="text"></div></td>
                                                                 </tr>
                                                             </table>
@@ -320,15 +322,13 @@
                                                                     </td>
                                                                 </tr>
                                                                 <tr style="text-align:left">
-                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;">閱後簽名檔案上傳</td>
+                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>閱後簽名檔案上傳</td>
                                                                     <td style="border-bottom: solid 1px;">
-                                                                        <div class="col-sm-12">
-                                                                            <div class="text-left">
-                                                                                <input name="signout_file" type="file" class="form-control" />
-                                                                                <br>
-                                                                                <div id="signout_file"></div>
-                                                                                <img src="" id="signout_file_img" style="display:none;" />
-                                                                            </div>
+                                                                        <div class="col-sm-6">
+                                                                            <input name="signout_file" type="file" class="form-control" />
+                                                                            <br>
+                                                                            <div id="signout_file"></div>
+                                                                            <img src="" id="signout_file_img" style="display:none;" />
                                                                         </div>
                                                                     </td>
                                                                 </tr>
@@ -341,10 +341,15 @@
                                                             <path d="M10.854 7.854a.5.5 0 0 0-.708-.708L7.5 9.793 6.354 8.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
                                                             <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
                                                         </svg>新增</button>
-                                                    <a href="javascript:history.back()"><button style="font-size:15px" type="button" class="btn btn-default"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-excel" viewBox="0 0 16 16">
+                                                    <a href="javascript:history_back();"><button style="font-size:15px" type="button" class="btn btn-default"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-excel" viewBox="0 0 16 16">
                                                                 <path d="M5.884 6.68a.5.5 0 1 0-.768.64L7.349 10l-2.233 2.68a.5.5 0 0 0 .768.64L8 10.781l2.116 2.54a.5.5 0 0 0 .768-.641L8.651 10l2.233-2.68a.5.5 0 0 0-.768-.64L8 9.219l-2.116-2.54z" />
                                                                 <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
                                                             </svg>取消</button></a>
+
+                                                            <button style="font-size:15px" type="button" class="btn btn-default" onclick="test();"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-check" viewBox="0 0 16 16">
+                                                            <path d="M10.854 7.854a.5.5 0 0 0-.708-.708L7.5 9.793 6.354 8.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
+                                                            <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
+                                                        </svg>測試</button>
                                                 </div>
                                             </div>
                                         </div>
