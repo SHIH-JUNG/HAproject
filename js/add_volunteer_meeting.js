@@ -64,30 +64,6 @@ datepicker_create = function (selector_id) {
   $("#" + selector_id).datepicker("setDate", "today");
 };
 //endregion
-  
-//將日期轉為民國年格式111.03.07 region
-trans_to_Tw = function (endate) {
-  var strAry = endate.split(".");
-
-  if (parseInt(strAry[0]) > 1911) {
-    strAry[0] = parseInt(strAry[0]) - 1911;
-  }
-
-  return strAry.join(".");
-};
-//endregion
-
-//將日期轉為西元年格式2022-03-07(mysql date格式) region
-trans_to_EN = function (endate) {
-  var strAry = endate.split(".");
-
-  if (parseInt(strAry[0]) < 1911) {
-    strAry[0] = parseInt(strAry[0]) + 1911;
-  }
-
-  return strAry.join("-");
-};
-//endregion
 
 // 民國年轉換日期格式yyyy-dd-mm region
 function split_date(date) {
@@ -357,7 +333,7 @@ submit_form_data_upload = function() {
   form_data.append("Meeting_place", $("#meeting_place").val());
   form_data.append("Expected_attendees", $("#expected_attendees").val());
   
-  form_data.append("Actual_ttendence", $("#actual_ttendence").val());
+  form_data.append("Actual_attendence", $("#actual_attendence").val());
   form_data.append("Absence", $("#absence").val());
 
   form_data.append("Agenda_contents", $("#agenda_contents").val());
@@ -376,42 +352,42 @@ submit_form_data_upload = function() {
     console.log(pair[0] + ", " + pair[1]);
   }
 
-  // $.ajax({
-  //   url: "database/add_new_upload_volunteer_meeting.php",
-  //   type: "POST",
-  //   data: form_data,
-  //   contentType: false,
-  //   cache: false,
-  //   processData: false,
-  //   async: true,
-  //   success: function (data) {
-  //     console.log(data);
-  //     if (data == 1) {
-  //       swal({
-  //         type: "success",
-  //         title: "新增成功!",
-  //         allowOutsideClick: false, //不可點背景關閉
-  //       }).then(function () {
-  //         window.location.href =
-  //           "volunteer_meeting.php";
-  //       });
-  //     } else {
-  //       swal({
-  //         type: "error",
-  //         title: "新增失敗!請聯絡負責人",
-  //         allowOutsideClick: false, //不可點背景關閉
-  //       });
-  //     }
-  //   },
-  //   error: function (e) {
-  //     swal({
-  //       type: "error",
-  //       title: "新增失敗!請聯絡負責人",
-  //       allowOutsideClick: false, //不可點背景關閉
-  //     });
-  //     console.log(e);
-  //   },
-  // });
+  $.ajax({
+    url: "database/add_new_upload_volunteer_meeting.php",
+    type: "POST",
+    data: form_data,
+    contentType: false,
+    cache: false,
+    processData: false,
+    async: true,
+    success: function (data) {
+      console.log(data);
+      if (data == 1) {
+        swal({
+          type: "success",
+          title: "新增成功!",
+          allowOutsideClick: false, //不可點背景關閉
+        }).then(function () {
+          window.location.href =
+            "volunteer_meeting.php";
+        });
+      } else {
+        swal({
+          type: "error",
+          title: "新增失敗!請聯絡負責人",
+          allowOutsideClick: false, //不可點背景關閉
+        });
+      }
+    },
+    error: function (e) {
+      swal({
+        type: "error",
+        title: "新增失敗!請聯絡負責人",
+        allowOutsideClick: false, //不可點背景關閉
+      });
+      console.log(e);
+    },
+  });
 }
 //endregion
 
@@ -523,44 +499,40 @@ function check_file_exist() {
   var exist_info = [];
 
   for (var i = 0; i < check_file_value1.length; i++) {
-    file_arr.push(check_file_value1[i]["name"]);
+      file_arr.push(check_file_value1[i]["name"]);
   }
 
   for (var i = 0; i < check_file_value2.length; i++) {
-    file_arr.push(check_file_value2[i]["name"]);
+      file_arr.push(check_file_value2[i]["name"]);
   }
 
+  console.log(file_arr)
+
   $.each(file_arr, function (index, value) {
-    $.ajax({
+      $.ajax({
       url: "database/volunteer_meeting_file_check.php",
       data: {
-        file_name: value,
+          file_name: value,
       },
       type: "POST",
       dataType: "JSON",
       async: false,
       success: function (data) {
-        //  console.log(data)
-        if (data != "") {
-          $.each(data, function (index, value) {
-            file_n = data[index].file_path.replace(
-              "../volunteer_meeting/upload/",
-              ""
-            );
+          console.log(data)
+          if (data != "")
+          {
+              warning_str += "已有重複檔案名稱：\n" + value;
 
-            warning_str += "已有重複檔案名稱：\n" + file_n;
-
-            exist_info.push([file_n, warning_str]);
-          });
-        } else {
+              exist_info.push([value, warning_str]);
+          } else {
           warning_str = "";
-        }
+          }
       },
       error: function (e) {
-        console.log(e);
-        notyf.alert('伺服器錯誤,無法載入');
+          console.log(e);
+          notyf.alert('伺服器錯誤,無法載入');
       },
-    });
+      });
   });
   return exist_info;
 }

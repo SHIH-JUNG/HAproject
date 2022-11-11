@@ -223,7 +223,7 @@
                                                                 </tr>
                                                                 <tr style="text-align:left">
                                                                     <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;width:12em;"><i class="fillin_need" style="color:red;">※</i>出席人數</td>
-                                                                    <td style="border-bottom: solid 1px;"><div class="col-sm-10"><input id="actual_ttendence" name="actual_ttendence" type="number" style="width:10em;">人</div></td>
+                                                                    <td style="border-bottom: solid 1px;"><div class="col-sm-10"><input id="actual_attendence" name="actual_attendence" type="number" style="width:10em;">人</div></td>
                                                                 </tr>
                                                                 <tr style="text-align:left">
                                                                     <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;width:12em;"><i class="fillin_need" style="color:red;">※</i>請假人數</td>

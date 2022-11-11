@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2022-11-08 14:17:23
+-- 產生時間： 2022-11-11 08:38:24
 -- 伺服器版本： 10.4.24-MariaDB
 -- PHP 版本： 7.4.29
 
@@ -1094,7 +1094,9 @@ INSERT INTO `login_record` (`Id`, `Login_timestamp`, `Login_account`, `Login_aut
 (120, '2022-10-28 16:24:47', 'test3', '2', '社工組長', '22.7189,120.4412', 0),
 (121, '2022-11-07 16:28:39', 'test3', '2', '社工組長', '22.7189,120.4412', 1),
 (122, '2022-11-07 21:12:19', 'test5', '3', '園主任', '22.6113591,120.3493158', 1),
-(123, '2022-11-08 16:59:30', 'test5', '3', '園主任', '22.6113591,120.3493158', 1);
+(123, '2022-11-08 16:59:30', 'test5', '3', '園主任', '22.6113591,120.3493158', 1),
+(124, '2022-11-11 10:05:01', 'test3', '2', '社工組長', '22.7189,120.4412', 1),
+(125, '2022-11-11 15:21:14', 'text1', '1', '社工員1', '22.7189,120.4412', 1);
 
 -- --------------------------------------------------------
 
@@ -1985,7 +1987,7 @@ CREATE TABLE `volunteer_meeting` (
   `Meeting_place` varchar(500) NOT NULL,
   `Expected_attendees` varchar(2000) NOT NULL,
   `Attendees_seq_contents` varchar(2000) NOT NULL,
-  `Actual_ttendence` varchar(100) NOT NULL,
+  `Actual_attendence` varchar(100) NOT NULL,
   `Absence` varchar(100) NOT NULL,
   `Agenda_contents` longtext NOT NULL,
   `Proposal_contents` longtext NOT NULL,
@@ -1999,6 +2001,13 @@ CREATE TABLE `volunteer_meeting` (
   `Update_date` datetime DEFAULT current_timestamp(),
   `Update_name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- 傾印資料表的資料 `volunteer_meeting`
+--
+
+INSERT INTO `volunteer_meeting` (`Id`, `Title_name`, `Meeting_date`, `Meeting_time_start`, `Meeting_time_end`, `Meeting_place`, `Expected_attendees`, `Attendees_seq_contents`, `Actual_attendence`, `Absence`, `Agenda_contents`, `Proposal_contents`, `Review_suggest`, `Extempore_motion`, `Next_meeting_date`, `Signin_file_path`, `Signout_file_path`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
+(1, '111年第1次志工會議a', '111年11月01日', '09:15', '00:00', 'test會議地點aaasda', 'teest\r\n應出席人員1\r\n\r\n應出席人員2\r\n應出席人員3', '', '27', '3', 'ttt\r\n會議議程1\r\n會議議程2\r\n\r\n會議議程3\r\n會議議程aa', '\"[{\"input_id\":\"proposal_contents_1\",\"val\":\"決議：aaaaaaaaa\"},{\"input_id\":\"proposal_contents_2\",\"val\":\"決議：\\nbbb\"},{\"input_id\":\"proposal_contents_3\",\"val\":\"決議：\\nc\\nd\\ne\"},{\"input_id\":\"proposal_contents_4\",\"val\":\"決議：test\\nasdasds\\nasda\\na\"},{\"input_id\":\"proposal_contents_5\",\"val\":\"決議：aaaa\"},{\"input_id\":\"proposal_contents_6\",\"val\":\"決議：b\"},{\"input_id\":\"proposal_contents_7\",\"val\":\"決議：\"}]\"', 'ttt\r\n檢討及建議：\r\n1daasa\r\n2wdwdawd\r\nddadsa\r\n1111111', '臨時動議：\r\n1wewdjdia\r\ndjasida\r\nddddd\r\n11111', '111年11月10日', '../volunteer_meeting/志工簽到表test1101.png', '../volunteer_meeting/志工閱後簽退test1101.png', '2022-11-11 13:13:50', '社工組長', '2022-11-11 15:34:09', '社工員1');
 
 --
 -- 已傾印資料表的索引
@@ -2384,7 +2393,7 @@ ALTER TABLE `form_interlocution_queskeywords`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `login_record`
 --
 ALTER TABLE `login_record`
-  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
+  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `members_assemble`
@@ -2534,7 +2543,7 @@ ALTER TABLE `volunteer_hours_record`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `volunteer_meeting`
 --
 ALTER TABLE `volunteer_meeting`
-  MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
