@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2022-11-11 08:38:24
+-- 產生時間： 2022-11-29 13:55:32
 -- 伺服器版本： 10.4.24-MariaDB
 -- PHP 版本： 7.4.29
 
@@ -1096,7 +1096,8 @@ INSERT INTO `login_record` (`Id`, `Login_timestamp`, `Login_account`, `Login_aut
 (122, '2022-11-07 21:12:19', 'test5', '3', '園主任', '22.6113591,120.3493158', 1),
 (123, '2022-11-08 16:59:30', 'test5', '3', '園主任', '22.6113591,120.3493158', 1),
 (124, '2022-11-11 10:05:01', 'test3', '2', '社工組長', '22.7189,120.4412', 1),
-(125, '2022-11-11 15:21:14', 'text1', '1', '社工員1', '22.7189,120.4412', 1);
+(125, '2022-11-11 15:21:14', 'text1', '1', '社工員1', '22.7189,120.4412', 1),
+(126, '2022-11-24 10:09:32', 'test5', '3', '園主任', '22.98133,120.2224227', 1);
 
 -- --------------------------------------------------------
 
@@ -2393,7 +2394,7 @@ ALTER TABLE `form_interlocution_queskeywords`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `login_record`
 --
 ALTER TABLE `login_record`
-  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
+  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=127;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `members_assemble`
