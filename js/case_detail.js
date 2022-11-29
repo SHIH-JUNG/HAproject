@@ -1477,7 +1477,7 @@ function submit_form_data() {
             
                 for (i = 0; i < arr_len; i++)
                 {
-                    arr1.push(name_arr1[i].value); 
+                    arr1.push(name_arr1[i].value);
                 } 
                 
                 for (i = 0; i < arr2_len; i++)

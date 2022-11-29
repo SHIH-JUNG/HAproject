@@ -59,12 +59,12 @@ trans_to_Tw = function (endate) {
     var return_str = "";
     if(endate!="")
     {
-        var strAry = endate.split("");
+        var strAry = endate.split("-");
   
         if (parseInt(strAry[0]) > 1911) {
           strAry[0] = parseInt(strAry[0]) - 1911;
         }
-
+        // console.log(strAry[0], strAry[1], strAry[2])
         return_str = strAry[0]+"年"+strAry[1]+"月"+strAry[2]+"日";
     }
     else
@@ -117,7 +117,6 @@ $.ajax({
         var cssString = "";
         var year = "";
         $.each(data,function(index,value){
-
             cssString += 
             '<tr cr_one_id="'+value.Id+'">' +
                 '<td style="text-align:center">' + trans_to_Tw(value.Open_case_date.split(" ")[0]) + '</td>' +
