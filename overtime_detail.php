@@ -196,6 +196,27 @@
                                                                                 <td style="border-bottom: solid 1px;"><input id="update_name" type="text" disabled="disabled"></td>
                                                                             </tr>
 
+                                                                            <tr style="text-align:left">
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline">
+                                                                                    <label>督導簽章</label>
+                                                                                </td>
+                                                                                <td style="">
+                                                                                    <input class="day_question" style="width:15em;" id="supervise" type="text"><button style="margin:.5em;margin-right:3em;color:red;" type="button" onclick="signature_btn_click('supervise');">簽名</button>
+                                                                                    <button style="margin:.5em;" type="button" id="supervise_signature_msg_btn" onclick="sign_msg_model('supervise');" data-toggle="modal" data-target="#myModal2">查看留言</button>
+                                                                                    <a src="" id="supervise_signature_simg" style="color:blue;" target="_blank" alt="簽名圖片連結"></a>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr style="text-align:left">
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline">
+                                                                                    <label>職務代理人簽章</label>
+                                                                                </td>
+                                                                                <td style="">
+                                                                                    <input class="day_question" style="width:15em;" id="job_agent" type="text"><button style="margin:.5em;margin-right:3em;color:red;" type="button" onclick="signature_btn_click('job_agent');">簽名</button>
+                                                                                    <button style="margin:.5em;" type="button" id="job_agent_signature_msg_btn" onclick="sign_msg_model('job_agent');" data-toggle="modal" data-target="#myModal2">查看留言</button>
+                                                                                    <a src="" id="job_agent_signature_simg" style="color:blue;" target="_blank" alt="簽名圖片連結"></a>
+                                                                                </td>
+                                                                            </tr>
+
                                                                             <tr>
                                                                                 <td colspan="2">
                                                                                     <div id="edit_div">
@@ -227,6 +248,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <?php include("signnature_canvas2.php"); ?>
                                                     <div class="tab-pane fade" id="two" role="tabpanel" aria-labelledby="profile-tab">
                                                         <div class="accordion" id="accordionExample">
                                                             <div class="panel panel-default">

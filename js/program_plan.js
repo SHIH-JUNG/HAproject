@@ -162,36 +162,18 @@ $.ajax({
         '<td style="text-align:center">' +
         value.Plan_name +
         "</td>" +
-        // '<td style="text-align:center">' +
-        // value.Person +
-        // "</td>" +
-        // '<td style="text-align:center">' +
-        // value.Loaction +
-        // "</td>" +
-        // '<td style="text-align:center">' +
-        // value.Service +
-        // "</td>" +
-        // '<td style="text-align:center">' +
-        // value.Cost +
-        // "</td>" +
-        // '<td style="text-align:center">' +
-        // value.Number +
-        // "</td>" +
-        // '<td style="text-align:center">' +
-        // value.Lecturer +
-        // "</td>" +
-        // '<td style="text-align:center">' +
-        // value.Create_date +
-        // "</td>" +
-        // '<td style="text-align:center">' +
-        // value.Create_name +
-        // "</td>" +
-        // '<td style="text-align:center">' +
-        // value.Update_date +
-        // "</td>" +
-        // '<td style="text-align:center">' +
-        // value.Update_name +
-        // "</td>" +
+        '<td style="text-align:center">' +
+        value.Create_date +
+        "</td>" +
+        '<td style="text-align:center">' +
+        value.Create_name +
+        "</td>" +
+        '<td style="text-align:center">' +
+        value.Update_date +
+        "</td>" +
+        '<td style="text-align:center">' +
+        value.Update_name +
+        "</td>" +
         "</tr>";
 
       $("#year").append(
@@ -208,25 +190,6 @@ $.ajax({
           value.Plan_name +
           "</option>"
       );
-
-      //   $("#person").append(
-      //     '<option value="' + value.Person + '">' + value.Person + "</option>"
-      //   );
-      //   $("#loaction").append(
-      //     '<option value="' + value.Loaction + '">' + value.Loaction + "</option>"
-      //   );
-      //   $("#service").append(
-      //     '<option value="' + value.Service + '">' + value.Service + "</option>"
-      //   );
-      //   $("#cost").append(
-      //     '<option value="' + value.Cost + '">' + value.Cost + "</option>"
-      //   );
-      //   $("#number").append(
-      //     '<option value="' + value.Number + '">' + value.Number + "</option>"
-      //   );
-      //   $("#lecturer").append(
-      //     '<option value="' + value.Lecturer + '">' + value.Lecturer + "</option>"
-      //   );
       $("#create_date").append(
         '<option value="' +
           value.Create_date +
@@ -305,8 +268,6 @@ $.ajax({
       window.location.href =
         "program_plan_detail.php?program_id=" +
         $(this).attr("id") +
-        // "&year=" +
-        // vo_year +
         "";
     });
   },
@@ -362,29 +323,6 @@ var $table = $("#tab_all").DataTable({
   ],
 });
 
-//範圍搜尋region
-// function parseTime(t) {
-//   var d = new Date();
-//   var time = t.match(/(\d+)(?::(\d\d))?\s*(p?)/);
-//   d.setHours(parseInt(time[1]) + (time[3] ? 12 : 0));
-//   d.setMinutes(parseInt(time[2]) || 0);
-//   return d;
-// }
-
-// var date_range = function (settings, data, dataIndex) {
-//   var min_date = parseInt(Date.parse($("#min_date").val()), 10);
-//   var max_date = parseInt(Date.parse($("#max_date").val()), 10);
-//   var date = parseInt(Date.parse(data[0])) || 0; // use data for the date column
-//   if (
-//     (isNaN(min_date) && isNaN(max_date)) ||
-//     (isNaN(min_date) && date <= max_date) ||
-//     (min_date <= date && isNaN(max_date)) ||
-//     (min_date <= date && date <= max_date)
-//   ) {
-//     return true;
-//   }
-//   return false;
-// };
 
 var hours_range = function (settings, data, dataIndex) {
   var min_time_all = parseInt($("#min_time_all").val(), 10);

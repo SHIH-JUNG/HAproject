@@ -148,76 +148,14 @@ $.ajax({
     var cssString = "";
     // console.log(data)
     $.each(data, function (index, value) {
-      var sign_stus = "";
-      var sign_css_str = "";
+      var supervise_sign_arr = datatable_sign_show('supervise', value.Supervise, value.Supervise_signature, value.Supervise_sign_time, value.Supervise_sign_msg);
 
-      if (value.Supervise_sign_msg == "") {
-        sign_stus = "目前尚無留言內容";
-      } else {
-        sign_stus =
-          "留言時間：" +
-          value.Supervise_sign_time +
-          "，留言內容：" +
-          value.Supervise_sign_msg;
-      }
+      var job_agent_sign_arr = datatable_sign_show('job_agent', value.Job_agent, value.Job_agent_signature, value.Job_agent_sign_time, value.Job_agent_sign_msg);
 
-      if (value.Supervise_signature != "") {
-        var supervise_sign_file_val = value.Supervise_signature.replace(
-          "../signature/",
-          "./signature/"
-        );
-        sign_css_str +=
-          '<a src="' +
-          supervise_sign_file_val +
-          '" style="color:blue;display: block;" target="_blank" alt="' +
-          sign_stus +
-          '" data-bs-toggle="tooltip" data-bs-placement="left" title="' +
-          sign_stus +
-          '">督導已簽章<img style="vertical-align:middle;" class="apreview" width="25px" title="' +
-          sign_stus +
-          '" src="' +
-          supervise_sign_file_val +
-          '"></a>';
-      }
+      var isUpload = '未上傳';
 
-      if (sign_css_str == "") {
-        sign_css_str = '<i style="color:gray;">待簽核</i>';
-      }
-
-      var agent_sign_stus = "";
-      var agent_sign_css_str = "";
-
-      if (value.Job_agent_sign_msg == "") {
-        sign_stus = "目前尚無留言內容";
-      } else {
-        sign_stus =
-          "留言時間：" +
-          value.Job_agent_sign_time +
-          "，留言內容：" +
-          value.Job_agent_sign_msg;
-      }
-
-      if (value.Job_agent_signature != "") {
-        var job_agent_sign_file_val = value.Job_agent_signature.replace(
-          "../signature/",
-          "./signature/"
-        );
-        agent_sign_css_str +=
-          '<a src="' +
-          job_agent_sign_file_val +
-          '" style="color:blue;display: block;" target="_blank" alt="' +
-          agent_sign_stus +
-          '" data-bs-toggle="tooltip" data-bs-placement="left" title="' +
-          agent_sign_stus +
-          '">督導已簽章<img style="vertical-align:middle;" class="apreview" width="25px" title="' +
-          agent_sign_stus +
-          '" src="' +
-          job_agent_sign_file_val +
-          '"></a>';
-      }
-
-      if (agent_sign_css_str == "") {
-        agent_sign_css_str = '<i style="color:gray;">待簽核</i>';
+      if(value.Upload_name != ""){
+        isUpload = '已上傳';
       }
 
       cssString +=
@@ -258,8 +196,12 @@ $.ajax({
         value.Update_name +
         "</td>" +
         '<td style="text-align:center">' +
+        supervise_sign_arr[0] +
+        supervise_sign_arr[1] +
         "</td>" +
         '<td style="text-align:center">' +
+        job_agent_sign_arr[0] +
+        job_agent_sign_arr[1] +
         "</td>" +
         "</tr>";
 
@@ -270,23 +212,7 @@ $.ajax({
       $("#reason").append(
         '<option value="' + value.Reason + '">' + value.Reason + "</option>"
       );
-      $("#makeup_hours").append(
-        '<option value="' +
-          value.Makeup_hours +
-          '">' +
-          value.Makeup_hours +
-          "</option>"
-      );
-      $("#hours").append(
-        '<option value="' + value.Hours + '">' + value.Hours + "</option>"
-      );
-      // $("#job_agent").append(
-      //   '<option value="' +
-      //     value.Job_agent +
-      //     '">' +
-      //     value.Job_agent +
-      //     "</option>"
-      // );
+
       $("#overtime_date").append(
         '<option value="' +
           value.Overtime_date +
@@ -294,6 +220,11 @@ $.ajax({
           value.Overtime_date +
           "</option>"
       );
+
+      $("#hours").append(
+        '<option value="' + value.Hours + '">' + value.Hours + "</option>"
+      );
+
       $("#makeup_date").append(
         '<option value="' +
           value.Makeup_date +
@@ -301,34 +232,15 @@ $.ajax({
           value.Makeup_date +
           "</option>"
       );
-      $("#create_date").append(
+
+      $("#makeup_hours").append(
         '<option value="' +
-          value.Create_date +
+          value.Makeup_hours +
           '">' +
-          value.Create_date +
+          value.Makeup_hours +
           "</option>"
       );
-      $("#create_name").append(
-        '<option value="' +
-          value.Create_name +
-          '">' +
-          value.Create_name +
-          "</option>"
-      );
-      $("#update_date").append(
-        '<option value="' +
-          value.Update_date +
-          '">' +
-          value.Update_date +
-          "</option>"
-      );
-      $("#update_name").append(
-        '<option value="' +
-          value.Update_name +
-          '">' +
-          value.Update_name +
-          "</option>"
-      );
+
     });
 
     //找出所有查詢表格下拉式選單，將內容排序、加上"所有查詢"、去除重複值
@@ -391,6 +303,61 @@ $.ajax({
 });
 
 //endregion
+
+function datatable_sign_show(signer_type ,signer, sign_path, sign_time, sign_msg) {
+  var sign_arr = [];
+
+  var sign_stus = "";
+  var sign_css_str = "";
+  var type_name = "";
+
+  switch (signer_type) {
+    case "supervise":
+      type_name = "督導";
+      break;
+    case "job_agent":
+      type_name = "職務代理人";
+      break;
+  }
+
+  if (sign_msg == "") {
+    sign_stus = "目前尚無留言內容";
+  } else {
+    sign_stus =
+      "留言時間：" +
+      sign_time +
+      "，留言內容：" +
+      sign_msg;
+  }
+
+  if (sign_path != "") {
+    var supervise_sign_file_val = sign_path.replace(
+      "../signature/",
+      "./signature/"
+    );
+    sign_css_str +=
+      '<a src="' +
+      supervise_sign_file_val +
+      '" style="color:blue;display: block;" target="_blank" alt="' +
+      sign_stus +
+      '" data-bs-toggle="tooltip" data-bs-placement="left" title="' +
+      sign_stus +
+      '">'+type_name+'已簽章<img style="vertical-align:middle;" class="apreview" width="25px" title="' +
+      sign_stus +
+      '" src="' +
+      supervise_sign_file_val +
+      '"></a>';
+  }
+
+  if (sign_css_str == "") {
+    sign_css_str = '<i style="color:gray;">待簽核</i>';
+  }
+
+  sign_arr.push(signer);
+  sign_arr.push(sign_css_str);
+
+  return sign_arr;
+}
 
 // 簽章圖片、留言、時間懸浮顯示region
 // 設定移到該img元素的parent元素，觸發懸浮框圖片效果

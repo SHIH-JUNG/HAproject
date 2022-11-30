@@ -36,7 +36,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="day_off_v2.php">請假系統
+                            <a href="day_off.php">請假系統
                             </a>
                         </li>
                         <li>

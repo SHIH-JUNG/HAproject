@@ -1,6 +1,6 @@
 <?php session_start(); ?>
 <?php include("database/check_authority.php"); ?> <?php include("no_cache.php"); ?>
-<?php @$day_name =  $_GET['name']; ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -60,15 +60,15 @@
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span><a href="day_off_list">行政管理</a></span></li>
+                        <li><span><a href="day_off.php">行政管理</a></span></li>
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span><a href="day_off_list.php">請假系統</a></span></li>
+                        <li><span><a href="day_off.php">請假系統</a></span></li>
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span><?php echo trim($day_name); ?>請假紀錄</span></li>
+                        <li><span>員工請假紀錄</span></li>
                     </ol>
                     <!--/麵包屑-->
                 </div>
@@ -92,48 +92,55 @@
                                 <div class="panel-body">
                                     <div class="table-wrap">
                                         <div class="table-responsive">
-                                            <h4><?php echo trim($day_name); ?>請假紀錄</h4>
+                                            <h4>員工請假紀錄</h4>
                                             <br>
                                             <h4>查詢</h4>
                                             <div　class="col-sm-12" id="toolbar">
                                                 <div class="col-sm-12">
                                                     <table style="font-size:20px;font-family:微軟正黑體;width:100%" class="table table-bordered NOline">
                                                         <tr>
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">員工姓名：</td>
+                                                            <td class="text-left">
+                                                                <select id="name" rel="0" class="filter search">
+                                                                    <!-- <option value="">所有</option> -->
+                                                                </select>
+                                                            </td>
 
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">事由：</td>
                                                             <td class="text-left">
-                                                                <select id="reason" rel="0" class="filter search">
+                                                                <select id="reason" rel="1" class="filter search">
                                                                     <!-- <option value="">所有</option> -->
                                                                 </select>
                                                             </td>
 
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">請假日期：</td>
                                                             <td class="text-left">
-                                                                <input id="overtime_date" rel="1" name="pcall_date" class="" type="date" placeholder="請假日期搜尋">
+                                                                <input id="overtime_date" rel="2" name="pcall_date" class="" type="date" placeholder="請假日期搜尋">
                                                                 <label>～</label>
-                                                                <input id="overtime_date" rel="1" name="pcall_date" class="" type="date" placeholder="請假日期搜尋">
+                                                                <input id="overtime_date" rel="2" name="pcall_date" class="" type="date" placeholder="請假日期搜尋">
                                                             </td>
 
+                                                            
+
+                                                        </tr>
+                                                        <tr>
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">請假時數：</td>
                                                             <td class="text-left">
-                                                                <select id="hours" rel="2" class="filter search">
+                                                                <select id="hours" rel="3" class="filter search">
                                                                     <!-- <option value="">所有</option> -->
                                                                 </select>
                                                             </td>
 
-                                                        </tr>
-                                                        <tr>
-
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">補休日期：</td>
                                                             <td class="text-left">
-                                                                <input id="makeup_date" rel="3" name="pcall_date" class="" type="date" placeholder="補休日期搜尋">
+                                                                <input id="makeup_date" rel="4" name="pcall_date" class="" type="date" placeholder="補休日期搜尋">
                                                                 <label>～</label>
-                                                                <input id="makeup_date" rel="3" name="pcall_date" class="" type="date" placeholder="補休日期搜尋">
+                                                                <input id="makeup_date" rel="4" name="pcall_date" class="" type="date" placeholder="補休日期搜尋">
                                                             </td>
 
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">補休時數：</td>
                                                             <td class="text-left">
-                                                                <select id="makeup_hours" rel="4" class="filter search">
+                                                                <select id="makeup_hours" rel="5" class="filter search">
                                                                     <!-- <option value="">所有</option> -->
                                                                 </select>
                                                             </td>
@@ -161,6 +168,7 @@
                                                                 </th>
                                                             </tr>
                                                             <tr style="background-color:rgb(255 201 54);">
+                                                                <th>員工姓名</th>
                                                                 <th>事由</th>
                                                                 <th>請假日期</th>
                                                                 <th>請假時數</th>
@@ -171,6 +179,7 @@
                                                                 <th>更新日期</th>
                                                                 <th>更新者</th>
                                                                 <th>督導簽章</th>
+                                                                <th>代理人簽章</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody id="call_view"></tbody>

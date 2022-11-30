@@ -105,7 +105,7 @@
                                                     <table style="font-size:20px;font-family:微軟正黑體;width:100%" class="table table-bordered NOline">
                                                         <tr>
 
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">姓名：</td>
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">員工姓名：</td>
                                                             <td class="text-left"><input id="name" rel="0" class="filter search" type="text" placeholder="姓名搜尋"></td>
 
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">在職訓練日期：</td>

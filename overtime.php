@@ -173,6 +173,8 @@
                                                                 <th>創建日期</th>
                                                                 <th>創建者</th>
                                                                 <th>更新日期</th>
+                                                                <th>督導簽章</th>
+                                                                <th>代理人簽章</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody id="call_view"></tbody>

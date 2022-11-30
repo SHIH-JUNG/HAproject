@@ -11,7 +11,7 @@ function getUrlVars() {
 }
 //endregion
 
-var day_name = getUrlVars()["name"];
+// var day_name = getUrlVars()["name"];
 
 //抓所有電話詢戒表region
 $.ajax({
@@ -19,7 +19,6 @@ $.ajax({
   type: "POST",
   dataType: "JSON",
   data: {
-    name: day_name,
   },
   async: false, //啟用同步請求
   success: function (data) {
@@ -29,6 +28,9 @@ $.ajax({
       var sign_stus = "";
       var sign_css_str = "";
 
+      var sign_stus_job_agent = "";
+      var sign_css_str_job_agent = "";
+
       if (value.Supervise_sign_msg == "") {
         sign_stus = "目前尚無留言內容";
       } else {
@@ -37,6 +39,16 @@ $.ajax({
           value.Supervise_sign_time +
           "，留言內容：" +
           value.Supervise_sign_msg;
+      }
+
+      if (value.Job_agent_sign_msg == "") {
+        sign_stus_job_agent = "目前尚無留言內容";
+      } else {
+        sign_stus_job_agent =
+          "留言時間：" +
+          value.Job_agent_sign_time +
+          "，留言內容：" +
+          value.Job_agent_sign_msg;
       }
 
       if (value.Supervise_signature != "") {
@@ -58,14 +70,41 @@ $.ajax({
           '"></a>';
       }
 
+      if (value.Job_agent_signature != "") {
+        var Job_agent_sign_file_val = value.Job_agent_signature.replace(
+          "../signature/",
+          "./signature/"
+        );
+        sign_css_str_job_agent +=
+          '<a src="' +
+          Job_agent_sign_file_val +
+          '" style="color:blue;display: block;" target="_blank" alt="' +
+          sign_stus_job_agent +
+          '" data-bs-toggle="tooltip" data-bs-placement="left" title="' +
+          sign_stus_job_agent +
+          '">職務代理人已簽章<img style="vertical-align:middle;" class="apreview" width="25px" title="' +
+          sign_stus_job_agent +
+          '" src="' +
+          Job_agent_sign_file_val +
+          '"></a>';
+      }
+
       if (sign_css_str == "") {
         sign_css_str = '<i style="color:gray;">待簽核</i>';
       }
+
+      if (sign_css_str_job_agent == "") {
+        sign_css_str_job_agent = '<i style="color:gray;">待簽核</i>';
+      }
+
 
       cssString +=
         '<tr id="' +
         value.Id +
         '">' +
+        '<td style="text-align:center">' +
+        value.Name +
+        "</td>" +
         '<td style="text-align:center">' +
         value.Reason +
         "</td>" +
@@ -96,6 +135,10 @@ $.ajax({
         '<td style="text-align:center">' +
         value.Supervise +
         sign_css_str +
+        "</td>" +
+        '<td style="text-align:center">' +
+        value.Job_agent +
+        sign_css_str_job_agent +
         "</td>" +
         "</tr>";
 
@@ -204,8 +247,6 @@ $.ajax({
       window.location.href =
         "day_off_detail.php?day_id=" +
         $(this).attr("id") +
-        "&name=" +
-        day_name +
         "";
     });
   },

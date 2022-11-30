@@ -124,6 +124,9 @@ check_sql_date_format = function (date) {
 overtime_id = getUrlVars()["overtime_id"];
 // re_year = getUrlVars()["year"];
 
+supervise_msg_arr = [];
+job_agent_msg_arr = [];
+
 //抓發文表region
 $(document).ready(function () {
   $.ajax({
@@ -141,6 +144,15 @@ $(document).ready(function () {
       $.each(data, function (index, value) {
         // $("#overtime_id").html(value.overtime_id);
 
+        var supervise_sign_file_val = value.Supervise_signature.replace(
+          "../signature/",
+          ""
+        );
+        var job_agent_sign_file_val = value.Job_agent_signature.replace(
+          "../signature/",
+          ""
+        );
+
         $("#year").val(value.Year);
         $("#name").val(value.Name);
 
@@ -157,6 +169,24 @@ $(document).ready(function () {
           value.Update_date != "0000-00-00 00:00:00" ? value.Update_date : ""
         );
         $("#update_name").val(value.Update_name);
+
+        $("#supervise_signature_simg").text("點擊顯示簽名圖片");
+        $("#supervise_signature_simg").attr(
+          "href",
+          "./signature/" + supervise_sign_file_val
+        );
+
+        $("#job_agent_signature_simg").text("點擊顯示簽名圖片");
+        $("#job_agent_signature_simg").attr(
+          "href",
+          "./signature/" + job_agent_sign_file_val
+        );
+
+        supervise_msg_arr.push(value.Supervise_sign_msg);
+        supervise_msg_arr.push(value.Supervise_sign_time);
+
+        job_agent_msg_arr.push(value.Job_agent_sign_msg);
+        job_agent_msg_arr.push(value.Job_agent_sign_time);
       });
     },
     error: function (e) {
@@ -171,48 +201,214 @@ $(document).ready(function () {
     $("#add_time_all_btn").trigger("focus");
   });
 
-  $.ajax({
-    url: "database/find_overtime_hours_record.php",
-    data: {
-      overtime_id: overtime_id,
-      Year: $("#year").val(),
-      Name: $("#name").val(),
-    },
-    type: "POST",
-    dataType: "JSON",
-    async: false,
-    success: function (data) {
-      var cssString = "";
-      // console.log(data);
+  //jsignature插件初始化 region
+  jsignature_initialization();
+  //endregion
 
-      $.each(data, function (index, value) {
-        cssString +=
-          '<tr id="' +
-          value.Id +
-          '">' +
-          '<td style="text-align:center">' +
-          value.Add_hours +
-          "</td>" +
-          '<td style="text-align:center">' +
-          value.Remark +
-          "</td>" +
-          '<td style="text-align:center">' +
-          value.Create_name +
-          "</td>" +
-          '<td style="text-align:center">' +
-          value.Create_date +
-          "</td>" +
-          "</tr>";
+  //隱藏jsignature畫布區域 region
+  $("#signature_area").hide();
+  //endregion
 
-        //印出表格
-        $("#call_record_view").html(cssString);
-      });
-    },
-    error: function (e) {
-      console.log(e);
-    },
+  //將name名稱為ch_datepicker創建datepicker初始化 region
+  $("[name='ch_datepicker']").each(function () {
+    var this_id = $(this).attr("id");
+    datepicker_create(this_id);
   });
+  //endregion
+
+  $('a[data-toggle="pill"]').on("shown.bs.tab", function (e) {
+    if ($(e.target).attr("id") == "home-tab") {
+      $("#all_data").show();
+    }
+  });
+
+  //手動新增按鈕點擊跳出模態框
+  $("#myModal").on("shown.bs.modal", function () {
+    $("#trans_to_opencase").trigger("focus");
+  });
+
+  // $.ajax({
+  //   url: "database/find_overtime_hours_record.php",
+  //   data: {
+  //     overtime_id: overtime_id,
+  //     Year: $("#year").val(),
+  //     Name: $("#name").val(),
+  //   },
+  //   type: "POST",
+  //   dataType: "JSON",
+  //   async: false,
+  //   success: function (data) {
+  //     var cssString = "";
+  //     // console.log(data);
+
+  //     $.each(data, function (index, value) {
+  //       cssString +=
+  //         '<tr id="' +
+  //         value.Id +
+  //         '">' +
+  //         '<td style="text-align:center">' +
+  //         value.Add_hours +
+  //         "</td>" +
+  //         '<td style="text-align:center">' +
+  //         value.Remark +
+  //         "</td>" +
+  //         '<td style="text-align:center">' +
+  //         value.Create_name +
+  //         "</td>" +
+  //         '<td style="text-align:center">' +
+  //         value.Create_date +
+  //         "</td>" +
+  //         "</tr>";
+
+  //       //印出表格
+  //       $("#call_record_view").html(cssString);
+  //     });
+  //   },
+  //   error: function (e) {
+  //     console.log(e);
+  //   },
+  // });
 });
+
+sign_msg_model = function (sign_type_name) {
+  //手動新增按鈕點擊跳出模態框
+  $("#myModal2").on("shown.bs.modal", function () {
+    $("#" + sign_type_name).trigger("focus");
+  });
+
+  // console.log(social_worker_msg_arr)
+  // console.log(supervise_msg_arr)
+
+  switch (sign_type_name) {
+    case "supervise":
+      var type_name = "督導";
+      $(".sign_msg").text(supervise_msg_arr[0]);
+      $(".sign_msg_time").val(supervise_msg_arr[1]);
+      break;
+
+    case "job_agent":
+      var type_name = "職務代理人";
+      $(".sign_msg").text(job_agent_msg_arr[0]);
+      $(".sign_msg_time").val(job_agent_msg_arr[1]);
+      break;
+  }
+
+  $(".sign_msg_td_name").text(type_name + "簽名留言內容");
+};
+
+//jsignature插件初始化 region
+function jsignature_initialization() {
+  var $sigdiv = $("#signature_div");
+  $sigdiv.jSignature({ UndoButton: true }); // 初始化jSignature插件-属性用","隔开
+  // $sigdiv.jSignature({'decor-color':'red'}); // 初始化jSignature插件-设置横线颜色
+  // $sigdiv.jSignature({'lineWidth':"6"});// 初始化jSignature插件-设置横线粗细
+  // $sigdiv.jSignature({"decor-color":"transparent"});// 初始化jSignature插件-去掉横线
+  // $sigdiv.jSignature({'UndoButton':true});// 初始化jSignature插件-撤销功能
+  // $sigdiv.jSignature({'height': 100, 'width': 200}); // 初始化jSignature插件-设置书写范围(大小)
+
+  // 同步更新畫布中的簽名圖片和簽名檔案格式 region
+  $("#signature_div").bind("change", function (e) {
+    var datapair = $sigdiv.jSignature("getData", "image");
+    $("#signature_images").attr(
+      "src",
+      "data:" + datapair[0] + "," + datapair[1]
+    );
+  });
+  //endregion
+
+  //重設繪製簽名 region
+  $("#signature_reset").click(function () {
+    $("#signature_div").jSignature("reset"); //重置画布，可以进行重新作画
+    $("#signature_images").attr("src", "");
+  });
+  //endregion
+}
+//endregion
+
+// 儲存該簽名 region
+signature_submit = function(this_btn) {
+
+  // 獲取簽名類型(督導、組長、主管)
+  var sign_type = $(this_btn).attr("board_name");
+
+  // console.log(sign_type);
+
+  var ajax_url = "database/update_overtime_data_detail_signature.php";
+
+  var src_data = $("#signature_images").attr("src");
+  // console.log(src);
+
+  // 判斷有無簽名圖片，若有送出簽名並儲存檔案
+  if (src_data) {
+    // console.log("submit_sign");
+    $.ajax({
+      type: "post",
+      url: ajax_url,
+      data: {
+        day_id: day_id,
+        src_data: src_data,
+        sign_msg: $("#signature_msg").val(),
+        sign_type: sign_type,
+      },
+      async: false,
+      success: function (data) {
+        // console.log(data);
+        if (data) {
+          swal({
+            title: "送出簽名成功！",
+            type: "success",
+          }).then(function () {
+            location.reload();
+          });
+        } else {
+          swal({
+            title: "生成簽名圖片失敗！請聯絡負責單位",
+            type: "error",
+          });
+        }
+      },
+    });
+  } else {
+    alert("簽名圖片檔不能為空！");
+    return false;
+  }
+}
+//endregion
+
+//按簽名 按紐，顯示簽名畫布 隱藏其他詳細資料 region
+signature_btn_click = function(sign_board_name) {
+
+  var type_name = "";
+
+  switch (sign_board_name) {
+    case "supervise":
+      type_name = "督導";
+      break;
+
+    case "job_agent":
+      type_name = "職務代理人";
+      
+      break;
+  }
+
+  $("#signature_h4").text(type_name + "簽名");
+  $("#signature_title_td").text(type_name);
+  $("#signature_msg_td").text(type_name);
+  $("#sign_submit_btn").attr("board_name", sign_board_name);
+
+  $("#signature_area").show();
+  $("#collapseTwo").hide();
+}
+//endregion
+
+//在簽名畫布區域按取消，返回詳細資料，並自動滾動卷軸至最頂部 region
+show_main_panel = function () {
+  $("#signature_area").hide();
+  $("#collapseTwo").show();
+  // $('html, body').scrollTop(0);
+};
+//endregion
+
 
 //更新發文個案表基本資料region
 $("#overtime_update").on("click", function () {
@@ -349,6 +545,29 @@ add_hours = function () {
     });
   }
 };
+
+//呼叫user方法region
+function append_user() {
+  $.ajax({
+    type: "POST",
+    url: "database/find_check_user.php",
+    dataType: "JSON",
+    async: false, //啟用同步請求
+    success: function (data) {
+      // console.log('test',data)
+      for (var index in data.Id) {
+        $("#user").append(
+          '<option value="' +
+            data.Name[index] +
+            '">' +
+            data.Name[index] +
+            "</option>"
+        );
+      }
+    },
+  });
+}
+//endregion
 
 //取消重整region
 function cancel() {

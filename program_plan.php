@@ -142,6 +142,10 @@
                                                                 <th>年度</th>
                                                                 <th>日期</th>
                                                                 <th>計畫名稱</th>
+                                                                <th>創建日期</th>
+                                                                <th>創建者</th>
+                                                                <th>更新日期</th>
+                                                                <th>更新者</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody id="call_view"></tbody>

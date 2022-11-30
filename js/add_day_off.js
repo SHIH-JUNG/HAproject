@@ -181,7 +181,7 @@ $("#day_off_add_new").on("click", function () {
             title: "新增成功!",
             allowOutsideClick: false, //不可點背景關閉
           }).then(function () {
-            window.location.replace("day_off_list.php");
+            window.location.replace("day_off.php");
           });
         } else {
           swal({
@@ -189,7 +189,7 @@ $("#day_off_add_new").on("click", function () {
             title: "新增失敗!請聯絡負責人",
             allowOutsideClick: false, //不可點背景關閉
           }).then(function () {
-            window.location.replace("day_off_list.php");
+            window.location.replace("day_off.php");
           });
         }
       },

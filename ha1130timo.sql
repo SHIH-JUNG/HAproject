@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2022-10-28 10:12:15
+-- 產生時間： 2022-11-30 06:24:44
 -- 伺服器版本： 10.4.24-MariaDB
 -- PHP 版本： 7.4.29
 
@@ -292,7 +292,8 @@ INSERT INTO `calendar` (`id`, `title`, `description`, `start`, `end`, `publisher
 (80, '測O試(2022-10-15)監所服務-訪談', 'https://140.127.22.2/HappyAlliance/HAproject/counsel_detail.php?id=3&counsel_id=999', '2022-10-15 16:00', '2022-10-15 17:00', '花花', '', '2022-10-25 11:05:16'),
 (81, '測O試(2022-10-17)監所服務-訪談', 'https://140.127.22.2/HappyAlliance/HAproject/counsel_detail.php?id=3&counsel_id=999', '2022-10-17 12:00', '2022-10-17 13:00', '花花', '', '2022-10-25 11:05:56'),
 (82, '測O試(2022-10-18)監所服務-訪談', 'https://140.127.22.2/HappyAlliance/HAproject/counsel_detail.php?id=3&counsel_id=999', '2022-10-18 11:00', '2022-10-18 12:00', '花花', '', '2022-10-25 11:06:25'),
-(83, '測O試(2022-10-19)監所服務-訪談', 'https://140.127.22.2/HappyAlliance/HAproject/counsel_detail.php?id=3&counsel_id=999', '2022-10-19 14:00', '2022-10-19 15:00', '花花', '', '2022-10-25 11:06:55');
+(83, '測O試(2022-10-19)監所服務-訪談', 'https://140.127.22.2/HappyAlliance/HAproject/counsel_detail.php?id=3&counsel_id=999', '2022-10-19 14:00', '2022-10-19 15:00', '花花', '', '2022-10-25 11:06:55'),
+(84, 'qas()在職訓練', 'http://localhost/HappyAlliance/HAproject/training_detail.php?id=31', ' 12:00', ' 13:00', '社工員1', '', '2022-11-29 14:56:39');
 
 -- --------------------------------------------------------
 
@@ -658,7 +659,6 @@ CREATE TABLE `day_off` (
   `Hours` int(255) NOT NULL,
   `Makeup_date` date NOT NULL,
   `Makeup_hours` int(255) NOT NULL,
-  `Job_agent` varchar(30) NOT NULL,
   `Create_date` date NOT NULL,
   `Create_name` varchar(30) NOT NULL,
   `Update_date` date NOT NULL,
@@ -667,6 +667,7 @@ CREATE TABLE `day_off` (
   `Supervise_signature` varchar(500) NOT NULL,
   `Supervise_sign_msg` varchar(2000) NOT NULL,
   `Supervise_sign_time` varchar(54) NOT NULL,
+  `Job_agent` varchar(30) NOT NULL,
   `Job_agent_signature` varchar(500) NOT NULL,
   `Job_agent_sign_msg` varchar(2000) NOT NULL,
   `Job_agent_sign_time` varchar(54) NOT NULL
@@ -676,13 +677,30 @@ CREATE TABLE `day_off` (
 -- 傾印資料表的資料 `day_off`
 --
 
-INSERT INTO `day_off` (`Id`, `Name`, `Reason`, `Overtime_date`, `Hours`, `Makeup_date`, `Makeup_hours`, `Job_agent`, `Create_date`, `Create_name`, `Update_date`, `Update_name`, `Supervise`, `Supervise_signature`, `Supervise_sign_msg`, `Supervise_sign_time`, `Job_agent_signature`, `Job_agent_sign_msg`, `Job_agent_sign_time`) VALUES
-(6, 'qqq', 'qqq', '2022-07-14', 88, '2022-07-03', 25, '', '2022-10-25', '', '2022-10-25', '', '社工員1', '../signature/1663649890.png', '', '2022-09-20 12:58:10', '', '', ''),
-(7, 'aaaa', 'aaa', '2022-07-08', 12, '2022-07-04', 3, '', '2022-07-06', 'ddd', '2022-07-06', 'ddd', '社工員1', '../signature/1663648439.png', '', '2022-09-20 12:33:59', '', '', ''),
-(8, 'kkk', 'kkk', '2022-07-05', 6, '2022-07-05', 0, '', '2022-07-06', '社工員1', '0000-00-00', '', '', '', '', '', '', '', ''),
-(9, 'sdsdf', 'fdfsd', '2022-07-13', 12, '2022-07-14', 5, '', '2022-07-28', '社工員1', '0000-00-00', '', '社工員1', '../signature/1658991438.png', '', '2022-07-28 14:57:18', '', '', ''),
-(10, 'Timmm', 'rrr', '2022-08-02', 3, '2022-08-01', 33, '', '2022-08-09', '社工員1', '0000-00-00', '', '', '', '', '', '', '', ''),
-(11, '測試', '測試所以請假', '2022-10-03', 1, '2022-10-13', 1, '', '2022-10-12', '測試測試', '2022-10-12', '測試測試', '花花', '../signature/1665556191.png', '', '2022-10-12 14:29:51', '', '', '');
+INSERT INTO `day_off` (`Id`, `Name`, `Reason`, `Overtime_date`, `Hours`, `Makeup_date`, `Makeup_hours`, `Create_date`, `Create_name`, `Update_date`, `Update_name`, `Supervise`, `Supervise_signature`, `Supervise_sign_msg`, `Supervise_sign_time`, `Job_agent`, `Job_agent_signature`, `Job_agent_sign_msg`, `Job_agent_sign_time`) VALUES
+(13, 'Timo', '生病', '2022-11-23', 2, '2022-11-30', 2, '2022-11-21', '社工員1', '0000-00-00', '', '社工員1', '../signature/1669353391.png', '', '2022-11-25 13:16:31', '', '', '', ''),
+(14, 'Amy', '睡太晚', '2022-11-16', 3, '2022-11-30', 3, '2022-11-21', '社工員1', '0000-00-00', '', '', '', '', '', '', '', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `day_off_hours_record`
+--
+
+CREATE TABLE `day_off_hours_record` (
+  `Id` int(240) NOT NULL,
+  `Day_id` int(240) NOT NULL,
+  `Year` int(10) NOT NULL,
+  `Name` varchar(50) NOT NULL,
+  `Add_hours` float NOT NULL,
+  `Remark` varchar(2000) NOT NULL,
+  `Sign_date` varchar(100) NOT NULL,
+  `Is_finstadd` tinyint(1) NOT NULL,
+  `Create_date` datetime NOT NULL,
+  `Create_name` varchar(30) NOT NULL,
+  `Update_date` datetime NOT NULL,
+  `Update_name` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -871,7 +889,10 @@ INSERT INTO `form_all_info` (`Id`, `Case_seqid`, `Case_id`, `Case_name`, `Case_p
 (40, '8', '440', '測O試', 'V123456788', 0, 'case_detail.php?name=測O試&gender=女&pid=V123456788&date=2022-10-01&property=自立宿舍&type=愛滋感染者&grade=B&id=8&open_id=440&referral=警政&case_Create_date=2022-10-25&unopen_type=case&birth=1974-04-21', '', 0, 'satif', '2022-10-25', '1025測試', '\"[{\"name\":\"satif\",\"value\":\"46\"}]\"', '', '2022-10-25 00:00:00', '花花', '2022-10-25 14:06:07', '花花'),
 (41, '8', '440', '測O試', 'V123456788', 0, 'case_detail.php?name=測O試&gender=女&pid=V123456788&date=2022-10-01&property=自立宿舍&type=愛滋感染者&grade=B&id=8&open_id=440&referral=警政&case_Create_date=2022-10-25&unopen_type=case&birth=1974-04-21', '', 0, 'familyship', '2022-10-25', '1025測試', '\"[{\"name\":\"familyship\",\"value\":\"0\"},{\"name\":\"familyship\",\"value\":\"後測\"}]\"', '', '2022-10-25 00:00:00', '花花', '2022-10-25 14:07:11', '花花'),
 (42, '8', '440', '測O試', 'V123456788', 0, 'case_detail.php?name=測O試&gender=女&pid=V123456788&date=2022-10-01&property=自立宿舍&type=愛滋感染者&grade=B&id=8&open_id=440&referral=警政&case_Create_date=2022-10-25&unopen_type=case&birth=1974-04-21', '', 0, 'BSRS5', '0000-00-00', '1025測試', '\"[{\"name\":\"BSRS5\",\"value\":\"11\"},{\"name\":\"BSRS5\",\"value\":\"已通報\"}]\"', '', '2022-10-25 00:00:00', '花花', '2022-10-25 14:08:38', '花花'),
-(43, '8', '440', '測O試', 'V123456788', 0, 'case_detail.php?name=測O試&gender=女&pid=V123456788&date=2022-10-01&property=自立宿舍&type=愛滋感染者&grade=B&id=8&open_id=440&referral=警政&case_Create_date=2022-10-25&unopen_type=case&birth=1974-04-21', '', 0, 'settlement', '2022-10-25', '1025測試', '\"[{\"name\":\"settlement\",\"value\":\"符合基本條件指標條件共4項，符合收案指標條件共7項。\"}]\"', '', '2022-10-25 00:00:00', '花花', '2022-10-25 14:12:36', '花花');
+(43, '8', '440', '測O試', 'V123456788', 0, 'case_detail.php?name=測O試&gender=女&pid=V123456788&date=2022-10-01&property=自立宿舍&type=愛滋感染者&grade=B&id=8&open_id=440&referral=警政&case_Create_date=2022-10-25&unopen_type=case&birth=1974-04-21', '', 0, 'settlement', '2022-10-25', '1025測試', '\"[{\"name\":\"settlement\",\"value\":\"符合基本條件指標條件共4項，符合收案指標條件共7項。\"}]\"', '', '2022-10-25 00:00:00', '花花', '2022-10-25 14:12:36', '花花'),
+(44, '7', '123', '瓜', 'M2224786629', 0, 'case_detail.php?name=瓜&gender=女&pid=M2224786629&date=2022-10-24&property=安置家園&type=愛滋感染者&grade=A&id=7&open_id=123&referral=教會&case_Create_date=2022-10-14&unopen_type=case&birth=2022-10-20', '', 0, 'interlocution', '0000-00-00', '', '', '', '2022-11-01 00:00:00', '社工員1', '0000-00-00 00:00:00', ''),
+(45, '6', 'RE111', 'test', 'T1334356112', 0, 'case_detail.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03', '', 0, 'familyship', '2022-11-01', '111', '', '', '2022-11-01 00:00:00', '社工員1', '0000-00-00 00:00:00', ''),
+(46, '6', 'RE111', 'test', 'T1334356112', 0, 'case_detail.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03', '', 0, 'satif', '2022-11-01', '111111', '', '', '2022-11-01 00:00:00', '社工員1', '0000-00-00 00:00:00', '');
 
 -- --------------------------------------------------------
 
@@ -1089,7 +1110,15 @@ INSERT INTO `login_record` (`Id`, `Login_timestamp`, `Login_account`, `Login_aut
 (115, '2022-10-27 17:09:54', 'text1', '1', 'jia', '22.6483444,120.3262535', 1),
 (116, '2022-10-28 10:11:47', 'text1', '1', 'jia', '25.0384,121.5637', 1),
 (117, '2022-10-28 13:33:16', 'test5', '3', '園主任', '22.6478971,120.6119418', 1),
-(118, '2022-10-28 13:55:46', 'text1', '1', '社工員1', '22.6479106,120.6119313', 0);
+(118, '2022-10-28 13:55:46', 'text1', '1', '社工員1', '22.6479106,120.6119313', 0),
+(119, '2022-10-31 16:34:01', 'text1', '1', '社工員1', '22.6483444,120.3262535', 1),
+(120, '2022-11-01 14:51:43', 'text1', '1', '社工員1', '22.5937,120.542', 1),
+(121, '2022-11-01 18:25:40', 'text1', '1', '社工員1', '22.6483444,120.3262535', 0),
+(122, '2022-11-07 16:41:14', 'text1', '1', '社工員1', '22.6478892,120.6119463', 1),
+(123, '2022-11-15 21:30:48', 'text1', '1', '社工員1', '22.6479066,120.6119246', 1),
+(124, '2022-11-18 13:15:01', 'text1', '1', 'jia', '22.6478996,120.6119327', 1),
+(125, '2022-11-18 17:35:38', 'text1', '1', '社工員1', '22.6479185,120.6119187', 0),
+(126, '2022-11-24 10:03:32', 'text1', '1', '社工員1', '22.98133,120.2224227', 1);
 
 -- --------------------------------------------------------
 
@@ -1141,13 +1170,6 @@ CREATE TABLE `overtime` (
   `Update_name` varchar(100) NOT NULL,
   `Id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- 傾印資料表的資料 `overtime`
---
-
-INSERT INTO `overtime` (`Year`, `Name`, `Overtime_date`, `Free_date`, `Overtime_time`, `Free_time`, `Create_date`, `Create_name`, `Update_date`, `Update_name`, `Id`) VALUES
-(111, 'Timo', '2022-09-21', '2022-09-12', 22, 11, '2022-09-07', 'Timo', '2022-09-20', '社工員1', 1);
 
 -- --------------------------------------------------------
 
@@ -1316,15 +1338,19 @@ CREATE TABLE `program_plan` (
   `Id` int(11) NOT NULL,
   `Year` int(100) NOT NULL,
   `Date` date NOT NULL,
-  `Plan_name` varchar(300) NOT NULL
+  `Plan_name` varchar(300) NOT NULL,
+  `Create_date` date NOT NULL,
+  `Create_name` varchar(30) NOT NULL,
+  `Update_date` date NOT NULL,
+  `Update_name` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- 傾印資料表的資料 `program_plan`
 --
 
-INSERT INTO `program_plan` (`Id`, `Year`, `Date`, `Plan_name`) VALUES
-(1, 111, '2022-09-07', 'tigodek');
+INSERT INTO `program_plan` (`Id`, `Year`, `Date`, `Plan_name`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
+(1, 111, '2022-09-07', 'tigodek', '0000-00-00', '', '0000-00-00', '');
 
 -- --------------------------------------------------------
 
@@ -1346,6 +1372,14 @@ CREATE TABLE `published` (
   `Supervise_signature` varchar(500) NOT NULL,
   `Supervise_sign_msg` varchar(2000) NOT NULL,
   `Supervise_sign_time` datetime NOT NULL,
+  `Leader` varchar(30) NOT NULL,
+  `Leader_signature` varchar(500) NOT NULL,
+  `Leader_sign_msg` varchar(2000) NOT NULL,
+  `Leader_sign_time` varchar(54) NOT NULL,
+  `Director` varchar(30) NOT NULL,
+  `Director_signature` varchar(500) NOT NULL,
+  `Director_sign_msg` varchar(2000) NOT NULL,
+  `Director_sign_time` varchar(54) NOT NULL,
   `Create_date` date NOT NULL,
   `Create_name` varchar(30) NOT NULL,
   `Update_date` date NOT NULL,
@@ -1356,9 +1390,9 @@ CREATE TABLE `published` (
 -- 傾印資料表的資料 `published`
 --
 
-INSERT INTO `published` (`Id`, `Year`, `Title_name`, `Published_date`, `Num_publish`, `Unit`, `Subject`, `Upload_name`, `Upload_path`, `Supervise`, `Supervise_signature`, `Supervise_sign_msg`, `Supervise_sign_time`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
-(21, '111', 'test', '110.01.04', 'test111', 'aasd', 'tests', '2022-10-19 13-37-18.mkv', '../published/2022-10-19 13-37-18.mkv', '社工員1', '../signature/1658733763.png', '', '2022-07-25 15:22:43', '0000-00-00', '', '2022-10-25', 'jia'),
-(22, '111', 'qqqqq', '111.07.19', 'qqqqq', '', 'qqqqq', '2022-10-19 13-37-18.mkv', '../published/2022-10-19 13-37-18.mkv', '社工員1', '../signature/1657090805.png', '', '2022-07-06 15:00:05', '2022-07-05', '社工員1', '2022-10-25', 'jia');
+INSERT INTO `published` (`Id`, `Year`, `Title_name`, `Published_date`, `Num_publish`, `Unit`, `Subject`, `Upload_name`, `Upload_path`, `Supervise`, `Supervise_signature`, `Supervise_sign_msg`, `Supervise_sign_time`, `Leader`, `Leader_signature`, `Leader_sign_msg`, `Leader_sign_time`, `Director`, `Director_signature`, `Director_sign_msg`, `Director_sign_time`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
+(21, '111', '', '', '', 'aasd', '', '2022-10-19 13-37-18.mkv', '../published/2022-10-19 13-37-18.mkv', '社工員1', '../signature/1658733763.png', '', '2022-07-25 15:22:43', '社工員1', '../signature/1668764685.png', '516', '2022-11-18 17:44:45', '', '', '', '', '0000-00-00', '', '2022-11-18', '社工員1'),
+(22, '111', 'qqqqq', '111.07.19', 'qqqqq', '', 'qqqqq', '2022-10-19 13-37-18.mkv', '../published/2022-10-19 13-37-18.mkv', '社工員1', '../signature/1657090805.png', '', '2022-07-06 15:00:05', '', '', '', '', '', '', '', '', '2022-07-05', '社工員1', '2022-10-25', 'jia');
 
 -- --------------------------------------------------------
 
@@ -1419,8 +1453,8 @@ CREATE TABLE `received` (
 --
 
 INSERT INTO `received` (`Id`, `Year`, `Title_name`, `Received_date`, `Subject`, `Unit`, `Num_receive`, `Upload_name`, `Upload_path`, `Create_date`, `Create_name`, `Update_date`, `Update_name`, `Supervise`, `Supervise_signature`, `Supervise_sign_msg`, `Supervise_sign_time`, `Leader`, `Leader_signature`, `Leader_sign_msg`, `Leader_sign_time`, `Director`, `Director_signature`, `Director_sign_msg`, `Director_sign_time`) VALUES
-(33, '111', 'fffffff', '111.07.19', 'ggggggggg', 'ggggggggggg', 'ggggggggeeee', '快樂聯盟開會紀錄_系統測試20221006.xlsx', '../received/快樂聯盟開會紀錄_系統測試20221006.xlsx', '2022-07-05', '社工員1', '2022-10-18', '社工員1', '社工員1', '../signature/1657196042.png', '', '2022-07-07 20:14:02', '', '', '', '', '', '', '', ''),
-(34, '111', 'fffffff', '111.05.18', 'ggggggggg', 'ggggggggggg', 'ggggggggeeee', '2022-10-25 14-47-40.mp4', '../received/2022-10-25 14-47-40.mp4', '2022-10-06', '社工員1', '2022-10-25', 'jia', '', '', '', '', '', '', '', '', '', '', '', ''),
+(33, '111', 'fffffff', '111.07.19', 'ggggggggg', 'ggggggggggg', 'ggggggggeeee', '快樂聯盟開會紀錄_系統測試20221006.xlsx', '../received/快樂聯盟開會紀錄_系統測試20221006.xlsx', '2022-07-05', '社工員1', '2022-10-18', '社工員1', '社工員1', '../signature/1657196042.png', '', '2022-07-07 20:14:02', 'jia', '../signature/1668757489.png', '', '2022-11-18 15:44:49', '', '', '', ''),
+(34, '111', 'fffffff', '111.05.18', 'ggggggggg', 'ggggggggggg', 'ggggggggeeee', '2022-10-25 14-47-40.mp4', '../received/2022-10-25 14-47-40.mp4', '2022-10-06', '社工員1', '2022-11-18', '社工員1', '', '', '', '', '社工員1', '../signature/1668764222.png', '111', '2022-11-18 17:37:02', '', '', '', ''),
 (35, '111', 'test', '111.10.12', 'testtesttest', 'test測試', 'cde00112233', '', '', '2022-10-12', '花花', '0000-00-00', '', '', '', '', '', '', '', '', '', '', '', '', ''),
 (36, '111', '555', '111.10.11', 'fff', 'fff', 'ff', '', '', '2022-10-18', '社工員1', '0000-00-00', '', '', '', '', '', '', '', '', '', '', '', '', '');
 
@@ -1475,7 +1509,7 @@ CREATE TABLE `resume` (
 --
 
 INSERT INTO `resume` (`Id`, `Account_id`, `Account`, `Name`, `Entry_date`, `On_or_off`, `Resigned_date`, `Resume_datas_date`, `Employment_contract_date`, `NDA_file_date`, `Diploma_date`, `PA_file_date`, `Remark`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
-(1, 25, 'testuser', 'jia', '111年09月08日', '是', '', '2022-09-29', '2022-10-02', '2022-09-29', '2022-09-29', '2022-10-02', 'test0908', '2022-09-29 17:47:27', '園主任', '2022-10-02 19:32:02', '社工員1'),
+(1, 25, 'testuser', 'jia', '111年09月08日', '是', '111年11月02日', '2022-09-29', '2022-10-02', '2022-09-29', '2022-09-29', '2022-10-02', 'test0908', '2022-09-29 17:47:27', '園主任', '2022-11-16 10:10:29', '社工員1'),
 (2, 26, 'test01', 'test001', '111年10月12日', '是', NULL, '2022-10-12', '2022-10-12', '2022-10-12', '2022-10-12', '2022-10-12', '無，測試', '2022-10-12 14:17:44', '花花', '2022-10-12 14:18:16', '花花');
 
 -- --------------------------------------------------------
@@ -1715,7 +1749,8 @@ INSERT INTO `sign_notice` (`Id`, `file_name`, `authority`, `date`, `person`, `da
 (43, '測O試(2022-10-15)監所服務-訪談', 1, '0000-00-00', '花花', '2022-10-15 16:00', 'test001、test001、'),
 (44, '測O試(2022-10-17)監所服務-訪談', 1, '0000-00-00', '花花', '2022-10-17 12:00', 'test001、test001、'),
 (45, '測O試(2022-10-18)監所服務-訪談', 1, '0000-00-00', '花花', '2022-10-18 11:00', 'test001、test001、'),
-(46, '測O試(2022-10-19)監所服務-訪談', 1, '0000-00-00', '花花', '2022-10-19 14:00', 'test001、test001、');
+(46, '測O試(2022-10-19)監所服務-訪談', 1, '0000-00-00', '花花', '2022-10-19 14:00', 'test001、test001、'),
+(47, 'qas()在職訓練', 1, '0000-00-00', '社工員1', ' 12:00', '、、');
 
 -- --------------------------------------------------------
 
@@ -1790,9 +1825,8 @@ CREATE TABLE `training` (
 --
 
 INSERT INTO `training` (`Id`, `Name`, `Training_date`, `On_or_off`, `Training_name`, `Place`, `Remark`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
-(27, 'Tim', '111年07月06日', '是', '野外求生', '屏東公園', '', '2022-07-28', '社工員1', '0000-00-00', ''),
-(28, 'test001', '111年10月12日', '是', 'testtest', '快樂聯盟一樓', '無，測試', '2022-10-12', '花花', '0000-00-00', ''),
-(29, '', '111年10月12日', '', 'testtest', '快樂聯盟一樓', '無，測試', '0000-00-00', '', '0000-00-00', '');
+(31, 'qas', '111年11月03日', '是', 'sss', 'sss', '', '2022-11-21', '社工員1', '0000-00-00', ''),
+(32, '', '111年11月03日', '', 'sss', 'sss', '', '0000-00-00', '', '0000-00-00', '');
 
 -- --------------------------------------------------------
 
@@ -1861,7 +1895,7 @@ CREATE TABLE `user_info` (
 --
 
 INSERT INTO `user_info` (`Id`, `Resume_id`, `Account`, `Password`, `Name`, `Authority`, `Date`, `Department`, `Job`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
-(1, 0, 'text1', '123', '社工員1', 1, '2021-03-06 17:04:49', '行政中心', '社工', NULL, '', '2022-10-13 18:55:32', '社工組長'),
+(1, 0, 'text1', '123', '社工員1', 1, '2021-03-06 17:04:49', '行政中心', '社工', NULL, '', '2022-11-16 10:10:29', '社工員1'),
 (2, 0, 'text2', '456', '社工員2', 1, '2020-10-05 21:12:04', '行政中心', '社工', NULL, '', '2022-09-22 19:36:25', ''),
 (3, 0, 'test3', '789', '社工組長', 2, '2020-10-05 21:12:04', '行政中心', '組長', NULL, '', '2022-09-22 19:36:25', ''),
 (5, 0, 'test5', '258', '園主任', 3, '2020-10-05 21:12:04', '伯特利家園', '主任', NULL, '', '2022-09-22 19:36:25', ''),
@@ -1913,7 +1947,7 @@ CREATE TABLE `volunteer` (
 
 INSERT INTO `volunteer` (`Id`, `Year`, `Name`, `Serv_type`, `Serv_time`, `Time_all`, `Rece_hours`, `Serv_award`, `Honor_card`, `Sign_date`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
 (1, 111, 'test712', '活動', '周一早上9:00-12:00', 16.5, '是', '否', '否', '111年07月12日', '2022-07-12 22:34:31', '園主任', '2022-09-20 17:59:06', '園主任'),
-(2, 111, 'test713', '美工', '周二下午13:00-12:00', 6, '是', '否', '是', '111年07月12日', '2022-07-12 22:35:07', '園主任', '2022-07-14 21:40:25', '園主任'),
+(2, 111, 'test713', '美工', '周二下午13:00-12:00', 10, '是', '否', '是', '111年07月12日', '2022-07-12 22:35:07', '園主任', '2022-11-26 16:21:56', '社工員1'),
 (3, 111, 'test728', '環境清潔', '周三早上9:00-12:00', 13.5, '是', '是', '否', '111年07月28日', '2022-07-28 19:03:34', '園主任', '2022-07-28 19:09:15', '園主任'),
 (4, 111, 'test11234', '文宣', '周四下午13:00-12:00', 2, '是', '是', '是', '111年07月28日', '2022-07-28 19:03:59', '園主任', '2022-07-28 19:10:58', '園主任'),
 (5, 111, '測試測試測試', '其他', '周三下午13:00-12:00', 16, '是', '是', '否', '111年10月12日', '2022-10-12 14:33:35', '花花', '2022-10-12 14:34:40', '花花'),
@@ -1963,7 +1997,8 @@ INSERT INTO `volunteer_hours_record` (`Id`, `Volunteer_id`, `Year`, `Name`, `Add
 (33, 5, 111, '測試測試測試', 15, '', '111年10月12日', 1, '2022-10-12 14:33:35', '花花', '0000-00-00 00:00:00', ''),
 (34, 5, 111, '測試測試測試', 1, '', '', 0, '2022-10-12 14:34:40', '花花', '0000-00-00 00:00:00', ''),
 (35, 6, 111, 'test測試', 19, '', '111年10月12日', 1, '2022-10-12 14:36:45', '花花', '0000-00-00 00:00:00', ''),
-(36, 7, 111, '測試567', 4, '', '111年10月12日', 1, '2022-10-12 14:43:30', '花花', '0000-00-00 00:00:00', '');
+(36, 7, 111, '測試567', 4, '', '111年10月12日', 1, '2022-10-12 14:43:30', '花花', '0000-00-00 00:00:00', ''),
+(37, 2, 111, 'test713', 4, '', '', 0, '2022-11-26 16:21:56', '社工員1', '0000-00-00 00:00:00', '');
 
 --
 -- 已傾印資料表的索引
@@ -2265,7 +2300,7 @@ ALTER TABLE `board_supervisor`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `calendar`
 --
 ALTER TABLE `calendar`
-  MODIFY `id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
+  MODIFY `id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `case_report`
@@ -2307,7 +2342,7 @@ ALTER TABLE `current_case`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `day_off`
 --
 ALTER TABLE `day_off`
-  MODIFY `Id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `Id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `dlgrec`
@@ -2325,7 +2360,7 @@ ALTER TABLE `forms`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `form_all_info`
 --
 ALTER TABLE `form_all_info`
-  MODIFY `Id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `Id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `form_case_report`
@@ -2343,7 +2378,7 @@ ALTER TABLE `form_interlocution_queskeywords`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `login_record`
 --
 ALTER TABLE `login_record`
-  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
+  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=127;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `members_assemble`
@@ -2451,7 +2486,7 @@ ALTER TABLE `signature_notice`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `sign_notice`
 --
 ALTER TABLE `sign_notice`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `supervisor_record`
@@ -2463,7 +2498,7 @@ ALTER TABLE `supervisor_record`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `training`
 --
 ALTER TABLE `training`
-  MODIFY `Id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `Id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `tw_counties`
@@ -2487,7 +2522,7 @@ ALTER TABLE `volunteer`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `volunteer_hours_record`
 --
 ALTER TABLE `volunteer_hours_record`
-  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -158,6 +158,8 @@ $(document).ready(function () {
     datepicker_create(this_id);
   });
   //endregion
+
+  training_show();
 });
 
 //endregion
@@ -604,6 +606,241 @@ function reservation_rec_new() {
   //endregion
 }
 //endregion
+
+function training_show() {
+  //印出監所服務預約訪談紀錄表格region
+  var tra_id = getUrlVars()["tra_id"];
+  //console.log(id);
+  $.ajax({
+      url: "database/find_training_rec.php",
+      data:{
+        Tra_id:tra_id,
+      },
+      type: "POST",
+      dataType: "JSON",
+      success: function (data) {      
+          var cssString5 = "";
+          var hometabcssString5 = "";
+          var Name_arr = [];
+          var Location_detail_arr = [];
+          var Id_arr = [];
+          $.each(data,function(index,value){
+              cssString5 +=
+              '<div class="tab-pane fade" id="resrectabx0'+value.Id+'" role="tabpanel" aria-labelledby="new-'+value.Id+'tab">'+
+              '<div class="col-sm-12 text-center">'+
+              '<div class="table-wrap">'+
+              '<div class="table-responsive">'+
+              '<table style="width:auto;" class="table table-bordered">'+
+                  '<tr>' +
+                      '<td colspan="2">個人在職訓練紀錄</td>' +
+                  '</tr>' +
+                  '<tr  style="text-align:left">' +
+                      '<td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">在職訓練時間</td>' +
+                      '<td style="">'+
+                          '<input class="question'+value.Id+'" id="start_date'+value.Id+'" type="date" value='+value.Start_date+' >'+
+                          ' '+
+                          '<select class="question'+value.Id+'" id="start_time_h'+value.Id+'" >'+
+                              '<option>00</option>'+
+                              '<option>01</option>'+
+                              '<option>02</option>'+
+                              '<option>03</option>'+
+                              '<option>04</option>'+
+                              '<option>05</option>'+
+                              '<option>06</option>'+
+                              '<option>07</option>'+
+                              '<option>08</option>'+
+                              '<option>09</option>'+
+                              '<option>10</option>'+
+                              '<option>11</option>'+
+                              '<option>12</option>'+
+                              '<option>13</option>'+
+                              '<option>14</option>'+
+                              '<option>15</option>'+
+                              '<option>16</option>'+
+                              '<option>17</option>'+
+                              '<option>18</option>'+
+                              '<option>19</option>'+
+                              '<option>20</option>'+
+                              '<option>21</option>'+
+                              '<option>22</option>'+
+                              '<option>23</option>'+
+                          '</select>'+
+                          '<label>：</label>'+
+                          '<select class="question'+value.Id+'" id="start_time_m'+value.Id+'" >'+
+                              '<option>00</option>'+
+                              '<option>30</option>'+                                         
+                          '</select>'+
+                          ' '+
+                          '<label>至</label>'+
+                          ' '+
+                          '<select class="question'+value.Id+'" id="end_time_h'+value.Id+'" >'+
+                              '<option>00</option>'+
+                              '<option>01</option>'+
+                              '<option>02</option>'+
+                              '<option>03</option>'+
+                              '<option>04</option>'+
+                              '<option>05</option>'+
+                              '<option>06</option>'+
+                              '<option>07</option>'+
+                              '<option>08</option>'+
+                              '<option>09</option>'+
+                              '<option>10</option>'+
+                              '<option>11</option>'+
+                              '<option>12</option>'+
+                              '<option>13</option>'+
+                              '<option>14</option>'+
+                              '<option>15</option>'+
+                              '<option>16</option>'+
+                              '<option>17</option>'+
+                              '<option>18</option>'+
+                              '<option>19</option>'+
+                              '<option>20</option>'+
+                              '<option>21</option>'+
+                              '<option>22</option>'+
+                              '<option>23</option>'+
+                          '</select>'+
+                          '<label>：</label>'+
+                          '<select class="question'+value.Id+'" id="end_time_m'+value.Id+'" >'+
+                              '<option>00</option>'+
+                              '<option>30</option>'+                                         
+                          '</select>'+
+                      '</td>' +
+                  '</tr>' +
+                  '<tr style="text-align:left">' +
+                      '<td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">課程內容</td>' +
+                      '<td style="">'+
+                      '<input id="content_detail'+value.Id+'" value="'+value.Training_name+'" type="text">' +
+                      '</td>' +
+                  '</tr>' +
+                  '<tr style="text-align:left">' +
+                      '<td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">在職訓練地點</td>' +
+                      '<td style="">'+
+                      '<input id="location_detail'+value.Id+'" value="'+value.Place+'" type="text">' +
+                      '</td>' +
+                  '</tr>' +
+                  '<tr style="text-align:left">' +
+                      '<td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;">備註</td>' +
+                      '<td >'+
+                          '<textarea class="question'+value.Id+'" style="height:150px;width:700px;resize: none;font-size: 20px;" name="remark" id="remark'+value.Id+'" placeholder="請輸入備註內容" >'+value.Remark+'</textarea>'+
+                      '</td>' +
+                  '</tr>' +
+                  '<tr>' +
+                      '<td colspan="2">'+
+                      '<div id="edit_div'+value.Id+'"><button style="font-size:20px" class="btn btn-default" onClick="edit('+value.Id+')">編輯</button></div>'+
+                      '<div id="after_edit'+value.Id+'" hidden><button id="save" style="font-size:20px" class="btn btn-default" onClick="update_add_face('+value.Id+')" hidden>修改</button>'+
+                      ' <button id="cancel_face" style="font-size:20px" class="btn btn-default" onClick="cancel_face('+value.Id+')" hidden>取消</button></div>'+
+                      '</td>'+
+                  '</tr>' +
+                  '</table>'+
+                  '</div>'+
+                  '</div>'+
+                  '</div>'+
+                  '</div>';
+
+              hometabcssString5 += '<li class="nav-item reservation_rec_tag" role="presentation">' +
+                      '<a class="nav-link" id="new-'+value.Id+'tab" data-toggle="pill" href="#resrectabx0'+value.Id+'" role="tab"  aria-selected="true">' +
+                      '<b>' + '在職紀錄'+ (parseInt(index)+1)  + '</b>' +
+                      '</a>' +
+                      '</li>';
+
+              Name_arr.push(value.Name);
+              Location_detail_arr.push(value.Location_detail);
+              Id_arr.push(value.Id);
+          });
+
+          
+          
+
+
+          $("#myTabContent").append('<br/>'+cssString5);
+
+          $("#train_rec_all").after(hometabcssString5);
+
+          $(".nav-link").click(function (e) {
+              e.preventDefault();
+              $(this).tab('show');
+          });
+
+          $.each(data,function(index,value){
+              $(".interview_date").eq(parseInt(index)).val(trans_to_Tw(value.Start_date));
+          });
+          
+          //測試封鎖選項
+          $.each(data,function(index,value){
+              $('.question'+value.Id+'').attr('disabled', true);
+          });
+          
+          
+          //用迴圈自動填入相應的值region
+          $.each(data,function(index,value){
+              append_user2($('#department1'+value.Id+'one_user'),$('#department2'+value.Id+'two_user')); 
+              $('#department1'+value.Id+'one_user').val(value.One_user_name);
+              $('#department2'+value.Id+'two_user').val(value.Two_user_name);
+              append_user3($('#'+value.Id+'one_user'));
+              append_user3($('#'+value.Id+'two_user'));
+          });
+          //endregion
+
+              function append_user2(one_user,two_user){             
+                  $.ajax({
+                      type:'POST',
+                      url:'database/find_check_user.php',
+                      dataType: "JSON",
+                      async: false,//啟用同步請求
+                      success: function (data) {
+                          for (var index in data.Id) {
+                              $(one_user).append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');    
+                              $(two_user).append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');                               
+                          }
+                      },
+                  });
+              }
+
+              function append_user3(user){             
+                  $.ajax({
+                      type:'POST',
+                      url:'database/find_check_user.php',
+                      dataType: "JSON",
+                      async: false,//啟用同步請求
+                      success: function (data) {
+                          for (var index in data.Id) {
+                              user.append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');                                   
+                          }
+                      },
+                  });
+              }
+             
+          //填入預約下拉開始結束時間region
+          $.each(data,function(index,value){
+              var s_ArrArr=[];
+              var e_ArrArr=[];
+              var s_date = value.Start_time;
+              var e_date = value.End_time;
+              s_Arr = s_date.split(":"); // 根据“-”分割
+              s_h = s_Arr[0];
+              s_m = s_Arr[1];
+//                console.log(value.Id);
+              e_Arr = e_date.split(":"); // 根据“-”分割
+              e_h = e_Arr[0];
+              e_m = e_Arr[1];
+              $('#start_time_h'+value.Id+'').val(s_h);
+              $('#start_time_m'+value.Id+'').val(s_m);
+              $('#end_time_h'+value.Id+'').val(e_h);
+              $('#end_time_m'+value.Id+'').val(e_m);
+          });
+          //endregion
+          
+          
+          check_radio_value_same(Name_arr,Location_detail_arr,Id_arr);
+
+      },
+      error:function(e){
+          // notyf.alert('伺服器錯誤,無法載入');
+          console.log(e)
+      }
+  });
+//endregion
+}
 
 //檢查監所服務訪談紀錄的必填欄位region
 function check_open_reservation_note_value_str() {

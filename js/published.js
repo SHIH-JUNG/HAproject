@@ -153,9 +153,9 @@ $.ajax({
     $.each(data, function (index, value) {
       var supervise_sign_arr = datatable_sign_show('supervise', value.Supervise, value.Supervise_signature, value.Supervise_sign_time, value.Supervise_sign_msg);
 
-      // var leader_sign_arr = datatable_sign_show('leader', value.Leader, value.Leader_signature, value.Leader_sign_time, value.Leader_sign_msg);
+      var leader_sign_arr = datatable_sign_show('leader', value.Leader, value.Leader_signature, value.Leader_sign_time, value.Leader_sign_msg);
 
-      // var director_sign_arr = datatable_sign_show('director', value.Director, value.Director_signature, value.Director_sign_time, value.Director_sign_msg);
+      var director_sign_arr = datatable_sign_show('director', value.Director, value.Director_signature, value.Director_sign_time, value.Director_sign_msg);
 
       var isUpload = '未上傳';
 
@@ -199,12 +199,12 @@ $.ajax({
         supervise_sign_arr[1] +
         "</td>" +
         '<td style="text-align:center">' +
-        // leader_sign_arr[0] +
-        // leader_sign_arr[1] +
+        leader_sign_arr[0] +
+        leader_sign_arr[1] +
         "</td>" +
         '<td style="text-align:center">' +
-        // director_sign_arr[0] +
-        // director_sign_arr[1] +
+        director_sign_arr[0] +
+        director_sign_arr[1] +
         "</td>" +
         "</tr>";
 
