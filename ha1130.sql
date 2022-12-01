@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2022-12-01 11:40:43
--- 伺服器版本： 10.4.27-MariaDB
--- PHP 版本： 8.0.25
+-- 產生時間： 2022-11-30 07:02:52
+-- 伺服器版本： 10.4.24-MariaDB
+-- PHP 版本： 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -40,7 +40,7 @@ CREATE TABLE `accounting_record` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime NOT NULL,
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- 傾印資料表的資料 `accounting_record`
@@ -75,7 +75,7 @@ CREATE TABLE `accounting_record_cash` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime DEFAULT current_timestamp(),
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- 傾印資料表的資料 `accounting_record_cash`
@@ -119,7 +119,7 @@ CREATE TABLE `accounting_record_cash_balance` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime DEFAULT current_timestamp(),
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- 傾印資料表的資料 `accounting_record_cash_balance`
@@ -151,7 +151,7 @@ CREATE TABLE `accounting_record_report` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime DEFAULT current_timestamp(),
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- 傾印資料表的資料 `accounting_record_report`
@@ -175,7 +175,7 @@ CREATE TABLE `announcement` (
   `authority` int(11) NOT NULL,
   `publisher` varchar(10) NOT NULL,
   `datetime` date NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- 傾印資料表的資料 `announcement`
@@ -213,7 +213,7 @@ CREATE TABLE `board_supervisor` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime NOT NULL,
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- 傾印資料表的資料 `board_supervisor`
@@ -246,7 +246,7 @@ CREATE TABLE `calendar` (
   `publisher` varchar(10) NOT NULL,
   `url` varchar(100) NOT NULL,
   `date` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- 傾印資料表的資料 `calendar`
@@ -321,7 +321,7 @@ CREATE TABLE `case_report` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime DEFAULT current_timestamp(),
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- 傾印資料表的資料 `case_report`
@@ -398,7 +398,7 @@ CREATE TABLE `closed` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime DEFAULT current_timestamp(),
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- 傾印資料表的資料 `closed`
@@ -462,7 +462,7 @@ CREATE TABLE `consult` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime DEFAULT current_timestamp(),
   `Update_name` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- 傾印資料表的資料 `consult`
@@ -540,7 +540,7 @@ CREATE TABLE `counsel` (
   `Create_name` varchar(30) DEFAULT current_timestamp(),
   `Update_date` datetime NOT NULL,
   `Update_name` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- 傾印資料表的資料 `counsel`
@@ -578,7 +578,7 @@ CREATE TABLE `counsel_visit` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime NOT NULL,
   `Update_name` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- 傾印資料表的資料 `counsel_visit`
@@ -630,7 +630,7 @@ CREATE TABLE `current_case` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime NOT NULL,
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- 傾印資料表的資料 `current_case`
@@ -671,7 +671,7 @@ CREATE TABLE `day_off` (
   `Job_agent_signature` varchar(500) NOT NULL,
   `Job_agent_sign_msg` varchar(2000) NOT NULL,
   `Job_agent_sign_time` varchar(54) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- 傾印資料表的資料 `day_off`
@@ -700,7 +700,7 @@ CREATE TABLE `day_off_hours_record` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime NOT NULL,
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -741,7 +741,7 @@ CREATE TABLE `dlgrec` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime DEFAULT current_timestamp(),
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- 傾印資料表的資料 `dlgrec`
@@ -773,7 +773,7 @@ CREATE TABLE `forms` (
   `answer` longtext NOT NULL,
   `file_path` varchar(1000) NOT NULL,
   `Health_rec` longtext NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- 傾印資料表的資料 `forms`
@@ -840,7 +840,7 @@ CREATE TABLE `form_all_info` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime NOT NULL,
   `Update_name` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- 傾印資料表的資料 `form_all_info`
@@ -920,7 +920,7 @@ CREATE TABLE `form_case_report` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime DEFAULT current_timestamp(),
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- 傾印資料表的資料 `form_case_report`
@@ -962,7 +962,7 @@ INSERT INTO `form_case_report` (`Id`, `Case_seqid`, `Case_id`, `Form_id`, `Form_
 CREATE TABLE `form_interlocution_queskeywords` (
   `Id` int(244) NOT NULL,
   `Ques_type` varchar(2000) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- 傾印資料表的資料 `form_interlocution_queskeywords`
@@ -989,28 +989,6 @@ INSERT INTO `form_interlocution_queskeywords` (`Id`, `Ques_type`) VALUES
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `leave_rule_table`
---
-
-CREATE TABLE `leave_rule_table` (
-  `Id` int(30) NOT NULL,
-  `Rule_table_json` longtext NOT NULL,
-  `Create_date` datetime NOT NULL,
-  `Create_name` varchar(30) NOT NULL,
-  `Update_date` datetime DEFAULT current_timestamp(),
-  `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- 傾印資料表的資料 `leave_rule_table`
---
-
-INSERT INTO `leave_rule_table` (`Id`, `Rule_table_json`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
-(1, '[\"3\",\"7\",\"10\",\"14\",\"14\",\"15\",\"15\",\"15\",\"15\",\"15\",\"16\",\"17\",\"18\",\"19\",\"20\",\"21\",\"22\",\"23\",\"24\",\"25\",\"26\",\"27\",\"28\",\"29\",\"30\",\"30\"]', '2022-12-01 10:13:54', 'jia', '2022-12-01 18:39:57', '社工員1');
-
--- --------------------------------------------------------
-
---
 -- 資料表結構 `login_record`
 --
 
@@ -1022,7 +1000,7 @@ CREATE TABLE `login_record` (
   `Login_name` varchar(30) NOT NULL,
   `Login_coordinate` varchar(100) NOT NULL,
   `Is_day_first` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- 傾印資料表的資料 `login_record`
@@ -1163,7 +1141,7 @@ CREATE TABLE `members_assemble` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime NOT NULL,
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- 傾印資料表的資料 `members_assemble`
@@ -1192,7 +1170,7 @@ CREATE TABLE `overtime` (
   `Update_date` date NOT NULL,
   `Update_name` varchar(100) NOT NULL,
   `Id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -1213,7 +1191,7 @@ CREATE TABLE `overtime_hours_record` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` int(11) NOT NULL,
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -1241,7 +1219,7 @@ CREATE TABLE `placement_case` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime NOT NULL,
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- 傾印資料表的資料 `placement_case`
@@ -1274,7 +1252,7 @@ CREATE TABLE `placement_forms` (
   `answer` longtext NOT NULL,
   `file_path` varchar(1000) NOT NULL,
   `Health_rec` longtext NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- 傾印資料表的資料 `placement_forms`
@@ -1309,7 +1287,7 @@ CREATE TABLE `placement_form_all_info` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime NOT NULL,
   `Update_name` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- 傾印資料表的資料 `placement_form_all_info`
@@ -1342,7 +1320,7 @@ CREATE TABLE `program_act` (
   `Create_name` varchar(300) NOT NULL,
   `Update_date` datetime NOT NULL,
   `Update_name` varchar(300) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- 傾印資料表的資料 `program_act`
@@ -1366,7 +1344,7 @@ CREATE TABLE `program_plan` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` date NOT NULL,
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- 傾印資料表的資料 `program_plan`
@@ -1407,7 +1385,7 @@ CREATE TABLE `published` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` date NOT NULL,
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- 傾印資料表的資料 `published`
@@ -1435,7 +1413,7 @@ CREATE TABLE `published_form` (
   `Upload_name` varchar(30) NOT NULL,
   `Update_date` datetime NOT NULL,
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -1445,31 +1423,31 @@ CREATE TABLE `published_form` (
 
 CREATE TABLE `received` (
   `Id` int(255) NOT NULL,
-  `Year` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `Title_name` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Year` varchar(300) CHARACTER SET utf8mb4 NOT NULL,
+  `Title_name` varchar(300) CHARACTER SET utf8mb4 NOT NULL,
   `Received_date` varchar(30) NOT NULL,
-  `Subject` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `Unit` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Subject` varchar(300) CHARACTER SET utf8mb4 NOT NULL,
+  `Unit` varchar(300) CHARACTER SET utf8mb4 NOT NULL,
   `Num_receive` varchar(1000) NOT NULL,
   `Upload_name` varchar(500) NOT NULL,
   `Upload_path` varchar(2000) NOT NULL,
   `Create_date` date NOT NULL,
-  `Create_name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Create_name` varchar(30) CHARACTER SET utf8mb4 NOT NULL,
   `Update_date` date NOT NULL,
-  `Update_name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `Supervise` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `Supervise_signature` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `Supervise_sign_msg` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `Supervise_sign_time` varchar(54) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `Leader` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `Leader_signature` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `Leader_sign_msg` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `Leader_sign_time` varchar(54) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `Director` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `Director_signature` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `Director_sign_msg` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `Director_sign_time` varchar(54) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `Update_name` varchar(30) CHARACTER SET utf8mb4 NOT NULL,
+  `Supervise` varchar(30) CHARACTER SET utf8mb4 NOT NULL,
+  `Supervise_signature` varchar(500) CHARACTER SET utf8mb4 NOT NULL,
+  `Supervise_sign_msg` varchar(2000) CHARACTER SET utf8mb4 NOT NULL,
+  `Supervise_sign_time` varchar(54) CHARACTER SET utf8mb4 NOT NULL,
+  `Leader` varchar(30) CHARACTER SET utf8mb4 NOT NULL,
+  `Leader_signature` varchar(500) CHARACTER SET utf8mb4 NOT NULL,
+  `Leader_sign_msg` varchar(2000) CHARACTER SET utf8mb4 NOT NULL,
+  `Leader_sign_time` varchar(54) CHARACTER SET utf8mb4 NOT NULL,
+  `Director` varchar(30) CHARACTER SET utf8mb4 NOT NULL,
+  `Director_signature` varchar(500) CHARACTER SET utf8mb4 NOT NULL,
+  `Director_sign_msg` varchar(2000) CHARACTER SET utf8mb4 NOT NULL,
+  `Director_sign_time` varchar(54) CHARACTER SET utf8mb4 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- 傾印資料表的資料 `received`
@@ -1499,7 +1477,7 @@ CREATE TABLE `received_forms` (
   `Upload_name` varchar(30) NOT NULL,
   `Update_date` datetime NOT NULL,
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -1525,7 +1503,7 @@ CREATE TABLE `resume` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime DEFAULT current_timestamp(),
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- 傾印資料表的資料 `resume`
@@ -1553,7 +1531,7 @@ CREATE TABLE `resume_forms` (
   `Upload_name` varchar(30) NOT NULL,
   `Update_date` datetime DEFAULT current_timestamp(),
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- 傾印資料表的資料 `resume_forms`
@@ -1601,7 +1579,7 @@ CREATE TABLE `screening` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime NOT NULL,
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- 傾印資料表的資料 `screening`
@@ -1625,7 +1603,7 @@ INSERT INTO `screening` (`Id`, `Screening_id`, `Reservation_date`, `Reservation_
 CREATE TABLE `screening_result_keywords` (
   `Id` int(100) NOT NULL,
   `screening_result` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- 傾印資料表的資料 `screening_result_keywords`
@@ -1649,7 +1627,7 @@ INSERT INTO `screening_result_keywords` (`Id`, `screening_result`) VALUES
 CREATE TABLE `screening_type_keywords` (
   `Id` int(100) NOT NULL,
   `screening_type` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- 傾印資料表的資料 `screening_type_keywords`
@@ -1682,7 +1660,7 @@ CREATE TABLE `signature_notice` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime DEFAULT current_timestamp(),
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- 傾印資料表的資料 `signature_notice`
@@ -1721,7 +1699,7 @@ CREATE TABLE `sign_notice` (
   `person` varchar(10) NOT NULL,
   `datetime` varchar(16) NOT NULL,
   `authority_name` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- 傾印資料表的資料 `sign_notice`
@@ -1795,7 +1773,7 @@ CREATE TABLE `supervisor_record` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime NOT NULL,
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- 傾印資料表的資料 `supervisor_record`
@@ -1841,7 +1819,7 @@ CREATE TABLE `training` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` date NOT NULL,
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- 傾印資料表的資料 `training`
@@ -1861,7 +1839,7 @@ CREATE TABLE `tw_counties` (
   `Id` int(20) NOT NULL,
   `Area` varchar(30) NOT NULL,
   `Counties_Cities` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- 傾印資料表的資料 `tw_counties`
@@ -1911,7 +1889,7 @@ CREATE TABLE `user_info` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime DEFAULT current_timestamp(),
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- 傾印資料表的資料 `user_info`
@@ -1962,7 +1940,7 @@ CREATE TABLE `volunteer` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime NOT NULL,
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- 傾印資料表的資料 `volunteer`
@@ -1996,7 +1974,7 @@ CREATE TABLE `volunteer_hours_record` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime NOT NULL,
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- 傾印資料表的資料 `volunteer_hours_record`
@@ -2051,7 +2029,7 @@ CREATE TABLE `volunteer_meeting` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime DEFAULT current_timestamp(),
   `Update_name` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- 傾印資料表的資料 `volunteer_meeting`
@@ -2170,12 +2148,6 @@ ALTER TABLE `form_case_report`
 -- 資料表索引 `form_interlocution_queskeywords`
 --
 ALTER TABLE `form_interlocution_queskeywords`
-  ADD PRIMARY KEY (`Id`);
-
---
--- 資料表索引 `leave_rule_table`
---
-ALTER TABLE `leave_rule_table`
   ADD PRIMARY KEY (`Id`);
 
 --
@@ -2445,12 +2417,6 @@ ALTER TABLE `form_case_report`
 --
 ALTER TABLE `form_interlocution_queskeywords`
   MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
-
---
--- 使用資料表自動遞增(AUTO_INCREMENT) `leave_rule_table`
---
-ALTER TABLE `leave_rule_table`
-  MODIFY `Id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `login_record`

@@ -43,6 +43,10 @@
                             <a href="overtime.php">加班系統
                             </a>
                         </li>
+                        <li>
+                            <a href="leave_rule_table.php">特休規則管理
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <li>
