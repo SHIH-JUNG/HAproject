@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2022-12-01 11:40:43
+-- 產生時間： 2022-12-27 03:05:20
 -- 伺服器版本： 10.4.27-MariaDB
 -- PHP 版本： 8.0.25
 
@@ -1141,7 +1141,9 @@ INSERT INTO `login_record` (`Id`, `Login_timestamp`, `Login_account`, `Login_aut
 (124, '2022-11-18 13:15:01', 'text1', '1', 'jia', '22.6478996,120.6119327', 1),
 (125, '2022-11-18 17:35:38', 'text1', '1', '社工員1', '22.6479185,120.6119187', 0),
 (126, '2022-11-24 10:03:32', 'text1', '1', '社工員1', '22.98133,120.2224227', 1),
-(127, '2022-11-30 13:37:44', 'test5', '3', '園主任', '22.6478894,120.61194', 1);
+(127, '2022-11-30 13:37:44', 'test5', '3', '園主任', '22.6478894,120.61194', 1),
+(128, '2022-12-01 18:45:38', 'text1', '1', '社工員1', '22.6699,120.5806', 1),
+(129, '2022-12-27 08:54:25', 'text1', '1', '社工員1', '22.6699,120.5806', 1);
 
 -- --------------------------------------------------------
 
@@ -1515,6 +1517,11 @@ CREATE TABLE `resume` (
   `Entry_date` varchar(100) NOT NULL,
   `On_or_off` varchar(10) NOT NULL,
   `Resigned_date` varchar(100) DEFAULT NULL,
+  `Seniority` float NOT NULL,
+  `Annual_hours` float NOT NULL,
+  `Leave_hours` float NOT NULL,
+  `Overtime_hours` float NOT NULL,
+  `Comp_hours` float NOT NULL,
   `Resume_datas_date` date DEFAULT NULL,
   `Employment_contract_date` date DEFAULT NULL,
   `NDA_file_date` date DEFAULT NULL,
@@ -1531,9 +1538,9 @@ CREATE TABLE `resume` (
 -- 傾印資料表的資料 `resume`
 --
 
-INSERT INTO `resume` (`Id`, `Account_id`, `Account`, `Name`, `Entry_date`, `On_or_off`, `Resigned_date`, `Resume_datas_date`, `Employment_contract_date`, `NDA_file_date`, `Diploma_date`, `PA_file_date`, `Remark`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
-(1, 25, 'testuser', 'jia', '111年09月08日', '是', '111年11月02日', '2022-09-29', '2022-10-02', '2022-09-29', '2022-09-29', '2022-10-02', 'test0908', '2022-09-29 17:47:27', '園主任', '2022-11-16 10:10:29', '社工員1'),
-(2, 26, 'test01', 'test001', '111年10月12日', '是', NULL, '2022-10-12', '2022-10-12', '2022-10-12', '2022-10-12', '2022-10-12', '無，測試', '2022-10-12 14:17:44', '花花', '2022-10-12 14:18:16', '花花');
+INSERT INTO `resume` (`Id`, `Account_id`, `Account`, `Name`, `Entry_date`, `On_or_off`, `Resigned_date`, `Seniority`, `Annual_hours`, `Leave_hours`, `Overtime_hours`, `Comp_hours`, `Resume_datas_date`, `Employment_contract_date`, `NDA_file_date`, `Diploma_date`, `PA_file_date`, `Remark`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
+(1, 25, 'testuser', 'jia', '111年09月08日', '是', '111年11月02日', 0, 0, 0, 0, 0, '2022-09-29', '2022-10-02', '2022-09-29', '2022-09-29', '2022-10-02', 'test0908', '2022-09-29 17:47:27', '園主任', '2022-11-16 10:10:29', '社工員1'),
+(2, 26, 'test01', 'test001', '111年10月12日', '是', NULL, 0, 0, 0, 0, 0, '2022-10-12', '2022-10-12', '2022-10-12', '2022-10-12', '2022-10-12', '無，測試', '2022-10-12 14:17:44', '花花', '2022-10-12 14:18:16', '花花');
 
 -- --------------------------------------------------------
 
@@ -2456,7 +2463,7 @@ ALTER TABLE `leave_rule_table`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `login_record`
 --
 ALTER TABLE `login_record`
-  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=128;
+  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=130;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `members_assemble`
