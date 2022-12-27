@@ -8,6 +8,8 @@ include("sql_connect.php");
 @$Name = $_REQUEST['Name'];
 @$Password = $_REQUEST['Password'];
 @$Email = $_REQUEST['Email'];
+@$Seniority = $_REQUEST['Seniority'];
+@$Annual_hours = $_REQUEST['Annual_hours'];
 @$Entry_date = $_REQUEST['Entry_date'];
 @$On_or_off = $_REQUEST['On_or_off'];
 @$Remark = $_REQUEST['Remark'];
@@ -143,14 +145,17 @@ if (isset($_FILES["resume_files2"]))
 
 $file_sqls = $file_sql_0.$file_sql_1.$file_sql_2;
 
-
+$Remark_seniority = "員工建檔新增預設補修時數：".$Annual_hours."小時。";
 
 
 $sql = "INSERT INTO `resume` (`Id`, `Account_id`, `Account`, `Name`, `Entry_date`
 , `On_or_off`
-, `Resume_datas_date`, `NDA_file_date`, `Diploma_date`
+, `Seniority`, `Annual_hours`
+, `Resume_datas_date`
+, `NDA_file_date`, `Diploma_date`
 , `Remark`, `Create_date`, `Create_name`) VALUES 
     ($resume_seq_id, $user_info_id, '$Account', '$Name', '$Entry_date', '$On_or_off'
+    , '$Seniority', '$Annual_hours'
     , '$file_0_date', '$file_1_date', '$file_2_date', '$Remark', NOW(), '$user');";
 
 $sql.=$file_sqls;
@@ -159,6 +164,12 @@ $sql .= "INSERT INTO `user_info` (`Id`, `Resume_id`, `Account`, `Password`, `Nam
 , `Authority`, `Create_date`, `Create_name`) VALUES 
     ($user_info_id, $resume_seq_id, '$Account', '$Password', '$Name'
     , 1, NOW(), '$user');";
+
+$sql .= "INSERT INTO `resume_seniority` (`Resume_id`, `Entry_date`, `Seniority_num`, `Rec_year`
+, `Type`, `Annual_default`, `Remark`, `Create_date`, `Create_name`) VALUES 
+    ($resume_seq_id, '$Entry_date', '$Seniority', '$File_year'
+    , 'Annual_default', '$Annual_hours', '$Remark_seniority'
+    , NOW(), '$user');";
 
 
 

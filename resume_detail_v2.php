@@ -201,6 +201,46 @@
                                                                         </td>
                                                                     </tr>
                                                                     <tr style="text-align:left">
+                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">年資(單位：年)</td>
+                                                                        <td style="border-bottom: solid 1px;">
+                                                                            <div class="form-group col-sm-4">
+                                                                                <input id="seniority_num" type="text" disabled="disabled">
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr style="text-align:left">
+                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">總特休時數</td>
+                                                                        <td style="border-bottom: solid 1px;">
+                                                                            <div class="form-group col-sm-12">
+                                                                                <input id="annual_hours" type="text" disabled="disabled"><button style="margin:.5em;margin-left:3em;color:red;" type="button" id="update_annual_hours_btn" data-toggle="modal" data-target="#myModal">修改時數</button>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr style="text-align:left">
+                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">總請假時數</td>
+                                                                        <td style="border-bottom: solid 1px;">
+                                                                            <div class="form-group col-sm-4">
+                                                                                <input id="leave_hours" type="text" disabled="disabled">
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr style="text-align:left">
+                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">總加班時數</td>
+                                                                        <td style="border-bottom: solid 1px;">
+                                                                            <div class="form-group col-sm-4">
+                                                                                <input id="overtime_hours" type="text" disabled="disabled">
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr style="text-align:left">
+                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">可補休時數</td>
+                                                                        <td style="border-bottom: solid 1px;">
+                                                                            <div class="form-group col-sm-4">
+                                                                                <input id="comp_hours" type="text" disabled="disabled">
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr style="text-align:left">
                                                                         <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">履歷表檔案</td>
                                                                         <td style="border-bottom: solid 1px;">
                                                                             <div class="col-sm-8">
@@ -305,6 +345,38 @@
         </div>
     </div>
 
+    <!--\ Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel" class="update_hours_board">特休時數修改</h4>
+                </div>
+                <div class="modal-body">
+                    <table id="add_hours_board" style="width:auto;margin:0 auto;" class="table table-bordered">
+                        <tr style="text-align:left">
+                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>特休時數</td>
+                            <td style="border-bottom: solid 1px;">
+                                <input id="update_hours" type="number" step="0.01">
+                            </td>
+                        </tr>
+                        <tr style="text-align:left">
+                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">備註</td>
+                            <td style="border-bottom: solid 1px;">
+                                <textarea style="width:100%;resize: none;font-size: 20px;min-height:10em;" id="update_hours_remark"></textarea>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" onclick="update_annual_hours();">修改時數</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal /-->
+
     <!-- /#wrapper -->
     <!-- JavaScript -->
     <!-- Bootstrap and jQuery -->
@@ -337,6 +409,10 @@
     <!-- 日期民國-->
     <script src="javascript/jquery-ui.min.js"></script>
     <script src="javascript/datepickerTw2.js"></script>
+    <script>
+        //設定js變數抓取使用者權限
+        var authority_level = '<?php echo $_SESSION["authority"]; ?>';
+    </script>
     <!-- ================== detail ================== -->
     <script type="text/javascript" src="js/resume_detail_v2.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
 

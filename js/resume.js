@@ -180,6 +180,14 @@ $.ajax({
 
     $.each(data, function (index, value) {
 
+      if(value.Resigned_date == null)
+      {
+        var resigned_date = "-";
+      }
+      else
+      {
+        var resigned_date = value.Resigned_date;
+      }
     
       cssString +=
         '<tr id="' + value.Id + '">' +
@@ -199,7 +207,7 @@ $.ajax({
             value.On_or_off +
           '</td>' +
           '<td style="text-align:center">' +
-            value.Resigned_date +
+            resigned_date +
           '</td>' +
           '<td style="text-align:center">' +
             file_showing_format_trans(value.Resume_datas_date, 1) +

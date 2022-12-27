@@ -212,6 +212,15 @@ function load_resume_datas() {
                 $("#account").text(value.Account);
                 $("#user_name").val(value.Name);
                 $("#entry_date").val(value.Entry_date);
+
+                $("#seniority_num").val(value.Seniority);
+                $("#annual_hours").val(value.Annual_hours);
+                $("#leave_hours").val(value.Leave_hours);
+                $("#overtime_hours").val(value.Overtime_hours);
+                $("#comp_hours").val(value.Comp_hours);
+
+                $("#update_hours").val(value.Annual_hours);
+
                 $("#resigned_date").val(value.Resigned_date);
                 $("#on_or_off").val(value.On_or_off);
                 $("#remark").val(value.Remark);
@@ -591,6 +600,28 @@ get_files_name_value = function() {
    return file_name;
   }
 // endregion
+
+update_annual_hours = function() {
+  
+  if(authority_level >= 2)
+  {
+    
+  }
+  else
+  {
+    swal({
+      title: '您沒有權限執行此動作',
+      text: "請洽管理員獲取對應權限",
+      type: 'warning',
+      showCancelButton: false,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      allowOutsideClick: false, //不可點背景關閉
+      confirmButtonText: '確認'
+    })
+  }
+
+}
 
 
 //預約表格鎖定控制region
