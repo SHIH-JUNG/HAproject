@@ -356,9 +356,16 @@
                 <div class="modal-body">
                     <table id="add_hours_board" style="width:auto;margin:0 auto;" class="table table-bordered">
                         <tr style="text-align:left">
-                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>特休時數</td>
+                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">原來特休時數</td>
+                            <td style="border-bottom: solid 1px;">
+                                <input id="update_origin_hours" type="number" step="0.01" disabled="disabled">
+                            </td>
+                        </tr>
+                        <tr style="text-align:left">
+                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>新增/減少時數</td>
                             <td style="border-bottom: solid 1px;">
                                 <input id="update_hours" type="number" step="0.01">
+                                <div id="update_hours_hit" style="color:red;"></div>
                             </td>
                         </tr>
                         <tr style="text-align:left">
@@ -370,6 +377,7 @@
                     </table>
                 </div>
                 <div class="modal-footer">
+                    <button type="button" class="btn btn-default" onclick="location.reload();">重置</button>
                     <button type="button" class="btn btn-default" onclick="update_annual_hours();">修改時數</button>
                 </div>
             </div>
@@ -399,6 +407,8 @@
     <script src="javascript/sweetalert2/core-js.js"></script>
     <!-- ================== 登出設定 ================== -->
     <script src='js/logout.js'></script>
+    <!-- ================== moment ================== -->
+    <script src='javascript/moment2.29.0.min.js'></script>
     <!-- ================== table ================== -->
     <script src="javascript/bootstrap1.18.0-table.min.js"></script>
     <script src="javascript/bootstrap-table1.11.1-zh-TW.min.js"></script>

@@ -16,12 +16,13 @@ datepicker_create = function (selector_id) {
       currentText: "今天",
       dateFormat: "R年mm月dd日",
       showButtonPanel: true,
-      minDate: new Date(
-        new Date().getFullYear() - 2,
-        new Date().getMonth() - 3,
-        1
-      ),
-      maxDate: new Date(new Date().getFullYear() + 3, 11, 31),
+      // minDate: new Date(
+      //   new Date().getFullYear() - 2,
+      //   new Date().getMonth() - 3,
+      //   1
+      // ),
+      // maxDate: new Date(new Date().getFullYear() + 3, 11, 31),
+      yearRange: "-15:+2",
       onClose: function (dateText) {
         // console.log($('#'+selector_id).val());
         // console.log(trans_to_EN(dateText));
@@ -56,6 +57,20 @@ datepicker_create = function (selector_id) {
 function split_date(date) {
   return parseInt(date.split("年")[0])+1911+"-"+date.split("年")[1].split("月")[0]+"-"+date.split("年")[1].split("月")[1].split("日")[0]; 
 }
+//endregion
+
+// 計算年資 (今天-到職日) region
+let DateDifference = function (date1, date2) { // date1 和 date2 是 2016-06-18 格式
+  // console.log(date1)
+  // console.log(date2)
+  let strDate, oDate1, oDate2, result
+  strDate = date1.split("-");
+  oDate1 = new Date(strDate[1] + '-' + strDate[2] + '-' + strDate[0]);
+  strDate = date2.split("-");
+  oDate2 = new Date(strDate[1] + '-' + strDate[2] + '-' + strDate[0]);
+  result = parseFloat(Math.abs(oDate1 - oDate2) / 1000 / 60 / 60 / 24 / 365).toFixed(2); // 把相差的毫秒數轉換為天數
+  return result;
+};
 //endregion
 
 //將日期轉為民國年格式111年03月07日 region
@@ -99,8 +114,33 @@ $(document).ready(function () {
 
     load_resume_datas();
 
+    $("#update_hours").val(0);
+
+    calculate_annual_hours_diff();
+
 });
 
+calculate_annual_hours_diff = function() {
+    var origin_hours = $("#update_origin_hours").attr("origin_num");
+
+    var diff_hours = $("#update_hours").val();
+
+    var updated_hours = (parseFloat(origin_hours) +  parseFloat(diff_hours)).toFixed(1);
+
+    if(isNaN(updated_hours))
+    {
+      $("#update_hours_hit").html("請輸入合法數字");
+    }
+    else
+    {
+      $("#update_hours_hit").html("");
+      $("#update_origin_hours").val(updated_hours);
+    }
+}
+
+$('#update_hours').on('keyup', function() {
+  calculate_annual_hours_diff();
+}); 
 
 function load_files() {
     $.ajax({
@@ -219,7 +259,8 @@ function load_resume_datas() {
                 $("#overtime_hours").val(value.Overtime_hours);
                 $("#comp_hours").val(value.Comp_hours);
 
-                $("#update_hours").val(value.Annual_hours);
+                $("#update_origin_hours").val(value.Annual_hours);
+                $("#update_origin_hours").attr("origin_num", value.Annual_hours)
 
                 $("#resigned_date").val(value.Resigned_date);
                 $("#on_or_off").val(value.On_or_off);
@@ -364,13 +405,63 @@ resume_update = function() {
         });
         var form_data = new FormData();
 
-        var entry_date_year_split = $("#entry_date").val().split("年");
+        // var entry_date_year_split = $("#entry_date").val().split("年");
+        var file_year = parseInt(new Date().getFullYear()) - 1911;
 
         // console.log(file_name)
 
         // var get_resume_files = get_files_name_value();
 
         // var no_file_arr = [];
+
+        var seniority_num =  parseFloat(DateDifference(moment().format('YYYY-MM-DD'), split_date($("#entry_date").val())));
+
+        var annual_default_hours = 0;
+
+        // console.log( typeof seniority_num)
+        // console.log(seniority_num)
+
+        // 依據年資算出特休天數 region
+        $.ajax({
+          url: "database/find_leave_rule_table.php",
+          type: "POST",
+          dataType: "JSON",
+          async: false,
+          success: function (data) {
+              // console.log(data);
+
+              var leave_rule_arr = data[0].Rule_table_json.replace("\[","").replace("\]","").split(",");
+
+              $.each(leave_rule_arr, function (index, value) {
+
+                // 預設未滿六個月特休為0天
+                if(seniority_num < 0.5)
+                {
+                  annual_default_hours = 0.0;
+                }
+                else if(parseInt(seniority_num) == index)
+                {
+                  num = value.replace("\"", "").replace("\"", "");
+
+                  annual_default_hours = parseFloat(num).toFixed(1);
+                }
+                  
+              });
+          },
+          error: function (e) {
+              swal({
+              type: "error",
+              title: "系統錯誤!請聯絡負責人",
+              allowOutsideClick: false, //不可點背景關閉
+              }).then(function () {
+              history.back();
+              });
+          },
+        });
+        //endregion
+
+        // 將特休天數轉為時數單位
+        annual_default_hours = parseFloat(annual_default_hours * 24).toFixed(1);
 
         $("input.resume_question[type='file']").each(function(index, element) {
             var resume_files = $(this).prop("files");
@@ -402,8 +493,10 @@ resume_update = function() {
         form_data.append("Entry_date", $("#entry_date").val());
         form_data.append("Resigned_date", $("#resigned_date").val());
         form_data.append("On_or_off",$("#on_or_off").val());
+        form_data.append("Seniority", seniority_num);
+        form_data.append("Annual_hours", annual_default_hours);
         form_data.append("Remark",$("#remark").val());
-        form_data.append("File_year",entry_date_year_split[0]);
+        form_data.append("File_year",file_year);
 
         // 預覽傳到後端的資料詳細內容
         // for (var pair of form_data.entries()) {

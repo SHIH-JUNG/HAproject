@@ -10,6 +10,10 @@ $Resume_id = $_REQUEST['Resume_id'];
 @$Entry_date = $_REQUEST['Entry_date'];
 @$Resigned_date = $_REQUEST['Resigned_date'];
 @$On_or_off = $_REQUEST['On_or_off'];
+
+@$Seniority = $_REQUEST['Seniority'];
+@$Annual_hours = $_REQUEST['Annual_hours'];
+
 @$Remark = $_REQUEST['Remark'];
 @$File_year = $_REQUEST['File_year'];
 
@@ -73,7 +77,7 @@ if (isset($_FILES["resume_files0"]))
         @$file_sql_0 = "UPDATE `resume_forms` SET `File_year` = '$file_0_year',
         `File_path` = '$file_0',
         `Remark` = '$Remark', `Update_date` = '$file_0_date', `Update_name` = '$user'
-        WHERE `Resume_id` = '$Resume_id' AND `File_type` = 'file_A' AND  `File_year` = '$File_year';";
+        WHERE `Resume_id` = '$Resume_id' AND `File_type` = 'file_A';";
     }
     else
     {
@@ -118,7 +122,7 @@ if (isset($_FILES["resume_files1"]))
         @$file_sql_1 = "UPDATE `resume_forms` SET `File_year` = '$file_1_year',
         `File_path` = '$file_1',
         `Remark` = '$Remark', `Update_date` = '$file_1_date', `Update_name` = '$user'
-        WHERE `Resume_id` = '$Resume_id' AND `File_type` = 'file_C' AND  `File_year` = '$File_year';";
+        WHERE `Resume_id` = '$Resume_id' AND `File_type` = 'file_C';";
     }
     else
     {
@@ -163,7 +167,7 @@ if (isset($_FILES["resume_files2"]))
         @$file_sql_2 = "UPDATE `resume_forms` SET `File_year` = '$file_2_year',
         `File_path` = '$file_2',
         `Remark` = '$Remark', `Update_date` = '$file_2_date', `Update_name` = '$user'
-        WHERE `Resume_id` = '$Resume_id' AND `File_type` = 'file_D' AND  `File_year` = '$File_year';";
+        WHERE `Resume_id` = '$Resume_id' AND `File_type` = 'file_D';";
     }
     else
     {
@@ -180,16 +184,17 @@ if (isset($_FILES["resume_files2"]))
 
 $file_sqls = $file_sql_0.$file_sql_1.$file_sql_2;
 
+$Remark_seniority = "員工建檔修改預設補修時數：".$Annual_hours."小時。";
 
 
 
-$sql = "UPDATE `resume` SET `Name` = '$Name', `Entry_date`='$Entry_date', `On_or_off`= '$On_or_off', `Resigned_date` = '$Resigned_date',".$file_sqls_date_update." `Remark` = '$Remark', `Update_date` = NOW(), `Update_name` = '$user' WHERE `Id` = '$Resume_id';";
+$sql = "UPDATE `resume` SET `Name` = '$Name', `Entry_date`='$Entry_date', `On_or_off`='$On_or_off', `Resigned_date` = '$Resigned_date', `Seniority`= '$Seniority', `Annual_hours`= '$Annual_hours',".$file_sqls_date_update." `Remark` = '$Remark', `Update_date` = NOW(), `Update_name` = '$user' WHERE `Id` = '$Resume_id';";
 
-$sql .= "UPDATE `user_info` SET `Name` = '$Name', `Update_date` = NOW(), `Update_name` = '$user' WHERE `Id` = '$Resume_id';";
+$sql .= "UPDATE `user_info` SET `Name` = '$Name', `Update_date` = NOW(), `Update_name` = '$user' WHERE `Resume_id` = '$Resume_id';";
+
+$sql .= "UPDATE `resume_seniority` SET `Seniority_num`= '$Seniority', `Rec_year`= '$File_year', `Annual_default`= '$Annual_hours', `Remark`= '$Remark_seniority', `Update_date` = NOW(), `Update_name` = '$user' WHERE `Resume_id` = '$Resume_id' AND `Type` = 'Annual_default';";
 
 $sql.=$file_sqls;
-
-
 
 
 if (mysqli_multi_query($conn, $sql)) {

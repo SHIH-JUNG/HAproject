@@ -165,9 +165,9 @@ $sql .= "INSERT INTO `user_info` (`Id`, `Resume_id`, `Account`, `Password`, `Nam
     ($user_info_id, $resume_seq_id, '$Account', '$Password', '$Name'
     , 1, NOW(), '$user');";
 
-$sql .= "INSERT INTO `resume_seniority` (`Resume_id`, `Entry_date`, `Seniority_num`, `Rec_year`
+$sql .= "INSERT INTO `resume_seniority` (`Resume_id`, `Seniority_num`, `Rec_year`
 , `Type`, `Annual_default`, `Remark`, `Create_date`, `Create_name`) VALUES 
-    ($resume_seq_id, '$Entry_date', '$Seniority', '$File_year'
+    ($resume_seq_id, '$Seniority', '$File_year'
     , 'Annual_default', '$Annual_hours', '$Remark_seniority'
     , NOW(), '$user');";
 

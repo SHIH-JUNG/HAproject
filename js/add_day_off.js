@@ -1,3 +1,5 @@
+const notyf = new Notyf();
+
 //取得url id值region
 function getUrlVars() {
   var vars = {};
@@ -13,101 +15,53 @@ function getUrlVars() {
 
 //datepicker創建 region
 datepicker_create = function (selector_id) {
-  if (selector_id == "birth") {
-    $("#" + selector_id).datepicker({
-      changeYear: true,
-      changeMonth: true,
-      currentText: "今天",
-      dateFormat: "R.mm.dd",
-      showButtonPanel: true,
-      yearRange: "-109:+0",
-      onClose: function (dateText) {
-        console.log($("#" + selector_id).val());
-        console.log(trans_to_EN(dateText));
-      },
-      beforeShow: function (input, inst) {
-        var $this = $(this);
-        var cal = inst.dpDiv;
-        var outerh = $this.outerHeight();
-        if ($this.offset().top > 1200) {
-          outerh = outerh * 4;
-        } else {
-          outerh = outerh * 3;
-        }
-        // console.log($this.offset().top)
-        // console.log(outerh)
+  $("#" + selector_id).datepicker({
+    changeYear: true,
+    changeMonth: true,
+    currentText: "今天",
+    dateFormat: "R年mm月dd日",
+    showButtonPanel: true,
+    // minDate: new Date(
+    //   new Date().getFullYear() - 2,
+    //   new Date().getMonth() - 3,
+    //   1
+    // ),
+    // maxDate: new Date(new Date().getFullYear() + 3, 11, 31),
+    yearRange: "-15:+2",
+    onClose: function (dateText) {
+      // console.log($('#'+selector_id).val());
+      // console.log(trans_to_EN(dateText));
+    },
+    beforeShow: function (input, inst) {
+      var $this = $(this);
+      var cal = inst.dpDiv;
+      var outerh = $this.outerHeight();
+      if ($this.offset().top > 1200) {
+        outerh = outerh * 4;
+      } else {
+        outerh = outerh * 3;
+      }
+      // console.log($this.offset().top)
+      // console.log(outerh)
 
-        var top = $this.offset().top - outerh;
-        var left = $this.offset().left - 10;
-        setTimeout(function () {
-          cal.css({
-            top: top,
-            left: left,
-          });
-        }, 10);
-      },
-    });
-  } else {
-    $("#" + selector_id).datepicker({
-      changeYear: true,
-      changeMonth: true,
-      currentText: "今天",
-      dateFormat: "R.mm.dd",
-      showButtonPanel: true,
-      minDate: new Date(new Date().getFullYear(), new Date().getMonth() - 3, 1),
-      maxDate: new Date(new Date().getFullYear() + 3, 11, 31),
-      onClose: function (dateText) {
-        // console.log($('#'+selector_id).val());
-        // console.log(trans_to_EN(dateText));
-      },
-      beforeShow: function (input, inst) {
-        var $this = $(this);
-        var cal = inst.dpDiv;
-        var outerh = $this.outerHeight();
-        if ($this.offset().top > 1200) {
-          outerh = outerh * 4;
-        } else {
-          outerh = outerh * 3;
-        }
-        // console.log($this.offset().top)
-        // console.log(outerh)
-
-        var top = $this.offset().top - outerh;
-        var left = $this.offset().left - 10;
-        setTimeout(function () {
-          cal.css({
-            top: top,
-            left: left,
-          });
-        }, 10);
-      },
-    });
-  }
+      var top = $this.offset().top - outerh;
+      var left = $this.offset().left - 10;
+      setTimeout(function () {
+        cal.css({
+          top: top,
+          left: left,
+        });
+      }, 10);
+    },
+  });
+  $("#leave_date").datepicker("setDate", "today");
 };
 //endregion
 
-//將日期轉為民國年格式111.03.07 region
-trans_to_Tw = function (endate) {
-  var strAry = endate.split(".");
-
-  if (parseInt(strAry[0]) > 1911) {
-    strAry[0] = parseInt(strAry[0]) - 1911;
-  }
-
-  return strAry.join(".");
-};
-//endregion
-
-//將日期轉為西元年格式2022-03-07(mysql date格式) region
-trans_to_EN = function (endate) {
-  var strAry = endate.split(".");
-
-  if (parseInt(strAry[0]) < 1911) {
-    strAry[0] = parseInt(strAry[0]) + 1911;
-  }
-
-  return strAry.join("-");
-};
+// 民國年轉換日期格式yyyy-dd-mm region
+function split_date(date) {
+  return parseInt(date.split("年")[0])+1911+"-"+date.split("年")[1].split("月")[0]+"-"+date.split("年")[1].split("月")[1].split("日")[0]; 
+}
 //endregion
 
 $(document).ready(function () {
@@ -117,7 +71,38 @@ $(document).ready(function () {
     datepicker_create(this_id);
   });
   //endregion
+
+  //顯示剩餘可補休的時數
+  load_remain_hours();
 });
+
+load_remain_hours = function() {
+
+  window.r_annual_hours = 0;
+  window.r_comp_hours = 0;
+
+
+  $.ajax({
+    url: "database/find_day_off_remain_hours.php",
+    type: "POST",
+    dataType: "JSON",
+    async: false,//啟用同步請求
+    success: function (data) {
+      r_annual_hours = data[0].Annual_hours;
+      
+
+    },
+    error:function(e){
+        notyf.alert('伺服器錯誤,無法載入');
+        console.log(e)
+    }
+});
+
+
+  $("#offset_hours_hit").html();
+
+
+}
 
 //檢查SQL撈出來的日期格式region
 check_sql_date_format = function (date) {
@@ -129,21 +114,18 @@ check_sql_date_format = function (date) {
 
   return date;
 };
+
 test1 = function () {
-  console.log("test1");
-  var overtime_date_year_split = $("#overtime_date").val().split(".");
-  console.log(overtime_date_year_split[0]);
-  // var upload_rec_date_year_split = $("#upload_rec_date").val().split("年");
-  // console.log(upload_rec_date_year_split[0]);
+  
 };
 
-//新增來文紀錄region
+//新增請假紀錄 region
 $("#day_off_add_new").on("click", function () {
   var stau = false;
 
   var day_off_name = $("#name").val();
 
-  if (check_add_day_off_data() != "") {
+  if (check_day_off_data() != "") {
     stau = false;
   } else {
     stau = true;
@@ -152,7 +134,7 @@ $("#day_off_add_new").on("click", function () {
 
   if (!stau) {
     swal({
-      title: check_add_day_off_data(),
+      title: check_day_off_data(),
       type: "error",
     });
   } else {
@@ -202,53 +184,37 @@ $("#day_off_add_new").on("click", function () {
 });
 //endregion
 
-//檢查來文紀錄的必填欄位region
-function check_add_day_off_data() {
-  var name = $("#name").val();
-  var overtime_date = $("#overtime_date").val();
-  var reason = $("#reason").val();
-  var hours = $("#hours").val();
-  var makeup_date = $("#makeup_date").val();
-  var makeup_hours = $("#makeup_hours").val();
+//檢查必填欄位 region
+function check_day_off_data() {
+  var errorstr = "以下為必填欄位，不能為空值!\r\n";
 
-  var errorstr = "";
+  $(".fillin_need").each(function(index,element){
 
-  if (name == null) {
-    errorstr += "未填寫姓名!\r\n";
-  }
-  if (overtime_date == null) {
-    errorstr += "未填寫請假日期!\r\n";
-  }
-  if (reason == null) {
-    errorstr += "未填寫請假事由!\r\n";
-  }
-  if (hours == null) {
-    errorstr += "未填寫請假時數!\r\n";
-  }
-  if (makeup_date == null) {
-    errorstr += "未填寫補修日期!\r\n";
-  }
-  if (makeup_hours == null) {
-    errorstr += "未填寫補修時數!\r\n";
-  }
+    var check_element = $(this).parent("td").siblings("td").children()[0];
+    var check_element_name = $(this).parent("td").text();
 
-  if (errorstr == "") {
-    if (overtime_date.replace(/\s*/g, "") == "") {
-      errorstr += "未填寫請假日期!\r\n";
+    // console.log($(check_element).val())
+
+    var check_element_tagname = $(check_element).prop("tagName");
+    var check_element_type = $(check_element).attr("type");
+
+    if(check_element_tagname == "INPUT" && check_element_type=="file")
+    {
+      var file_len = $(check_element).prop("files").length;
+
+      if(file_len == 0)
+      {
+        errorstr += check_element_name.replace("※", "") + "\r\n";
+      }
     }
-    if (reason.replace(/\s*/g, "") == "") {
-      errorstr += "未填寫請假事由!\r\n";
-    }
-    if (hours.replace(/\s*/g, "") == "") {
-      errorstr += "未填寫請假時數!\r\n";
-    }
-    if (makeup_date.replace(/\s*/g, "") == "") {
-      errorstr += "未填寫補修日期!\r\n";
-    }
-    if (makeup_hours.replace(/\s*/g, "") == "") {
-      errorstr += "未填寫補修時數!\r\n";
-    }
-  }
+    else
+    {
+      if($(check_element).val() == null || $(check_element).val().replace(/\s*/g, "") == "")
+      {
+        errorstr += check_element_name.replace("※", "") + "\r\n";
+      }
+    }    
+  });
 
   return errorstr;
 }
@@ -276,4 +242,4 @@ function check_add_day_off_data() {
 //   },
 // });
 
-//endregion
+// endregion

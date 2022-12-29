@@ -106,59 +106,49 @@
                                             <div class="col-sm-12 text-center">
                                                 <div class="table-wrap">
                                                     <div class="table-responsive">
-                                                        <table style="width:auto;" class="table table-bordered">
+                                                        <table style="width:40%;" class="table table-bordered">
                                                             <tr>
                                                                 <td colspan="2">
                                                                     <h3>新增請假</h3>
                                                                 </td>
                                                             </tr>
-                                                            <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>姓名</td>
-                                                                <td style="border-bottom: solid 1px;"><input id="name" type="text"></td>
-                                                            </tr>
-
-                                                            <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>請假日期</td>
-                                                                <td style="border-bottom: solid 1px;"><input id="overtime_date" name="ch_datepicker" type="text"></td>
-                                                            </tr>
-
-                                                            <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>請假事由</td>
-                                                                <td style="border-bottom: solid 1px;"><input id="reason" type="text"></td>
-                                                            </tr>
-
-                                                            <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>請假時數</td>
-                                                                <td style="border-bottom: solid 1px;"><input id="hours" type="text"></td>
-                                                            </tr>
-                                                            <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>補休日期</td>
-                                                                <td style="border-bottom: solid 1px;"><input id="makeup_date" name="ch_datepicker" type="text"></td>
-                                                            </tr>
-                                                            <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>補休時數</td>
-                                                                <td style="border-bottom: solid 1px;"><input id="makeup_hours" type="text"></td>
-                                                            </tr>
-
                                                             <!-- <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">建立日期</td>
-                                                                <td style="border-bottom: solid 1px;"><input id="create_date" name="create_date" name="ch_datepicker" type="text"></td>
-                                                            </tr>
-
-                                                            <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">建立者 </td>
-                                                                <td style="border-bottom: solid 1px;"><input id="create_name" name="create_name" type="text"></td>
-                                                            </tr>
-                                                            <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">更新日期</td>
-                                                                <td style="border-bottom: solid 1px;"><input id="update_date" name="update_date" name="ch_datepicker" type="text"></td>
-                                                            </tr>
-
-                                                            <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">更新者</td>
-                                                                <td style="border-bottom: solid 1px;"><input id="update_name" name="update_name" type="text"></td>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>姓名</td>
+                                                                <td style="border-bottom: solid 1px;"><input id="name" type="text"></td>
                                                             </tr> -->
 
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>請假日期</td>
+                                                                <td style="border-bottom: solid 1px;"><input id="leave_date" name="ch_datepicker" type="text"></td>
+                                                            </tr>
+
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>請假事由</td>
+                                                                <td style="border-bottom: solid 1px;">
+                                                                    <textarea style="width:75%;resize: none;font-size: 20px;min-height:8em;" id="reason" placeholder="請假事由"></textarea>
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>請假時數</td>
+                                                                <td style="border-bottom: solid 1px;"><input id="leave_hours" type="text"></td>
+                                                            </tr>
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>補休日期</td>
+                                                                <td style="border-bottom: solid 1px;"><input id="offset_date" name="ch_datepicker" type="text"></td>
+                                                            </tr>
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>補休時數</td>
+                                                                <td style="border-bottom: solid 1px;">
+                                                                    <input id="offset_hours" type="text">
+                                                                    <div id="offset_hours_hit"></div>
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>職務代理人</td>
+                                                                <td style="border-bottom: solid 1px;"><input id="job_agent" type="text"></td>
+                                                            </tr>
                                                         </table>
                                                     </div>
                                                 </div>
@@ -167,7 +157,7 @@
                                                         <path d="M10.854 7.854a.5.5 0 0 0-.708-.708L7.5 9.793 6.354 8.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
                                                         <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
                                                     </svg>新增</button>
-                                                <a href="day_off_list.php"><button style="font-size:15px" type="button" class="btn btn-default"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-excel" viewBox="0 0 16 16">
+                                                <a href="javascript:history.back()"><button style="font-size:15px" type="button" class="btn btn-default"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-excel" viewBox="0 0 16 16">
                                                             <path d="M5.884 6.68a.5.5 0 1 0-.768.64L7.349 10l-2.233 2.68a.5.5 0 0 0 .768.64L8 10.781l2.116 2.54a.5.5 0 0 0 .768-.641L8.651 10l2.233-2.68a.5.5 0 0 0-.768-.64L8 9.219l-2.116-2.54z" />
                                                             <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
                                                         </svg>取消</button></a>
@@ -212,7 +202,7 @@
     <script src="javascript/bootstrap-table1.11.1-zh-TW.min.js"></script>
     <!-- 日期民國-->
     <script src="javascript/jquery-ui.min.js"></script>
-    <script src="javascript/datepickerTw.js"></script>
+    <script src="javascript/datepickerTw2.js"></script>
     <!-- ================== add_phone.js ================== -->
     <script src="js/add_day_off.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
 </body>

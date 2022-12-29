@@ -72,7 +72,9 @@ test = function() {
   });
   var form_data = new FormData();
 
-  var entry_date_year_split = $("#entry_date").val().split("年");
+  // var entry_date_year_split = $("#entry_date").val().split("年");
+
+  var file_year = parseInt(new Date().getFullYear()) - 1911;
   
   var get_resume_files = get_files_name_value();
 
@@ -152,7 +154,8 @@ test = function() {
   form_data.append("Entry_date", $("#entry_date").val());
   form_data.append("On_or_off",$("#on_or_off").val());
   form_data.append("Remark",$("#remark").val());
-  form_data.append("File_year",entry_date_year_split[0]);
+  // form_data.append("File_year",entry_date_year_split[0]);
+  form_data.append("File_year",file_year);
 
 
   for (var pair of form_data.entries()) {
@@ -195,7 +198,9 @@ function submit_form() {
   });
   var form_data = new FormData();
 
-  var entry_date_year_split = $("#entry_date").val().split("年");
+  // var entry_date_year_split = $("#entry_date").val().split("年");
+  var file_year = parseInt(new Date().getFullYear()) - 1911;
+
   
   var get_resume_files = get_files_name_value();
 
@@ -275,7 +280,8 @@ function submit_form() {
   form_data.append("Entry_date", $("#entry_date").val());
   form_data.append("On_or_off",$("#on_or_off").val());
   form_data.append("Remark",$("#remark").val());
-  form_data.append("File_year",entry_date_year_split[0]);
+  // form_data.append("File_year",entry_date_year_split[0]);
+  form_data.append("File_year",file_year);
 
 
   for (var pair of form_data.entries()) {
