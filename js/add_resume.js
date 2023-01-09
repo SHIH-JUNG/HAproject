@@ -125,7 +125,7 @@ test = function() {
   //endregion
 
   // 將特休天數轉為時數單位
-  annual_default_hours = parseFloat(annual_default_hours * 24).toFixed(1);
+  annual_default_hours = parseFloat(annual_default_hours * 8).toFixed(1);
 
   // console.log(annual_default_hours);
 
@@ -251,7 +251,7 @@ function submit_form() {
   //endregion
 
   // 將特休天數轉為時數單位
-  annual_default_hours = parseFloat(annual_default_hours * 24).toFixed(1);
+  annual_default_hours = parseFloat(annual_default_hours * 8).toFixed(1);
 
   // console.log(annual_default_hours);
 

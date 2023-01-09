@@ -461,7 +461,7 @@ resume_update = function() {
         //endregion
 
         // 將特休天數轉為時數單位
-        annual_default_hours = parseFloat(annual_default_hours * 24).toFixed(1);
+        annual_default_hours = parseFloat(annual_default_hours * 8).toFixed(1);
 
         $("input.resume_question[type='file']").each(function(index, element) {
             var resume_files = $(this).prop("files");
