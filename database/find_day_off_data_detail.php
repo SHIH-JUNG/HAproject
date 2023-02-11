@@ -1,11 +1,12 @@
 <?php
 include("sql_connect.php");
-$day_id = $_POST['day_id'];
-// $day_name = $_POST['name'];
+
+$Day_off_id = $_POST['Day_off_id'];
+$Resume_id = $_POST['Resume_id'];
 
 
 //region 抓資料
-$note = "SELECT * FROM `day_off` WHERE `Id` = '$day_id' ORDER BY `day_off`.`Id` ASC;";
+$note = "SELECT * FROM `day_off_v2` WHERE `Id` = '$Day_off_id' AND `Resume_id` = '$Resume_id';";
 
 //宣告空的陣列
 $datas = array();

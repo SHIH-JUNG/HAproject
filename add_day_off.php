@@ -76,7 +76,11 @@
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span><a href="day_off_list.php">請假系統</a></span></li>
+                        <li><span><a href="day_off.php">員工管理</a></span></li>
+                        <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+                        </svg>
+                        <li><span><a href="day_off.php">請假系統</a></span></li>
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
@@ -106,7 +110,7 @@
                                             <div class="col-sm-12 text-center">
                                                 <div class="table-wrap">
                                                     <div class="table-responsive">
-                                                        <table style="width:40%;" class="table table-bordered">
+                                                        <table style="width:75%;" class="table table-bordered">
                                                             <tr>
                                                                 <td colspan="2">
                                                                     <h3>新增請假</h3>
@@ -116,38 +120,107 @@
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>姓名</td>
                                                                 <td style="border-bottom: solid 1px;"><input id="name" type="text"></td>
                                                             </tr> -->
-
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>請假日期</td>
-                                                                <td style="border-bottom: solid 1px;"><input id="leave_date" name="ch_datepicker" type="text"></td>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;width: 5em;"><i class="fillin_need" style="color:red;">※</i>假別</td>
+                                                                <td style="border-bottom: solid 1px;">
+                                                                    <input name="day_off_type" style="zoom: 1.5" value="事假" type="radio"><span>事假</span>
+                                                                    <input name="day_off_type" style="zoom: 1.5" value="病假" type="radio"><span>病假</span>
+                                                                    <input name="day_off_type" style="zoom: 1.5" value="公假" type="radio"><span>公假</span>
+                                                                    <input name="day_off_type" style="zoom: 1.5" value="補休" type="radio"><span>補休</span>
+                                                                    <input name="day_off_type" style="zoom: 1.5" value="娩假" type="radio"><span>娩假</span>
+                                                                    <input name="day_off_type" style="zoom: 1.5" value="陪產假" type="radio"><span>陪產假</span>
+                                                                    <input name="day_off_type" style="zoom: 1.5" value="流產假" type="radio"><span>流產假</span><br/>
+
+                                                                    <input name="day_off_type" style="zoom: 1.5" value="產前假" type="radio"><span>產前假</span>
+                                                                    <input name="day_off_type" style="zoom: 1.5" value="家庭照顧假" type="radio"><span>家庭照顧假</span>
+                                                                    <input name="day_off_type" style="zoom: 1.5" value="延長病假" type="radio"><span>延長病假</span>
+                                                                    <input name="day_off_type" style="zoom: 1.5" value="婚假" type="radio"><span>婚假</span>
+                                                                    <input name="day_off_type" style="zoom: 1.5" value="生理假" type="radio"><span>生理假</span>
+                                                                    <input name="day_off_type" style="zoom: 1.5" value="喪假" type="radio"><span>喪假</span>
+                                                                    <input name="day_off_type" style="zoom: 1.5" value="慰假假" type="radio"><span>慰假假</span><br/>
+                                                                    <input name="day_off_type" style="zoom: 1.5" value="其它" type="radio"><span>其它：</span>
+                                                                    <input name="day_off_type_other" type="text" style="width:35%;">
+                                                                </td>
                                                             </tr>
 
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>請假事由</td>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">附件</td>
+                                                                <td style="border-bottom: solid 1px;">
+                                                                    <input name="day_off_files" type="file" class="form-control" />
+                                                                    <br>
+                                                                    <div id="day_off_files"></div>
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>請假<br/>事由</td>
                                                                 <td style="border-bottom: solid 1px;">
                                                                     <textarea style="width:75%;resize: none;font-size: 20px;min-height:8em;" id="reason" placeholder="請假事由"></textarea>
                                                                 </td>
                                                             </tr>
 
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>請假時數</td>
-                                                                <td style="border-bottom: solid 1px;"><input id="leave_hours" type="text"></td>
-                                                            </tr>
-                                                            <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>補休日期</td>
-                                                                <td style="border-bottom: solid 1px;"><input id="offset_date" name="ch_datepicker" type="text"></td>
-                                                            </tr>
-                                                            <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>補休時數</td>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>請假<br/>日期</td>
                                                                 <td style="border-bottom: solid 1px;">
-                                                                    <input id="offset_hours" type="text">
-                                                                    <div id="offset_hours_hit"></div>
+                                                                    自&emsp;<input id="overtime_date_start" name="ch_datepicker" type="text" overtime="overtime"><input style="margin-left: 1em;" id="overtime_time_start"  type="time" overtime="overtime"><br/><br/>至&emsp;
+                                                                    <input id="overtime_date_end" name="ch_datepicker" type="text" overtime="overtime"><input style="margin-left: 1em;" id="overtime_time_end"  type="time" overtime="overtime">&emsp;止<br/><br/>
+                                                                    <div id="overtime_hours_count" style="color:red;">
+                                                                        請假時數：共0日0時
+                                                                    </div>
+                                                                    <div id="overtime_hours_hit" style="color:blue;">
+                                                                        <!-- 剩餘補休時數：
+                                                                        剩餘特休時數：
+                                                                        已使用的補休時數：
+                                                                        已使用的特休時數： -->
+                                                                    </div>
+                                                                    <!-- <div id="makeup_date_detail">
+                                                                        已使用的日期及時數：
+
+                                                                    </div> -->
+                                                                </td>
+                                                            </tr>                                                            
+
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>職務<br/>代理人</td>
+                                                                <td style="border-bottom: solid 1px;">
+                                                                    <div class="col-sm-3">
+                                                                        <select name="job_agent" id="job_agent" style="width:100%;">
+                                                                            <option value="">請選擇</option>
+                                                                        </select>
+                                                                    </div>
                                                                 </td>
                                                             </tr>
 
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>職務代理人</td>
-                                                                <td style="border-bottom: solid 1px;"><input id="job_agent" type="text"></td>
+                                                                <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>主管</td>
+                                                                <td style="border-bottom: solid 1px;">
+                                                                    <div class="col-sm-3">
+                                                                        <select name="supervise" id="supervise" style="width:100%;">
+                                                                            <option value="">請選擇</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">請假<br/>說明</td>
+                                                                <td style="border-bottom: solid 1px;">
+                                                                    <div>
+                                                                        <div style="padding-left: 2em;text-indent: -2em;">
+                                                                            一、假別請以打勾方式標明，請假(事、公或休假)應於三天前填具假單，經核准後，始得離開任所，但有急病或緊急事故，得請同事或家屬代辦或補辦請假手續。<br/>
+                                                                        </div>
+                                                                        <div style="padding-left: 2em;text-indent: -2em;">
+                                                                            二、請假者需經職務代理人簽名。<br/>
+                                                                        </div>
+                                                                        <div style="padding-left: 2em;text-indent: -2em;">
+                                                                            三、應附證明：<br/>
+                                                                                公假=核准公文、簽呈影本；公傷假=醫師證明、核准簽呈；病假=三日以上醫師證明；婚假=喜帖；娩假、陪產假=嬰兒出生證明；流產假=醫師證明；喪假=訃文；其他未載明事項，依據相關規定辦理。<br/>
+                                                                        </div>
+                                                                        <div style="padding-left: 2em;text-indent: -2em;">
+                                                                            四、本請假單經核示後，正本及相關附件由本機構存留。
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
                                                             </tr>
                                                         </table>
                                                     </div>

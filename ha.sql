@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2023-01-09 14:35:56
+-- 產生時間： 2023-02-11 14:27:36
 -- 伺服器版本： 10.4.24-MariaDB
 -- PHP 版本： 7.4.29
 
@@ -694,9 +694,10 @@ CREATE TABLE `day_off_v2` (
   `Overtime_date_start` varchar(1000) NOT NULL,
   `Overtime_date_end` varchar(1000) NOT NULL,
   `Hours` float NOT NULL,
-  `Description` longtext NOT NULL,
-  `Makeup_date` varchar(2000) NOT NULL,
-  `Makeup_hours` float NOT NULL,
+  `Remain_comp_hours` float NOT NULL,
+  `Remain_annual_hours` float NOT NULL,
+  `Used_comp_hours` float NOT NULL,
+  `Used_annual_hours` float NOT NULL,
   `Allow_status` varchar(100) NOT NULL,
   `Create_date` datetime NOT NULL,
   `Create_name` varchar(30) NOT NULL,
@@ -711,6 +712,14 @@ CREATE TABLE `day_off_v2` (
   `Job_agent_sign_msg` varchar(2000) NOT NULL,
   `Job_agent_sign_time` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- 傾印資料表的資料 `day_off_v2`
+--
+
+INSERT INTO `day_off_v2` (`Id`, `Resume_id`, `Resume_name`, `Rec_year`, `Fillin_date`, `Day_off_type`, `Reason`, `Other_files`, `Overtime_date_start`, `Overtime_date_end`, `Hours`, `Remain_comp_hours`, `Remain_annual_hours`, `Used_comp_hours`, `Used_annual_hours`, `Allow_status`, `Create_date`, `Create_name`, `Update_date`, `Update_name`, `Supervise`, `Supervise_signature`, `Supervise_sign_msg`, `Supervise_sign_time`, `Job_agent`, `Job_agent_signature`, `Job_agent_sign_msg`, `Job_agent_sign_time`) VALUES
+(1, 3, 'testabc19', 112, '2023-02-06', '其它::test其它假別', 'test0208請假事由', '../resume/resume_user3_test0109/day_off_datas/test0208file.docx', '112年02月08日_08:00', '112年02月08日_17:00', 9, 0, 71, 0, 9, '審核中', '2023-02-06 19:42:36', 'testabc19', '2023-02-11 19:39:39', '園主任', '園主任', '', '', '', '社工員2', '', '', ''),
+(3, 3, 'testabc19', 112, '2023-02-08', '事假', 'test0216', '', '112年02月16日_08:00', '112年02月16日_14:30', 6.5, 0, 73.5, 0, 6.5, '審核中', '2023-02-08 20:04:41', 'testabc19', '2023-02-08 20:06:15', '執行長', '執行長', '', '', '', '社工員1', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -1162,7 +1171,27 @@ INSERT INTO `login_record` (`Id`, `Login_timestamp`, `Login_account`, `Login_aut
 (135, '2022-12-29 15:06:52', 'text1', '1', '社工員1', '22.5989768,120.5591841', 0),
 (136, '2022-12-29 15:07:12', 'test1229', '1', 'abctest1229a', '22.5989768,120.5591841', 0),
 (137, '2023-01-09 20:17:22', 'text1', '1', '社工員1', '22.6483444,120.3262535', 1),
-(138, '2023-01-09 20:18:00', 'test1229', '1', 'abctest1229a', '22.6483444,120.3262535', 1);
+(138, '2023-01-09 20:18:00', 'test1229', '1', 'abctest1229a', '22.6483444,120.3262535', 1),
+(139, '2023-01-31 20:06:46', 'test0109', '1', 'testabc19', '22.5889744,120.4926089', 1),
+(140, '2023-02-08 19:22:28', 'test5', '3', '園主任', '22.5877717,120.4926538', 1),
+(141, '2023-02-08 19:26:48', 'test5', '3', '園主任', '22.586704,120.4926538', 0),
+(142, '2023-02-08 19:54:45', 'test0109', '1', 'testabc19', '22.586704,120.4926538', 1),
+(143, '2023-02-08 20:05:09', 'test6', '4', '執行長', '22.586704,120.4926538', 1),
+(144, '2023-02-08 20:06:27', 'test5', '3', '園主任', '22.586704,120.4926538', 0),
+(145, '2023-02-08 20:06:59', 'test0109', '1', 'testabc19', '22.586704,120.4926538', 0),
+(146, '2023-02-08 20:15:41', 'test5', '3', '園主任', '22.586704,120.4926538', 0),
+(147, '2023-02-10 19:39:11', 'test5', '3', '園主任', '22.6483444,120.3262535', 1),
+(148, '2023-02-10 19:39:56', 'test0109', '1', 'testabc19', '22.6483444,120.3262535', 1),
+(149, '2023-02-10 21:04:01', 'test5', '3', '園主任', '22.6483444,120.3262535', 0),
+(150, '2023-02-11 19:28:27', 'test0109', '1', 'testabc19', '22.6483444,120.3262535', 1),
+(151, '2023-02-11 19:29:04', 'test5', '3', '園主任', '22.6483444,120.3262535', 1),
+(152, '2023-02-11 19:39:59', 'test0109', '1', 'testabc19', '22.6483444,120.3262535', 0),
+(153, '2023-02-11 19:40:18', 'test5', '3', '園主任', '22.6483444,120.3262535', 0),
+(154, '2023-02-11 20:10:33', 'test0109', '1', 'testabc19', '22.6483444,120.3262535', 0),
+(155, '2023-02-11 20:12:15', 'test5', '3', '園主任', '22.6483444,120.3262535', 0),
+(156, '2023-02-11 20:29:17', 'test0109', '1', 'testabc19', '22.6483444,120.3262535', 0),
+(157, '2023-02-11 20:35:38', 'test5', '3', '園主任', '22.6483444,120.3262535', 0),
+(158, '2023-02-11 20:36:19', 'test0109', '1', 'testabc19', '22.6483444,120.3262535', 0);
 
 -- --------------------------------------------------------
 
@@ -1616,6 +1645,8 @@ CREATE TABLE `resume_seniority` (
   `Type` varchar(100) NOT NULL,
   `Annual_default` float NOT NULL,
   `Change_num` float NOT NULL,
+  `Day_off_id` int(244) NOT NULL,
+  `Overtime_id` int(244) NOT NULL,
   `Remark` varchar(3000) NOT NULL,
   `sys_update_date` datetime NOT NULL,
   `Create_date` datetime NOT NULL,
@@ -1628,8 +1659,8 @@ CREATE TABLE `resume_seniority` (
 -- 傾印資料表的資料 `resume_seniority`
 --
 
-INSERT INTO `resume_seniority` (`Id`, `Resume_id`, `Seniority_num`, `Rec_year`, `Type`, `Annual_default`, `Change_num`, `Remark`, `sys_update_date`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
-(1, 3, 2.39, 112, 'Annual_default', 80, 0, '員工建檔修改預設補修時數：80.0小時。', '0000-00-00 00:00:00', '2023-01-09 21:33:38', 'abctest1229a', '2023-01-09 21:34:51', 'abctest1229a');
+INSERT INTO `resume_seniority` (`Id`, `Resume_id`, `Seniority_num`, `Rec_year`, `Type`, `Annual_default`, `Change_num`, `Day_off_id`, `Overtime_id`, `Remark`, `sys_update_date`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
+(1, 3, 2.39, 112, 'Annual_default', 80, 0, 0, 0, '員工建檔修改預設補修時數：80.0小時。', '0000-00-00 00:00:00', '2023-01-09 21:33:38', 'abctest1229a', '2023-01-09 21:34:51', 'abctest1229a');
 
 -- --------------------------------------------------------
 
@@ -2490,7 +2521,7 @@ ALTER TABLE `day_off`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `day_off_v2`
 --
 ALTER TABLE `day_off_v2`
-  MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `dlgrec`
@@ -2532,7 +2563,7 @@ ALTER TABLE `leave_rule_table`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `login_record`
 --
 ALTER TABLE `login_record`
-  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=139;
+  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=159;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `members_assemble`
@@ -2616,7 +2647,7 @@ ALTER TABLE `resume_forms`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `resume_seniority`
 --
 ALTER TABLE `resume_seniority`
-  MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `screening`

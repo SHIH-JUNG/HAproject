@@ -1,6 +1,9 @@
 <?php session_start(); ?>
 <?php include("database/check_authority.php"); ?> <?php include("no_cache.php"); ?>
-
+<?php 
+    $user = $_SESSION['name'];
+    $authority = $_SESSION['authority'];
+?>
 <!DOCTYPE html>
 <html>
 
@@ -21,6 +24,11 @@
     <link href="css/jquery.dataTables1.10.16.min.css" rel="stylesheet" />
     <link href="css/buttons.dataTables1.5.1.min.css" rel="stylesheet" />
 
+    <!--  日期民國  -->
+    <link data-require="jqueryui@*" rel="stylesheet" href="css/jquery-ui.css" />
+    <link href="css/dtsel.css" rel="stylesheet" />
+
+
     <meta charset="UTF-8" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!--        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />-->
@@ -33,6 +41,8 @@
         word-break: keep-all;
         /*必須*/
     }
+    
+    .preview {position:absolute;background:#fff;padding:10px;display:none;}  
 </style>
 <!--<SVG>引入bootstrap icon-->
 
@@ -64,6 +74,10 @@
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
+                        <li><span><a href="day_off.php">員工管理</a></span></li>
+                        <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+                        </svg>
                         <li><span><a href="day_off.php">請假系統</a></span></li>
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
@@ -92,104 +106,15 @@
                                 <div class="panel-body">
                                     <div class="table-wrap">
                                         <div class="table-responsive">
-                                            <h4>員工請假紀錄</h4>
-                                            <br>
-                                            <h4>查詢</h4>
-                                            <div　class="col-sm-12" id="toolbar">
-                                                <div class="col-sm-12">
-                                                    <table style="font-size:20px;font-family:微軟正黑體;width:100%" class="table table-bordered NOline">
-                                                        <tr>
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">員工姓名：</td>
-                                                            <td class="text-left">
-                                                                <select id="name" rel="0" class="filter search">
-                                                                    <!-- <option value="">所有</option> -->
-                                                                </select>
-                                                            </td>
+                                            <?php
+                                                if ($authority > 2) {
 
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">事由：</td>
-                                                            <td class="text-left">
-                                                                <select id="reason" rel="1" class="filter search">
-                                                                    <!-- <option value="">所有</option> -->
-                                                                </select>
-                                                            </td>
+                                                    include("day_off_supervise_content.php");
 
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">請假日期：</td>
-                                                            <td class="text-left">
-                                                                <input id="overtime_date" rel="2" name="pcall_date" class="" type="date" placeholder="請假日期搜尋">
-                                                                <label>～</label>
-                                                                <input id="overtime_date" rel="2" name="pcall_date" class="" type="date" placeholder="請假日期搜尋">
-                                                            </td>
-
-                                                            
-
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">請假時數：</td>
-                                                            <td class="text-left">
-                                                                <select id="hours" rel="3" class="filter search">
-                                                                    <!-- <option value="">所有</option> -->
-                                                                </select>
-                                                            </td>
-
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">補休日期：</td>
-                                                            <td class="text-left">
-                                                                <input id="makeup_date" rel="4" name="pcall_date" class="" type="date" placeholder="補休日期搜尋">
-                                                                <label>～</label>
-                                                                <input id="makeup_date" rel="4" name="pcall_date" class="" type="date" placeholder="補休日期搜尋">
-                                                            </td>
-
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">補休時數：</td>
-                                                            <td class="text-left">
-                                                                <select id="makeup_hours" rel="5" class="filter search">
-                                                                    <!-- <option value="">所有</option> -->
-                                                                </select>
-                                                            </td>
-
-                                                            <td colspan="10" class="text-right">
-                                                                <button onclick="location.reload();">重置搜尋</button><span> </span>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                            <br>
-                                            <h4>請假紀錄</h4>
-                                            <div class="table-wrap">
-                                                <div class="table-responsive">
-                                                    <table class="table display table-hover dataTable no-footer" style="font-size:15px;font-family:微軟正黑體;width:100%" id="tab_all" data-toolbar="#toolbar">
-                                                        <thead>
-                                                            <tr>
-                                                                <th class="text-right" colspan="16">
-                                                                    <a href="add_day_off.php"><button style="font-size:15px" type="button" class="btn btn-default"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                                                <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
-                                                                                <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z" />
-                                                                                <path fill-rule="evenodd" d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5z" />
-                                                                            </svg>新增</button></a>
-                                                                </th>
-                                                            </tr>
-                                                            <tr style="background-color:rgb(255 201 54);">
-                                                                <th>員工姓名</th>
-                                                                <th>事由</th>
-                                                                <th>請假日期</th>
-                                                                <th>請假時數</th>
-                                                                <th>補休日期</th>
-                                                                <th>補休時數</th>
-                                                                <th>創建日期</th>
-                                                                <th>創建者</th>
-                                                                <th>更新日期</th>
-                                                                <th>更新者</th>
-                                                                <th>督導簽章</th>
-                                                                <th>代理人簽章</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody id="call_view"></tbody>
-                                                    </table>
-                                                    <div class="text-center">
-                                                        <span id="count_people"></span>
-                                                        <span id="count_people2"></span>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                                } else {
+                                                    include("day_off_content.php");
+                                                }
+                                            ?>
                                         </div>
                                     </div>
                                 </div>
@@ -236,8 +161,18 @@
     <!-- ================== table ================== -->
     <script src="javascript/bootstrap1.18.0-table.min.js"></script>
     <script src="javascript/bootstrap-table1.11.1-zh-TW.min.js"></script>
-    <!-- ================== phone ================== -->
-    <script type="text/javascript" src="js/day_off.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
+    <!-- 日期民國-->
+    <script src="javascript/jquery-ui.min.js"></script>
+    <script src="javascript/datepickerTw2.js"></script>
+
+    <!-- ================== day_off ================== -->
+    <?php
+        if ($authority > 2) {
+            echo '<script type="text/javascript" src="js/day_off_supervise.js'.'?'.date('Y-m-d h:i:sa').'"></script>';
+        } else {
+            echo '<script type="text/javascript" src="js/day_off.js'.'?'.date('Y-m-d h:i:sa').'"></script>';
+        }
+    ?>
     <!-- ================== 地區選擇下拉 ================== -->
     <!--
     <script src="js/jQuery-TWzipcode-master/twzipcode.js"></script>

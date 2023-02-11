@@ -54,7 +54,7 @@ datepicker_create = function (selector_id) {
       }, 10);
     },
   });
-  $("#leave_date").datepicker("setDate", "today");
+  // $("#leave_date").datepicker("setDate", "today");
 };
 //endregion
 
@@ -72,39 +72,222 @@ $(document).ready(function () {
   });
   //endregion
 
+  // 載入全部user至下拉式選單
+  append_user();
+
   //顯示剩餘可補休的時數
   load_remain_hours();
 });
 
+// 網頁載入時，查詢當前帳號登入者的可使用的補/特休時數 region
 load_remain_hours = function() {
 
   window.r_annual_hours = 0;
   window.r_comp_hours = 0;
 
+  var load_remain_hours_str = "";
 
-  $.ajax({
-    url: "database/find_day_off_remain_hours.php",
-    type: "POST",
-    dataType: "JSON",
-    async: false,//啟用同步請求
-    success: function (data) {
-      r_annual_hours = data[0].Annual_hours;
-      
+    $.ajax({
+      url: "database/find_day_off_remain_hours.php",
+      type: "POST",
+      dataType: "JSON",
+      async: false,//啟用同步請求
+      success: function (data) {
+        
+        console.log(data)
 
-    },
-    error:function(e){
-        notyf.alert('伺服器錯誤,無法載入');
-        console.log(e)
-    }
-});
+        $.each(data, function (index, value) {
 
 
-  $("#offset_hours_hit").html();
+          switch (value.Type) {
+            case "Annual_default":
+              r_annual_hours += value.Annual_default;
+              break;
+          
+            case "Annual_hours":
+              r_annual_hours += value.Change_num;
+              break;
 
+            case "Comp_hours":
+              r_comp_hours += value.Change_num;
+              break;
+          }
+        });
+
+      },
+      error:function(e){
+          notyf.alert('伺服器錯誤,無法載入');
+          console.log(e)
+      }
+  });
+  console.log(r_comp_hours)
+  console.log(r_annual_hours)
+
+  load_remain_hours_str = '<br/><br/>剩餘補休時數： ' + parseFloat(r_comp_hours).toFixed(1) + '<br/>' + 
+  '剩餘特休時數： '+ parseFloat(r_annual_hours).toFixed(1) + '<br/><br/>' + 
+  '已使用的補休時數：0.0' + '<br/>' + 
+   '已使用的特休時數：0.0' + '<br/><br/>';
+
+  $("#overtime_hours_hit").html(load_remain_hours_str);
 
 }
+// endregion
 
-//檢查SQL撈出來的日期格式region
+// 計算已使用及剩餘補/特休時數 region
+function count_use_remain_hours(overtime_hours) {
+  var use_annual_hours = 0;
+  var use_comp_hours = 0;
+
+  var remain_annual_hours = 0;
+  var remain_comp_hours = 0;
+
+  var count_hours_arr = new Array();
+
+  if(parseFloat(overtime_hours) - parseFloat(r_comp_hours) >= 0)
+  {
+    use_comp_hours = parseFloat(r_comp_hours).toFixed(1);
+    use_annual_hours = parseFloat(parseFloat(overtime_hours) - parseFloat(r_comp_hours)).toFixed(1);
+
+    remain_comp_hours = parseFloat(parseFloat(r_comp_hours) - parseFloat(use_comp_hours)).toFixed(1);
+    remain_annual_hours = parseFloat(parseFloat(r_annual_hours) - parseFloat(use_annual_hours)).toFixed(1);
+
+  }
+  else if(parseFloat(overtime_hours) - parseFloat(r_comp_hours) < 0)
+  {
+    use_comp_hours = parseFloat(overtime_hours).toFixed(1);
+    use_annual_hours = 0.0;
+
+    remain_comp_hours = parseFloat(r_comp_hours).toFixed(1);
+    remain_annual_hours = parseFloat(r_annual_hours).toFixed(1);
+  }
+
+  count_hours_arr.push(remain_comp_hours);
+  count_hours_arr.push(remain_annual_hours);
+  count_hours_arr.push(use_comp_hours);
+  count_hours_arr.push(use_annual_hours);
+
+  // console.log(count_hours_arr);
+  return count_hours_arr;
+}
+// endregion
+
+// 計算請假時數 region
+function Overtime_GetDateDiff(startTime, endTime, diffType) {
+  //将xxxx-xx-xx的时间格式，转换为 xxxx/xx/xx的格式 
+  startTime = startTime.replace(/\-/g, "/");
+  endTime = endTime.replace(/\-/g, "/");
+
+  //将计算间隔类性字符转换为小写
+  diffType = diffType.toLowerCase();
+  var sTime = new Date(startTime);      //开始时间
+  var eTime = new Date(endTime);  //结束时间
+  //作为除数的数字
+  var divNum = 1;
+  switch (diffType) {
+      case "second":
+          divNum = 1000;
+          break;
+      case "minute":
+          divNum = 1000 * 60;
+          break;
+      case "hour":
+          divNum = 1000 * 3600;
+          break;
+      case "day":
+          divNum = 1000 * 3600 * 24;
+          break;
+      default:
+          break;
+  }
+  return parseFloat((eTime.getTime() - sTime.getTime()) / parseInt(divNum)).toFixed(1);
+}
+//endregion
+
+// 根據請假日期計算已使用及剩餘時數 region
+update_remain_hours = function() {
+
+  var overtime_date_start = $("#overtime_date_start").val();
+  var overtime_date_end = $("#overtime_date_end").val();
+  var overtime_time_start = $("#overtime_time_start").val();
+  var overtime_time_end = $("#overtime_time_end").val();
+
+  var overtime_start_format = split_date(overtime_date_start) + " " + overtime_time_start;
+  var overtime_end_format = split_date(overtime_date_end) + " " + overtime_time_end;
+
+  window.get_overtime_hours = Overtime_GetDateDiff(overtime_start_format, overtime_end_format, "hour");
+
+  var total_remain_hours = parseFloat(parseFloat(r_annual_hours) + parseFloat(r_comp_hours)).toFixed(1);
+
+  // console.log(parseFloat(get_overtime_hours).toFixed(1))
+  // console.log(total_remain_hours)
+  // console.log(get_overtime_hours)
+
+  console.log(overtime_start_format);
+  console.log(overtime_end_format)
+
+  if(get_overtime_hours > 0)
+  {
+    if(parseFloat(total_remain_hours - get_overtime_hours).toFixed(1) >= 0)
+    {
+      // window.u_annual_hours = 0;
+      // window.u_comp_hours = 0;
+
+      var update_remain_hours_str = "";
+
+      window.use_remain_hours_arr = count_use_remain_hours(parseFloat(get_overtime_hours).toFixed(1));
+
+      // console.log(use_remain_hours_arr[0])
+      // console.log(use_remain_hours_arr[1])
+      // console.log(use_remain_hours_arr[2])
+      // console.log(use_remain_hours_arr[3])
+
+      update_remain_hours_str = '<br/><br/>剩餘補休時數： ' + use_remain_hours_arr[0] + '<br/>' + 
+      '剩餘特休時數： '+ use_remain_hours_arr[1] + '<br/><br/>' + 
+      '已使用的補休時數： ' + use_remain_hours_arr[2] + '<br/>' + 
+       '已使用的特休時數： ' + use_remain_hours_arr[3] + '<br/><br/>';
+
+      $("#overtime_hours_hit").html(update_remain_hours_str);
+
+      var overtime_hours_show = parseFloat(get_overtime_hours).toFixed(1);
+
+      if(overtime_hours_show - 24.0 >= 0)
+      {
+        var days_num = parseInt(overtime_hours_show / 24);
+        var hours_num = parseInt(overtime_hours_show % 24);
+        $("#overtime_hours_count").html("請假時數：共" + days_num + "日" + hours_num + "時");
+      }
+      else
+      {
+        $("#overtime_hours_count").html("請假時數：共0日" + overtime_hours_show + "時");
+      }
+    }
+    else
+    {
+      swal({
+        title: "使用的請假時數不可超過剩餘的補/特休時數",
+        text: "請假時數請小於" + total_remain_hours + "小時",
+        type: "warning",
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "確認",
+        showConfirmButton: true,
+      })
+    }
+  }
+  else
+  {
+    // swal({
+    //   title: "請假結束日期不可小於開始日期",
+    //   type: "warning",
+    //   confirmButtonColor: "#DD6B55",
+    //   confirmButtonText: "確認",
+    //   showConfirmButton: true,
+    // })
+  }
+  
+}
+// endregion
+
+//檢查SQL撈出來的日期格式 region
 check_sql_date_format = function (date) {
   if (date == "0000-00-00") {
     date = "";
@@ -114,23 +297,28 @@ check_sql_date_format = function (date) {
 
   return date;
 };
+// endregion
 
 test1 = function () {
   
 };
 
+//監聽 請假日期欄位值變化，計算請假時數 region
+$("input[overtime*='overtime']").change( function(event) {
+    update_remain_hours();
+});
+// endregion
+
 //新增請假紀錄 region
 $("#day_off_add_new").on("click", function () {
   var stau = false;
 
-  var day_off_name = $("#name").val();
-
-  if (check_day_off_data() != "") {
+  if (check_day_off_data() != "以下為必填欄位，不能為空值!\r\n") {
     stau = false;
   } else {
     stau = true;
   }
-  console.log(stau);
+  // console.log(stau);
 
   if (!stau) {
     swal({
@@ -138,23 +326,106 @@ $("#day_off_add_new").on("click", function () {
       type: "error",
     });
   } else {
-    $.ajax({
+    swal({
+      title: "選擇『確認送出』後，將無法再修改資料",
+      text: "請再次確認欄位是否皆填寫無誤",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#DD6B55",
+      confirmButtonText: "確認送出",
+      cancelButtonText: "取消",
+      showConfirmButton: true,
+      showCancelButton: true,
+    })
+      .then(
+        function (result) {
+          if (result) {
+            submit_form();
+          }
+        },
+        function (dismiss) {
+          if (dismiss == "cancel") {
+            swal({
+              title: "已取消",
+              type: "success",
+            });
+          }
+        }
+      )
+      .catch(swal.noop);
+  }
+});
+//endregion
+
+// 處理送出的值 region
+function submit_form() {
+  //去掉資料內前後端多餘的空白，file類型須排除，否則報錯
+  $("input, textarea").each(function () {
+  if ($(this).attr("type") != "file") {
+      $(this).val(jQuery.trim($(this).val()));
+  }
+  });
+
+  //Time Now
+  var timenow = moment().format('YYYY-MM-DD');
+
+  var rec_year = $("#overtime_date_start").val().split("年")[0];
+
+  console.log(timenow);
+  console.log(rec_year);
+
+  var form_data = new FormData();
+
+  $("input[type='file']").each(function(index, element) {
+      var day_off_file = $(this).prop("files");
+
+      if (day_off_file != undefined) {
+        if (day_off_file.length != 0) {
+          for (var i = 0; i < day_off_file.length; i++) {
+            form_data.append("day_off_file"+index, day_off_file[i]);
+            // console.log(day_off_file[i])
+          }
+        } 
+      }
+  });
+
+  // form_data.append("Resume_id", );
+  // form_data.append("Resume_name", );
+  form_data.append("Rec_year", rec_year);
+  form_data.append("Fillin_date", timenow);
+
+  form_data.append("Day_off_type", deal_type($("[name='day_off_type']:checked").val()));
+  form_data.append("Reason", $("#reason").val());
+
+  form_data.append("Overtime_date_start",$("#overtime_date_start").val() + "_" + $("#overtime_time_start").val());
+  form_data.append("Overtime_date_end",$("#overtime_date_end").val() + "_" + $("#overtime_time_end").val());
+  form_data.append("Overtime_hours", get_overtime_hours);
+  // form_data.append("Makeup_date_desc", );
+
+
+  form_data.append("Remain_comp_hours", use_remain_hours_arr[0]);
+  form_data.append("Remain_annual_hours", use_remain_hours_arr[1]);
+  form_data.append("Used_comp_hours", use_remain_hours_arr[2]);
+  form_data.append("Used_annual_hours", use_remain_hours_arr[3]);
+
+
+  form_data.append("Supervise",$("#supervise").val());
+  form_data.append("Job_agent",$("#job_agent").val());
+
+  // 預覽傳到後端的資料詳細內容
+  // for (var pair of form_data.entries()) {
+  //   console.log(pair[0] + ", " + pair[1]);
+  // }
+
+
+  $.ajax({
       url: "database/add_new_day_off.php",
       type: "POST",
-      data: {
-        // Id: $("#id").val(),
-        Name: $("#name").val(),
-        Overtime_date: trans_to_EN($("#overtime_date").val()),
-        Reason: $("#reason").val(),
-        Hours: $("#hours").val(),
-        Makeup_date: trans_to_EN($("#makeup_date").val()),
-        Makeup_hours: $("#makeup_hours").val(),
-        // Create_date: $("#create_date").val(),
-        // Create_name: $("#create_name").val(),
-        // Update_date: $("#update_date").val(),
-        // Update_name: $("#update_name").val(),
-      },
-      //            dataType: "JSON",
+      data: form_data,
+      contentType: false,
+      cache: false,
+      processData: false,
+      async: true,
       success: function (data) {
         console.log(data);
         if (data == 1) {
@@ -163,26 +434,28 @@ $("#day_off_add_new").on("click", function () {
             title: "新增成功!",
             allowOutsideClick: false, //不可點背景關閉
           }).then(function () {
-            window.location.replace("day_off.php");
+            window.location.href =
+              "day_off.php";
           });
         } else {
           swal({
             type: "error",
             title: "新增失敗!請聯絡負責人",
             allowOutsideClick: false, //不可點背景關閉
-          }).then(function () {
-            window.location.replace("day_off.php");
           });
         }
       },
       error: function (e) {
-        alert("系統錯誤!");
-        console.log(e);
+          console.log(e)
+          swal({
+              type: "error",
+              title: "新增失敗!請聯絡負責人",
+              allowOutsideClick: false, //不可點背景關閉
+          });
       },
     });
-  }
-});
-//endregion
+}
+// endregion
 
 //檢查必填欄位 region
 function check_day_off_data() {
@@ -220,26 +493,74 @@ function check_day_off_data() {
 }
 //endregion
 
-// // 呼叫user方法region
-// $.ajax({
-//   type: "POST",
-//   url: "database/find_check_user.php",
-//   dataType: "JSON",
-//   async: false, //啟用同步請求
-//   success: function (data) {
-//     for (var index in data.Id) {
-//       $(".user").append(
-//         '<option value="' +
-//           data.Name[index] +
-//           '">' +
-//           data.Name[index] +
-//           "</option>"
-//       );
-//     }
-//   },
-//   error: function (e) {
-//     console.log(e);
-//   },
-// });
+// 處理假別字串 region
+deal_type = function(day_off_type) {
 
+  var type_str = "";
+
+  if(day_off_type == "其它")
+  {
+    type_str = day_off_type + "::" + $("[name='day_off_type_other']").val();
+  }
+  else
+  {
+    type_str = day_off_type;
+  }
+
+  return type_str;
+}
 // endregion
+
+
+// 顯示檔名 region
+$("input[type='file']").change(function (event) {
+  //獲取 檔名.檔案格式
+  var filePath = $(this).val().split("\\");
+  //獲取 file name名稱
+  var name = $(this).attr("name");
+
+  //創建臨時檔案連結
+  // var tmppath = URL.createObjectURL(event.target.files[0]);
+
+  //預覽上傳檔名
+  $("#" + name).html("檔名：" + filePath[filePath.length - 1]);
+
+});
+// endregion
+
+
+
+// 獲取檔案的檔名、值 region
+get_files_name_value = function() {
+
+  file_name = [];
+  $("input[type='file']").each(function() {
+    //獲取 檔名.檔案格式
+    var filePath = $(this).val().split("\\");
+    //獲取 file name名稱
+    var name = $(this).attr("name");
+    
+    file_name.push({ name: name, value: filePath[filePath.length - 1] });
+ });
+
+ return file_name;
+}
+// endregion
+
+//呼叫user方法region
+function append_user(){             
+  $.ajax({
+      type:'POST',
+      url:'database/find_check_user.php',
+      dataType: "JSON",
+      async: false,//啟用同步請求
+      success: function (data) {
+          // console.log('test',data)
+          for (var index in data.Id) {
+            $("#job_agent").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+            $("#supervise").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+          }
+      },
+  });
+}
+//endregion

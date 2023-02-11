@@ -10,12 +10,14 @@ $user_acc = $_SESSION['Account'];
 $select_id_num = "SELECT `Resume_id` FROM `user_info` WHERE `Account` = '$user_acc' AND `Name` = '$user';";
 
 $find_id_num = mysqli_query($conn,$select_id_num);
+// $row_nums = mysqli_num_rows($find_id_num);
 $id_num = mysqli_fetch_row($find_id_num);
 
 // echo $id_num[0];
+// echo $row_nums;
 
 //region 抓資料
-$note = "SELECT * FROM `resume` WHERE `Id` = '$id_num[0]';";
+$note = "SELECT * FROM `resume_seniority` WHERE `Resume_id` = '$id_num[0]';";
 
 //宣告空的陣列
 $datas = array();
@@ -42,4 +44,6 @@ if ($select_all) {
 
 mysqli_close($conn);
 echo json_encode($datas);
-//endregion
+// endregion
+
+?>

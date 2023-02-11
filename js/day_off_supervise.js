@@ -13,6 +13,60 @@ function getUrlVars() {
 }
 //endregion
 
+//datepicker創建 region
+datepicker_create = function (selector_id) {
+  $("#" + selector_id).datepicker({
+    changeYear: true,
+    changeMonth: true,
+    currentText: "今天",
+    dateFormat: "R年mm月dd日",
+    showButtonPanel: true,
+    // minDate: new Date(
+    //   new Date().getFullYear() - 2,
+    //   new Date().getMonth() - 3,
+    //   1
+    // ),
+    // maxDate: new Date(new Date().getFullYear() + 3, 11, 31),
+    yearRange: "-15:+2",
+    onClose: function (dateText) {
+      // console.log($('#'+selector_id).val());
+      // console.log(trans_to_EN(dateText));
+    },
+    beforeShow: function (input, inst) {
+      var $this = $(this);
+      var cal = inst.dpDiv;
+      var outerh = $this.outerHeight();
+      var left_off = 10;
+      if ($this.offset().top > 1200) {
+        outerh = outerh * 4;
+      } else {
+        outerh = outerh * 3;
+      }
+
+      if ($this.offset().left > 1500) {
+        left_off = 700;
+      } else {
+        left_off = 10;
+      }
+      // console.log($this.offset().top)
+      // console.log(outerh)
+
+      // console.log($this.offset().left)
+
+
+      var top = $this.offset().top - outerh;
+      var left = $this.offset().left - left_off;
+      setTimeout(function () {
+        cal.css({
+          top: top,
+          left: left,
+        });
+      }, 10);
+    },
+  });
+  // $("#leave_date").datepicker("setDate", "today");
+};
+//endregion
 
 // 民國年轉換日期格式yyyy-dd-mm region
 function split_date(date) {
@@ -34,8 +88,16 @@ Overtime_date_str = function(overtime_date) {
 }
 
 $(document).ready(function () {
-
+  //將input name名稱為ch_datepicker創建datepicker初始化 region
+  $("input[datepicker='ch_datepicker']").each(function () {
+    var this_id = $(this).attr("id");
+    // console.log(this_id)
+    datepicker_create(this_id);
+  });
+  //endregion
 });
+
+window.c_allow_status_arr = new Array();
 
 
 //抓所有請假紀錄 region
@@ -44,12 +106,11 @@ $.ajax({
   type: "POST",
   dataType: "JSON",
   data: {
-    authority_num:1,
   },
   async: false, //啟用同步請求
   success: function (data) {
     var cssString = "";
-    // console.log(data);
+    console.log(data);
     $.each(data, function (index, value) {
       var supervise_sign_arr = datatable_sign_show('supervise', value.Supervise, value.Supervise_signature, value.Supervise_sign_time, value.Supervise_sign_msg);
 
@@ -66,14 +127,21 @@ $.ajax({
         day_off_type_str = value.Day_off_type;
       }
 
+      var c_allow_status = "";
+      c_allow_status = value.Allow_status;
+
+      c_allow_status_arr.push(c_allow_status);
       
-      cssString +=
+      cssString =
         '<tr id="' +
         value.Id +
         '" resume_id="'+value.Resume_id+'">' +
-        // '<td style="text-align:center">' +
-        // value.Resume_name +
-        // "</td>" +
+        '<td style="text-align:center">' +
+        '<select name="c_allow_status" id="c_allow_status'+value.Id+'"><option value="審核中">審核中</option></select>' +
+        "</td>" +
+        '<td style="text-align:center">' +
+        value.Resume_name +
+        "</td>" +
         '<td style="text-align:center">' +
         day_off_type_str +
         "</td>" +
@@ -103,25 +171,86 @@ $.ajax({
         job_agent_sign_arr[0] +
         job_agent_sign_arr[1] +
         "</td>" +
-        // '<td style="text-align:center">' +
-        //   '<a href="day_off_detail.php?day_off_id='+value.Id+'&resume_id='+value.Resume_id+'" style="text-decoration: underline;color:black;">查看</a>' +
-        // "</td>" +
+        '<td style="text-align:center">' +
+          '<a href="day_off_detail.php?day_off_id='+value.Id+'&resume_id='+value.Resume_id+'" style="text-decoration: underline;color:black;">查看</a>' +
+        "</td>" +
         "</tr>";
 
+      $("#name").append(
+        '<option value="' + value.Resume_name + '">' + value.Resume_name + "</option>"
+      );
+      $("#day_off_type").append(
+        '<option value="' +
+          day_off_type_str +
+          '">' +
+          day_off_type_str +
+          "</option>"
+      );
+      $("#allow_status").append(
+        '<option value="' + value.Allow_status + '">' + value.Allow_status + "</option>"
+      );
 
+      $("#call_view").append(cssString);
+
+      $("[id='c_allow_status"+value.Id+"']").append('<option value="核准">核准</option>');
+      $("[id='c_allow_status"+value.Id+"']").append('<option value="不核准">不核准</option>');
+      $("[id='c_allow_status"+value.Id+"']").append('<option value="取消">取消</option>');
+
+      $("[id='c_allow_status"+value.Id+"']").val(c_allow_status);
+     
+    });
+
+    //找出所有查詢表格下拉式選單，將內容排序、加上"所有查詢"、去除重複值
+    var filter_select = $("select.filter");
+
+    $.each(filter_select, function (i, v) {
+      var this_id = $(this).attr("id");
+
+      if (this_id != undefined) {
+        //option小到大排序
+        $("#" + this_id + " option")
+          .sort(function (a, b) {
+            var aText = $(a).text().toUpperCase();
+            var bText = $(b).text().toUpperCase();
+            if (aText > bText) return 1;
+            if (aText < bText) return -1;
+            return 0;
+          })
+          .appendTo("#" + this_id + "");
+
+        //最前面新增"所有"選像
+        $("#" + this_id + "").prepend(
+          "<option value='' selected='selected'>所有</option>"
+        );
+
+        $("#" + this_id + "")
+          .children()
+          .each(function () {
+            text = $(this).text();
+            if (
+              $("select#" + this_id + " option:contains(" + text + ")").length >
+              1
+            ) {
+              $(
+                "select#" + this_id + " option:contains(" + text + "):gt(0)"
+              ).remove();
+            }
+            //    console.log(text)
+          });
+      }
     });
 
     //印出表格
-    $("#call_view").html(cssString);
+    // $("#call_view").html(cssString);
 
   
-    //點擊table tr 進入詳細頁面
-    $(".table-hover tbody").on("click", "tr", function () {
-      window.location.href =
-        "day_off_detail.php?day_off_id=" +
-        $(this).attr("id") +
-        "&resume_id=" + $(this).attr("resume_id");
-    });
+    // //點擊table tr 進入詳細頁面
+    // $(".table-hover tbody").on("click", "tr", function () {
+    //   window.location.href =
+    //     "day_off_detail.php?day_off_id=" +
+    //     $(this).attr("id") +
+    //     "&resume_id=" + $(this).attr("resume_id");
+    // });
   },
 
   error: function (e) {
@@ -129,81 +258,6 @@ $.ajax({
   },
 });
 //endregion
-
-//抓所有請假紀錄 region
-$.ajax({
-    url: "database/find_data_day_off_hours_summary.php",
-    type: "POST",
-    dataType: "JSON",
-    data: {
-    },
-    async: false, //啟用同步請求
-    success: function (data) {
-        console.log(data);
-        var Css_str = '今年剩餘補休時數：' + + '小時' +
-        '，剩餘特休時數：' + + '小時' +
-        '，已使用補休時數：' + + '小時' +
-        '，已使用特休時數：' + + '小時';
-
-        $("#day_off_remain_hit_area").html();
-    },
-  
-    error: function (e) {
-      console.log(e);
-    },
-});
-
-// 查詢當前帳號登入者的可使用的補/特休時數 region
-load_remain_hours = function() {
-
-  window.t_annual_hours = 0;
-  window.t_comp_hours = 0;
-  window.r_annual_hours = 0;
-  window.r_comp_hours = 0;
-  window.u_annual_hours = 0;
-  window.u_comp_hours = 0;
-
-  var load_remain_hours_str = "";
-
-    $.ajax({
-      url: "database/find_day_off_remain_hours.php",
-      type: "POST",
-      dataType: "JSON",
-      async: false,//啟用同步請求
-      success: function (data) {
-        
-        console.log(data)
-
-        $.each(data, function (index, value) {
-
-
-          switch (value.Type) {
-            case "Annual_default":
-              r_annual_hours += value.Annual_default;
-              break;
-          
-            case "Annual_hours":
-              r_annual_hours += value.Change_num;
-              break;
-
-            case "Comp_hours":
-              r_comp_hours += value.Change_num;
-              break;
-          }
-        });
-
-      },
-      error:function(e){
-          notyf.alert('伺服器錯誤,無法載入');
-          console.log(e)
-      }
-  });
-
-
-
-}
-// endregion
-
 
 
 // 顯示簽核相關欄位 region
@@ -266,6 +320,106 @@ function datatable_sign_show(signer_type ,signer, sign_path, sign_time, sign_msg
   sign_arr.push(sign_css_str);
 
   return sign_arr;
+}
+// endregion
+
+// 審核選項(第一個欄位)功能 region
+$("[name='c_allow_status']").on("change", function () {
+  
+  var id = $(this).attr("id");
+  var this_val = $("#" + id).prop("value");
+  var this_index = parseInt(id.split("c_allow_status")[1]);
+
+  // console.log(c_allow_status_arr)
+
+  // console.log(id)
+  // console.log(this_val)
+  // console.log(this_index)
+
+  swal({
+    title: "將審核狀態改變至" + this_val,
+    text: "按下『確認』後將無法復原上次操作，確定要送出？",
+    type: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#DD6B55",
+    confirmButtonText: "確認",
+    cancelButtonText: "取消",
+    showConfirmButton: true,
+    showCancelButton: true,
+  })
+    .then(
+      function (result) {
+        if (result) {
+          update_allow_status(this_index, this_val);
+        }
+      },
+      function (dismiss) {
+        if (dismiss == "cancel") {
+
+          $("#" + id).val(c_allow_status_arr[this_index - 1]);
+
+          swal({
+            title: "已取消",
+            type: "success",
+          });
+        }
+      }
+    )
+    .catch(swal.noop);
+});
+// endregion
+
+// 資料庫 審核狀態修改功能 region
+update_allow_status = function(day_off_id_str, allow_status_str) {
+  
+  $.ajax({
+    url: "database/update_day_off_data_allow_status.php",
+    type: "POST",
+      data: {
+        Day_off_id:day_off_id_str,
+        Allow_status:allow_status_str,
+      },
+    // dataType: "JSON", // 若要傳回字串 如：noallow，不可設定為json格式
+    success: function (data) {
+      console.log(data);
+      if (data == 1) 
+      {
+        swal({
+          type: "success",
+          title: "更新成功!",
+          allowOutsideClick: false, //不可點背景關閉
+        }).then(function () {
+          window.location.href =
+            "day_off.php";
+        });
+      } 
+      else if(data.includes("noallow"))
+      {
+        swal({
+          type: 'error',
+          title: '您無權限修改該筆請假紀錄',
+          text: '當前登入的帳號名稱與主管名稱不符',
+          allowOutsideClick: false //不可點背景關閉
+        });
+      }
+      else 
+      {
+        swal({
+          type: "error",
+          title: "更新失敗!請聯絡負責人",
+          allowOutsideClick: false, //不可點背景關閉
+        });
+      }
+    },
+    error: function (e) {
+      console.log(e)
+      swal({
+          type: "error",
+          title: "更新失敗!請聯絡負責人",
+          allowOutsideClick: false, //不可點背景關閉
+      });
+    },
+  });
 }
 // endregion
 

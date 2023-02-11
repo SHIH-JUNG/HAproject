@@ -1,25 +1,20 @@
 <?php
 session_start();
 include("sql_connect.php");
+
 //region 抓資料
-$authority_num = $_POST['authority_num'];
 $user = $_SESSION['name'];
 
-if(isset($_POST['authority_num']))
-{
-    $select_resume_id = "SELECT `Resume_id` FROM `user_info` WHERE `Name` = '$user';";
+$select_resume_id = "SELECT `Resume_id` FROM `user_info` WHERE `Name` = '$user';";
 
-    $find_resume_id = mysqli_query($conn, $select_resume_id);
-    $resume_id = mysqli_fetch_row($find_resume_id);
+$find_resume_id = mysqli_query($conn, $select_resume_id);
+$resume_id = mysqli_fetch_row($find_resume_id);
 
-    $note = "SELECT * FROM `day_off_v2` WHERE `Resume_id` = '$resume_id[0]' ORDER BY `day_off_v2`.`Fillin_date` ASC;";
-}
-else
-{
-    $note = "SELECT * FROM `day_off_v2` ORDER BY `day_off_v2`.`Fillin_date` ASC;";
-}
+$note = "SELECT SUM(Hours) AS t_hours, SUM(Used_comp_hours) AS t_used_comp_hours, SUM(Used_annual_hours) AS t_Used_annual_hours 
+FROM `day_off_v2` WHERE `Resume_id` = '$resume_id[0]' ORDER BY `day_off_v2`.`Fillin_date` ASC;";
 
 //宣告空的陣列
+// AND `Allow_status` = '核准'
 $datas = array();
 
 $select_all = mysqli_query($conn, $note);
