@@ -153,6 +153,7 @@ $.ajax({
     },
 });
 
+
 // 查詢當前帳號登入者的可使用的補/特休時數 region
 load_remain_hours = function() {
 
@@ -188,6 +189,9 @@ load_remain_hours = function() {
 
             case "Comp_hours":
               r_comp_hours += value.Change_num;
+              break;
+            case "Leave":
+
               break;
           }
         });

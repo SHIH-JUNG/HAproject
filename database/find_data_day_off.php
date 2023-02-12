@@ -2,7 +2,6 @@
 session_start();
 include("sql_connect.php");
 //region 抓資料
-$authority_num = $_POST['authority_num'];
 $user = $_SESSION['name'];
 
 if(isset($_POST['authority_num']))
@@ -13,6 +12,15 @@ if(isset($_POST['authority_num']))
     $resume_id = mysqli_fetch_row($find_resume_id);
 
     $note = "SELECT * FROM `day_off_v2` WHERE `Resume_id` = '$resume_id[0]' ORDER BY `day_off_v2`.`Fillin_date` ASC;";
+}
+else if(isset($_POST['find_allow_status']))
+{
+    $select_resume_id = "SELECT `Resume_id` FROM `user_info` WHERE `Name` = '$user';";
+
+    $find_resume_id = mysqli_query($conn, $select_resume_id);
+    $resume_id = mysqli_fetch_row($find_resume_id);
+
+    $note = "SELECT * FROM `day_off_v2` WHERE `Resume_id` = '$resume_id[0]' AND `Allow_status` <> '核准' ORDER BY `day_off_v2`.`Fillin_date` ASC;";
 }
 else
 {

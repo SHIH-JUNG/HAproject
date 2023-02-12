@@ -158,12 +158,13 @@
                                                                     <textarea style="width:75%;resize: none;font-size: 20px;min-height:8em;" id="reason" placeholder="請假事由"></textarea>
                                                                 </td>
                                                             </tr>
-
                                                             <tr style="text-align:left">
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>請假<br/>日期</td>
                                                                 <td style="border-bottom: solid 1px;">
                                                                     自&emsp;<input id="overtime_date_start" name="ch_datepicker" type="text" overtime="overtime"><input style="margin-left: 1em;" id="overtime_time_start"  type="time" overtime="overtime"><br/><br/>至&emsp;
-                                                                    <input id="overtime_date_end" name="ch_datepicker" type="text" overtime="overtime"><input style="margin-left: 1em;" id="overtime_time_end"  type="time" overtime="overtime">&emsp;止<br/><br/>
+                                                                    <input id="overtime_date_end" name="ch_datepicker" type="text" overtime="overtime"><input style="margin-left: 1em;" id="overtime_time_end"  type="time" overtime="overtime">&emsp;止 
+                                                                    <button style="margin:.5em;margin-left:1em;color:blue;" type="button" onclick="reset_count_hours();">重製</button>
+                                                                    <br/><br/>
                                                                     <div id="overtime_hours_count" style="color:red;">
                                                                         請假時數：共0日0時
                                                                     </div>

@@ -16,8 +16,10 @@ $id_num = mysqli_fetch_row($find_id_num);
 // echo $id_num[0];
 // echo $row_nums;
 
+$this_year = date('Y') - 1911;
+
 //region 抓資料
-$note = "SELECT * FROM `resume_seniority` WHERE `Resume_id` = '$id_num[0]';";
+$note = "SELECT * FROM `resume_seniority` WHERE `Resume_id` = '$id_num[0]' AND `Rec_year` = '$this_year';";
 
 //宣告空的陣列
 $datas = array();

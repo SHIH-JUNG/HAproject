@@ -77,13 +77,39 @@ $(document).ready(function () {
 
   //顯示剩餘可補休的時數
   load_remain_hours();
+
+  // console.log("剩餘補休時數："+r_comp_hours);
+  // console.log("剩餘特休時數： "+r_annual_hours);
 });
+
+// 重製請假日期欄位及清空時數計算 region
+reset_count_hours = function() {
+
+  $("#overtime_date_start").val('');
+  $("#overtime_date_end").val('');
+  $("#overtime_time_start").val('');
+  $("#overtime_time_end").val('');
+
+  load_remain_hours();
+
+}
+//endregion
 
 // 網頁載入時，查詢當前帳號登入者的可使用的補/特休時數 region
 load_remain_hours = function() {
 
-  window.r_annual_hours = 0;
+  //剩餘補休
   window.r_comp_hours = 0;
+  //剩餘特休
+  window.r_annual_hours = 0;
+  //已用補休
+  window.u_comp_hours = 0;
+  //已用特休
+  window.u_annual_hours = 0;
+  //今年請假時數
+  window.leave_hours = 0;
+  //存放資料庫原始現有剩餘/已用 特/補休時數
+  window.o_use_remain_hours_arr = [];
 
   var load_remain_hours_str = "";
 
@@ -98,20 +124,24 @@ load_remain_hours = function() {
 
         $.each(data, function (index, value) {
 
-
+          // 根據type計算 今年的可用補休、可用特休、已請假時數
           switch (value.Type) {
             case "Annual_default":
-              r_annual_hours += value.Annual_default;
+              r_annual_hours = Number(value.Annual_default) + r_annual_hours;
               break;
           
             case "Annual_hours":
-              r_annual_hours += value.Change_num;
+              r_annual_hours = Number(value.Change_num) + r_annual_hours;
               break;
 
             case "Comp_hours":
-              r_comp_hours += value.Change_num;
+              r_comp_hours = Number(value.Change_num) + r_comp_hours;
+              break;
+            case "Leave":
+              leave_hours = Number(value.Change_num) + leave_hours;
               break;
           }
+
         });
 
       },
@@ -120,21 +150,48 @@ load_remain_hours = function() {
           console.log(e)
       }
   });
-  console.log(r_comp_hours)
-  console.log(r_annual_hours)
 
-  load_remain_hours_str = '<br/><br/>剩餘補休時數： ' + parseFloat(r_comp_hours).toFixed(1) + '<br/>' + 
-  '剩餘特休時數： '+ parseFloat(r_annual_hours).toFixed(1) + '<br/><br/>' + 
-  '已使用的補休時數：0.0' + '<br/>' + 
-   '已使用的特休時數：0.0' + '<br/><br/>';
+  // 統計今年總請假時數
+  o_use_remain_hours_arr = count_use_remain_hours(parseFloat(leave_hours).toFixed(1), true);
 
+  // console.log("lh:"+leave_hours)
+  // console.log(o_use_remain_hours_arr[0])
+  // console.log(o_use_remain_hours_arr[1])
+  // console.log(o_use_remain_hours_arr[2])
+  // console.log(o_use_remain_hours_arr[3])
+
+  load_remain_hours_str = '<br/><br/>剩餘補休時數： ' + parseFloat(o_use_remain_hours_arr[0]).toFixed(1) + '<br/>' + 
+  '剩餘特休時數： '+ parseFloat(o_use_remain_hours_arr[1]).toFixed(1) + '<br/><br/>' + 
+  '已使用的補休時數： 0.0<br/>' + 
+  '已使用的特休時數： 0.0<br/><br/>';
+  // '已使用的補休時數： '+ parseFloat(o_use_remain_hours_arr[2]).toFixed(1) + '<br/>' + 
+  //  '已使用的特休時數：： '+ parseFloat(o_use_remain_hours_arr[3]).toFixed(1) + '<br/><br/>';
+
+  // 剩餘/已用 特/補休時數 顯示在網頁上提示
   $("#overtime_hours_hit").html(load_remain_hours_str);
 
 }
 // endregion
 
 // 計算已使用及剩餘補/特休時數 region
-function count_use_remain_hours(overtime_hours) {
+function count_use_remain_hours(overtime_hours, isfirst) {
+
+  var rch = 0;
+  var rah = 0;
+
+  // 判斷是否為 初次載入網頁計算true、觸發更改請假日期欄位自動計算false
+  if(isfirst)
+  {
+    rch = r_comp_hours;
+    rah = r_annual_hours;
+  }
+  else
+  {
+    // 若為請假日期欄位觸發自動計算方式，則使用第一次載入網頁已計算的值
+    rch = o_use_remain_hours_arr[0];
+    rah = o_use_remain_hours_arr[1];
+  }
+
   var use_annual_hours = 0;
   var use_comp_hours = 0;
 
@@ -143,24 +200,26 @@ function count_use_remain_hours(overtime_hours) {
 
   var count_hours_arr = new Array();
 
-  if(parseFloat(overtime_hours) - parseFloat(r_comp_hours) >= 0)
+  // 請假時數大於等於剩餘補休時數，剩餘補休時數會用完，需要使用到剩餘特休時數
+  if(parseFloat(overtime_hours) - parseFloat(rch) >= 0)
   {
-    use_comp_hours = parseFloat(r_comp_hours).toFixed(1);
-    use_annual_hours = parseFloat(parseFloat(overtime_hours) - parseFloat(r_comp_hours)).toFixed(1);
+    use_comp_hours = parseFloat(rch).toFixed(1);
+    use_annual_hours = parseFloat(parseFloat(overtime_hours) - parseFloat(rch)).toFixed(1);
 
-    remain_comp_hours = parseFloat(parseFloat(r_comp_hours) - parseFloat(use_comp_hours)).toFixed(1);
-    remain_annual_hours = parseFloat(parseFloat(r_annual_hours) - parseFloat(use_annual_hours)).toFixed(1);
+    remain_comp_hours = parseFloat(parseFloat(rch) - parseFloat(use_comp_hours)).toFixed(1);
+    remain_annual_hours = parseFloat(parseFloat(rah) - parseFloat(use_annual_hours)).toFixed(1);
 
-  }
-  else if(parseFloat(overtime_hours) - parseFloat(r_comp_hours) < 0)
+  }// 請假時數小於剩餘補休時數，先扣除剩餘補休時數，剩餘特休時數不扣除
+  else if(parseFloat(overtime_hours) - parseFloat(rch) < 0)
   {
     use_comp_hours = parseFloat(overtime_hours).toFixed(1);
     use_annual_hours = 0.0;
 
-    remain_comp_hours = parseFloat(r_comp_hours).toFixed(1);
-    remain_annual_hours = parseFloat(r_annual_hours).toFixed(1);
+    remain_comp_hours = parseFloat(parseFloat(rch) - parseFloat(use_comp_hours)).toFixed(1);
+    remain_annual_hours = parseFloat(rah).toFixed(1);
   }
 
+  //存放計算變動的 剩餘/已用 特/補休時數
   count_hours_arr.push(remain_comp_hours);
   count_hours_arr.push(remain_annual_hours);
   count_hours_arr.push(use_comp_hours);
@@ -206,6 +265,7 @@ function Overtime_GetDateDiff(startTime, endTime, diffType) {
 // 根據請假日期計算已使用及剩餘時數 region
 update_remain_hours = function() {
 
+  //獲取 請假日期 四個時間欄位的值
   var overtime_date_start = $("#overtime_date_start").val();
   var overtime_date_end = $("#overtime_date_end").val();
   var overtime_time_start = $("#overtime_time_start").val();
@@ -214,27 +274,28 @@ update_remain_hours = function() {
   var overtime_start_format = split_date(overtime_date_start) + " " + overtime_time_start;
   var overtime_end_format = split_date(overtime_date_end) + " " + overtime_time_end;
 
+  // 根據請假欄位計算總請假時數
   window.get_overtime_hours = Overtime_GetDateDiff(overtime_start_format, overtime_end_format, "hour");
 
   var total_remain_hours = parseFloat(parseFloat(r_annual_hours) + parseFloat(r_comp_hours)).toFixed(1);
 
-  // console.log(parseFloat(get_overtime_hours).toFixed(1))
-  // console.log(total_remain_hours)
+  console.log(parseFloat(get_overtime_hours).toFixed(1))
+  console.log(total_remain_hours)
   // console.log(get_overtime_hours)
 
-  console.log(overtime_start_format);
-  console.log(overtime_end_format)
+  // console.log(overtime_start_format);
+  // console.log(overtime_end_format);
 
-  if(get_overtime_hours > 0)
+  if(get_overtime_hours > 0 && get_overtime_hours <= 8)
   {
+    // 判斷請假時數是否大於當前剩餘的特/補休時數，大於則無法請假跳出提示
     if(parseFloat(total_remain_hours - get_overtime_hours).toFixed(1) >= 0)
     {
-      // window.u_annual_hours = 0;
-      // window.u_comp_hours = 0;
 
       var update_remain_hours_str = "";
 
-      window.use_remain_hours_arr = count_use_remain_hours(parseFloat(get_overtime_hours).toFixed(1));
+      // 獲取扣完請假時數後的 剩餘/已用 特/補休時數
+      window.use_remain_hours_arr = count_use_remain_hours(parseFloat(get_overtime_hours).toFixed(1), false);
 
       // console.log(use_remain_hours_arr[0])
       // console.log(use_remain_hours_arr[1])
@@ -272,6 +333,16 @@ update_remain_hours = function() {
         showConfirmButton: true,
       })
     }
+  }
+  else if(get_overtime_hours > 8)
+  {
+    swal({
+      title: "使用的請假時數不可超過一天的時數",
+      type: "warning",
+      confirmButtonColor: "#DD6B55",
+      confirmButtonText: "確認",
+      showConfirmButton: true,
+    })
   }
   else
   {
@@ -340,7 +411,22 @@ $("#day_off_add_new").on("click", function () {
       .then(
         function (result) {
           if (result) {
-            submit_form();
+            // console.log(check_day_off_status());
+            // 若已經有請假申請審核中，則不能請假
+            if(check_day_off_status())
+            {
+              swal({
+                title: "目前還有請假申請審核中，時數尚未實際認列",
+                type: "warning",
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "確認",
+                showConfirmButton: true,
+              })
+            }
+            else
+            {
+              submit_form();
+            }
           }
         },
         function (dismiss) {
@@ -356,6 +442,42 @@ $("#day_off_add_new").on("click", function () {
   }
 });
 //endregion
+
+check_day_off_status = function() {
+
+  var status = true;
+
+  $.ajax({
+    url: "database/find_data_day_off.php",
+    data:{
+      find_allow_status:true,
+    },
+    type: "POST",
+    dataType: "JSON",
+    async: false,//啟用同步請求
+    success: function (data) {
+        
+      console.log(data)
+
+      if(data.length == 0)
+      {
+        status = false;
+      }
+      else
+      {
+        status = true;
+      }
+      
+    },
+    error:function(e){
+        notyf.alert('伺服器錯誤,無法載入');
+        console.log(e)
+    }
+  });
+
+  return status;
+}
+
 
 // 處理送出的值 region
 function submit_form() {

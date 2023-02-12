@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2023-02-11 14:27:36
+-- 產生時間： 2023-02-12 15:09:58
 -- 伺服器版本： 10.4.24-MariaDB
 -- PHP 版本： 7.4.29
 
@@ -718,8 +718,8 @@ CREATE TABLE `day_off_v2` (
 --
 
 INSERT INTO `day_off_v2` (`Id`, `Resume_id`, `Resume_name`, `Rec_year`, `Fillin_date`, `Day_off_type`, `Reason`, `Other_files`, `Overtime_date_start`, `Overtime_date_end`, `Hours`, `Remain_comp_hours`, `Remain_annual_hours`, `Used_comp_hours`, `Used_annual_hours`, `Allow_status`, `Create_date`, `Create_name`, `Update_date`, `Update_name`, `Supervise`, `Supervise_signature`, `Supervise_sign_msg`, `Supervise_sign_time`, `Job_agent`, `Job_agent_signature`, `Job_agent_sign_msg`, `Job_agent_sign_time`) VALUES
-(1, 3, 'testabc19', 112, '2023-02-06', '其它::test其它假別', 'test0208請假事由', '../resume/resume_user3_test0109/day_off_datas/test0208file.docx', '112年02月08日_08:00', '112年02月08日_17:00', 9, 0, 71, 0, 9, '審核中', '2023-02-06 19:42:36', 'testabc19', '2023-02-11 19:39:39', '園主任', '園主任', '', '', '', '社工員2', '', '', ''),
-(3, 3, 'testabc19', 112, '2023-02-08', '事假', 'test0216', '', '112年02月16日_08:00', '112年02月16日_14:30', 6.5, 0, 73.5, 0, 6.5, '審核中', '2023-02-08 20:04:41', 'testabc19', '2023-02-08 20:06:15', '執行長', '執行長', '', '', '', '社工員1', '', '', '');
+(5, 3, 'testabc19', 112, '2023-02-12', '病假', 'ttttt0206', '', '112年02月06日_09:00', '112年02月06日_17:00', 8, 0, 77.1, 1.1, 6.9, '核准', '2023-02-12 21:41:51', 'testabc19', '2023-02-12 21:46:35', '執行長', '執行長', '', '', '', '社工員2', '', '', ''),
+(8, 3, 'testabc19', 112, '2023-02-12', '病假', 'ddqdqwqw\r\nwqqwdqq\r\nsss', '', '112年02月09日_08:00', '112年02月09日_13:30', 5.5, 0, 71.6, 0, 5.5, '審核中', '2023-02-12 22:04:42', 'testabc19', '2023-02-12 22:04:42', '', '園主任', '', '', '', '社工員1', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -1191,7 +1191,10 @@ INSERT INTO `login_record` (`Id`, `Login_timestamp`, `Login_account`, `Login_aut
 (155, '2023-02-11 20:12:15', 'test5', '3', '園主任', '22.6483444,120.3262535', 0),
 (156, '2023-02-11 20:29:17', 'test0109', '1', 'testabc19', '22.6483444,120.3262535', 0),
 (157, '2023-02-11 20:35:38', 'test5', '3', '園主任', '22.6483444,120.3262535', 0),
-(158, '2023-02-11 20:36:19', 'test0109', '1', 'testabc19', '22.6483444,120.3262535', 0);
+(158, '2023-02-11 20:36:19', 'test0109', '1', 'testabc19', '22.6483444,120.3262535', 0),
+(159, '2023-02-12 21:44:11', 'test5', '3', '園主任', '22.5905897,120.4743417', 1),
+(160, '2023-02-12 21:46:25', 'test6', '4', '執行長', '22.5905897,120.4743417', 1),
+(161, '2023-02-12 21:47:27', 'test0109', '1', 'testabc19', '22.5905795,120.4747917', 1);
 
 -- --------------------------------------------------------
 
@@ -1660,7 +1663,13 @@ CREATE TABLE `resume_seniority` (
 --
 
 INSERT INTO `resume_seniority` (`Id`, `Resume_id`, `Seniority_num`, `Rec_year`, `Type`, `Annual_default`, `Change_num`, `Day_off_id`, `Overtime_id`, `Remark`, `sys_update_date`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
-(1, 3, 2.39, 112, 'Annual_default', 80, 0, 0, 0, '員工建檔修改預設補修時數：80.0小時。', '0000-00-00 00:00:00', '2023-01-09 21:33:38', 'abctest1229a', '2023-01-09 21:34:51', 'abctest1229a');
+(1, 3, 2.39, 112, 'Annual_default', 80, 0, 0, 0, '員工建檔修改預設補修時數：80.0小時。', '0000-00-00 00:00:00', '2023-01-09 21:33:38', 'abctest1229a', '2023-01-09 21:34:51', 'abctest1229a'),
+(6, 3, 0, 112, 'Leave', 0, 2.5, 14, 0, '', '0000-00-00 00:00:00', '2023-01-09 21:33:38', 'abctest1229a', '2023-01-09 21:34:51', 'abctest1229a'),
+(7, 3, 0, 112, 'Leave', 0, 2.6, 15, 0, '', '0000-00-00 00:00:00', '2023-01-09 21:33:38', 'abctest1229a', '2023-01-09 21:34:51', 'abctest1229a'),
+(8, 3, 0, 112, 'Comp_hours', 0, 3.5, 0, 16, '', '0000-00-00 00:00:00', '2023-01-09 21:33:38', 'abctest1229a', '2023-01-09 21:34:51', 'abctest1229a'),
+(9, 3, 0, 112, 'Comp_hours', 0, 2.7, 0, 17, '', '0000-00-00 00:00:00', '2023-01-09 21:33:38', 'abctest1229a', '2023-01-09 21:34:51', 'abctest1229a'),
+(10, 3, 2.39, 112, 'Annual_hours', 0, 4, 0, 0, '', '0000-00-00 00:00:00', '2023-01-09 21:33:38', 'abctest1229a', '2023-01-09 21:34:51', 'abctest1229a'),
+(11, 3, 0, 112, 'Leave', 0, 8, 5, 0, '使用的補休時數：1.1小時，使用的特休時數：6.9小時。', '0000-00-00 00:00:00', '2023-02-12 21:46:35', '執行長', '2023-02-12 21:46:35', '');
 
 -- --------------------------------------------------------
 
@@ -2521,7 +2530,7 @@ ALTER TABLE `day_off`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `day_off_v2`
 --
 ALTER TABLE `day_off_v2`
-  MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `dlgrec`
@@ -2563,7 +2572,7 @@ ALTER TABLE `leave_rule_table`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `login_record`
 --
 ALTER TABLE `login_record`
-  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=159;
+  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=162;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `members_assemble`
@@ -2647,7 +2656,7 @@ ALTER TABLE `resume_forms`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `resume_seniority`
 --
 ALTER TABLE `resume_seniority`
-  MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `screening`
