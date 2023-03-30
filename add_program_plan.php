@@ -240,7 +240,7 @@
     <script src="javascript/bootstrap-table1.11.1-zh-TW.min.js"></script>
     <!-- 日期民國-->
     <script src="javascript/jquery-ui.min.js"></script>
-    <script src="javascript/datepickerTw2.js"></script>
+    <script src="javascript/datepickerTw.js"></script>
     <!-- ================== add_phone.js ================== -->
     <script src="js/add_program_plan.js<?php echo "?" . date("Y-m-d h:i:sa") ?>"></script>
 </body>
