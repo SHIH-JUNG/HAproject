@@ -120,7 +120,7 @@
                                                             <tr style="background-color:rgb(255 201 54);">
                                                                 <th>標題</th>
                                                                 <th>日期</th>
-                                                                <th>督導簽章</th>
+                                                                <th>督導/主管簽章</th>
                                                                 <!-- <th>會議記錄</th> -->
                                                             </tr>
                                                         </thead>

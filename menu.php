@@ -63,7 +63,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="volunteer_meeting.php">志工會議
+                            <a href="volunteer_meeting.php">志工會議及活動
                             </a>
                         </li>
                     </ul>
@@ -103,11 +103,11 @@
             </a>
             <ul style="font-size:15px" id="accounting_non_open" class="collapse">
                 <li>
-                    <a href="accounting_record_cash_yearlist.php">零用金紀錄
+                    <a href="accounting_record_cash_yearlist.php">零用金
                     </a>
                 </li>
                 <li>
-                    <a href="accounting_record_report_yearlist.php">報表紀錄
+                    <a href="accounting_record_report_yearlist.php">帳目報表
                     </a>
                 </li>
             </ul>
@@ -200,10 +200,10 @@
                 <a href="program_act.php">方案活動
                 </a>
             </li>
-            <li>
-                <a href="#">方案成果
+            <!-- <li>
+                <a href="program_result.php">方案成果
                 </a>
-            </li>
+            </li> -->
         </ul>
     </li>
     <!-- <li>

@@ -5,7 +5,6 @@ $servername = "127.0.0.1";
 // $username = "test";
 // $password = "1105";
 $username = "root";
-//$password = "0000";
 $password = "";
 $dbname = "ha";
 $dbport = "3306";

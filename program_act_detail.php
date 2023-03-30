@@ -150,10 +150,7 @@
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">年度</td>
                                                                                 <td style="border-bottom: solid 1px;"><input id="year" class="program_question" type="number"></td>
                                                                             </tr>
-                                                                            <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">日期</td>
-                                                                                <td style="border-bottom: solid 1px;"><input id="date" class="program_question" name="ch_datepicker" type="number"></td>
-                                                                            </tr>
+
                                                                             <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>活動名稱</td>
                                                                                 <td style="border-bottom: solid 1px;">
@@ -167,6 +164,12 @@
                                                                                 </td>
                                                                                 </td>
                                                                             </tr>
+                                                                            
+                                                                            <tr style="text-align:left">
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">日期</td>
+                                                                                <td style="border-bottom: solid 1px;"><input id="date" class="program_question" name="ch_datepicker" type="number"></td>
+                                                                            </tr>
+                                                                            
                                                                             <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>對象</td>
                                                                                 <td style="border-bottom: solid 1px;">
@@ -188,15 +191,15 @@
                                                                                 <td style="border-bottom: solid 1px;"><input id="service" class="program_question" type="text"></td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>執行費用</td>
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">執行費用</td>
                                                                                 <td style="border-bottom: solid 1px;"><input id="cost" class="program_question" type="number"></td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>人數</td>
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">人數</td>
                                                                                 <td style="border-bottom: solid 1px;"><input id="number" class="program_question" type="number"></td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>講師</td>
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">講師</td>
                                                                                 <td style="border-bottom: solid 1px;"><input id="lecturer" class="program_question" type="text"></td>
                                                                             </tr>
 

@@ -1,114 +1,203 @@
-//取得url id值region
-function getUrlVars() {
-  var vars = {};
-  var parts = window.location.href.replace(
-    /[?&]+([^=&]+)=([^&]*)/gi,
-    function (m, key, value) {
-      vars[key] = value;
-    }
-  );
-  return vars;
+$(function() {
+  imagePreview();  
+});
+
+//datepicker創建 region
+datepicker_create = function(selector_id) {
+
+  if(selector_id.includes("birth"))
+  {
+      $('#'+selector_id).datepicker({
+          changeYear: true,
+          changeMonth: true,
+          currentText: "今天",
+          dateFormat:"R.mm.dd",
+          showButtonPanel: true,
+          yearRange: "-109:+0",
+          onClose: function(dateText) {
+              // console.log($('#'+selector_id).val());
+              // console.log(trans_to_EN(dateText));
+          }
+          ,beforeShow: function(input, inst) {
+              var $this = $(this);
+              var cal = inst.dpDiv;
+              var outerh = $this.outerHeight();
+              if($this.offset().top>1200)
+              {
+                  outerh = outerh*4;
+              }
+              else
+              {
+                  outerh = outerh*3;
+              }
+              // console.log($this.offset().top)
+              // console.log(outerh)
+  
+  
+              var top = $this.offset().top - outerh;
+              var left = $this.offset().left*0.9;
+              setTimeout(function() {
+                  cal.css({
+                      'top': top,
+                      'left': left
+                  });
+              }, 10);
+          }
+      });
+  }
+  else
+  {
+      $('#'+selector_id).datepicker({
+          changeYear: true,
+          changeMonth: true,
+          currentText: "今天",
+          dateFormat:"R.mm.dd",
+          showButtonPanel: true,
+          yearRange: "-12:+5",
+          onClose: function(dateText) {
+              // console.log($('#'+selector_id).val());
+              // console.log(trans_to_EN(dateText));
+          }
+          ,beforeShow: function(input, inst) {
+              var $this = $(this);
+              var cal = inst.dpDiv;
+              var outerh = $this.outerHeight();
+              if($this.offset().top>1200)
+              {
+                  outerh = outerh*4;
+              }
+              else
+              {
+                  outerh = outerh*3;
+              }
+              // console.log($this.offset().top)
+              // console.log(outerh)
+  
+  
+              var top = $this.offset().top - outerh;
+              var left = $this.offset().left*0.86;
+              setTimeout(function() {
+                  cal.css({
+                      'top': top,
+                      'left': left
+                  });
+              }, 10);
+          }
+      });
+  }
 }
 //endregion
 
-//datepicker創建 region
-datepicker_create = function (selector_id) {
-  if (selector_id.includes("birth")) {
-    $("#" + selector_id).datepicker({
-      changeYear: true,
-      changeMonth: true,
-      currentText: "今天",
-      dateFormat: "R.mm.dd",
-      showButtonPanel: true,
-      yearRange: "-109:+0",
-      onClose: function (dateText) {
-        // console.log($('#'+selector_id).val());
-        // console.log(trans_to_EN(dateText));
-      },
-      beforeShow: function (input, inst) {
-        var $this = $(this);
-        var cal = inst.dpDiv;
-        var outerh = $this.outerHeight();
-        if ($this.offset().top > 1200) {
-          outerh = outerh * 4;
-        } else {
-          outerh = outerh * 3;
-        }
-        // console.log($this.offset().top)
-        // console.log(outerh)
-
-        var top = $this.offset().top - outerh;
-        var left = $this.offset().left - 10;
-        setTimeout(function () {
-          cal.css({
-            top: top,
-            left: left,
-          });
-        }, 10);
-      },
-    });
-  } else {
-    $("#" + selector_id).datepicker({
-      changeYear: true,
-      changeMonth: true,
-      currentText: "今天",
-      dateFormat: "R.mm.dd",
-      showButtonPanel: true,
-      minDate: new Date(new Date().getFullYear() - 10, 0, 1),
-      maxDate: new Date(new Date().getFullYear() + 10, 11, 31),
-      onClose: function (dateText) {
-        // console.log($('#'+selector_id).val());
-        // console.log(trans_to_EN(dateText));
-      },
-      beforeShow: function (input, inst) {
-        var $this = $(this);
-        var cal = inst.dpDiv;
-        var outerh = $this.outerHeight();
-        if ($this.offset().top > 1200) {
-          outerh = outerh * 4;
-        } else {
-          outerh = outerh * 3;
-        }
-        // console.log($this.offset().top)
-        // console.log(outerh)
-
-        var top = $this.offset().top - outerh;
-        var left = $this.offset().left - 10;
-        setTimeout(function () {
-          cal.css({
-            top: top,
-            left: left,
-          });
-        }, 10);
-      },
-    });
-  }
-};
+// 民國年轉換日期格式yyyy-dd-mm region
+function split_date(date) {
+  return parseInt(date.split("年")[0])+1911+"-"+date.split("年")[1].split("月")[0]+"-"+date.split("年")[1].split("月")[1].split("日")[0]; 
+}
 //endregion
 
-//將日期轉為民國年格式111.03.07 region
-trans_to_Tw = function (endate) {
-  var strAry = endate.split("-");
+$(document).ready(function () {
+  //將input name名稱為ch_datepicker創建datepicker初始化 region
+  $("input[name='ch_datepicker']").each(function () {
+    var this_id = $(this).attr("id");
+    datepicker_create(this_id);
+  });
+  //endregion
+  
+});
 
-  if (parseInt(strAry[0]) > 1911) {
-    strAry[0] = parseInt(strAry[0]) - 1911;
+// 轉換4個檔案的上傳日期，判斷今年是否已上傳檔案 region
+file_showing_format_trans = function(files_date, file_type) {
+
+  var today = new Date();
+
+  var this_year = today.getFullYear();
+
+  var file_staus = "-";
+
+  // console.log(files_date)
+
+  if(files_date!=null)
+  {
+    var files_date_year = files_date.split("-")[0] || 0;
+
+    if(file_type == 0)
+    {
+      if(files_date == "0000-00-00" || parseInt(files_date_year) < this_year)
+      {
+        file_staus = "否";
+      }
+      else if(parseInt(files_date_year) == this_year)
+      {
+        file_staus = "是";
+      }
+    }
+    else if(file_type==1)
+    {
+      if(files_date == "0000-00-00")
+      {
+        file_staus = "否";
+      }
+      else
+      {
+        file_staus = "是";
+      }
+    }
+    
+  }
+  else
+  {
+    file_staus = "否";
   }
 
-  return strAry.join(".");
-};
+  // console.log(file_staus)
+
+  return file_staus;
+}
 //endregion
 
 //將日期轉為西元年格式2022-03-07(mysql date格式) region
 trans_to_EN = function (endate) {
-  var strAry = endate.split(".");
+  var return_str = "";
 
-  if (parseInt(strAry[0]) < 1911) {
-    strAry[0] = parseInt(strAry[0]) + 1911;
+  if(endate!="")
+  {
+      var strAry1 = endate.split("年");
+      var strAry2 = strAry1[1].split("月");
+      var strAry3 = strAry2[1].split("日");
+
+      return_str = (parseInt(strAry1[0]) + 1911) + "-" + strAry2[0] + "-" + strAry3[0];
   }
+  else
+  {
+      return_str = "";
+  }
+  
 
-  return strAry.join("-");
+  return return_str;
 };
 //endregion
+
+//將日期轉為民國年格式111年03月07日 region
+trans_to_Tw = function (endate) {
+  var return_str = "";
+  if(endate!="")
+  {
+      var strAry = endate.split("-");
+
+      if (parseInt(strAry[0]) > 1911) {
+        strAry[0] = parseInt(strAry[0]) - 1911;
+      }
+
+      return_str = strAry[0]+"年"+strAry[1]+"月"+strAry[2]+"日";
+  }
+  else
+  {
+      return_str = "";
+  }
+  
+  return return_str;
+};
+//endregion
+
 
 //檢查SQL撈出來的日期格式region
 check_sql_date_format = function (date) {
@@ -120,18 +209,6 @@ check_sql_date_format = function (date) {
 
   return date;
 };
-
-//取得url id值region
-function getUrlVars() {
-  var vars = {};
-  var parts = window.location.href.replace(
-    /[?&]+([^=&]+)=([^&]*)/gi,
-    function (m, key, value) {
-      vars[key] = value;
-    }
-  );
-  return vars;
-}
 //endregion
 
 //團督記錄表格region
@@ -141,21 +218,15 @@ $.ajax({
   url: "database/find_data_program_plan.php",
   type: "POST",
   dataType: "JSON",
-  // data: {
-  //   year: vo_year,
-  // },
   async: false, //啟用同步請求
   success: function (data) {
     var cssString = "";
-    // console.log(data)
+
     $.each(data, function (index, value) {
       cssString +=
         '<tr id="' +
         value.Id +
         '">' +
-        '<td style="text-align:center">' +
-        value.Year +
-        "</td>" +
         '<td style="text-align:center">' +
         value.Date +
         "</td>" +
@@ -163,101 +234,18 @@ $.ajax({
         value.Plan_name +
         "</td>" +
         '<td style="text-align:center">' +
-        value.Create_date +
-        "</td>" +
+          file_showing_format_trans(value.Proposal_date, 1) +
+        '</td>' +
         '<td style="text-align:center">' +
-        value.Create_name +
-        "</td>" +
+          file_showing_format_trans(value.Interim_date, 1) +
+        '</td>' +
         '<td style="text-align:center">' +
-        value.Update_date +
-        "</td>" +
+          file_showing_format_trans(value.Achieve_date, 1) +
+        '</td>' +
         '<td style="text-align:center">' +
-        value.Update_name +
-        "</td>" +
+          file_showing_format_trans(value.Other_date, 1) +
+        '</td>' +
         "</tr>";
-
-      $("#year").append(
-        '<option value="' + value.Year + '">' + value.Year + "</option>"
-      );
-
-      $("#date").append(
-        '<option value="' + value.Date + '">' + value.Date + "</option>"
-      );
-      $("#plan_name").append(
-        '<option value="' +
-          value.Plan_name +
-          '">' +
-          value.Plan_name +
-          "</option>"
-      );
-      $("#create_date").append(
-        '<option value="' +
-          value.Create_date +
-          '">' +
-          value.Create_date +
-          "</option>"
-      );
-      $("#create_name").append(
-        '<option value="' +
-          value.Create_name +
-          '">' +
-          value.Create_name +
-          "</option>"
-      );
-      $("#update_date").append(
-        '<option value="' +
-          value.Update_date +
-          '">' +
-          value.Update_date +
-          "</option>"
-      );
-      $("#update_name").append(
-        '<option value="' +
-          value.Update_name +
-          '">' +
-          value.Update_name +
-          "</option>"
-      );
-    });
-
-    //找出所有查詢表格下拉式選單，將內容排序、加上"所有查詢"、去除重複值
-    var filter_select = $("select.filter");
-
-    $.each(filter_select, function (i, v) {
-      var this_id = $(this).attr("id");
-
-      if (this_id != undefined) {
-        //option小到大排序
-        $("#" + this_id + " option")
-          .sort(function (a, b) {
-            var aText = $(a).text().toUpperCase();
-            var bText = $(b).text().toUpperCase();
-            if (aText > bText) return 1;
-            if (aText < bText) return -1;
-            return 0;
-          })
-          .appendTo("#" + this_id + "");
-
-        //最前面新增"所有"選像
-        $("#" + this_id + "").prepend(
-          "<option value='' selected='selected'>所有</option>"
-        );
-
-        $("#" + this_id + "")
-          .children()
-          .each(function () {
-            text = $(this).text();
-            if (
-              $("select#" + this_id + " option:contains(" + text + ")").length >
-              1
-            ) {
-              $(
-                "select#" + this_id + " option:contains(" + text + "):gt(0)"
-              ).remove();
-            }
-            //    console.log(text)
-          });
-      }
     });
 
     //印出表格
@@ -274,6 +262,7 @@ $.ajax({
 
   error: function (e) {
     console.log(e);
+    notyf.alert('伺服器錯誤,無法載入');
   },
 });
 
@@ -282,46 +271,48 @@ $.ajax({
 //設定table搜尋框重整後自動填入文字region
 
 //table設定region
-var $table = $("#tab_all").DataTable({
-  ordering: false,
-  info: true,
-  paging: true,
-  lengthChange: false,
-  pageLength: 10,
-  pagingType: "simple_numbers",
-  searching: true,
-  dom:
-    "<'col-sm-12'tr>" +
-    "<'col-sm-6'<'text-left'i>><'col-sm-6'<'text-right'p>>" +
-    "<'col-sm-12'<'text-left'B>>",
+var $table = $('#tab_all').DataTable({
+  "ordering": false,
+  "info": true,
+  "paging": true,
+  "lengthChange": false,
+  "pageLength": 10,
+  "pagingType": "simple_numbers",
+  "searching": true,
+  "dom":
+      "<'col-sm-12'tr>"+
+      "<'col-sm-6'<'text-left'i>><'col-sm-6'<'text-right'p>>"+
+      "<'col-sm-12'<'text-left'B>>",
   language: {
-    sZeroRecords: "没有匹配结果",
-    sInfo: "顯示 _START_ 到 _END_ 筆資料，總共有 _TOTAL_ 筆資料",
-    sInfoEmpty: "目前共有 0 筆紀錄",
-    sInfoFiltered: "(由 _MAX_ 筆資料结果過濾)",
-    fnInfoCallback: function (oSettings, iStart, iEnd, iMax, iTotal, sPre) {
-      $("#count_people").text("人次：" + iTotal);
-      return sPre;
-    },
-    paginate: {
-      previous: "‹上一頁",
-      next: "下一頁›",
-    },
-    aria: {
-      paginate: {
-        previous: "Previous",
-        next: "Next",
+
+      "sZeroRecords": "没有匹配结果",
+      "sInfo": "顯示 _START_ 到 _END_ 筆資料，總共有 _TOTAL_ 筆資料",
+      "sInfoEmpty": "目前共有 0 筆紀錄",
+      "sInfoFiltered": "(由 _MAX_ 筆資料结果過濾)",
+      "fnInfoCallback": function (oSettings, iStart, iEnd, iMax, iTotal, sPre) {
+          $("#count_people").text("人次："+iTotal);
+          return sPre
       },
-    },
+      paginate: {
+          previous: '‹上一頁',
+          next:     '下一頁›'
+      },
+      aria: {
+          paginate: {
+              previous: 'Previous',
+              next:     'Next'
+          }
+      }
   },
   buttons: [
-    {
-      extend: "excelHtml5",
-      title: "快樂聯盟向日葵家園每日生活輔導紀錄表",
-      text: "匯出Excel",
-    },
-  ],
+      {
+          extend: 'excelHtml5',
+          title: '快樂聯盟員工履歷一覽表',
+          text:'匯出Excel'
+      },
+  ]
 });
+
 
 
 var hours_range = function (settings, data, dataIndex) {
@@ -348,29 +339,30 @@ $("#count_people2").text("，人數：" + $table.column(0).data().unique().count
 //endregion
 
 //額外設定select
-// $("select.filter").on("change", function () {
-//   var rel = $(this).attr("rel");
-//   if (this.value != "") {
+$("select.filter").on("change", function () {
+  var rel = $(this).attr("rel");
+  if (this.value != "") {
 //     //格式：.serch(該欄位值, 是否啟用正則表達式匹配, 是否關閉智能查詢, 是否開啟不區分大小寫)
 //     //須完全匹配option的value值 設定option.value 使用正則符號匹配，ex:"^" + this.value+ "$"
 //     //前端注意option value內有特殊字元須加入轉義字 ex:H+梅 positive => H\+梅 positive
-//     $table
-//       .columns(rel)
-//       .search("^" + this.value + "$", true, false, true)
-//       .draw();
-//   } else {
-//     $table.columns(rel).search(this.value).draw();
-//   }
-// });
-// $("#min, #max").keyup(function () {
-//   $.fn.dataTable.ext.search.push(age_range);
-//   $table.draw();
-// });
-// $("#min_date, #max_date").on("change", function () {
-//   //    console.log($('#min_date').val())
-//   $.fn.dataTable.ext.search.push(hours_range);
-//   $table.draw();
-// });
+    $table
+      .columns(rel)
+      .search("^" + this.value + "$", true, false, true)
+      .draw();
+  } else {
+    $table.columns(rel).search(this.value).draw();
+  }
+});
+
+$("#min, #max").keyup(function () {
+  $.fn.dataTable.ext.search.push(age_range);
+  $table.draw();
+});
+$("#min_date, #max_date").on("change", function () {
+  //    console.log($('#min_date').val())
+  $.fn.dataTable.ext.search.push(hours_range);
+  $table.draw();
+});
 
 $("#min_time_all, #max_time_all").keyup(function () {
   $.fn.dataTable.ext.search.push(hours_range);

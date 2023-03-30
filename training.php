@@ -114,23 +114,24 @@
                                                                 <input id="upload_max_date" type="text" name="ch_datepicker" style="width: 10em;" placeholder="在職訓練日期搜尋">
                                                             </td>
 
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">是否在職：</td>
+                                                            <!-- <td class="text-right" style="background-color:rgb(255 201 54)">是否在職：</td>
                                                             <td class="text-left">
-                                                                <select id="on_or_off" rel="2" class="filter search">
+                                                                <select rel="2" class="filter search">
                                                                     <option value="">所有</option>
                                                                     <option value="是">是</option>
                                                                     <option value="否">否</option>
                                                                 </select>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">課程內容：</td>
+                                                            </td> -->
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">課程主題：</td>
                                                             <td class="text-left">
                                                                 <select id="training_name" rel="3" class="filter search">
                                                                     <option value="">所有</option>
                                                                 </select>
                                                             </td>
 
+                                                        </tr>
+                                                        <tr>
+                                                            
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">時數：</td>
                                                             <td class="text-left">
                                                                 <select id="hours" rel="4" class="filter search">
@@ -145,12 +146,10 @@
                                                                 </select>
                                                             </td>
 
-                                                        </tr>
-
-                                                        <tr>
                                                             <td colspan="8" class="text-right">
                                                                 <button onclick="location.reload();">重置搜尋</button><span> </span>
                                                             </td>
+
                                                         </tr>
                                                     </table>
                                                 </div>
@@ -173,8 +172,8 @@
                                                             <tr style="background-color:rgb(255 201 54);">
                                                                 <th>姓名</th>
                                                                 <th>在職訓練日期</th>
-                                                                <th>是否在職</th>
-                                                                <th>課程內容</th>
+                                                                <!-- <th>是否在職</th> -->
+                                                                <th>課程主題</th>
                                                                 <th>時數</th>
                                                                 <th>在職訓練地點</th>
                                                                 <th>創建日期</th>

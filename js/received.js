@@ -160,9 +160,14 @@ $.ajax({
       var director_sign_arr = datatable_sign_show('director', value.Director, value.Director_signature, value.Director_sign_time, value.Director_sign_msg);
 
       var isUpload = '未上傳';
+      var cert_isUpload = '未上傳';
 
       if(value.Upload_name != ""){
         isUpload = '已上傳';
+      }
+
+      if(value.Upload_cert_name != ""){
+        cert_isUpload = '已上傳';
       }
 
       cssString +=
@@ -186,6 +191,9 @@ $.ajax({
         "</td>" +
         '<td style="text-align:center">' +
         isUpload +
+        "</td>" +
+        '<td style="text-align:center">' +
+        cert_isUpload +
         "</td>" +
         '<td style="text-align:center">' +
         value.Create_date +

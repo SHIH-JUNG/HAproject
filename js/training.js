@@ -155,9 +155,9 @@ $.ajax({
         '<td style="text-align:center">' +
         value.Training_date +
         "</td>" +
-        '<td style="text-align:center">' +
-        value.On_or_off +
-        "</td>" +
+        // '<td style="text-align:center">' +
+        // value.On_or_off +
+        // "</td>" +
         '<td style="text-align:center">' +
         value.Training_name +
         "</td>" +

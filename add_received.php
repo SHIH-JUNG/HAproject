@@ -114,27 +114,27 @@
                                                                     </td>
                                                                 </tr>
                                                                 <!-- <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>年分</td>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>年分</td>
                                                                 <td style="border-bottom: solid 1px;"><input id="year" type="text"></td>
                                                             </tr> -->
                                                                 <tr style="text-align:left">
-                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>收文標題</td>
+                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>收文標題</td>
                                                                     <td style="border-bottom: solid 1px;"><input id="title_name" type="text"></td>
                                                                 </tr>
                                                                 <tr style="text-align:left">
-                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>來文日期</td>
+                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>來文日期</td>
                                                                     <td style="border-bottom: solid 1px;"><input id="received_date" name="ch_datepicker" type="text"></td>
                                                                 </tr>
                                                                 <tr style="text-align:left">
-                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>主旨</td>
+                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>主旨</td>
                                                                     <td style="border-bottom: solid 1px;"><input id="subject" type="text"></td>
                                                                 </tr>
                                                                 <tr style="text-align:left">
-                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>來文單位</td>
+                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>來文單位</td>
                                                                     <td style="border-bottom: solid 1px;"><input id="unit" type="text"></td>
                                                                 </tr>
                                                                 <tr style="text-align:left">
-                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>來文字號</td>
+                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>來文字號</td>
                                                                     <td style="border-bottom: solid 1px;"><input id="num_receive" type="text"></td>
                                                                 </tr>
                                                                 <tr style="text-align:left">
@@ -150,6 +150,18 @@
                                                                     </td>
                                                                 </tr>
                                                                 <tr style="text-align:left">
+                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">證書上傳</td>
+                                                                    <td style="border-bottom: solid 1px;">
+                                                                        <div class="col-sm-8">
+                                                                            <div class="text-left">
+                                                                                <input name="received_cert" type="file" class="form-control" />
+                                                                                <br>
+                                                                                <div id="received_cert"></div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr style="text-align:left">
                                                                     <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>督導(簽核)</td>
                                                                     <td style="border-bottom: solid 1px;">
                                                                         <div class="col-sm-6">
@@ -159,6 +171,8 @@
                                                                         </div>
                                                                     </td>
                                                                 </tr>
+                                                            
+                                                                
                                                                 <tr style="text-align:left">
                                                                     <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>組長(簽核)</td>
                                                                     <td style="border-bottom: solid 1px;">
@@ -180,19 +194,19 @@
                                                                     </td>
                                                                 </tr>
                                                                 <!-- <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>創建日期</td>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>創建日期</td>
                                                                 <td style="border-bottom: solid 1px;"><input id="create_date" datepicker="ch_datepicker" type="text"></td>
                                                             </tr>
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>創建者</td>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>創建者</td>
                                                                 <td style="border-bottom: solid 1px;"><input id="create_name" type="text"></td>
                                                             </tr>
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>更新日期</td>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>更新日期</td>
                                                                 <td style="border-bottom: solid 1px;"><input id="update_date" datepicker="ch_datepicker" type="text"></td>
                                                             </tr>
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>更新者</td>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>更新者</td>
                                                                 <td style="border-bottom: solid 1px;"><input id="update_name" type="text"></td>
                                                             </tr> -->
                                                             </table>

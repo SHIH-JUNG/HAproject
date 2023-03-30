@@ -183,9 +183,6 @@ $.ajax({
         isUpload +
         "</td>" +
         '<td style="text-align:center">' +
-        value.Create_date +
-        "</td>" +
-        '<td style="text-align:center">' +
         value.Create_name +
         "</td>" +
         '<td style="text-align:center">' +

@@ -1,6 +1,5 @@
 <?php session_start(); ?>
 <?php include("database/check_authority.php"); ?> <?php include("no_cache.php"); ?>
-
 <!DOCTYPE html>
 <html>
 
@@ -66,6 +65,11 @@
     .panel-body.scr_container {
         padding: 0;
         padding-top: 15px;
+    }
+
+    .form-control
+    {
+        border: 1px solid #000;
     }
 </style>
 
@@ -147,17 +151,65 @@
                                                                     <div class="panel-body scr_container">
                                                                         <table id="all_data" style="width:55%;display:table !important;" class="table table-bordered">
                                                                             <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">年度</td>
-                                                                                <td style="border-bottom: solid 1px;"><input id="year" class="program_question" type="number"></td>
-                                                                            </tr>
-                                                                            <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">日期</td>
-                                                                                <td style="border-bottom: solid 1px;"><input id="date" class="program_question" name="ch_datepicker" type="number"></td>
+                                                                                <td style="border-bottom: solid 1px;"><input id="program_plan_date" class="program_question" name="ch_datepicker" type="number"></td>
                                                                             </tr>
 
                                                                             <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">計畫名稱</td>
-                                                                                <td style="border-bottom: solid 1px;"><input id="plan_name" class="program_question" name="ch_datepicker" type="number"></td>
+                                                                                <td style="border-bottom: solid 1px;"><input id="plan_name" class="program_question" type="number"></td>
+                                                                            </tr>
+
+                                                                            <tr style="text-align:left">
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">方案計畫檔案</td>
+                                                                                <td style="border-bottom: solid 1px;">
+                                                                                    <div class="col-sm-8">
+                                                                                        <div class="text-left">
+                                                                                            <input name="proposal_file" type="file" class="resume_question form-control">
+                                                                                            <br>
+                                                                                            <div id="proposal_file"></div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+
+                                                                            <tr style="text-align:left">
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">期中報告檔案</td>
+                                                                                <td style="border-bottom: solid 1px;">
+                                                                                    <div class="col-sm-8">
+                                                                                        <div class="text-left">
+                                                                                            <input name="interim_file" type="file" class="resume_question form-control">
+                                                                                            <br>
+                                                                                            <div id="interim_file"></div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+
+                                                                            <tr style="text-align:left">
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">成果報告檔案</td>
+                                                                                <td style="border-bottom: solid 1px;">
+                                                                                    <div class="col-sm-8">
+                                                                                        <div class="text-left">
+                                                                                            <input name="achieve_file" type="file" class="resume_question form-control">
+                                                                                            <br>
+                                                                                            <div id="achieve_file"></div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+
+                                                                            <tr style="text-align:left">
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">核銷及備註資料</td>
+                                                                                <td style="border-bottom: solid 1px;">
+                                                                                    <div class="col-sm-8">
+                                                                                        <div class="text-left">
+                                                                                            <input name="other_file" type="file" class="resume_question form-control">
+                                                                                            <br>
+                                                                                            <div id="other_file"></div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </td>
                                                                             </tr>
 
                                                                             <tr style="text-align:left">

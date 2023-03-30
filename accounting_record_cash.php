@@ -115,7 +115,7 @@
         <!--左側導覽列-->
         <?php include("menu.php"); ?>
         <!--/左側導覽列-->
-        <!--網頁內容-->
+        <!--網頁項目-->
         <div class="page-wrapper">
             <div class="container-fluid ">
                 <!--Title-->
@@ -134,11 +134,11 @@
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span><a href="accounting_record_cash_yearlist.php">零用金紀錄</a></span></li>
+                        <li><span><a href="accounting_record_cash_yearlist.php">零用金</a></span></li>
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span><?php echo trim($rec_year); ?>年度零用金紀錄</span></li>
+                        <li><span><?php echo trim($rec_year); ?>年度零用金</span></li>
                     </ol>
                     <!--/麵包屑-->
                 </div>
@@ -163,7 +163,7 @@
                                     <div class="row">
                                         <div class="col-sm-12 col-xs-12">
                                             <div class="text-center">
-                                                <h4 id="form_type">零用金紀錄</h4>
+                                                <h4 id="form_type">零用金</h4>
                                             </div>
                                             <br>
                                             <ul style="font-size:17px" class="nav nav-tabs" id="myTab" role="tablist">
@@ -261,7 +261,7 @@
                                                                                                 <th style="width:2em;">修改</th>
                                                                                                 <th>日期</th>
                                                                                                 <th>類別</th>
-                                                                                                <th>內容</th>
+                                                                                                <th>項目</th>
                                                                                                 <th>收入</th>
                                                                                                 <th>支出</th>
                                                                                                 <th>上傳日期</th>
@@ -310,7 +310,7 @@
                                                                                                 <th style="width:2em;">修改</th>
                                                                                                 <th>日期</th>
                                                                                                 <th>憑證號碼</th>
-                                                                                                <th>內容</th>
+                                                                                                <th>項目</th>
                                                                                                 <th>收入</th>
                                                                                                 <th>支出</th>
                                                                                                 <th>領款日期</th>
@@ -358,7 +358,7 @@
                                                                                                 <th style="width:2em;">修改</th>
                                                                                                 <th>日期</th>
                                                                                                 <th>憑證號碼</th>
-                                                                                                <th>內容</th>
+                                                                                                <th>項目</th>
                                                                                                 <th>收入</th>
                                                                                                 <th>支出</th>
                                                                                                 <th>領款日期</th>
@@ -406,7 +406,7 @@
                                                                                                 <th style="width:2em;">修改</th>
                                                                                                 <th>日期</th>
                                                                                                 <th>憑證號碼</th>
-                                                                                                <th>內容</th>
+                                                                                                <th>項目</th>
                                                                                                 <th>收入</th>
                                                                                                 <th>支出</th>
                                                                                                 <th>領款日期</th>
@@ -454,7 +454,7 @@
                                                                                                 <th style="width:2em;">修改</th>
                                                                                                 <th>日期</th>
                                                                                                 <th>憑證號碼</th>
-                                                                                                <th>內容</th>
+                                                                                                <th>項目</th>
                                                                                                 <th>收入</th>
                                                                                                 <th>支出</th>
                                                                                                 <th>領款日期</th>
@@ -502,7 +502,7 @@
                                                                                                 <th style="width:2em;">修改</th>    
                                                                                                 <th>日期</th>
                                                                                                 <th>憑證號碼</th>
-                                                                                                <th>內容</th>
+                                                                                                <th>項目</th>
                                                                                                 <th>收入</th>
                                                                                                 <th>支出</th>
                                                                                                 <th>領款日期</th>
@@ -550,7 +550,7 @@
                                                                                                 <th style="width:2em;">修改</th>
                                                                                                 <th>日期</th>
                                                                                                 <th>憑證號碼</th>
-                                                                                                <th>內容</th>
+                                                                                                <th>項目</th>
                                                                                                 <th>收入</th>
                                                                                                 <th>支出</th>
                                                                                                 <th>領款日期</th>
@@ -598,7 +598,7 @@
                                                                                                 <th style="width:2em;">修改</th>
                                                                                                 <th>日期</th>
                                                                                                 <th>憑證號碼</th>
-                                                                                                <th>內容</th>
+                                                                                                <th>項目</th>
                                                                                                 <th>收入</th>
                                                                                                 <th>支出</th>
                                                                                                 <th>領款日期</th>
@@ -646,7 +646,7 @@
                                                                                                 <th style="width:2em;">修改</th>
                                                                                                 <th>日期</th>
                                                                                                 <th>憑證號碼</th>
-                                                                                                <th>內容</th>
+                                                                                                <th>項目</th>
                                                                                                 <th>收入</th>
                                                                                                 <th>支出</th>
                                                                                                 <th>領款日期</th>
@@ -694,7 +694,7 @@
                                                                                                 <th style="width:2em;">修改</th>
                                                                                                 <th>日期</th>
                                                                                                 <th>憑證號碼</th>
-                                                                                                <th>內容</th>
+                                                                                                <th>項目</th>
                                                                                                 <th>收入</th>
                                                                                                 <th>支出</th>
                                                                                                 <th>領款日期</th>
@@ -742,7 +742,7 @@
                                                                                                 <th style="width:2em;">修改</th>
                                                                                                 <th>日期</th>
                                                                                                 <th>憑證號碼</th>
-                                                                                                <th>內容</th>
+                                                                                                <th>項目</th>
                                                                                                 <th>收入</th>
                                                                                                 <th>支出</th>
                                                                                                 <th>領款日期</th>
@@ -790,7 +790,7 @@
                                                                                                 <th style="width:2em;">修改</th>
                                                                                                 <th>日期</th>
                                                                                                 <th>憑證號碼</th>
-                                                                                                <th>內容</th>
+                                                                                                <th>項目</th>
                                                                                                 <th>收入</th>
                                                                                                 <th>支出</th>
                                                                                                 <th>領款日期</th>
@@ -838,7 +838,7 @@
                                                                                                 <th style="width:2em;">修改</th>
                                                                                                 <th>日期</th>
                                                                                                 <th>憑證號碼</th>
-                                                                                                <th>內容</th>
+                                                                                                <th>項目</th>
                                                                                                 <th>收入</th>
                                                                                                 <th>支出</th>
                                                                                                 <th>領款日期</th>
@@ -886,7 +886,7 @@
                                                                                                 <th style="width:2em;">修改</th>
                                                                                                 <th>日期</th>
                                                                                                 <th>憑證號碼</th>
-                                                                                                <th>內容</th>
+                                                                                                <th>項目</th>
                                                                                                 <th>收入</th>
                                                                                                 <th>支出</th>
                                                                                                 <th>領款日期</th>
@@ -932,7 +932,7 @@
                 </div>
                 <!---/Table--->
             </div>
-            <!--/網頁內容-->
+            <!--/網頁項目-->
         </div>
     </div>
     <!-- /#wrapper -->

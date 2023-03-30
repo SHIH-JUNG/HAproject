@@ -106,7 +106,7 @@ $(document).ready(function () {
   //endregion
 });
 
-//新增志工紀錄region
+//新增方案行動region
 $("#program_act_add_new").on("click", function () {
   var stau = false;
 
@@ -147,10 +147,6 @@ $("#program_act_add_new").on("click", function () {
         Cost: $("#cost").val(),
         Number: $("#number").val(),
         Lecturer: $("#lecturer").val(),
-        // Create_date: trans_to_EN($("#create_date").val()),
-        // Create_name: $("#create_name").val(),
-        // Update_date: $("#update_date").val(),
-        // Update_name: $("#update_name").val(),
       },
       //            dataType: "JSON",
       success: function (data) {

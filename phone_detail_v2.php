@@ -215,7 +215,7 @@
                                                                             </tr>
                                                                     
                                                                             <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline"><i style="color:red;">※</i>目前使用物質</td>
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline">目前使用物質</td>
                                                                                 <td style="">
                                                                                     一級毒品：
                                                                                     <label id="addition0" hidden><input class="phone_question" name="main[]" style="zoom: 1.5" type="checkbox" value="海洛因"><label class="ckecked_label">海洛因</label></label>

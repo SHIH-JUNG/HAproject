@@ -80,6 +80,7 @@ if (isset($_FILES["resume_forms_files0"]))
     $file_sqls_date_update .= "`Employment_contract_date` = '$file_0_date',";
 
 }
+
 // 判斷考績上傳 類型 file_E
 if (isset($_FILES["resume_forms_files1"]))
 {

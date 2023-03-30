@@ -182,18 +182,6 @@ $.ajax({
         '<td style="text-align:center">' +
         value.Lecturer +
         "</td>" +
-        // '<td style="text-align:center">' +
-        // value.Create_date +
-        // "</td>" +
-        // '<td style="text-align:center">' +
-        // value.Create_name +
-        // "</td>" +
-        // '<td style="text-align:center">' +
-        // value.Update_date +
-        // "</td>" +
-        // '<td style="text-align:center">' +
-        // value.Update_name +
-        // "</td>" +
         "</tr>";
 
       $("#year").append(

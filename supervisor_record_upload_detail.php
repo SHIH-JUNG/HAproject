@@ -33,7 +33,7 @@
         </tr>
         <tr style="text-align:left">
             <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline">
-                <label>督導簽章</label>
+                <label>督導/主管簽章</label>
             </td>
             <td style="">
                 <div class="col-sm-10"><input class="closed_question" style="width:15em;" id="supervise" type="text"><button style="margin:.5em;margin-right:3em;color:red;" type="button" id="supervise_signature_btn">簽名</button>

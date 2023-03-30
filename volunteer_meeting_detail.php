@@ -229,7 +229,7 @@
                                                                             </tr>
 
                                                                             <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">創建者</td>
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">承辦人員</td>
                                                                                 <td style="border-bottom: solid 1px;"><input id="create_name" type="text" disabled="disabled"></td>
                                                                             </tr>
 

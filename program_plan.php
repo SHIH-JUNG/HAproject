@@ -99,24 +99,55 @@
                                                     <table style="font-size:20px;font-family:微軟正黑體;width:100%" class="table table-bordered NOline">
                                                         <tr>
 
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">年度：</td>
-                                                            <td class="text-left">
-                                                                <select id="year" rel="0" class="filter search">
-                                                                    <!-- <option value="">所有</option> -->
-                                                                </select>
-                                                            </td>
-
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">日期：</td>
                                                             <td class="text-left">
-                                                                <select id="date" rel="1" class="filter search">
-                                                                    <!-- <option value="">所有</option> -->
-                                                                </select>
+                                                            <input id="min_date" name="date" datepicker="ch_datepicker" class="" type="text" placeholder="計畫日期搜尋">
+                                                                <label>～</label>
+                                                                <input id="max_date" name="date" datepicker="ch_datepicker" class="" type="text" placeholder="計畫日期搜尋">
                                                             </td>
 
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">計畫名稱：</td>
                                                             <td class="text-left">
-                                                                <select id="plan_name" rel="2" class="filter search">
-                                                                    <!-- <option value="">所有</option> -->
+                                                                <select id="plan_name" rel="1" class="filter search">
+                                                                    <option value="">所有</option>
+                                                                </select>
+                                                            </td>
+
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">方案計劃書是否上傳：</td>
+                                                            <td class="text-left">
+                                                                <select rel="2" class="filter search">
+                                                                    <option value="">所有</option>
+                                                                    <option value="是">是</option>
+                                                                    <option value="否">否</option>
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">期中報告是否上傳：</td>
+                                                            <td class="text-left">
+                                                                <select rel="3" class="filter search">
+                                                                    <option value="">所有</option>
+                                                                    <option value="是">是</option>
+                                                                    <option value="否">否</option>
+                                                                </select>
+                                                            </td>
+
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">成果報告是否上傳：</td>
+                                                            <td class="text-left">
+                                                                <select rel="4" class="filter search">
+                                                                    <option value="">所有</option>
+                                                                    <option value="是">是</option>
+                                                                    <option value="否">否</option>
+                                                                </select>
+                                                            </td>
+
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">核銷及備註資料是否上傳：</td>
+                                                            <td class="text-left">
+                                                                <select rel="5" class="filter search">
+                                                                    <option value="">所有</option>
+                                                                    <option value="是">是</option>
+                                                                    <option value="否">否</option>
                                                                 </select>
                                                             </td>
                                                         </tr>
@@ -139,13 +170,12 @@
                                                                 </th>
                                                             </tr>
                                                             <tr style="background-color:rgb(255 201 54);">
-                                                                <th>年度</th>
                                                                 <th>日期</th>
                                                                 <th>計畫名稱</th>
-                                                                <th>創建日期</th>
-                                                                <th>創建者</th>
-                                                                <th>更新日期</th>
-                                                                <th>更新者</th>
+                                                                <th>方案計劃書是否上傳</th>
+                                                                <th>期中報告是否上傳</th>
+                                                                <th>成果報告是否上傳</th>
+                                                                <th>核銷及備註資料是否上傳</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody id="call_view"></tbody>

@@ -245,7 +245,8 @@
                                                                         <td style="border-bottom: solid 1px;">
                                                                             <div class="col-sm-8">
                                                                                 <div class="text-left">
-                                                                                    <input name="resume_file" type="file" class="resume_question form-control">
+                                                                                    <input name="resume_file" type="file" class="resume_question form-control" multiple>
+                                                                                    <input type="button" id="btn_uploadfile" value="Upload" onclick="uploadFile();" >
                                                                                     <br>
                                                                                     <div id="resume_file"></div>
                                                                                 </div>

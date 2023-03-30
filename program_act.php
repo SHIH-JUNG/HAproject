@@ -108,12 +108,12 @@
 
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">日期：</td>
                                                             <td class="text-left">
-                                                                <select id="date" rel="1" class="filter search">
+                                                                <select id="date" rel="1" name="ch_datepicker" class="filter search">
                                                                     <!-- <option value="">所有</option> -->
                                                                 </select>
                                                             </td>
 
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">活動名稱：</td>
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">活動類別：</td>
                                                             <td class="text-left">
                                                                 <select id="activity_name" rel="2" class="filter search">
                                                                     <option value="針具">針具</option>
@@ -196,7 +196,7 @@
                                                             <tr style="background-color:rgb(255 201 54);">
                                                                 <th>年度</th>
                                                                 <th>日期</th>
-                                                                <th>活動名稱</th>
+                                                                <th>活動類別</th>
                                                                 <th>對象</th>
                                                                 <th>地點</th>
                                                                 <th>服務內容</th>

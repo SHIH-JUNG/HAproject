@@ -116,7 +116,7 @@
                                                            
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">履歷表檔案是否上傳：</td>
                                                             <td class="text-left">
-                                                                <select rel="3" class="filter search">
+                                                                <select rel="4" class="filter search">
                                                                     <option value="">所有</option>
                                                                     <option value="是">是</option>
                                                                     <option value="否">否</option>

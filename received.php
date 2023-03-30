@@ -113,11 +113,11 @@
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">來文檔號：</td>
                                                             <td class="text-left"><input id="num_receive" rel="1" name="num_receive" class="filter search" style="width:150px;" type="text" placeholder="檔號搜尋"></td>
 
-                                                        </tr>
-                                                        <tr>
-
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">來文單位：</td>
                                                             <td class="text-left"><input id="unit" rel="2" name="unit" class="filter search" style="width:150px;" type="text" placeholder="單位搜尋"></td>
+
+                                                        </tr>
+                                                        <tr>
 
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">主旨：</td>
                                                             <td class="text-left"><input id="subject" rel="3" name="subject" class="filter search" style="width:150px;" type="text" placeholder="主旨搜尋"></td>
@@ -125,6 +125,15 @@
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">檔案是否上傳：</td>
                                                             <td class="text-left">
                                                                 <select rel="4" class="filter search">
+                                                                    <option value="">所有</option>
+                                                                    <option value="已上傳">已上傳</option>
+                                                                    <option value="未上傳">未上傳</option>
+                                                                </select>
+                                                            </td>
+
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">證書是否上傳：</td>
+                                                            <td class="text-left">
+                                                                <select rel="5" class="filter search">
                                                                     <option value="">所有</option>
                                                                     <option value="已上傳">已上傳</option>
                                                                     <option value="未上傳">未上傳</option>
@@ -160,8 +169,9 @@
                                                                 <th>來文單位</th>
                                                                 <th>主旨</th>
                                                                 <th>檔案是否上傳</th>
+                                                                <th>證書是否上傳</th>
                                                                 <th>創建日期</th>
-                                                                <th>創建者</th>
+                                                                <th>承辦人員</th>
                                                                 <th>更新日期</th>
                                                                 <th>更新者</th>
                                                                 <th>督導簽章</th>

@@ -295,7 +295,7 @@
                                                                             </tr>
                                                                             <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline">
-                                                                                    <label>建立者</label>
+                                                                                    <label>接案工作人員</label>
                                                                                 </td>
                                                                                 <td style="">
                                                                                     <span id="applicant"></span>

@@ -207,7 +207,7 @@
                                                                                 </td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>是否領取時數條</td>
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">是否領取時數條</td>
                                                                                 <td style="border-bottom: solid 1px;">
                                                                                     <select id="rece_hours" class="vo_question">
                                                                                         <option value="是">是</option>
@@ -216,7 +216,7 @@
                                                                                 </td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>是否領取服務獎狀</td>
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">是否領取服務獎狀</td>
                                                                                 <td style="border-bottom: solid 1px;">
                                                                                     <select id="serv_award" class="vo_question">
                                                                                         <option value="是">是</option>
@@ -225,7 +225,7 @@
                                                                                 </td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>是否持有志工榮譽卡</td>
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">是否持有志工榮譽卡</td>
                                                                                 <td style="border-bottom: solid 1px;">
                                                                                     <select id="honor_card" class="vo_question">
                                                                                         <option value="是">是</option>
@@ -240,7 +240,7 @@
                                                                             </tr>
 
                                                                             <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">創建者</td>
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">承辦人員</td>
                                                                                 <td style="border-bottom: solid 1px;"><input id="create_name" type="text" disabled="disabled"></td>
                                                                             </tr>
 

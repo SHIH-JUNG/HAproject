@@ -384,6 +384,8 @@ $("input[overtime*='overtime']").change( function(event) {
 $("#day_off_add_new").on("click", function () {
   var stau = false;
 
+  // console.log(check_day_off_data())
+
   if (check_day_off_data() != "以下為必填欄位，不能為空值!\r\n") {
     stau = false;
   } else {
@@ -588,7 +590,8 @@ function check_day_off_data() {
     var check_element = $(this).parent("td").siblings("td").children()[0];
     var check_element_name = $(this).parent("td").text();
 
-    // console.log($(check_element).val())
+    console.log($(check_element))
+    console.log($(check_element).val())
 
     var check_element_tagname = $(check_element).prop("tagName");
     var check_element_type = $(check_element).attr("type");
@@ -598,6 +601,15 @@ function check_day_off_data() {
       var file_len = $(check_element).prop("files").length;
 
       if(file_len == 0)
+      {
+        errorstr += check_element_name.replace("※", "") + "\r\n";
+      }
+    }
+    else if(check_element_tagname == "INPUT" && check_element_type=="radio")
+    {
+      var check_element_children_name = $(this).parent("td").siblings("td").children().attr("name");
+
+      if($('[name="'+check_element_children_name+'"]:checked').length==0)
       {
         errorstr += check_element_name.replace("※", "") + "\r\n";
       }

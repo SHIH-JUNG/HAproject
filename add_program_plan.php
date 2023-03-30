@@ -49,6 +49,11 @@
         -moz-appearance: textfield;
     }
 
+    .form-control
+    {
+        border: 1px solid #000;
+    }
+
     /*隱藏input number上下箭頭/*/
 </style>
 
@@ -110,7 +115,7 @@
                                             <div class="col-sm-12 text-center">
                                                 <div class="table-wrap">
                                                     <div class="table-responsive">
-                                                        <form id="received_form" data-toggle="validator" role="form" autocomplete="new-password">
+                                                        <form id="program_plan_form" data-toggle="validator" role="form" autocomplete="new-password">
                                                             <table style="width:auto;" class="table table-bordered">
                                                                 <tr>
                                                                     <td colspan="2">
@@ -119,25 +124,74 @@
                                                                 </tr>
 
                                                                 <tr style="text-align:left">
-                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>年度</td>
-                                                                    <td style="border-bottom: solid 1px;"><input id="year" type="text"></td>
-                                                                </tr>
-                                                                <tr style="text-align:left">
                                                                     <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>日期</td>
                                                                     <td style="border-bottom: solid 1px;"><input id="date" name="ch_datepicker" type="text"></td>
                                                                 </tr>
+
                                                                 <tr style="text-align:left">
                                                                     <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>計畫名稱</td>
                                                                     <td style="border-bottom: solid 1px;"><input id="plan_name" type="text"></td>
                                                                 </tr>
+
+                                                                <tr style="text-align:left">
+                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">方案計畫檔案</td>
+                                                                    <td style="border-bottom: solid 1px;">
+                                                                        <div class="col-sm-8">
+                                                                            <div class="text-left">
+                                                                                <input name="proposal_file" type="file" class="form-control"/>
+                                                                                <br>
+                                                                                <div id="proposal_file"></div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+
+                                                                <tr style="text-align:left">
+                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">期中報告檔案</td>
+                                                                    <td style="border-bottom: solid 1px;">
+                                                                        <div class="col-sm-8">
+                                                                            <div class="text-left">
+                                                                                <input name="interim_file" type="file" class="form-control"/>
+                                                                                <br>
+                                                                                <div id="interim_file"></div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+
+                                                                <tr style="text-align:left">
+                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">成果報告檔案</td>
+                                                                    <td style="border-bottom: solid 1px;">
+                                                                        <div class="col-sm-8">
+                                                                            <div class="text-left">
+                                                                                <input name="achieve_file" type="file" class="form-control"/>
+                                                                                <br>
+                                                                                <div id="achieve_file"></div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+
+                                                                <tr style="text-align:left">
+                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">其他附件</td>
+                                                                    <td style="border-bottom: solid 1px;">
+                                                                        <div class="col-sm-8">
+                                                                            <div class="text-left">
+                                                                                <input name="other_file" type="file" class="form-control"/>
+                                                                                <br>
+                                                                                <div id="other_file"></div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
                                                                 
                                                             </table>
                                                             <br>
-                                                            <button id="re_add_new" style="font-size:15px" type="button" class="btn btn-default"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-check" viewBox="0 0 16 16">
+                                                            <button id="program_plan_add_new" style="font-size:15px" type="submit" class="btn btn-default"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-check" viewBox="0 0 16 16">
                                                                     <path d="M10.854 7.854a.5.5 0 0 0-.708-.708L7.5 9.793 6.354 8.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
                                                                     <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
                                                                 </svg>新增</button>
-                                                            <a href="received_yearlist.php"><button style="font-size:15px" type="button" class="btn btn-default"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-excel" viewBox="0 0 16 16">
+                                                            <a href="program_plan.php"><button style="font-size:15px" type="button" class="btn btn-default"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-excel" viewBox="0 0 16 16">
                                                                         <path d="M5.884 6.68a.5.5 0 1 0-.768.64L7.349 10l-2.233 2.68a.5.5 0 0 0 .768.64L8 10.781l2.116 2.54a.5.5 0 0 0 .768-.641L8.651 10l2.233-2.68a.5.5 0 0 0-.768-.64L8 9.219l-2.116-2.54z" />
                                                                         <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
                                                                     </svg>取消</button></a>
@@ -154,39 +208,41 @@
                     <!--/網頁內容-->
                 </div>
             </div>
-            <!-- /#wrapper -->
-            <!-- JavaScript -->
-            <!-- Bootstrap and jQuery -->
-            <script src="javascript/jquery.min.js"></script>
-            <script src="javascript/bootstrap.min.js"></script>
-            <script src="javascript/validator.min.js"></script>
-            <!-- 表格 JavaScript -->
-            <script src="javascript/jquery.dataTables.min.js"></script>
-            <script src="javascript/dataTables-data.js"></script>
-            <!-- 滾動條 JavaScript -->
-            <script src="javascript/jquery.slimscroll.js"></script>
-            <!-- Fancy Dropdown JS -->
-            <script src="javascript/dropdown-bootstrap-extended.js"></script>
-            <!-- Init -->
-            <script src="javascript/init.js"></script>
-            <!-- ================== JS notify控制 ================== -->
-            <script src="javascript/notify/notyf.min.js"></script>
-            <!-- ================== JS sweetalert2 ================== -->
-            <script src="javascript/sweetalert2/sweetalert2.min.js"></script>
-            <!-- ================== JS IE sweetalert ================== -->
-            <script src="javascript/sweetalert2/core-js.js"></script>
-            <!-- ================== 登出設定 ================== -->
-            <script src='js/logout.js'></script>
-            <!-- ================== moment ================== -->
-            <script src='javascript/moment2.29.0.min.js'></script>
-            <!-- ================== table ================== -->
-            <script src="javascript/bootstrap1.18.0-table.min.js"></script>
-            <script src="javascript/bootstrap-table1.11.1-zh-TW.min.js"></script>
-            <!-- 日期民國-->
-            <script src="javascript/jquery-ui.min.js"></script>
-            <script src="javascript/datepickerTw.js"></script>
-            <!-- ================== add_phone.js ================== -->
-            <script src="js/add_program_plan.js<?php echo "?" . date("Y-m-d h:i:sa") ?>"></script>
+        </div>
+    </div>
+    <!-- /#wrapper -->
+    <!-- JavaScript -->
+    <!-- Bootstrap and jQuery -->
+    <script src="javascript/jquery.min.js"></script>
+    <script src="javascript/bootstrap.min.js"></script>
+    <script src="javascript/validator.min.js"></script>
+    <!-- 表格 JavaScript -->
+    <script src="javascript/jquery.dataTables.min.js"></script>
+    <script src="javascript/dataTables-data.js"></script>
+    <!-- 滾動條 JavaScript -->
+    <script src="javascript/jquery.slimscroll.js"></script>
+    <!-- Fancy Dropdown JS -->
+    <script src="javascript/dropdown-bootstrap-extended.js"></script>
+    <!-- Init -->
+    <script src="javascript/init.js"></script>
+    <!-- ================== JS notify控制 ================== -->
+    <script src="javascript/notify/notyf.min.js"></script>
+    <!-- ================== JS sweetalert2 ================== -->
+    <script src="javascript/sweetalert2/sweetalert2.min.js"></script>
+    <!-- ================== JS IE sweetalert ================== -->
+    <script src="javascript/sweetalert2/core-js.js"></script>
+    <!-- ================== 登出設定 ================== -->
+    <script src='js/logout.js'></script>
+    <!-- ================== moment ================== -->
+    <script src='javascript/moment2.29.0.min.js'></script>
+    <!-- ================== table ================== -->
+    <script src="javascript/bootstrap1.18.0-table.min.js"></script>
+    <script src="javascript/bootstrap-table1.11.1-zh-TW.min.js"></script>
+    <!-- 日期民國-->
+    <script src="javascript/jquery-ui.min.js"></script>
+    <script src="javascript/datepickerTw2.js"></script>
+    <!-- ================== add_phone.js ================== -->
+    <script src="js/add_program_plan.js<?php echo "?" . date("Y-m-d h:i:sa") ?>"></script>
 </body>
 
 </html>

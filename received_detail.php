@@ -199,19 +199,31 @@
                                                                                 </td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">證書</td>
+                                                                                <td style="border-bottom: solid 1px;">
+                                                                                    <div class="col-sm-9">
+                                                                                        <div class="text-left">
+                                                                                            <input name="upload_cert" type="file" class="re_question form-control">
+                                                                                            <br>
+                                                                                            <div id="upload_cert"></div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>創建日期</td>
                                                                                 <td style="border-bottom: solid 1px;"><input id="create_date" class="re_question" name="ch_datepicker" type="text"></td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>創建者</td>
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>承辦人員</td>
                                                                                 <td style="border-bottom: solid 1px;"><input id="create_name" class="re_question" type="text"></td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>更新日期</td>
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">更新日期</td>
                                                                                 <td style="border-bottom: solid 1px;"><input id="update_date" class="re_question" name="ch_datepicker" type="text"></td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>更新者</td>
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">更新者</td>
                                                                                 <td style="border-bottom: solid 1px;"><input id="update_name" class="re_question" type="text"></td>
                                                                             </tr>
                                                                             <tr style="text-align:left">

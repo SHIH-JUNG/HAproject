@@ -118,7 +118,7 @@
                                                             <tr style="background-color:rgb(255 201 54);">
                                                                 <th>標題</th>
                                                                 <th>日期</th>
-                                                                <th>督導簽章</th>
+                                                                <th>主管簽章</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody id="call_view"></tbody>

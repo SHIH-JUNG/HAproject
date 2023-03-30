@@ -92,6 +92,7 @@ if (isset($_FILES["resume_files0"]))
             ($resume_seq_id, '$Name', 'file_A', '$File_year'
             , '$file_0', '$Remark', '$file_0_date', '$user');";
 }
+
 // 判斷保密契約上傳 類型 file_C
 if (isset($_FILES["resume_files1"]))
 {

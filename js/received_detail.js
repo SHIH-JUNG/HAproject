@@ -175,12 +175,21 @@ $(document).ready(function () {
 
         var received_file_path = value.Upload_path.replace("../", "./");
         received_file_name = value.Upload_name;
+
+        var received_cert_path = value.Upload_cert_path.replace("../", "./");
+        received_cert_name = value.Upload_cert_name;
+
         var a_element_content = '<a href="'+received_file_path+'" style="text-decoration:none;color:blue;" target="_blank">'
         +received_file_name
         +'</a><br/><br/>';
 
+        var b_element_content = '<a href="'+received_cert_path+'" style="text-decoration:none;color:blue;" target="_blank">'
+        +received_cert_name
+        +'</a><br/><br/>';
+
 
         $("#upload").html(a_element_content);
+        $("#upload_cert").html(b_element_content);
 
        
 
