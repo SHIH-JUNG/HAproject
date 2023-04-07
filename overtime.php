@@ -96,61 +96,12 @@
                                 <div class="panel-body">
                                     <div class="table-wrap">
                                         <div class="table-responsive">
-                                            <div>
-                                                <h4>查詢</h4>
-                                            </div>
-                                            <div　class="col-sm-12" id="toolbar">
-                                                <div class="col-sm-12">
-                                                    <table style="font-size:20px;font-family:微軟正黑體;width:100%" class="table table-bordered NOline">
-                                                        <tr>
-
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">姓名：</td>
-                                                            <td class="text-left">
-                                                                <select id="name" rel="0" class="filter search">
-                                                                    <!-- <option value="">所有</option> -->
-                                                                </select>
-                                                            </td>
-
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">加班日期：</td>
-                                                            <td class="text-left">
-                                                                <input id="overtime_date" rel="1" name="pcall_date" class="" type="date" placeholder="請假日期搜尋">
-                                                                <label>～</label>
-                                                                <input id="overtime_date" rel="1" name="pcall_date" class="" type="date" placeholder="請假日期搜尋">
-                                                            </td>
-
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">補修日期：</td>
-                                                            <td class="text-left">
-                                                                <input id="free_date" rel="2" name="pcall_date" class="" type="date" placeholder="請假日期搜尋">
-                                                                <label>～</label>
-                                                                <input id="free_date" rel="2" name="pcall_date" class="" type="date" placeholder="請假日期搜尋">
-                                                            </td>
-                                                        </tr>
-
-                                                        <tr>
-
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">加班時數：</td>
-                                                            <td class="text-left">
-                                                                <select id="overtime_time" rel="3" class="filter search">
-                                                                    <!-- <option value="">所有</option> -->
-                                                                </select>
-                                                            </td>
-
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">補修時數：</td>
-                                                            <td class="text-left">
-                                                                <select id="free_time" rel="4" class="filter search">
-                                                                    <!-- <option value="">所有</option> -->
-                                                                </select>
-                                                            </td>
-
-                                                            <td colspan="8" class="text-right">
-                                                                <button onclick="location.reload();">重置搜尋</button><span> </span>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                            <p>
                                             <h4>員工加班一覽表</h4>
+                                            <br>
+                                            <div id="day_off_remain_hit_area" style="color:blue;">
+                                                員工姓名：---
+                                            </div>
+                                            <br>
                                             <div class="table-wrap">
                                                 <div class="table-responsive">
                                                     <table class="table display table-hover dataTable no-footer" style="font-size:15px;font-family:微軟正黑體;width:100%" id="tab_all" data-toolbar="#toolbar">
@@ -165,16 +116,14 @@
                                                                 </th>
                                                             </tr>
                                                             <tr style="background-color:rgb(255 201 54);">
-                                                                <th>姓名</th>
                                                                 <th>加班日期</th>
-                                                                <th>補修日期</th>
+                                                                <th>事由</th>
                                                                 <th>加班時數</th>
-                                                                <th>補修時數</th>
-                                                                <th>創建日期</th>
-                                                                <th>創建者</th>
-                                                                <th>更新日期</th>
-                                                                <th>督導簽章</th>
-                                                                <th>代理人簽章</th>
+                                                                <th>補休日期</th>
+                                                                <th>補休時數</th>
+                                                                <th>審核狀態</th>
+                                                                <th>查核者簽章</th>
+                                                                <th>主管簽章</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody id="call_view"></tbody>
