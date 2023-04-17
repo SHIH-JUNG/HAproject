@@ -96,10 +96,10 @@
                                 <div class="panel-body">
                                     <div class="table-wrap">
                                         <div class="table-responsive">
-                                            <h4>員工加班一覽表</h4>
+                                            <h4>員工加班紀錄</h4>
                                             <br>
                                             <div id="day_off_remain_hit_area" style="color:blue;">
-                                                員工姓名：---
+                                                員工姓名：<?php echo $_SESSION["name"]; ?>
                                             </div>
                                             <br>
                                             <div class="table-wrap">

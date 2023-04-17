@@ -156,32 +156,29 @@ $.ajax({
         value.Id +
         '">' +
         '<td style="text-align:center">' +
-        value.Name +
+        value.Overtime_date +
         "</td>" +
         '<td style="text-align:center">' +
-        value.Overtime_date +
+        value.Reason +
+        "</td>" +
+        '<td style="text-align:center">' +
+        value.Overtime_hours +
         "</td>" +
         '<td style="text-align:center">' +
         value.Free_date +
         "</td>" +
         '<td style="text-align:center">' +
-        value.Overtime_time +
+        value.Free_hours +
         "</td>" +
         '<td style="text-align:center">' +
-        value.Free_time +
+        value.Allow_status +
         "</td>" +
         '<td style="text-align:center">' +
-        value.Create_date +
+        value.Checker +
         "</td>" +
         '<td style="text-align:center">' +
-        value.Create_name +
+        value.Supervise +
         "</td>" +
-        '<td style="text-align:center">' +
-        value.Update_date +
-        "</td>" +
-        // '<td style="text-align:center">' +
-        // value.Update_name +
-        // "</td>" +
         "</tr>";
 
       $("#name").append(

@@ -1,10 +1,31 @@
 <?php
+session_start();
 include("sql_connect.php");
 //region 抓資料
-// $year = $_POST['year'];
+$user = $_SESSION['name'];
 
-// $note = "SELECT * FROM `volunteer` Where `Year` = '$year' ORDER BY `volunteer`.`Id` ASC;;";
-$note = "SELECT * FROM `overtime`;";
+if(isset($_POST['authority_num']))
+{
+    $select_resume_id = "SELECT `Resume_id` FROM `user_info` WHERE `Name` = '$user';";
+
+    $find_resume_id = mysqli_query($conn, $select_resume_id);
+    $resume_id = mysqli_fetch_row($find_resume_id);
+
+    $note = "SELECT * FROM `overtime` WHERE `Resume_id` = '$resume_id[0]' ORDER BY `overtime`.`Fillin_date` ASC;";
+}
+else if(isset($_POST['find_allow_status']))
+{
+    $select_resume_id = "SELECT `Resume_id` FROM `user_info` WHERE `Name` = '$user';";
+
+    $find_resume_id = mysqli_query($conn, $select_resume_id);
+    $resume_id = mysqli_fetch_row($find_resume_id);
+
+    $note = "SELECT * FROM `overtime` WHERE `Resume_id` = '$resume_id[0]' AND `Allow_status` <> '核准' ORDER BY `overtime`.`Fillin_date` ASC;";
+}
+else
+{
+    $note = "SELECT * FROM `overtime` ORDER BY `overtime`.`Fillin_date` ASC;";
+}
 
 //宣告空的陣列
 $datas = array();

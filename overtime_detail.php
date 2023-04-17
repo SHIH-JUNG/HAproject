@@ -1,6 +1,5 @@
 <?php session_start(); ?>
 <?php include("database/check_authority.php"); ?> <?php include("no_cache.php"); ?>
-
 <!DOCTYPE html>
 <html>
 
@@ -67,6 +66,14 @@
         padding: 0;
         padding-top: 15px;
     }
+
+    /*轉案鍵css*/
+    button#revoke_btn
+    {
+    background-color: tomato;
+    color: white !important;
+    font-weight: bold;
+    }
 </style>
 
 <body>
@@ -93,15 +100,24 @@
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
+                        <li><span><a href="">行政管理</a></span></li>
+                        <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+                        </svg>
                         <li><span><a href="">員工管理</a></span></li>
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span><a href="">加班系統</a></span></li>
+                        <li><span><a href="overtime.php">加班系統</a></span></li>
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span>加班詳細資料</span></li>
+                        <li><span><a href="overtime.php">員工加班紀錄</a></span></li>
+                        <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+                        </svg>
+                        
+                        <li><span>員工加班紀錄詳細資料</span></li>
                     </ol>
                     <!--/麵包屑-->
                 </div>
@@ -128,103 +144,108 @@
                                                 <ul style="font-size:17px" class="nav nav-tabs" id="myTab" role="tablist">
                                                     <li class="nav-item active" role="presentation">
                                                         <a class="nav-link" id="home-tab" data-toggle="pill" href="#one" role="tab" aria-selected="true">
-                                                            <b>加班詳細資料</b>
+                                                            <b>員工加班紀錄詳細資料</b>
                                                         </a>
                                                     </li>
-                                                    <li class="nav-item" role="presentation">
+                                                    <!-- <li class="nav-item" role="presentation">
                                                         <a class="nav-link" id="profile-tab" data-toggle="pill" href="#two" role="tab" aria-selected="false">
-                                                            <b>加班時數異動紀錄</b>
+                                                            <b>加班紀錄</b>
                                                         </a>
-                                                    </li>
+                                                    </li> -->
                                                 </ul>
                                                 <div class="tab-content" id="myTabContent">
                                                     <div class="tab-pane fade in active" id="one" role="tabpanel" aria-labelledby="home-tab">
                                                         <div class="accordion" id="accordionExample">
                                                             <div class="panel panel-default">
-                                                                <div class="panel-heading" id="headingTwo">
-                                                                    <h2 class="mb-0">
-                                                                        <button class="btn btn-link btn-block collapsed" type="button" data-toggle="collapse" data-parent="#myTabContent" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                                                            <span style="color:black;font-size:17px">加班詳細資料</span>
-                                                                        </button>
-                                                                    </h2>
-                                                                </div>
+
                                                                 <div id="collapseTwo" class="collapse in" aria-labelledby="headingTwo" data-parent="#accordionExample">
                                                                     <div class="panel-body scr_container">
-                                                                        <table id="all_data" style="width:55%;display:table !important;" class="table table-bordered">
+                                                                        <table id="all_data" style="width:75%;display:table !important;" class="table table-bordered">
                                                                             <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">年度</td>
-                                                                                <td style="border-bottom: solid 1px;"><input id="year" class="overtime_question" type="number"></td>
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;width: 7em;"><i class="fillin_need" style="color:red;">※</i>加班日期</td>
+                                                                                <td style="border-bottom: solid 1px;">
+                                                                                    <input style="margin-left: 1em;" class="ot_question" id="overtime_date"  type="text" overtime_date="overtime_date" name="ch_datepicker">
+                                                                                </td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>姓名</td>
-                                                                                <td style="border-bottom: solid 1px;"><input id="name" class="overtime_question" type="text"></td>
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>事由</td>
+                                                                                <td style="border-bottom: solid 1px;">
+                                                                                    <textarea style="width:75%;resize: none;font-size: 20px;min-height:8em;" class="ot_question" id="reason" placeholder="事由"></textarea>
+                                                                                </td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>加班日期</td>
-                                                                                <td style="border-bottom: solid 1px;"><input id="overtime_date" class="overtime_question" type="date"></td>
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>加班時數</td>
+                                                                                <td style="border-bottom: solid 1px;">
+                                                                                    <input style="margin-left: 1em;" class="ot_question" id="overtime_hours"  type="number" overtime_date="overtime_date">
+                                                                                </td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>補修日期</td>
-                                                                                <td style="border-bottom: solid 1px;"><input id="free_date" class="overtime_question" type="date"></td>
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">補休日期</td>
+                                                                                <td style="border-bottom: solid 1px;">
+                                                                                    <input style="margin-left: 1em;" class="ot_question" id="free_date"  type="text" overtime_date="overtime_date" name="ch_datepicker">
+                                                                                </td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>加班時數</td>
-                                                                                <td style="border-bottom: solid 1px;"><input id="overtime_time" class="overtime_question" type="text"></td>
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">補休時數</td>
+                                                                                <td style="border-bottom: solid 1px;">
+                                                                                    <input style="margin-left: 1em;" class="ot_question" id="free_hours"  type="number" overtime_date="overtime_date">
+                                                                                </td>
                                                                             </tr>
+                                                                            
                                                                             <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>補修時數</td>
-                                                                                <td style="border-bottom: solid 1px;"><input id="free_time" class="overtime_question" type="text"></td>
+                                                                                <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;">審核狀態</td>
+                                                                                <td style="border-bottom: solid 1px;">
+                                                                                    <div class="col-sm-3">
+                                                                                        <select name="allow_status" id="allow_status" style="width:100%;">
+                                                                                            <option value="" disabled="disabled">（當前審核狀態）</option>    
+                                                                                            <option value="審核中">審核中</option>
+                                                                                            <option value="核准">核准</option>
+                                                                                            <option value="不核准">不核准</option>
+                                                                                            <option value="取消">取消</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </td>
                                                                             </tr>
-
-                                                                            <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">創建日期</td>
-                                                                                <td style="border-bottom: solid 1px;"><input id="create_date" name="ch_datepicker" type="text" disabled="disabled"></td>
-                                                                            </tr>
-
-                                                                            <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">創建者</td>
-                                                                                <td style="border-bottom: solid 1px;"><input id="create_name" type="text" disabled="disabled"></td>
-                                                                            </tr>
-
-                                                                            <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">更新日期</td>
-                                                                                <td style="border-bottom: solid 1px;"><input id="update_date" name="ch_datepicker" type="text" disabled="disabled"></td>
-                                                                            </tr>
-
-                                                                            <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">更新者</td>
-                                                                                <td style="border-bottom: solid 1px;"><input id="update_name" type="text" disabled="disabled"></td>
-                                                                            </tr>
-
+                                                                        
                                                                             <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline">
                                                                                     <label>督導簽章</label>
                                                                                 </td>
                                                                                 <td style="">
-                                                                                    <input class="day_question" style="width:15em;" id="supervise" type="text"><button style="margin:.5em;margin-right:3em;color:red;" type="button" onclick="signature_btn_click('supervise');">簽名</button>
-                                                                                    <button style="margin:.5em;" type="button" id="supervise_signature_msg_btn" onclick="sign_msg_model('supervise');" data-toggle="modal" data-target="#myModal2">查看留言</button>
-                                                                                    <a src="" id="supervise_signature_simg" style="color:blue;" target="_blank" alt="簽名圖片連結"></a>
+                                                                                    <div class="col-sm-3" style="margin-top: 0.6em;">
+                                                                                        <select  class="ot_question" id="supervise" style="width:100%;">
+                                                                                                <option value="">請選擇</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                    <div class="col-sm-9">
+                                                                                        <button style="margin:.5em;margin-right:3em;color:red;" type="button" onclick="signature_btn_click('supervise');">簽名</button>
+                                                                                        <button style="margin:.5em;" type="button" id="supervise_signature_msg_btn" onclick="sign_msg_model('supervise');" data-toggle="modal" data-target="#myModal2">查看留言</button>
+                                                                                        <a src="" id="supervise_signature_simg" style="color:blue;" target="_blank" alt="簽名圖片連結"></a>
+                                                                                    </div>
                                                                                 </td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline">
-                                                                                    <label>職務代理人簽章</label>
+                                                                                    <label>查核者簽章</label>
                                                                                 </td>
                                                                                 <td style="">
-                                                                                    <input class="day_question" style="width:15em;" id="job_agent" type="text"><button style="margin:.5em;margin-right:3em;color:red;" type="button" onclick="signature_btn_click('job_agent');">簽名</button>
-                                                                                    <button style="margin:.5em;" type="button" id="job_agent_signature_msg_btn" onclick="sign_msg_model('job_agent');" data-toggle="modal" data-target="#myModal2">查看留言</button>
-                                                                                    <a src="" id="job_agent_signature_simg" style="color:blue;" target="_blank" alt="簽名圖片連結"></a>
+                                                                                    <div class="col-sm-3" style="margin-top: 0.6em;">
+                                                                                        <select  class="ot_question" id="checker" style="width:100%;">
+                                                                                                <option value="">請選擇</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                    <div class="col-sm-9">
+                                                                                        <button style="margin:.5em;margin-right:3em;color:red;" type="button" onclick="signature_btn_click('checker');">簽名</button>
+                                                                                        <button style="margin:.5em;" type="button" id="checker_signature_msg_btn" onclick="sign_msg_model('checker');" data-toggle="modal" data-target="#myModal2">查看留言</button>
+                                                                                        <a src="" id="checker_signature_simg" style="color:blue;" target="_blank" alt="簽名圖片連結"></a>
+                                                                                    </div>
                                                                                 </td>
                                                                             </tr>
-
+                                                                           
                                                                             <tr>
                                                                                 <td colspan="2">
-                                                                                    <div id="edit_div">
-                                                                                        <button style="font-size:20px" id="overtime_edit" class="btn btn-default" onclick="overtime_edit();">編輯</button>
-                                                                                    </div>
-                                                                                    <div id="save_div" hidden>
-                                                                                        <button style="font-size:20px" id="overtime_update" class="btn btn-default">修改</button>
-                                                                                        <button style="font-size:20px" id="overtime_cancel" class="btn btn-default" onclick="overtime_cancel();">取消</button>
+                                                                                    <div id="submit_area">
+                                                                                        <button style="font-size:20px" class="btn btn-default" onclick="submit_data();">送出</button>
                                                                                     </div>
                                                                                 </td>
                                                                             </tr>
@@ -236,30 +257,29 @@
                                                                             <div class="text-center col-sm-4">
                                                                                 <button style="font-size:20px;" id="preview_word2" class="btn btn-default">預覽匯出</button>
                                                                             </div>
-                                                                            <!-- <div class="text-right col-sm-4" style="padding-right:0;">
-                                                                                <button type="button" id="trans_to_opencase" class="btn btn-default trans_btn" style="font-size:20px" data-toggle="modal" data-target="#myModal">
-                                                                                    轉案(新增至開案個案)
+                                                                            <div class="text-right col-sm-4" style="padding-right:0;">
+                                                                                <button type="button" id="revoke_btn" class="btn btn-default" style="font-size:20px" onclick="revoke_overtime();">
+                                                                                    撤銷加班申請
                                                                                 </button>
-                                                                            </div> -->
+                                                                            </div>
                                                                         </div>
                                                                     </div>
-
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <?php include("signnature_canvas2.php"); ?>
-                                                    <div class="tab-pane fade" id="two" role="tabpanel" aria-labelledby="profile-tab">
+                                                    <!-- <div class="tab-pane fade" id="two" role="tabpanel" aria-labelledby="profile-tab">
                                                         <div class="accordion" id="accordionExample">
                                                             <div class="panel panel-default">
                                                                 <div class="panel-heading" id="headingTwo">
                                                                     <h2 class="mb-0">
-                                                                        <button class="btn btn-link btn-block collapsed" type="button" data-toggle="collapse" data-parent="#myTabContent" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                                                            <span style="color:black;font-size:17px">加班時數異動紀錄</span>
+                                                                        <button class="btn btn-link btn-block collapsed" type="button" data-toggle="collapse" data-parent="#myTabContent" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                                            <span style="color:black;font-size:17px">員工加班時數異動紀錄</span>
                                                                         </button>
                                                                     </h2>
                                                                 </div>
-                                                                <div id="collapseTwo" class="collapse in" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                                                <div id="collapseThree" class="collapse in" aria-labelledby="headingTwo" data-parent="#accordionExample">
                                                                     <div class="panel-body scr_container">
                                                                         <table id="record_all_data" style="width:95%;display:table !important;" class="table table-bordered">
                                                                             <thead>
@@ -285,7 +305,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    </div> -->
                                                 </div>
                                             </div>
                                         </div>
@@ -297,36 +317,35 @@
                 </div>
             </div>
             <!--/網頁內容-->
-
         </div>
     </div>
-
+   
     <!--\ Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
+    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" data-backdrop="static">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel" class="add_hours_board">加班時數添加</h4>
+                    <h4 class="modal-title" id="myModalLabel2" class="sign_msg_td_name">簽名留言</h4>
                 </div>
                 <div class="modal-body">
-                    <table id="add_hours_board" style="width:auto;margin:0 auto;" class="table table-bordered">
+                    <table id="all_data" style="width:auto;margin:0 auto;" class="table table-bordered">
                         <tr style="text-align:left">
-                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>新增時數</td>
+                            <td class="sign_msg_td_name" style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">簽名留言內容</td>
                             <td style="border-bottom: solid 1px;">
-                                <input id="add_hours" type="number">
+                                <textarea style="width:100%;resize: none;font-size: 20px;min-height:10em;" class="sign_msg" disabled="disabled"></textarea>
                             </td>
                         </tr>
                         <tr style="text-align:left">
-                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">備註</td>
+                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">留言時間</td>
                             <td style="border-bottom: solid 1px;">
-                                <textarea style="width:100%;resize: none;font-size: 20px;min-height:10em;" id="add_hours_remark"></textarea>
+                                <input style="width:15em;" class="sign_msg_time" type="datetime" disabled="disabled">
                             </td>
                         </tr>
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" onclick="add_hours();">新增時數</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
                 </div>
             </div>
         </div>
@@ -365,6 +384,12 @@
     <!-- 日期民國-->
     <script src="javascript/jquery-ui.min.js"></script>
     <script src="javascript/datepickerTw.js"></script>
+    <!-- ================== jSignature ================== -->
+    <script src="jSignature/jSignature.min.js"></script>
+    <script>
+        //設定js變數抓取使用者名稱
+        var user_name = '<?php echo $_SESSION["name"]; ?>';
+    </script>
     <!-- ================== detail ================== -->
     <script type="text/javascript" src="js/overtime_detail.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
 

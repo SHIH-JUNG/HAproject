@@ -19,7 +19,7 @@ datepicker_create = function (selector_id) {
     changeYear: true,
     changeMonth: true,
     currentText: "今天",
-    dateFormat: "R.mm.dd.",
+    dateFormat: "R.mm.dd",
     showButtonPanel: true,
     // minDate: new Date(
     //   new Date().getFullYear() - 2,
@@ -64,6 +64,8 @@ function split_date(date) {
 }
 //endregion
 
+
+
 $(document).ready(function () {
   //將input name名稱為ch_datepicker創建datepicker初始化 region
   $("input[name='ch_datepicker']").each(function () {
@@ -79,45 +81,46 @@ $(document).ready(function () {
 
 //計算寫入資料庫的加班/補休時數 region
 compute_hours = function() {
-    var overtime_date = $("#overtime_date").val();
+    //加班時數
+    window.n_overtime_hours = 0;
+    //補休時數
+    window.n_free_hours = 0;
+    //剩餘加班時數(加班-補休)
+    window.r_overtime_hours = 0;
+
     var overtime_hours = $("#overtime_hours").val();
     var free_date = $("#free_date").val();
     var free_hours = $("#free_hours").val();
 
-    
-}
-// endregion
+    n_overtime_hours = parseFloat(overtime_hours).toFixed(1);
+    n_free_hours = parseFloat(getNum(parseFloat(free_hours))).toFixed(1);
 
-//檢查補休日期/時數欄位 region
-check_free_date = function () {
-    var free_date = $("#free_date").val();
-    var free_hours = $("#free_hours").val();
-
-    var warning_str = "";
-
-    if(free_date.trim()!="")
+    if(free_date == "")
     {
-
+      r_overtime_hours = parseFloat(n_overtime_hours).toFixed(1);
     }
     else
     {
-
+      r_overtime_hours = parseFloat(n_overtime_hours - n_free_hours).toFixed(1);
     }
-
-    return warning_str;
+    // console.log(n_overtime_hours)
+    // console.log(n_free_hours)
+    // console.log(r_overtime_hours)
 }
 // endregion
 
 //監聽 加班/補休日期欄位值變化，計算加班/補休時數 region
 $("input[overtime_date*='overtime_date']").change( function(event) {
-    compute_hours();
+  compute_hours();
 });
 // endregion
 
-check_free_hours_status = function() {
-    
+function getNum(val) {
+  if (isNaN(val)) {
+    return 0;
+  }
+  return val;
 }
-
 
 //新增請假紀錄 region
 $("#overtime_add_new").on("click", function () {
@@ -152,34 +155,29 @@ $("#overtime_add_new").on("click", function () {
       .then(
         function (result) {
           if (result) {
-            if(check_free_hours_status())
+            console.log(check_overtime_status());
+            // 若已經有加班申請審核中，則不能再次申請加班
+            if(check_overtime_status())
             {
-                swal({
-                    title: "",
-                    type: "warning",
-                    confirmButtonColor: "#DD6B55",
-                    confirmButtonText: "確認",
-                    showConfirmButton: true,
-                  })
+              swal({
+                title: "目前還有加班申請審核中，時數尚未實際認列",
+                type: "warning",
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "確認",
+                showConfirmButton: true,
+              })
             }
             else
             {
-                // console.log(check_overtime_status());
-                // 若已經有加班申請審核中，則不能再次申請加班
-                if(check_overtime_status())
-                {
-                  swal({
-                    title: "目前還有加班申請審核中，時數尚未實際認列",
-                    type: "warning",
-                    confirmButtonColor: "#DD6B55",
-                    confirmButtonText: "確認",
-                    showConfirmButton: true,
-                  })
-                }
-                else
-                {
-                  submit_form();
-                }
+              // console.log(n_overtime_hours)
+              // console.log(n_free_hours)
+              // console.log(r_overtime_hours)
+              // console.log("----------------")
+              // console.log(typeof n_overtime_hours)
+              // console.log(typeof n_free_hours)
+              // console.log(typeof r_overtime_hours)
+
+              submit_form();
             }
           }
         },
@@ -275,14 +273,16 @@ function submit_form() {
   form_data.append("Overtime_date", $("#overtime_date").val());
   form_data.append("Reason", $("#reason").val());
 
-  form_data.append("Overtime_hours", $("#overtime_hours").val());
+  form_data.append("Overtime_hours", n_overtime_hours);
   form_data.append("Free_date", $("#free_date").val());
-  form_data.append("Free_hours", $("#free_hours").val());
+  form_data.append("Free_hours", n_free_hours);
 
 
 
   form_data.append("Supervise",$("#supervise").val());
   form_data.append("Checker",$("#checker").val());
+
+  form_data.append("N_Overtime_hours", r_overtime_hours);
 
   // 預覽傳到後端的資料詳細內容
   // for (var pair of form_data.entries()) {
@@ -344,6 +344,7 @@ function check_overtime_data() {
     var check_element_tagname = $(check_element).prop("tagName");
     var check_element_type = $(check_element).attr("type");
 
+    console.log(check_element_tagname)    
     if(check_element_tagname == "INPUT" && check_element_type=="file")
     {
       var file_len = $(check_element).prop("files").length;
@@ -362,13 +363,23 @@ function check_overtime_data() {
         errorstr += check_element_name.replace("※", "") + "\r\n";
       }
     }
+    else if(check_element_tagname == "DIV")
+    {
+      var n_check_element = $(this).parent("td").siblings("td").children().children()[0];
+
+      if($(n_check_element).val() == null || $(n_check_element).val().replace(/\s*/g, "") == "")
+      {
+        errorstr += check_element_name.replace("※", "") + "\r\n";
+      }
+    }
     else
     {
       if($(check_element).val() == null || $(check_element).val().replace(/\s*/g, "") == "")
       {
         errorstr += check_element_name.replace("※", "") + "\r\n";
       }
-    }    
+    }
+    
   });
 
   return errorstr;
@@ -385,7 +396,7 @@ function append_user(){
       success: function (data) {
           // console.log('test',data)
           for (var index in data.Id) {
-            $("#job_agent").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+            $("#checker").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
             $("#supervise").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
           }
       },

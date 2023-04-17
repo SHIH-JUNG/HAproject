@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2023-04-07 14:34:29
+-- 產生時間： 2023-04-17 04:25:08
 -- 伺服器版本： 10.4.24-MariaDB
 -- PHP 版本： 7.4.29
 
@@ -1257,7 +1257,9 @@ INSERT INTO `login_record` (`Id`, `Login_timestamp`, `Login_account`, `Login_aut
 (149, '2023-03-30 18:41:40', 'testuser', '1', 'jia', '22.6478896,120.6119322', 0),
 (150, '2023-03-30 19:39:27', 'twha202212061557', '1', 'ㄓㄜㄒㄧㄢ', '22.6478965,120.6119217', 1),
 (151, '2023-03-30 19:49:10', 'text1', '1', '社工員1', '22.6699,120.5806', 1),
-(152, '2023-04-07 19:20:46', 'text1', '1', '社工員1', '22.593903,120.488892', 1);
+(152, '2023-04-07 19:20:46', 'text1', '1', '社工員1', '22.593903,120.488892', 1),
+(153, '2023-04-13 14:17:14', 'text1', '1', '社工員1', '22.593918,120.488892', 1),
+(154, '2023-04-13 15:43:14', 'testuser', '1', 'jia', '22.593918,120.488892', 1);
 
 -- --------------------------------------------------------
 
@@ -1324,6 +1326,13 @@ CREATE TABLE `overtime` (
   `Checker_sign_msg` varchar(2000) NOT NULL,
   `Checkert_sign_time` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- 傾印資料表的資料 `overtime`
+--
+
+INSERT INTO `overtime` (`Id`, `Resume_id`, `Resume_name`, `Rec_year`, `Fillin_date`, `Overtime_date`, `Reason`, `Overtime_hours`, `Free_date`, `Free_hours`, `Allow_status`, `Create_date`, `Create_name`, `Update_date`, `Update_name`, `Supervise`, `Supervise_signature`, `Supervise_sign_msg`, `Supervise_sign_time`, `Checker`, `Checker_signature`, `Checker_sign_msg`, `Checkert_sign_time`) VALUES
+(2, 1, 'jia', 112, '2023-04-13', '112.04.01', 'test\r\nfdqwdqw', 4.6, '112.04.07', 1.2, '審核中', '2023-04-13 15:43:46', 'jia', '2023-04-13 15:43:46', '', '社工組長', '', '', '', '社工員2', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -2775,7 +2784,7 @@ ALTER TABLE `leave_rule_table`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `login_record`
 --
 ALTER TABLE `login_record`
-  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=153;
+  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=155;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `members_assemble`
@@ -2787,7 +2796,7 @@ ALTER TABLE `members_assemble`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `overtime`
 --
 ALTER TABLE `overtime`
-  MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `placement_case`
