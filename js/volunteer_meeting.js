@@ -140,9 +140,11 @@ $(document).ready(function () {
             .sort(function (a, b) {
               var aText = $(a).text().toUpperCase();
               var bText = $(b).text().toUpperCase();
-              if (aText > bText) return 1;
-              if (aText < bText) return -1;
-              return 0;
+              // if(aText>bText) return 1;
+              // if(aText<bText) return -1;
+              // return 0;
+
+              return aText - bText;
             })
             .appendTo("#" + this_id + "");
   

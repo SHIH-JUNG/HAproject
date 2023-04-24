@@ -98,8 +98,8 @@
                                                                <tr><td><input name="interlocution_time" id="interlocution_time" type="time"></td></tr>
                                                                <tr><td>處遇</td></tr>
                                                                <tr><td><textarea style="min-height:14em;height:auto;width:100%;resize: none;font-size: 20px;" name="interlocution_content" id="interlocution_content" placeholder="請輸入處遇"></textarea></td></tr>
-                                                               <tr><td>下次目標</td></tr>
-                                                               <tr><td><textarea style="min-height:14em;height:auto;width:100%;resize: none;font-size: 20px;" name="interlocution_next_target" id="interlocution_next_target" placeholder="請輸入下次目標"></textarea></td></tr>
+                                                               <tr><td>下次服務目標</td></tr>
+                                                               <tr><td><textarea style="min-height:14em;height:auto;width:100%;resize: none;font-size: 20px;" name="interlocution_next_target" id="interlocution_next_target" placeholder="請輸入下次服務目標"></textarea></td></tr>
                                                            </table>
                                                        </td>
                                                        <td><input name="assign_name" id="assign_name" type="text"></td>

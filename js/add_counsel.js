@@ -51,7 +51,7 @@ datepicker_create = function(selector_id) {
             showButtonPanel: true,
             // minDate:new Date(new Date().getFullYear() - 12, 0, 1),
             // maxDate:new Date(new Date().getFullYear() + 3, 11, 31),
-            yearRange: "-12:+5",
+            yearRange: "-80:+5",
             onClose: function(dateText) {
                 // console.log($('#'+selector_id).val());
                 // console.log(trans_to_EN(dateText));

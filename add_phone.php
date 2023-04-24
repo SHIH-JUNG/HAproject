@@ -192,7 +192,7 @@ input[type=number] {
                                                                 </td>
                                                             </tr> -->
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>目前使用物質</td>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">目前使用物質</td>
                                                                 <td style="border-bottom: solid 1px;">
                                                                     一級毒品：
                                                                     <label id="addition0"><input name="main[]" style="zoom: 1.5" type="checkbox" value="海洛因">海洛因</label>
@@ -219,7 +219,7 @@ input[type=number] {
                                                                 </td>
                                                             </tr>
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>年齡</td>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">年齡</td>
                                                                 <td style="border-bottom: solid 1px;">
                                                                     <input id="age" type="text" maxlength="2" oninput = "value=value.replace(/[^\d]/g,'')">
                                                                     <br>
@@ -235,7 +235,7 @@ input[type=number] {
                                                                 </td>
                                                             </tr>
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>居住地</td>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">居住地</td>
                                                                 <td style="border-bottom: solid 1px;">
                                                                     <input id="address" type="text">
                                                                     <br>

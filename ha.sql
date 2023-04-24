@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2023-04-17 04:25:08
+-- 產生時間： 2023-04-24 03:29:52
 -- 伺服器版本： 10.4.24-MariaDB
 -- PHP 版本： 7.4.29
 
@@ -1259,7 +1259,8 @@ INSERT INTO `login_record` (`Id`, `Login_timestamp`, `Login_account`, `Login_aut
 (151, '2023-03-30 19:49:10', 'text1', '1', '社工員1', '22.6699,120.5806', 1),
 (152, '2023-04-07 19:20:46', 'text1', '1', '社工員1', '22.593903,120.488892', 1),
 (153, '2023-04-13 14:17:14', 'text1', '1', '社工員1', '22.593918,120.488892', 1),
-(154, '2023-04-13 15:43:14', 'testuser', '1', 'jia', '22.593918,120.488892', 1);
+(154, '2023-04-13 15:43:14', 'testuser', '1', 'jia', '22.593918,120.488892', 1),
+(155, '2023-04-19 19:42:31', 'testuser', '1', 'jia', '22.5783,120.4814', 1);
 
 -- --------------------------------------------------------
 
@@ -2784,7 +2785,7 @@ ALTER TABLE `leave_rule_table`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `login_record`
 --
 ALTER TABLE `login_record`
-  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=155;
+  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=156;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `members_assemble`

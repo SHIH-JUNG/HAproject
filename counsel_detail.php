@@ -238,12 +238,12 @@
                                                                             </tr>
                                                                         
                                                                             <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">入獄時間</td>
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">第一次入獄時間</td>
                                                                                 <td style="border-bottom: solid 1px;"><input id="in_prison_date" class="counsel_question" name="ch_datepicker" type="text"></td>
                                                                             </tr>
 
                                                                             <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">出獄時間</td>
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">第一次出獄時間</td>
                                                                                 <td style="border-bottom: solid 1px;"><input id="out_prison_date" class="counsel_question" name="ch_datepicker" type="text"></td>
                                                                             </tr>
 

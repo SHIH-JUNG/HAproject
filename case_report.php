@@ -168,11 +168,11 @@ word-break: keep-all;/*必須*/
                                                                             <th>案號</th>
                                                                             <th>姓名</th>
                                                                             <th>個案等級</th>
-                                                                            <th>個案評估</th>
+                                                                            <th>個案評估次數</th>
                                                                             <th>電訪次數</th>
                                                                             <th>家訪次數</th>
                                                                             <th>面訪次數<br/>(機構及社區)</th>
-                                                                            <th>結案評估</th>
+                                                                            <th>結案評估次數</th>
                                                                             <th>個案狀況</th>
                                                                         </tr>
                                                                     </thead>

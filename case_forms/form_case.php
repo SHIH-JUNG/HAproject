@@ -802,43 +802,43 @@
                                                                 <tr>
                                                                     <td>
                                                                         <input name="end_indicator" style="zoom: 1.5" value="達到目標，已無需要在服務" type="radio">
-                                                                        <span>達到目標，已無需要在服務</span>
+                                                                        <span>1.達到目標，已無需要在服務。</span>
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>
                                                                         <input name="end_indicator" style="zoom: 1.5" value="穩定就業三個月，以達到目標" type="radio">
-                                                                        <span>穩定就業三個月，以達到目標</span>
+                                                                        <span>2.穩定就業三個月，以達到目標。</span>
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>
                                                                         <input name="end_indicator" style="zoom: 1.5" value="個案者死亡" type="radio">
-                                                                        <span>個案者死亡</span>
+                                                                        <span>3.個案者死亡。</span>
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>
                                                                         <input name="end_indicator" style="zoom: 1.5" value="再次入監無法合作" type="radio">
-                                                                        <span>再次入監無法合作</span>
+                                                                        <span>4.再次入監無法合作。</span>
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>
                                                                         <input name="end_indicator" style="zoom: 1.5" value="無意願接受服務" type="radio">
-                                                                        <span>無意願接受服務</span>
+                                                                        <span>5.無意願接受服務。</span>
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>
                                                                         <input name="end_indicator" style="zoom: 1.5" value="失去聯絡（一個月連繫三次均聯繫不上或三個月，每月連繫三次均聯繫不上）" type="radio">
-                                                                        <span>失去聯絡（一個月連繫三次均聯繫不上或三個月，每月連繫三次均聯繫不上）</span>
+                                                                        <span>6.失去聯絡（一個月連繫三次均聯繫不上或三個月，每月連繫三次均聯繫不上）。</span>
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>
                                                                         <input name="end_indicator" style="zoom: 1.5" value="轉介其他資源單位，並已達成處遇目標" type="radio">
-                                                                        <span>轉介其他資源單位，並已達成處遇目標</span>
+                                                                        <span>7.轉介其他資源單位，並已達成處遇目標。</span>
                                                                     </td>
                                                                 </tr>
                                                             </table>
@@ -849,7 +849,7 @@
                                                             <table>
                                                                 <tr>
                                                                     <td>
-                                                                        <input name="case_closed_radio" style="zoom: 1.5" value="結案" type="radio"><span>結案，原因：</span><input style="width:30em;" name="case_closed_yes" id="case_closed_yes" type="text">
+                                                                        <input name="case_closed_radio" style="zoom: 1.5" value="結案" type="radio"><span>結案，符合結案指標：</span><input style="width:30em;" name="case_closed_yes" id="case_closed_yes" type="text">
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
@@ -860,7 +860,7 @@
                                                                         <input style="width:3em;" name="case_closed_month" id="case_closed_month" type="text"><span>月</span>
                                                                         <input style="width:3em;" name="case_closed_day" id="case_closed_day" type="text"><span>日）&emsp;</span>
                                                                         <input style="width:3em;" name="case_closed_totalmonth" id="case_closed_totalmonth" type="text"><span>個月，再評估結案。</span>
-                                                                        <br/><span>備註：</span><input style="width:30em;" name="case_closed_remark" id="case_closed_remark" type="text">
+                                                                        <br/><span>說明：</span><input style="width:30em;" name="case_closed_remark" id="case_closed_remark" type="text">
                                                                     </td>
                                                                 </tr>
                                                             </table>

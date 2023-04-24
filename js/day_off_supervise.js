@@ -212,9 +212,11 @@ $.ajax({
           .sort(function (a, b) {
             var aText = $(a).text().toUpperCase();
             var bText = $(b).text().toUpperCase();
-            if (aText > bText) return 1;
-            if (aText < bText) return -1;
-            return 0;
+            // if (aText > bText) return 1;
+            // if (aText < bText) return -1;
+            // return 0;
+
+            return aText - bText;
           })
           .appendTo("#" + this_id + "");
 
@@ -226,15 +228,17 @@ $.ajax({
         $("#" + this_id + "")
           .children()
           .each(function () {
-            text = $(this).text();
-            if (
-              $("select#" + this_id + " option:contains(" + text + ")").length >
-              1
-            ) {
-              $(
-                "select#" + this_id + " option:contains(" + text + "):gt(0)"
-              ).remove();
-            }
+            // text = $(this).text();
+            // if (
+            //   $("select#" + this_id + " option:contains(" + text + ")").length >
+            //   1
+            // ) {
+            //   $(
+            //     "select#" + this_id + " option:contains(" + text + "):gt(0)"
+            //   ).remove();
+            // }
+
+            $(this).siblings('[value="' + this.value + '"]').remove();
             //    console.log(text)
           });
       }

@@ -101,19 +101,21 @@ var new_address_arr=[];
                     $('#'+this_id+' option').sort(function(a,b){
                         var aText = $(a).text().toUpperCase();
                         var bText = $(b).text().toUpperCase();
-                        if(aText>bText) return 1;
-                        if(aText<bText) return -1;
-                        return 0;
+                        // if(aText>bText) return 1;
+                        // if(aText<bText) return -1;
+                        // return 0;
+
+                        return aText - bText;
                     }).appendTo('#'+this_id+'')
 
                     //最前面新增"所有"選像
                     $('#'+this_id+'').prepend("<option value='' selected='selected'>所有</option>");
 
                     $("#"+this_id+"").children().each(function() {
-                        //text = $(this).text();
-                        //if($("select#"+this_id+" option:contains("+text+")").length > 1){
+                        // text = $(this).text();
+                        // if($("select#"+this_id+" option:contains("+text+")").length > 1){
                         //    $("select#"+this_id+" option:contains("+text+"):gt(0)").remove();
-                        //}
+                        // }
                         $(this).siblings('[value="' + this.value + '"]').remove();
                         //    console.log(text)
                     });
@@ -173,9 +175,11 @@ $.each(get_tr_phoneid, function(index,val) {
              $('#face_count option').sort(function(a,b){
                 var aText = $(a).text().toUpperCase();
                 var bText = $(b).text().toUpperCase();
-                if(aText>bText) return 1;
-                if(aText<bText) return -1;
-                return 0;
+                // if(aText>bText) return 1;
+                // if(aText<bText) return -1;
+                // return 0;
+
+                return aText - bText;
             }).appendTo('#face_count')
             
             //最前面新增"所有"選像
@@ -526,8 +530,18 @@ $("#count_people2").text("，人數："+$table.column(0).data().unique().count()
 
 $('select.filter').on('change', function () {
     var rel = $(this).attr("rel");
-    $table.columns(rel).search(this.value).draw();
-
+    // $table.columns(rel).search(this.value).draw();
+    if(this.value!="")
+    {
+        //格式：.serch(該欄位值, 是否啟用正則表達式匹配, 是否關閉智能查詢, 是否開啟不區分大小寫)
+        //須完全匹配option的value值 設定option.value 使用正則符號匹配，ex:"^" + this.value+ "$"
+        //前端注意option value內有特殊字元須加入轉義字 ex:H+梅 positive => H\+梅 positive
+        $table.columns(rel).search("^" + this.value+ "$", true, false, true).draw();
+    }
+    else
+    {
+        $table.columns(rel).search(this.value).draw();
+    }
 });
 $('#min, #max').keyup( function() {
     $.fn.dataTable.ext.search.push(age_range);
@@ -551,6 +565,7 @@ $('input.filter').on('keyup change', function () {
     $table.columns(rel).search(this.value).draw();
 
 });
+
 //$('#min, #max').keyup( function() {
 //    $table.draw();
 //} ); 

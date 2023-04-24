@@ -53,7 +53,7 @@ datepicker_create = function(selector_id) {
             showButtonPanel: true,
             // minDate:new Date(new Date().getFullYear() - 10, 0, 1),
             // maxDate:new Date(new Date().getFullYear() + 10, 11, 31),
-            yearRange: "-12:+5",
+            yearRange: "-80:+5",
             onClose: function(dateText) {
                 // console.log($('#'+selector_id).val());
                 // console.log(trans_to_EN(dateText));
@@ -178,9 +178,11 @@ $.ajax({
              $('#counsel_id option').sort(function(a,b){
                 var aText = $(a).text().toUpperCase();
                 var bText = $(b).text().toUpperCase();
-                if(aText>bText) return 1;
-                if(aText<bText) return -1;
-                return 0;
+                // if(aText>bText) return 1;
+                // if(aText<bText) return -1;
+                // return 0;
+
+                return aText - bText;
             }).appendTo('#counsel_id')
 
             //最前面新增"所有"選像
