@@ -11,6 +11,7 @@ $Name = $_POST['Name'];
 @$Gender = $_POST['Gender'];
 @$Object_type = $_POST['Object_type'];
 // @$Addiction = $_POST['Addiction'];
+@$m_type = $_POST['m_type'];
 @$M_addiction = $_POST['M_addiction'];
 
 @$Age = $_POST['Age'];
@@ -97,8 +98,8 @@ else
 // $counter_text =mysqli_fetch_row($select_counter);
 // $counter = $counter_text[0]+1;
 
-$sql = "INSERT INTO `consult` (`Phone_id`,`Way`,`Way_detail`,`Name`,`Gender`,`Object_type`,`M_addiction`,`Age`,`A_detail`,`Address`,`L_detail`,`Info_Name`,`Relationship_detail`,`R_detail`,`R_phone`,`Referral`,`Referral_detail`,`Eligible`,`Assign`,`Location`,`Location_detail`,`Start_date`,`End_date`,`Start_time`,`End_time`,`One_user_name`,`Two_user_name`,`Remark`,`Create_date`,`Create_name`) VALUES
- ('$Phone_id','$Way','$Way_detail','$Name','$Gender','$Object_type','$M_addiction',
+$sql = "INSERT INTO `consult` (`Phone_id`,`Way`,`Way_detail`,`Name`,`Gender`,`Object_type`,`M_type`,`M_addiction`,`Age`,`A_detail`,`Address`,`L_detail`,`Info_Name`,`Relationship_detail`,`R_detail`,`R_phone`,`Referral`,`Referral_detail`,`Eligible`,`Assign`,`Location`,`Location_detail`,`Start_date`,`End_date`,`Start_time`,`End_time`,`One_user_name`,`Two_user_name`,`Remark`,`Create_date`,`Create_name`) VALUES
+ ('$Phone_id','$Way','$Way_detail','$Name','$Gender','$Object_type','$m_type','$M_addiction',
  '$Age','$A_detail','$Address','$L_detail','$Info_Name','$Relationship_detail','$R_detail','$R_phone',
  '$Referral','$Referral_detail',
  '$Eligible','$Assign',

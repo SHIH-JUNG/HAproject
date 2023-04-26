@@ -56,7 +56,7 @@ $(document).ready(function(){
             var Arr2=[];
             var m_addition_arr = data.M_addiction[0];
             Arr2 = m_addition_arr.split("、"); // 根据“-”分割
-            console.log(Arr2)
+            // console.log(Arr2)
             check_m_addition_arr(Arr2);
             // check_mainaddition();
             
@@ -112,6 +112,19 @@ $(document).ready(function(){
             $("#gender").val(data.Gender[0]);
             //服務對象類別
             $("#object_type").val(data.Object_type[0]);
+
+            var m_type_v = data.M_type[0];
+
+            if(m_type_v.includes("其他："))
+            {
+                $("input[name='m_type[]'][value='其他']").attr('checked',true);
+                $("#m_type_other").val(m_type_v.replace("其他：", ""));
+            }
+            else
+            {
+                $("input[name='m_type[]'][value='"+m_type_v+"']").attr('checked',true);
+            }
+
             $("#age").val(data.Age[0]);
             $("#address").val(data.Address[0]);
             $("#info_name").val(data.Info_Name[0]);
@@ -256,6 +269,8 @@ var phone_id = getUrlVars()["phone_id"];
 check_radio_value();
 check_checkbox();
 check_main_checkbox();
+check_main_type_radio(); //判斷 毒品施用方式
+
 //endregion
 var stau = false;
 
@@ -267,7 +282,7 @@ var stau = false;
     else {
         stau = true;
     }
-    console.log(stau);
+    // console.log(stau);
 
     if(!stau)
     {
@@ -289,6 +304,7 @@ var stau = false;
                 Gender:$("#gender").val(),
                 Object_type:$("#object_type").val(),
                 // Addition:addition,
+                m_type:m_type_val,
                 main_radio:main_val,
                 Age:$("#age").val(),
                 a_val:a_val,
@@ -330,6 +346,7 @@ var stau = false;
                     title:'更新失敗！請聯絡負責單位',
                     type:'error',
                 })
+                console.log(e)
             }
         });
     }
@@ -356,12 +373,12 @@ function check_update_personal_data()
     if (name == null) {
         errorstr += "未填寫個案姓名!\r\n";
     }
-    if (age == null) {
-        errorstr += "未填寫年齡!\r\n";
-    }
-    if (address == null) {
-        errorstr += "未填寫居住地!\r\n";
-    }
+    // if (age == null) {
+    //     errorstr += "未填寫年齡!\r\n";
+    // }
+    // if (address == null) {
+    //     errorstr += "未填寫居住地!\r\n";
+    // }
 
     // if (addition_checkbox <=0) {
     //     errorstr += "未勾選曾經使用物質!\r\n";
@@ -378,12 +395,12 @@ function check_update_personal_data()
         if (name.replace(/\s*/g, "") == '') {
             errorstr += "未填寫個案姓名!\r\n";
         }
-        if (age.replace(/\s*/g, "") == '') {
-            errorstr += "未填寫年齡!\r\n";
-        }
-        if (address.replace(/\s*/g, "") == '') {
-            errorstr += "未填寫居住地!\r\n";
-        }
+        // if (age.replace(/\s*/g, "") == '') {
+        //     errorstr += "未填寫年齡!\r\n";
+        // }
+        // if (address.replace(/\s*/g, "") == '') {
+        //     errorstr += "未填寫居住地!\r\n";
+        // }
     }
 
     return errorstr;
@@ -913,6 +930,8 @@ function reservation_rec_new(){
                 check_creat_radio_value();
                 check_radio_value();
                 check_main_checkbox();
+                check_main_type_radio(); //判斷 毒品施用方式
+
                 var title = $("#name").val()+'('+main_val+')面訪';
                 var start_time = $("#start_time_h").val()+":"+$("#start_time_m").val();
                 var end_time = $("#end_time_h").val()+":"+$("#end_time_m").val();
@@ -1001,6 +1020,7 @@ function reservation_rec_new(){
                                 Gender:$("#gender").val(),
                                 Object_type:$("#object_type").val(),
                                 // Addiction:addition,
+                                m_type:m_type_val,
                                 M_addiction:main_val,
 
                                 Age:$("#age").val(),
@@ -1212,6 +1232,7 @@ function add_new(){
     {  
         check_radio_value();
         check_checkbox();
+        check_main_type_radio(); //判斷 毒品施用方式
 
             $.ajax({
                     url: "database/add_phone_note.php",
@@ -1223,6 +1244,7 @@ function add_new(){
                         Gender:$("#gender").val(),
                         nObject_type:$("#object_type").val(),
                         // nAddition:addition,
+                        m_type:m_type_val,
                         main_radio:main_val,
                         address:$("#address").val(),
                         nInfo_Name:$("#ninfo_name").val(),
@@ -1658,7 +1680,7 @@ function check_m_addition_arr(Arr){
             if (Arr[i] == checkbox[j].value)
             {   
                 checkbox[j].checked = true;
-                $('#addition'+j+'').attr("hidden",false);
+                // $('#addition'+j+'').attr("hidden",false);
             }else{
                 if(Arr[i] =="鴉片"|| Arr[i] =="嗎啡"|| Arr[i] =="海洛因"|| Arr[i] =="古柯鹼"|| Arr[i] =="安非他命"|| Arr[i] =="大麻"|| Arr[i] =="搖頭丸"|| Arr[i] =="FM2藥丸"|| Arr[i] =="K他命"|| Arr[i] =="酒精"|| Arr[i] =="強力膠"|| Arr[i] =="檳榔"|| Arr[i] =="菸"|| Arr[i] =="精神藥物")
                 {
@@ -1666,7 +1688,7 @@ function check_m_addition_arr(Arr){
                 }else{
                     checkbox[14].checked = true;
                     $("#other_main").val(Arr[i]);
-                    $('#addition14').attr("hidden",false);
+                    // $('#addition14').attr("hidden",false);
                 }
             }   
         }
@@ -1691,7 +1713,7 @@ function check_checkbox(){
             }
         }
     }
-        console.log(addition);
+        // console.log(addition);
 }
 //endregion
 
@@ -1716,6 +1738,26 @@ function check_main_checkbox(){
 //    console.log(main_val);
 }
 //endregion
+
+function check_main_type_radio() {
+    var m_type_radio =document.getElementsByName('m_type[]');
+    var len = m_type_radio.length;
+    m_type_val = "";
+    for (i = 0; i < len; i++)
+    {
+        if (m_type_radio[i].checked == true)
+        {
+            if(m_type_radio[i].value == "其他"){
+                m_type_val = "其他：" + $("#m_type_other").val();
+            }else{
+                m_type_val = m_type_radio[i].value;
+            }
+            
+        }    
+    }
+
+    //    console.log(m_type_val)
+}
 
 //檢查欄位 個人電話詢戒紀錄(Update) region
 function check_open_phone_note_value_str2(id)

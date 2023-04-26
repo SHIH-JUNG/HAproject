@@ -192,6 +192,18 @@ input[type=number] {
                                                                 </td>
                                                             </tr> -->
                                                             <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">毒品施用方式</td>
+                                                                <td style="border-bottom: solid 1px;">
+                                                                    <input name="m_type[]" style="zoom: 1.5" type="radio" value="口服"><label>口服</label>
+                                                                    <input name="m_type[]" style="zoom: 1.5" type="radio" value="鼻吸"><label>鼻吸</label>
+                                                                    <input name="m_type[]" style="zoom: 1.5" type="radio" value="注射"><label>注射</label>
+                                                                    <br>
+                                                                    <input name="m_type[]" style="zoom: 1.5" type="radio" value="其他"><label>其他：</label>   
+                                                                    <input id="m_type_other" type="text">
+                                                                   
+                                                                </td>
+                                                            </tr>
+                                                            <tr style="text-align:left">
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">目前使用物質</td>
                                                                 <td style="border-bottom: solid 1px;">
                                                                     一級毒品：

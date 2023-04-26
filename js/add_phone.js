@@ -14,6 +14,7 @@ console.log("Arr[1]"+m);
 check_checkbox();//判斷是否勾選傳入陣列
 check_radio();
 check_main_checkbox();//判斷主要戒治物質值   
+check_main_type_radio(); //判斷 毒品施用方式
 //console.log(r_val, a_val, l_val ,w_val ,k_val , main_val );
 //var county = $("#twzipcode").twzipcode('get','county');
 if($("#call_datetime").val() != "" && $("#name").val() != ""){
@@ -30,6 +31,7 @@ if($("#call_datetime").val() != "" && $("#name").val() != ""){
                 Gender:$("#gender").val(),
                 Object_type: $("#object_type").val(),
                 // Addition:addition,
+                m_type:m_type_val,
                 main_radio:main_val,
                 Age:$("#age").val(),
                 a_val:a_val,
@@ -132,6 +134,30 @@ function check_main_checkbox(){
 //    console.log(main_val)
 }
 //endregion
+
+function check_main_type_radio() {
+    var m_type_radio =document.getElementsByName('m_type[]');
+    var len = m_type_radio.length;
+    m_type_val = "";
+    for (i = 0; i < len; i++)
+    {
+        if (m_type_radio[i].checked == true)
+        {
+            if(m_type_radio[i].value == "其他"){
+                m_type_val = "其他：" + $("#m_type_other").val();
+            }else{
+                m_type_val = m_type_radio[i].value;
+            }
+            
+        }    
+    }
+
+    //    console.log(m_type_val)
+}
+
+// $('[name="m_type[]"]').on('change', function () {
+//     check_main_type_radio();
+// });
 
 //判斷radio多值region
 function check_radio(){

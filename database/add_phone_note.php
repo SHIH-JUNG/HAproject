@@ -10,6 +10,7 @@ $Phone_id= $_POST['Phone_id'];
 @$Gender = $_POST['Gender'];
 @$Object_type = $_POST['nObject_type'];
 // @$nAddition = $_POST['nAddition'];
+@$m_type = $_POST['m_type'];
 @$M_addiction = $_POST['main_radio'];
 @$Address = $_POST['address'];
 @$Age = $_POST['Age'];
@@ -61,9 +62,9 @@ $Count = ($count_text[0]+1);
 
 
 
-$sql = "INSERT INTO `consult` (`Phone_id`,`Way`,`Call_datetime`, `Name`, `Gender`,`Object_type`,`M_addiction`,`Address`,`Age`,`A_detail`,`L_detail`,`Info_Name`,`Relationship_detail`,`R_phone`,`Referral`, `Referral_detail`, `Referral_phone`,
+$sql = "INSERT INTO `consult` (`Phone_id`,`Way`,`Call_datetime`, `Name`, `Gender`,`Object_type`,`M_type`,`M_addiction`,`Address`,`Age`,`A_detail`,`L_detail`,`Info_Name`,`Relationship_detail`,`R_phone`,`Referral`, `Referral_detail`, `Referral_phone`,
  `Referral_name`, `Eligible`, `Assign`, `Phone_note`, `Count`, `Create_name`, `Create_date`) VALUES 
- ('$Phone_id','$Way','$nCall_datetime','$Name','$Gender','$Object_type',
+ ('$Phone_id','$Way','$nCall_datetime','$Name','$Gender','$Object_type','$m_type',
  '$M_addiction','$Address','$Age','$nA_detail', '$nL_detail', '$nInfo_Name',
   '$nRelationship_detail', '$nR_phone','$nReferral','$nReferral_detail','$Referral_Phone',
   '$nReferral_name','$nEligible','$Assign','$nPhone_note','$Count',

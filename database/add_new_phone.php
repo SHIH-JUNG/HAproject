@@ -11,6 +11,7 @@ $Name = $_POST['Name'];
 $Gender = $_POST['Gender'];
 $Object_type = $_POST['Object_type'];
 // @$Addition = $_POST['Addition'];
+@$m_type = $_POST['m_type'];
 @$main_radio = $_POST['main_radio'];
 @$Age = $_POST['Age'];
 @$a_val = $_POST['a_val'];
@@ -83,9 +84,9 @@ $Count = "SELECT COUNT(`Phone_id`) FROM `consult` WHERE `Phone_id`='$Phone_id'";
 @$count_text = mysqli_fetch_row($select_count);
 @$Count = ($count_text[0]+1);
 
-$sql = "INSERT INTO `consult` (`Phone_id`,`Call_datetime`,`Way`,`Way_detail`,`Name`,`Gender`,`Object_type`,`M_addiction`,`Age`,`A_detail`,`Address`,`L_detail`,`Info_Name`,`Relationship_detail`,`R_detail`,`R_phone`,`Referral`,`Referral_detail`,`Referral_phone`,`Referral_name`,`Eligible`,`Assign`,`Phone_note`,`Count`,`Is_firstadd`,`Create_date`,`Create_name`) VALUES
+$sql = "INSERT INTO `consult` (`Phone_id`,`Call_datetime`,`Way`,`Way_detail`,`Name`,`Gender`,`Object_type`, `M_type`, `M_addiction`,`Age`,`A_detail`,`Address`,`L_detail`,`Info_Name`,`Relationship_detail`,`R_detail`,`R_phone`,`Referral`,`Referral_detail`,`Referral_phone`,`Referral_name`,`Eligible`,`Assign`,`Phone_note`,`Count`,`Is_firstadd`,`Create_date`,`Create_name`) VALUES
  ('$Phone_id','$Call_datetime','$Way','$Way_detail','$Name','$Gender','$Object_type',
- '$Main_radio','$Age', '$a_val' ,'$Address','$l_val','$Info_Name',
+ '$m_type','$Main_radio','$Age', '$a_val' ,'$Address','$l_val','$Info_Name',
  '$Relationship_detail','$r_val','$Phone','$Referral','$ref_val','$Referral_Phone',
  '$Referral_name','$e_val',
  '$Assign','$Phone_note',

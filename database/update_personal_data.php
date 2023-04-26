@@ -11,6 +11,7 @@ $Name = $_POST['Name'];
 $Gender = $_POST['Gender'];
 $Object_type = $_POST['Object_type'];
 // $Addition = $_POST['Addition'];
+@$m_type = $_POST['m_type'];
 @$main_radio = $_POST['main_radio'];
 $Age = $_POST['Age'];
 @$a_val = $_POST['a_val'];
@@ -19,7 +20,7 @@ $Address = $_POST['Address'];
 $Info_Name = $_POST['Info_Name'];
 $Relationship_detail = $_POST['Relationship_detail'];
 @$r_val = $_POST['r_val'];
-$R_phone = $_POST['R_phone'];
+@$R_phone = $_POST['R_phone'];
 $Referral = $_POST['Referral'];
 @$ref_val = $_POST['ref_val'];
 
@@ -76,7 +77,7 @@ $sqlUpdate ="UPDATE `consult` SET `Way`='$Way', `Way_detail`='$Way_detail', `Obj
       `Phone_note` = '$Phone_note' , `Update_name` = '$user',`Update_date` = NOW() WHERE `Phone_id` = '$Phone_id' ORDER BY `consult`.`Create_date` ASC LIMIT 1;";
 
 
-$sqlUpdate .="UPDATE `consult` SET `Name` = '$Name', `Gender` = '$Gender', `Referral` = '$Referral',`Referral_detail` = '$ref_val',
+$sqlUpdate .="UPDATE `consult` SET `Name` = '$Name', `Gender` = '$Gender', `M_type` = '$m_type', `Referral` = '$Referral',`Referral_detail` = '$ref_val',
      `Referral_phone` = '$Referral_Phone', `Referral_name` = '$Referral_name' WHERE `Phone_id` = '$Phone_id' ORDER BY `consult`.`Create_date` ASC;";
 if(mysqli_multi_query($conn, $sqlUpdate)){
     echo true;

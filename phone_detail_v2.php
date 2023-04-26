@@ -213,11 +213,22 @@
                                                                                     </select>
                                                                                 </td>
                                                                             </tr>
-                                                                    
+                                                                            <tr style="text-align:left">
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">毒品施用方式</td>
+                                                                                <td style="border-bottom: solid 1px;">
+                                                                                    <input class="phone_question" name="m_type[]" style="zoom: 1.5" type="radio" value="口服"><label>口服</label>
+                                                                                    <input class="phone_question" name="m_type[]" style="zoom: 1.5" type="radio" value="鼻吸"><label>鼻吸</label>
+                                                                                    <input class="phone_question" name="m_type[]" style="zoom: 1.5" type="radio" value="注射"><label>注射</label>
+                                                                                    <br>
+                                                                                    <input class="phone_question" name="m_type[]" style="zoom: 1.5" type="radio" value="其他"><label>其他：</label>   
+                                                                                    <input class="phone_question" id="m_type_other" type="text">
+                                                                                
+                                                                                </td>
+                                                                            </tr>
                                                                             <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline">目前使用物質</td>
                                                                                 <td style="">
-                                                                                    一級毒品：
+                                                                                    <!-- 一級毒品：
                                                                                     <label id="addition0" hidden><input class="phone_question" name="main[]" style="zoom: 1.5" type="checkbox" value="海洛因"><label class="ckecked_label">海洛因</label></label>
                                                                                     <label id="addition1" hidden><input class="phone_question" name="main[]" style="zoom: 1.5" type="checkbox" value="鴉片"><label class="ckecked_label">鴉片</label></label>
                                                                                     <label id="addition2" hidden><input class="phone_question" name="main[]" style="zoom: 1.5" type="checkbox" value="嗎啡"><label class="ckecked_label">嗎啡</label></label>
@@ -238,7 +249,30 @@
                                                                                     <label id="addition12" hidden><input class="phone_question" name="main[]" style="zoom: 1.5" type="checkbox" value="菸"><label class="ckecked_label">菸</label></label>
                                                                                     <label id="addition13" hidden><input class="phone_question" name="main[]" style="zoom: 1.5" type="checkbox" value="精神藥物"><label class="ckecked_label">精神藥物</label></label>
                                                                                     <label id="addition14" hidden><input class="phone_question" name="main[]" style="zoom: 1.5" type="checkbox" value="其他"><label class="ckecked_label">其他：</label>
-                                                                                        <input class="phone_question" id="other_main" type="text" value=""></label>
+                                                                                    <input class="phone_question" id="other_main" type="text" value=""></label> -->
+
+                                                                                    一級毒品：
+                                                                                    <label id="addition0"><input class="phone_question" name="main[]" style="zoom: 1.5" type="checkbox" value="海洛因"><label class="ckecked_label">海洛因</label></label>
+                                                                                    <label id="addition1"><input class="phone_question" name="main[]" style="zoom: 1.5" type="checkbox" value="鴉片"><label class="ckecked_label">鴉片</label></label>
+                                                                                    <label id="addition2"><input class="phone_question" name="main[]" style="zoom: 1.5" type="checkbox" value="嗎啡"><label class="ckecked_label">嗎啡</label></label>
+                                                                                    <label id="addition3"><input class="phone_question" name="main[]" style="zoom: 1.5" type="checkbox" value="古柯鹼"><label class="ckecked_label">古柯鹼</label></label>
+                                                                                    <br>
+                                                                                    二級毒品：
+                                                                                    <label id="addition4"><input class="phone_question" name="main[]" style="zoom: 1.5" type="checkbox" value="安非他命"><label class="ckecked_label">安非他命</label></label>
+                                                                                    <label id="addition5"><input class="phone_question" name="main[]" style="zoom: 1.5" type="checkbox" value="大麻"><label class="ckecked_label">大麻</label></label>
+                                                                                    <label id="addition6"><input class="phone_question" name="main[]" style="zoom: 1.5" type="checkbox" value="搖頭丸"><label class="ckecked_label">搖頭丸</label></label>
+                                                                                    <br>
+                                                                                    三級毒品：
+                                                                                    <label id="addition7"><input class="phone_question" name="main[]" style="zoom: 1.5" type="checkbox" value="K他命"><label class="ckecked_label">K他命</label></label>
+                                                                                    <label id="addition8"><input class="phone_question" name="main[]" style="zoom: 1.5" type="checkbox" value="FM2藥丸"><label class="ckecked_label">FM2藥丸</label></label>
+                                                                                    <br>
+                                                                                    <label id="addition9"><input class="phone_question" name="main[]" style="zoom: 1.5" type="checkbox" value="酒精"><label class="ckecked_label">酒精</label></label>
+                                                                                    <label id="addition10"><input class="phone_question" name="main[]" style="zoom: 1.5" type="checkbox" value="強力膠"><label class="ckecked_label">強力膠</label></label>
+                                                                                    <label id="addition11"><input class="phone_question" name="main[]" style="zoom: 1.5" type="checkbox" value="檳榔"><label class="ckecked_label">檳榔</label></label>
+                                                                                    <label id="addition12"><input class="phone_question" name="main[]" style="zoom: 1.5" type="checkbox" value="菸"><label class="ckecked_label">菸</label></label>
+                                                                                    <label id="addition13"><input class="phone_question" name="main[]" style="zoom: 1.5" type="checkbox" value="精神藥物"><label class="ckecked_label">精神藥物</label></label>
+                                                                                    <label id="addition14"><input class="phone_question" name="main[]" style="zoom: 1.5" type="checkbox" value="其他"><label class="ckecked_label">其他：</label>
+                                                                                    <input class="phone_question" id="other_main" type="text" value=""></label>
                                                                                 </td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
