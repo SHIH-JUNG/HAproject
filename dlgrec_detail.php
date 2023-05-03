@@ -172,8 +172,38 @@
                                                                         <tr style="text-align:left">
                                                                             <td colspan="2" style="border-bottom: solid 1px;">
                                                                                 <label for="dlg_manager">同儕生輔員/生活輔導員：</label><input class="dlgrec_question" style="width:15em;" id="dlg_manager" type="text"><br/>
-                                                                                <label for="social_worker">社工員：</label><input class="dlgrec_question" style="width:15em;" id="social_worker" type="text"><button style="margin:.5em;margin-right:3em;color:red;" type="button" id="social_worker_signature_btn">簽名</button><button style="margin:.5em;" type="button" id="social_worker_signature_msg_btn" onclick="sign_msg_model('social_worker');" data-toggle="modal" data-target="#myModal">查看留言</button><a src="" id="social_worker_simg" style="color:blue;" target="_blank" alt="簽名圖片連結"></a><br/>
-                                                                                <label for="supervise">督導：</label><input class="dlgrec_question" style="width:15em;" id="supervise" type="text"><button style="margin:.5em;margin-right:3em;color:red;" type="button" id="supervise_signature_btn">簽名</button><button style="margin:.5em;" type="button" id="supervise_signature_msg_btn" onclick="sign_msg_model('supervise');" data-toggle="modal" data-target="#myModal">查看留言</button><a src="" id="supervise_signature_simg" style="color:blue;" target="_blank" alt="簽名圖片連結"></a><br/>
+                                                                                <!-- <div class="col-sm-2">
+                                                                                    <label for="social_worker" style="margin-top:.5em;">社工員：</label>
+                                                                                </div> -->
+                                                                                <div class="col-sm-5">
+                                                                                    <label for="social_worker" style="margin-top:.5em;">社工員：</label>
+                                                                                    <select class="dlgrec_question" name="social_worker" id="social_worker" style="width:60%;margin-top:.5em;">
+                                                                                        <option value="">請選擇</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div class="col-sm-7">
+                                                                                    <button style="margin:.5em;margin-right:1em;color:red;" type="button" id="social_worker_signature_btn">簽名</button>
+                                                                                    <button style="margin:.5em;" type="button" id="social_worker_signature_msg_btn" onclick="sign_msg_model('social_worker');" data-toggle="modal" data-target="#myModal">查看留言</button>
+                                                                                    <a src="" id="social_worker_simg" style="color:blue;" target="_blank" alt="簽名圖片連結"></a>
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr style="text-align:left">
+                                                                            <td colspan="2" style="border-bottom: solid 1px;">
+                                                                                <!-- <div class="col-sm-2">
+                                                                                    <label for="supervise" style="margin-top:.5em;">督導：</label>
+                                                                                </div> -->
+                                                                                <div class="col-sm-5">
+                                                                                    <label for="supervise" style="margin-top:.5em;">督導：</label>
+                                                                                    <select class="dlgrec_question" name="supervise" id="supervise" style="width:60%;margin-top:.5em;">
+                                                                                        <option value="">請選擇</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div class="col-sm-7">
+                                                                                    <button style="margin:.5em;margin-right:1em;color:red;" type="button" id="supervise_signature_btn">簽名</button>
+                                                                                    <button style="margin:.5em;" type="button" id="supervise_signature_msg_btn" onclick="sign_msg_model('supervise');" data-toggle="modal" data-target="#myModal">查看留言</button>
+                                                                                    <a src="" id="supervise_signature_simg" style="color:blue;" target="_blank" alt="簽名圖片連結"></a>
+                                                                                </div>
                                                                             </td>
                                                                         </tr>
                                                                         <tr style="text-align:left">

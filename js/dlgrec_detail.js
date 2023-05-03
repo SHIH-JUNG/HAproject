@@ -52,6 +52,8 @@ $(document).ready(function(){
                 $("#dlgrec_10").val(value.dlgrec_10)
                 $("#dlgrec_11").val(value.dlgrec_11)
 
+                append_user();
+
                 $("#dlg_manager").val(value.dlg_manager)
                 $("#social_worker").val(value.social_worker)
                 $("#supervise").val(value.supervise)
@@ -333,20 +335,21 @@ function check_updat_dlgrec_data()
 //endregion
 
 //呼叫user方法region
-// function append_user(){             
-//     $.ajax({
-//         type:'POST',
-//         url:'database/find_check_user.php',
-//         dataType: "JSON",
-//         async: false,//啟用同步請求
-//         success: function (data) {
-//             // console.log('test',data)
-//             for (var index in data.Id) {
-//                 $("#user").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
-//             }
-//         },
-//     });
-// }
+function append_user(){             
+    $.ajax({
+        type:'POST',
+        url:'database/find_check_user.php',
+        dataType: "JSON",
+        async: false,//啟用同步請求
+        success: function (data) {
+            // console.log('test',data)
+            for (var index in data.Id) {
+                $("#social_worker").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+                $("#supervise").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+            }
+        },
+    });
+}
 //endregion
 
 //取消重整region

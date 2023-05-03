@@ -208,9 +208,20 @@ input[type=number] {
                                                             </tr>
                                                             <tr style="text-align:left">
                                                                 <td colspan="2" style="border-bottom: solid 1px;">
-                                                                    <label for="dlg_manager">管理員/生活輔導員：</label><input style="width:10em;" id="dlg_manager" type="text">
-                                                                    <label for="social_worker">社工員：</label><input style="width:10em;" id="social_worker" type="text">
-                                                                    <label for="supervise">督導：</label><input style="width:10em;" id="supervise" type="text">
+                                                                    <label for="dlg_manager">管理員/生活輔導員：</label>
+                                                                    <input style="width:10em;" id="dlg_manager" type="text">
+
+                                                                    <label for="social_worker">社工員：</label>
+                                                                    <!-- <input style="width:10em;" id="social_worker" type="text"> -->
+                                                                    <select name="social_worker" id="social_worker" style="width:10em;">
+                                                                        <option value="">請選擇</option>
+                                                                    </select>
+
+                                                                    <label for="supervise">督導：</label>
+                                                                    <!-- <input style="width:10em;" id="supervise" type="text"> -->
+                                                                    <select name="supervise" id="supervise" style="width:10em;">
+                                                                        <option value="">請選擇</option>
+                                                                    </select>
                                                                 </td>
                                                             </tr>
                                                         </table>
@@ -264,6 +275,10 @@ input[type=number] {
     <!-- ================== table ================== -->
     <script src="javascript/bootstrap1.18.0-table.min.js"></script>
     <script src="javascript/bootstrap-table1.11.1-zh-TW.min.js"></script>
+    <script>
+        //設定js變數抓取使用者名稱
+        assign_name = '<?php echo $_SESSION["name"]; ?>';
+    </script>
     <!-- ================== add_dlgrec.js ================== -->
     <script src="js/add_dlgrec.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
 </body>

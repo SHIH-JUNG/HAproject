@@ -1,3 +1,9 @@
+$(document).ready(function(){
+
+    append_user();
+    $("#user").val(assign_name);
+});
+
 //新增生輔紀錄region
 $("#dlgrec_add_new").on('click',function(){
 
@@ -108,21 +114,21 @@ function check_add_dlgrec_data()
 //endregion
 
 
-//呼叫user方法region           
-        // $.ajax({
-        //     type:'POST',
-        //     url:'database/find_check_user.php',
-        //     dataType: "JSON",
-        //     async: false,//啟用同步請求
-        //     success: function (data) {
-        //         for (var index in data.Id) {
-        //             $(".user").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
-        //         }
-        //     },
-        //     error:function(e){
-        //         console.log(e);
-        //     }
-        // });
-
+//呼叫user方法region
+function append_user(){             
+    $.ajax({
+        type:'POST',
+        url:'database/find_check_user.php',
+        dataType: "JSON",
+        async: false,//啟用同步請求
+        success: function (data) {
+            // console.log('test',data)
+            for (var index in data.Id) {
+                $("#social_worker").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+                $("#supervise").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+            }
+        },
+    });
+}
 //endregion
 
