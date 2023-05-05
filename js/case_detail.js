@@ -301,31 +301,36 @@ function load_sullen_data() {
                         
                 var upload_info_json = JSON.parse("[" +value.Upload_info.replace('\"\[', '\[').replace('\]\"', '\]') + "]");
                             
-    
-                var upload_date = trans_to_Tw(upload_info_json[0][0].value) || "";
-                var test_type = upload_info_json[0][3].value || "";
-                var test_score = upload_info_json[0][1].value || "";
-                // var test_remark = upload_info_json[0][4].value || "";
-    
-    
-                switch (test_type) {
-                    case '前測':
-                        sp_str0 = '<span>'+
-                        '（' + upload_date + ' ' + test_type + '）' + test_score + '分' +
-                        '</span>';
-                        break;
-                
-                    case '中測':
-                        sp_str1 = '<span>'+
-                        '（' + upload_date + ' ' + test_type + '）' + test_score + '分' +
-                        '</span>';
-                        break;
+                if(upload_info_json.length > 0)
+                {
+                    if(upload_info_json[0].length == 5)
+                    {
+                        var upload_date  = (trans_to_Tw(upload_info_json[0][0].value) === undefined) ? '' : trans_to_Tw(upload_info_json[0][0].value);
+                        var test_type = ((upload_info_json[0][3].value) === undefined) ? '' : (upload_info_json[0][3].value);
+                        var test_score = ((upload_info_json[0][1].value) === undefined) ? '' : (upload_info_json[0][1].value);
+                        // var test_remark = ((upload_info_json[0][4].value) === undefined) ? '' : (upload_info_json[0][4].value);
+            
+            
+                        switch (test_type) {
+                            case '前測':
+                                sp_str0 = '<span>'+
+                                '（' + upload_date + ' ' + test_type + '）' + test_score + '分' +
+                                '</span>';
+                                break;
                         
-                    case '後測':
-                        sp_str2 = '<span>'+
-                        '（' + upload_date + ' ' + test_type + '）' + test_score + '分' +
-                        '</span>';
-                        break;
+                            case '中測':
+                                sp_str1 = '<span>'+
+                                '（' + upload_date + ' ' + test_type + '）' + test_score + '分' +
+                                '</span>';
+                                break;
+                                
+                            case '後測':
+                                sp_str2 = '<span>'+
+                                '（' + upload_date + ' ' + test_type + '）' + test_score + '分' +
+                                '</span>';
+                                break;
+                        }
+                    }
                 }
     
             });
@@ -375,31 +380,36 @@ function load_life_data() {
                         
                 var other_info_json = JSON.parse("[" +value.Other_info.replace('\"\[', '\[').replace('\]\"', '\]') + "]");
                             
-    
-                var fillin_date = trans_to_Tw(value.Fillin_date) || "";
-                var test_type = other_info_json[0][1].value || "";
-                var test_score_result = other_info_json[0][0].value.replace('<div>', '').replace('</div>', '') || "";
-        
-                switch (test_type) {
-                    case '前測':
-                        sp_str0 = '<span>'+
-                        '（' + fillin_date + ' ' + test_type + '）' + '得分/結果：' + test_score_result
-                        '</span>';
-                        break;
-                
-                    case '中測':
-                        sp_str1 = '<span>'+
-                        '（' + fillin_date + ' ' + test_type + '）' + '得分/結果：' + test_score_result
-                        '</span>';
-                        break;
+                if(other_info_json.length > 0)
+                {
+                    if(other_info_json[0].length == 2)
+                    {
+                        var fillin_date = (trans_to_Tw(value.Fillin_date) === undefined) ? '' : trans_to_Tw(value.Fillin_date);
+                        var test_type = ((other_info_json[0][1].value)  === undefined) ? '' : (other_info_json[0][1].value);
+                        var test_score_result = ((other_info_json[0][0].value) === undefined) ? '' : (other_info_json[0][0].value);
                         
-                    case '後測':
-                        sp_str2 = '<span>'+
-                        '（' + fillin_date + ' ' + test_type + '）' + '得分/結果：' + test_score_result
-                        '</span>';
-                        break;
+                        switch (test_type) {
+                            case '前測':
+                                sp_str0 = '<span>'+
+                                '（' + fillin_date + ' ' + test_type + '）' + '得分/結果：' + test_score_result
+                                '</span>';
+                                break;
+                        
+                            case '中測':
+                                sp_str1 = '<span>'+
+                                '（' + fillin_date + ' ' + test_type + '）' + '得分/結果：' + test_score_result
+                                '</span>';
+                                break;
+                                
+                            case '後測':
+                                sp_str2 = '<span>'+
+                                '（' + fillin_date + ' ' + test_type + '）' + '得分/結果：' + test_score_result
+                                '</span>';
+                                break;
+                        }
+                    }
                 }
-    
+                
             });
             $("#pretest_life_area").append(sp_str0);
             $("#midtest_life_area").append(sp_str1);
@@ -446,32 +456,40 @@ function load_familyship_data() {
             $.each(data,function(index,value){
                         
                 var other_info_json = JSON.parse("[" +value.Other_info.replace('\"\[', '\[').replace('\]\"', '\]') + "]");
-                            
-    
-                var fillin_date = trans_to_Tw(value.Fillin_date) || "";
-                var test_type = other_info_json[0][1].value || "";
-                var test_score = other_info_json[0][0].value || "";
-        
-                switch (test_type) {
-                    case '前測':
-                        sp_str0 = '<span>'+
-                        '（' + fillin_date + ' ' + test_type + '）' + test_score + '分' +
-                        '</span>';
-                        break;
+                console.log(other_info_json)
                 
-                    case '中測':
-                        sp_str1 = '<span>'+
-                        '（' + fillin_date + ' ' + test_type + '）' + test_score + '分' +
-                        '</span>';
-                        break;
-                        
-                    case '後測':
-                        sp_str2 = '<span>'+
-                        '（' + fillin_date + ' ' + test_type + '）' + test_score + '分' +
-                        '</span>';
-                        break;
-                }
+                if(other_info_json.length > 0)
+                {
+                    if(other_info_json[0].length == 2)
+                    {
+                        var fillin_date = trans_to_Tw(value.Fillin_date) ? trans_to_Tw(value.Fillin_date) : '';
+                        var test_score = (other_info_json[0][0].value) ? other_info_json[0][0].value : '';
+                        var test_type = other_info_json[0][1].value ? other_info_json[0][1].value : '';
     
+                        switch (test_type) {
+                            case '前測':
+                                sp_str0 = '<span>'+
+                                '（' + fillin_date + ' ' + test_type + '）' + test_score + '分' +
+                                '</span>';
+                                break;
+                        
+                            case '中測':
+                                sp_str1 = '<span>'+
+                                '（' + fillin_date + ' ' + test_type + '）' + test_score + '分' +
+                                '</span>';
+                                break;
+                                
+                            case '後測':
+                                sp_str2 = '<span>'+
+                                '（' + fillin_date + ' ' + test_type + '）' + test_score + '分' +
+                                '</span>';
+                                break;
+                        }
+                    }
+                }
+                
+               
+               
             });
             $("#pretest_familyship_area").append(sp_str0);
             $("#midtest_familyship_area").append(sp_str1);

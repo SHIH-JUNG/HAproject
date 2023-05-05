@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2023-05-05 16:15:20
+-- 產生時間： 2023-05-05 16:44:54
 -- 伺服器版本： 10.4.24-MariaDB
 -- PHP 版本： 7.4.29
 
@@ -874,7 +874,8 @@ INSERT INTO `forms` (`Id`, `Case_seqid`, `Case_id`, `Form_id`, `Form_type`, `Cas
 (45, '10', 'RE877', 61, 'BSRS5', '何竹田', 'y997501623', '2022-12-09 14:59:15', '花花', '2022-12-09 14:59:30', '花花', '\"[{\"name\":\"name\",\"value\":\"何竹田\"},{\"name\":\"sex\",\"value\":\"男\"},{\"name\":\"birth\",\"value\":\"1999-03-23\"},{\"name\":\"age\",\"value\":\"23\"},{\"name\":\"phone\",\"value\":\"0977985162\"},{\"name\":\"address\",\"value\":\"770號\"},{\"name\":\"answer1\",\"value\":\"4\"},{\"name\":\"answer2\",\"value\":\"4\"},{\"name\":\"answer3\",\"value\":\"4\"},{\"name\":\"answer4\",\"value\":\"4\"},{\"name\":\"answer5\",\"value\":\"4\"},{\"name\":\"answer6\",\"value\":\"4\"},{\"name\":\"answer_score\",\"value\":\"20\"},{\"name\":\"treatment_status\",\"value\":\"超過6分\"},{\"name\":\"treatment_status\",\"value\":\"第6題單獨得分\"},{\"name\":\"statement\",\"value\":\".\"}]\"', '', ''),
 (46, '10', 'RE877', 62, 'settlement', '何竹田', 'y997501623', '2022-12-09 15:03:15', '花花', '2022-12-09 15:03:58', '花花', '\"[{\"name\":\"fillin_date\",\"value\":\"2022-12-09\"},{\"name\":\"assign_name\",\"value\":\"花花\"},{\"name\":\"name\",\"value\":\"何竹田\"},{\"name\":\"birth\",\"value\":\"1999-03-23\"},{\"name\":\"pid\",\"value\":\"y997501623\"},{\"name\":\"sex\",\"value\":\"男\"},{\"name\":\"phone\",\"value\":\"0977985162\"},{\"name\":\"address\",\"value\":\"內埔外埔200鄰-999號\"},{\"name\":\"residence\",\"value\":\"馬來西亞深圳鄉慕尼黑鎮阿德雷德里墾丁54號\"},{\"name\":\"education\",\"value\":\"研究所\"},{\"name\":\"education_graduate\",\"value\":\"是\"},{\"name\":\"marital\",\"value\":\"同居\"},{\"name\":\"cohabitant\",\"value\":\"與其他人同住\"},{\"name\":\"cohabitant_other\",\"value\":\"街友\"},{\"name\":\"current_job\",\"value\":\"服務業\"},{\"name\":\"current_job_other\",\"value\":\"\"},{\"name\":\"economic_status_0\",\"value\":\"80000\"},{\"name\":\"economic_status_1\",\"value\":\"45611\"},{\"name\":\"economic_status_2\",\"value\":\"34450\"},{\"name\":\"economic_status\",\"value\":\"3\"},{\"name\":\"economic_status_3\",\"value\":\"9774\"},{\"name\":\"religion\",\"value\":\"密宗\"},{\"name\":\"religion_other\",\"value\":\"\"},{\"name\":\"drug_record_0\",\"value\":\"23\"},{\"name\":\"drug_record_1\",\"value\":\"15\"},{\"name\":\"drug_record_2\",\"value\":\"7\"},{\"name\":\"drug_record\",\"value\":\"3\"},{\"name\":\"drug_record_3\",\"value\":\"咖啡50年\"},{\"name\":\"correctional_question_count\",\"value\":\"80\"},{\"name\":\"correctional_question_start\",\"value\":\"2021-01\"},{\"name\":\"correctional_question_end\",\"value\":\"2023-08\"},{\"name\":\"correctional_year\",\"value\":\"2\"},{\"name\":\"correctional_month\",\"value\":\"7\"},{\"name\":\"family_description\",\"value\":\"1\"},{\"name\":\"assessment\",\"value\":\"2\"},{\"name\":\"treatment_time_year\",\"value\":\"1\"},{\"name\":\"treatment_time_month\",\"value\":\"1\"},{\"name\":\"treatment_status\",\"value\":\"已接受治療\"},{\"name\":\"medical_name\",\"value\":\"1\"},{\"name\":\"medical_info\",\"value\":\"1\"},{\"name\":\"medical_phone\",\"value\":\"1\"},{\"name\":\"health_clinic_name\",\"value\":\"1\"},{\"name\":\"health_clinic_phone\",\"value\":\"1\"},{\"name\":\"CD4_index_0\",\"value\":\"1\"},{\"name\":\"CD4_index_1\",\"value\":\"1\"},{\"name\":\"CD4_index_2\",\"value\":\"1\"},{\"name\":\"viral_0\",\"value\":\"1\"},{\"name\":\"viral_1\",\"value\":\"1\"},{\"name\":\"viral_2\",\"value\":\"1\"},{\"name\":\"medicine\",\"value\":\"尚未服藥\"},{\"name\":\"medicine\",\"value\":\"Atripla亞翠佩\"},{\"name\":\"medicine\",\"value\":\"Atripla亞翠佩\"},{\"name\":\"medicine\",\"value\":\"滋若愷Juluca\"},{\"name\":\"medicine\",\"value\":\"Duovir倍歐減\"},{\"name\":\"medicine\",\"value\":\"希寧\"},{\"name\":\"symptoms\",\"value\":\"持續疲倦\"},{\"name\":\"symptoms\",\"value\":\"頭痛\"},{\"name\":\"symptoms_other\",\"value\":\"\"},{\"name\":\"statement\",\"value\":\"01\"},{\"name\":\"personal_system\",\"value\":\"01\"},{\"name\":\"family_system\",\"value\":\"01\"},{\"name\":\"social_system\",\"value\":\"01\"},{\"name\":\"resource_system\",\"value\":\"01\"},{\"name\":\"diagnose_main\",\"value\":\"01\"},{\"name\":\"diagnose_minor\",\"value\":\"01\"},{\"name\":\"basic_indicator\",\"value\":\"藥癮者居無定所\"},{\"name\":\"basic_indicator\",\"value\":\"本身同意於安置中心入住並有意願重新開始者\"},{\"name\":\"basic_indicator\",\"value\":\"願意配合本聯盟社工處遇與安置中心/自立宿舍相關規定\"},{\"name\":\"basic_indicator\",\"value\":\"願意配合入住時藥癮檢測與每周、不定時藥癮檢測\"},{\"name\":\"end_indicator\",\"value\":\"入住當日與入住後都願意接受藥癮檢測 結果都呈陰性者，沒有在使用非法藥物者，但可以接受使用美沙酮或舌下錠者(丁基原啡因)\"},{\"name\":\"end_indicator\",\"value\":\"個案須接種過疫苗才能入住機構\"},{\"name\":\"end_indicator\",\"value\":\"生活可自理者且行動能力正常\"},{\"name\":\"end_indicator\",\"value\":\"個案需要至感染科就診，並附上病歷摘要表，以利審核\"},{\"name\":\"end_indicator\",\"value\":\"因應COVID-19疫情個案都必須做過快篩機制結果為陰性者才能入住\"},{\"name\":\"end_indicator\",\"value\":\"個案家屬需負擔個案就醫、生活用品等費用\"},{\"name\":\"end_indicator\",\"value\":\"無精神障礙或者經評估是輕微精神患者，且無攻擊行為、器質性、嚴重思覺失調症者才能入住\"},{\"name\":\"resource_w_referrals\",\"value\":\"01\"},{\"name\":\"customFile1\",\"value\":\"個案管理系統測試20221025(03).docx\"}]\"', '../upload/個案管理系統測試20221025(03).docx', ''),
 (47, '6', 'RE111', 45, 'familyship', 'test', 'T1334356112', '2023-05-05 21:21:01', 'jia', '2023-05-05 21:31:28', 'jia', '\"[{\"name\":\"w_test\",\"value\":\"前測\"},{\"name\":\"fillin_date\",\"value\":\"2023-05-05\"},{\"name\":\"sex\",\"value\":\"男\"},{\"name\":\"education_other\",\"value\":\"\"},{\"name\":\"current_job_other\",\"value\":\"\"},{\"name\":\"marital_other\",\"value\":\"\"},{\"name\":\"cohabitant_other\",\"value\":\"\"},{\"name\":\"answer1\",\"value\":\"4\"},{\"name\":\"answer_score\",\"value\":\"4\"}]\"', '', ''),
-(48, '6', 'RE111', 69, 'familyship', 'test', 'T1334356112', '2023-05-05 21:21:42', 'jia', '2023-05-05 21:31:22', 'jia', '\"[{\"name\":\"w_test\",\"value\":\"後測\"},{\"name\":\"fillin_date\",\"value\":\"2023-05-05\"},{\"name\":\"sex\",\"value\":\"男\"},{\"name\":\"education_other\",\"value\":\"\"},{\"name\":\"current_job_other\",\"value\":\"\"},{\"name\":\"marital_other\",\"value\":\"\"},{\"name\":\"cohabitant_other\",\"value\":\"\"},{\"name\":\"answer1\",\"value\":\"4\"},{\"name\":\"answer2\",\"value\":\"4\"},{\"name\":\"answer3\",\"value\":\"4\"},{\"name\":\"answer4\",\"value\":\"4\"},{\"name\":\"answer5\",\"value\":\"4\"},{\"name\":\"answer6\",\"value\":\"4\"},{\"name\":\"answer_score\",\"value\":\"24\"}]\"', '', '');
+(48, '6', 'RE111', 69, 'familyship', 'test', 'T1334356112', '2023-05-05 21:21:42', 'jia', '2023-05-05 22:28:37', 'jia', '\"[{\"name\":\"w_test\",\"value\":\"後測\"},{\"name\":\"fillin_date\",\"value\":\"2023-05-05\"},{\"name\":\"sex\",\"value\":\"男\"},{\"name\":\"education_other\",\"value\":\"\"},{\"name\":\"current_job_other\",\"value\":\"\"},{\"name\":\"marital_other\",\"value\":\"\"},{\"name\":\"cohabitant_other\",\"value\":\"\"},{\"name\":\"answer1\",\"value\":\"4\"},{\"name\":\"answer2\",\"value\":\"4\"},{\"name\":\"answer3\",\"value\":\"4\"},{\"name\":\"answer4\",\"value\":\"4\"},{\"name\":\"answer5\",\"value\":\"4\"},{\"name\":\"answer6\",\"value\":\"4\"},{\"name\":\"answer_score\",\"value\":\"24\"}]\"', '', ''),
+(49, '6', 'RE111', 70, 'familyship', 'test', 'T1334356112', '2023-05-05 22:44:36', 'jia', '0000-00-00 00:00:00', '', '\"[{\"name\":\"w_test\",\"value\":\"中測\"},{\"name\":\"fillin_date\",\"value\":\"2023-05-05\"},{\"name\":\"sex\",\"value\":\"男\"},{\"name\":\"education_other\",\"value\":\"\"},{\"name\":\"current_job_other\",\"value\":\"\"},{\"name\":\"marital_other\",\"value\":\"\"},{\"name\":\"cohabitant_other\",\"value\":\"\"},{\"name\":\"answer_score\",\"value\":\"0\"}]\"', '', '');
 
 -- --------------------------------------------------------
 
@@ -976,7 +977,8 @@ INSERT INTO `form_all_info` (`Id`, `Case_seqid`, `Case_id`, `Case_name`, `Case_p
 (66, '2', 'RE112', 'TEST0808', 'S167123331', 0, 'case_detail.php?name=TEST0808&gender=女&pid=S167123331&date=2022-08-08&property=安置家園&type=一般藥癮者&grade=B&id=2&open_id=RE112&referral=醫院&case_Create_date=2022-08-08&unopen_type=case&birth=1993-06-22', '', 0, 'familyship', '2022-11-30', '', '', '', '2022-12-29 00:00:00', '社工員1', '0000-00-00 00:00:00', ''),
 (67, '2', 'RE112', 'TEST0808', 'S167123331', 0, 'case_detail.php?name=TEST0808&gender=女&pid=S167123331&date=2022-08-08&property=安置家園&type=一般藥癮者&grade=B&id=2&open_id=RE112&referral=醫院&case_Create_date=2022-08-08&unopen_type=case&birth=1993-06-22', '', 0, 'settlement', '2022-11-30', '', '', '', '2022-12-29 00:00:00', '社工員1', '0000-00-00 00:00:00', ''),
 (68, '6', 'RE111', 'test', 'T1334356112', 1, '', '../upload/case_all/test憂鬱量表.txt', 1, 'sullen', '0000-00-00', '', '', '\"[{\"name\":\"upload_date_sullen1\",\"value\":\"2022-06-01\"},{\"name\":\"scoresullen1\",\"value\":\"85\"},{\"name\":\"filesullen1\",\"value\":\"test憂鬱量表.txt\"},{\"name\":\"test_typesullen1\",\"value\":\"前測\"},{\"name\":\"remarksullen1\",\"value\":\"ttttasdasd\"}]\"', '2023-05-05 20:37:19', 'jia', '0000-00-00 00:00:00', ''),
-(69, '6', 'RE111', 'test', 'T1334356112', 0, 'case_detail.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03', '', 1, 'familyship', '2023-05-05', 'aads', '\"[{\"name\":\"familyship\",\"value\":\"後測\"}]\"', '', '2023-05-05 00:00:00', 'jia', '2023-05-05 21:31:22', 'jia');
+(69, '6', 'RE111', 'test', 'T1334356112', 0, 'case_detail.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03', '', 1, 'familyship', '2023-05-05', 'aads', '\"[{\"name\":\"familyship\",\"value\":\"24\"},{\"name\":\"familyship\",\"value\":\"後測\"}]\"', '', '2023-05-05 00:00:00', 'jia', '2023-05-05 22:28:37', 'jia'),
+(70, '6', 'RE111', 'test', 'T1334356112', 0, 'case_detail.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03', '', 2, 'familyship', '2023-05-05', 'asda', '\"[{\"name\":\"familyship\",\"value\":\"0\"},{\"name\":\"familyship\",\"value\":\"中測\"}]\"', '', '2023-05-05 00:00:00', 'jia', '2023-05-05 22:44:36', 'jia');
 
 -- --------------------------------------------------------
 
@@ -1050,8 +1052,9 @@ INSERT INTO `form_case_report` (`Id`, `Case_seqid`, `Case_id`, `Form_id`, `Form_
 (37, '10', 'RE877', 61, 'BSRS5', '2022-12-09', '何竹田', '0000-00-00', '', '', '', '', '', '', 'ㄓㄜㄒㄧㄢ', '2022-12-09 14:59:15', '花花', '2022-12-09 14:59:30', '花花'),
 (38, '10', 'RE877', 62, 'settlement', '2022-12-09', '何竹田', '0000-00-00', '', '', '', '', '', '', 'ㄓㄜㄒㄧㄢ', '2022-12-09 15:03:15', '花花', '2022-12-09 15:03:58', '花花'),
 (39, '6', 'RE111', 45, 'familyship', '2022-08-08', 'test', '0000-00-00', '', '', '', '', '', '', '社工員1', '2023-05-05 21:21:01', 'jia', '2023-05-05 21:31:28', 'jia'),
-(40, '6', 'RE111', 69, 'familyship', '2022-08-08', 'test', '0000-00-00', '', '', '', '', '', '', '社工員1', '2023-05-05 21:21:42', 'jia', '2023-05-05 21:31:22', 'jia'),
-(41, '6', 'RE111', 8, 'life', '2022-08-08', 'test', '0000-00-00', '', '', '', '', '', '', '社工員1', '2023-05-05 21:31:36', 'jia', '2023-05-05 21:31:36', '');
+(40, '6', 'RE111', 69, 'familyship', '2022-08-08', 'test', '0000-00-00', '', '', '', '', '', '', '社工員1', '2023-05-05 21:21:42', 'jia', '2023-05-05 22:28:37', 'jia'),
+(41, '6', 'RE111', 8, 'life', '2022-08-08', 'test', '0000-00-00', '', '', '', '', '', '', '社工員1', '2023-05-05 21:31:36', 'jia', '2023-05-05 21:31:36', ''),
+(42, '6', 'RE111', 70, 'familyship', '2022-08-08', 'test', '0000-00-00', '', '', '', '', '', '', '社工員1', '2023-05-05 22:44:36', 'jia', '2023-05-05 22:44:36', '');
 
 -- --------------------------------------------------------
 
@@ -2765,19 +2768,19 @@ ALTER TABLE `dlgrec`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `forms`
 --
 ALTER TABLE `forms`
-  MODIFY `Id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `Id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `form_all_info`
 --
 ALTER TABLE `form_all_info`
-  MODIFY `Id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `Id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `form_case_report`
 --
 ALTER TABLE `form_case_report`
-  MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `form_interlocution_queskeywords`
