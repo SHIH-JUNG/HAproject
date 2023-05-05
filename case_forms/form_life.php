@@ -53,6 +53,7 @@
                                                             <div class="col-sm-12">
                                                                 <div class="text-left" style="color: #d86d6d;">
                                                                     <input name="w_test" style="zoom: 1.5" value="前測" type="radio"><span>前測</span>
+                                                                    <input name="w_test" style="zoom: 1.5" value="中測" type="radio"><span>中測</span>
                                                                     <input name="w_test" style="zoom: 1.5" value="後測" type="radio"><span>後測</span>&emsp;
                                                                     <span>填寫日期：</span><input name="fillin_date" type="date">
                                                                 </div>

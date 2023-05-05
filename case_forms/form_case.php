@@ -670,15 +670,19 @@
                                                         <td style="background-color:rgb(255 201 54);text-align:right;">1.</td>
                                                         <td style="background-color:rgb(255 201 54);text-align:left;">憂鬱程度</td>
                                                         <td>
-                                                            <table>
+                                                            <table style="width:100%;">
                                                                 <tr>
                                                                     <td>
-                                                                        <span>（</span>
+                                                                        <!-- <span>（</span>
                                                                         <input style="width:3em;" name="pretest_depression_year" id="pretest_depression_year" type="text"><span>年</span>
                                                                         <input style="width:3em;" name="pretest_depression_month" id="pretest_depression_month" type="text"><span>月</span>
                                                                         <input style="width:3em;" name="pretest_depression_day" id="pretest_depression_day" type="text"><span>日</span>
-                                                                        <span>前測）</span>
-                                                                        <input style="width:3em;" name="pretest_depression_score" id="pretest_depression_score" type="text"><span>分&emsp;</span>
+                                                                        <span>前測）</span> -->
+                                                                        <!-- <input style="width:3em;" name="pretest_depression_score" id="pretest_depression_score" type="text"><span>分&emsp;</span> -->
+                                                                        <span id="pretest_depression_area">
+
+                                                                        </span>
+                                                                        &emsp;
                                                                         <input name="pretest_depression_radio" style="zoom: 1.5" value="無" type="radio"><span>無</span>
                                                                         <input name="pretest_depression_radio" style="zoom: 1.5" value="輕度" type="radio"><span>輕度</span>
                                                                         <input name="pretest_depression_radio" style="zoom: 1.5" value="中度" type="radio"><span>中度</span>
@@ -687,12 +691,16 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td>
-                                                                        <span>（</span>
+                                                                        <!-- <span>（</span>
                                                                         <input style="width:3em;" name="midtest_depression_year" id="midtest_depression_year" type="text"><span>年</span>
                                                                         <input style="width:3em;" name="midtest_depression_month" id="midtest_depression_month" type="text"><span>月</span>
                                                                         <input style="width:3em;" name="midtest_depression_day" id="midtest_depression_day" type="text"><span>日</span>
                                                                         <span>中測）</span>
-                                                                        <input style="width:3em;" name="midtest_depression_score" id="midtest_depression_score" type="text"><span>分&emsp;</span>
+                                                                        <input style="width:3em;" name="midtest_depression_score" id="midtest_depression_score" type="text"><span>分&emsp;</span> -->
+                                                                        <span id="midtest_depression_area">
+
+                                                                        </span>
+                                                                        &emsp;
                                                                         <input name="midtest_depression_radio" style="zoom: 1.5" value="無" type="radio"><span>無</span>
                                                                         <input name="midtest_depression_radio" style="zoom: 1.5" value="輕度" type="radio"><span>輕度</span>
                                                                         <input name="midtest_depression_radio" style="zoom: 1.5" value="中度" type="radio"><span>中度</span>
@@ -701,12 +709,16 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td>
-                                                                        <span>（</span>
+                                                                        <!-- <span>（</span>
                                                                         <input style="width:3em;" name="posttest_depression_year" id="posttest_depression_year" type="text"><span>年</span>
                                                                         <input style="width:3em;" name="posttest_depression_month" id="posttest_depression_month" type="text"><span>月</span>
                                                                         <input style="width:3em;" name="posttest_depression_day" id="posttest_depression_day" type="text"><span>日</span>
                                                                         <span>後測）</span>
-                                                                        <input style="width:3em;" name="posttest_depression_score" id="posttest_depression_score" type="text"><span>分&emsp;</span>
+                                                                        <input style="width:3em;" name="posttest_depression_score" id="posttest_depression_score" type="text"><span>分&emsp;</span> -->
+                                                                        <span id="posttest_depression_area">
+
+                                                                        </span>
+                                                                        &emsp;
                                                                         <input name="posttest_depression_radio" style="zoom: 1.5" value="無" type="radio"><span>無</span>
                                                                         <input name="posttest_depression_radio" style="zoom: 1.5" value="輕度" type="radio"><span>輕度</span>
                                                                         <input name="posttest_depression_radio" style="zoom: 1.5" value="中度" type="radio"><span>中度</span>
@@ -728,38 +740,100 @@
                                                         <td style="background-color:rgb(255 201 54);text-align:right;">2.</td>
                                                         <td style="background-color:rgb(255 201 54);text-align:left;">生活品質量表</td>
                                                         <td>
-                                                            <span>（</span>
-                                                            <input style="width:3em;" name="pretest_life_year" id="pretest_life_year" type="text"><span>年</span>
-                                                            <input style="width:3em;" name="pretest_life_month" id="pretest_life_month" type="text"><span>月</span>
-                                                            <input style="width:3em;" name="pretest_life_day" id="pretest_life_day" type="text"><span>日</span>
-                                                            <span>前測）</span>
-                                                            <input style="width:3em;" name="pretest_life_score" id="pretest_life_score" type="text"><span>分&emsp;</span>
+                                                            <table style="width:100%;">
+                                                                <tr>
+                                                                    <td>
+                                                                        <!-- <span>（</span>
+                                                                        <input style="width:3em;" name="pretest_life_year" id="pretest_life_year" type="text"><span>年</span>
+                                                                        <input style="width:3em;" name="pretest_life_month" id="pretest_life_month" type="text"><span>月</span>
+                                                                        <input style="width:3em;" name="pretest_life_day" id="pretest_life_day" type="text"><span>日</span>
+                                                                        <span>前測）</span>
+                                                                        &emsp;
+                                                                        <span>得分/結果：</span>
+                                                                        <input style="width:3em;" name="pretest_life_score" id="pretest_life_score" type="text"> -->
+                                                                        <span id="pretest_life_area">
 
-                                                            <span>（</span>
-                                                            <input style="width:3em;" name="posttest_life_year" id="posttest_life_year" type="text"><span>年</span>
-                                                            <input style="width:3em;" name="posttest_life_month" id="posttest_life_month" type="text"><span>月</span>
-                                                            <input style="width:3em;" name="posttest_life_day" id="posttest_life_day" type="text"><span>日</span>
-                                                            <span>後測）</span>
-                                                            <input style="width:3em;" name="posttest_life_score" id="posttest_life_score" type="text"><span>分</span>
+                                                                        </span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <!-- <span>（</span>
+                                                                        <input style="width:3em;" name="midtest_life_year" id="midtest_life_year" type="text"><span>年</span>
+                                                                        <input style="width:3em;" name="midtest_life_month" id="midtest_life_month" type="text"><span>月</span>
+                                                                        <input style="width:3em;" name="midtest_life_day" id="midtest_life_day" type="text"><span>日</span>
+                                                                        <span>中測）</span>
+                                                                        &emsp;
+                                                                        <span>得分/結果：</span>
+                                                                        <input style="width:3em;" name="midtest_life_score" id="midtest_life_score" type="text"> -->
+                                                                        <span id="midtest_life_area">
+
+                                                                        </span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <!-- <span>（</span>
+                                                                        <input style="width:3em;" name="posttest_life_year" id="posttest_life_year" type="text"><span>年</span>
+                                                                        <input style="width:3em;" name="posttest_life_month" id="posttest_life_month" type="text"><span>月</span>
+                                                                        <input style="width:3em;" name="posttest_life_day" id="posttest_life_day" type="text"><span>日</span>
+                                                                        <span>後測）</span>
+                                                                        &emsp;
+                                                                        <span>得分/結果：</span>
+                                                                        <input style="width:3em;" name="posttest_life_score" id="posttest_life_score" type="text"> -->
+                                                                        <span id="posttest_life_area">
+
+                                                                        </span>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td style="background-color:rgb(255 201 54);text-align:right;">3.</td>
                                                         <td style="background-color:rgb(255 201 54);text-align:left;">家庭關係量表</td>
                                                         <td>
-                                                            <span>（</span>
-                                                            <input style="width:3em;" name="pretest_familyship_year" id="pretest_familyship_year" type="text"><span>年</span>
-                                                            <input style="width:3em;" name="pretest_familyship_month" id="pretest_familyship_month" type="text"><span>月</span>
-                                                            <input style="width:3em;" name="pretest_familyship_day" id="pretest_familyship_day" type="text"><span>日</span>
-                                                            <span>前測）</span>
-                                                            <input style="width:3em;" name="pretest_familyship_score" id="pretest_familyship_score" type="text"><span>分&emsp;</span>
+                                                            <table style="width:100%;">
+                                                                <tr>
+                                                                    <td>
+                                                                        <!-- <span>（</span>
+                                                                        <input style="width:3em;" name="pretest_familyship_year" id="pretest_familyship_year" type="text"><span>年</span>
+                                                                        <input style="width:3em;" name="pretest_familyship_month" id="pretest_familyship_month" type="text"><span>月</span>
+                                                                        <input style="width:3em;" name="pretest_familyship_day" id="pretest_familyship_day" type="text"><span>日</span>
+                                                                        <span>前測）</span>
+                                                                        <input style="width:3em;" name="pretest_familyship_score" id="pretest_familyship_score" type="text"><span>分&emsp;</span> -->
+                                                                        <span id="pretest_familyship_area">
 
-                                                            <span>（</span>
-                                                            <input style="width:3em;" name="posttest_familyship_year" id="posttest_familyship_year" type="text"><span>年</span>
-                                                            <input style="width:3em;" name="posttest_familyship_month" id="posttest_familyship_month" type="text"><span>月</span>
-                                                            <input style="width:3em;" name="posttest_familyship_day" id="posttest_familyship_day" type="text"><span>日</span>
-                                                            <span>後測）</span>
-                                                            <input style="width:3em;" name="posttest_familyship_score" id="posttest_familyship_score" type="text"><span>分</span>
+                                                                        </span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <!-- <span>（</span>
+                                                                        <input style="width:3em;" name="midtest_familyship_year" id="midtest_familyship_year" type="text"><span>年</span>
+                                                                        <input style="width:3em;" name="midtest_familyship_month" id="midtest_familyship_month" type="text"><span>月</span>
+                                                                        <input style="width:3em;" name="midtest_familyship_day" id="midtest_familyship_day" type="text"><span>日</span>
+                                                                        <span>中測）</span>
+                                                                        <input style="width:3em;" name="midtest_familyship_score" id="midtest_familyship_score" type="text"><span>分</span> -->
+                                                                        <span id="midtest_familyship_area">
+
+                                                                        </span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <!-- <span>（</span>
+                                                                        <input style="width:3em;" name="posttest_familyship_year" id="posttest_familyship_year" type="text"><span>年</span>
+                                                                        <input style="width:3em;" name="posttest_familyship_month" id="posttest_familyship_month" type="text"><span>月</span>
+                                                                        <input style="width:3em;" name="posttest_familyship_day" id="posttest_familyship_day" type="text"><span>日</span>
+                                                                        <span>後測）</span>
+                                                                        <input style="width:3em;" name="posttest_familyship_score" id="posttest_familyship_score" type="text"><span>分</span> -->
+                                                                        <span id="posttest_familyship_area">
+
+                                                                        </span>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
                                                         </td>
                                                     </tr>
                                                     <tr>

@@ -249,7 +249,7 @@
     ?>
     <!-- ================== case_detail.js ================== -->
     <script src="js/case_detail.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
-
+    <script src="js/case_detail_form_case.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
    
 
 </body>

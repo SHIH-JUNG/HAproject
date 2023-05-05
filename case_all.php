@@ -263,7 +263,7 @@
                                                                     <th>建立日期</th>
                                                                     <th>填表日期</th>
                                                                     <th>得分/結果</th>
-                                                                    <th>前/後測</th>
+                                                                    <th>前/中/後測</th>
                                                                     <th>量表內容</th>
                                                                     <th>備註</th>
                                                                     <tbody id="life_full_add"></tbody>
@@ -409,7 +409,7 @@
                                                                         <th>建立日期</th>
                                                                         <th>填表日期</th>
                                                                         <th>總分</th>
-                                                                        <th>前/後測</th>
+                                                                        <th>前/中/後測</th>
                                                                         <th>量表內容</th>
                                                                         <th>備註</th>
                                                                         <tbody id="familyship_full_add"></tbody>
