@@ -310,23 +310,22 @@ function load_sullen_data() {
                         var test_score = ((upload_info_json[0][1].value) === undefined) ? '' : (upload_info_json[0][1].value);
                         // var test_remark = ((upload_info_json[0][4].value) === undefined) ? '' : (upload_info_json[0][4].value);
             
-            
                         switch (test_type) {
                             case '前測':
                                 sp_str0 = '<span>'+
-                                '（' + upload_date + ' ' + test_type + '）' + test_score + '分' +
+                                '（' + upload_date + ' ' + test_type + '）' + '<span style="color:red;">' + test_score + '</span>' + '分' +
                                 '</span>';
                                 break;
                         
                             case '中測':
                                 sp_str1 = '<span>'+
-                                '（' + upload_date + ' ' + test_type + '）' + test_score + '分' +
+                                '（' + upload_date + ' ' + test_type + '）' + '<span style="color:red;">' + test_score + '</span>' + '分' +
                                 '</span>';
                                 break;
                                 
                             case '後測':
                                 sp_str2 = '<span>'+
-                                '（' + upload_date + ' ' + test_type + '）' + test_score + '分' +
+                                '（' + upload_date + ' ' + test_type + '）' + '<span style="color:red;">' + test_score + '</span>' + '分' +
                                 '</span>';
                                 break;
                         }
@@ -388,22 +387,23 @@ function load_life_data() {
                         var test_type = ((other_info_json[0][1].value)  === undefined) ? '' : (other_info_json[0][1].value);
                         var test_score_result = ((other_info_json[0][0].value) === undefined) ? '' : (other_info_json[0][0].value);
                         
+
                         switch (test_type) {
                             case '前測':
                                 sp_str0 = '<span>'+
-                                '（' + fillin_date + ' ' + test_type + '）' + '得分/結果：' + test_score_result
+                                '（' + fillin_date + ' ' + test_type + '）' + '得分/結果：' + '<span style="color:red;">' + test_score_result + '</span>' + 
                                 '</span>';
                                 break;
                         
                             case '中測':
                                 sp_str1 = '<span>'+
-                                '（' + fillin_date + ' ' + test_type + '）' + '得分/結果：' + test_score_result
+                                '（' + fillin_date + ' ' + test_type + '）' + '得分/結果：' + '<span style="color:red;">' + test_score_result + '</span>' +
                                 '</span>';
                                 break;
                                 
                             case '後測':
                                 sp_str2 = '<span>'+
-                                '（' + fillin_date + ' ' + test_type + '）' + '得分/結果：' + test_score_result
+                                '（' + fillin_date + ' ' + test_type + '）' + '得分/結果：' + '<span style="color:red;">' + test_score_result + '</span>' +
                                 '</span>';
                                 break;
                         }
@@ -457,31 +457,31 @@ function load_familyship_data() {
                         
                 var other_info_json = JSON.parse("[" +value.Other_info.replace('\"\[', '\[').replace('\]\"', '\]') + "]");
                 console.log(other_info_json)
-                
+                                
                 if(other_info_json.length > 0)
                 {
                     if(other_info_json[0].length == 2)
                     {
-                        var fillin_date = trans_to_Tw(value.Fillin_date) ? trans_to_Tw(value.Fillin_date) : '';
-                        var test_score = (other_info_json[0][0].value) ? other_info_json[0][0].value : '';
-                        var test_type = other_info_json[0][1].value ? other_info_json[0][1].value : '';
+                        var fillin_date = (trans_to_Tw(value.Fillin_date) === undefined) ? '' : trans_to_Tw(value.Fillin_date);
+                        var test_score =(other_info_json[0][0].value === undefined) ? '' : other_info_json[0][0].value;
+                        var test_type = (other_info_json[0][1].value === undefined) ? '' : other_info_json[0][1].value;
     
                         switch (test_type) {
                             case '前測':
                                 sp_str0 = '<span>'+
-                                '（' + fillin_date + ' ' + test_type + '）' + test_score + '分' +
+                                '（' + fillin_date + ' ' + test_type + '）' + '<span style="color:red;">' + test_score + '</span>' + '分' +
                                 '</span>';
                                 break;
                         
                             case '中測':
                                 sp_str1 = '<span>'+
-                                '（' + fillin_date + ' ' + test_type + '）' + test_score + '分' +
+                                '（' + fillin_date + ' ' + test_type + '）' + '<span style="color:red;">' + test_score + '</span>' + '分' +
                                 '</span>';
                                 break;
                                 
                             case '後測':
                                 sp_str2 = '<span>'+
-                                '（' + fillin_date + ' ' + test_type + '）' + test_score + '分' +
+                                '（' + fillin_date + ' ' + test_type + '）' + '<span style="color:red;">' + test_score + '</span>' + '分' +
                                 '</span>';
                                 break;
                         }
@@ -506,6 +506,79 @@ function load_familyship_data() {
     });
 }
 //endregion
+
+// 載入BSRS-5量表的測驗內容 region
+function load_BSRS5_data() {
+    $.ajax({
+        url: "database/find_case_all.php",
+        data: {
+            Open_id:open_id,
+            Id:id,
+            Form_type:'BSRS5'
+        },
+        type: "POST",
+        dataType: "JSON",
+        success: function (data) {
+    
+            var sp_str = '<span>'+
+            'BSRS-5得' + '&emsp;' + '分'
+            '</span>';
+
+    
+    
+            $.each(data,function(index,value){
+                        
+                var data_json = "";
+
+                // console.log(typeof value.Upload_info !== 'undefined')
+                // console.log(typeof value.Other_info !== 'undefined')
+
+                if (typeof value.Upload_info !== 'undefined') 
+                {
+                    data_json = JSON.parse("[" +value.Upload_info.replace('\"\[', '\[').replace('\]\"', '\]') + "]");
+                
+                    if(data_json.length > 0)
+                    {
+                        if(data_json[0].length == 6)
+                        {
+                            // var create_date = trans_to_Tw(value.Create_date) ? trans_to_Tw(value.Create_date) : '';
+                            var test_score = (data_json[0][2].value) ? data_json[0][2].value : '';
+                            
+                            sp_str = '<span>'+
+                                    'BSRS-5得' + '<span style="color:red;">' + test_score + '</span>' + '分'
+                                    '</span>';
+                        }
+                    }
+                }
+                else if (typeof value.Other_info !== 'undefined') 
+                {
+                    data_json = JSON.parse("[" +value.Other_info.replace('\"\[', '\[').replace('\]\"', '\]') + "]");
+                    
+                    if(data_json.length > 0)
+                    {
+                        if(data_json[0].length == 2)
+                        {
+                            // var create_date = trans_to_Tw(value.Create_date) ? trans_to_Tw(value.Create_date) : '';
+                            var test_score = (data_json[0][0].value) ? data_json[0][0].value : '';
+                            
+                            sp_str = '<span>'+
+                                    'BSRS-5得' + '<span style="color:red;">' + test_score + '</span>' + '分'
+                                    '</span>';
+                        }
+                    }
+                }
+                
+            });
+            $("#bsrs5_test_area").append(sp_str);
+        },
+        error: function (e) {
+            notyf.alert('伺服器錯誤,無法載入');
+            console.log(e)
+        }
+    });
+}
+//endregion
+
 
 
 //宣告存入 file Object的空陣列
@@ -1130,6 +1203,8 @@ $(document).ready(function () {
     load_life_data();
     //載入家庭關係量表內容 個案評估表->成效評估
     load_familyship_data();
+    //載入BSRS-5量表內容 個案評估表->成效評估
+    load_BSRS5_data();
 
     //手動新增按鈕點擊跳出模態框
     $('#trans_grade_model').on('shown.bs.modal', function () {

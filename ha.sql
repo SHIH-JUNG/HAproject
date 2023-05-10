@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2023-05-05 16:44:54
+-- 產生時間： 2023-05-10 16:37:50
 -- 伺服器版本： 10.4.24-MariaDB
 -- PHP 版本： 7.4.29
 
@@ -978,7 +978,8 @@ INSERT INTO `form_all_info` (`Id`, `Case_seqid`, `Case_id`, `Case_name`, `Case_p
 (67, '2', 'RE112', 'TEST0808', 'S167123331', 0, 'case_detail.php?name=TEST0808&gender=女&pid=S167123331&date=2022-08-08&property=安置家園&type=一般藥癮者&grade=B&id=2&open_id=RE112&referral=醫院&case_Create_date=2022-08-08&unopen_type=case&birth=1993-06-22', '', 0, 'settlement', '2022-11-30', '', '', '', '2022-12-29 00:00:00', '社工員1', '0000-00-00 00:00:00', ''),
 (68, '6', 'RE111', 'test', 'T1334356112', 1, '', '../upload/case_all/test憂鬱量表.txt', 1, 'sullen', '0000-00-00', '', '', '\"[{\"name\":\"upload_date_sullen1\",\"value\":\"2022-06-01\"},{\"name\":\"scoresullen1\",\"value\":\"85\"},{\"name\":\"filesullen1\",\"value\":\"test憂鬱量表.txt\"},{\"name\":\"test_typesullen1\",\"value\":\"前測\"},{\"name\":\"remarksullen1\",\"value\":\"ttttasdasd\"}]\"', '2023-05-05 20:37:19', 'jia', '0000-00-00 00:00:00', ''),
 (69, '6', 'RE111', 'test', 'T1334356112', 0, 'case_detail.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03', '', 1, 'familyship', '2023-05-05', 'aads', '\"[{\"name\":\"familyship\",\"value\":\"24\"},{\"name\":\"familyship\",\"value\":\"後測\"}]\"', '', '2023-05-05 00:00:00', 'jia', '2023-05-05 22:28:37', 'jia'),
-(70, '6', 'RE111', 'test', 'T1334356112', 0, 'case_detail.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03', '', 2, 'familyship', '2023-05-05', 'asda', '\"[{\"name\":\"familyship\",\"value\":\"0\"},{\"name\":\"familyship\",\"value\":\"中測\"}]\"', '', '2023-05-05 00:00:00', 'jia', '2023-05-05 22:44:36', 'jia');
+(70, '6', 'RE111', 'test', 'T1334356112', 0, 'case_detail.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03', '', 2, 'familyship', '2023-05-05', 'asda', '\"[{\"name\":\"familyship\",\"value\":\"0\"},{\"name\":\"familyship\",\"value\":\"中測\"}]\"', '', '2023-05-05 00:00:00', 'jia', '2023-05-05 22:44:36', 'jia'),
+(71, '6', 'RE111', 'test', 'T1334356112', 0, 'case_detail.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03', '', 3, 'familyship', '2023-05-10', 'SXASA', '', '', '2023-05-10 00:00:00', 'jia', '0000-00-00 00:00:00', '');
 
 -- --------------------------------------------------------
 
@@ -1273,7 +1274,8 @@ INSERT INTO `login_record` (`Id`, `Login_timestamp`, `Login_account`, `Login_aut
 (153, '2023-04-13 14:17:14', 'text1', '1', '社工員1', '22.593918,120.488892', 1),
 (154, '2023-04-13 15:43:14', 'testuser', '1', 'jia', '22.593918,120.488892', 1),
 (155, '2023-04-19 19:42:31', 'testuser', '1', 'jia', '22.5783,120.4814', 1),
-(156, '2023-04-26 20:02:37', 'testuser', '1', 'jia', '22.593889290586077,120.488875429855', 1);
+(156, '2023-04-26 20:02:37', 'testuser', '1', 'jia', '22.593889290586077,120.488875429855', 1),
+(157, '2023-05-10 22:02:55', 'testuser', '1', 'jia', '22.593896,120.48886899999998', 1);
 
 -- --------------------------------------------------------
 
@@ -2774,7 +2776,7 @@ ALTER TABLE `forms`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `form_all_info`
 --
 ALTER TABLE `form_all_info`
-  MODIFY `Id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `Id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `form_case_report`
@@ -2798,7 +2800,7 @@ ALTER TABLE `leave_rule_table`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `login_record`
 --
 ALTER TABLE `login_record`
-  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=157;
+  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=158;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `members_assemble`

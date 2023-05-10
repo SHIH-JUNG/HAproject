@@ -728,9 +728,13 @@
                                                                 <tr>
                                                                     <td>
                                                                         <br/>
-                                                                        <span>BSRS-5得</span><input style="width:3em;" name="BSRS5_score" id="BSRS5_score" type="text"><span>分身心障礙狀況良好，</span>
+                                                                        <!-- <span>BSRS-5得</span><input style="width:3em;" name="BSRS5_score" id="BSRS5_score" type="text"><span>分身心障礙狀況良好，</span>
+                                                                        <input name="BSRS5_checkbox" style="zoom: 1.5" value="無" type="checkbox"><span>無&emsp;自殺想法</span> -->
+                                                                        <span id="bsrs5_test_area">
+
+                                                                        </span>
+                                                                        <span>&emsp;身心障礙狀況良好，</span>
                                                                         <input name="BSRS5_checkbox" style="zoom: 1.5" value="無" type="checkbox"><span>無&emsp;自殺想法</span>
-                                                                        
                                                                     </td>
                                                                 </tr>
                                                             </table>
