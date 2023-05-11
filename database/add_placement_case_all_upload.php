@@ -3,12 +3,14 @@
 //連接資料庫
 //只要此頁面上有用到連接MySQL就要include它
 include("sql_connect.php");
-$Number = $_REQUEST['Number'];
-$Form_name = $_REQUEST['Form_name'];
 $Pcase_id = $_REQUEST['Pcase_id'];
 $Case_id = $_REQUEST['Case_id'];
 $Name = $_REQUEST['Name'];
 $Case_pid = $_REQUEST['Case_pid'];
+
+$Number = $_REQUEST['Number'];
+$Form_name = $_REQUEST['Form_name'];
+
 @$upload_info = json_encode($_REQUEST['upload_info'],JSON_UNESCAPED_UNICODE);
 
 $user = $_SESSION['name'];

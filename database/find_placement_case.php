@@ -6,15 +6,26 @@ include("sql_connect.php");
 // $Phone_id = '4';
 // $Open_id = '2';
 //region 抓資料
+// if($Open_id != "" && $Id != ""){
+//     $sql = "SELECT *,DATE(`placement_case`.`Open_case_date`) AS Open_case_date FROM `placement_case` WHERE `Id`='$Id' AND `Case_id`='$Open_id' ORDER BY `placement_case`.`Open_case_date` ASC";
+// }
+// else if($Open_id != ""){
+//   $sql = "SELECT *,DATE(`placement_case`.`Open_case_date`) AS Open_case_date FROM `placement_case` WHERE `Case_id`='$Open_id' ORDER BY `placement_case`.`Open_case_date` ASC";
+// }
+// else{
+//     $sql = "SELECT *,DATE(`placement_case`.`Open_case_date`) AS Open_case_date FROM `placement_case` WHERE `Case_state` = '未結案' ORDER BY `placement_case`.`Open_case_date` DESC";
+// }
+
 if($Open_id != "" && $Id != ""){
-    $sql = "SELECT *,DATE(`placement_case`.`Open_case_date`) AS Open_case_date FROM `placement_case` WHERE `Id`='$Id' AND `Case_id`='$Open_id' ORDER BY `placement_case`.`Open_case_date` ASC";
+  $sql = "SELECT *,DATE(`placement_case`.`Open_case_date`) AS Open_case_date FROM `placement_case` WHERE `Id`='$Id' AND `Case_id`='$Open_id' AND `Case_state` = '未結案' ORDER BY `placement_case`.`Open_case_date` DESC";
 }
 else if($Open_id != ""){
-  $sql = "SELECT *,DATE(`placement_case`.`Open_case_date`) AS Open_case_date FROM `placement_case` WHERE `Case_id`='$Open_id' ORDER BY `placement_case`.`Open_case_date` ASC";
+$sql = "SELECT *,DATE(`placement_case`.`Open_case_date`) AS Open_case_date FROM `placement_case` WHERE `Case_id`='$Open_id' ORDER BY `placement_case`.`Open_case_date` DESC";
 }
 else{
-    $sql = "SELECT *,DATE(`placement_case`.`Open_case_date`) AS Open_case_date FROM `placement_case` WHERE `Case_state` = '未結案' ORDER BY `placement_case`.`Open_case_date` DESC";
+  $sql = "SELECT *,DATE(`placement_case`.`Open_case_date`) AS Open_case_date FROM `placement_case` WHERE `Case_state` = '未結案' ORDER BY `placement_case`.`Open_case_date` DESC";
 }
+
 
 //宣告空的陣列
 $datas = array();

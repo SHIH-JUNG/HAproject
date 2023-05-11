@@ -2,7 +2,9 @@
 include("sql_connect.php"); 
 //region 抓資料
 // $note = "SELECT *,DATE(`consult`.`Call_datetime`) AS Call_datetime FROM `consult` ORDER BY `consult`.`Phone_id` DESC ,`consult`.`Call_datetime` DESC;";
-$note = "SELECT * FROM (SELECT *,DATE(`consult`.`Call_datetime`) AS Call_datetime_d FROM `consult` LIMIT 9999) AS c_table  ORDER BY c_table.Call_datetime DESC;";
+// $note = "SELECT * FROM (SELECT *,DATE(`consult`.`Call_datetime`) AS Call_datetime_d FROM `consult` LIMIT 9999) AS c_table  ORDER BY c_table.Call_datetime DESC;";
+$note = "SELECT * FROM (SELECT *,DATE(`consult`.`Call_datetime`) AS Call_datetime_d FROM `consult` GROUP BY `consult`.`Phone_id` LIMIT 9999) AS c_table  ORDER BY c_table.Call_datetime DESC;";
+
 $select_note = mysqli_query($conn,$note);
 $data = array();
 $data['phone_count'] = array();

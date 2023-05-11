@@ -122,6 +122,7 @@
                                                                     ，開案日期：<span class="case_date"></span>
                                                                     ，個案類別：<span class="case_object_type"></span>
                                                                     ，類別屬性：<span class="case_property_type"></span>
+                                                                    ，接案工作人員：<span class="case_user"></span>
                                                                 </div>
                                                                 <table id="settlement_all" style="width:auto;" class="table table-bordered">
                                                                     <th>建立日期</th>
@@ -135,7 +136,7 @@
                                                         </div>
                                                         <div class="text-center">
                                                             <button id="settlement_add_new" type="button" class="btn btn-default" onclick="form_add_new(this)">新增</button>
-                                                            <button onclick="location.reload();" class="btn btn-default">返回</button>
+                                                            <button onclick="back_case_all_all();" class="btn btn-default">返回</button>
                                                         </div>
                                                     </div>
                                                 </div>

@@ -1098,7 +1098,7 @@ function submit_data()
      form_data.append("Fillin_date", $("input[name*='fillin_date']").val());
 
 
-     if(customfile!=undefined)
+     if(typeof customfile !== 'undefined')
      {
          if(customfile.length!=0)
          {
@@ -1380,6 +1380,8 @@ function load_all_forms_data(type_name,url_str)
                     { 
                         //從資料庫抓取的格式為 "../upload/檔案.檔名"
                         //replace()更改為 "檔案.檔名"
+
+                        if (typeof value.Other_info !== 'undefined') 
                         var file_val = data[0].file_path.replace("\.\.\/upload\/", "");
 
                         //該input value寫入"檔案.檔名"
@@ -1896,7 +1898,7 @@ function submit_form_data() {
         //若量表無 input type="file"類型資料 則不執行該迴圈
         //量表沒有input type="file"類型資料，customfile會顯示undefined，customfile.length會報錯
         //量表存在input type="file"類型資料，但無任何檔案上傳customfile.length會顯示0
-        if(customfile!=undefined)
+        if(typeof customfile !== 'undefined')
         {
             if(customfile.length!=0)
             {

@@ -19,45 +19,68 @@ var form_type_arr = [];
 var name = decodeURIComponent(getUrlVars()["name"]);
 var pid =getUrlVars()["pid"];
 var date = getUrlVars()["date"];
-// var grade = getUrlVars()["grade"];
+var grade = getUrlVars()["grade"];
 var property = decodeURIComponent(getUrlVars()["property"]);
 var type = decodeURIComponent(getUrlVars()["type"]);
-var pcase_id = getUrlVars()["id"];
+var id = getUrlVars()["id"];
 var open_id = getUrlVars()["open_id"];
 // var addition =decodeURIComponent(getUrlVars()["addition"]);
 // var age = decodeURIComponent(getUrlVars()["age"]);
-// var gender =decodeURIComponent(getUrlVars()["gender"]);
+var gender =decodeURIComponent(getUrlVars()["gender"]);
 
 var referral = decodeURIComponent(getUrlVars()["referral"]);
 var case_Create_date = getUrlVars()["case_Create_date"];
 var unopen_type = decodeURIComponent(getUrlVars()["unopen_type"]);
 var birth = getUrlVars()["birth"];
 
+case_url = 'placement_case_detail.php?name='+name+'&gender='+gender+'&pid='+pid+'&date='+date+'&property='+ property +'&type='+ type+'&grade='+ grade+'&id='+id+'&open_id='+open_id+'&referral='+referral+'&case_Create_date='+case_Create_date+'&unopen_type='+unopen_type+'&birth='+birth+'';
 // console.log(name, date, grade, property, type, pcase_id, open_id, addition, age, gender);
-$(".case_name").text(name);
-$(".case_date").text(date);
-$(".case_object_type").text(type);
-$(".case_property_type").text(property);
+
 // $(".case_addiction").text(addition);
 //endregion
 
 //抓所有量表region
 $(document).ready(function () {
 
+    // 顯示摘要表重要資訊(姓名、開案日期、個案類別、類別屬性、接案工作人員...)
+    $.ajax({
+        url: "database/find_placement_case.php",
+        data: {
+            Open_id:open_id,
+            Id:id
+        },
+        type: "POST",
+        dataType: "JSON",
+        async: false,//啟用同步請求
+        success: function (data) {
+            // console.log(data);
+            $(".case_user").text(data[0].Case_assign);
+        },
+        error: function (e) {
+            notyf.alert('伺服器錯誤,無法載入');
+            }
+    });
+
+    $(".case_name").text(name);
+    $(".case_date").text(date);
+    $(".case_object_type").text(type);
+    $(".case_property_type").text(property);
 
 
     //設定麵包屑返回region
-    var url = 'placement_case_all_all.php?open_id='+open_id+'';
+    var url = 'placement_case_all_all.php?id='+id+'&open_id='+open_id+'';
     $("#history").attr('href',url);
-
     //獲取有資料的量表
     load_form_type_array();
 
-
-    // load_interactive_pdf();
-    // load_petty_cash_pdf();
+    tab_toggle();
 });
 //endregion
+
+back_case_all_all = function() {
+    localStorage.removeItem('activeTab');
+    window.location.href = 'placement_case_all_all.php?id='+id+'&open_id='+open_id+'';
+}
 
 function load_form_type_array()
 {
@@ -65,7 +88,7 @@ function load_form_type_array()
         url: "database/find_placement_case_all.php",
         data: {
             Open_id:open_id,
-            Id:pcase_id
+            Id:id
             },
         type: "POST",
         dataType: "JSON",
@@ -89,7 +112,7 @@ function load_form_type_array()
 //載入所有量表資料摘要region
 function load_each_form()
 {
-    var pcase_id = getUrlVars()["id"];
+    var id = getUrlVars()["id"];
     var open_id = getUrlVars()["open_id"];
     var pid =getUrlVars()["pid"];
     var name = decodeURIComponent(getUrlVars()["name"]);
@@ -100,7 +123,7 @@ function load_each_form()
             url: "database/find_placement_case_all.php",
             data: {
                 Open_id:open_id,
-                Id:pcase_id,
+                Id:id,
                 Form_type:form_name
             },
             type: "POST",
@@ -135,7 +158,7 @@ function load_each_form()
                                 '<td>'+value.Form_Create_date+'</td>'+
                                 '<td>'+value.Fillin_date+'</td>'+
                                 othercssstring+
-                                '<td><a href="'+value.Url+'&form_id='+value.Id+'&form_type='+value.Form_name+'">點擊進入</a></td>'+
+                                '<td><a href="'+case_url+'&form_id='+value.Id+'&form_type='+value.Form_name+'">點擊進入</a></td>'+
                                 '<td>'+value.Remark+'</td>'+
                             '</tr>';
                         }
@@ -279,14 +302,14 @@ function store(num, form_name){
     var name = decodeURIComponent(getUrlVars()["name"]);
     var pid =getUrlVars()["pid"];
     var date = getUrlVars()["date"];
-    // var grade = getUrlVars()["grade"];
+    var grade = getUrlVars()["grade"];
     var property = decodeURIComponent(getUrlVars()["property"]);
     var type = decodeURIComponent(getUrlVars()["type"]);
-    var pcase_id = getUrlVars()["id"];
+    var id = getUrlVars()["id"];
     var open_id = getUrlVars()["open_id"];
     // var addition =decodeURIComponent(getUrlVars()["addition"]);
     // var age = decodeURIComponent(getUrlVars()["age"]);
-    // var gender =decodeURIComponent(getUrlVars()["gender"]);
+    var gender =decodeURIComponent(getUrlVars()["gender"]);
     
     var referral = decodeURIComponent(getUrlVars()["referral"]);
     var case_Create_date = getUrlVars()["case_Create_date"];
@@ -306,14 +329,14 @@ function store(num, form_name){
         data: {
             Number:num,
             Form_name:form_name,
-            Id:pcase_id,
+            Id:id,
             Case_id:open_id,
             Name:name,
             Case_pid:pid,
             Create_date:create_date,
             Fillin_date:fillin_date,
             Remark:remark,
-            Url:'placement_case_detail.php?name='+name+'&pid='+pid+'&date='+date+'&property='+ property +'&type='+ type+'&id='+pcase_id+'&open_id='+open_id+'&referral='+referral+'&case_Create_date='+case_Create_date+'&birth='+birth+'&unopen_type='+unopen_type+'',
+            Url:'placement_case_detail.php?name='+name+'&gender='+gender+'&pid='+pid+'&date='+date+'&property='+ property +'&type='+ type+'&grade='+ grade+'&id='+id+'&open_id='+open_id+'&referral='+referral+'&case_Create_date='+case_Create_date+'&unopen_type='+unopen_type+'&birth='+birth+'',
         },
         type: "POST",
         dataType: "JSON",
@@ -495,18 +518,18 @@ function select_change(option, obj_name_num, num, obj_name)
 
 //點擊儲存到case_all資料庫region
 function i_store(num, form_name){
-    
+
     var name = decodeURIComponent(getUrlVars()["name"]);
     var pid =getUrlVars()["pid"];
     var date = getUrlVars()["date"];
-    // var grade = getUrlVars()["grade"];
+    var grade = getUrlVars()["grade"];
     var property = decodeURIComponent(getUrlVars()["property"]);
     var type = decodeURIComponent(getUrlVars()["type"]);
-    var pcase_id = getUrlVars()["id"];
+    var id = getUrlVars()["id"];
     var open_id = getUrlVars()["open_id"];
     // var addition =decodeURIComponent(getUrlVars()["addition"]);
     // var age = decodeURIComponent(getUrlVars()["age"]);
-    // var gender =decodeURIComponent(getUrlVars()["gender"]);
+    var gender =decodeURIComponent(getUrlVars()["gender"]);
     
     var referral = decodeURIComponent(getUrlVars()["referral"]);
     var case_Create_date = getUrlVars()["case_Create_date"];
@@ -572,7 +595,7 @@ function i_store(num, form_name){
 
     form_data.append("Number", num);
     form_data.append("Form_name", form_name);
-    form_data.append("Pcase_id", pcase_id);
+    form_data.append("Pcase_id", id);
     form_data.append("Case_id", open_id);
     form_data.append("Name", name);
     form_data.append("Case_pid", pid);
@@ -587,7 +610,7 @@ function i_store(num, form_name){
         // data: {
         //     Number:num,
         //     Form_name:form_name,
-        //     Pcase_id:pcase_id,
+        //     Pcase_id:id,
         //     Case_id:open_id,
         //     Name:name,
         //     Case_pid:pid,
@@ -630,6 +653,19 @@ function i_store(num, form_name){
 }
 //endregion
 
+// page reload時保持上次的頁籤狀態 region
+function tab_toggle() {
+    $('a[data-toggle="pill"]').on('show.bs.tab', function(e) {
+        localStorage.setItem('activeTab', $(e.target).attr('href'));
+    });
+    var activeTab = localStorage.getItem('activeTab');
+    if(activeTab){
+        $('#myTab a[href="' + activeTab + '"]').tab('show');
+    }
+}
 
-
+$('#menu_tab_nav li a, .breadcrumb li span a').on('click',function() {
+    localStorage.removeItem('activeTab');
+});
+//endregion
 

@@ -1,5 +1,5 @@
 <style>
-    .medicine_table tr td
+.medicine_table tr td
     {
         padding-left:.2em;
         border-right: 1px solid #2f2c2c;
@@ -22,6 +22,12 @@
     #form_3 > table tr:last-child td textarea
     {
         min-height:16em;
+    }
+
+    button#end {
+        background-color: tomato;
+        color: white !important;
+        font-weight: bold;
     }
 </style>
 <div style="zoom:80%" class="row">
@@ -116,7 +122,7 @@
 
                                                         <td style="background-color:rgb(255 201 54);text-align:left;">聯絡電話</td>
                                                         <td colspan="3">
-                                                            <input style="width:85%;" name="phone_mobile" id="phone_mobile" type="text">
+                                                            <input style="width:85%;" name="phone" id="phone" type="text">
                                                         </td>
                                                     </tr>
 
@@ -651,8 +657,8 @@
                                     <!-- <button style="font-size:20px" onclick="test()" class="btn btn-default">測試</button> -->
                                 </div>
                                 <div class="text-right">
-                                    <button style="font-size:20px" id="trans_grade" type="button" class="btn btn-default">轉級</button>
-                                    <button style="font-size:20px" id="trans_case" type="button" class="btn btn-default">轉案</button>
+                                    <button style="font-size:20px" id="trans_grade" type="button" class="btn btn-default" data-toggle="modal" data-target="#trans_grade_model">轉級</button>
+                                    <button style="font-size:20px" id="trans_case" type="button" class="btn btn-default" data-toggle="modal" data-target="#trans_user_model">轉案</button>
                                     <button style="font-size:20px" id="end" type="button" class="btn btn-default">結案</button>
                                 </div>
                             </div>

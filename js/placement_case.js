@@ -17,14 +17,15 @@ $.ajax({
         $.each(data,function(index,value){
 
             cssString += 
-            '<tr name="'+ value.Name +'" date="'+ value.Open_case_date +'" property="'+ value.Case_property +'" type="'+ value.Object_type +'" id="'+value.Id+'" openid="'+value.Case_id+'" pid="'+value.Case_pid+'">' +
+            '<tr name="'+ value.Name +'" date="'+ value.Open_case_date +'" property="'+ value.Case_property +'" type="'+ value.Object_type +'" phoneid="'+value.Phone_id+'" id="'+value.Id+'" openid="'+value.Case_id+'" pid="'+value.Case_pid+'">' +
                 '<td style="text-align:center">' + value.Case_id + '</td>' +
+                '<td style="text-align:center">' + value.Name + '</td>' +
                 '<td style="text-align:center">' + value.Case_Create_date + '</td>' +
                 '<td style="text-align:center">' + value.Object_type + '</td>' +
                 '<td style="text-align:center">' + value.Case_grade + '</td>' +
                 '<td style="text-align:center">' + value.Case_property + '</td>' +
+                '<td style="text-align:center">' + value.Case_stage + '</td>' +
                 '<td style="text-align:center">' + value.Open_case_date + '</td>' +
-                '<td style="text-align:center">' + value.Name + '</td>' +
                 '<td style="text-align:center">' + value.Phone + '</td>' +
                 '<td style="text-align:center">' + value.Birth + '</td>' +
                 '<td style="text-align:center">' + value.Case_pid + '</td>' +
@@ -58,7 +59,7 @@ $.ajax({
             //點擊table tr 進入詳細頁面
             $(".table-hover tbody").on("click","tr",function () {
 //                console.log($(this).attr("class"));
-                window.location.href = 'placement_case_all_all.php?open_id='+$(this).attr("openid")+'';
+                window.location.href = 'placement_case_all_all.php?id='+$(this).attr("id")+'&open_id='+$(this).attr("openid")+'';
                 // if($("#username").text() == "園主任"){
                 //     window.location.href = 'placement_case_all_all.php?id='+$(this).attr("id")+'&open_id='+$(this).attr("openid")+'';
                 // } else if($(this).attr("assign") == $("#username").text()){
