@@ -1,3 +1,19 @@
+const notyf = new Notyf();
+
+$.ajax({
+    type:'POST',
+    url:'database/find_check_user.php',
+    dataType: "JSON",
+    async: false,//啟用同步請求
+    success: function (data) {
+        // console.log('test',data)
+        for (var index in data.Id) {
+            $("#case_user").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+            $("#case_user").val(assign_name);
+        }
+    },
+});
+
 //新增至開案個案region
 $("#placement_case_add_new").on('click',function(){
     var stau = false;
@@ -45,6 +61,8 @@ function check_update_currentcase_data()
     var case_property = $("#case_property").val();
     var open_case_date = $("#open_case_date").val();
     var name = $("#name").val();
+    var gender = $("#gender").val();
+    var sexual_orientation = $("#sexual_orientation").val();
     var phone = $("#phone").val();
     var birth = $("#birth").val();
     var pid = $("#pid").val();
@@ -72,6 +90,12 @@ function check_update_currentcase_data()
         if (name == null || name.replace(/\s*/g, "") == '') {
             warningstr += "姓名\r\n";
         }
+        if (gender == null || gender.replace(/\s*/g, "") == '') {
+            warningstr += "性別\r\n";
+        }
+        if (sexual_orientation == null || sexual_orientation.replace(/\s*/g, "") == '') {
+            warningstr += "性別傾向\r\n";
+        }
         if (phone == null || phone.replace(/\s*/g, "") == '') {
             warningstr += "電話\r\n";
         }
@@ -96,10 +120,21 @@ function check_update_currentcase_data()
 //檢查欄位 新增開案個案欄位 region
 function check_current_case_value()
 {
-    var case_id = $('#case_id').val();
-    var case_property = $('#case_property').val();
-    var object_type = $('#object_type').val();
-    var case_grade = $('#case_grade').val();
+    var case_id = $("#case_id").val();
+    var create_date = $("#create_date").val();
+    var object_type = $("#object_type").val();
+    var case_property = $("#case_property").val();
+    var case_stage = $("#case_stage").val();
+    var open_case_date = $("#open_case_date").val();
+    var name = $("#name").val();
+    var gender = $("#gender").val();
+    var sexual_orientation = $("#sexual_orientation").val();
+    var phone = $("#phone").val();
+    var birth = $("#birth").val();
+    var pid = $("#pid").val();
+    var case_grade = $("#case_grade").val();
+    var referral = $("#referral").val();
+
     var caseid_repeat = check_case_isrepeat();
     var errorstr = "";
 
@@ -117,14 +152,47 @@ function check_current_case_value()
     if (case_id == null) {
         errorstr += "未填寫開案編號!\r\n";
     }
-    if (case_property == null) {
-        errorstr += "未選擇類別屬性!\r\n";
+    if (create_date == null) {
+        errorstr += "未填寫登入日期!\r\n";
     }
     if (object_type == null) {
         errorstr += "未選擇個案類別!\r\n";
     }
+    if (case_property == null) {
+        errorstr += "未選擇類別屬性!\r\n";
+    }
+    if(case_property.replace(/\s*/g, "") == '自立宿舍' || case_property.replace(/\s*/g, "") == '安置家園')
+    {
+        if (case_stage == null) {
+            errorstr += "未填寫類別屬性階段!\r\n";
+        }
+    }
+    if (open_case_date == null) {
+        errorstr += "未填寫開案日期!\r\n";
+    }
+    if (name == null) {
+        errorstr += "未填寫姓名!\r\n";
+    }
+    if (gender == null) {
+        errorstr += "未填寫性別!\r\n";
+    }
+    if (sexual_orientation == null) {
+        errorstr += "未填寫性別傾向!\r\n";
+    }
+    if (phone == null) {
+        errorstr += "未填寫電話!\r\n";
+    }
+    if (birth == null) {
+        errorstr += "未填寫出生年月日!\r\n";
+    }
     if (case_grade == null) {
         errorstr += "未選擇個案分級!\r\n";
+    }
+    if (pid == null) {
+        errorstr += "未選擇身分證字號!\r\n";
+    }
+    if (referral == null) {
+        errorstr += "未選擇轉介來源!\r\n";
     }
     if (errorstr == "") {
         // console.log(caseid_repeat)
@@ -135,14 +203,47 @@ function check_current_case_value()
         if (case_id.replace(/\s*/g, "") == ''  || case_id_c_2.replace(/\s*/g, "") == '') {
             errorstr += "未填寫開案編號!\r\n";
         }
-        if (case_property.replace(/\s*/g, "") == '') {
-            errorstr += "未選擇類別屬性!\r\n";
+        if (create_date.replace(/\s*/g, "") == '') {
+            errorstr += "未填寫登入日期!\r\n";
         }
         if (object_type.replace(/\s*/g, "") == '') {
             errorstr += "未選擇個案類別!\r\n";
         }
+        if (case_property.replace(/\s*/g, "") == '') {
+            errorstr += "未選擇類別屬性!\r\n";
+        }
+        if(case_property.replace(/\s*/g, "") == '自立宿舍' || case_property.replace(/\s*/g, "") == '安置家園')
+        {
+            if (case_stage.replace(/\s*/g, "") == '') {
+                errorstr += "未填寫類別屬性階段!\r\n";
+            }
+        }
+        if (open_case_date.replace(/\s*/g, "") == '') {
+            errorstr += "未填寫開案日期!\r\n";
+        }
+        if (name.replace(/\s*/g, "") == '') {
+            errorstr += "未填寫姓名!\r\n";
+        }
+        if (gender.replace(/\s*/g, "") == '') {
+            errorstr += "未填寫性別!\r\n";
+        }
+        if (sexual_orientation.replace(/\s*/g, "") == '') {
+            errorstr += "未填寫性別傾向!\r\n";
+        }
+        if (phone.replace(/\s*/g, "") == '') {
+            errorstr += "未填寫電話!\r\n";
+        }
+        if (birth.replace(/\s*/g, "") == '') {
+            errorstr += "未填寫出生年月日!\r\n";
+        }
         if (case_grade.replace(/\s*/g, "") == '') {
             errorstr += "未選擇個案分級!\r\n";
+        }
+        if (pid.replace(/\s*/g, "") == '') {
+            errorstr += "未選擇身分證字號!\r\n";
+        }
+        if (referral.replace(/\s*/g, "") == '') {
+            errorstr += "未選擇轉介來源!\r\n";
         }
     }
 
@@ -162,13 +263,18 @@ function add_new_current_case_database()
             Object_type:$("#object_type").val(),
             Case_grade:$('#case_grade').val(),
             Case_property:$("#case_property").val(),
+            Case_stage:$("#case_stage").val(),
             Open_case_date:$("#open_case_date").val(),
             Name:$("#name").val(),
+            Gender:$("#gender").val(),
+            Sexual_orientation:$("#sexual_orientation").val(),
             Phone:$("#phone").val(),
             Birth:$("#birth").val(),
             Case_pid:$("#pid").val(),
             Referral:$("#referral").val(),
             Unopen_type:'placement_case',
+            Case_user:$("#case_user").val(),
+
         },
 //            dataType: "JSON",
         success: function (data) {
@@ -218,9 +324,20 @@ $('#object_type').on('change', function() {
         dataType: "JSON",
         async :false,
         success: function (data) {
-           console.log(data)
-           var str_id = (parseInt(data[0].Case_id)+1).toString();
+            var case_id = 0;
 
+            // console.log(data[0]?.Case_id)
+            if(typeof(data[0]?.Case_id) != 'undefined')
+            {
+                case_id = data[0]?.Case_id;
+            }
+            else
+            {
+                case_id = 0;
+            }
+    
+            
+            var str_id = (parseInt(case_id)+1).toString();
            
            switch (object_type_val) {
             case '一般藥癮者':

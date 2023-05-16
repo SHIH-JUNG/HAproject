@@ -113,7 +113,7 @@
                                                                     <th>個案紀錄</th>
                                                                     <tbody id="case_add"></tbody>
                                                                 </table>
-                                                                <button style="font-size:20px" onclick="history.back();" class="btn btn-default">返回</button>
+                                                                <button style="font-size:20px" onclick="window.location.href = 'current_case.php';" class="btn btn-default">返回</button>
                                                             </div>
                                                         </div>
                                                     </div>

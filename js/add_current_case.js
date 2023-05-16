@@ -325,9 +325,20 @@ $('#object_type').on('change', function() {
         dataType: "JSON",
         async :false,
         success: function (data) {
-        //    console.log(data)
-           var str_id = (parseInt(data[0].Case_id)+1).toString();
+            var case_id = 0;
 
+            // console.log(data[0]?.Case_id)
+            if(typeof(data[0]?.Case_id) != 'undefined')
+            {
+                case_id = data[0]?.Case_id;
+            }
+            else
+            {
+                case_id = 0;
+            }
+    
+            
+            var str_id = (parseInt(case_id)+1).toString();
            
            switch (object_type_val) {
             case '一般藥癮者':

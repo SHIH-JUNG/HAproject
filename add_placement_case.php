@@ -134,13 +134,13 @@ input[type=number] {
                                                             <tr class="text-align:left">
                                                             <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>登入日期</td>
                                                             <td class="text-left">
-                                                                <input id="create_date" type="date">
+                                                                <input id="create_date" type="date"  value="<?php echo date('Y-m-d'); ?>">
                                                             </td>
                                                             </tr>
                                                             <tr class="text-align:left">
                                                             <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>開案日期</td>
                                                             <td class="text-left">
-                                                                <input id="open_case_date" type="date">
+                                                                <input id="open_case_date" type="date"  value="<?php echo date('Y-m-d'); ?>">
                                                             </td>
                                                             </tr>
                                                             <tr style="text-align:left">
@@ -169,8 +169,34 @@ input[type=number] {
                                                                 </td>
                                                             </tr>
                                                             <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>類別屬性階段</td>
+                                                                <td style="border-bottom: solid 1px;"><input id="case_stage" type="text"></td>
+                                                            </tr>
+                                                            <tr style="text-align:left">
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>姓名</td>
                                                                 <td style="border-bottom: solid 1px;"><input id="name" type="text"></td>
+                                                            </tr>
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>性別</td>
+                                                                <td style="border-bottom: solid 1px;">
+                                                                    <select id="gender" style="width:200px;">
+                                                                        <option value="">請選擇</option>
+                                                                        <option value="男">男</option>
+                                                                        <option value="女">女</option>
+                                                                        <option value="其他">其他</option>
+                                                                    </select>
+                                                                </td>
+                                                            </tr>
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>性別傾向</td>
+                                                                <td style="border-bottom: solid 1px;">
+                                                                    <select id="sexual_orientation" style="width:200px;">
+                                                                        <option value="">請選擇</option>
+                                                                        <option value="同性">同性</option>
+                                                                        <option value="異性">異性</option>
+                                                                        <option value="雙性">雙性</option>
+                                                                    </select>
+                                                                </td>
                                                             </tr>
                                                             <tr style="text-align:left">
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>電話</td>
@@ -203,6 +229,14 @@ input[type=number] {
                                                                     <option value="社政">社政</option>
                                                                     <option value="社區">社區</option>
                                                                     <option value="其他">其他</option>
+                                                                </select>
+                                                                </td>
+                                                            </tr>
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white"><i style="color:red;">※</i>個案負責人</td>
+                                                                <td style="border-bottom: solid 1px;">
+                                                                <select id="case_user" style="width:160px;">
+                                                                    <!-- <option value="">請選擇</option> -->
                                                                 </select>
                                                                 </td>
                                                             </tr>
@@ -257,6 +291,10 @@ input[type=number] {
     <!-- ================== table ================== -->
     <script src="javascript/bootstrap1.18.0-table.min.js"></script>
     <script src="javascript/bootstrap-table1.11.1-zh-TW.min.js"></script>
+    <script>
+        //設定js變數抓取使用者名稱
+        var assign_name = '<?php echo $_SESSION["name"]; ?>';
+    </script>
     <!-- ================== add_placement_case.js ================== -->
     <script src="js/add_placement_case.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
 </body>
