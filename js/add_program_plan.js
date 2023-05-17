@@ -156,6 +156,8 @@ function submit_form() {
 
   form_data.append("Date", $("#date").val());
   form_data.append("Plan_name", $("#plan_name").val());
+  form_data.append("Plan_from", $("#plan_from").val());
+  form_data.append("Fund", $("#fund").val());
   form_data.append("File_year", date_year_split[0]);
 
 

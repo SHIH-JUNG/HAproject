@@ -6,6 +6,8 @@ include("sql_connect.php");
 
 @$Date = $_REQUEST['Date'];
 @$Plan_name = $_REQUEST['Plan_name'];
+@$Plan_from = $_REQUEST['Plan_from'];
+@$Fund = $_REQUEST['Fund'];
 @$File_year = $_REQUEST['File_year'];
 
 
@@ -158,10 +160,10 @@ $file_sqls = $file_sql_0.$file_sql_1.$file_sql_2.$file_sql_3;
 
 
 
-$sql = "INSERT INTO `program_plan` (`Id`, `Date`, `Plan_name`
+$sql = "INSERT INTO `program_plan` (`Id`, `Date`, `Plan_name`, `Plan_from`, `Fund`
 , `Proposal_date`, `Interim_date`, `Achieve_date`
 , `Other_date`, `Create_date`, `Create_name`) VALUES 
-    ($program_plan_seq_id, '$Date', '$Plan_name'
+    ($program_plan_seq_id, '$Date', '$Plan_name', '$Plan_from', '$Fund'
     , '$file_0_date', '$file_1_date', '$file_2_date', '$file_3_date', NOW(), '$user');";
 
 $sql.=$file_sqls;

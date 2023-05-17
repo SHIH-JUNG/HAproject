@@ -5,7 +5,7 @@ datepicker_create = function (selector_id) {
       changeYear: true,
       changeMonth: true,
       currentText: "今天",
-      dateFormat: "R年mm月dd日",
+      dateFormat: "R.mm.dd",
       showButtonPanel: true,
       yearRange: "-109:+0",
       onClose: function (dateText) {
@@ -17,9 +17,9 @@ datepicker_create = function (selector_id) {
         var cal = inst.dpDiv;
         var outerh = $this.outerHeight();
         if ($this.offset().top > 1200) {
-          outerh = outerh * 3;
-        } else {
           outerh = outerh * 4;
+        } else {
+          outerh = outerh * 3;
         }
         // console.log($this.offset().top)
         // console.log(outerh)
@@ -39,7 +39,7 @@ datepicker_create = function (selector_id) {
       changeYear: true,
       changeMonth: true,
       currentText: "今天",
-      dateFormat: "R年mm月dd日",
+      dateFormat: "R.mm.dd",
       showButtonPanel: true,
       minDate: new Date(new Date().getFullYear(), new Date().getMonth() - 3, 1),
       maxDate: new Date(new Date().getFullYear() + 3, 11, 31),
@@ -52,9 +52,9 @@ datepicker_create = function (selector_id) {
         var cal = inst.dpDiv;
         var outerh = $this.outerHeight();
         if ($this.offset().top > 1200) {
-          outerh = outerh * 3;
-        } else {
           outerh = outerh * 4;
+        } else {
+          outerh = outerh * 3;
         }
         // console.log($this.offset().top)
         // console.log(outerh)
@@ -141,6 +141,7 @@ $("#program_act_add_new").on("click", function () {
         // Year: create_date.split("-")[0],
         Date: $("#date").val(),
         Activity_name: $("#activity_name").val(),
+        Activity_category: $("#activity_category").val(),
         Person: $("#person").val(),
         Location: $("#location").val(),
         Service: $("#service").val(),
@@ -185,6 +186,7 @@ function check_add_program_act_data() {
   //   var year = $("#year").val();
   var date = $("#date").val();
   var activity_name = $("#activity_name").val();
+  var activity_category = $("#activity_category").val();
   var person = $("#person").val();
   var location = $("#location").val();
   var service = $("#service").val();
@@ -202,6 +204,9 @@ function check_add_program_act_data() {
   }
   if (activity_name == null) {
     errorstr += "未填寫活動名稱!\r\n";
+  }
+  if (activity_category == null) {
+    errorstr += "未填寫活動類別!\r\n";
   }
   if (person == null) {
     errorstr += "未填寫對象!\r\n";
@@ -231,6 +236,9 @@ function check_add_program_act_data() {
     }
     if (activity_name.replace(/\s*/g, "") == "") {
       errorstr += "未填寫活動名稱!\r\n";
+    }
+    if (activity_category.replace(/\s*/g, "") == "") {
+      errorstr += "未填寫活動類別!\r\n";
     }
     if (person.replace(/\s*/g, "") == "") {
       errorstr += "未填寫對象!\r\n";

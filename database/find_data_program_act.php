@@ -4,7 +4,7 @@ include("sql_connect.php");
 // $year = $_POST['year'];
 
 // $note = "SELECT * FROM `volunteer` Where `Year` = '$year' ORDER BY `volunteer`.`Id` ASC;;";
-$note = "SELECT * FROM `program_act` ORDER BY `program_act`.`Year` DESC;";
+$note = "SELECT * FROM `program_act` ORDER BY `program_act`.`Date` DESC;";
 
 //宣告空的陣列
 $datas = array();

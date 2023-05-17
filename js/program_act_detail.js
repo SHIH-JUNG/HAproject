@@ -139,12 +139,13 @@ $(document).ready(function () {
       // console.log(data);
 
       $.each(data, function (index, value) {
-        $("#year").val(value.Year);
+        // $("#year").val(value.Year);
         $("#date").val(check_sql_date_format(value.Date));
 
         $("#activity_name").val(value.Activity_name);
+        $("#activity_category").val(value.Activity_category);
         $("#person").val(value.Person);
-        $("#loaction").val(value.Loaction);
+        $("#location").val(value.Location);
         $("#service").val(value.Service);
 
         $("#cost").val(value.Cost);
@@ -235,11 +236,12 @@ $("#program_update").on("click", function () {
       url: "database/update_program_act_data_detail.php",
       data: {
         program_id: program_id,
-        Year: $("#year").val(),
+        // Year: $("#year").val(),
         Date: $("#date").val(),
         Activity_name: $("#activity_name").val(),
+        Activity_category: $("#activity_category").val(),
         Person: $("#person").val(),
-        Loaction: $("#loaction").val(),
+        location: $("#location").val(),
         Service: $("#service").val(),
         Cost: $("#cost").val(),
         Number: $("#number").val(),
@@ -271,11 +273,12 @@ $("#program_update").on("click", function () {
 
 //結案個案表(update)的必填欄位 region
 function check_updat_program_act_data() {
-  var year = $("#year").val();
+  // var year = $("#year").val();
   var date = $("#date").val();
   var activity_name = $("#activity_name").val();
+  var activity_category = $("#activity_category").val();
   var person = $("#person").val();
-  var loaction = $("#loaction").val();
+  var location = $("#location").val();
   var service = $("#service").val();
   var cost = $("#cost").val();
   var number = $("#number").val();
@@ -284,19 +287,22 @@ function check_updat_program_act_data() {
   var errorstr = "";
 
   if (errorstr == "") {
-    if (year == null || year.replace(/\s*/g, "") == "") {
-      errorstr += "未填寫年度!\r\n";
-    }
+    // if (year == null || year.replace(/\s*/g, "") == "") {
+    //   errorstr += "未填寫年度!\r\n";
+    // }
     if (date == null || date.replace(/\s*/g, "") == "") {
       errorstr += "未填寫日期!\r\n";
     }
     if (activity_name == null || activity_name.replace(/\s*/g, "") == "") {
       errorstr += "未填寫活動名稱!\r\n";
     }
+    if (activity_category == null || activity_category.replace(/\s*/g, "") == "") {
+      errorstr += "未填寫活動類別!\r\n";
+    }
     if (person == null || person.replace(/\s*/g, "") == "") {
       errorstr += "未填寫對象!\r\n";
     }
-    if (loaction == null || loaction.replace(/\s*/g, "") == "") {
+    if (location == null || location.replace(/\s*/g, "") == "") {
       errorstr += "未填寫地點!\r\n";
     }
     if (service == null || service.replace(/\s*/g, "") == "") {

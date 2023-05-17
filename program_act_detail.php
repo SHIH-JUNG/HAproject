@@ -146,28 +146,21 @@
                                                                 <div id="collapseTwo" class="collapse in" aria-labelledby="headingTwo" data-parent="#accordionExample">
                                                                     <div class="panel-body scr_container">
                                                                         <table id="all_data" style="width:55%;display:table !important;" class="table table-bordered">
+
                                                                             <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">年度</td>
-                                                                                <td style="border-bottom: solid 1px;"><input id="year" class="program_question" type="number"></td>
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">日期</td>
+                                                                                <td style="border-bottom: solid 1px;"><input id="date" class="program_question" name="ch_datepicker" type="text"></td>
                                                                             </tr>
 
                                                                             <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>活動名稱</td>
-                                                                                <td style="border-bottom: solid 1px;">
-                                                                                    <select id="activity_name" class="program_question">
-                                                                                        <option value="針具">針具</option>
-                                                                                        <option value="社區工作">社區工作</option>
-                                                                                        <option value="宣導">宣導</option>
-                                                                                        <option value="團體">團體</option>
-                                                                                        <option value="課程">課程</option>
-                                                                                    </select>
-                                                                                </td>
-                                                                                </td>
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">活動名稱</td>
+                                                                                <td style="border-bottom: solid 1px;"><input id="activity_name" class="program_question" type="text"></td>
                                                                             </tr>
-                                                                            
+
                                                                             <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">日期</td>
-                                                                                <td style="border-bottom: solid 1px;"><input id="date" class="program_question" name="ch_datepicker" type="number"></td>
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>活動類別</td>
+                                                                                <td style="border-bottom: solid 1px;"><input id="activity_category" class="program_question" type="text"></td>
+                                                                                </td>
                                                                             </tr>
                                                                             
                                                                             <tr style="text-align:left">
@@ -182,9 +175,10 @@
                                                                                 </td>
                                                                                 </td>
                                                                             </tr>
+                                                                            
                                                                             <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>地點</td>
-                                                                                <td style="border-bottom: solid 1px;"><input id="loaction" class="program_question" type="text"></td>
+                                                                                <td style="border-bottom: solid 1px;"><input id="location" class="program_question" type="text"></td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">服務內容</td>

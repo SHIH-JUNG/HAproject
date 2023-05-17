@@ -1,7 +1,3 @@
-$(function() {
-  imagePreview();  
-});
-
 //datepicker創建 region
 datepicker_create = function(selector_id) {
 
@@ -232,6 +228,12 @@ $.ajax({
         "</td>" +
         '<td style="text-align:center">' +
         value.Plan_name +
+        "</td>" +
+        '<td style="text-align:center">' +
+        value.Plan_from +
+        "</td>" +
+        '<td style="text-align:center">' +
+        value.Fund +
         "</td>" +
         '<td style="text-align:center">' +
           file_showing_format_trans(value.Proposal_date, 1) +

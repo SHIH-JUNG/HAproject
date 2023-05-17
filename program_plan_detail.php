@@ -161,6 +161,25 @@
                                                                             </tr>
 
                                                                             <tr style="text-align:left">
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">計畫來源</td>
+                                                                                <td style="border-bottom: solid 1px;"><input id="plan_from" class="program_question" type="number"></td>
+                                                                            </tr>
+
+                                                                            <tr style="text-align:left">
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">經費來源</td>
+                                                                                <td style="border-bottom: solid 1px;">
+                                                                                    <select id="person" class="program_question">
+                                                                                        <option value="人事">人事</option>
+                                                                                        <option value="事務">事務</option>
+                                                                                        <option value="專管">專管</option>
+                                                                                        <option value="服務期程">服務期程</option>
+                                                                                        <option value="專案人員">專案人員</option>
+                                                                                    </select>
+                                                                                </td>
+                                                                                </td>
+                                                                            </tr>
+
+                                                                            <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">方案計畫檔案</td>
                                                                                 <td style="border-bottom: solid 1px;">
                                                                                     <div class="col-sm-8">

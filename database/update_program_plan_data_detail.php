@@ -8,12 +8,14 @@ $user = $_SESSION['name'];
 $Year = $_POST['Year'];
 $Date = $_POST['Date'];
 $Plan_name = $_POST['Plan_name'];
+$Plan_from = $_POST['Plan_from'];
+$Fund = $_POST['Fund'];
 $Is_update_hours_sql = "";
 
 
 
 
-$sqlUpdate = "UPDATE `program_plan` SET `Year` = '$Year', `Date` = '$Date', `Plan_name` = '$Plan_name',
+$sqlUpdate = "UPDATE `program_plan` SET `Year` = '$Year', `Date` = '$Date', `Plan_name` = '$Plan_name', `Plan_from` = '$Plan_from', `Fund` = '$Fund',
   `Update_name` = '$user', `Update_date` = NOW() WHERE `Id` = '$program_id' ORDER BY `program_plan`.`Create_date` ASC LIMIT 1;";
 $sqlUpdate .= $Is_update_hours_sql;
 

@@ -1,76 +1,125 @@
 //取得url id值region
 function getUrlVars() {
   var vars = {};
-  var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+  var parts = window.location.href.replace(
+    /[?&]+([^=&]+)=([^&]*)/gi,
+    function (m, key, value) {
       vars[key] = value;
-  });
+    }
+  );
   return vars;
 }
 //endregion
 
 //datepicker創建 region
 datepicker_create = function (selector_id) {
-  $("#" + selector_id).datepicker({
-    changeYear: true,
-    changeMonth: true,
-    currentText: "今天",
-    dateFormat: "R年mm月dd日",
-    showButtonPanel: true,
-    minDate: new Date(
-      new Date().getFullYear() - 2,
-      new Date().getMonth() - 3,
-      1
-    ),
-    maxDate: new Date(new Date().getFullYear() + 3, 11, 31),
-    onClose: function (dateText) {
-      // console.log($('#'+selector_id).val());
-      // console.log(trans_to_EN(dateText));
-    },
-    beforeShow: function (input, inst) {
-      var $this = $(this);
-      var cal = inst.dpDiv;
-      var outerh = $this.outerHeight();
-      if ($this.offset().top > 1200) {
-        outerh = outerh * 4;
-      } else {
-        outerh = outerh * 3;
-      }
-      // console.log($this.offset().top)
-      // console.log(outerh)
+  if (selector_id.includes("birth")) {
+    $("#" + selector_id).datepicker({
+      changeYear: true,
+      changeMonth: true,
+      currentText: "今天",
+      dateFormat: "R.mm.dd",
+      showButtonPanel: true,
+      yearRange: "-109:+0",
+      onClose: function (dateText) {
+        // console.log($('#'+selector_id).val());
+        // console.log(trans_to_EN(dateText));
+      },
+      beforeShow: function (input, inst) {
+        var $this = $(this);
+        var cal = inst.dpDiv;
+        var outerh = $this.outerHeight();
+        if ($this.offset().top > 1200) {
+          outerh = outerh * 4;
+        } else {
+          outerh = outerh * 3;
+        }
+        // console.log($this.offset().top)
+        // console.log(outerh)
 
-      var top = $this.offset().top - outerh;
-      var left = $this.offset().left - 10;
-      setTimeout(function () {
-        cal.css({
-          top: top,
-          left: left,
-        });
-      }, 10);
-    },
-  });
-  // $("#" + selector_id).datepicker("setDate", "today");
+        var top = $this.offset().top - outerh;
+        var left = $this.offset().left - 10;
+        setTimeout(function () {
+          cal.css({
+            top: top,
+            left: left,
+          });
+        }, 10);
+      },
+    });
+  } else {
+    $("#" + selector_id).datepicker({
+      changeYear: true,
+      changeMonth: true,
+      currentText: "今天",
+      dateFormat: "R.mm.dd",
+      showButtonPanel: true,
+      minDate: new Date(new Date().getFullYear() - 10, 0, 1),
+      maxDate: new Date(new Date().getFullYear() + 10, 11, 31),
+      onClose: function (dateText) {
+        // console.log($('#'+selector_id).val());
+        // console.log(trans_to_EN(dateText));
+      },
+      beforeShow: function (input, inst) {
+        var $this = $(this);
+        var cal = inst.dpDiv;
+        var outerh = $this.outerHeight();
+        if ($this.offset().top > 1200) {
+          outerh = outerh * 4;
+        } else {
+          outerh = outerh * 3;
+        }
+        // console.log($this.offset().top)
+        // console.log(outerh)
+
+        var top = $this.offset().top - outerh;
+        var left = $this.offset().left - 10;
+        setTimeout(function () {
+          cal.css({
+            top: top,
+            left: left,
+          });
+        }, 10);
+      },
+    });
+  }
 };
 //endregion
 
-// 民國年轉換日期格式yyyy-dd-mm region
-function split_date(date) {
-return parseInt(date.split("年")[0])+1911+"-"+date.split("年")[1].split("月")[0]+"-"+date.split("年")[1].split("月")[1].split("日")[0]; 
-}
-//endregion
-
-//將日期轉為民國年格式111年03月07日 region
+//將日期轉為民國年格式111.03.07 region
 trans_to_Tw = function (endate) {
+  var strAry = endate.split("-");
 
-var strDate = endate.split(" ");
-var strAry = strDate[0].split("-");
+  if (parseInt(strAry[0]) > 1911) {
+    strAry[0] = parseInt(strAry[0]) - 1911;
+  }
 
-if (parseInt(strAry[0]) > 1911) {
-  strAry[0] = parseInt(strAry[0]) - 1911;
-}
-
-return strAry[0] + "年" + strAry[1] + "月" + strAry[2] + "日";
+  return strAry.join(".");
 };
 //endregion
+
+//將日期轉為西元年格式2022-03-07(mysql date格式) region
+trans_to_EN = function (endate) {
+  var strAry = endate.split(".");
+
+  if (parseInt(strAry[0]) < 1911) {
+    strAry[0] = parseInt(strAry[0]) + 1911;
+  }
+
+  return strAry.join("-");
+};
+//endregion
+
+//檢查SQL撈出來的日期格式region
+check_sql_date_format = function (date) {
+  if (date == "0000-00-00") {
+    date = "";
+  } else {
+    date = trans_to_Tw(date);
+  }
+
+  return date;
+};
 
 const notyf = new Notyf();
 
@@ -101,41 +150,42 @@ $(document).ready(function () {
 
 });
 
+program_id = getUrlVars()["program_id"];
 
 function load_files() {
-  $.ajax({
-      url: "database/find_program_plan_forms_data_detail.php",
-      data:{
-          program_id:program_id,
-      },
-      type: "POST",
-      dataType: "JSON",
-      async: false,//啟用同步請求
-      success: function (data) {
-          // console.log(data)
+  // $.ajax({
+  //     url: "database/find_program_plan_forms_data_detail.php",
+  //     data:{
+  //         program_id:program_id,
+  //     },
+  //     type: "POST",
+  //     dataType: "JSON",
+  //     async: false,//啟用同步請求
+  //     success: function (data) {
+  //         // console.log(data)
 
-          if(data.length == 0)
-          {
-              file_year_arr.push(this_year);
-          }
-          else
-          {
-              $.each(data,function(index,value){
-                  file_year_arr.push(value.File_year);
-                  // file_year_arr.push(value.Year);
-              });
-          }
+  //         if(data.length == 0)
+  //         {
+  //             file_year_arr.push(this_year);
+  //         }
+  //         else
+  //         {
+  //             $.each(data,function(index,value){
+  //                 file_year_arr.push(value.File_year);
+  //                 // file_year_arr.push(value.Year);
+  //             });
+  //         }
 
-          // 從小到大排序
-          // file_year_arr.sort((a, b) => a - b)
-          // 從大到小排序
-          file_year_arr.sort((a, b) => b - a)
-      },
-      error:function(e){
-          notyf.alert('伺服器錯誤,無法載入');
-          console.log(e)
-      }
-  });
+  //         // 從小到大排序
+  //         // file_year_arr.sort((a, b) => a - b)
+  //         // 從大到小排序
+  //         file_year_arr.sort((a, b) => b - a)
+  //     },
+  //     error:function(e){
+  //         notyf.alert('伺服器錯誤,無法載入');
+  //         console.log(e)
+  //     }
+  // });
 
 
   // console.log(file_year_arr)
@@ -211,6 +261,8 @@ function load_program_datas() {
           $.each(data,function(index,value){
               $("#date").val(value.Date);
               $("#plan_name").val(value.Plan_name);
+              $("#plan_from").val(value.Plan_from);
+              $("#fund").val(value.Fund);
           });
           
           
@@ -423,6 +475,8 @@ program_update = function() {
 function check_updat_program_user_data() {
   var date = $("#date").val();
   var plan_name = $("#plan_name").val();
+  var plan_from = $("#plan_from").val();
+  var fund = $("#fund").val();
 
   var errorstr = "";
 
@@ -434,12 +488,26 @@ function check_updat_program_user_data() {
   {
       errorstr += "未填寫計畫名稱!\r\n";
   }
+  if(plan_from == null)
+  {
+      errorstr += "未填寫計畫來源!\r\n";
+  }
+  if(fund == null)
+  {
+      errorstr += "未填寫經費來源!\r\n";
+  }
   if (errorstr == "") {
       if (date.replace(/\s*/g, "") == "") {
         errorstr += "未填寫日期!\r\n";
       }
       if (plan_name.replace(/\s*/g, "") == "") {
         errorstr += "未填寫計畫名稱!\r\n";
+      }
+      if (plan_from.replace(/\s*/g, "") == "") {
+        errorstr += "未填寫計畫來源!\r\n";
+      }
+      if (fund.replace(/\s*/g, "") == "") {
+        errorstr += "未填寫經費來源!\r\n";
       }
     }
   
@@ -471,6 +539,8 @@ $("input.program_forms_question"+row_year+"[type='file']").each(function(index, 
 form_data.append("program_id", program_id);
 form_data.append("Date", $("#date").val());
 form_data.append("Plan_name", $("#plan_name").val());
+form_data.append("Plan_from", $("#plan_from").val());
+form_data.append("Fund", $("#fund").val());
 
 $.ajax({
     url: "database/update_program_plan_forms_data_detail.php",

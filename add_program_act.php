@@ -118,55 +118,58 @@
                                                             </tr>
 
                                                             <!-- <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>年度</td>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">年度</td>
                                                                 <td style="border-bottom: solid 1px;"><input id="year" class="program_question" type="text"></td>
                                                             </tr> -->
 
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>日期</td>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">日期</td>
                                                                 <td style="border-bottom: solid 1px;"><input id="date" class="program_question" name="ch_datepicker" type="text"></td>
                                                             </tr>
 
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>活動名稱</td>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">活動名稱</td>
+                                                                <td style="border-bottom: solid 1px;"><input id="activity_name" class="program_question" type="text"></td>
+                                                            </tr>
+
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">活動類別</td>
+                                                                <td style="border-bottom: solid 1px;"><input id="activity_category" class="program_question" type="text"></td>
+                                                            </tr>
+
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">對象</td>
                                                                 <td style="border-bottom: solid 1px;">
-                                                                    <select id="activity_name">
-                                                                        <option value="針具">針具</option>
-                                                                        <option value="社區工作">社區工作</option>
-                                                                        <option value="宣導">宣導</option>
-                                                                        <option value="團體">團體</option>
-                                                                        <option value="課程">課程</option>
+                                                                    <select id="person">
+                                                                        <option value="愛滋感染者">愛滋感染者</option>
+                                                                        <option value="一般藥癮者">一般藥癮者</option>
+                                                                        <option value="藥癮家庭">藥癮家庭</option>
+                                                                        <option value="親職兒少">親職兒少</option>
                                                                     </select>
-                                                                </td>
                                                             </tr>
 
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>對象</td>
-                                                                <td style="border-bottom: solid 1px;"><input id="person" class="program_question" type="text"></td>
-                                                            </tr>
-
-                                                            <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>地點</td>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">地點</td>
                                                                 <td style="border-bottom: solid 1px;"><input id="location" class="program_question" type="text"></td>
                                                             </tr>
 
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>服務內容</td>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">服務內容</td>
                                                                 <td style="border-bottom: solid 1px;"><input id="service" class="program_question" type="text"></td>
                                                             </tr>
 
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>執行費用</td>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">執行費用</td>
                                                                 <td style="border-bottom: solid 1px;"><input id="cost" class="program_question" type="number"></td>
                                                             </tr>
 
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>人數</td>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">人數</td>
                                                                 <td style="border-bottom: solid 1px;"><input id="number" class="program_question" type="number"></td>
                                                             </tr>
 
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>講師</td>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">講師</td>
                                                                 <td style="border-bottom: solid 1px;"><input id="lecturer" class="program_question" type="text"></td>
                                                             </tr>
 
@@ -223,7 +226,7 @@
     <script src="javascript/bootstrap-table1.11.1-zh-TW.min.js"></script>
     <!-- 日期民國-->
     <script src="javascript/jquery-ui.min.js"></script>
-    <script src="javascript/datepickerTw2.js"></script>
+    <script src="javascript/datepickerTw.js"></script>
     <!-- ================== add_phone.js ================== -->
     <script src="js/add_program_act.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
 </body>
