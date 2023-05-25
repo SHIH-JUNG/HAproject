@@ -19,10 +19,10 @@
                         </select>
                     </td>
 
-                    <td class="text-right" style="background-color:rgb(255 201 54)">請假日期(開始)：</td>
+                    <!-- <td class="text-right" style="background-color:rgb(255 201 54)">請假日期(開始)：</td>
                     <td class="text-left">
                         <input id="overtime_date_start" name="overtime_date" datepicker="ch_datepicker" type="text" placeholder="請假日期搜尋">
-                    </td>
+                    </td> -->
 
                 </tr>
                 <tr>
@@ -40,10 +40,10 @@
                         <input id="fillin_date_end" name="fillin_date" datepicker="ch_datepicker" type="text" placeholder="填表日期搜尋">
                     </td>
 
-                    <td class="text-right" style="background-color:rgb(255 201 54)">請假日期(結束)：</td>
+                    <!-- <td class="text-right" style="background-color:rgb(255 201 54)">請假日期(結束)：</td>
                     <td class="text-left">
                         <input id="overtime_date_end" name="overtime_date" datepicker="ch_datepicker" type="text" placeholder="請假日期搜尋">
-                    </td>
+                    </td> -->
                 </tr>
 
                 <tr>

@@ -1,12 +1,14 @@
 <?php
 include("sql_connect.php");
 
-$overtime_id = $_POST['overtime_id'];
-// $year = $_POST['year'];
+$Overtime_id = $_POST['Overtime_id'];
+$Resume_id = $_POST['Resume_id'];
+
+
 
 //region 抓資料
 // $note = "SELECT * FROM `overtime` WHERE `Id` = '$overtime_id' AND `Year` = '$year' ORDER BY `overtime`.`Id` ASC;";
-$note = "SELECT * FROM `overtime` WHERE `Id` = '$overtime_id' ORDER BY `overtime`.`Id` ASC;";
+$note = "SELECT * FROM `overtime` WHERE `Id` = '$Overtime_id' AND `Resume_id` = '$Resume_id';";
 
 //宣告空的陣列
 $datas = array();

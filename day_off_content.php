@@ -1,7 +1,52 @@
+<h4>員工請假紀錄</h4>
+    <br>
+    <h4>查詢</h4>
+    <div　class="col-sm-12" id="toolbar">
+        <div class="col-sm-12">
+            <table style="font-size:20px;font-family:微軟正黑體;width:100%" class="table table-bordered NOline">
+                <tr>
+                    <td class="text-right" style="background-color:rgb(255 201 54); width:7em;">假別：</td>
+                    <td class="text-left">
+                        <select id="day_off_type" rel="0" class="filter search">
+                            <!-- <option value="">所有</option> -->
+                        </select>
+                    </td>
+
+                    <td class="text-right" style="background-color:rgb(255 201 54); width:7em;">審核狀態：</td>
+                    <td class="text-left">
+                        <select id="allow_status" rel="6" class="filter search">
+                            <!-- <option value="">所有</option> -->
+                        </select>
+                    </td>
+
+                </tr>
+                <tr>
+                   
+
+                    <td class="text-right" style="background-color:rgb(255 201 54)">填表日期：</td>
+                    <td colspan="3" class="text-left">
+                        <input id="fillin_date_start" name="fillin_date" datepicker="ch_datepicker" type="text" placeholder="填表日期搜尋">
+                        <label>～</label>
+                        <input id="fillin_date_end" name="fillin_date" datepicker="ch_datepicker" type="text" placeholder="填表日期搜尋">
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td colspan="6" class="text-right">
+                        <button onclick="location.reload();">重置搜尋</button><span> </span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <br>
     <h4>請假紀錄</h4>
     <br>
     <div id="day_off_remain_hit_area" style="color:blue;">
-        今年剩餘補休時數：--小時，剩餘特休時數：--小時，已使用補休時數：--小時，已使用特休時數：--小時
+        今年度特休時數：--小時，今年度加班時數：--小時，今年度請假時數：--小時
+        <br/><br/>
+        <span style="color:red;">今年度剩餘可請假的時數：--小時</span>
     </div>
     <br>
     <div class="table-wrap">

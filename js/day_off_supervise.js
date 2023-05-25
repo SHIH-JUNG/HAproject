@@ -68,9 +68,25 @@ datepicker_create = function (selector_id) {
 };
 //endregion
 
+const formatDate = (date)=>{
+  let formatted_date = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate()
+   return formatted_date;
+}
+
 // 民國年轉換日期格式yyyy-dd-mm region
 function split_date(date) {
-  return parseInt(date.split("年")[0])+1911+"-"+date.split("年")[1].split("月")[0]+"-"+date.split("年")[1].split("月")[1].split("日")[0]; 
+  var transed_date ="";
+  
+  if(date=="")
+  {
+    transed_date = formatDate(new Date());
+  }
+  else
+  {
+    transed_date = parseInt(date.split("年")[0])+1911+"-"+date.split("年")[1].split("月")[0]+"-"+date.split("年")[1].split("月")[1].split("日")[0];
+  }
+
+  return transed_date; 
 }
 //endregion
 
@@ -514,7 +530,7 @@ var $table = $("#tab_all").DataTable({
   buttons: [
     {
       extend: "excelHtml5",
-      title: "快樂聯盟監團督記錄總表",
+      title: "快樂聯盟請假紀錄總表",
       text: "匯出Excel",
     },
   ],
@@ -543,6 +559,22 @@ var date_range = function (settings, data, dataIndex) {
   }
   return false;
 };
+
+var fillin_date_range = (function( settings, data, dataIndex ) {
+  var min_date = parseInt(Date.parse( split_date($('#fillin_date_start').val())), 10 );
+  var max_date = parseInt(Date.parse( split_date($('#fillin_date_end').val())), 10 );
+  console.log( split_date($('#fillin_date_end').val()))
+  var date = parseInt(Date.parse( split_date(data[3]) )) || 0; // use data for the date column
+  if ( ( isNaN( min_date ) && isNaN( max_date ) ) ||
+       ( isNaN( min_date ) && date <= max_date ) ||
+       ( min_date <= date   && isNaN( max_date ) ) ||
+       ( min_date <= date   && date <= max_date ) )
+  {
+      return true;
+  }
+  return false;
+});
+
 
 var time_range = function (settings, data, dataIndex) {
   // var min_time = parseInt(Date.parse( $('#min_time').val()), 10 );
@@ -620,11 +652,11 @@ $("#min, #max").keyup(function () {
   $table.draw();
 });
 
-$("#birth_min_date, #birth_max_date").on("change", function () {
+$('#fillin_date_start, #fillin_date_end').on('change', function() {
   //    console.log($('#min_date').val())
-  $.fn.dataTable.ext.search.push(birth_date_range);
+  $.fn.dataTable.ext.search.push(fillin_date_range);
   $table.draw();
-});
+}); 
 
 $("#min_time, #max_time").on("change", function () {
   //    console.log($('#min_date').val())

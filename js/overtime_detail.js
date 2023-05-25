@@ -63,7 +63,7 @@ overtime_id = getUrlVars()["overtime_id"];
 resume_id = getUrlVars()["resume_id"];
 
 supervise_msg_arr = [];
-job_agent_msg_arr = [];
+checker_msg_arr = [];
 
 //抓發文表region
 $(document).ready(function () {
@@ -86,50 +86,46 @@ $(document).ready(function () {
       $.each(data, function (index, value) {
         // $("#overtime_id").html(value.overtime_id);
 
+
+        $("#overtime_date").val(value.Overtime_date);
+        $("#reason").val(value.Reason);
+        $("#overtime_hours").val(value.Overtime_hours);
+
+        $("#free_date").val(value.Free_date);
+        $("#free_hours").val(value.Free_hours);
+
+        $("#allow_status").val(value.Allow_status);
+        window.o_allow_status = value.Allow_status;
+
+        $("#supervise").val(value.Supervise);
+        $("#checker").val(value.Checker);
+
         var supervise_sign_file_val = value.Supervise_signature.replace(
           "../signature/",
           ""
         );
-        var job_agent_sign_file_val = value.Job_agent_signature.replace(
+        var checker_sign_file_val = value.Checker_signature.replace(
           "../signature/",
           ""
         );
-
-        $("#year").val(value.Year);
-        $("#name").val(value.Name);
-
-        $("#overtime_date").val(value.Overtime_date);
-        $("#free_date").val(value.Free_date);
-        $("#overtime_time").val(value.Overtime_time);
-        $("#free_time").val(value.Free_time);
-
-
-        $("#create_date").val(
-          value.Create_date != "0000-00-00 00:00:00" ? value.Create_date : ""
-        );
-        $("#create_name").val(value.Create_name);
-        $("#update_date").val(
-          value.Update_date != "0000-00-00 00:00:00" ? value.Update_date : ""
-        );
-        $("#update_name").val(value.Update_name);
-
+        
         $("#supervise_signature_simg").text("點擊顯示簽名圖片");
         $("#supervise_signature_simg").attr(
           "href",
           "./signature/" + supervise_sign_file_val
         );
 
-        $("#job_agent_signature_simg").text("點擊顯示簽名圖片");
-        $("#job_agent_signature_simg").attr(
+        $("#checker_signature_simg").text("點擊顯示簽名圖片");
+        $("#checker_signature_simg").attr(
           "href",
-          "./signature/" + job_agent_sign_file_val
+          "./signature/" + checker_sign_file_val
         );
 
         supervise_msg_arr.push(value.Supervise_sign_msg);
         supervise_msg_arr.push(value.Supervise_sign_time);
 
-        job_agent_msg_arr.push(value.Job_agent_sign_msg);
-        job_agent_msg_arr.push(value.Job_agent_sign_time);
+        checker_msg_arr.push(value.Checker_sign_msg);
+        checker_msg_arr.push(value.Checker_sign_time);
       });
     },
     error: function (e) {
@@ -178,6 +174,49 @@ $(document).ready(function () {
 
 });
 
+//計算寫入資料庫的加班/補休時數 region
+compute_hours = function() {
+  //加班時數
+  window.n_overtime_hours = 0;
+  //補休時數
+  window.n_free_hours = 0;
+  //剩餘加班時數(加班-補休)
+  window.r_overtime_hours = 0;
+
+  var overtime_hours = $("#overtime_hours").val();
+  var free_date = $("#free_date").val();
+  var free_hours = $("#free_hours").val();
+
+  n_overtime_hours = parseFloat(overtime_hours).toFixed(1);
+  n_free_hours = parseFloat(getNum(parseFloat(free_hours))).toFixed(1);
+
+  if(free_date == "")
+  {
+    r_overtime_hours = parseFloat(n_overtime_hours).toFixed(1);
+  }
+  else
+  {
+    r_overtime_hours = parseFloat(n_overtime_hours - n_free_hours).toFixed(1);
+  }
+  // console.log(n_overtime_hours)
+  // console.log(n_free_hours)
+  // console.log(r_overtime_hours)
+}
+// endregion
+
+//監聽 加班/補休日期欄位值變化，計算加班/補休時數 region
+$("input[overtime_date*='overtime_date']").change( function(event) {
+compute_hours();
+});
+// endregion
+
+function getNum(val) {
+  if (isNaN(val)) {
+    return 0;
+  }
+  return val;
+}
+
 sign_msg_model = function (sign_type_name) {
   //手動新增按鈕點擊跳出模態框
   $("#myModal2").on("shown.bs.modal", function () {
@@ -194,10 +233,10 @@ sign_msg_model = function (sign_type_name) {
       $(".sign_msg_time").val(supervise_msg_arr[1]);
       break;
 
-    case "job_agent":
+    case "checker":
       var type_name = "職務代理人";
-      $(".sign_msg").text(job_agent_msg_arr[0]);
-      $(".sign_msg_time").val(job_agent_msg_arr[1]);
+      $(".sign_msg").text(checker_msg_arr[0]);
+      $(".sign_msg_time").val(checker_msg_arr[1]);
       break;
   }
 
@@ -293,7 +332,7 @@ signature_btn_click = function(sign_board_name) {
       type_name = "督導";
       break;
 
-    case "job_agent":
+    case "checker":
       type_name = "職務代理人";
       
       break;
@@ -318,91 +357,355 @@ show_main_panel = function () {
 //endregion
 
 
-//更新發文個案表基本資料region
+//修改加班紀錄 region
 $("#overtime_update").on("click", function () {
-  var overtime_id = getUrlVars()["overtime_id"];
-
   var stau = false;
 
-  if (check_updat_overtime_data() != "") {
+  if (check_overtime_data() != "以下為必填欄位，不能為空值!\r\n") {
     stau = false;
   } else {
     stau = true;
   }
-  console.log(stau);
+  // console.log(stau);
 
   if (!stau) {
     swal({
-      title: check_updat_overtime_data(),
+      title: check_overtime_data(),
       type: "error",
     });
   } else {
-    $.ajax({
-      url: "database/update_overtime_data_detail.php",
-      data: {
-        overtime_id: overtime_id,
-        Year: $("#year").val(),
-        Name: $("#name").val(),
-        Overtime_date: $("#overtime_date").val(),
-        Free_date: $("#free_date").val(),
-        Overtime_time: $("#overtime_time").val(),
-        Free_time: $("#free_time").val(),
-      },
+    submit_form();
+  }
+});
+//endregion
+
+// 處理送出的值 region
+function submit_form() {
+  //去掉資料內前後端多餘的空白，file類型須排除，否則報錯
+  $("input, textarea").each(function () {
+  if ($(this).attr("type") != "file") {
+      $(this).val(jQuery.trim($(this).val()));
+  }
+  });
+
+  //Time Now
+  var timenow = moment().format('YYYY-MM-DD');
+
+  var rec_year = $("#overtime_date").val().split("年")[0];
+
+  console.log(timenow);
+  console.log(rec_year);
+
+  var form_data = new FormData();
+
+
+  // form_data.append("Resume_id", );
+  // form_data.append("Resume_name", );
+  form_data.append("Rec_year", rec_year);
+  form_data.append("Fillin_date", timenow);
+
+  form_data.append("Overtime_date", $("#overtime_date").val());
+  form_data.append("Reason", $("#reason").val());
+
+  form_data.append("Overtime_hours", n_overtime_hours);
+  form_data.append("Free_date", $("#free_date").val());
+  form_data.append("Free_hours", n_free_hours);
+
+
+
+  form_data.append("Supervise",$("#supervise").val());
+  form_data.append("Checker",$("#checker").val());
+
+  form_data.append("N_Overtime_hours", r_overtime_hours);
+
+
+  // 預覽傳到後端的資料詳細內容
+  // for (var pair of form_data.entries()) {
+  //   console.log(pair[0] + ", " + pair[1]);
+  // }
+
+
+  $.ajax({
+      url: "database/add_new_overtime.php",
       type: "POST",
-      dataType: "JSON",
+      data: form_data,
+      contentType: false,
+      cache: false,
+      processData: false,
+      async: true,
       success: function (data) {
+        console.log(data);
         if (data == 1) {
           swal({
-            title: "修改成功！",
             type: "success",
+            title: "新增成功!",
+            allowOutsideClick: false, //不可點背景關閉
           }).then(function () {
-            location.reload();
+            window.location.href =
+              "overtime.php";
           });
         } else {
           swal({
-            title: "修改失敗！請聯絡負責單位",
             type: "error",
+            title: "新增失敗!請聯絡負責人",
+            allowOutsideClick: false, //不可點背景關閉
           });
         }
       },
       error: function (e) {
-        console.log(e);
+          console.log(e)
+          swal({
+              type: "error",
+              title: "新增失敗!請聯絡負責人",
+              allowOutsideClick: false, //不可點背景關閉
+          });
       },
     });
-  }
-});
+}
+// endregion
 
-//結案個案表(update)的必填欄位 region
-function check_updat_overtime_data() {
-  var year = $("#year").val();
-  var name = $("#name").val();
-  var overtime_date = $("#overtime_date").val();
-  var free_date = $("#free_date").val();
-  var overtime_time = $("#overtime_time").val();
-  var free_time = $("#free_time").val();
+// 送出 region
+submit_data = function() {
 
-  var errorstr = "";
+  var this_val = $("#allow_status").val();
 
-  if (errorstr == "") {
-    if (year == null || year.replace(/\s*/g, "") == "") {
-      errorstr += "未填寫年度!\r\n";
+  swal({
+    title: "將審核狀態改變至" + this_val,
+    text: "按下『確認』後將無法復原上次操作，確定要送出？",
+    type: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#DD6B55",
+    confirmButtonText: "確認",
+    cancelButtonText: "取消",
+    showConfirmButton: true,
+    showCancelButton: true,
+  })
+    .then(
+      function (result) {
+        if (result) {
+          update_allow_status(overtime_id, this_val);
+        }
+      },
+      function (dismiss) {
+        if (dismiss == "cancel") {
+
+          $("#allow_status").val(o_allow_status);
+
+          swal({
+            title: "已取消",
+            type: "success",
+          });
+        }
+      }
+    )
+    .catch(swal.noop);
+}
+// endregion
+
+// 資料庫 審核狀態修改功能 region
+update_allow_status = function(overtime_id_str, allow_status_str) {
+  
+  $.ajax({
+    url: "database/update_overtime_data_allow_status.php",
+    type: "POST",
+      data: {
+        Overtime_id:overtime_id_str,
+        Allow_status:allow_status_str,
+      },
+    // dataType: "JSON", // 若要傳回字串 如：noallow，不可設定為json格式
+    success: function (data) {
+      console.log(data);
+      if (data == 1) 
+      {
+        swal({
+          type: "success",
+          title: "更新成功!",
+          allowOutsideClick: false, //不可點背景關閉
+        }).then(function () {
+          window.location.href =
+            "overtime_detail.php?" + 
+            "overtime_id=" + overtime_id +
+            "&resume_id=" + resume_id;
+        });
+      } 
+      else if(data.includes("noallow"))
+      {
+        swal({
+          type: 'error',
+          title: '您無權限修改該筆加班紀錄',
+          text: '當前登入的帳號名稱與主管名稱不符',
+          allowOutsideClick: false //不可點背景關閉
+        });
+      }
+      else 
+      {
+        swal({
+          type: "error",
+          title: "更新失敗!請聯絡負責人",
+          allowOutsideClick: false, //不可點背景關閉
+        });
+      }
+    },
+    error: function (e) {
+      console.log(e)
+      swal({
+          type: "error",
+          title: "更新失敗!請聯絡負責人",
+          allowOutsideClick: false, //不可點背景關閉
+      });
+    },
+  });
+}
+// endregion
+
+// 撤銷請假申請 region
+revoke_overtime = function() {
+
+  swal({
+    title: "確定要撤銷該請假申請？\t\n按下『確認』後將刪除該筆加班紀錄，並且無法復原",
+    text: "審核狀態不可為'核准'",
+    type: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#DD6B55",
+    confirmButtonText: "確認",
+    cancelButtonText: "取消",
+    showConfirmButton: true,
+    showCancelButton: true,
+  })
+    .then(
+      function (result) {
+        if (result) {
+          revoke_overtime_submit();
+        }
+      },
+      function (dismiss) {
+        if (dismiss == "cancel") {
+
+          swal({
+            title: "已取消",
+            type: "success",
+          });
+        }
+      }
+    )
+    .catch(swal.noop);
+}
+// endregion
+
+// 撤銷請假申請 資料庫 region
+revoke_overtime_submit = function() {
+  $.ajax({
+    url: "database/delete_overtime_data_detail.php",
+    type: "POST",
+      data: {
+        Overtime_id:overtime_id,
+        Resume_id:resume_id,
+      },
+    // dataType: "JSON", // 若要傳回字串 如：noallow，不可設定為json格式
+    success: function (data) {
+      console.log(data);
+      if (data == 1) 
+      {
+        swal({
+          type: "success",
+          title: "撤銷加班紀錄成功!",
+          allowOutsideClick: false, //不可點背景關閉
+        }).then(function () {
+          window.location.href =
+            "overtime.php";
+        });
+      } 
+      else if(data.includes("noallow"))
+      {
+        swal({
+          type: 'error',
+          title: '您無權限刪除該筆加班紀錄',
+          // text: '當前登入的帳號名稱與主管名稱不符',
+          allowOutsideClick: false //不可點背景關閉
+        });
+      }
+      else if(data.includes("reject"))
+      {
+        swal({
+          type: 'error',
+          title: '審核狀態不可為"核准"',
+          text: '請將審核狀態改為"取消"或"不核准"',
+          allowOutsideClick: false //不可點背景關閉
+        });
+      }
+      else 
+      {
+        swal({
+          type: "error",
+          title: "撤銷加班紀錄失敗!請聯絡負責人",
+          allowOutsideClick: false, //不可點背景關閉
+        });
+      }
+    },
+    error: function (e) {
+      console.log(e)
+      swal({
+          type: "error",
+          title: "撤銷加班紀錄失敗!請聯絡負責人",
+          allowOutsideClick: false, //不可點背景關閉
+      });
+    },
+  });
+}
+// endregion
+
+//檢查必填欄位 region
+function check_overtime_data() {
+  var errorstr = "以下為必填欄位，不能為空值!\r\n";
+
+  $(".fillin_need").each(function(index,element){
+
+    var check_element = $(this).parent("td").siblings("td").children()[0];
+    var check_element_name = $(this).parent("td").text();
+
+    console.log($(check_element))
+    console.log($(check_element).val())
+
+    var check_element_tagname = $(check_element).prop("tagName");
+    var check_element_type = $(check_element).attr("type");
+
+    console.log(check_element_tagname)    
+    if(check_element_tagname == "INPUT" && check_element_type=="file")
+    {
+      var file_len = $(check_element).prop("files").length;
+
+      if(file_len == 0)
+      {
+        errorstr += check_element_name.replace("※", "") + "\r\n";
+      }
     }
-    if (name == null || name.replace(/\s*/g, "") == "") {
-      errorstr += "未填寫姓名!\r\n";
+    else if(check_element_tagname == "INPUT" && check_element_type=="radio")
+    {
+      var check_element_children_name = $(this).parent("td").siblings("td").children().attr("name");
+
+      if($('[name="'+check_element_children_name+'"]:checked').length==0)
+      {
+        errorstr += check_element_name.replace("※", "") + "\r\n";
+      }
     }
-    if (overtime_date == null || overtime_date.replace(/\s*/g, "") == "") {
-      errorstr += "未填寫加班日期!\r\n";
+    else if(check_element_tagname == "DIV")
+    {
+      var n_check_element = $(this).parent("td").siblings("td").children().children()[0];
+
+      if($(n_check_element).val() == null || $(n_check_element).val().replace(/\s*/g, "") == "")
+      {
+        errorstr += check_element_name.replace("※", "") + "\r\n";
+      }
     }
-    if (free_date == null || free_date.replace(/\s*/g, "") == "") {
-      errorstr += "未填寫補修日期!\r\n";
+    else
+    {
+      if($(check_element).val() == null || $(check_element).val().replace(/\s*/g, "") == "")
+      {
+        errorstr += check_element_name.replace("※", "") + "\r\n";
+      }
     }
-    if (overtime_time == null || overtime_time.replace(/\s*/g, "") == "") {
-      errorstr += "未填寫加班時數!\r\n";
-    }
-    if (free_time == null || free_time.replace(/\s*/g, "") == "") {
-      errorstr += "未填寫補修時數!\r\n";
-    }
-  }
+    
+  });
 
   return errorstr;
 }
@@ -419,13 +722,8 @@ function append_user() {
     success: function (data) {
       // console.log('test',data)
       for (var index in data.Id) {
-        $("#user").append(
-          '<option value="' +
-            data.Name[index] +
-            '">' +
-            data.Name[index] +
-            "</option>"
-        );
+        $("#checker").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+        $("#supervise").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
       }
     },
   });

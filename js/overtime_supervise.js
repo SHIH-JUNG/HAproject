@@ -104,17 +104,16 @@ check_sql_date_format = function (date) {
 };
 
 $(document).ready(function () {
-  //將input name名稱為ch_datepicker創建datepicker初始化 region
-  $("input[datepicker='ch_datepicker']").each(function () {
-    var this_id = $(this).attr("id");
-    // console.log(this_id)
-    datepicker_create(this_id);
-  });
-  //endregion
+    //將input name名稱為ch_datepicker創建datepicker初始化 region
+    $("input[datepicker='ch_datepicker']").each(function () {
+      var this_id = $(this).attr("id");
+      // console.log(this_id)
+      datepicker_create(this_id);
+    });
+    //endregion
 });
 
-//團督記錄表格region
-// var vo_year = getUrlVars()["year"];
+window.c_allow_status_arr = new Array();
 
 $.ajax({
   url: "database/find_data_overtime.php",
@@ -134,11 +133,21 @@ $.ajax({
 
       var checker_sign_arr = datatable_sign_show('checker', value.Checker, value.Checker_signature, value.Checker_sign_time, value.Checker_sign_msg);
 
+      var c_allow_status = "";
+      c_allow_status = value.Allow_status;
+
+      c_allow_status_arr.push(c_allow_status);
 
       cssString +=
         '<tr id="' +
         value.Id +
         '" resume_id="'+value.Resume_id+'">' +
+        '<td style="text-align:center">' +
+        '<select name="c_allow_status" id="c_allow_status'+value.Id+'"><option value="審核中">審核中</option></select>' +
+        "</td>" +
+        '<td style="text-align:center">' +
+        value.Resume_name +
+        "</td>" +
         '<td style="text-align:center">' +
         value.Overtime_date +
         "</td>" +
@@ -165,11 +174,27 @@ $.ajax({
         supervise_sign_arr[0] +
         supervise_sign_arr[1] +
         "</td>" +
+        '<td style="text-align:center">' +
+          '<a href="overtime_detail.php?overtime_id='+value.Id+'&resume_id='+value.Resume_id+'" style="text-decoration: underline;color:black;">查看</a>' +
+        "</td>" +
         "</tr>";
 
+        $("#name").append(
+            '<option value="' + value.Resume_name + '">' + value.Resume_name + "</option>"
+        );
+         
         $("#allow_status").append(
-          '<option value="' + value.Allow_status + '">' + value.Allow_status + "</option>"
-          );
+        '<option value="' + value.Allow_status + '">' + value.Allow_status + "</option>"
+        );
+
+        $("#call_view").append(cssString);
+
+        $("[id='c_allow_status"+value.Id+"']").append('<option value="核准">核准</option>');
+        $("[id='c_allow_status"+value.Id+"']").append('<option value="不核准">不核准</option>');
+        $("[id='c_allow_status"+value.Id+"']").append('<option value="取消">取消</option>');
+
+        $("[id='c_allow_status"+value.Id+"']").val(c_allow_status);
+
     });
 
     //找出所有查詢表格下拉式選單，將內容排序、加上"所有查詢"、去除重複值
@@ -217,15 +242,15 @@ $.ajax({
     });
 
     //印出表格
-    $("#call_view").html(cssString);
+    // $("#call_view").html(cssString);
 
     //點擊table tr 進入詳細頁面
-    $(".table-hover tbody").on("click", "tr", function () {
-      window.location.href =
-        "overtime_detail.php?overtime_id=" +
-        $(this).attr("id") +
-        "&resume_id=" + $(this).attr("resume_id");
-    });
+    // $(".table-hover tbody").on("click", "tr", function () {
+    //   window.location.href =
+    //     "overtime_detail.php?overtime_id=" +
+    //     $(this).attr("id") +
+    //     "&resume_id=" + $(this).attr("resume_id");
+    // });
   },
 
   error: function (e) {
@@ -297,6 +322,106 @@ function datatable_sign_show(signer_type ,signer, sign_path, sign_time, sign_msg
   sign_arr.push(sign_css_str);
 
   return sign_arr;
+}
+// endregion
+
+// 審核選項(第一個欄位)功能 region
+$("[name='c_allow_status']").on("change", function () {
+  
+    var id = $(this).attr("id");
+    var this_val = $("#" + id).prop("value");
+    var this_index = parseInt(id.split("c_allow_status")[1]);
+  
+    // console.log(c_allow_status_arr)
+  
+    // console.log(id)
+    // console.log(this_val)
+    // console.log(this_index)
+  
+    swal({
+      title: "將審核狀態改變至" + this_val,
+      text: "按下『確認』後將無法復原上次操作，確定要送出？",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#DD6B55",
+      confirmButtonText: "確認",
+      cancelButtonText: "取消",
+      showConfirmButton: true,
+      showCancelButton: true,
+    })
+      .then(
+        function (result) {
+          if (result) {
+            update_allow_status(this_index, this_val);
+          }
+        },
+        function (dismiss) {
+          if (dismiss == "cancel") {
+  
+            $("#" + id).val(c_allow_status_arr[this_index - 1]);
+  
+            swal({
+              title: "已取消",
+              type: "success",
+            });
+          }
+        }
+      )
+      .catch(swal.noop);
+  });
+  // endregion
+
+  // 資料庫 審核狀態修改功能 region
+update_allow_status = function(overtime_id_str, allow_status_str) {
+  
+    $.ajax({
+      url: "database/update_overtime_data_allow_status.php",
+      type: "POST",
+        data: {
+          Overtime_id:overtime_id_str,
+          Allow_status:allow_status_str,
+        },
+      // dataType: "JSON", // 若要傳回字串 如：noallow，不可設定為json格式
+      success: function (data) {
+        console.log(data);
+        if (data == 1) 
+        {
+          swal({
+            type: "success",
+            title: "更新成功!",
+            allowOutsideClick: false, //不可點背景關閉
+          }).then(function () {
+            window.location.href =
+              "overtime.php";
+          });
+        } 
+        else if(data.includes("noallow"))
+        {
+          swal({
+            type: 'error',
+            title: '您無權限修改該筆加班紀錄',
+            text: '當前登入的帳號名稱與主管名稱不符',
+            allowOutsideClick: false //不可點背景關閉
+          });
+        }
+        else 
+        {
+          swal({
+            type: "error",
+            title: "更新失敗!請聯絡負責人",
+            allowOutsideClick: false, //不可點背景關閉
+          });
+        }
+      },
+      error: function (e) {
+        console.log(e)
+        swal({
+            type: "error",
+            title: "更新失敗!請聯絡負責人",
+            allowOutsideClick: false, //不可點背景關閉
+        });
+      },
+    });
 }
 // endregion
 
@@ -420,17 +545,17 @@ var date_range = function (settings, data, dataIndex) {
 };
 
 var overtime_date_range = (function( settings, data, dataIndex ) {
-  var min_date = parseInt(Date.parse( trans_to_EN($('#overtime_date_start').val())), 10 );
-  var max_date = parseInt(Date.parse( trans_to_EN($('#overtime_date_end').val())), 10 );
-  var date = parseInt(Date.parse( trans_to_EN(data[0]) )) || 0; // use data for the date column
-  if ( ( isNaN( min_date ) && isNaN( max_date ) ) ||
-       ( isNaN( min_date ) && date <= max_date ) ||
-       ( min_date <= date   && isNaN( max_date ) ) ||
-       ( min_date <= date   && date <= max_date ) )
-  {
-      return true;
-  }
-  return false;
+    var min_date = parseInt(Date.parse( trans_to_EN($('#overtime_date_start').val())), 10 );
+    var max_date = parseInt(Date.parse( trans_to_EN($('#overtime_date_end').val())), 10 );
+    var date = parseInt(Date.parse( trans_to_EN(data[2]) )) || 0; // use data for the date column
+    if ( ( isNaN( min_date ) && isNaN( max_date ) ) ||
+         ( isNaN( min_date ) && date <= max_date ) ||
+         ( min_date <= date   && isNaN( max_date ) ) ||
+         ( min_date <= date   && date <= max_date ) )
+    {
+        return true;
+    }
+    return false;
 });
 
 var time_range = function (settings, data, dataIndex) {
@@ -510,10 +635,10 @@ $("#min, #max").keyup(function () {
 });
 
 $('#overtime_date_start, #overtime_date_end').on('change', function() {
-  //    console.log($('#min_date').val())
-  $.fn.dataTable.ext.search.push(overtime_date_range);
-  $table.draw();
-});
+    //    console.log($('#min_date').val())
+    $.fn.dataTable.ext.search.push(overtime_date_range);
+    $table.draw();
+}); 
 
 $("#min_time, #max_time").on("change", function () {
   //    console.log($('#min_date').val())

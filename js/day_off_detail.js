@@ -905,16 +905,36 @@ function check_day_off_data() {
     var check_element = $(this).parent("td").siblings("td").children()[0];
     var check_element_name = $(this).parent("td").text();
 
-    // console.log($(check_element).val())
+    console.log($(check_element))
+    console.log($(check_element).val())
 
     var check_element_tagname = $(check_element).prop("tagName");
     var check_element_type = $(check_element).attr("type");
 
+    console.log(check_element_tagname)    
     if(check_element_tagname == "INPUT" && check_element_type=="file")
     {
       var file_len = $(check_element).prop("files").length;
 
       if(file_len == 0)
+      {
+        errorstr += check_element_name.replace("※", "") + "\r\n";
+      }
+    }
+    else if(check_element_tagname == "INPUT" && check_element_type=="radio")
+    {
+      var check_element_children_name = $(this).parent("td").siblings("td").children().attr("name");
+
+      if($('[name="'+check_element_children_name+'"]:checked').length==0)
+      {
+        errorstr += check_element_name.replace("※", "") + "\r\n";
+      }
+    }
+    else if(check_element_tagname == "DIV")
+    {
+      var n_check_element = $(this).parent("td").siblings("td").children().children()[0];
+
+      if($(n_check_element).val() == null || $(n_check_element).val().replace(/\s*/g, "") == "")
       {
         errorstr += check_element_name.replace("※", "") + "\r\n";
       }
@@ -925,7 +945,8 @@ function check_day_off_data() {
       {
         errorstr += check_element_name.replace("※", "") + "\r\n";
       }
-    }    
+    }
+    
   });
 
   return errorstr;
