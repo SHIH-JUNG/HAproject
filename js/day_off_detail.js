@@ -433,15 +433,15 @@ load_remain_hours = function() {
 
   var load_remain_hours_str = "";
 
-  console.log(r_comp_hours);
-  console.log(r_annual_hours);
+  // console.log(r_comp_hours);
+  // console.log(r_annual_hours);
 
-  load_remain_hours_str = '<br/><br/>剩餘補休時數： ' + parseFloat(r_comp_hours).toFixed(1) + '<br/>' + 
-  '剩餘特休時數： '+ parseFloat(r_annual_hours).toFixed(1) + '<br/><br/>' + 
-  '已使用的補休時數： ' + parseFloat(u_comp_hours).toFixed(1) + '<br/>' + 
-   '已使用的特休時數：： ' + parseFloat(u_annual_hours).toFixed(1) + '<br/><br/>';
+  // load_remain_hours_str = '<br/><br/>剩餘補休時數： ' + parseFloat(r_comp_hours).toFixed(1) + '<br/>' + 
+  // '剩餘特休時數： '+ parseFloat(r_annual_hours).toFixed(1) + '<br/><br/>' + 
+  // '已使用的補休時數： ' + parseFloat(u_comp_hours).toFixed(1) + '<br/>' + 
+  //  '已使用的特休時數：： ' + parseFloat(u_annual_hours).toFixed(1) + '<br/><br/>';
 
-  $("#overtime_hours_hit").html(load_remain_hours_str);
+  // $("#overtime_hours_hit").html(load_remain_hours_str);
 
 
   if(o_get_overtime_hours - 24.0 >= 0)

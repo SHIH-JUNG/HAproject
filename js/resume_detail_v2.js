@@ -118,6 +118,8 @@ $(document).ready(function () {
 
     calculate_annual_hours_diff();
 
+    load_remain_hours();
+
 });
 
 calculate_annual_hours_diff = function() {
@@ -254,10 +256,10 @@ function load_resume_datas() {
                 $("#entry_date").val(value.Entry_date);
 
                 $("#seniority_num").val(value.Seniority);
-                $("#annual_hours").val(value.Annual_hours);
-                $("#leave_hours").val(value.Leave_hours);
-                $("#overtime_hours").val(value.Overtime_hours);
-                $("#comp_hours").val(value.Comp_hours);
+                // $("#annual_hours").val(value.Annual_hours);
+                // $("#leave_hours").val(value.Leave_hours);
+                // $("#overtime_hours").val(value.Overtime_hours);
+                // $("#comp_hours").val(value.Comp_hours);
 
                 $("#update_origin_hours").val(value.Annual_hours);
                 $("#update_origin_hours").attr("origin_num", value.Annual_hours)
@@ -378,6 +380,74 @@ function load_resume_datas() {
 
     $(".resume_question").attr("disabled",true);
 }
+
+// 查詢當前帳號登入者的今年度特休/請假/加班/可請假時數 region
+load_remain_hours = function() {
+
+  window.annual_hours = 0;
+  window.comp_hours = 0;
+  window.leave_hours = 0;
+  window.remain_hours = 0;
+
+    $.ajax({
+      url: "database/find_resume_hours.php",
+      data:{
+        Resume_id:resume_id,
+      },
+      type: "POST",
+      dataType: "JSON",
+      async: false,//啟用同步請求
+      success: function (data) {
+        
+        // console.log(data)
+
+        $.each(data, function (index, value) {
+
+
+          switch (value.Type) {
+            case "Annual_default":
+              annual_hours += Number(value.Annual_default);
+              break;
+          
+            case "Annual_hours":
+              annual_hours += Number(value.Change_num);
+              break;
+
+            case "Comp_hours":
+              comp_hours += Number(value.Change_num);
+              break;
+
+            case "Leave":
+              leave_hours += Number(value.Change_num);
+              break;
+          }
+        });
+        // console.log(annual_hours)
+        // console.log(comp_hours)
+        // console.log(leave_hours)
+
+        annual_hours = parseFloat(annual_hours).toFixed(1);
+        comp_hours = parseFloat(comp_hours).toFixed(1);
+        leave_hours = parseFloat(leave_hours).toFixed(1);
+
+        remain_hours = parseFloat(parseFloat(annual_hours) + parseFloat(comp_hours) - parseFloat(leave_hours)).toFixed(1);
+
+        $("#annual_hours").val(annual_hours);
+        $("#leave_hours").val(leave_hours);
+        $("#overtime_hours").val(comp_hours);
+        $("#comp_hours").val(remain_hours);
+
+      },
+      error:function(e){
+          notyf.alert('伺服器錯誤,無法載入');
+          console.log(e)
+      }
+  });
+
+
+
+}
+// endregion
 
 
 resume_update = function() {

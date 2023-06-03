@@ -295,19 +295,19 @@ load_remain_hours = function() {
 
           switch (value.Type) {
             case "Annual_default":
-              annual_hours += value.Annual_default;
+              annual_hours += Number(value.Annual_default);
               break;
           
             case "Annual_hours":
-              annual_hours += value.Change_num;
+              annual_hours += Number(value.Change_num);
               break;
 
             case "Comp_hours":
-              comp_hours += value.Change_num;
+              comp_hours += Number(value.Change_num);
               break;
 
             case "Leave":
-              leave_hours += value.Change_num;
+              leave_hours += Number(value.Change_num);
               break;
           }
         });
