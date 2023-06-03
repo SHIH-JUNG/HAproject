@@ -278,12 +278,16 @@ function submit_form() {
   form_data.append("Free_hours", n_free_hours);
 
 
-
+  form_data.append("Director",$("#director").val());
   form_data.append("Supervise",$("#supervise").val());
   form_data.append("Checker",$("#checker").val());
 
   form_data.append("N_Overtime_hours", r_overtime_hours);
 
+
+  form_data.append("title", '加班紀錄簽核：' + user_name + " 加班日期" + $("#overtime_date").val());
+  form_data.append("signer", $("#checker").val() + "、" + $("#director").val() + "、" + $("#supervise").val());
+  form_data.append("rec_date_time", timenow +" 00:00");
   // 預覽傳到後端的資料詳細內容
   // for (var pair of form_data.entries()) {
   //   console.log(pair[0] + ", " + pair[1]);
@@ -398,6 +402,7 @@ function append_user(){
           for (var index in data.Id) {
             $("#checker").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
             $("#supervise").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+            $("#director").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
           }
       },
   });

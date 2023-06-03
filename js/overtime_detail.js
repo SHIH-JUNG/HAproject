@@ -62,6 +62,7 @@ datepicker_create = function (selector_id) {
 overtime_id = getUrlVars()["overtime_id"];
 resume_id = getUrlVars()["resume_id"];
 
+director_msg_arr = [];
 supervise_msg_arr = [];
 checker_msg_arr = [];
 
@@ -97,8 +98,14 @@ $(document).ready(function () {
         $("#allow_status").val(value.Allow_status);
         window.o_allow_status = value.Allow_status;
 
+        $("#director").val(value.Director);
         $("#supervise").val(value.Supervise);
         $("#checker").val(value.Checker);
+
+        var director_sign_file_val = value.Director_signature.replace(
+          "../signature/",
+          ""
+        );
 
         var supervise_sign_file_val = value.Supervise_signature.replace(
           "../signature/",
@@ -108,18 +115,53 @@ $(document).ready(function () {
           "../signature/",
           ""
         );
-        
-        $("#supervise_signature_simg").text("點擊顯示簽名圖片");
-        $("#supervise_signature_simg").attr(
-          "href",
-          "./signature/" + supervise_sign_file_val
-        );
 
+        $("#director_signature_simg").text("點擊顯示簽名圖片");
+        
+        if(director_sign_file_val=="")
+        {
+          $("#director_signature_simg").attr("onclick", "javascript:swal({title: '未簽名',type: 'error',}); return false;")
+        }
+        else
+        {
+          $("#director_signature_simg").attr(
+            "href",
+            "./signature/" + director_sign_file_val
+          );
+        }
+
+        $("#supervise_signature_simg").text("點擊顯示簽名圖片");
+        
+        if(supervise_sign_file_val=="")
+        {
+          $("#supervise_signature_simg").attr("onclick", "javascript:swal({title: '未簽名',type: 'error',}); return false;")
+        }
+        else
+        {
+          $("#supervise_signature_simg").attr(
+            "href",
+            "./signature/" + supervise_sign_file_val
+          );
+        }
+
+        
         $("#checker_signature_simg").text("點擊顯示簽名圖片");
-        $("#checker_signature_simg").attr(
-          "href",
-          "./signature/" + checker_sign_file_val
-        );
+        
+        if(checker_sign_file_val=="")
+        {
+          $("#checker_signature_simg").attr("onclick", "javascript:swal({title: '未簽名',type: 'error',}); return false;")
+        }
+        else
+        {
+          $("#checker_signature_simg").attr(
+            "href",
+            "./signature/" + checker_sign_file_val
+          );
+        }
+
+
+        director_msg_arr.push(value.Director_sign_msg);
+        director_msg_arr.push(value.Director_sign_time);
 
         supervise_msg_arr.push(value.Supervise_sign_msg);
         supervise_msg_arr.push(value.Supervise_sign_time);
@@ -135,7 +177,7 @@ $(document).ready(function () {
 
   $(".ot_question").attr("disabled", true);
 
-  if(user_name == $("#supervise").val())
+  if(user_name == $("#supervise").val() || user_name == $("#director").val())
   {
     $("#allow_status").attr("disabled", false);
     $("#submit_area").show();
@@ -227,14 +269,20 @@ sign_msg_model = function (sign_type_name) {
   // console.log(supervise_msg_arr)
 
   switch (sign_type_name) {
+    case "director":
+      var type_name = "主管";
+      $(".sign_msg").text(director_msg_arr[0]);
+      $(".sign_msg_time").val(director_msg_arr[1]);
+      break;
+
     case "supervise":
-      var type_name = "督導";
+      var type_name = "執行長";
       $(".sign_msg").text(supervise_msg_arr[0]);
       $(".sign_msg_time").val(supervise_msg_arr[1]);
       break;
 
     case "checker":
-      var type_name = "職務代理人";
+      var type_name = "查核者";
       $(".sign_msg").text(checker_msg_arr[0]);
       $(".sign_msg_time").val(checker_msg_arr[1]);
       break;
@@ -292,7 +340,7 @@ signature_submit = function(this_btn) {
       type: "post",
       url: ajax_url,
       data: {
-        day_id: day_id,
+        overtime_id: overtime_id,
         src_data: src_data,
         sign_msg: $("#signature_msg").val(),
         sign_type: sign_type,
@@ -328,12 +376,17 @@ signature_btn_click = function(sign_board_name) {
   var type_name = "";
 
   switch (sign_board_name) {
-    case "supervise":
-      type_name = "督導";
+    case "director":
+      type_name = "主管";
       break;
 
+    case "supervise":
+      type_name = "執行長";
+      break;
+
+
     case "checker":
-      type_name = "職務代理人";
+      type_name = "查核者";
       
       break;
   }
@@ -412,7 +465,7 @@ function submit_form() {
   form_data.append("Free_hours", n_free_hours);
 
 
-
+  form_data.append("Director",$("#director").val());
   form_data.append("Supervise",$("#supervise").val());
   form_data.append("Checker",$("#checker").val());
 
@@ -724,6 +777,7 @@ function append_user() {
       for (var index in data.Id) {
         $("#checker").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
         $("#supervise").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+        $("#director").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
       }
     },
   });

@@ -67,6 +67,7 @@ function split_date(date) {
 day_off_id = getUrlVars()["day_off_id"];
 resume_id = getUrlVars()["resume_id"];
 
+director_msg_arr = [];
 supervise_msg_arr = [];
 job_agent_msg_arr = [];
 
@@ -151,9 +152,32 @@ $(document).ready(function () {
         // $("#create_name").val(value.Create_name);
         // $("#update_date").val(check_sql_date_format(value.Update_date));
         // $("#update_name").val(value.Update_name);
-
+        $("#director").val(value.Director);
         $("#supervise").val(value.Supervise);
         $("#job_agent").val(value.Job_agent);
+
+        var director_sign_file_val = value.Director_signature.replace(
+          "../signature/",
+          ""
+        );
+
+        $("#director_signature_simg").text("點擊顯示簽名圖片");
+        
+        if(director_sign_file_val=="")
+        {
+          $("#director_signature_simg").attr("onclick", "javascript:swal({title: '未簽名',type: 'error',}); return false;")
+        }
+        else
+        {
+          $("#director_signature_simg").attr(
+            "href",
+            "./signature/" + director_sign_file_val
+          );
+        }
+        
+
+        director_msg_arr.push(value.Director_sign_msg);
+        director_msg_arr.push(value.Director_sign_time);
 
         var supervise_sign_file_val = value.Supervise_signature.replace(
           "../signature/",
@@ -212,7 +236,7 @@ $(document).ready(function () {
 
   // console.log(user_name)
 
-  if(user_name == $("#supervise").val())
+  if(user_name == $("#supervise").val() || user_name == $("#director").val())
   {
     $("#allow_status").attr("disabled", false);
     $("#submit_area").show();
@@ -262,12 +286,15 @@ sign_msg_model = function (sign_type_name) {
     $("#" + sign_type_name).trigger("focus");
   });
 
-  // console.log(social_worker_msg_arr)
-  // console.log(supervise_msg_arr)
-
   switch (sign_type_name) {
+    case "director":
+      var type_name = "主管";
+      $(".sign_msg").text(director_msg_arr[0]);
+      $(".sign_msg_time").val(director_msg_arr[1]);
+      break;
+
     case "supervise":
-      var type_name = "督導";
+      var type_name = "執行長";
       $(".sign_msg").text(supervise_msg_arr[0]);
       $(".sign_msg_time").val(supervise_msg_arr[1]);
       break;
@@ -368,8 +395,12 @@ signature_btn_click = function(sign_board_name) {
   var type_name = "";
 
   switch (sign_board_name) {
+    case "director":
+      type_name = "主管";
+      break;
+
     case "supervise":
-      type_name = "督導";
+      type_name = "執行長";
       break;
 
     case "job_agent":
@@ -658,6 +689,7 @@ function submit_form() {
   form_data.append("Used_annual_hours", use_remain_hours_arr[3]);
 
 
+  form_data.append("Director",$("#director").val());
   form_data.append("Supervise",$("#supervise").val());
   form_data.append("Job_agent",$("#job_agent").val());
 
@@ -1016,6 +1048,7 @@ function append_user(){
           for (var index in data.Id) {
             $("#job_agent").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
             $("#supervise").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+            $("#director").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
           }
       },
   });

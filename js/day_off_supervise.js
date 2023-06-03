@@ -1,5 +1,9 @@
 const notyf = new Notyf();
 
+$(function() {
+  imagePreview();  
+});
+
 //取得url id值region
 function getUrlVars() {
   var vars = {};
@@ -132,6 +136,8 @@ $.ajax({
 
       var job_agent_sign_arr = datatable_sign_show('job_agent', value.Job_agent, value.Job_agent_signature, value.Job_agent_sign_time, value.Job_agent_sign_msg);
 
+      var director_sign_arr = datatable_sign_show('director', value.Director, value.Director_signature, value.Director_sign_time, value.Director_sign_msg);
+
       var day_off_type_str = "";
 
       if(value.Day_off_type.includes("其它"))
@@ -178,6 +184,10 @@ $.ajax({
         "</td>" +
         '<td style="text-align:center">' +
         value.Allow_status +
+        "</td>" +
+        '<td style="text-align:center">' +
+        director_sign_arr[0] +
+        director_sign_arr[1] +
         "</td>" +
         '<td style="text-align:center">' +
         supervise_sign_arr[0] +
@@ -290,14 +300,14 @@ function datatable_sign_show(signer_type ,signer, sign_path, sign_time, sign_msg
 
   switch (signer_type) {
     case "supervise":
-      type_name = "督導";
+      type_name = "執行長";
       break;
     // case "leader":
     //   type_name = "組長";
     //   break;
-    // case "director":
-    //   type_name = "主管";
-    //   break;
+    case "director":
+      type_name = "主管";
+      break;
     case "job_agent":
       type_name = "職務代理人";
       break;

@@ -60,6 +60,7 @@ datepicker_create = function (selector_id) {
 
 // 民國年轉換日期格式yyyy-dd-mm region
 function split_date(date) {
+  console.log(date)
   return parseInt(date.split("年")[0])+1911+"-"+date.split("年")[1].split("月")[0]+"-"+date.split("年")[1].split("月")[1].split("日")[0]; 
 }
 //endregion
@@ -533,8 +534,14 @@ function submit_form() {
   form_data.append("Used_annual_hours", use_remain_hours_arr[3]);
 
 
-  form_data.append("Supervise",$("#supervise").val());
   form_data.append("Job_agent",$("#job_agent").val());
+  form_data.append("Director",$("#director").val());
+  form_data.append("Supervise",$("#supervise").val());
+
+
+  form_data.append("title", '請假單簽核：' + user_name + " " + deal_type($("[name='day_off_type']:checked").val()));
+  form_data.append("signer", $("#job_agent").val() + "、" + $("#director").val() + "、" + $("#supervise").val());
+  form_data.append("rec_date_time", timenow +" 00:00");
 
   // 預覽傳到後端的資料詳細內容
   // for (var pair of form_data.entries()) {
@@ -693,6 +700,7 @@ function append_user(){
           for (var index in data.Id) {
             $("#job_agent").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
             $("#supervise").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+            $("#director").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
           }
       },
   });

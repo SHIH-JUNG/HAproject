@@ -39,6 +39,8 @@
         word-break: keep-all;
         /*必須*/
     }
+
+    .preview {position:absolute;background:#fff;padding:10px;display:none;}  
 </style>
 <!--<SVG>引入bootstrap icon-->
 

@@ -1,5 +1,9 @@
 const notyf = new Notyf();
 
+$(function() {
+  imagePreview();  
+});
+
 //取得url id值region
 function getUrlVars() {
   var vars = {};
@@ -134,6 +138,8 @@ $.ajax({
 
       var checker_sign_arr = datatable_sign_show('checker', value.Checker, value.Checker_signature, value.Checker_sign_time, value.Checker_sign_msg);
 
+      var director_sign_arr = datatable_sign_show('director', value.Director, value.Director_signature, value.Director_sign_time, value.Director_sign_msg);
+
 
       cssString +=
         '<tr id="' +
@@ -158,12 +164,16 @@ $.ajax({
         value.Allow_status +
         "</td>" +
         '<td style="text-align:center">' +
-        checker_sign_arr[0] +
-        checker_sign_arr[1] +
+        director_sign_arr[0] +
+        director_sign_arr[1] +
         "</td>" +
         '<td style="text-align:center">' +
         supervise_sign_arr[0] +
         supervise_sign_arr[1] +
+        "</td>" +
+        '<td style="text-align:center">' +
+        checker_sign_arr[0] +
+        checker_sign_arr[1] +
         "</td>" +
         "</tr>";
 
@@ -247,14 +257,14 @@ function datatable_sign_show(signer_type ,signer, sign_path, sign_time, sign_msg
 
   switch (signer_type) {
     case "supervise":
-      type_name = "督導";
+      type_name = "執行長";
       break;
     // case "leader":
     //   type_name = "組長";
     //   break;
-    // case "director":
-    //   type_name = "主管";
-    //   break;
+    case "director":
+      type_name = "主管";
+      break;
     case "checker":
       type_name = "查核者";
       break;

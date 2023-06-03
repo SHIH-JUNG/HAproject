@@ -20,12 +20,31 @@ $Reason = $_REQUEST['Reason'];
 @$Used_comp_hours = $_REQUEST['Used_comp_hours'];
 @$Used_annual_hours = $_REQUEST['Used_annual_hours'];
 
+@$Director = $_REQUEST['Director'];
 @$Supervise = $_REQUEST['Supervise'];
 @$Job_agent = $_REQUEST['Job_agent'];
 
-
 $user = $_SESSION['name'];
 $user_acc = $_SESSION['Account'];
+
+$title = $_POST['title'];
+$signer = $_POST['signer'];
+$rec_date_time = $_POST['rec_date_time'];
+
+$select_id_num = "SELECT MAX(Id) FROM `day_off_v2` ORDER BY `day_off_v2`.`Create_date` ASC LIMIT 1;";
+
+$find_id_num = mysqli_query($conn,$select_id_num);
+$id_num = mysqli_fetch_row($find_id_num);
+
+if($id_num[0]>0)
+{
+    $day_off_id = (int)$id_num[0] + 1;
+}
+else
+{
+    $day_off_id = 0;
+}
+
 
 // 查詢 帳號的Resume_id
 $select_id_num = "SELECT `Resume_id` FROM `user_info` WHERE `Account` = '$user_acc' AND `Name` = '$user';";
@@ -38,6 +57,9 @@ $select_user_data_num = "SELECT `Id`, `Name`, `Annual_hours` FROM `resume` WHERE
 
 $find_user_data_num = mysqli_query($conn,$select_user_data_num);
 $user_data_num = mysqli_fetch_row($find_user_data_num);
+
+
+$url = 'day_off_detail.php?day_off_id='.$day_off_id.'&resume_id='.$user_data_num[0].'';
 
 
 // 檔案路徑
@@ -74,7 +96,7 @@ if (isset($_FILES["day_off_file0"]))
 }
 
 
-$sql = "INSERT INTO `day_off_v2` (`Resume_id`, `Resume_name`, 
+$sql = "INSERT INTO `day_off_v2` (`Id`, `Resume_id`, `Resume_name`, 
 `Rec_year`, `Fillin_date`, 
 `Day_off_type`, 
 `Reason`, 
@@ -84,8 +106,8 @@ $sql = "INSERT INTO `day_off_v2` (`Resume_id`, `Resume_name`,
 `Remain_comp_hours`, `Remain_annual_hours`, `Used_comp_hours`, `Used_annual_hours`, 
 `Allow_status`, 
 `Create_date`, `Create_name`, 
-`Supervise`,`Job_agent`) VALUES
- ('$user_data_num[0]', '$user_data_num[1]',
+`Supervise`, `Job_agent`, `Director`) VALUES
+ ('$day_off_id', '$user_data_num[0]', '$user_data_num[1]',
  '$Rec_year', '$Fillin_date', 
  '$Day_off_type', 
  '$Reason', 
@@ -95,8 +117,12 @@ $sql = "INSERT INTO `day_off_v2` (`Resume_id`, `Resume_name`,
  '$Remain_comp_hours', '$Remain_annual_hours', '$Used_comp_hours', '$Used_annual_hours', 
  '審核中', 
  NOW(), '$user',  
- '$Supervise', '$Job_agent');";
-if (mysqli_query($conn, $sql)) {
+ '$Supervise', '$Job_agent', '$Director');";
+
+$sql .= "INSERT INTO `signature_notice` (`Sign_id`, `Title`,`Url`,`Timestamp`, `Assign`, `Signer`, `Sign_state`, `Type`, `Create_date`, `Create_name`) 
+VALUES ($day_off_id, '$title','$url','$rec_date_time', '$user', '$signer', '未簽核', 'day_off', Now(), '$user')";
+
+if (mysqli_multi_query($conn, $sql)) {
     echo true;
 } else {
     echo false;

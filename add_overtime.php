@@ -151,11 +151,12 @@
                                                                     <input style="margin-left: 1em;" id="free_hours"  type="number" overtime_date="overtime_date">
                                                                 </td>
                                                             </tr>
+
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>查核者</td>
+                                                                <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>主管</td>
                                                                 <td style="border-bottom: solid 1px;">
                                                                     <div class="col-sm-3">
-                                                                        <select name="checker" id="checker" style="width:100%;">
+                                                                        <select name="director" id="director" style="width:100%;">
                                                                             <option value="">請選擇</option>
                                                                         </select>
                                                                     </div>
@@ -163,10 +164,21 @@
                                                             </tr>
 
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>主管</td>
+                                                                <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>執行長</td>
                                                                 <td style="border-bottom: solid 1px;">
                                                                     <div class="col-sm-3">
                                                                         <select name="supervise" id="supervise" style="width:100%;">
+                                                                            <option value="">請選擇</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>查核者</td>
+                                                                <td style="border-bottom: solid 1px;">
+                                                                    <div class="col-sm-3">
+                                                                        <select name="checker" id="checker" style="width:100%;">
                                                                             <option value="">請選擇</option>
                                                                         </select>
                                                                     </div>
@@ -227,6 +239,10 @@
    <!-- 日期民國-->
    <script src="javascript/jquery-ui.min.js"></script>
     <script src="javascript/datepickerTw.js"></script>
+    <script>
+        //設定js變數抓取使用者名稱
+        var user_name = '<?php echo $_SESSION["name"]; ?>';
+    </script>
     <!-- ================== add_phone.js ================== -->
     <script src="js/add_overtime.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
 </body>

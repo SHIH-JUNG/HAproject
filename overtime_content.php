@@ -55,8 +55,9 @@
                     <th>補休日期</th>
                     <th>補休時數</th>
                     <th>審核狀態</th>
-                    <th>查核者簽章</th>
                     <th>主管簽章</th>
+                    <th>執行長簽章</th>
+                    <th>查核者簽章</th>
                 </tr>
             </thead>
             <tbody id="call_view"></tbody>

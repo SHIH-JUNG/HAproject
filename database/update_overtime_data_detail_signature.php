@@ -1,7 +1,7 @@
 <?php
 session_start();
 include("sql_connect.php");
-$day_off_id = $_POST['day_off_id'];
+$overtime_id = $_POST['overtime_id'];
 $sign_msg = $_POST['sign_msg'];
 $sign_type = $_POST['sign_type'];
 
@@ -36,8 +36,8 @@ switch ($sign_type) {
     case 'supervise':
         $sql_str = " `Supervise` = '$user', `Supervise_signature` = '$new_file', `Supervise_sign_msg` = '$sign_msg',`Supervise_sign_time` = NOW()";
         break;
-    case 'job_agent':
-        $sql_str = " `Job_agent` = '$user', `Job_agent_signature` = '$new_file', `Job_agent_sign_msg` = '$sign_msg',`Job_agent_sign_time` = NOW()";
+    case 'checker':
+        $sql_str = " `Checker` = '$user', `Checker_signature` = '$new_file', `Checker_sign_msg` = '$sign_msg',`Checker_sign_time` = NOW()";
         break;
     default:
         return false;
@@ -46,7 +46,7 @@ switch ($sign_type) {
 
 //转换为图片文件
 if (file_put_contents($new_file, base64_decode($base64_content[1]))) {
-    $sqlUpdate = "UPDATE `day_off_v2` SET $sql_str WHERE `Id` = '$day_off_id' ORDER BY `day_off_v2`.`Create_date` ASC LIMIT 1;";
+    $sqlUpdate = "UPDATE `overtime` SET $sql_str WHERE `Id` = '$overtime_id' ORDER BY `overtime`.`Create_date` ASC LIMIT 1;";
     if (mysqli_query($conn, $sqlUpdate)) {
         echo true;
     } else {
