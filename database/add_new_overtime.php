@@ -55,6 +55,7 @@ $user_data_num = mysqli_fetch_row($find_user_data_num);
 
 $url = 'overtime_detail.php?overtime_id='.$overtime_id.'&resume_id='.$user_data_num[0].'';
 
+$sign_state = $Director . "未簽核" . "、" . $Supervise . "未簽核" . "、" . $Checker . "未簽核";
 
 
 $sql = "INSERT INTO `overtime` (`Id`, `Resume_id`, `Resume_name`, 
@@ -77,7 +78,7 @@ $sql = "INSERT INTO `overtime` (`Id`, `Resume_id`, `Resume_name`,
  '$Supervise', '$Checker', '$Director');";
 
 $sql .= "INSERT INTO `signature_notice` (`Sign_id`, `Title`,`Url`,`Timestamp`, `Assign`, `Signer`, `Sign_state`, `Type`, `Create_date`, `Create_name`) 
-VALUES ($overtime_id, '$title','$url','$rec_date_time', '$user', '$signer', '未簽核', 'overtime', Now(), '$user')";
+VALUES ($overtime_id, '$title','$url','$rec_date_time', '$user', '$signer', '$sign_state', 'overtime', Now(), '$user')";
 
 
 if (mysqli_multi_query($conn, $sql)) {

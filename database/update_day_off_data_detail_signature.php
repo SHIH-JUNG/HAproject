@@ -4,6 +4,7 @@ include("sql_connect.php");
 $day_off_id = $_POST['day_off_id'];
 $sign_msg = $_POST['sign_msg'];
 $sign_type = $_POST['sign_type'];
+$sign_name = $_POST['sign_name'];
 
 $user = $_SESSION['name'];
 
@@ -44,14 +45,26 @@ switch ($sign_type) {
         break;
 }
 
+$sign_state_sqlstr2 = $sign_name."已簽核";
+$sign_state_sqlstr1 = $sign_name."未簽核";
+
 //转换为图片文件
 if (file_put_contents($new_file, base64_decode($base64_content[1]))) {
-    $sqlUpdate = "UPDATE `day_off_v2` SET $sql_str WHERE `Id` = '$day_off_id' ORDER BY `day_off_v2`.`Create_date` ASC LIMIT 1;";
-    if (mysqli_query($conn, $sqlUpdate)) {
-        echo true;
-    } else {
-        echo false;
-        echo "{$note} 語法執行失敗，錯誤訊息：" . mysqli_error($conn);
+    if($user == $sign_name){
+        $sqlUpdate = "UPDATE `day_off_v2` SET $sql_str WHERE `Id` = '$day_off_id' ORDER BY `day_off_v2`.`Create_date` ASC LIMIT 1;";
+
+        $sqlUpdate .="UPDATE `signature_notice` SET `Sign_state` = REPLACE(`Sign_state`, '$sign_state_sqlstr1', '$sign_state_sqlstr2') WHERE `Sign_id` = '$day_off_id' AND `Type`='day_off' ORDER BY `signature_notice`.`Id` ASC LIMIT 1;";
+
+        if (mysqli_multi_query($conn, $sqlUpdate)) {
+            echo true;
+        } else {
+            echo false;
+            echo "{$note} 語法執行失敗，錯誤訊息：" . mysqli_error($conn);
+        }
+    }
+    else
+    {
+        echo "noallowsign";
     }
 } else {
     return false;

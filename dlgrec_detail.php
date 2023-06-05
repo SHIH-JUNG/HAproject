@@ -172,9 +172,6 @@
                                                                         <tr style="text-align:left">
                                                                             <td colspan="2" style="border-bottom: solid 1px;">
                                                                                 <label for="dlg_manager">同儕生輔員/生活輔導員：</label><input class="dlgrec_question" style="width:15em;" id="dlg_manager" type="text"><br/>
-                                                                                <!-- <div class="col-sm-2">
-                                                                                    <label for="social_worker" style="margin-top:.5em;">社工員：</label>
-                                                                                </div> -->
                                                                                 <div class="col-sm-5">
                                                                                     <label for="social_worker" style="margin-top:.5em;">社工員：</label>
                                                                                     <select class="dlgrec_question" name="social_worker" id="social_worker" style="width:60%;margin-top:.5em;">
@@ -182,27 +179,39 @@
                                                                                     </select>
                                                                                 </div>
                                                                                 <div class="col-sm-7">
-                                                                                    <button style="margin:.5em;margin-right:1em;color:red;" type="button" id="social_worker_signature_btn">簽名</button>
-                                                                                    <button style="margin:.5em;" type="button" id="social_worker_signature_msg_btn" onclick="sign_msg_model('social_worker');" data-toggle="modal" data-target="#myModal">查看留言</button>
-                                                                                    <a src="" id="social_worker_simg" style="color:blue;" target="_blank" alt="簽名圖片連結"></a>
+                                                                                    <button style="margin:.5em;margin-right:3em;color:red;" type="button" onclick="signature_btn_click('social_worker');">簽名</button>
+                                                                                    <button style="margin:.5em;" type="button" id="social_worker_signature_msg_btn" onclick="sign_msg_model('social_worker');" data-toggle="modal" data-target="#myModal2">查看留言</button>
+                                                                                    <a src="" id="social_worker_signature_simg" style="color:blue;" target="_blank" alt="簽名圖片連結"></a>
                                                                                 </div>
                                                                             </td>
                                                                         </tr>
                                                                         <tr style="text-align:left">
                                                                             <td colspan="2" style="border-bottom: solid 1px;">
-                                                                                <!-- <div class="col-sm-2">
-                                                                                    <label for="supervise" style="margin-top:.5em;">督導：</label>
-                                                                                </div> -->
                                                                                 <div class="col-sm-5">
-                                                                                    <label for="supervise" style="margin-top:.5em;">督導：</label>
-                                                                                    <select class="dlgrec_question" name="supervise" id="supervise" style="width:60%;margin-top:.5em;">
+                                                                                    <label for="supervise1" style="margin-top:.5em;">督導：</label>
+                                                                                    <select class="dlgrec_question" name="supervise1" id="supervise1" style="width:60%;margin-top:.5em;">
                                                                                         <option value="">請選擇</option>
                                                                                     </select>
                                                                                 </div>
                                                                                 <div class="col-sm-7">
-                                                                                    <button style="margin:.5em;margin-right:1em;color:red;" type="button" id="supervise_signature_btn">簽名</button>
-                                                                                    <button style="margin:.5em;" type="button" id="supervise_signature_msg_btn" onclick="sign_msg_model('supervise');" data-toggle="modal" data-target="#myModal">查看留言</button>
-                                                                                    <a src="" id="supervise_signature_simg" style="color:blue;" target="_blank" alt="簽名圖片連結"></a>
+                                                                                    <button style="margin:.5em;margin-right:3em;color:red;" type="button" onclick="signature_btn_click('supervise1');">簽名</button>
+                                                                                    <button style="margin:.5em;" type="button" id="supervise1_signature_msg_btn" onclick="sign_msg_model('supervise1');" data-toggle="modal" data-target="#myModal2">查看留言</button>
+                                                                                    <a src="" id="supervise1_signature_simg" style="color:blue;" target="_blank" alt="簽名圖片連結"></a>
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr style="text-align:left">
+                                                                            <td colspan="2" style="border-bottom: solid 1px;">
+                                                                                <div class="col-sm-5">
+                                                                                    <label for="supervise2" style="margin-top:.5em;">執行長：</label>
+                                                                                    <select class="dlgrec_question" name="supervise2" id="supervise2" style="width:60%;margin-top:.5em;">
+                                                                                        <option value="">請選擇</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div class="col-sm-7">
+                                                                                    <button style="margin:.5em;margin-right:3em;color:red;" type="button" onclick="signature_btn_click('supervise2');">簽名</button>
+                                                                                    <button style="margin:.5em;" type="button" id="supervise2_signature_msg_btn" onclick="sign_msg_model('supervise2');" data-toggle="modal" data-target="#myModal2">查看留言</button>
+                                                                                    <a src="" id="supervise2_signature_simg" style="color:blue;" target="_blank" alt="簽名圖片連結"></a>
                                                                                 </div>
                                                                             </td>
                                                                         </tr>
@@ -341,7 +350,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <?php include("signnature_canvas.php"); ?>
+                                                    <?php include("signnature_canvas2.php"); ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -358,12 +367,12 @@
     </div>
 
     <!--\ Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
+    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" data-backdrop="static">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel" class="sign_msg_td_name">簽名留言</h4>
+                    <h4 class="modal-title" id="myModalLabel2" class="sign_msg_td_name">簽名留言</h4>
                 </div>
                 <div class="modal-body">
                     <table id="all_data" style="width:auto;margin:0 auto;" class="table table-bordered">
@@ -388,6 +397,7 @@
         </div>
     </div>
     <!-- Modal /-->
+
 
     <!-- /#wrapper -->
     <!-- JavaScript -->
@@ -420,6 +430,10 @@
     <script src="js/jQuery-TWzipcode-master/jquery.twzipcode.min.js"></script>
     <!-- ================== jSignature ================== -->
     <script src="jSignature/jSignature.min.js"></script>
+    <script>
+        //設定js變數抓取使用者名稱
+        var user_name = '<?php echo $_SESSION["name"]; ?>';
+    </script>
     <!-- ================== detail ================== -->
     <script type="text/javascript" src="js/dlgrec_detail.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
 

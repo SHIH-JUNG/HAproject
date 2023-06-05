@@ -4,6 +4,7 @@ include("sql_connect.php");
 $dlgrec_id = $_POST['dlgrec_id']; 
 $sign_msg = $_POST['sign_msg'];
 $sign_type = $_POST['sign_type'];
+$sign_name = $_POST['sign_name'];
 
 $user = $_SESSION['name'];
 
@@ -30,8 +31,11 @@ $type = 'png';
 $new_file = $new_file.time().".$type";
 
 switch ($sign_type) {
-    case 'supervise':
-        $sql_str = " `supervise` = '$user', `supervise_sign` = '$new_file', `supervise_sign_msg` = '$sign_msg',`supervise_sign_time` = NOW()";
+    case 'supervise1':
+        $sql_str = " `supervise1` = '$user', `supervise1_sign` = '$new_file', `supervise1_sign_msg` = '$sign_msg',`supervise1_sign_time` = NOW()";
+        break;
+    case 'supervise2':
+        $sql_str = " `supervise2` = '$user', `supervise2_sign` = '$new_file', `supervise2_sign_msg` = '$sign_msg',`supervise2_sign_time` = NOW()";
         break;
     case 'social_worker':
         $sql_str = " `social_worker` = '$user', `social_worker_sign` = '$new_file', `social_worker_sign_msg` = '$sign_msg',`social_worker_sign_time` = NOW()";
@@ -41,15 +45,31 @@ switch ($sign_type) {
         break;
 }
 
+
+$sign_state_sqlstr2 = $sign_name."已簽核";
+$sign_state_sqlstr1 = $sign_name."未簽核";
+
+
 //转换为图片文件
 if (file_put_contents($new_file,base64_decode($base64_content[1]))){
-	$sqlUpdate ="UPDATE `dlgrec` SET $sql_str WHERE `Id` = '$dlgrec_id' ORDER BY `dlgrec`.`Create_date` ASC LIMIT 1;";
-    if(mysqli_query($conn, $sqlUpdate)){
-        echo true;
-    }else{
-        echo false;
-        echo "{$note} 語法執行失敗，錯誤訊息：" . mysqli_error($conn);
-    }  
+    if($user == $sign_name){
+        $sqlUpdate ="UPDATE `dlgrec` SET $sql_str WHERE `Id` = '$dlgrec_id' ORDER BY `dlgrec`.`Create_date` ASC LIMIT 1;";
+
+        $sqlUpdate .="UPDATE `signature_notice` SET `Sign_state` = REPLACE(`Sign_state`, '$sign_state_sqlstr1', '$sign_state_sqlstr2') WHERE `Sign_id` = '$dlgrec_id' AND `Type`='dlgrec' ORDER BY `signature_notice`.`Id` ASC LIMIT 1;";
+
+
+        if(mysqli_multi_query($conn, $sqlUpdate)){
+            echo true;
+        }else{
+            echo false;
+            echo "{$note} 語法執行失敗，錯誤訊息：" . mysqli_error($conn);
+        }  
+
+    }
+    else
+    {
+        echo "noallowsign";
+    }
 }else{ 
 	return false;  
 }  

@@ -24,7 +24,8 @@ $Closed_result = $_POST['Closed_result'];
 
 $Remark = $_POST['Remark'];
 $Assign = $_POST['Assign'];
-$Supervise = $_POST['Supervise'];
+$Supervise1 = $_POST['Supervise1'];
+$Supervise2 = $_POST['Supervise2'];
 
 $user = $_SESSION['name'];
 
@@ -57,18 +58,23 @@ $sql .= "INSERT INTO `closed` (`Id`, `Open_case_seqid`, `Open_case_id`, `Closed_
  `Name`, `Gender`, `Birth`, 
  `File_name`,
 `Main_issue`, `Minor_issue`, `Intervention`, `Evaluation`,
-`Closed_reason`,`Closed_result`, `Remark`, `Assign`, `Supervise`,
+`Closed_reason`,`Closed_result`, `Remark`, `Assign`, `Supervise1`,`Supervise2`,
 `Create_date`,`Create_name`) VALUES
  ($closed_id, '$Open_case_seqid', '$Open_case_id', '$Open_case_id', '$Open_date', '$Closed_date',
   '$Name', '$Gender', '$Birth',
   '$File_name',
   '$Main_issue', '$Minor_issue', '$Intervention', '$Evaluation',
-  '$Closed_reason', '$Closed_result', '$Remark', '$Assign', '$Supervise', Now(), '$user');";
+  '$Closed_reason', '$Closed_result', '$Remark', '$Assign', '$Supervise1', '$Supervise2', Now(), '$user');";
 
 $sign_closed_date = $Closed_date." 00:00";
 
+$signers = $Supervise1 . "、" . $Supervise2;
+
+
+$sign_state = $Supervise1 . "未簽核" . "、" . $Supervise2  . "未簽核";
+
 $sql .= "INSERT INTO `signature_notice` (`Sign_id`, `Title`,`Url`,`Timestamp`, `Assign`, `Signer`, `Sign_state`, `Type`, `Create_date`, `Create_name`) 
-VALUES ($closed_id, '$title', '$url', '$sign_closed_date', '$Assign', '$Supervise', '未簽核', 'closed', Now(), '$user');";
+VALUES ($closed_id, '$title', '$url', '$sign_closed_date', '$Assign', '$signers', '$sign_state', 'closed', Now(), '$user');";
 
 	// if(mysqli_query($conn,$sql)){
     if(mysqli_multi_query($conn, $sql)){

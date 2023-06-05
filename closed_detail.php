@@ -273,19 +273,37 @@
                                                                                     </div>
                                                                                 </td>
                                                                             </tr>
-                                                                            <tr>
-                                                                                <td colspan="1" style="text-align:right;background-color:rgb(255 0 0);border-right-color: white;"><i style="color:red;">※</i>督導簽章</td>
-                                                                                <td colspan="5" style="border-bottom: solid 1px;">
+                                                                            <tr style="text-align:left">
+                                                                                <td colspan="1" style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline">
+                                                                                    <label>督導簽章</label>
+                                                                                </td>
+                                                                                <td colspan="5" style="">
                                                                                     <div class="col-sm-3" style="margin-top: 0.6em;">
-                                                                                        <!-- <input class="closed_question" style="width:15em;" id="supervise" type="text"> -->
-                                                                                        <select class="closed_question" id="supervise" style="width:100%;">
+                                                                                        <select class="closed_question" id="supervise1" style="width:100%;">
                                                                                                 <option value="">請選擇</option>
                                                                                         </select>
                                                                                     </div>
-                                                                                    <div class="col-sm-5">
-                                                                                        <button style="margin:.5em;color:red;float:left;" type="button" id="supervise_signature_btn">簽名</button>
-                                                                                        <button style="margin:.5em;float:left;" type="button" id="supervise_signature_msg_btn" onclick="sign_msg_model('supervise');" data-toggle="modal" data-target="#myModal">查看留言</button>
-                                                                                        <a src="" id="supervise_signature_simg" style="color:blue;display: block;margin-top: 0.6em;" target="_blank" alt="簽名圖片連結"></a>
+                                                                                    <div class="col-sm-9">
+                                                                                        <button style="margin:.5em;margin-right:3em;color:red;" type="button" onclick="signature_btn_click('supervise1');">簽名</button>
+                                                                                        <button style="margin:.5em;" type="button" id="supervise1_signature_msg_btn" onclick="sign_msg_model('supervise1');" data-toggle="modal" data-target="#myModal2">查看留言</button>
+                                                                                        <a src="" id="supervise1_signature_simg" style="color:blue;" target="_blank" alt="簽名圖片連結"></a>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr style="text-align:left">
+                                                                                <td colspan="1" style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline">
+                                                                                    <label>執行長簽章</label>
+                                                                                </td>
+                                                                                <td colspan="5" style="">
+                                                                                    <div class="col-sm-3" style="margin-top: 0.6em;">
+                                                                                        <select class="closed_question" id="supervise2" style="width:100%;">
+                                                                                                <option value="">請選擇</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                    <div class="col-sm-9">
+                                                                                        <button style="margin:.5em;margin-right:3em;color:red;" type="button" onclick="signature_btn_click('supervise2');">簽名</button>
+                                                                                        <button style="margin:.5em;" type="button" id="supervise2_signature_msg_btn" onclick="sign_msg_model('supervise2');" data-toggle="modal" data-target="#myModal2">查看留言</button>
+                                                                                        <a src="" id="supervise2_signature_simg" style="color:blue;" target="_blank" alt="簽名圖片連結"></a>
                                                                                     </div>
                                                                                 </td>
                                                                             </tr>
@@ -357,7 +375,7 @@
                                                             </div> -->
                                                         </div>
                                                     </div>
-                                                    <?php include("signnature_canvas.php"); ?>
+                                                    <?php include("signnature_canvas2.php"); ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -374,23 +392,23 @@
     </div>
 
     <!--\ Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
+    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" data-backdrop="static">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel" class="sign_msg_td_name">簽名留言</h4>
+                    <h4 class="modal-title" id="myModalLabel2" class="sign_msg_td_name">簽名留言</h4>
                 </div>
                 <div class="modal-body">
                     <table id="all_data" style="width:auto;margin:0 auto;" class="table table-bordered">
                         <tr style="text-align:left">
-                            <td class="sign_msg_td_name" style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;">簽名留言內容</td>
+                            <td class="sign_msg_td_name" style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">簽名留言內容</td>
                             <td style="border-bottom: solid 1px;">
                                 <textarea style="width:100%;resize: none;font-size: 20px;min-height:10em;" class="sign_msg" disabled="disabled"></textarea>
                             </td>
                         </tr>
                         <tr style="text-align:left">
-                            <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;">留言時間</td>
+                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">留言時間</td>
                             <td style="border-bottom: solid 1px;">
                                 <input style="width:15em;" class="sign_msg_time" type="datetime" disabled="disabled">
                             </td>
@@ -436,6 +454,10 @@
     <script src="js/jQuery-TWzipcode-master/jquery.twzipcode.min.js"></script>
     <!-- ================== jSignature ================== -->
     <script src="jSignature/jSignature.min.js"></script>
+    <script>
+        //設定js變數抓取使用者名稱
+        var user_name = '<?php echo $_SESSION["name"]; ?>';
+    </script>
     <!-- ================== detail ================== -->
     <script type="text/javascript" src="js/closed_detail.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
 

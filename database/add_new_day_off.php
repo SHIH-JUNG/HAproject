@@ -31,6 +31,9 @@ $title = $_POST['title'];
 $signer = $_POST['signer'];
 $rec_date_time = $_POST['rec_date_time'];
 
+$sign_state = $Director . "未簽核" . "、" . $Supervise . "未簽核" . "、" . $Job_agent . "未簽核";
+
+
 $select_id_num = "SELECT MAX(Id) FROM `day_off_v2` ORDER BY `day_off_v2`.`Create_date` ASC LIMIT 1;";
 
 $find_id_num = mysqli_query($conn,$select_id_num);
@@ -119,8 +122,9 @@ $sql = "INSERT INTO `day_off_v2` (`Id`, `Resume_id`, `Resume_name`,
  NOW(), '$user',  
  '$Supervise', '$Job_agent', '$Director');";
 
+
 $sql .= "INSERT INTO `signature_notice` (`Sign_id`, `Title`,`Url`,`Timestamp`, `Assign`, `Signer`, `Sign_state`, `Type`, `Create_date`, `Create_name`) 
-VALUES ($day_off_id, '$title','$url','$rec_date_time', '$user', '$signer', '未簽核', 'day_off', Now(), '$user')";
+VALUES ($day_off_id, '$title','$url','$rec_date_time', '$user', '$signer', '$sign_state', 'day_off', Now(), '$user')";
 
 if (mysqli_multi_query($conn, $sql)) {
     echo true;

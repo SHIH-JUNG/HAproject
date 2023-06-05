@@ -193,6 +193,7 @@ word-break: keep-all;/*必須*/
                                                                 <!-- <th>備註</th> -->
                                                                 <th>社工員</th>
                                                                 <th>督導簽章</th>
+                                                                <th>執行長簽章</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody id="call_view"></tbody>

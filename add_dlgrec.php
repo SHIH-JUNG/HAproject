@@ -217,9 +217,15 @@ input[type=number] {
                                                                         <option value="">請選擇</option>
                                                                     </select>
 
-                                                                    <label for="supervise">督導：</label>
-                                                                    <!-- <input style="width:10em;" id="supervise" type="text"> -->
-                                                                    <select name="supervise" id="supervise" style="width:10em;">
+                                                                    <label for="supervise1">督導：</label>
+                                                                    <!-- <input style="width:10em;" id="supervise1" type="text"> -->
+                                                                    <select name="supervise1" id="supervise1" style="width:10em;">
+                                                                        <option value="">請選擇</option>
+                                                                    </select>
+
+                                                                    <label for="supervise2">執行長：</label>
+                                                                    <!-- <input style="width:10em;" id="supervise2" type="text"> -->
+                                                                    <select name="supervise2" id="supervise2" style="width:10em;">
                                                                         <option value="">請選擇</option>
                                                                     </select>
                                                                 </td>

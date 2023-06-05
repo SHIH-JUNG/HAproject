@@ -5,6 +5,7 @@ $closed_id = $_POST['closed_id'];
 $sign_msg = $_POST['sign_msg'];
 $sign_type = $_POST['sign_type'];
 $sign_name = $_POST['sign_name'];
+
 $user = $_SESSION['name'];
 
 
@@ -30,23 +31,27 @@ $type = 'png';
 $new_file = $new_file.time().".$type";
 
 switch ($sign_type) {
-    case 'supervise':
-        $sql_str = " `Supervise` = '$user', `Supervise_signature` = '$new_file', `Supervise_sign_msg` = '$sign_msg',`Supervise_sign_time` = NOW()";
+    case 'supervise1':
+        $sql_str = " `Supervise1` = '$user', `Supervise1_signature` = '$new_file', `Supervise1_sign_msg` = '$sign_msg',`Supervise1_sign_time` = NOW()";
         break;
-    case 'social_worker':
-        $sql_str = " `Social_worker` = '$user', `Social_worker_signature` = '$new_file', `Social_worker_sign_msg` = '$sign_msg',`Social_worker_sign_time` = NOW()";
+    case 'supervise2':
+        $sql_str = " `Supervise2` = '$user', `Supervise2_signature` = '$new_file', `Supervise2_sign_msg` = '$sign_msg',`Supervise2_sign_time` = NOW()";
         break;
     default:
             return false;
         break;
 }
 
+$sign_state_sqlstr2 = $sign_name."已簽核";
+$sign_state_sqlstr1 = $sign_name."未簽核";
+
+
 //转换为图片文件
 if (file_put_contents($new_file,base64_decode($base64_content[1]))){
     if($user == $sign_name){
         $sqlUpdate ="UPDATE `closed` SET $sql_str WHERE `Id` = '$closed_id' ORDER BY `closed`.`Create_date` ASC LIMIT 1;";
 
-        $sqlUpdate .="UPDATE `signature_notice` SET `Sign_state`='已簽核' WHERE `Sign_id` = '$closed_id' AND `Type`='closed' ORDER BY `signature_notice`.`Id` ASC LIMIT 1;";
+        $sqlUpdate .="UPDATE `signature_notice` SET `Sign_state` = REPLACE(`Sign_state`, '$sign_state_sqlstr1', '$sign_state_sqlstr2') WHERE `Sign_id` = '$closed_id' AND `Type`='closed' ORDER BY `signature_notice`.`Id` ASC LIMIT 1;";
 
         if(mysqli_multi_query($conn, $sqlUpdate)){
             echo true;

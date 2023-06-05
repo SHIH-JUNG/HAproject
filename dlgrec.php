@@ -106,14 +106,14 @@ word-break: keep-all;/*必須*/
 
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">同儕生輔員/生活輔導員：</td>
                                                             <td class="text-left">
-                                                                <select id="dlg_manager" rel="2" class="filter search">
+                                                                <select id="dlg_manager" rel="1" class="filter search">
                                                                     <!-- <option value="">所有</option> -->
                                                                 </select>
                                                             </td>
 
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">社工員：</td>
                                                             <td class="text-left">
-                                                                <select id="social_worker" rel="3" class="filter search">
+                                                                <select id="social_worker" rel="2" class="filter search">
                                                                     <!-- <option value="">所有</option> -->
                                                                 </select>
                                                             </td>
@@ -143,11 +143,11 @@ word-break: keep-all;/*必須*/
                                                                 </th>
                                                             </tr>
                                                             <tr style="background-color:rgb(255 201 54);">
-                                                                <th>簽核狀態</th>
                                                                 <th>日期</th>
                                                                 <th>同儕生輔員/生活輔導員</th>
-                                                                <th>社工員</th>
-                                                                <th>督導</th>
+                                                                <th>社工員簽章</th>
+                                                                <th>督導簽章</th>
+                                                                <th>執行長簽章</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody id="call_view"></tbody>

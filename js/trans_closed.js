@@ -152,7 +152,8 @@ $(document).ready(function(){
             // console.log('test',data)
             for (var index in data.Id) {
                 $("#social_worker").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
-                $("#supervise").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+                $("#supervise1").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+                $("#supervise2").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
             }
         },
     });
@@ -223,7 +224,8 @@ function check_trans_closed_data()
     var closed_reason_checkbox =  $("input[name='closed_reason']:checked").length;
     var closed_reason_other = $("#closed_reason_other").val();
     var user_name = $("#social_worker").val();
-    var supervise = $("#supervise").val();
+    var supervise1 = $("#supervise1").val();
+    var supervise2 = $("#supervise2").val();
 
     var closed_result = $("#closed_result").val();
 
@@ -247,8 +249,11 @@ function check_trans_closed_data()
     if (user_name == null) {
         errorstr += "未填寫社工員!\r\n";
     }
-    if (supervise == null) {
+    if (supervise1 == null) {
         errorstr += "未填寫督導!\r\n";
+    }
+    if (supervise2 == null) {
+        errorstr += "未填寫執行長!\r\n";
     }
     if (closed_date == null) {
         errorstr += "未填寫結案日期!\r\n";
@@ -288,8 +293,11 @@ function check_trans_closed_data()
         if (user_name.replace(/\s*/g, "") == '') {
             errorstr += "未填寫社工員!\r\n";
         }
-        if (supervise.replace(/\s*/g, "") == '') {
+        if (supervise1.replace(/\s*/g, "") == '') {
             errorstr += "未填寫督導!\r\n";
+        }
+        if (supervise2.replace(/\s*/g, "") == '') {
+            errorstr += "未填寫執行長!\r\n";
         }
         if (closed_date.replace(/\s*/g, "") == '') {
             errorstr += "未填寫結案日期!\r\n";
@@ -328,7 +336,8 @@ function trans_closed_database()
             Closed_result:$("#closed_result").val(),
             Remark:$("#remark").val(),
             Assign:$("#social_worker").val(),
-            Supervise:$("#supervise").val(),
+            Supervise1:$("#supervise1").val(),
+            Supervise2:$("#supervise2").val(),
         },
 //            dataType: "JSON",
         success: function (data) {

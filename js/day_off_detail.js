@@ -363,23 +363,36 @@ signature_submit = function(this_btn) {
         src_data: src_data,
         sign_msg: $("#signature_msg").val(),
         sign_type: sign_type,
+        sign_name:$("#"+sign_type+"").val(),
       },
       async: false,
       success: function (data) {
         // console.log(data);
-        if (data) {
+        if (data == 1) 
+        {
           swal({
-            title: "送出簽名成功！",
-            type: "success",
+          title: "送出簽名成功！",
+          type: "success",
           }).then(function () {
-            location.reload();
+          location.reload();
           });
-        } else {
+        }
+        else if(data.includes("noallowsign"))
+        {
+          swal({
+              type: 'error',
+              title: '您無權限簽核此欄位',
+              text: '當前登入的帳號名稱與簽核欄位名稱不符',
+              allowOutsideClick: false //不可點背景關閉
+          });
+        }
+        else 
+        {
           swal({
             title: "生成簽名圖片失敗！請聯絡負責單位",
             type: "error",
           });
-        }
+      }
       },
     });
   } else {

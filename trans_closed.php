@@ -232,18 +232,27 @@ input[type=number] {
                                                             </tr>
                                                             <tr style="text-align:left">
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;"><i style="color:red;">※</i>社工員</td>
-                                                                <td colspan="2" style="border-bottom: solid 1px;">
-                                                                    <div class="col-sm-6">
+                                                                <td style="border-bottom: solid 1px;">
+                                                                    <div class="col-sm-10">
                                                                         <select name="social_worker" id="social_worker" style="width:100%;">
                                                                             <option value="">請選擇</option>
                                                                         </select>
                                                                     </div>
                                                                 </td>
 
-                                                                <td style="text-align:right;background-color:rgb(255 0 0);border-right-color: white;"><i style="color:red;">※</i>督導(簽核)</td>
-                                                                <td colspan="2" style="border-bottom: solid 1px;">
-                                                                    <div class="col-sm-6">
-                                                                        <select name="supervise" id="supervise" style="width:100%;">
+                                                                <td style="text-align:right;background-color:rgb(255 0 0);border-right-color: white;"><i style="color:red;">※</i>督導</td>
+                                                                <td style="border-bottom: solid 1px;">
+                                                                    <div class="col-sm-10">
+                                                                        <select name="supervise1" id="supervise1" style="width:100%;">
+                                                                            <option value="">請選擇</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </td>
+
+                                                                <td style="text-align:right;background-color:rgb(255 0 0);border-right-color: white;"><i style="color:red;">※</i>執行長</td>
+                                                                <td style="border-bottom: solid 1px;">
+                                                                    <div class="col-sm-10">
+                                                                        <select name="supervise2" id="supervise2" style="width:100%;">
                                                                             <option value="">請選擇</option>
                                                                         </select>
                                                                     </div>

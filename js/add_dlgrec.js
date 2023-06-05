@@ -54,7 +54,8 @@ $("#dlgrec_add_new").on('click',function(){
 
                 dlg_manager:$("#dlg_manager").val(),
                 social_worker:$("#social_worker").val(),
-                supervise:$("#supervise").val()
+                supervise1:$("#supervise1").val(),
+                supervise2:$("#supervise2").val()
             },
 //            dataType: "JSON",
             success: function (data) {
@@ -125,7 +126,8 @@ function append_user(){
             // console.log('test',data)
             for (var index in data.Id) {
                 $("#social_worker").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
-                $("#supervise").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+                $("#supervise1").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+                $("#supervise2").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
             }
         },
     });

@@ -23,8 +23,9 @@ $dlgrec_10 = $_POST['dlgrec_10'];
 $dlgrec_11 = $_POST['dlgrec_11'];
 
 $dlg_manager = $_POST['dlg_manager'];
-$social_worker = $_POST['social_worker'];
-$supervise = $_POST['supervise'];
+// $social_worker = $_POST['social_worker'];
+// $supervise1 = $_POST['supervise1'];
+// $supervise2 = $_POST['supervise2'];
 
 $user = $_SESSION['name'];
 
@@ -33,8 +34,14 @@ $user = $_SESSION['name'];
 $sqlUpdate ="UPDATE `dlgrec` SET `bf_num` = '$bf_num', `al_num` = '$al_num', `em_num` = '$em_num', `lp_num` = '$lp_num', `leave_num` = '$leave_num', `dlgrec_date` = '$dlgrec_date',
  `dlgrec_0` = '$dlgrec_0', `dlgrec_1` = '$dlgrec_2', `dlgrec_3` = '$dlgrec_3', `dlgrec_4` = '$dlgrec_4', `dlgrec_5` = '$dlgrec_5', `dlgrec_6` = '$dlgrec_6',
  `dlgrec_7` = '$dlgrec_7', `dlgrec_8` = '$dlgrec_8', `dlgrec_9` = '$dlgrec_9', `dlgrec_10` = '$dlgrec_10', `dlgrec_11` = '$dlgrec_11',
-  `dlg_manager` = '$dlg_manager', `social_worker` = '$social_worker', `supervise` = '$supervise',
+  `dlg_manager` = '$dlg_manager',
   `Update_name` = '$user', `Update_date` = NOW() WHERE `Id` = '$dlgrec_id' ORDER BY `dlgrec`.`Create_date` ASC LIMIT 1;";
+
+// `social_worker` = '$social_worker', `supervise1` = '$supervise1', `supervise2` = '$supervise2',
+
+// @$sqlUpdate .= "UPDATE `signature_notice` SET `Timestamp` = '$sign_closed_date', `Assign` = '$Assign', `Signer`='$Supervise', `Update_name` = '$user', `Update_date` = NOW() WHERE `Sign_id` = '$Closed_id' AND `Type` = 'closed' ORDER BY `signature_notice`.`Create_date` ASC LIMIT 1;";
+
+// if(mysqli_multi_query($conn, $sqlUpdate)){
 if(mysqli_query($conn, $sqlUpdate)){
     echo true;
 }else{

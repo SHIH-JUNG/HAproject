@@ -16,29 +16,10 @@ $.ajax({
 
         $.each(data,function(index,value){
 
-            var sign_stus = "";
-            var sign_css_str = "";
+            var supervise1_sign_arr = datatable_sign_show('supervise1', value.Supervise1, value.Supervise1_signature, value.Supervise1_sign_time, value.Supervise1_sign_msg);
 
-            if(value.Supervise_sign_msg=="")
-            {
-                sign_stus = "目前尚無留言內容";
-            }
-            else
-            {
-                sign_stus = "留言時間："+value.Supervise_sign_time+"，留言內容："+value.Supervise_sign_msg;
-            }
-            
-            if(value.Supervise_signature!="")
-            {
-                var supervise_sign_file_val = value.Supervise_signature.replace("\.\.\/signature\/", "\.\/signature\/");
-                sign_css_str += '<a src="'+supervise_sign_file_val+'" style="color:blue;display: block;" target="_blank" alt="'+sign_stus+'" data-bs-toggle="tooltip" data-bs-placement="left" title="'+sign_stus+'">督導已簽章<img style="vertical-align:middle;" class="apreview" width="25px" title="'+sign_stus+'" src="'+supervise_sign_file_val+'"></a>';
-            }
+            var supervise2_sign_arr = datatable_sign_show('supervise2', value.Supervise2, value.Supervise2_signature, value.Supervise2_sign_time, value.Supervise2_sign_msg);
 
-
-            if(sign_css_str=="")
-            {
-                sign_css_str = '<i style="color:gray;">待簽核</i>';
-            }
 
 
             // if(value.Closed_reason.includes("other"))
@@ -49,7 +30,6 @@ $.ajax({
             // {
             //     value.Closed_reason = "失去聯絡";
             // }
-            // console.log(value.Supervise)
 
 
             var closed_reason_arr = ['達到目標，已無需要在服務', '穩定就業三個月，以達到目標', '個案者死亡', '再次入監無法合作', '無意願接受服務', '失去聯絡（一個月連繫三次均聯繫不上或三個月，每月連繫三次均聯繫不上）', '轉介其他資源單位，並且已達處遇目標']
@@ -100,7 +80,14 @@ $.ajax({
                         '<td style="text-align:center">' + closed_reason + '</td>' +
                         // '<td style="text-align:center">' + value.Remark + '</td>' +
                         '<td style="text-align:center">' + value.Assign + '</td>' +
-                        '<td style="text-align:center">' + value.Supervise+sign_css_str + '</td>' +
+                        '<td style="text-align:center">' +
+                        supervise1_sign_arr[0] +
+                        supervise1_sign_arr[1] +
+                        '</td>' +
+                        '<td style="text-align:center">' +
+                        supervise2_sign_arr[0] +
+                        supervise2_sign_arr[1] +
+                        '</td>' +
                     '</tr>'
 
             sign_css_str = "";
@@ -163,6 +150,70 @@ $.ajax({
 });
 
 //endregion
+
+// 顯示簽核相關欄位 region
+function datatable_sign_show(signer_type ,signer, sign_path, sign_time, sign_msg) {
+    var sign_arr = [];
+  
+    var sign_stus = "";
+    var sign_css_str = "";
+    var type_name = "";
+  
+    switch (signer_type) {
+      case "supervise1":
+        type_name = "督導";
+        break;
+      // case "leader":
+      //   type_name = "組長";
+      //   break;
+      case "supervise2":
+        type_name = "執行長";
+        break;
+      case "job_agent":
+        type_name = "職務代理人";
+        break;
+    }
+  
+    if (sign_msg == "") {
+      sign_stus = "目前尚無留言內容";
+    } else {
+      sign_stus =
+        "留言時間：" +
+        sign_time +
+        "，留言內容：" +
+        sign_msg;
+    }
+  
+    if (sign_path != "") {
+      var supervise_sign_file_val = sign_path.replace(
+        "../signature/",
+        "./signature/"
+      );
+      sign_css_str +=
+        '<a src="' +
+        supervise_sign_file_val +
+        '" style="color:blue;display: block;" target="_blank" alt="' +
+        sign_stus +
+        '" data-bs-toggle="tooltip" data-bs-placement="left" title="' +
+        sign_stus +
+        '">'+type_name+'已簽章<img style="vertical-align:middle;" class="apreview" width="25px" title="' +
+        sign_stus +
+        '" src="' +
+        supervise_sign_file_val +
+        '"></a>';
+    }
+  
+    if (sign_css_str == "") {
+      sign_css_str = '<i style="color:gray;">待簽核</i>';
+    }
+  
+    sign_arr.push(signer);
+    sign_arr.push(sign_css_str);
+  
+    return sign_arr;
+  }
+  // endregion
+
 
 // 簽章圖片、留言、時間懸浮顯示region
 // 設定移到該img元素的parent元素，觸發懸浮框圖片效果
