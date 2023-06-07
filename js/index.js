@@ -158,6 +158,13 @@ const notyf = new Notyf();
 // });
 // //endregion  
 
+
+go_to_signature_notice = function() {
+    window.location.href = "signature_notice.php";
+}
+
+ 
+
 //新增公告region
     $("#ann_cancel").click(function(){
         $('#add_ann_m').modal('show'); 
@@ -200,6 +207,4 @@ function ann_cancel(){
     $("#ann_authority").val("1");
 }
 //endregion
-
-
 

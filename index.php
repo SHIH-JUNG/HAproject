@@ -29,7 +29,12 @@
     <title>個案管理系統</title>
     <!--行事曆自動換行-->
     <style>
-
+    /* #pop{background:#fff;width:auto; height:auto;font-size:18px;position:fixed;right:0;bottom:0;} 
+    #popHead{line-height:32px;background:#f6f0f3;border-bottom:1px solid #e0e0e0;font-size:12px; 
+    padding-left:10px;} 
+    #popHead h2{font-size:14px;color:#666;line-height:32px;height:32px;} 
+    #popHead #popClose{position:absolute;right:10px;top:1px;} 
+    #popHead a#popClose:hover{color:#f00;cursor:pointer;}  */
     </style>
 </head>
 <!--<SVG>引入bootstrap icon-->
@@ -194,7 +199,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div style="zoom:80%" class="row text-center">
+                    <div style="zoom:80%" class="row text-center">
                         <div class="col-sm-12">
                             <div class="panel panel-default card-view">
                                 <div class="panel-wrapper collapse in">
@@ -202,32 +207,18 @@
                                         <div class="table-wrap">
                                             <div class="table-responsive">
                                                 <div class="text-center">簽核</div>
-                                                <table style="font-size:15px;font-family:新細明體;" class="text-center table-hover table-striped table-sm" data-toggle="table" data- data-page-size=5 data-search="false" data-pagination="true" data-pagination-parts="[pageList]">
-                                                    <thead>
-                                                        <tr>
-                                                            <th data-width="50" data-width-unit="%">標題</th>
-                                                            <th data-width="15" data-width-unit="%">日期</th>
-                                                            <th data-width="10" data-width-unit="%">承辦人員</th>
-                                                            <th data-width="10" data-width-unit="%">簽核主管</th>
-                                                            <th data-width="10" data-width-unit="%">狀態</th>
-                                                            <th data-width="5" data-width-unit="%"></th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody id="sign_notice"></tbody>
-                                                </table>
-                                                <br>
-                                                <button style="font-size:15px" id="visit_add" class="btn btn-default"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                <button style="font-size:15px" onclick="go_to_signature_notice();" class="btn btn-warning"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                         <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
                                                         <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z" />
                                                         <path fill-rule="evenodd" d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5z" />
-                                                    </svg>新增</button>
+                                                    </svg>查看簽核詳細資料</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div> -->
+                    </div>
                     <div class="col-md-12">
                         <div class="panel panel-default card-view">
                             <div class="panel-wrapper collapse in">
@@ -400,6 +391,19 @@
             <!--/浮動視窗(add_ann)-->
         </div>
     </div>
+
+    <!-- <div id="pop" style="display:block;"> 
+        <div id="popHead"> 
+            <h2>簽核提醒</h2> 
+        </div> 
+        <div id="popContent"> 
+            <button style="font-size:15px" onclick="go_to_signature_notice();" class="btn btn-danger"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
+                <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z" />
+                <path fill-rule="evenodd" d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5z" />
+            </svg>查看簽核詳細資料</button>
+        </div> 
+    </div>  -->
     <!-- /#wrapper -->
     <!-- JavaScript -->
     <!-- Bootstrap and jQuery -->
