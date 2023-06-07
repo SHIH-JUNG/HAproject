@@ -5,7 +5,7 @@ include("sql_connect.php");
 $user = $_SESSION['name'];
 
 //region 抓資料
-$note = "SELECT * FROM `signature_notice` WHERE `Assign`='$user' OR `Signer`='$user' ORDER BY `signature_notice`.`Id` DESC;";
+$note = "SELECT * FROM `signature_notice` WHERE `Assign`='$user' OR `Signer` LIKE '%$user%' ORDER BY `signature_notice`.`Id` DESC;";
 
 //宣告空的陣列
 $datas = array();
