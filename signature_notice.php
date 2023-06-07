@@ -29,7 +29,42 @@
     <title>個案管理系統</title>
     <!--行事曆自動換行-->
     <style>
+        table {
+                margin-left: auto;
+                margin-right: auto;
+            }
 
+            .scr_container {
+                width: 100%;
+                overflow: auto;
+                margin: 0 auto;
+            }
+
+            .NOline {
+                word-break: keep-all;
+                /*必須*/
+            }
+
+            /*隱藏input number上下箭頭*/
+            /* Chrome, Safari, Edge, Opera */
+            input::-webkit-outer-spin-button,
+            input::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+
+            /* Firefox */
+            input[type=number] {
+                -moz-appearance: textfield;
+            }
+
+            /*隱藏input number上下箭頭/*/
+
+
+            .panel-body.scr_container {
+                padding: 0;
+                padding-top: 15px;
+            }
     </style>
 </head>
 <!--<SVG>引入bootstrap icon-->
@@ -80,21 +115,13 @@
                                         <div class="table-wrap">
                                             <div class="table-responsive">
                                                 <div class="text-center">簽核</div>
-                                                <table style="font-size:15px;font-family:新細明體;" class="text-center table-hover table-striped table-sm" data-toggle="table" data- data-page-size=5 data-search="false" data-pagination="true" data-pagination-parts="[pageList]">
-                                                    <thead>
-                                                        <tr>
-                                                            <th data-width="50" data-width-unit="%">標題</th>
-                                                            <th data-width="15" data-width-unit="%">日期</th>
-                                                            <th data-width="10" data-width-unit="%">承辦人員</th>
-                                                            <th data-width="10" data-width-unit="%">簽核主管</th>
-                                                            <th data-width="10" data-width-unit="%">狀態</th>
-                                                            <th data-width="5" data-width-unit="%"></th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody id="sign_notice"></tbody>
-                                                </table>
+                                                <br/>
+                                                <div class="text-center">※<span style="color:blue;">當前使用者</span>的<span style="color:blue;">簽核狀態</span>若已簽核用<span style="color:#90ee90;">綠色</span>、未簽核用<span style="color:#FF9797;">紅色</span>、非需簽核者用白色背景提示。</div>
+                                                <br/>
+                                                <div class="panel-group" id="accordion_panel" role="tablist" aria-multiselectable="true">
+                                                    
+                                                </div>
                                             </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -110,56 +137,87 @@
                             <div class="panel panel-default card-view">
                                 <div class="panel-wrapper collapse in">
                                     <div class="panel-body">
-                                        <div class="table-wrap">
-                                            <div class="table-responsive">
-                                                <div class="text-center">簽核</div>
-                                                <br/>
-                                                <!-- <div class="text-center">※<span style="color:blue;">當前使用者</span>的<span style="color:blue;">簽核狀態</span>若已簽核用<span style="color:#90ee90;">綠色</span>、未簽核用<span style="color:#FF9797;">紅色</span>、非需簽核者用白色背景提示。</div> -->
-                                                <br/>
-                                                <div class="panel-group" id="accordion_panel" role="tablist" aria-multiselectable="true">
-                                                    <!-- <div class="panel panel-warning" style="padding-bottom: .5em;">
-                                                        <div class="panel-heading" role="tab" id="headingOne">
-                                                        <h4 class="panel-title">
-                                                            <a role="button" data-toggle="collapse" data-parent="#accordion_panel" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                            Collapsible Group Item #1
+                                        <div class="row">
+                                            <div class="col-sm-12 col-xs-12">
+                                                <div class="col-sm-12">
+                                                    <ul style="font-size:17px" class="nav nav-tabs" id="myTab" role="tablist">
+                                                        <li class="nav-item active" role="presentation">
+                                                            <a class="nav-link" id="home-tab" data-toggle="pill" href="#one" role="tab" aria-selected="true">
+                                                                <b>未簽核表單</b>
                                                             </a>
-                                                        </h4>
+                                                        </li>
+                                                        <li class="nav-item" role="presentation">
+                                                            <a class="nav-link" id="profile-tab" data-toggle="pill" href="#two" role="tab" aria-selected="false">
+                                                                <b>已簽核表單</b>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="tab-content" id="myTabContent">
+                                                        <div class="tab-pane fade in active" id="one" role="tabpanel" aria-labelledby="home-tab">
+                                                            <div class="accordion" id="accordionExample1">
+                                                                <div class="panel panel-default">
+                                                                    <div class="panel-heading" id="headingOne">
+                                                                        <h2 class="mb-0">
+                                                                            <button class="btn btn-link btn-block collapsed" type="button" data-toggle="collapse" data-parent="#myTabContent" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                                                                <span style="color:black;font-size:17px">未簽核表單</span>
+                                                                            </button>
+                                                                        </h2>
+                                                                    </div>
+                                                                    <div id="collapseOne" class="collapse in" aria-labelledby="headingOne" data-parent="#accordionExample1">
+                                                                        <div class="panel-body scr_container">
+                                                                            
+                                                                            <div class="table-wrap">
+                                                                                <div class="table-responsive">
+                                                                                    <!-- <div class="text-center">簽核</div>
+                                                                                    <br/> -->
+                                                                                    <div class="text-center">※<span style="color:blue;">當前使用者</span>的<span style="color:blue;">簽核狀態</span>若已簽核用<span style="color:#90ee90;">綠色</span>、未簽核用<span style="color:#FF9797;">紅色</span>、非需簽核者用白色背景提示。</div>
+                                                                                    <br/>
+                                                                                    <div class="panel-group" id="accordion_panel_1" role="tablist" aria-multiselectable="true">
+                                                                                        
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                                                        <div class="panel-body">
-                                                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                                                        </div>
+                                                        <div class="tab-pane fade" id="two" role="tabpanel" aria-labelledby="profile-tab">
+                                                            <div class="accordion" id="accordionExample2">
+                                                                <div class="panel panel-default">
+                                                                    <div class="panel-heading" id="headingTwo">
+                                                                        <h2 class="mb-0">
+                                                                            <button class="btn btn-link btn-block collapsed" type="button" data-toggle="collapse" data-parent="#myTabContent" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                                                <span style="color:black;font-size:17px">已簽核表單</span>
+                                                                            </button>
+                                                                        </h2>
+                                                                    </div>
+                                                                    <div id="collapseTwo" class="collapse in" aria-labelledby="headingTwo" data-parent="#accordionExample2">
+                                                                        <div class="panel-body scr_container">
+                                                                             
+                                                                            <div class="table-wrap">
+                                                                                <div class="table-responsive">
+                                                                                    <!-- <div class="text-center">簽核</div>
+                                                                                    <br/> -->
+                                                                                    <div class="text-center">※<span style="color:blue;">當前使用者</span>的<span style="color:blue;">簽核狀態</span>若已簽核用<span style="color:#90ee90;">綠色</span>、未簽核用<span style="color:#FF9797;">紅色</span>、非需簽核者用白色背景提示。</div>
+                                                                                    <br/>
+                                                                                    <div class="panel-group" id="accordion_panel_2" role="tablist" aria-multiselectable="true">
+                                                                                        
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                             
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                    <div class="panel panel-warning" style="padding-bottom: .5em;">
-                                                        <div class="panel-heading" role="tab" id="headingTwo">
-                                                        <h4 class="panel-title">
-                                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion_panel" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                                            Collapsible Group Item #2
-                                                            </a>
-                                                        </h4>
-                                                        </div>
-                                                        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                                                        <div class="panel-body">
-                                                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                                                        </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="panel panel-warning" style="padding-bottom: .5em;">
-                                                        <div class="panel-heading" role="tab" id="headingThree">
-                                                        <h4 class="panel-title">
-                                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion_panel" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                                            Collapsible Group Item #3
-                                                            </a>
-                                                        </h4>
-                                                        </div>
-                                                        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                                                        <div class="panel-body">
-                                                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                                                        </div>
-                                                        </div>
-                                                    </div> -->
                                                 </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
