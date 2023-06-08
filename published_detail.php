@@ -181,11 +181,6 @@
                                                                                 </td>
                                                                             </tr>
 
-                                                                            <!-- <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>創建日期</td>
-                                                                                <td style="border-bottom: solid 1px;"><input id="create_date" class="pu_question" name="ch_datepicker" type="text"></td>
-                                                                            </tr> -->
-
                                                                             <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>承辦人員</td>
                                                                                 <td style="border-bottom: solid 1px;"><input id="create_name" class="pu_question" type="text"></td>
@@ -199,31 +194,14 @@
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">更新者</td>
                                                                                 <td style="border-bottom: solid 1px;"><input id="update_name" class="pu_question" type="text"></td>
                                                                             </tr>
-
-                                                                            <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline">
-                                                                                    <label>督導簽章</label>
-                                                                                </td>
-                                                                                <td style="">
-                                                                                    <div class="col-sm-3" style="margin-top: 0.6em;">
-                                                                                        <select class="re_question" id="supervise" style="width:100%;">
-                                                                                                <option value="">請選擇</option>
-                                                                                        </select>
-                                                                                    </div>
-                                                                                    <div class="col-sm-9">
-                                                                                        <button style="margin:.5em;margin-right:3em;color:red;" type="button" onclick="signature_btn_click('supervise');">簽名</button>
-                                                                                        <button style="margin:.5em;" type="button" onclick="sign_msg_model('supervise');" data-toggle="modal" data-target="#myModal">查看留言</button>
-                                                                                        <a src="" id="supervise_signature_simg" style="color:blue;" target="_blank" alt="簽名圖片連結"></a>
-                                                                                    </div>   
-                                                                                </td>
-                                                                            </tr>
+                                                                            
                                                                             <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline">
                                                                                     <label>組長簽章</label>
                                                                                 </td>
                                                                                 <td style="">
                                                                                     <div class="col-sm-3" style="margin-top: 0.6em;">
-                                                                                        <select class="re_question" id="leader" style="width:100%;">
+                                                                                        <select class="pu_question" id="leader" style="width:100%;">
                                                                                                 <option value="">請選擇</option>
                                                                                         </select>
                                                                                     </div>
@@ -240,7 +218,7 @@
                                                                                 </td>
                                                                                 <td style="">
                                                                                     <div class="col-sm-3" style="margin-top: 0.6em;">
-                                                                                        <select class="re_question" id="director" style="width:100%;">
+                                                                                        <select class="pu_question" id="director" style="width:100%;">
                                                                                                 <option value="">請選擇</option>
                                                                                         </select>
                                                                                     </div>

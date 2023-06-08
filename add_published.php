@@ -116,24 +116,52 @@
 
                                                             <tr style="text-align:left">
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>發文標題</td>
-                                                                <td style="border-bottom: solid 1px;"><input id="title_name" class="pu_question" type="text"></td>
+                                                                <td style="border-bottom: solid 1px;"><input id="title_name" type="text"></td>
                                                             </tr>
                                                             <tr style="text-align:left">
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>發文日期</td>
-                                                                <td style="border-bottom: solid 1px;"><input id="published_date" class="pu_question" name="ch_datepicker" type="text"></td>
+                                                                <td style="border-bottom: solid 1px;"><input id="published_date" name="ch_datepicker" type="text"></td>
                                                             </tr>
                                                             <tr style="text-align:left">
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>主旨</td>
-                                                                <td style="border-bottom: solid 1px;"><input id="subject" class="pu_question" type="text"></td>
-                                                            </tr>
-                                                            <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>受文單位</td>
-                                                                <td style="border-bottom: solid 1px;"><input id="unit" class="pu_question" type="text"></td>
+                                                                <td style="border-bottom: solid 1px;"><input id="subject" type="text"></td>
                                                             </tr>
                                                             <tr style="text-align:left">
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>發文字號</td>
-                                                                <td style="border-bottom: solid 1px;"><input id="num_publish" class="pu_question" type="text"></td>
+                                                                <td style="border-bottom: solid 1px;"><input id="num_publish" type="text"></td>
                                                             </tr>
+                                                            <tr style="text-align:left">
+                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">檔案上傳</td>
+                                                                    <td style="border-bottom: solid 1px;">
+                                                                        <div class="col-sm-8">
+                                                                            <div class="text-left">
+                                                                                <input name="published_file" type="file" class="form-control" />
+                                                                                <br>
+                                                                                <div id="published_file"></div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                            </tr>
+                                                            <tr style="text-align:left">
+                                                                    <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>組長(簽核)</td>
+                                                                    <td style="border-bottom: solid 1px;">
+                                                                        <div class="col-sm-6">
+                                                                            <select name="leader" id="leader" style="width:100%;">
+                                                                                <option value="">請選擇</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr style="text-align:left">
+                                                                    <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>主管(簽核)</td>
+                                                                    <td style="border-bottom: solid 1px;">
+                                                                        <div class="col-sm-6">
+                                                                            <select name="director" id="director" style="width:100%;">
+                                                                                <option value="">請選擇</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
 
                                                         </table>
                                                     </div>

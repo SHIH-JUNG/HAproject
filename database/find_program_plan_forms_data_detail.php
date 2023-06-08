@@ -4,7 +4,7 @@ include("sql_connect.php");
 $program_id = $_POST['program_id'];
 
 //region 抓資料
-$note = "SELECT * FROM `program_plan_form` WHERE `program_id` = '$program_id' ORDER BY `program_plan_form`.`Id` ASC;";
+$note = "SELECT * FROM `program_plan_form`;";
 // $note = "SELECT * FROM `supervisor_record` ORDER BY `supervisor_record`.`Id` DESC;";
 
 //宣告空的陣列

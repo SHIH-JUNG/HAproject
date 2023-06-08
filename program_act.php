@@ -99,13 +99,6 @@
                                                     <table style="font-size:20px;font-family:微軟正黑體;width:100%" class="table table-bordered NOline">
                                                         <tr>
 
-                                                            <!-- <td class="text-right" style="background-color:rgb(255 201 54)">年分：</td>
-                                                            <td class="text-left">
-                                                                <select id="year" rel="0" class="filter search"> -->
-                                                                    <!-- <option value="">所有</option> -->
-                                                                <!-- </select>
-                                                            </td> -->
-
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">日期：</td>
                                                             <td class="text-left">
                                                             <input id="min_date" name="date" datepicker="ch_datepicker" class="" type="text" placeholder="計畫日期搜尋">
@@ -114,10 +107,10 @@
                                                             </td>
 
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">活動名稱：</td>
-                                                            <td class="text-left"><input id="unit" rel="1" name="activity_name" class="filter search" style="width:150px;" type="text" placeholder="活動名稱"></td>
+                                                            <td class="text-left"><input id="activity_name" rel="1" name="activity_name" class="filter search" style="width:150px;" type="text" placeholder="活動名稱"></td>
 
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">活動類別：</td>
-                                                            <td class="text-left"><input id="unit" rel="1" name="activity_category" class="filter search" style="width:150px;" type="text" placeholder="活動類別"></td>
+                                                            <td class="text-left"><input id="activity_category" rel="1" name="activity_category" class="filter search" style="width:150px;" type="text" placeholder="活動類別"></td>
 
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">對象：</td>
                                                             <td class="text-left">
@@ -130,11 +123,7 @@
                                                             </td>
 
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">地點：</td>
-                                                            <td class="text-left">
-                                                                <select id="location" rel="4" class="filter search">
-                                                                    <!-- <option value="">所有</option> -->
-                                                                </select>
-                                                            </td>
+                                                            <td class="text-left"><input id="location" rel="4" name="location" class="filter search" style="width:150px;" type="text" placeholder="地點"></td>
                                                         </tr>
 
                                                         <tr>

@@ -129,7 +129,6 @@ $.ajax({
   success: function (data) {
       // console.log('test',data)
       for (var index in data.Id) {
-          $("#supervise").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
           $("#leader").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
           $("#director").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
       }
@@ -139,7 +138,6 @@ $.ajax({
 pu_id = getUrlVars()["pu_id"];
 pu_year = getUrlVars()["year"];
 
-supervise_msg_arr = [];
 leader_msg_arr = [];
 director_msg_arr = [];
 
@@ -179,31 +177,6 @@ $(document).ready(function () {
         +'</a><br/><br/>';
 
         $("#upload").html(a_element_content);
-        
-        var supervise_sign_file_val = value.Supervise_signature.replace(
-          "../signature/",
-          ""
-        );
-
-        $("#supervise").val(value.Supervise);
-
-        $("#supervise_signature_simg").text("點擊顯示簽名圖片");
-        
-        if(supervise_sign_file_val=="")
-        {
-          $("#supervise_signature_simg").attr("onclick", "javascript:swal({title: '未簽名',type: 'error',}); return false;")
-        }
-        else
-        {
-          $("#supervise_signature_simg").attr(
-            "href",
-            "./signature/" + supervise_sign_file_val
-          );
-        }
-        
-
-        supervise_msg_arr.push(value.Supervise_sign_msg);
-        supervise_msg_arr.push(value.Supervise_sign_time);
 
 
         var leader_sign_file_val = value.Leader_signature.replace(
@@ -302,14 +275,8 @@ sign_msg_model = function (sign_type_name) {
   });
 
   // console.log(social_worker_msg_arr)
-  // console.log(supervise_msg_arr)
 
   switch (sign_type_name) {
-    case "supervise":
-      var type_name = "督導";
-      $(".sign_msg").text(supervise_msg_arr[0]);
-      $(".sign_msg_time").val(supervise_msg_arr[1]);
-      break;
     case "leader":
       var type_name = "組長";
       $(".sign_msg").text(leader_msg_arr[0]);
@@ -410,10 +377,6 @@ signature_btn_click = function(sign_board_name) {
   var type_name = "";
 
   switch (sign_board_name) {
-    case "supervise":
-      type_name = "督導";
-      break;
-
     case "leader":
       type_name = "組長";
       
@@ -636,13 +599,13 @@ function check_updat_published_data() {
     errorstr += "未填寫發文標題!\r\n";
   }
   if (published_date == null) {
-    errorstr += "未填寫來文日期!\r\n";
+    errorstr += "未填寫發文日期!\r\n";
   }
   if (subject == null) {
     errorstr += "未填寫主旨!\r\n";
   }
   if (num_publish == null) {
-    errorstr += "未填寫來文字號!\r\n";
+    errorstr += "未填寫發文字號!\r\n";
   }
 
   return errorstr;

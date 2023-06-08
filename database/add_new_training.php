@@ -5,8 +5,8 @@ session_start();
 include("sql_connect.php");
 $Name = $_POST['Name'];
 $Training_date = $_POST['Training_date'];
-$On_or_off = $_POST['On_or_off'];
 $Training_name = $_POST['Training_name'];
+$Hours = $_POST['Hours'];
 $Place = $_POST['Place'];
 $Remark = $_POST['Remark'];
 
@@ -15,8 +15,8 @@ $Remark = $_POST['Remark'];
 $user = $_SESSION['name'];
 
 
-$sql = "INSERT INTO `training` (`Name`,`Training_date`,`On_or_off`,`Training_name`,`Place`,`Remark`,`Create_date`,`Create_name`) VALUES
- ('$Name','$Training_date','$On_or_off','$Training_name','$Place','$Remark',Now(),'$user');";
+$sql = "INSERT INTO `training` (`Name`,`Training_date`,`Training_name`,`Hours`,`Place`,`Remark`,`Create_date`,`Create_name`) VALUES
+ ('$Name','$Training_date','$Training_name','$Hours','$Place','$Remark',Now(),'$user');";
 if (mysqli_query($conn, $sql)) {
     echo true;
 } else {

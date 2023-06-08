@@ -6,7 +6,7 @@ $program_id = $_POST['program_id'];
 
 //region 抓資料
 // $note = "SELECT * FROM `volunteer` WHERE `Id` = '$program_id' AND `Year` = '$year' ORDER BY `volunteer`.`Id` ASC;";
-$note = "SELECT * FROM `program_plan` WHERE `Id` = '$program_id' ORDER BY `program_plan`.`Id` ASC;";
+$note = "SELECT * FROM `program_plan`;";
 
 //宣告空的陣列
 $datas = array();

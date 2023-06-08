@@ -117,17 +117,17 @@ function submit_form() {
   });
 
   var form_data = new FormData();
-
-  var year = publishd_date_year_split[0];
+  var published_date_year_split = $("#published_date").val().split(".");
+  var year = published_date_year_split[0];
 
   $("input[type='file']").each(function(index, element) {
-      var publishd_file = $(this).prop("files");
+      var published_file = $(this).prop("files");
 
-      if (publishd_file != undefined) {
-        if (publishd_file.length != 0) {
-          for (var i = 0; i < publishd_file.length; i++) {
-            form_data.append("publishd_file"+index, publishd_file[i]);
-            // console.log(publishd_file[i])
+      if (published_file != undefined) {
+        if (published_file.length != 0) {
+          for (var i = 0; i < published_file.length; i++) {
+            form_data.append("published_file"+index, published_file[i]);
+            // console.log(published_file[i])
           }
         } 
       }
@@ -135,15 +135,14 @@ function submit_form() {
 
   form_data.append("Year", year);
   form_data.append("Title_name", $("#title_name").val());
-  form_data.append("Publishd_date", $("#publishd_date").val());
+  form_data.append("Published_date", $("#published_date").val());
   form_data.append("Subject",$("#subject").val());
   form_data.append("Num_publish",$("#num_publish").val());
 
 
-  form_data.append("Sign_publishd_date", trans_to_EN($("#publishd_date").val()));
-  form_data.append("Supervise",$("#Supervise").val());
-  form_data.append("Leader",$("#Leader").val());
-  form_data.append("Director",$("#Director").val());
+  form_data.append("Sign_published_date", trans_to_EN($("#published_date").val()));
+  form_data.append("Leader",$("#leader").val());
+  form_data.append("Director",$("#director").val());
 
   // 預覽傳到後端的資料詳細內容
   // for (var pair of form_data.entries()) {
@@ -152,7 +151,7 @@ function submit_form() {
 
 
   $.ajax({
-      url: "database/add_new_publishd.php",
+      url: "database/add_new_published.php",
       type: "POST",
       data: form_data,
       contentType: false,
@@ -168,7 +167,7 @@ function submit_form() {
             allowOutsideClick: false, //不可點背景關閉
           }).then(function () {
             window.location.href =
-              "publishd.php?year=" + year;
+              "published.php?year=" + year;
           });
         } else {
           swal({
@@ -190,69 +189,66 @@ function submit_form() {
 }
 
 
-//新增發文紀錄region
-// $("#pu_add_new").on("click", function () {
-//   var stau = false;
+// //新增來文紀錄region
+$("#pu_add_new").on("click", function () {
+   
+  //判斷該量表是否含有 input[type="file"] 類型資料
+  if ($('input[type="file"]').length != 0) {
+    var exist_arr = check_file_exist();
 
-//   var published_date_year_split = $("#published_date").val().split(".");
+    // console.log(exist_arr);
+    //如果上傳的檔案檔名重複則提示使用者
+    if (exist_arr.length != 0) {
+      // console.log(exist_arr[0][1]);
+      swal({
+        title: exist_arr[0][1],
+        text: "選擇『確認送出』覆蓋現有檔案，或是按『取消』更改檔名",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "確認送出",
+        cancelButtonText: "取消",
+        showConfirmButton: true,
+        showCancelButton: true,
+      })
+        .then(
+          function (result) {
+            if (result) {
+              submit_form();
+            }
+          },
+          function (dismiss) {
+            if (dismiss == "cancel") {
+              swal({
+                title: "已取消，建議請更改檔名",
+                type: "success",
+              });
+            }
+          }
+        )
+        .catch(swal.noop);
+    } else {
+      var stau = false;
 
-//   if (check_add_published_data() != "") {
-//     stau = false;
-//   } else {
-//     stau = true;
-//   }
-//   console.log(stau);
+      if (check_null_data() != "以下為必填欄位，不能為空值!\r\n") {
+        stau = false;
+      } else {
+        stau = true;
+      }
 
-//   if (!stau) {
-//     swal({
-//       title: check_add_published_data(),
-//       type: "error",
-//     });
-//   } else {
-//     $.ajax({
-//       url: "database/add_new_published.php",
-//       type: "POST",
-//       data: {
-//         // Id: $("#id").val(),
-//         Year: published_date_year_split[0],
-//         Title_name: $("#title_name").val(),
-//         Published_date: trans_to_EN($("#published_date").val()),
-//         Subject: $("#subject").val(),
-//         Unit: $("#unit").val(),
-//         Num_publish: $("#num_publish").val(),
-//         // Create_date: trans_to_EN($("#create_date").val()),
-//         // Create_name: $("#create_name").val(),
-//         // Update_date: trans_to_EN($("#update_date").val()),
-//         // Update_name: $("#update_name").val(),
-//       },
-//       //            dataType: "JSON",
-//       success: function (data) {
-//         console.log(data);
-//         if (data == 1) {
-//           swal({
-//             type: "success",
-//             title: "新增成功!",
-//             allowOutsideClick: false, //不可點背景關閉
-//           }).then(function () {
-//             window.location.replace("published_yearlist.php");
-//           });
-//         } else {
-//           swal({
-//             type: "error",
-//             title: "新增失敗!請聯絡負責人",
-//             allowOutsideClick: false, //不可點背景關閉
-//           }).then(function () {
-//             window.location.replace("published_yearlist.php");
-//           });
-//         }
-//       },
-//       error: function (e) {
-//         alert("系統錯誤!");
-//         console.log(e);
-//       },
-//     });
-//   }
-// });
+      if (!stau) {
+        swal({
+          title: check_null_data(),
+          type: "error",
+        });
+      } else {
+        submit_form();
+      }
+    }
+  } else {
+    return false;
+  }
+});
 //endregion
 
 //檢查發文紀錄的必填欄位region
@@ -296,28 +292,97 @@ function check_add_published_data() {
 }
 //endregion
 
-// // 呼叫user方法region
-// $.ajax({
-//   type: "POST",
-//   url: "database/find_check_user.php",
-//   dataType: "JSON",
-//   async: false, //啟用同步請求
-//   success: function (data) {
-//     for (var index in data.Id) {
-//       $(".user").append(
-//         '<option value="' +
-//           data.Name[index] +
-//           '">' +
-//           data.Name[index] +
-//           "</option>"
-//       );
-//     }
-//   },
-//   error: function (e) {
-//     console.log(e);
-//   },
-// });
+//檢查必填欄位 region
+function check_null_data() {
+  var errorstr = "以下為必填欄位，不能為空值!\r\n";
 
+  $(".fillin_need").each(function(index,element){
+
+    var check_element = $(this).parent("td").siblings("td").children()[0];
+    var check_element_name = $(this).parent("td").text();
+
+    console.log($(check_element))
+    console.log($(check_element).val())
+
+    var check_element_tagname = $(check_element).prop("tagName");
+    var check_element_type = $(check_element).attr("type");
+
+    if(check_element_tagname == "INPUT" && check_element_type=="file")
+    {
+      var file_len = $(check_element).prop("files").length;
+
+      if(file_len == 0)
+      {
+        errorstr += check_element_name.replace("※", "") + "\r\n";
+      }
+    }
+    else if(check_element_tagname == "INPUT" && check_element_type=="radio")
+    {
+      var check_element_children_name = $(this).parent("td").siblings("td").children().attr("name");
+
+      if($('[name="'+check_element_children_name+'"]:checked').length==0)
+      {
+        errorstr += check_element_name.replace("※", "") + "\r\n";
+      }
+    }
+    else
+    {
+      if($(check_element).val() == null || $(check_element).val().replace(/\s*/g, "") == "")
+      {
+        errorstr += check_element_name.replace("※", "") + "\r\n";
+      }
+    }    
+  });
+
+  return errorstr;
+}
+//endregion
+
+//檢查檔名是否重複，提示使用者region
+function check_file_exist() {
+  var check_file_value = $('input[type="file"]').prop("files");
+  var warning_str = "";
+  var file_arr = [];
+  var file_n = "";
+  var exist_info = [];
+
+  for (var i = 0; i < check_file_value.length; i++) {
+    file_arr.push(check_file_value[i]["name"]);
+  }
+  $.each(file_arr, function (index, value) {
+    $.ajax({
+      url: "database/published_file_check.php",
+      data: {
+        file_name: value,
+      },
+      type: "POST",
+      dataType: "JSON",
+      async: false,
+      success: function (data) {
+        //  console.log(data)
+        if (data != "") {
+          $.each(data, function (index, value) {
+            file_n = data[index].file_path.replace(
+              "../published/",
+              ""
+            );
+
+            warning_str += "已有重複檔案名稱：\n" + file_n;
+
+            exist_info.push([file_n, warning_str]);
+          });
+        } else {
+          warning_str = "";
+        }
+      },
+      error: function (e) {
+        console.log(e);
+        notyf.alert('伺服器錯誤,無法載入');
+      },
+    });
+  });
+  return exist_info;
+}
 //endregion
 
 //呼叫user方法region
@@ -330,7 +395,6 @@ function append_user(){
       success: function (data) {
           // console.log('test',data)
           for (var index in data.Id) {
-            $("#supervise").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
             $("#leader").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
             $("#director").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
           }

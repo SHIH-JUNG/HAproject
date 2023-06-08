@@ -129,9 +129,11 @@ $.ajax({
   success: function (data) {
       // console.log('test',data)
       for (var index in data.Id) {
+          $("#executive").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
           $("#supervise").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
           $("#leader").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
           $("#director").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+          $("#distribution").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
       }
   },
 });
@@ -139,9 +141,11 @@ $.ajax({
 re_id = getUrlVars()["re_id"];
 re_year = getUrlVars()["year"];
 
+executive_msg_arr = [];
 supervise_msg_arr = [];
 leader_msg_arr = [];
 director_msg_arr = [];
+distribution_msg_arr = [];
 
 //抓發文表region
 $(document).ready(function () {  
@@ -176,22 +180,41 @@ $(document).ready(function () {
         var received_file_path = value.Upload_path.replace("../", "./");
         received_file_name = value.Upload_name;
 
-        var received_cert_path = value.Upload_cert_path.replace("../", "./");
-        received_cert_name = value.Upload_cert_name;
-
         var a_element_content = '<a href="'+received_file_path+'" style="text-decoration:none;color:blue;" target="_blank">'
         +received_file_name
         +'</a><br/><br/>';
 
-        var b_element_content = '<a href="'+received_cert_path+'" style="text-decoration:none;color:blue;" target="_blank">'
-        +received_cert_name
-        +'</a><br/><br/>';
-
 
         $("#upload").html(a_element_content);
-        $("#upload_cert").html(b_element_content);
+        // $("#upload_cert").html(b_element_content);
 
        
+
+        var executive_sign_file_val = value.Executive_signature.replace(
+          "../signature/",
+          ""
+        );
+
+        $("#executive").val(value.Executive);
+
+        $("#executive_signature_simg").text("點擊顯示簽名圖片");
+        
+        if(executive_sign_file_val=="")
+        {
+          $("#executive_signature_simg").attr("onclick", "javascript:swal({title: '未簽名',type: 'error',}); return false;")
+        }
+        else
+        {
+          $("#executive_signature_simg").attr(
+            "href",
+            "./signature/" + executive_sign_file_val
+          );
+        }
+        
+
+        executive_msg_arr.push(value.Executive_sign_msg);
+        executive_msg_arr.push(value.Executive_sign_time);
+
 
         var supervise_sign_file_val = value.Supervise_signature.replace(
           "../signature/",
@@ -269,6 +292,31 @@ $(document).ready(function () {
 
         director_msg_arr.push(value.Director_sign_msg);
         director_msg_arr.push(value.Director_sign_time);
+
+        var distribution_sign_file_val = value.Distribution_signature.replace(
+          "../signature/",
+          ""
+        );
+
+        $("#distribution").val(value.Distribution);
+
+        $("#distribution_signature_simg").text("點擊顯示簽名圖片");
+        
+        if(distribution_sign_file_val=="")
+        {
+          $("#distribution_signature_simg").attr("onclick", "javascript:swal({title: '未簽名',type: 'error',}); return false;")
+        }
+        else
+        {
+          $("#distribution_signature_simg").attr(
+            "href",
+            "./signature/" + distribution_sign_file_val
+          );
+        }
+        
+
+        distribution_msg_arr.push(value.Distribution_sign_msg);
+        distribution_msg_arr.push(value.Distribution_sign_time);
        
       });
     },
@@ -311,22 +359,34 @@ sign_msg_model = function (sign_type_name) {
 
 
   switch (sign_type_name) {
+    case "executive":
+      var type_name = "理事長";
+      $(".sign_msg").text(executive_msg_arr[0]);
+      $(".sign_msg_time").val(executive_msg_arr[1]);
+      break;
+
     case "supervise":
-      var type_name = "督導";
+      var type_name = "主管";
       $(".sign_msg").text(supervise_msg_arr[0]);
       $(".sign_msg_time").val(supervise_msg_arr[1]);
       break;
 
     case "leader":
-      var type_name = "組長";
+      var type_name = "執行長";
       $(".sign_msg").text(leader_msg_arr[0]);
       $(".sign_msg_time").val(leader_msg_arr[1]);
       break;
     case "director":
-      var type_name = "主管";
+      var type_name = "組長";
       $(".sign_msg").text(director_msg_arr[0]);
       $(".sign_msg_time").val(director_msg_arr[1]);
       break;
+
+    case "distribution":
+        var type_name = "發派";
+        $(".sign_msg").text(distribution_msg_arr[0]);
+        $(".sign_msg_time").val(distribution_msg_arr[1]);
+        break;
   }
 
   $(".sign_msg_td_name").text(type_name + "簽名留言內容");

@@ -116,7 +116,7 @@
                                                                 <!-- <tr style="text-align:left">
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>年分</td>
                                                                 <td style="border-bottom: solid 1px;"><input id="year" type="text"></td>
-                                                            </tr> -->
+                                                                </tr> -->
                                                                 <tr style="text-align:left">
                                                                     <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>收文標題</td>
                                                                     <td style="border-bottom: solid 1px;"><input id="title_name" type="text"></td>
@@ -149,20 +149,20 @@
                                                                         </div>
                                                                     </td>
                                                                 </tr>
+
                                                                 <tr style="text-align:left">
-                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">證書上傳</td>
+                                                                    <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>理事長(簽核)</td>
                                                                     <td style="border-bottom: solid 1px;">
-                                                                        <div class="col-sm-8">
-                                                                            <div class="text-left">
-                                                                                <input name="received_cert" type="file" class="form-control" />
-                                                                                <br>
-                                                                                <div id="received_cert"></div>
-                                                                            </div>
+                                                                        <div class="col-sm-6">
+                                                                            <select name="executive" id="executive" style="width:100%;">
+                                                                                <option value="">請選擇</option>
+                                                                            </select>
                                                                         </div>
                                                                     </td>
                                                                 </tr>
+
                                                                 <tr style="text-align:left">
-                                                                    <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>督導(簽核)</td>
+                                                                    <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>主管(簽核)</td>
                                                                     <td style="border-bottom: solid 1px;">
                                                                         <div class="col-sm-6">
                                                                             <select name="supervise" id="supervise" style="width:100%;">
@@ -174,7 +174,7 @@
                                                             
                                                                 
                                                                 <tr style="text-align:left">
-                                                                    <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>組長(簽核)</td>
+                                                                    <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>執行長(簽核)</td>
                                                                     <td style="border-bottom: solid 1px;">
                                                                         <div class="col-sm-6">
                                                                             <select name="leader" id="leader" style="width:100%;">
@@ -184,7 +184,7 @@
                                                                     </td>
                                                                 </tr>
                                                                 <tr style="text-align:left">
-                                                                    <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>主管(簽核)</td>
+                                                                    <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>組長(簽核)</td>
                                                                     <td style="border-bottom: solid 1px;">
                                                                         <div class="col-sm-6">
                                                                             <select name="director" id="director" style="width:100%;">
@@ -193,22 +193,17 @@
                                                                         </div>
                                                                     </td>
                                                                 </tr>
-                                                                <!-- <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>創建日期</td>
-                                                                <td style="border-bottom: solid 1px;"><input id="create_date" datepicker="ch_datepicker" type="text"></td>
-                                                            </tr>
-                                                            <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>創建者</td>
-                                                                <td style="border-bottom: solid 1px;"><input id="create_name" type="text"></td>
-                                                            </tr>
-                                                            <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>更新日期</td>
-                                                                <td style="border-bottom: solid 1px;"><input id="update_date" datepicker="ch_datepicker" type="text"></td>
-                                                            </tr>
-                                                            <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>更新者</td>
-                                                                <td style="border-bottom: solid 1px;"><input id="update_name" type="text"></td>
-                                                            </tr> -->
+
+                                                                <tr style="text-align:left">
+                                                                    <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>發派(簽核)</td>
+                                                                    <td style="border-bottom: solid 1px;">
+                                                                        <div class="col-sm-6">
+                                                                            <select name="distribution" id="distribution" style="width:100%;">
+                                                                                <option value="">請選擇</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
                                                             </table>
                                                             <br>
                                                             <button id="re_add_new" style="font-size:15px" type="button" class="btn btn-default"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-check" viewBox="0 0 16 16">

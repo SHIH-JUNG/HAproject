@@ -132,8 +132,8 @@ $("#tra_add_new").on("click", function () {
       data: {
         Name: $("#name").val(),
         Training_date: $("#training_date").val(),
-        On_or_off: $("#on_or_off").val(),
         Training_name: $("#training_name").val(),
+        Hours: $("#hours").val(),
         Place: $("#place").val(),
         Remark: $("#remark").val(),
         // Create_date: trans_to_EN($("#create_date").val()),
@@ -175,8 +175,8 @@ $("#tra_add_new").on("click", function () {
 function check_add_training_data() {
   var name = $("#name").val();
   var training_date = $("#training_date").val();
-  var on_or_off = $("#on_or_off").val();
   var training_name = $("#training_name").val();
+  var hours = $("#hours").val();
   var place = $("#place").val();
 
   var errorstr = "";
@@ -187,11 +187,11 @@ function check_add_training_data() {
   if (training_date == null) {
     errorstr += "未填寫在職訓練日期!\r\n";
   }
-  if (on_or_off == null) {
-    errorstr += "未選擇是否在職!\r\n";
-  }
   if (training_name == null) {
     errorstr += "未填寫在職訓練標題!\r\n";
+  }
+  if (hours == null) {
+    errorstr += "未填寫時數!\r\n";
   }
   if (place == null) {
     errorstr += "未填寫在職訓練地點!\r\n";
@@ -204,11 +204,11 @@ function check_add_training_data() {
     if (training_date.replace(/\s*/g, "") == "") {
       errorstr += "未填寫在職訓練日期!\r\n";
     }
-    if (on_or_off.replace(/\s*/g, "") == "") {
-      errorstr += "未選擇是否在職!\r\n";
-    }
     if (training_name.replace(/\s*/g, "") == "") {
       errorstr += "未填寫在職訓練標題!\r\n";
+    }
+    if (training_name.replace(/\s*/g, "") == "") {
+      errorstr += "未填寫時數!\r\n";
     }
     if (place.replace(/\s*/g, "") == "") {
       errorstr += "未填寫在職訓練地點!\r\n";

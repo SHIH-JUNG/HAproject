@@ -152,17 +152,17 @@
                                                                         <table id="all_data" style="width:55%;display:table !important;" class="table table-bordered">
                                                                             <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">日期</td>
-                                                                                <td style="border-bottom: solid 1px;"><input id="program_plan_date" class="program_question" name="ch_datepicker" type="number"></td>
+                                                                                <td style="border-bottom: solid 1px;"><input id="date" class="program_question" name="ch_datepicker" type="text"></td>
                                                                             </tr>
 
                                                                             <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">計畫名稱</td>
-                                                                                <td style="border-bottom: solid 1px;"><input id="plan_name" class="program_question" type="number"></td>
+                                                                                <td style="border-bottom: solid 1px;"><input id="plan_name" class="program_question" type="text"></td>
                                                                             </tr>
 
                                                                             <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">計畫來源</td>
-                                                                                <td style="border-bottom: solid 1px;"><input id="plan_from" class="program_question" type="number"></td>
+                                                                                <td style="border-bottom: solid 1px;"><input id="plan_from" class="program_question" type="text"></td>
                                                                             </tr>
 
                                                                             <tr style="text-align:left">

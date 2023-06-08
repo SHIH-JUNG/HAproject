@@ -147,7 +147,7 @@ $.ajax({
   async: false, //啟用同步請求
   success: function (data) {
     var cssString = "";
-    // console.log(data)
+    console.log(data)
     $.each(data, function (index, value) {
       // var update_date = value.Update_date != "0000-00-00" ? value.Update_date : "";
 
@@ -156,19 +156,19 @@ $.ajax({
         value.Id +
         '">' +
         '<td style="text-align:center">' +
-        value.Year +
-        "</td>" +
-        '<td style="text-align:center">' +
         value.Date +
         "</td>" +
         '<td style="text-align:center">' +
         value.Activity_name +
         "</td>" +
         '<td style="text-align:center">' +
+        value.Activity_category +
+        "</td>" +
+        '<td style="text-align:center">' +
         value.Person +
         "</td>" +
         '<td style="text-align:center">' +
-        value.Loaction +
+        value.Location +
         "</td>" +
         '<td style="text-align:center">' +
         value.Service +
@@ -184,10 +184,6 @@ $.ajax({
         "</td>" +
         "</tr>";
 
-      $("#year").append(
-        '<option value="' + value.Year + '">' + value.Year + "</option>"
-      );
-
       $("#date").append(
         '<option value="' + value.Date + '">' + value.Date + "</option>"
       );
@@ -198,14 +194,21 @@ $.ajax({
           value.Activity_name +
           "</option>"
       );
+      $("#activity_category").append(
+        '<option value="' +
+          value.Activity_category +
+          '">' +
+          value.Activity_category +
+          "</option>"
+      );
       // $("#time_all").append(
       //   '<option value="' + value.Time_all + '">' + value.Time_all + "</option>"
       // );
       $("#person").append(
         '<option value="' + value.Person + '">' + value.Person + "</option>"
       );
-      $("#loaction").append(
-        '<option value="' + value.Loaction + '">' + value.Loaction + "</option>"
+      $("#location").append(
+        '<option value="' + value.Location + '">' + value.Location + "</option>"
       );
       $("#service").append(
         '<option value="' + value.Service + '">' + value.Service + "</option>"

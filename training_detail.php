@@ -170,17 +170,6 @@
                                                                                 </tr>
 
                                                                                 <tr style="text-align:left">
-                                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">是否在職</td>
-                                                                                    <td style="border-bottom: solid 1px;">
-                                                                                        <select id="on_or_off" class="tra_question" style="width:200px;">
-                                                                                            <option value="">請選擇</option>
-                                                                                            <option value="是">是</option>
-                                                                                            <option value="否">否</option>
-                                                                                        </select>
-                                                                                    </td>
-                                                                                </tr>
-
-                                                                                <tr style="text-align:left">
                                                                                     <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>課程主題</td>
                                                                                     <td style="border-bottom: solid 1px;"><input id="training_name" class="tra_question" type="text"></td>
                                                                                 </tr>

@@ -152,6 +152,8 @@ $.ajax({
     var cssString = "";
     console.log(data);
     $.each(data, function (index, value) {
+
+      var executive_sign_arr = datatable_sign_show('executive', value.Executive, value.Executive_signature, value.Executive_sign_time, value.Executive_sign_msg);
       
       var supervise_sign_arr = datatable_sign_show('supervise', value.Supervise, value.Supervise_signature, value.Supervise_sign_time, value.Supervise_sign_msg);
 
@@ -159,15 +161,13 @@ $.ajax({
 
       var director_sign_arr = datatable_sign_show('director', value.Director, value.Director_signature, value.Director_sign_time, value.Director_sign_msg);
 
+      var distribution_sign_arr = datatable_sign_show('distribution', value.Distribution, value.Distribution_signature, value.Distribution_sign_time, value.Distribution_sign_msg);
+
       var isUpload = '未上傳';
-      var cert_isUpload = '未上傳';
+      // var cert_isUpload = '未上傳';
 
       if(value.Upload_name != ""){
         isUpload = '已上傳';
-      }
-
-      if(value.Upload_cert_name != ""){
-        cert_isUpload = '已上傳';
       }
 
       cssString +=
@@ -193,9 +193,6 @@ $.ajax({
         isUpload +
         "</td>" +
         '<td style="text-align:center">' +
-        cert_isUpload +
-        "</td>" +
-        '<td style="text-align:center">' +
         value.Create_date +
         "</td>" +
         '<td style="text-align:center">' +
@@ -208,6 +205,10 @@ $.ajax({
         value.Update_name +
         "</td>" +
         '<td style="text-align:center">' +
+        executive_sign_arr[0] +
+        executive_sign_arr[1] +
+        "</td>" +
+        '<td style="text-align:center">' +
         supervise_sign_arr[0] +
         supervise_sign_arr[1] +
         "</td>" +
@@ -218,6 +219,10 @@ $.ajax({
         '<td style="text-align:center">' +
         director_sign_arr[0] +
         director_sign_arr[1] +
+        "</td>" +
+        '<td style="text-align:center">' +
+        distribution_sign_arr[0] +
+        distribution_sign_arr[1] +
         "</td>" +
         "</tr>";
 
@@ -313,14 +318,20 @@ function datatable_sign_show(signer_type ,signer, sign_path, sign_time, sign_msg
   var type_name = "";
 
   switch (signer_type) {
+    case "executive":
+      type_name = "理事長";
+      break;
     case "supervise":
-      type_name = "督導";
+      type_name = "主管";
       break;
     case "leader":
-      type_name = "組長";
+      type_name = "執行長";
       break;
     case "director":
-      type_name = "主管";
+      type_name = "組長";
+      break;
+    case "distribution":
+      type_name = "發派";
       break;
   }
 

@@ -30,6 +30,9 @@ $type = 'png';
 $new_file = $new_file . time() . ".$type";
 
 switch ($sign_type) {
+    case 'executive':
+        $sql_str = " `Executive` = '$user', `Executive_signature` = '$new_file', `Executive_sign_msg` = '$sign_msg',`Executive_sign_time` = NOW()";
+        break;
     case 'supervise':
         $sql_str = " `Supervise` = '$user', `Supervise_signature` = '$new_file', `Supervise_sign_msg` = '$sign_msg',`Supervise_sign_time` = NOW()";
         break;
@@ -38,6 +41,9 @@ switch ($sign_type) {
         break;
     case 'director':
         $sql_str = " `Director` = '$user', `Director_signature` = '$new_file', `Director_sign_msg` = '$sign_msg',`Director_sign_time` = NOW()";
+        break;
+    case 'distribution':
+        $sql_str = " `Distribution` = '$user', `Distribution_signature` = '$new_file', `Distribution_sign_msg` = '$sign_msg',`Distribution_sign_time` = NOW()";
         break;
     default:
         return false;

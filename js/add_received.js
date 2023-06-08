@@ -118,7 +118,7 @@ function submit_form() {
   });
 
   var form_data = new FormData();
-
+  var received_date_year_split = $("#received_date").val().split(".");
   var year = received_date_year_split[0];
 
   $("input[type='file']").each(function(index, element) {
@@ -134,19 +134,6 @@ function submit_form() {
       }
   });
 
-  $("input[type='file']").each(function(index, element) {
-    var received_cert = $(this).prop("files");
-
-    if (received_cert != undefined) {
-      if (received_cert.length != 0) {
-        for (var i = 0; i < received_cert.length; i++) {
-          form_data.append("received_cert"+index, received_cert[i]);
-          // console.log(received_cert[i])
-        }
-      } 
-    }
-});
-
   form_data.append("Year", year);
   form_data.append("Title_name", $("#title_name").val());
   form_data.append("Received_date", $("#received_date").val());
@@ -156,9 +143,11 @@ function submit_form() {
 
 
   form_data.append("Sign_received_date", trans_to_EN($("#received_date").val()));
-  form_data.append("Supervise",$("#Supervise").val());
-  form_data.append("Leader",$("#Leader").val());
-  form_data.append("Director",$("#Director").val());
+  form_data.append("Executive",$("#executive").val());
+  form_data.append("Supervise",$("#supervise").val());
+  form_data.append("Leader",$("#leader").val());
+  form_data.append("Director",$("#director").val());
+  form_data.append("Distribution",$("#distribution").val());
 
   // 預覽傳到後端的資料詳細內容
   // for (var pair of form_data.entries()) {
@@ -266,90 +255,6 @@ $("#re_add_new").on("click", function () {
 });
 //endregion
 
-function submit_form() {
-  //去掉資料內前後端多餘的空白，file類型須排除，否則報錯
-  $("input, textarea").each(function () {
-    if ($(this).attr("type") != "file") {
-        $(this).val(jQuery.trim($(this).val()));
-    }
-  });
-    
-  var form_data = new FormData();
-
-  var year = received_date_year_split[0];
-
-  $("input[type='file']").each(function(index, element) {
-    var received_file = $(this).prop("files");
-
-    if (received_file != undefined) {
-      if (received_file.length != 0) {
-        for (var i = 0; i < received_file.length; i++) {
-          form_data.append("received_file"+index, received_file[i]);
-          // console.log(received_file[i])
-        }
-      } 
-    }
-  });
-
-
-  form_data.append("Year", year);
-  form_data.append("Title_name", $("#title_name").val());
-  form_data.append("Received_date", $("#received_date").val());
-  form_data.append("Subject",$("#subject").val());
-  form_data.append("Num_publish",$("#num_publish").val());
-
-
-  form_data.append("Sign_received_date", trans_to_EN($("#received_date").val()));
-  form_data.append("Supervise",$("#Supervise").val());
-  form_data.append("Leader",$("#Leader").val());
-  form_data.append("Director",$("#Director").val());
-
-  // 預覽傳到後端的資料詳細內容
-  // for (var pair of form_data.entries()) {
-  //   console.log(pair[0] + ", " + pair[1]);
-  // }
-
-
-  // $.ajax({
-  //   url: "database/add_new_received.php",
-  //   type: "POST",
-  //   data: form_data,
-  //   contentType: false,
-  //   cache: false,
-  //   processData: false,
-  //   async: true,
-  //   success: function (data) {
-  //     console.log(data);
-  //     if (data == 1) {
-  //       swal({
-  //         type: "success",
-  //         title: "新增成功!",
-  //         allowOutsideClick: false, //不可點背景關閉
-  //       }).then(function () {
-  //         window.location.href =
-  //           "received.php?year=" + year;
-  //       });
-  //     } else {
-  //       swal({
-  //         type: "error",
-  //         title: "新增失敗!請聯絡負責人",
-  //         allowOutsideClick: false, //不可點背景關閉
-  //       });
-  //     }
-  //   },
-  //   error: function (e) {
-  //       console.log(e)
-  //       swal({
-  //           type: "error",
-  //           title: "新增失敗!請聯絡負責人",
-  //           allowOutsideClick: false, //不可點背景關閉
-  //       });
-  //   },
-  // });
-
-
-}
-
 //檢查來文紀錄的必填欄位region
 function check_add_received_data() {
   var title_name = $("#title_name").val();
@@ -396,60 +301,6 @@ function check_add_received_data() {
 
   return errorstr;
 }
-//endregion
-
-//檢查會議記錄的必填欄位 upload region
-function check_add_rec_data_upload() {
-  // var upload_title_name = $("#upload_title_name").val();
-  // var customFile = $("[name*=customFile]").prop("files").length;
-  // var upload_rec_supervise = $("#upload_rec_supervise").val();
-
-  // var errorstr = "";
-
-  // if(upload_title_name == null) {
-  //   errorstr += "未填寫會議記錄標題!\r\n";
-  // }
-  // if(customFile == 0) {
-  //   errorstr += "未上傳會議記錄檔案!\r\n";
-  // }
-  // if (upload_rec_supervise == null) {
-  //   errorstr += "未選擇督導!\r\n";
-  // }
-  // if (errorstr == "") {
-  //   if(upload_title_name.replace(/\s*/g, "") == "") {
-  //     errorstr += "未填寫會議記錄標題!\r\n";
-  //   }
-  //   if (upload_rec_supervise.replace(/\s*/g, "") == "") {
-  //     errorstr += "未選擇督導!\r\n";
-  //   }
-  // }
-
-  // return errorstr;
-}
-//endregion
-
-// // 呼叫user方法region
-// $.ajax({
-//   type: "POST",
-//   url: "database/find_check_user.php",
-//   dataType: "JSON",
-//   async: false, //啟用同步請求
-//   success: function (data) {
-//     for (var index in data.Id) {
-//       $(".user").append(
-//         '<option value="' +
-//           data.Name[index] +
-//           '">' +
-//           data.Name[index] +
-//           "</option>"
-//       );
-//     }
-//   },
-//   error: function (e) {
-//     console.log(e);
-//   },
-// });
-
 //endregion
 
 //檢查必填欄位 region
@@ -555,9 +406,11 @@ function append_user(){
       success: function (data) {
           // console.log('test',data)
           for (var index in data.Id) {
+            $("#executive").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
             $("#supervise").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
             $("#leader").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
             $("#director").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+            $("#distribution").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
           }
       },
   });

@@ -104,11 +104,7 @@
                                                         <tr>
 
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">發文標題：</td>
-                                                            <td class="text-left">
-                                                                <select id="title_name" rel="0" class="filter search">
-                                                                    <!-- <option value="">所有</option> -->
-                                                                </select>
-                                                            </td>
+                                                            <td class="text-left"><input id="title_name" rel="0" name="title_name" class="filter search" style="width:150px;" type="text" placeholder="發文標題"></td>
 
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">發文日期：</td>
                                                             <td class="text-left">
@@ -117,17 +113,26 @@
                                                                 <input id="published_max_date" name="pcall_date" datepicker="ch_datepicker" class="" type="text" placeholder="發文日期搜尋">
                                                             </td>
 
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">發文文號：</td>
+                                                            <td class="text-left"><input id="num_publish" rel="2" name="num_publish" class="filter search" style="width:150px;" type="text" placeholder="發文標題"></td>
+
                                                         </tr>
                                                         <tr>
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">發文文號：</td>
-                                                            <td class="text-left">
-                                                                <select id="num_publish" rel="2" class="filter search">
-                                                                    <!-- <option value="">所有</option> -->
-                                                                </select>
-                                                            </td>
 
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">主旨：</td>
                                                             <td class="text-left"><input id="subject" rel="3" name="subject" class="filter search" style="width:150px;" type="text" placeholder="主旨搜尋"></td>
+
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">檔案是否上傳：</td>
+                                                            <td class="text-left">
+                                                                <select rel="4" class="filter search">
+                                                                    <option value="">所有</option>
+                                                                    <option value="已上傳">已上傳</option>
+                                                                    <option value="未上傳">未上傳</option>
+                                                                </select>
+                                                            </td>
+
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">承辦人：</td>
+                                                            <td class="text-left"><input id="create_name" rel="5" name="create_name" class="filter search" style="width:150px;" type="text" placeholder="承辦人"></td>
 
                                                             <td colspan="10" class="text-right">
                                                                 <button onclick="location.reload();">重置搜尋</button><span> </span>
@@ -158,9 +163,9 @@
                                                                 <th>主旨</th>
                                                                 <th>檔案是否上傳</th>
                                                                 <th>承辦人員</th>
+                                                                <th>創建日期</th>
                                                                 <th>更新日期</th>
                                                                 <th>更新者</th>
-                                                                <th>督導簽章</th>
                                                                 <th>組長簽章</th>
                                                                 <th>主管簽章</th>
                                                             </tr>

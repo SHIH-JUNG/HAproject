@@ -199,18 +199,6 @@
                                                                                 </td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
-                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">證書</td>
-                                                                                <td style="border-bottom: solid 1px;">
-                                                                                    <div class="col-sm-9">
-                                                                                        <div class="text-left">
-                                                                                            <input name="upload_cert" type="file" class="re_question form-control">
-                                                                                            <br>
-                                                                                            <div id="upload_cert"></div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>創建日期</td>
                                                                                 <td style="border-bottom: solid 1px;"><input id="create_date" class="re_question" name="ch_datepicker" type="text"></td>
                                                                             </tr>
@@ -228,7 +216,24 @@
                                                                             </tr>
                                                                             <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline">
-                                                                                    <label>督導簽章</label>
+                                                                                    <label>理事長簽章</label>
+                                                                                </td>
+                                                                                <td style="">
+                                                                                    <div class="col-sm-3" style="margin-top: 0.6em;">
+                                                                                        <select class="re_question" id="executive" style="width:100%;">
+                                                                                                <option value="">請選擇</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                    <div class="col-sm-9">
+                                                                                        <button style="margin:.5em;margin-right:3em;color:red;" type="button" onclick="signature_btn_click('executive');">簽名</button>
+                                                                                        <button style="margin:.5em;" type="button" onclick="sign_msg_model('executive');" data-toggle="modal" data-target="#myModal">查看留言</button>
+                                                                                        <a src="" id="executive_signature_simg" style="color:blue;" target="_blank" alt="簽名圖片連結"></a>
+                                                                                    </div>   
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr style="text-align:left">
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline">
+                                                                                    <label>主管簽章</label>
                                                                                 </td>
                                                                                 <td style="">
                                                                                     <div class="col-sm-3" style="margin-top: 0.6em;">
@@ -245,7 +250,7 @@
                                                                             </tr>
                                                                             <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline">
-                                                                                    <label>組長簽章</label>
+                                                                                    <label>執行長簽章</label>
                                                                                 </td>
                                                                                 <td style="">
                                                                                     <div class="col-sm-3" style="margin-top: 0.6em;">
@@ -262,7 +267,7 @@
                                                                             </tr>
                                                                             <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline">
-                                                                                    <label>主管簽章</label>
+                                                                                    <label>組長簽章</label>
                                                                                 </td>
                                                                                 <td style="">
                                                                                     <div class="col-sm-3" style="margin-top: 0.6em;">
@@ -274,6 +279,23 @@
                                                                                         <button style="margin:.5em;margin-right:3em;color:red;" type="button"  onclick="signature_btn_click('director');">簽名</button>
                                                                                         <button style="margin:.5em;" type="button" onclick="sign_msg_model('director');" data-toggle="modal" data-target="#myModal">查看留言</button>
                                                                                         <a src="" id="director_signature_simg" style="color:blue;" target="_blank" alt="簽名圖片連結"></a>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr style="text-align:left">
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline">
+                                                                                    <label>發派</label>
+                                                                                </td>
+                                                                                <td style="">
+                                                                                    <div class="col-sm-3" style="margin-top: 0.6em;">
+                                                                                        <select class="re_question" id="distribution" style="width:100%;">
+                                                                                                <option value="">請選擇</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                    <div class="col-sm-9">
+                                                                                        <button style="margin:.5em;margin-right:3em;color:red;" type="button"  onclick="signature_btn_click('distribution');">簽名</button>
+                                                                                        <button style="margin:.5em;" type="button" onclick="sign_msg_model('distribution');" data-toggle="modal" data-target="#myModal">查看留言</button>
+                                                                                        <a src="" id="distribution_signature_simg" style="color:blue;" target="_blank" alt="簽名圖片連結"></a>
                                                                                     </div>
                                                                                 </td>
                                                                             </tr>

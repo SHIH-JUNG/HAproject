@@ -13,10 +13,11 @@ $Num_receive = $_REQUEST['Num_receive'];
 
 // 西元年 2022-01-01
 $Sign_received_date = $_REQUEST['Sign_received_date'];
+$Executive = $_REQUEST['Executive'];
 $Supervise = $_REQUEST['Supervise'];
 $Leader = $_REQUEST['Leader'];
 $Director = $_REQUEST['Director'];
-
+$Distribution = $_REQUEST['Distribution'];
 
 
 $user = $_SESSION['name'];
@@ -45,24 +46,18 @@ $title = '收文簽核：主旨'.$Subject.",來文單位".$Unit;
 
 $sign_received_date = $Sign_received_date." 00:00";
 
-$signers = $Supervise.'、'.$Leader.'、'.$Director;
+$signers = $Executive.'、'.$Supervise.'、'.$Leader.'、'.$Director.'、'.$Distribution;
 
+$sign_state = $Executive . "未簽核" .'、'.$Supervise . "未簽核" .'、'.$Leader . "未簽核" .'、'.$Director . "未簽核" .'、'.$Distribution . "未簽核" ;
 
 // 上傳報表路徑
 @$file_dir = "../received/";
 @$file_name = "";
 @$file = "";
 
-@$cert_dir = "../received/";
-@$cert_name = "";
-@$cert = "";
-
 // 無該檔案資料夾則建立
 if (!is_dir($file_dir)) {
     mkdir($file_dir, 0777, true);
-}
-if (!is_dir($cert_dir)) {
-    mkdir($cert_dir, 0777, true);
 }
 
 // 判斷報表上傳
@@ -85,31 +80,13 @@ if (isset($_FILES["received_files0"]))
     }
 }
 
-if (isset($_FILES["received_files0"]))
-{
-    @$cert_name = $_FILES["received_files0"]["name"];
-    @$cert = "../received/" . $_FILES["received_files0"]["name"];
-
-    
-
-    if ($_FILES["received_files0"]["error"] > 0) {
-
-        echo false;
-    } else {
-        //設定檔案上傳路徑，選擇指定資料夾
-        move_uploaded_file(
-            $_FILES["received_files0"]["tmp_name"],
-            "../received/" . $_FILES["received_files0"]["name"]
-        );
-    }
-}
 
 $sql = "INSERT INTO `received` (`Id`, `Year`,`Title_name`,`Received_date`,`Subject`,`Unit`,
-`Num_receive`, `Upload_path`, `Upload_name`, `Upload_cert_path`,`Upload_cert_name`,`Supervise`, `Leader`, `Director`, `Create_date`,`Create_name`) VALUES
- ($received_id, '$Year','$Title_Name','$Received_date','$Subject','$Unit','$Num_receive', '$file', '$file_name', $cert', '$cert_name', '$Supervise', '$Leader', '$Director', Now(),'$user');";
+`Num_receive`, `Upload_path`, `Upload_name`,`Executive`,`Supervise`, `Leader`, `Director`, `Distribution`, `Create_date`,`Create_name`) VALUES
+ ($received_id, '$Year','$Title_Name','$Received_date','$Subject','$Unit','$Num_receive', '$file', '$file_name', '$Executive', '$Supervise', '$Leader', '$Director', '$Distribution',Now(),'$user');";
 
 $sql .= "INSERT INTO `signature_notice` (`Sign_id`, `Title`,`Url`,`Timestamp`, `Assign`, `Signer`, `Sign_state`, `Type`, `Create_date`, `Create_name`) 
-VALUES ($received_id, '$title', '$url', '$sign_received_date', '$user', '$signers', '未簽核', 'received', Now(), '$user');";
+VALUES ($received_id, '$title', '$url', '$sign_received_date', '$user', '$signers', '$sign_state', 'received', Now(), '$user');";
 
 if (mysqli_multi_query($conn, $sql)) {
     echo true;

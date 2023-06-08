@@ -256,17 +256,16 @@ function load_program_datas() {
       dataType: "JSON",
       async: false,//啟用同步請求
       success: function (data) {
-          // console.log(data)
+          console.log(data)
 
           $.each(data,function(index,value){
-              $("#date").val(value.Date);
+              $("#date").val(check_sql_date_format(value.Date));
               $("#plan_name").val(value.Plan_name);
               $("#plan_from").val(value.Plan_from);
               $("#fund").val(value.Fund);
           });
           
-          
-
+        
       },
       error:function(e){
           notyf.alert('伺服器錯誤,無法載入');

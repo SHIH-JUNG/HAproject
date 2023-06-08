@@ -151,7 +151,6 @@ $.ajax({
     var cssString = "";
     console.log(data);
     $.each(data, function (index, value) {
-      var supervise_sign_arr = datatable_sign_show('supervise', value.Supervise, value.Supervise_signature, value.Supervise_sign_time, value.Supervise_sign_msg);
 
       var leader_sign_arr = datatable_sign_show('leader', value.Leader, value.Leader_signature, value.Leader_sign_time, value.Leader_sign_msg);
 
@@ -186,14 +185,13 @@ $.ajax({
         value.Create_name +
         "</td>" +
         '<td style="text-align:center">' +
+        value.Create_date +
+        "</td>" +
+        '<td style="text-align:center">' +
         value.Update_date +
         "</td>" +
         '<td style="text-align:center">' +
         value.Update_name +
-        "</td>" +
-        '<td style="text-align:center">' +
-        supervise_sign_arr[0] +
-        supervise_sign_arr[1] +
         "</td>" +
         '<td style="text-align:center">' +
         leader_sign_arr[0] +
@@ -205,15 +203,13 @@ $.ajax({
         "</td>" +
         "</tr>";
 
-      sign_css_str = "";
-
-      $("#title_name").append(
-        '<option value="' +
-          value.Title_name +
-          '">' +
-          value.Title_name +
-          "</option>"
-      );
+      // $("#title_name").append(
+      //   '<option value="' +
+      //     value.Title_name +
+      //     '">' +
+      //     value.Title_name +
+      //     "</option>"
+      // );
       $("#published_date").append(
         '<option value="' +
           value.Published_date +
@@ -305,9 +301,6 @@ function datatable_sign_show(signer_type ,signer, sign_path, sign_time, sign_msg
   var type_name = "";
 
   switch (signer_type) {
-    case "supervise":
-      type_name = "督導";
-      break;
     case "leader":
       type_name = "組長";
       break;

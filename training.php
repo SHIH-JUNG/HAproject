@@ -113,15 +113,7 @@
                                                                 <input id="upload_min_date" type="text" name="ch_datepicker" style="width: 10em;" placeholder="在職訓練日期搜尋"><label>～</label>
                                                                 <input id="upload_max_date" type="text" name="ch_datepicker" style="width: 10em;" placeholder="在職訓練日期搜尋">
                                                             </td>
-
-                                                            <!-- <td class="text-right" style="background-color:rgb(255 201 54)">是否在職：</td>
-                                                            <td class="text-left">
-                                                                <select rel="2" class="filter search">
-                                                                    <option value="">所有</option>
-                                                                    <option value="是">是</option>
-                                                                    <option value="否">否</option>
-                                                                </select>
-                                                            </td> -->
+                                                            
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">課程主題：</td>
                                                             <td class="text-left">
                                                                 <select id="training_name" rel="3" class="filter search">
