@@ -70,27 +70,36 @@ if (!is_dir($file_dir)) {
 // 判斷履歷表檔案上傳 類型 file_A
 if (isset($_FILES["resume_files0"]))
 {
-    @$file_0 = "../resume/resume_user".$resume_seq_id."_".$Account."/resume_datas/" . $_FILES["resume_files0"]["name"];
 
     @$file_0_date = date("Y-m-d");
+    $file_0_arr = array();
 
-    if ($_FILES["resume_files0"]["error"] > 0) {
+    for ($a = 0; $a < count($_FILES["resume_files0"]["name"]); $a++)
+    {
+        @$file_0 = "../resume/resume_user".$resume_seq_id."_".$Account."/resume_datas/" . $_FILES["resume_files0"]["name"][$a];
+    
+        if ($_FILES["resume_files0"]["error"][$a] > 0) {
+            echo false;
+        } else {
+            //設定檔案上傳路徑，選擇指定資料夾
+            move_uploaded_file(
+                $_FILES["resume_files0"]["tmp_name"][$a],
+                $file_0
+            );
+        }
 
-        echo false;
-    } else {
-        //設定檔案上傳路徑，選擇指定資料夾
-        move_uploaded_file(
-            $_FILES["resume_files0"]["tmp_name"],
-            "../resume/resume_user".$resume_seq_id."_".$Account."/resume_datas/" . $_FILES["resume_files0"]["name"]
-        );
+        array_push($file_0_arr, $file_0);
     }
+
+    $file_0_arr = json_encode($file_0_arr,JSON_UNESCAPED_UNICODE);
+    
 
     @$file_sql_0 = "INSERT INTO `resume_forms` (`Resume_id`, `Resume_name`
             , `File_type`, `File_year`
             , `File_path`
             , `Remark`, `Upload_date`, `Upload_name`) VALUES 
             ($resume_seq_id, '$Name', 'file_A', '$File_year'
-            , '$file_0', '$Remark', '$file_0_date', '$user');";
+            , '$file_0_arr', '$Remark', '$file_0_date', '$user');";
 }
 
 // 判斷保密契約上傳 類型 file_C
@@ -107,7 +116,7 @@ if (isset($_FILES["resume_files1"]))
         //設定檔案上傳路徑，選擇指定資料夾
         move_uploaded_file(
             $_FILES["resume_files1"]["tmp_name"],
-            "../resume/resume_user".$resume_seq_id."_".$Account."/resume_datas/" . $_FILES["resume_files1"]["name"]
+            $file_1
         );
     }
 
@@ -132,7 +141,7 @@ if (isset($_FILES["resume_files2"]))
         //設定檔案上傳路徑，選擇指定資料夾
         move_uploaded_file(
             $_FILES["resume_files2"]["tmp_name"],
-            "../resume/resume_user".$resume_seq_id."_".$Account."/resume_datas/" . $_FILES["resume_files2"]["name"]
+            $file_2
         );
     }
 

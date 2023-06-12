@@ -78,6 +78,8 @@ test = function() {
   
   var get_resume_files = get_files_name_value();
 
+  // console.log(get_resume_files)
+
   var seniority_num =  parseFloat(DateDifference(moment().format('YYYY-MM-DD'), split_date($("#entry_date").val())));
 
   var annual_default_hours = 0;
@@ -257,11 +259,18 @@ function submit_form() {
 
   $("input[type='file']").each(function(index, element) {
     var resume_files = $(this).prop("files");
-    // console.log(resume_files.length)
+    
     if (resume_files != undefined) {
       if (resume_files.length != 0) {
         for (var i = 0; i < resume_files.length; i++) {
-          form_data.append("resume_files"+index, resume_files[i]);
+          if(index==0)
+          {
+            form_data.append("resume_files"+index+"[]", resume_files[i]);
+          }
+          else
+          {
+            form_data.append("resume_files"+index, resume_files[i]);
+          }
           // console.log(resume_files[i])
         }
       } else {
@@ -329,16 +338,37 @@ function submit_form() {
 
 // 顯示檔名 region
 $("input[type='file']").change(function (event) {
-  //獲取 檔名.檔案格式
-  var filePath = $(this).val().split("\\");
+
+   
+  // console.log(event.target.files)
+  // console.log(event.target.files.length)
+
   //獲取 file name名稱
   var name = $(this).attr("name");
 
-  //創建臨時檔案連結
-  // var tmppath = URL.createObjectURL(event.target.files[0]);
+  var file_names_str = "";
+
+  $.each(event.target.files, function(key,val) {
+
+    // //獲取 檔名.檔案格式
+    // var filePath = $(this).val().split("\\");
+    // //獲取 file name名稱
+    // var name = $(this).attr("name");
+
+    // //創建臨時檔案連結
+    // // var tmppath = URL.createObjectURL(event.target.files[0]);
+
+    // //預覽上傳檔名
+    // $("#" + name).html("檔名：" + filePath[filePath.length - 1]);
+
+    // console.log(val.name)
+    
+    file_names_str += "檔案" + (key + 1) + "名稱：" + val.name + "<br/>";
+
+  });
 
   //預覽上傳檔名
-  $("#" + name).html("檔名：" + filePath[filePath.length - 1]);
+  $("#" + name).html(file_names_str);
 
 });
 // endregion
@@ -350,13 +380,38 @@ get_files_name_value = function() {
 
   file_name = [];
   $("input[type='file']").each(function() {
-    //獲取 檔名.檔案格式
-    var filePath = $(this).val().split("\\");
+
+    
+
+    // //獲取 檔名.檔案格式
+    // var filePath = $(this).val().split("\\");
+
     //獲取 file name名稱
     var name = $(this).attr("name");
     
-    file_name.push({ name: name, value: filePath[filePath.length - 1] });
+    // file_name.push({ name: name, value: filePath[filePath.length - 1] });
+
+    if($(this).context.files.length == 1)
+    {
+      file_name.push({ name: name, value: $(this).context.files[0].name });
+    }
+    else
+    {
+      var files_arr = [];
+
+      $.each($(this).context.files, function(key,val) {
+
+        files_arr.push(val.name);
+    
+      });
+
+      file_name.push({ name: name, value:files_arr});
+    }
+
+    
  });
+
+//  console.log(file_name)
 
  return file_name;
 }

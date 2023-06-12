@@ -207,9 +207,10 @@
                                                                         <td style="border-bottom: solid 1px;">
                                                                             <div class="col-sm-8">
                                                                                 <div class="text-left">
-                                                                                    <input name="resume_file" type="file" class="form-control"/>
+                                                                                    <input name="resume_file" type="file" class="form-control" multiple/>
                                                                                     <br>
                                                                                     <div id="resume_file"></div>
+                                                                                    <!-- <button style="width:3em;" onclick="get_files_name_value(); return false;">test</button> -->
                                                                                 </div>
                                                                             </div>
                                                                         </td>

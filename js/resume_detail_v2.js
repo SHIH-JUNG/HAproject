@@ -314,13 +314,39 @@ function load_resume_datas() {
                 switch (value.File_type) {
                     // 履歷表檔案
                     case "file_A":
-                        var resume_file_path = value.File_path.replace("../", "./");
-                        var resume_file_name = value.File_path.split("/");
-                        $("[name='resume_file']").attr("value", resume_file_name[resume_file_name.length - 1]);
-                        $("#resume_file").html(
-                            '<a href="'+resume_file_path+'" style="text-decoration:none;color:blue;" target="_blank">'
-                            +resume_file_name[resume_file_name.length - 1]
-                            +'</a>');
+                        var file_a_arr = value.File_path.replace("\[","").replace("\]","").replace(/\"/g,"").split(",");
+
+                        // console.log(file_a_arr)
+
+                        window.file_a_input_val_arr = [];
+
+                        var file_a_htmlstr = "";
+
+                        $.each(file_a_arr, function (i, val) {
+
+                          var resume_file_path = val.replace("../", "./");
+                          var resume_file_name = val.split("/");
+                          
+                          var resume_file_val = resume_file_name[resume_file_name.length - 1];
+
+                          file_a_input_val_arr.push(resume_file_val);
+
+                          file_a_htmlstr += '<input style="zoom: 1.5" class="form-check-input" type="radio" name="file_a_check" forms_sql_id="'+value.Id+'" value="'+i+'">'
+                          +'<span>檔案'+ (i + 1) +'：</span><a href="'+resume_file_path+'" style="text-decoration:none;color:blue;" target="_blank">'
+                          + resume_file_val
+                          +'</a><br/><br/>';
+                        });
+
+                        file_a_htmlstr += '<br/>'
+                        +'<button style="color:red;margin-right:3em;margin-bottom:.5em;" type="button" onclick="selectFiles_delete();">刪除</button>'
+                        +'<div>※點選上面要刪除的檔案</div>'
+                        +'<br/><hr style="border:3px dashed blue; height:1px">'
+                        +'<button style="color:blue;" type="button" onclick="selectFiles_insert();">新增檔案+</button><br/><div id="selected-files"><span>上傳檔案清單：</span><br/></div>';
+
+                        // $("[name='resume_file']").attr("value", file_a_input_val_arr);
+                        
+                        $("#resume_file").html(file_a_htmlstr);
+                        
                         break;
                     // 雇傭契約
                     case "file_B":
@@ -813,3 +839,111 @@ function resume_cancel(){
     $('#save_div').attr('hidden', true);
 };
 //endregion
+
+
+
+// 刪除履歷表檔案內容 多檔案上傳 region
+selectFiles_delete = function() {
+
+  console.log($("[name='file_a_check']:checked").length)
+  if($("[name='file_a_check']:checked").length > 0)
+    {
+      swal({
+        title: "是否刪除該檔案？",
+        text: "確認刪除後將無法復原操作",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "確認",
+        cancelButtonText: "取消",
+        showConfirmButton: true,
+        showCancelButton: true
+      }).then(function(result) {
+          if (result) {
+            var file_a_sql_id = $("[name='file_a_check']:checked").attr("forms_sql_id");
+            var file_a_val = $("[name='file_a_check']:checked").attr("value");
+    
+            // console.log(file_a_input_val_arr)
+          
+            var r_file_a = file_a_input_val_arr.splice(parseInt(file_a_val), 1);
+          
+            // console.log(file_a_input_val_arr)
+            // console.log(r_file_a)
+
+            $.ajax({
+              url: "database/delete_resume_file_a.php",
+              type: "POST",
+                data: {
+                  Form_sql_id:file_a_sql_id,
+                  Resume_id:resume_id,
+                  File_a_arr:file_a_input_val_arr,
+                  File_a_delete_index:file_a_val
+                },
+              // dataType: "JSON",
+              success: function (data) {
+                console.log(data);
+                if (data == 1) 
+                {
+                  swal({
+                    type: "success",
+                    title: "刪除檔案成功!",
+                    allowOutsideClick: false, //不可點背景關閉
+                  }).then(function () {
+                    location.reload();
+                  });
+                } 
+                 
+              },
+              error: function (e) {
+                console.log(e)
+                swal({
+                    type: "error",
+                    title: "刪除檔案失敗!請聯絡負責人",
+                    allowOutsideClick: false, //不可點背景關閉
+                });
+              },
+            });
+
+          }
+      }, function(dismiss){
+          if(dismiss == 'cancel'){
+              swal({
+                  title:'已取消',
+                  type:'success',                        
+              })
+          }
+      }).catch(swal.noop)
+    }
+    else
+    {
+      swal({
+        type: 'warning', 
+        title: '請選取要刪除的檔案!',
+        allowOutsideClick: false //不可點背景關閉
+      })
+    }
+    
+
+}
+//endregion
+
+
+selectFiles_insert = function() {
+  window.selectedFiles = [];
+ 
+  $.FileDialog({
+      "accept": "*",
+      "drag_message":"將檔案拖曳至此處新增",
+      "title":"載入檔案",
+  }).on("files.bs.filedialog", function (event) {
+      var html = "<span>上傳檔案清單：</span><br/>";
+      for (var a = 0; a < event.files.length; a++) {
+          selectedFiles.push(event.files[a]);
+
+          // console.log(event.files[a])
+
+          html += "<a href='" + event.files[a].name + "'>"+event.files[a].name+"</a><br/>";
+      }
+      $("#selected-files").html(html);
+  });
+}

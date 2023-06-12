@@ -12,10 +12,13 @@
     <link href="css/notify/notyf.min.css" rel="stylesheet" />
     <!--  sweetalert2  -->
     <link href="css/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
+    <!-- <link href="css/sweetalert2/sweetalert2.all.min.css" rel="stylesheet" /> -->
     <!-- ================== CSS bootstrap-select ================== -->
     <link href="css/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
     <!--  table  -->
     <link rel="stylesheet" href="css/bootstrap-table.min.css">
+    <!-- Bootstrap FileDialog -->
+    <link rel="stylesheet" href="css/bootstrap-file-dialog-dist/bootstrap.fd.css">
     <!--  日期民國  -->
     <link data-require="jqueryui@*" rel="stylesheet" href="css/jquery-ui.css" />
     <link href="css/dtsel.css" rel="stylesheet" />
@@ -245,9 +248,8 @@
                                                                         <td style="border-bottom: solid 1px;">
                                                                             <div class="col-sm-8">
                                                                                 <div class="text-left">
-                                                                                    <input name="resume_file" type="file" class="resume_question form-control" multiple>
-                                                                                    <input type="button" id="btn_uploadfile" value="Upload" onclick="uploadFile();" >
-                                                                                    <br>
+                                                                                    <!-- <input name="resume_file" type="file" class="resume_question form-control" multiple> -->
+                                                                                    <!-- <br> -->
                                                                                     <div id="resume_file"></div>
                                                                                 </div>
                                                                             </div>
@@ -398,12 +400,16 @@
     <script src="javascript/jquery.slimscroll.js"></script>
     <!-- Fancy Dropdown JS -->
     <script src="javascript/dropdown-bootstrap-extended.js"></script>
+    <!-- Bootstrap FileDialog -->
+    <script src="javascript/bootstrap-file-dialog-dist/bootstrap.fd.js"></script>
+
     <!-- Init -->
     <script src="javascript/init.js"></script>
     <!-- ================== JS notify控制 ================== -->
     <script src="javascript/notify/notyf.min.js"></script>
     <!-- ================== JS sweetalert2 ================== -->
     <script src="javascript/sweetalert2/sweetalert2.min.js"></script>
+    <!-- <script src="javascript/sweetalert2/sweetalert2.all.min.js"></script> -->
     <!-- ================== JS IE sweetalert ================== -->
     <script src="javascript/sweetalert2/core-js.js"></script>
     <!-- ================== 登出設定 ================== -->
