@@ -76,7 +76,7 @@ if (isset($_FILES["resume_files0"]))
 
     for ($a = 0; $a < count($_FILES["resume_files0"]["name"]); $a++)
     {
-        @$file_0 = "../resume/resume_user".$resume_seq_id."_".$Account."/resume_datas/" . $_FILES["resume_files0"]["name"][$a];
+        @$file_0 = "../resume/resume_user".$resume_seq_id."_".$Account."/resume_datas/".$_FILES["resume_files0"]["name"][$a];
     
         if ($_FILES["resume_files0"]["error"][$a] > 0) {
             echo false;
