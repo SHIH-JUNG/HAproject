@@ -88,7 +88,7 @@
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span>新增志工</span></li>
+                        <li><span>新增志工資料</span></li>
                     </ol>
                     <!--/麵包屑-->
                 </div>
@@ -114,21 +114,132 @@
                                             <div class="col-sm-12 text-center">
                                                 <div class="table-wrap">
                                                     <div class="table-responsive">
-                                                        <table style="width:auto;" class="table table-bordered">
+                                                        <table style="width:55%;" class="table table-bordered">
                                                             <tr>
                                                                 <td colspan="2">
-                                                                    <h3>新增志工</h3>
+                                                                    <h3>新增志工資料</h3>
                                                                 </td>
                                                             </tr>
 
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>志工姓名</td>
-                                                                <td style="border-bottom: solid 1px;"><input id="name" class="re_question" type="text"></td>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;width:15em;"><i class="fillin_need" style="color:red;">※</i>年度</td>
+                                                                <td style="border-bottom: solid 1px;"><input id="year" type="number"></td>
+                                                            </tr>
+
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;width:15em;"><i class="fillin_need" style="color:red;">※</i>志工姓名</td>
+                                                                <td style="border-bottom: solid 1px;"><input id="name" type="text"></td>
                                                             </tr>
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">服務項目</td>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">出生年月日</td>
+                                                                <td style="border-bottom: solid 1px;"><input id="birth" type="text" datepicker="ch_datepicker"></td>
+                                                            </tr>
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">性別</td>
+                                                                <td>
+                                                                    <select id="gender">
+                                                                        <option value="">請選擇</option>
+                                                                        <option value="男">男</option>
+                                                                        <option value="女">女</option>
+                                                                        <option value="其他">其他</option>
+                                                                    </select>
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">聯絡電話</td>
+                                                                <td>
+                                                                    <span>
+                                                                        住家
+                                                                    </span>
+                                                                    <input style="width:15em;" id="home_phone" type="text"><br/><br/>
+                                                                    <span>
+                                                                        手機
+                                                                    </span>
+                                                                    <input style="width:15em;" id="cellphone" type="text">
+                                                                </td>
+                                                            </tr>
+                                                            
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">E-MAIL</td>
+                                                                <td style="border-bottom: solid 1px;"><input id="e_mail" type="text"></td>
+                                                            </tr>
+
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">是否參與過基礎訓練<br/>及特殊訓練</td>
                                                                 <td style="border-bottom: solid 1px;">
-                                                                    <select id="serv_type">
+                                                                    <select id="training_detail">
+                                                                        <option value="">請選擇</option>
+                                                                        <option value="二者皆有">二者皆有</option>
+                                                                        <option value="僅參與過基礎訓練">僅參與過基礎訓練</option>
+                                                                        <option value="二者皆沒有">二者皆沒有</option>
+                                                                        <option value="僅參與過特殊訓練">僅參與過特殊訓練</option>
+                                                                    </select><br/><br/>
+                                                                    <hr>
+                                                                    <span>志工服務手冊字號：</span>
+                                                                    <input id="brochure_num" type="text">
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">志工手冊及相關證件</td>
+                                                                <td style="border-bottom: solid 1px;">
+                                                                    <div class="col-sm-8">
+                                                                        <div class="text-left">
+                                                                            <input name="volunteer_file" type="file" multiple/>
+                                                                            <br>
+                                                                            <div id="volunteer_file"></div>
+                                                                            <!-- <button style="width:3em;" onclick="get_files_name_value(); return false;">test</button> -->
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>服務時間</td>
+                                                                <td style="border-bottom: solid 1px;" id="serv_time_area">
+                                                                    <select id="serv_time_1">
+                                                                        <option value="">請選擇</option>
+                                                                        <option value="星期一">星期一</option>
+                                                                        <option value="星期二">星期二</option>
+                                                                        <option value="星期三">星期三</option>
+                                                                        <option value="星期四">星期四</option>
+                                                                        <option value="星期五">星期五</option>
+                                                                    </select>
+                                                                  
+                                                                    <!-- <input id="serv_time_2" type="text"> -->
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white">備註</td>
+                                                                <td>
+                                                                    <div class="form-group col-sm-3">
+                                                                        <textarea style="height:10em;width:700px;resize: none;" id="remark" placeholder="請輸入備註"></textarea>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <!-- <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>服務總時數</td>
+                                                                <td style="border-bottom: solid 1px;"><input id="time_all" type="text"></td>
+                                                            </tr>
+                                                              -->
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">是否領取服務獎狀</td>
+                                                                <td style="border-bottom: solid 1px;">
+                                                                    <select id="serv_award">
+                                                                        <option value="">請選擇</option>
+                                                                        <option value="是">是</option>
+                                                                        <option value="否">否</option>
+                                                                    </select>
+                                                                </td>
+                                                            </tr>
+                                                            
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">專長</td>
+                                                                <td style="border-bottom: solid 1px;">
+                                                                    <select id="expertise">
+                                                                        <option value="">請選擇</option>
                                                                         <option value="電腦">電腦</option>
                                                                         <option value="美工">美工</option>
                                                                         <option value="活動">活動</option>
@@ -140,57 +251,48 @@
                                                                 </td>
                                                             </tr>
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">服務時間</td>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">組別</td>
                                                                 <td style="border-bottom: solid 1px;">
-                                                                    <select id="serv_time">
-                                                                        <option value="周一早上9:00-12:00">周一早上9:00-12:00</option>
-                                                                        <option value="周一下午13:00-12:00">周一下午13:00-12:00</option>
-                                                                        <option value="周二早上9:00-12:00">周二早上9:00-12:00</option>
-                                                                        <option value="周二下午13:00-12:00">周二下午13:00-12:00</option>
-                                                                        <option value="周三早上9:00-12:00">周三早上9:00-12:00</option>
-                                                                        <option value="周三下午13:00-12:00">周三下午13:00-12:00</option>
-                                                                        <option value="周四早上9:00-12:00">周四早上9:00-12:00</option>
-                                                                        <option value="周四下午13:00-12:00">周四下午13:00-12:00</option>
-                                                                        <option value="周五早上9:00-12:00">周五早上9:00-12:00</option>
-                                                                        <option value="周五下午13:00-12:00">周五下午13:00-12:00</option>
+                                                                    <select id="vgroup">
+                                                                        <option value="">請選擇</option>
+                                                                        <option value="社區宣導志工組">社區宣導志工組</option>
+                                                                        <option value="監獄直接服務志工組">監獄直接服務志工組</option>
+                                                                        <option value="行政服務志工組">行政服務志工組</option>
                                                                     </select>
                                                                 </td>
                                                             </tr>
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>服務總時數</td>
-                                                                <td style="border-bottom: solid 1px;"><input id="time_all" class="re_question" type="text"></td>
-                                                            </tr>
-                                                            <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">是否領取時數條</td>
+                                                                <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>社工員</td>
                                                                 <td style="border-bottom: solid 1px;">
-                                                                    <select id="rece_hours">
-                                                                        <option value="是">是</option>
-                                                                        <option value="否">否</option>
-                                                                    </select>
+                                                                    <div class="col-sm-6">
+                                                                        <select name="social_worker" id="social_worker" style="width:100%;">
+                                                                            <option value="">請選擇</option>
+                                                                        </select>
+                                                                    </div>
                                                                 </td>
                                                             </tr>
+
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">是否領取服務獎狀</td>
+                                                                <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>主管</td>
                                                                 <td style="border-bottom: solid 1px;">
-                                                                    <select id="serv_award">
-                                                                        <option value="是">是</option>
-                                                                        <option value="否">否</option>
-                                                                    </select>
+                                                                    <div class="col-sm-6">
+                                                                        <select name="director" id="director" style="width:100%;">
+                                                                            <option value="">請選擇</option>
+                                                                        </select>
+                                                                    </div>
                                                                 </td>
                                                             </tr>
+
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;">是否持有志工榮譽卡</td>
+                                                                <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>執行長</td>
                                                                 <td style="border-bottom: solid 1px;">
-                                                                    <select id="honor_card">
-                                                                        <option value="是">是</option>
-                                                                        <option value="否">否</option>
-                                                                    </select>
+                                                                    <div class="col-sm-6">
+                                                                        <select name="supervise" id="supervise" style="width:100%;">
+                                                                            <option value="">請選擇</option>
+                                                                        </select>
+                                                                    </div>
                                                                 </td>
                                                             </tr>
-                                                            <!-- <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>創建日期</td>
-                                                                <td style="border-bottom: solid 1px;"><input id="create_date" class="re_question" name="ch_datepicker" type="text"></td>
-                                                            </tr> -->
 
                                                         </table>
                                                     </div>
@@ -245,7 +347,7 @@
     <script src="javascript/bootstrap-table1.11.1-zh-TW.min.js"></script>
     <!-- 日期民國-->
     <script src="javascript/jquery-ui.min.js"></script>
-    <script src="javascript/datepickerTw2.js"></script>
+    <script src="javascript/datepickerTw.js"></script>
     <!-- ================== add_phone.js ================== -->
     <script src="js/add_volunteer.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
 </body>

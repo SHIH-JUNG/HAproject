@@ -3,8 +3,8 @@ include("sql_connect.php");
 //region 抓資料
 // $year = $_POST['year'];
 
-// $note = "SELECT * FROM `volunteer` Where `Year` = '$year' ORDER BY `volunteer`.`Id` ASC;;";
-$note = "SELECT * FROM `volunteer` ORDER BY `volunteer`.`Year` DESC;";
+// $note = "SELECT * FROM `volunteer_v2` Where `Year` = '$year' ORDER BY `volunteer_v2`.`Id` ASC;;";
+$note = "SELECT * FROM `volunteer_v2` ORDER BY `volunteer_v2`.`Year` DESC;";
 
 //宣告空的陣列
 $datas = array();

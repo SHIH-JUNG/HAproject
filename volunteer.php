@@ -33,6 +33,7 @@
         word-break: keep-all;
         /*必須*/
     }
+    .preview {position:absolute;background:#fff;padding:10px;display:none;}  
 </style>
 <!--<SVG>引入bootstrap icon-->
 
@@ -117,10 +118,13 @@
                                                                 </select>
                                                             </td>
 
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">服務時間：</td>
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">性別：</td>
                                                             <td class="text-left">
-                                                                <select id="serv_time" rel="3" class="filter search">
-                                                                    <!-- <option value="">所有</option> -->
+                                                                <select id="gender" rel="2" class="filter search">
+                                                                    <option value="">所有</option>
+                                                                    <option value="男">男</option>
+                                                                    <option value="女">女</option>
+                                                                    <option value="其他">其他</option>
                                                                 </select>
                                                             </td>
 
@@ -136,32 +140,42 @@
                                                         </tr>
 
                                                         <tr>
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">服務項目：</td>
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">服務時間：</td>
                                                             <td class="text-left">
-                                                                <select id="serv_type" rel="2" class="filter search">
-                                                                    <!-- <option value="">所有</option> -->
+                                                                <select id="serv_time" rel="3" class="filter search">
+                                                                    <option value="星期一">星期一</option>
+                                                                    <option value="星期二">星期二</option>
+                                                                    <option value="星期三">星期三</option>
+                                                                    <option value="星期四">星期四</option>
+                                                                    <option value="星期五">星期五</option>
                                                                 </select>
                                                             </td>
 
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">是否領取時數條：</td>
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">專長：</td>
                                                             <td class="text-left">
-                                                                <select rel="5" class="filter search">
-                                                                    <option value="">所有</option>
-                                                                    <option value="是">是</option>
-                                                                    <option value="否">否</option>
+                                                                <select id="expertise" rel="4" class="filter search">
+                                                                    <option value="">請選擇</option>
+                                                                    <option value="電腦">電腦</option>
+                                                                    <option value="美工">美工</option>
+                                                                    <option value="活動">活動</option>
+                                                                    <option value="文宣">文宣</option>
+                                                                    <option value="輔導">輔導</option>
+                                                                    <option value="環境清潔">環境清潔</option>
+                                                                    <option value="其他">其他</option>
+                                                                </select>
+                                                            </td>
+
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">組別：</td>
+                                                            <td class="text-left">
+                                                                <select id="vgroup" rel="5" class="filter search">
+                                                                    <option value="">請選擇</option>
+                                                                    <option value="社區宣導志工組">社區宣導志工組</option>
+                                                                    <option value="監獄直接服務志工組">監獄直接服務志工組</option>
+                                                                    <option value="行政服務志工組">行政服務志工組</option>
                                                                 </select>
                                                             </td>
 
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">是否領取服務獎狀：</td>
-                                                            <td class="text-left">
-                                                                <select rel="6" class="filter search">
-                                                                    <option value="">所有</option>
-                                                                    <option value="是">是</option>
-                                                                    <option value="否">否</option>
-                                                                </select>
-                                                            </td>
-
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">是否持有志工榮譽卡：</td>
                                                             <td class="text-left">
                                                                 <select rel="7" class="filter search">
                                                                     <option value="">所有</option>
@@ -169,6 +183,7 @@
                                                                     <option value="否">否</option>
                                                                 </select>
                                                             </td>
+                                                          
                                                         </tr>
                                                         <tr>
                                                             <td colspan="8" class="text-right">
@@ -196,16 +211,15 @@
                                                             <tr style="background-color:rgb(255 201 54);">
                                                                 <th>年度</th>
                                                                 <th>姓名</th>
-                                                                <th>服務項目</th>
+                                                                <th>性別</th>
                                                                 <th>服務時間</th>
+                                                                <th>專長</th>
+                                                                <th>組別</th>
                                                                 <th>目前總服務時數</th>
-                                                                <th>是否領取時數條</th>
                                                                 <th>是否領取服務獎狀</th>
-                                                                <th>是否持有志工榮譽卡</th>
-                                                                <!-- <th>創建日期</th>
-                                                                <th>創建者</th>
-                                                                <th>更新日期</th>
-                                                                <th>更新者</th> -->
+                                                                <th>社工員</th>
+                                                                <th>主管簽章</th>
+                                                                <th>執行長簽章</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody id="call_view"></tbody>

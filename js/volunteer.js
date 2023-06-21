@@ -13,104 +13,6 @@ function getUrlVars() {
 }
 //endregion
 
-//datepicker創建 region
-datepicker_create = function (selector_id) {
-  if (selector_id.includes("birth")) {
-    $("#" + selector_id).datepicker({
-      changeYear: true,
-      changeMonth: true,
-      currentText: "今天",
-      dateFormat: "R.mm.dd",
-      showButtonPanel: true,
-      yearRange: "-109:+0",
-      onClose: function (dateText) {
-        // console.log($('#'+selector_id).val());
-        // console.log(trans_to_EN(dateText));
-      },
-      beforeShow: function (input, inst) {
-        var $this = $(this);
-        var cal = inst.dpDiv;
-        var outerh = $this.outerHeight();
-        if ($this.offset().top > 1200) {
-          outerh = outerh * 4;
-        } else {
-          outerh = outerh * 3;
-        }
-        // console.log($this.offset().top)
-        // console.log(outerh)
-
-        var top = $this.offset().top - outerh;
-        var left = $this.offset().left - 10;
-        setTimeout(function () {
-          cal.css({
-            top: top,
-            left: left,
-          });
-        }, 10);
-      },
-    });
-  } else {
-    $("#" + selector_id).datepicker({
-      changeYear: true,
-      changeMonth: true,
-      currentText: "今天",
-      dateFormat: "R.mm.dd",
-      showButtonPanel: true,
-      minDate: new Date(new Date().getFullYear() - 10, 0, 1),
-      maxDate: new Date(new Date().getFullYear() + 10, 11, 31),
-      onClose: function (dateText) {
-        // console.log($('#'+selector_id).val());
-        // console.log(trans_to_EN(dateText));
-      },
-      beforeShow: function (input, inst) {
-        var $this = $(this);
-        var cal = inst.dpDiv;
-        var outerh = $this.outerHeight();
-        if ($this.offset().top > 1200) {
-          outerh = outerh * 4;
-        } else {
-          outerh = outerh * 3;
-        }
-        // console.log($this.offset().top)
-        // console.log(outerh)
-
-        var top = $this.offset().top - outerh;
-        var left = $this.offset().left - 10;
-        setTimeout(function () {
-          cal.css({
-            top: top,
-            left: left,
-          });
-        }, 10);
-      },
-    });
-  }
-};
-//endregion
-
-//將日期轉為民國年格式111.03.07 region
-trans_to_Tw = function (endate) {
-  var strAry = endate.split("-");
-
-  if (parseInt(strAry[0]) > 1911) {
-    strAry[0] = parseInt(strAry[0]) - 1911;
-  }
-
-  return strAry.join(".");
-};
-//endregion
-
-//將日期轉為西元年格式2022-03-07(mysql date格式) region
-trans_to_EN = function (endate) {
-  var strAry = endate.split(".");
-
-  if (parseInt(strAry[0]) < 1911) {
-    strAry[0] = parseInt(strAry[0]) + 1911;
-  }
-
-  return strAry.join("-");
-};
-//endregion
 
 //檢查SQL撈出來的日期格式region
 check_sql_date_format = function (date) {
@@ -122,22 +24,6 @@ check_sql_date_format = function (date) {
 
   return date;
 };
-
-//取得url id值region
-function getUrlVars() {
-  var vars = {};
-  var parts = window.location.href.replace(
-    /[?&]+([^=&]+)=([^&]*)/gi,
-    function (m, key, value) {
-      vars[key] = value;
-    }
-  );
-  return vars;
-}
-//endregion
-
-//團督記錄表格region
-// var vo_year = getUrlVars()["year"];
 
 
 $.ajax({
@@ -155,6 +41,13 @@ $.ajax({
 
       // var update_date = value.Update_date != "0000-00-00" ? value.Update_date : "";
 
+      var supervise_sign_arr = datatable_sign_show('supervise', value.Supervise, value.Supervise_signature, value.Supervise_sign_time, value.Supervise_sign_msg);
+
+      // var social_worker_sign_arr = datatable_sign_show('social_worker', value.Social_worker, value.Social_worker_signature, value.Social_worker_sign_time, value.Social_worker_sign_msg);
+
+      var director_sign_arr = datatable_sign_show('director', value.Director, value.Director_signature, value.Director_sign_time, value.Director_sign_msg);
+
+
       cssString +=
         '<tr id="' +
         value.Id +
@@ -166,35 +59,34 @@ $.ajax({
         value.Name +
         "</td>" +
         '<td style="text-align:center">' +
-        value.Serv_type +
+        value.Gender +
         "</td>" +
         '<td style="text-align:center">' +
-        value.Serv_time +
+        value.Serv_time_1 +
+        "</td>" +
+        '<td style="text-align:center">' +
+        value.Expertise +
+        "</td>" +
+        '<td style="text-align:center">' +
+        value.Vgroup +
         "</td>" +
         '<td style="text-align:center">' +
         value.Time_all +
         "</td>" +
         '<td style="text-align:center">' +
-        value.Rece_hours +
-        "</td>" +
-        '<td style="text-align:center">' +
         value.Serv_award +
         "</td>" +
         '<td style="text-align:center">' +
-        value.Honor_card +
+        value.Social_worker +
         "</td>" +
-        // '<td style="text-align:center">' +
-        // value.Create_date +
-        // "</td>" +
-        // '<td style="text-align:center">' +
-        // value.Create_name +
-        // "</td>" +
-        // '<td style="text-align:center">' +
-        // update_date+ 
-        // "</td>" +
-        // '<td style="text-align:center">' +
-        // value.Update_name +
-        // "</td>" +
+        '<td style="text-align:center">' +
+        director_sign_arr[0] +
+        director_sign_arr[1] +
+        "</td>" +
+        '<td style="text-align:center">' +
+        supervise_sign_arr[0] +
+        supervise_sign_arr[1] +
+        "</td>" +
         "</tr>";
 
       $("#year").append(
@@ -205,72 +97,6 @@ $.ajax({
         '<option value="' + value.Name + '">' + value.Name + "</option>"
       );
 
-      $("#serv_type").append(
-        '<option value="' +
-          value.Serv_type +
-          '">' +
-          value.Serv_type +
-          "</option>"
-      );
-      $("#serv_time").append(
-        '<option value="' +
-          value.Serv_time +
-          '">' +
-          value.Serv_time +
-          "</option>"
-      );
-      // $("#time_all").append(
-      //   '<option value="' + value.Time_all + '">' + value.Time_all + "</option>"
-      // );
-      $("#rece_hours").append(
-        '<option value="' +
-          value.Rece_hours +
-          '">' +
-          value.Rece_hours +
-          "</option>"
-      );
-      $("#serv_award").append(
-        '<option value="' +
-          value.Serv_award +
-          '">' +
-          value.Serv_award +
-          "</option>"
-      );
-      $("#honor_card").append(
-        '<option value="' +
-          value.Honor_card +
-          '">' +
-          value.Honor_card +
-          "</option>"
-      );
-      $("#create_date").append(
-        '<option value="' +
-          value.Create_date +
-          '">' +
-          value.Create_date +
-          "</option>"
-      );
-      $("#create_name").append(
-        '<option value="' +
-          value.Create_name +
-          '">' +
-          value.Create_name +
-          "</option>"
-      );
-      $("#update_date").append(
-        '<option value="' +
-          value.Update_date +
-          '">' +
-          value.Update_date +
-          "</option>"
-      );
-      $("#update_name").append(
-        '<option value="' +
-          value.Update_name +
-          '">' +
-          value.Update_name +
-          "</option>"
-      );
     });
 
     //找出所有查詢表格下拉式選單，將內容排序、加上"所有查詢"、去除重複值
@@ -337,6 +163,70 @@ $.ajax({
 });
 
 //endregion
+
+
+// 顯示簽核相關欄位 region
+function datatable_sign_show(signer_type ,signer, sign_path, sign_time, sign_msg) {
+  var sign_arr = [];
+
+  var sign_stus = "";
+  var sign_css_str = "";
+  var type_name = "";
+
+  switch (signer_type) {
+    case "supervise":
+      type_name = "執行長";
+      break;
+    // case "leader":
+    //   type_name = "組長";
+    //   break;
+    case "director":
+      type_name = "主管";
+      break;
+    case "social_worker":
+      type_name = "社工員";
+      break;
+  }
+
+  if (sign_msg == "") {
+    sign_stus = "目前尚無留言內容";
+  } else {
+    sign_stus =
+      "留言時間：" +
+      sign_time +
+      "，留言內容：" +
+      sign_msg;
+  }
+
+  if (sign_path != "") {
+    var supervise_sign_file_val = sign_path.replace(
+      "../signature/",
+      "./signature/"
+    );
+    sign_css_str +=
+      '<a src="' +
+      supervise_sign_file_val +
+      '" style="color:blue;display: block;" target="_blank" alt="' +
+      sign_stus +
+      '" data-bs-toggle="tooltip" data-bs-placement="left" title="' +
+      sign_stus +
+      '">'+type_name+'已簽章<img style="vertical-align:middle;" class="apreview" width="25px" title="' +
+      sign_stus +
+      '" src="' +
+      supervise_sign_file_val +
+      '"></a>';
+  }
+
+  if (sign_css_str == "") {
+    sign_css_str = '<i style="color:gray;">待簽核</i>';
+  }
+
+  sign_arr.push(signer);
+  sign_arr.push(sign_css_str);
+
+  return sign_arr;
+}
+// endregion
 
 //設定table搜尋框重整後自動填入文字region
 
@@ -410,7 +300,7 @@ var $table = $("#tab_all").DataTable({
 var hours_range = function (settings, data, dataIndex) {
   var min_time_all = parseInt($("#min_time_all").val(), 10);
   var max_time_all = parseInt($("#max_time_all").val(), 10);
-  var hours = parseInt(data[4]) || 0; // use data for the date column
+  var hours = parseInt(data[6]) || 0; // use data for the date column
   
   if (
     (isNaN(min_time_all) && isNaN(max_time_all)) ||

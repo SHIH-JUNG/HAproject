@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2023-06-13 15:52:17
+-- 產生時間： 2023-06-21 13:43:32
 -- 伺服器版本： 10.4.27-MariaDB
 -- PHP 版本： 8.0.25
 
@@ -1298,7 +1298,9 @@ INSERT INTO `login_record` (`Id`, `Login_timestamp`, `Login_account`, `Login_aut
 (172, '2023-06-06 12:34:43', 'text1', '1', '社工員1', '22.5837056,120.4912128', 0),
 (173, '2023-06-08 15:35:45', 'test3', '3', '社工組長', '22.647866,120.6119376', 1),
 (174, '2023-06-08 15:57:23', 'test6', '4', '執行長', '22.6699,120.5806', 1),
-(175, '2023-06-12 14:40:43', 'test6', '4', '執行長', '22.6699,120.5806', 1);
+(175, '2023-06-12 14:40:43', 'test6', '4', '執行長', '22.6699,120.5806', 1),
+(176, '2023-06-21 16:36:18', 'test6', '4', '執行長', '22.6699,120.5806', 1),
+(177, '2023-06-21 16:40:19', 'test6', '4', '執行長', '22.6699,120.5806', 0);
 
 -- --------------------------------------------------------
 
@@ -2066,7 +2068,8 @@ INSERT INTO `signature_notice` (`Id`, `Sign_id`, `Title`, `Url`, `Timestamp`, `A
 (52, 17, '結案簽核：案號RE111姓名test', 'closed_detail.php?closed_id=17', '2023-06-05 00:00', 'jia', '園主任、執行長', '園主任未簽核、執行長已簽核', 'closed', '2023-06-05 19:30:22', 'jia', '2023-06-05 19:30:22', ''),
 (53, 6, '生輔紀錄簽核：日期2023-03-04生活輔導員test生活輔導員', 'dlgrec_detail.php?dlgrec_id=6', '2023-06-05 15:44', '社工員1', '社工員1、園主任、執行長', '社工員1未簽核、園主任未簽核、執行長已簽核', 'dlgrec', '2023-06-05 21:11:44', '執行長', '2023-06-05 21:11:44', ''),
 (54, 43, '收文簽核：主旨ttas,來文單位units', 'received_detail.php?re_id=43&year=112', '2023-06-07 00:00', '社工組長', '歐陽美悌、園主任、執行長、社工組長、洪勝霖', '歐陽美悌未簽核、園主任未簽核、執行長未簽核、社工組長未簽核、洪勝霖未簽核', 'received', '2023-06-08 15:48:41', '社工組長', '2023-06-08 15:48:41', ''),
-(55, 32, '發文簽核：主旨tt123', 'published_detail.php?pu_id=32&year=112', '2023-06-07 00:00', '社工組長', '社工組長、園主任', '社工組長未簽核、園主任未簽核', 'published', '2023-06-08 15:49:53', '社工組長', '2023-06-08 15:49:53', '');
+(55, 32, '發文簽核：主旨tt123', 'published_detail.php?pu_id=32&year=112', '2023-06-07 00:00', '社工組長', '社工組長、園主任', '社工組長未簽核、園主任未簽核', 'published', '2023-06-08 15:49:53', '社工組長', '2023-06-08 15:49:53', ''),
+(56, 1, '志工資料簽核：111年度 志工姓名TEST111_Vuser54', 'volunteer_detail.php?vo_id=1', '2023-06-21 00:00', '社工員1', '園主任、執行長', '園主任未簽核、執行長未簽核', 'volunteer', '2023-06-21 19:17:57', '執行長', '2023-06-21 19:17:57', '');
 
 -- --------------------------------------------------------
 
@@ -2386,6 +2389,8 @@ CREATE TABLE `volunteer_hours_record` (
   `Year` int(10) NOT NULL,
   `Name` varchar(50) NOT NULL,
   `Add_hours` float NOT NULL,
+  `Record_date` varchar(500) NOT NULL,
+  `Record_time` varchar(500) NOT NULL,
   `Remark` varchar(2000) NOT NULL,
   `Sign_date` varchar(100) NOT NULL,
   `Is_firstadd` tinyint(1) NOT NULL,
@@ -2399,36 +2404,36 @@ CREATE TABLE `volunteer_hours_record` (
 -- 傾印資料表的資料 `volunteer_hours_record`
 --
 
-INSERT INTO `volunteer_hours_record` (`Id`, `Volunteer_id`, `Year`, `Name`, `Add_hours`, `Remark`, `Sign_date`, `Is_firstadd`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
-(1, 1, 111, 'test712', 16, '', '111年07月12日', 1, '2022-07-12 22:34:31', '園主任', '0000-00-00 00:00:00', ''),
-(2, 2, 111, 'test713', 6, '', '111年07月12日', 1, '2022-07-12 22:35:07', '園主任', '0000-00-00 00:00:00', ''),
-(12, 1, 111, 'test712', -1, '目前服務時數由16更改為15(-1)。資料異動者：園主任，異動時間：2022-07-14 15:43:51。', '', 0, '2022-07-14 21:43:51', '園主任', '0000-00-00 00:00:00', ''),
-(16, 1, 111, 'test712', 4, '新增至19小時', '', 0, '2022-07-14 22:02:58', '園主任', '0000-00-00 00:00:00', ''),
-(17, 1, 111, 'test712', -3, '減至16', '', 0, '2022-07-14 22:03:22', '園主任', '0000-00-00 00:00:00', ''),
-(18, 3, 111, 'test728', 11.5, '', '111年07月28日', 1, '2022-07-28 19:03:34', '園主任', '0000-00-00 00:00:00', ''),
-(19, 4, 111, 'test11234', 0, '', '111年07月28日', 1, '2022-07-28 19:03:59', '園主任', '0000-00-00 00:00:00', ''),
-(25, 3, 111, 'test728', 2.5, '+2.5小時', '', 0, '2022-07-28 19:08:58', '園主任', '0000-00-00 00:00:00', ''),
-(26, 3, 111, 'test728', -0.5, 'test', '', 0, '2022-07-28 19:09:15', '園主任', '0000-00-00 00:00:00', ''),
-(27, 4, 111, 'test11234', 4.5, '+4.5hours', '', 0, '2022-07-28 19:09:33', '園主任', '0000-00-00 00:00:00', ''),
-(29, 4, 111, 'test11234', -2.5, '', '', 0, '2022-07-28 19:10:58', '園主任', '0000-00-00 00:00:00', ''),
-(30, 1, 111, 'test712', 2.5, 'test+2.5', '', 0, '2022-09-20 17:51:57', '園主任', '0000-00-00 00:00:00', ''),
-(31, 1, 111, 'test712', 1.5, 'test1.5', '', 0, '2022-09-20 17:52:12', '園主任', '0000-00-00 00:00:00', ''),
-(32, 1, 111, 'test712', -3.5, '目前服務時數由20更改為16.5(-3.5)。資料異動者：園主任，異動時間：2022-09-20 11:59:06。', '', 0, '2022-09-20 17:59:06', '園主任', '0000-00-00 00:00:00', ''),
-(33, 5, 111, '測試測試測試', 15, '', '111年10月12日', 1, '2022-10-12 14:33:35', '花花', '0000-00-00 00:00:00', ''),
-(34, 5, 111, '測試測試測試', 1, '', '', 0, '2022-10-12 14:34:40', '花花', '0000-00-00 00:00:00', ''),
-(35, 6, 111, 'test測試', 19, '', '111年10月12日', 1, '2022-10-12 14:36:45', '花花', '0000-00-00 00:00:00', ''),
-(36, 7, 111, '測試567', 4, '', '111年10月12日', 1, '2022-10-12 14:43:30', '花花', '0000-00-00 00:00:00', ''),
-(37, 2, 111, 'test713', 4, '', '', 0, '2022-11-26 16:21:56', '社工員1', '0000-00-00 00:00:00', ''),
-(38, 8, 111, 'ㄓㄜㄒㄧㄢ', 20, '', '111年12月06日', 1, '2022-12-06 16:33:48', '花花', '0000-00-00 00:00:00', ''),
-(39, 8, 111, 'ㄓㄜㄒㄧㄢ', 1, '', '', 0, '2022-12-06 16:34:06', '花花', '0000-00-00 00:00:00', ''),
-(40, 9, 111, '劉品均', 0, '', '111年12月09日', 1, '2022-12-09 14:16:02', '花花', '0000-00-00 00:00:00', ''),
-(41, 10, 111, '劉品均', 45, '', '111年12月09日', 1, '2022-12-09 14:16:53', '花花', '0000-00-00 00:00:00', ''),
-(42, 10, 111, '劉品均', 48, '88', '', 0, '2022-12-09 14:17:08', '花花', '0000-00-00 00:00:00', ''),
-(43, 11, 111, '劉品均', 99, '', '111年12月09日', 1, '2022-12-09 14:17:39', '花花', '0000-00-00 00:00:00', ''),
-(44, 12, 111, '劉品均', 22, '', '111年12月23日', 1, '2022-12-23 10:04:29', '花花', '0000-00-00 00:00:00', ''),
-(45, 13, 111, '劉品均', 55, '', '111年12月23日', 1, '2022-12-23 10:06:59', '花花', '0000-00-00 00:00:00', ''),
-(46, 1, 112, 'test712', 2, '', '', 0, '2023-03-30 14:15:38', 'jia', '0000-00-00 00:00:00', ''),
-(47, 1, 112, 'test712', 12, '', '', 0, '2023-05-24 15:28:43', '社工員1', '0000-00-00 00:00:00', '');
+INSERT INTO `volunteer_hours_record` (`Id`, `Volunteer_id`, `Year`, `Name`, `Add_hours`, `Record_date`, `Record_time`, `Remark`, `Sign_date`, `Is_firstadd`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
+(1, 1, 111, 'test712', 16, '', '', '', '111年07月12日', 1, '2022-07-12 22:34:31', '園主任', '0000-00-00 00:00:00', ''),
+(2, 2, 111, 'test713', 6, '', '', '', '111年07月12日', 1, '2022-07-12 22:35:07', '園主任', '0000-00-00 00:00:00', ''),
+(12, 1, 111, 'test712', -1, '', '', '目前服務時數由16更改為15(-1)。資料異動者：園主任，異動時間：2022-07-14 15:43:51。', '', 0, '2022-07-14 21:43:51', '園主任', '0000-00-00 00:00:00', ''),
+(16, 1, 111, 'test712', 4, '', '', '新增至19小時', '', 0, '2022-07-14 22:02:58', '園主任', '0000-00-00 00:00:00', ''),
+(17, 1, 111, 'test712', -3, '', '', '減至16', '', 0, '2022-07-14 22:03:22', '園主任', '0000-00-00 00:00:00', ''),
+(18, 3, 111, 'test728', 11.5, '', '', '', '111年07月28日', 1, '2022-07-28 19:03:34', '園主任', '0000-00-00 00:00:00', ''),
+(19, 4, 111, 'test11234', 0, '', '', '', '111年07月28日', 1, '2022-07-28 19:03:59', '園主任', '0000-00-00 00:00:00', ''),
+(25, 3, 111, 'test728', 2.5, '', '', '+2.5小時', '', 0, '2022-07-28 19:08:58', '園主任', '0000-00-00 00:00:00', ''),
+(26, 3, 111, 'test728', -0.5, '', '', 'test', '', 0, '2022-07-28 19:09:15', '園主任', '0000-00-00 00:00:00', ''),
+(27, 4, 111, 'test11234', 4.5, '', '', '+4.5hours', '', 0, '2022-07-28 19:09:33', '園主任', '0000-00-00 00:00:00', ''),
+(29, 4, 111, 'test11234', -2.5, '', '', '', '', 0, '2022-07-28 19:10:58', '園主任', '0000-00-00 00:00:00', ''),
+(30, 1, 111, 'test712', 2.5, '', '', 'test+2.5', '', 0, '2022-09-20 17:51:57', '園主任', '0000-00-00 00:00:00', ''),
+(31, 1, 111, 'test712', 1.5, '', '', 'test1.5', '', 0, '2022-09-20 17:52:12', '園主任', '0000-00-00 00:00:00', ''),
+(32, 1, 111, 'test712', -3.5, '', '', '目前服務時數由20更改為16.5(-3.5)。資料異動者：園主任，異動時間：2022-09-20 11:59:06。', '', 0, '2022-09-20 17:59:06', '園主任', '0000-00-00 00:00:00', ''),
+(33, 5, 111, '測試測試測試', 15, '', '', '', '111年10月12日', 1, '2022-10-12 14:33:35', '花花', '0000-00-00 00:00:00', ''),
+(34, 5, 111, '測試測試測試', 1, '', '', '', '', 0, '2022-10-12 14:34:40', '花花', '0000-00-00 00:00:00', ''),
+(35, 6, 111, 'test測試', 19, '', '', '', '111年10月12日', 1, '2022-10-12 14:36:45', '花花', '0000-00-00 00:00:00', ''),
+(36, 7, 111, '測試567', 4, '', '', '', '111年10月12日', 1, '2022-10-12 14:43:30', '花花', '0000-00-00 00:00:00', ''),
+(37, 2, 111, 'test713', 4, '', '', '', '', 0, '2022-11-26 16:21:56', '社工員1', '0000-00-00 00:00:00', ''),
+(38, 8, 111, 'ㄓㄜㄒㄧㄢ', 20, '', '', '', '111年12月06日', 1, '2022-12-06 16:33:48', '花花', '0000-00-00 00:00:00', ''),
+(39, 8, 111, 'ㄓㄜㄒㄧㄢ', 1, '', '', '', '', 0, '2022-12-06 16:34:06', '花花', '0000-00-00 00:00:00', ''),
+(40, 9, 111, '劉品均', 0, '', '', '', '111年12月09日', 1, '2022-12-09 14:16:02', '花花', '0000-00-00 00:00:00', ''),
+(41, 10, 111, '劉品均', 45, '', '', '', '111年12月09日', 1, '2022-12-09 14:16:53', '花花', '0000-00-00 00:00:00', ''),
+(42, 10, 111, '劉品均', 48, '', '', '88', '', 0, '2022-12-09 14:17:08', '花花', '0000-00-00 00:00:00', ''),
+(43, 11, 111, '劉品均', 99, '', '', '', '111年12月09日', 1, '2022-12-09 14:17:39', '花花', '0000-00-00 00:00:00', ''),
+(44, 12, 111, '劉品均', 22, '', '', '', '111年12月23日', 1, '2022-12-23 10:04:29', '花花', '0000-00-00 00:00:00', ''),
+(45, 13, 111, '劉品均', 55, '', '', '', '111年12月23日', 1, '2022-12-23 10:06:59', '花花', '0000-00-00 00:00:00', ''),
+(46, 1, 112, 'test712', 2, '', '', '', '', 0, '2023-03-30 14:15:38', 'jia', '0000-00-00 00:00:00', ''),
+(47, 1, 112, 'test712', 12, '', '', '', '', 0, '2023-05-24 15:28:43', '社工員1', '0000-00-00 00:00:00', '');
 
 -- --------------------------------------------------------
 
@@ -2466,6 +2471,57 @@ CREATE TABLE `volunteer_meeting` (
 
 INSERT INTO `volunteer_meeting` (`Id`, `Title_name`, `Meeting_date`, `Meeting_time_start`, `Meeting_time_end`, `Meeting_place`, `Expected_attendees`, `Attendees_seq_contents`, `Actual_attendence`, `Absence`, `Agenda_contents`, `Proposal_contents`, `Review_suggest`, `Extempore_motion`, `Next_meeting_date`, `Signin_file_path`, `Signout_file_path`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
 (1, '111年第1次志工會議a', '111年11月01日', '09:15', '00:00', 'test會議地點aaasda', 'teest\r\n應出席人員1\r\n\r\n應出席人員2\r\n應出席人員3', '', '27', '3', 'ttt\r\n會議議程1\r\n會議議程2\r\n\r\n會議議程3\r\n會議議程aa', '\"[{\"input_id\":\"proposal_contents_1\",\"val\":\"決議：aaaaaaaaa\"},{\"input_id\":\"proposal_contents_2\",\"val\":\"決議：\\nbbb\"},{\"input_id\":\"proposal_contents_3\",\"val\":\"決議：\\nc\\nd\\ne\"},{\"input_id\":\"proposal_contents_4\",\"val\":\"決議：test\\nasdasds\\nasda\\na\"},{\"input_id\":\"proposal_contents_5\",\"val\":\"決議：aaaa\"},{\"input_id\":\"proposal_contents_6\",\"val\":\"決議：b\"},{\"input_id\":\"proposal_contents_7\",\"val\":\"決議：\"}]\"', 'ttt\r\n檢討及建議：\r\n1daasa\r\n2wdwdawd\r\nddadsa\r\n1111111', '臨時動議：\r\n1wewdjdia\r\ndjasida\r\nddddd\r\n11111', '111年11月10日', '../volunteer_meeting/志工簽到表test1101.png', '../volunteer_meeting/志工閱後簽退test1101.png', '2022-11-11 13:13:50', '社工組長', '2022-11-11 15:34:09', '社工員1');
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `volunteer_v2`
+--
+
+CREATE TABLE `volunteer_v2` (
+  `Id` int(244) NOT NULL,
+  `Year` int(244) NOT NULL,
+  `Name` varchar(100) NOT NULL,
+  `Birth` varchar(500) NOT NULL,
+  `Gender` varchar(50) NOT NULL,
+  `Home_phone` varchar(300) NOT NULL,
+  `Cellphone` varchar(300) NOT NULL,
+  `E_mail` varchar(500) NOT NULL,
+  `Training_detail` varchar(300) NOT NULL,
+  `Brochure_num` varchar(300) NOT NULL,
+  `V_files` longtext NOT NULL,
+  `Serv_time_1` varchar(500) NOT NULL,
+  `Serv_time_2` varchar(1000) NOT NULL,
+  `Serv_award` varchar(100) NOT NULL,
+  `Remark` text NOT NULL,
+  `Expertise` varchar(300) NOT NULL,
+  `Vgroup` varchar(300) NOT NULL,
+  `Serv_status` varchar(300) NOT NULL,
+  `Time_all` float NOT NULL,
+  `Social_worker` varchar(300) NOT NULL,
+  `Social_worker_signature` longtext NOT NULL,
+  `Social_worker_sign_msg` longtext NOT NULL,
+  `Social_worker_sign_time` varchar(300) NOT NULL,
+  `Supervise` varchar(300) NOT NULL,
+  `Supervise_signature` longtext NOT NULL,
+  `Supervise_sign_msg` longtext NOT NULL,
+  `Supervise_sign_time` varchar(300) NOT NULL,
+  `Director` varchar(300) NOT NULL,
+  `Director_signature` longtext NOT NULL,
+  `Director_sign_msg` longtext NOT NULL,
+  `Director_sign_time` varchar(300) NOT NULL,
+  `Create_date` datetime NOT NULL,
+  `Create_name` varchar(100) NOT NULL,
+  `Update_date` datetime DEFAULT current_timestamp(),
+  `Update_name` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- 傾印資料表的資料 `volunteer_v2`
+--
+
+INSERT INTO `volunteer_v2` (`Id`, `Year`, `Name`, `Birth`, `Gender`, `Home_phone`, `Cellphone`, `E_mail`, `Training_detail`, `Brochure_num`, `V_files`, `Serv_time_1`, `Serv_time_2`, `Serv_award`, `Remark`, `Expertise`, `Vgroup`, `Serv_status`, `Time_all`, `Social_worker`, `Social_worker_signature`, `Social_worker_sign_msg`, `Social_worker_sign_time`, `Supervise`, `Supervise_signature`, `Supervise_sign_msg`, `Supervise_sign_time`, `Director`, `Director_signature`, `Director_sign_msg`, `Director_sign_time`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
+(1, 111, 'TEST111_Vuser54', '54.11.22', '男', '05-7733-7675', '096325632', 'ea123@HMNN.COM', '二者皆沒有', 'F123445', '[\"../volunteer/volunteer_user1_TEST111_Vuser54/TESTVDATA1.odt\",\"../volunteer/volunteer_user1_TEST111_Vuser54/TESTVDATA2.odt\"]', '星期三', '11:00至16:30', '', 'TESTVuser54REMARK', '活動', '行政服務志工組', '持續', 0, '社工員1', '', '', '', '執行長', '', '', '', '園主任', '', '', '', '2023-06-21 19:17:57', '執行長', '2023-06-21 19:17:57', '');
 
 --
 -- 已傾印資料表的索引
@@ -2760,6 +2816,12 @@ ALTER TABLE `volunteer_meeting`
   ADD PRIMARY KEY (`Id`);
 
 --
+-- 資料表索引 `volunteer_v2`
+--
+ALTER TABLE `volunteer_v2`
+  ADD PRIMARY KEY (`Id`);
+
+--
 -- 在傾印的資料表使用自動遞增(AUTO_INCREMENT)
 --
 
@@ -2863,7 +2925,7 @@ ALTER TABLE `leave_rule_table`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `login_record`
 --
 ALTER TABLE `login_record`
-  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=176;
+  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=178;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `members_assemble`
@@ -2977,7 +3039,7 @@ ALTER TABLE `screening_type_keywords`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `signature_notice`
 --
 ALTER TABLE `signature_notice`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `sign_notice`
@@ -3025,6 +3087,12 @@ ALTER TABLE `volunteer_hours_record`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `volunteer_meeting`
 --
 ALTER TABLE `volunteer_meeting`
+  MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `volunteer_v2`
+--
+ALTER TABLE `volunteer_v2`
   MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 

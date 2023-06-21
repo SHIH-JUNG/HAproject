@@ -153,7 +153,7 @@
                                                             </tr>
 
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>主管</td>
+                                                                <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>主管</td>
                                                                 <td style="border-bottom: solid 1px;">
                                                                     <div class="col-sm-3">
                                                                         <select name="director" id="director" style="width:100%;">
