@@ -155,6 +155,55 @@ $(document).ready(function () {
             //寫入該input相對應的div元素中顯示
             $("#signout_file").html(file_1_html);
 
+            console.log(value.Meeting_file_path)
+
+            // meeting_file region
+            var file_2_arr = value.Meeting_file_path.replace("\[", "").replace("\]", "").replace(/\"/g, "").split(",");
+
+            window.file_2_input_val_arr = [];
+
+            var file_2_htmlstr = "";
+
+
+            $.each(file_2_arr, function (i, val) {
+
+              var meeting_file_path = val.replace("../", "./");
+              var meeting_file_name = val.split("/");
+
+              var meeting_file_val = meeting_file_name[meeting_file_name.length - 1];
+
+              file_2_input_val_arr.push(val);
+
+              var index = meeting_file_val.lastIndexOf(".");
+              
+              if(isAssetTypeAnImage(meeting_file_val.substr(index+1)))
+              {
+                file_2_htmlstr += '<input class="resume_question" style="zoom: 1.5" class="form-check-input" type="radio" name="file_2_check" forms_sql_id="' + value.Id + '" value="' + i + '">'
+                + '<span>檔案' + (i + 1) + '：</span><a id="val_arr'+i+'" href="' + meeting_file_path + '" style="text-decoration:none;color:blue;" target="_blank">'
+                + meeting_file_val
+                + '</a><br/>'
+                +'<img src="' + meeting_file_path + '" id="val_arr_img'+i+'" title="'+meeting_file_val+'" width="200" height="200" class="apreview" />' 
+                +'<hr/><br/>';
+              }
+              else
+              {
+                file_2_htmlstr += '<input class="resume_question" style="zoom: 1.5" class="form-check-input" type="radio" name="file_2_check" forms_sql_id="' + value.Id + '" value="' + i + '">'
+                + '<span>檔案' + (i + 1) + '：</span><a id="val_arr'+i+'" href="' + meeting_file_path + '" style="text-decoration:none;color:blue;" target="_blank">'
+                + meeting_file_val
+                + '</a><br/><br/>';
+              }
+              
+            });
+
+            file_2_htmlstr += '<br/>'
+              + '<button class="resume_question" style="color:red;margin-right:3em;margin-bottom:.5em;" type="button" onclick="selectFiles_delete();">刪除</button>'
+              + '<div>※點選上面要刪除的檔案</div>'
+              + '<br/><hr style="border:3px dashed blue; height:1px">'
+              + '<button class="resume_question" style="color:blue;" type="button" onclick="selectFiles_insert();">新增檔案+</button><br/><div id="selected-files"><span style="color:red;">上傳檔案清單預覽：</span><br/></div>';
+
+            $("#meeting_file").html(file_2_htmlstr);
+            // endregion
+
 
             var proposal_contents_json = JSON.parse("[" +value.Proposal_contents.replace('\"\[', '\[').replace('\]\"', '\]') + "]");
 
@@ -181,8 +230,54 @@ $(document).ready(function () {
     });
     
     $(".vom_question").attr("disabled", true);
+
+    imagePreview();
 });
 
+
+// 檢查檔案類型是否為圖片 region
+function isAssetTypeAnImage(ext) {
+  return [
+  'png', 'jpg', 'jpeg', 'bmp', 'gif', 'webp', 'psd', 'svg', 'tiff'].
+  indexOf(ext.toLowerCase()) !== -1;
+}
+// endregion
+imagePreview = function () {
+  // 图片距离鼠标的位置
+  this.xOffset = 10;
+  this.yOffset = -10;
+
+  //hover([over,]out)
+  //over:鼠标移到元素上要触发的函数
+  //out:鼠标移出元素要触发的函数
+
+  //鼠标悬浮的事件
+  $(".apreview").hover(function (e) {
+      this.t = this.title;//显示在图片下的标题
+      this.title = "";    //将title置为空，不让文字悬浮提示
+      this.imgSr = this.src;//图片的连接
+      this.c = (this.t != "") ? "<br/>" + this.t : "";
+      $("body").append("<p class='preview'><img src='" + this.imgSr + "' alt='Image preview' width='auto' height='auto' />" + this.c + "</p>");
+      $(".preview")
+          .css("top", (e.pageY + yOffset) + "px")
+          .css("left", (e.pageX + xOffset) + "px")
+          // .css("max-width", "400px")
+          // .css("max-height", "400px")
+          .fadeIn("fast");
+  },
+  function () {
+      this.title = this.t;//恢复title
+      $(".preview").remove();
+  });
+
+
+  //鼠标移动的事件，让图片随着移动
+  $(".apreview").mousemove(function (e) {  
+      $(".preview")
+          .css("top", (e.pageY - yOffset) + "px")
+          .css("left", (e.pageX + xOffset) + "px");
+  });
+};
 
 
 // 添加提案輸入框 region
@@ -397,20 +492,35 @@ submit_form_data_upload = function() {
     var form_data = new FormData();
   
     var get_meeting_files = get_files_name_value();
-  
-    $("input[type='file']").each(function(index, element) {
+
+    $("[name='signin_file'], [name='signout_file']").each(function(index, element) {
       var meeting_files = $(this).prop("files");
       // console.log(meeting_files.length)
       
       if (meeting_files != undefined) {
         if (meeting_files.length != 0) {
           for (var i = 0; i < meeting_files.length; i++) {
-            form_data.append("meeting_files"+index, meeting_files[i]);
             // console.log(meeting_files[i])
+              form_data.append("meeting_files"+index, meeting_files[i]);
           }
         } else {
           //載入量表『無重新上傳檔案』情況下按儲存，則加入File_name供後端程式判斷
           form_data.append("File_name", JSON.stringify(get_meeting_files));
+        }
+      }
+    });
+  
+    $("[name='meeting_file']").each(function(index, element) {
+      var meeting_files = $(this).prop("files");
+      // console.log(meeting_files.length)
+      
+      if (meeting_files != undefined) {
+        if (meeting_files.length != 0) 
+        {
+          for (var i = 0; i < meeting_files.length; i++) {
+            // console.log(meeting_files[i])
+            form_data.append("meeting_files2[]", meeting_files[i]);
+          }
         }
       }
     });
@@ -525,62 +635,111 @@ function check_rec_data_upload() {
     return errorstr;
 }
 //endregion
-
-  // 顯示檔名 region
+  
+// 顯示檔名 region
 $("input[type='file']").change(function (event) {
-    //獲取 檔名.檔案格式
-    var filePath = $(this).val().split("\\");
-    //獲取 file name名稱
-    var name = $(this).attr("name");
-    //獲取檔案格式
-    var filetype = filePath[filePath.length - 1].split(".");
-    var ext = filetype[filetype.length - 1];
-  
-    //創建臨時檔案連結
-    // var tmppath = URL.createObjectURL(event.target.files[0]);
-  
-      //若檔案為圖片格式，則顯示圖片，否則不顯示圖片
-      if (isAssetTypeAnImage(ext.toLowerCase())) {
-        $("#" + name + "_img")
-          .fadeIn("fast")
-          .attr("src", URL.createObjectURL(event.target.files[0]));
-      } else {
-        $("#" + name + "_img").css("display", "none");
-      }
-  
-    //預覽上傳檔名
-    $("#" + name + "_name").html("上傳檔名：" + filePath[filePath.length - 1]);
-  
+
+   
+  // console.log(event.target.files)
+  // console.log(event.target.files.length)
+
+  //獲取 file name名稱
+  var name = $(this).attr("name");
+
+  var file_names_str = "";
+
+  // 顯示檔名
+  $.each(event.target.files, function(key,val) {
+
+    
+    file_names_str += "檔案" + (key + 1) + "名稱：" + val.name + "<br/>";
+
+    //若檔案類型為圖片則創建img元素
+    var index = val.name.lastIndexOf(".");
+
+    if(isAssetTypeAnImage(val.name.substr(index+1)))
+    {
+      file_names_str += '<img id="' + name + 'pre_img' + key + '" src=""/>';
+    }
+
+    if(event.target.files.length > 1)
+    {
+      file_names_str += '<hr/>';
+    }
+
+    file_names_str += '<br/>';
+
+  });
+
+  //若檔案類型為圖片則顯示圖片
+  $.each(event.target.files, function(key,val) {
+    var index = val.name.lastIndexOf(".");
+
+    if(isAssetTypeAnImage(val.name.substr(index+1)))
+    {
+      const fr = new FileReader();
+      fr.onload = function (e) {
+        $('#' + name + 'pre_img' + key).attr('src', e.target.result);//读取的结果放入圖片
+      };
+
+      fr.readAsDataURL(event.target.files[key]);
+    }
+  });
+
+  //預覽上傳檔名(圖片)
+  $("#" + name).html(file_names_str);
+
 });
 // endregion
-  
-//檢查是否為圖片檔region
+
+
+// 檢查檔案類型是否為圖片 region
 function isAssetTypeAnImage(ext) {
-    return (
-        ["png", "jpg", "jpeg", "bmp", "gif", "webp", "psd", "svg", "tiff"].indexOf(
-        ext.toLowerCase()
-        ) !== -1
-    );
+  return [
+  'png', 'jpg', 'jpeg', 'bmp', 'gif', 'webp', 'psd', 'svg', 'tiff'].
+  indexOf(ext.toLowerCase()) !== -1;
 }
-//endregion
-  
+// endregion
+
 // 獲取檔案的檔名、值 region
 get_files_name_value = function() {
 
-    file_name = [];
-    $("input[type='file']").each(function() {
-        //獲取 檔名.檔案格式
-        var filePath = $(this).val().split("\\");
-        //獲取 file name名稱
-        var name = $(this).attr("name");
-        
-        file_name.push({ name: name, value: filePath[filePath.length - 1] });
-    });
+  file_name = [];
+  $("input[type='file']").each(function() {
 
-    return file_name;
+    // //獲取 檔名.檔案格式
+    // var filePath = $(this).val().split("\\");
+
+    //獲取 file name名稱
+    var name = $(this).attr("name");
+    
+    // file_name.push({ name: name, value: filePath[filePath.length - 1] });
+
+    if($(this).context.files.length == 1)
+    {
+      file_name.push({ name: name, value: $(this).context.files[0].name });
+    }
+    else
+    {
+      var files_arr = [];
+
+      $.each($(this).context.files, function(key,val) {
+
+        files_arr.push(val.name);
+    
+      });
+
+      file_name.push({ name: name, value:files_arr});
+    }
+
+    
+ });
+
+//  console.log(file_name)
+
+ return file_name;
 }
 // endregion
-
 
 //檢查檔名是否重複，提示使用者region
 function check_file_exist() {
@@ -633,6 +792,197 @@ function check_file_exist() {
 //endregion
   
   
+
+// 刪除履歷表檔案內容 多檔案上傳 region
+selectFiles_delete = function () {
+
+
+  if ($("[name='file_2_check']:checked").length > 0) {
+    console.log($("#val_arr" + $("[name='file_2_check']:checked").attr("value")))
+    swal({
+      title: "是否刪除該檔案？\n" + "檔名："+ $("#val_arr" + $("[name='file_2_check']:checked").attr("value")).text(),
+      text: "確認刪除後將無法復原操作",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#DD6B55",
+      confirmButtonText: "確認",
+      cancelButtonText: "取消",
+      showConfirmButton: true,
+      showCancelButton: true
+    }).then(function (result) {
+      if (result) {
+        var file_2_sql_id = $("[name='file_2_check']:checked").attr("forms_sql_id");
+        var file_2_val = $("[name='file_2_check']:checked").attr("value");
+
+        // console.log(file_2_input_val_arr)
+
+        var r_file_2 = file_2_input_val_arr.splice(parseInt(file_2_val), 1);
+
+        // console.log(file_2_input_val_arr)
+        // console.log(r_file_2)
+
+        $.ajax({
+          url: "database/delete_volunteer_meeting_file.php",
+          type: "POST",
+          data: {
+            Form_sql_id: file_2_sql_id,
+            Vom_id: vom_id,
+            File_a_arr: file_2_input_val_arr,
+            File_a_delete_index: file_2_val,
+            Remove_file_a: r_file_2[0],
+          },
+          // dataType: "JSON",
+          success: function (data) {
+            // console.log(data);
+            if (data == 1) {
+              swal({
+                type: "success",
+                title: "刪除檔案成功!",
+                allowOutsideClick: false, //不可點背景關閉
+              }).then(function () {
+                location.reload();
+              });
+            }
+
+          },
+          error: function (e) {
+            console.log(e)
+            swal({
+              type: "error",
+              title: "刪除檔案失敗!請聯絡負責人",
+              allowOutsideClick: false, //不可點背景關閉
+            });
+          },
+        });
+
+      }
+    }, function (dismiss) {
+      if (dismiss == 'cancel') {
+        swal({
+          title: '已取消',
+          type: 'success',
+        })
+      }
+    }).catch(swal.noop)
+  }
+  else {
+    swal({
+      type: 'warning',
+      title: '請選取要刪除的檔案!',
+      allowOutsideClick: false //不可點背景關閉
+    })
+  }
+
+
+}
+//endregion
+
+window.selectedFiles = [];
+window.selectedFiles_str = "";
+
+selectFiles_insert = function () {
+
+
+  if(selectedFiles.length==0)
+  {
+    selected_files();
+  }
+  else
+  {
+      swal({
+        title: "已經有選擇檔案，是否清空當前檔案清單，重新選取？",
+        text: "目前檔案清單："+selectedFiles_str,
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "確認",
+        cancelButtonText: "取消",
+        showConfirmButton: true,
+        showCancelButton: true
+      }).then(function (result) {
+        if (result) {
+          selected_files();
+        }
+      }, function (dismiss) {
+        if (dismiss == 'cancel') {
+          swal({
+            title: '已取消',
+            type: 'success',
+          })
+        }
+      }).catch(swal.noop)
+  }
+    
+}
+
+
+selected_files = function() {
+  selectedFiles = [];
+  selectedFiles_str = "";
+  var html = '<span style="color:red;">上傳檔案清單預覽：</span><br/>';
+
+  $("#selected-files").html(html);
+
+  $.FileDialog({
+    "accept": "*",
+    "drag_message": "將檔案拖曳至此處新增",
+    "title": "載入檔案",
+  }).on("files.bs.filedialog", function (event) {
+    for (var a = 0; a < event.files.length; a++) {
+      selectedFiles.push(event.files[a]);
+
+      // console.log(event.files[a])
+
+      if(a == 0)
+      {
+        selectedFiles_str += event.files[a].name;
+      }
+      else
+      {
+        selectedFiles_str += "," + event.files[a].name;
+      }
+
+      html += '<span style="color:red;" value="' + event.files[a].name + '">' + event.files[a].name + '</span><br/>';
+
+      //若檔案類型為圖片則創建img元素
+      var index = event.files[a].name.lastIndexOf(".");
+
+      if(isAssetTypeAnImage(event.files[a].name.substr(index+1)))
+      {
+        html += '<img id="meeting_file_pre_img' + a + '" src=""/>';
+      }
+
+      if(event.files.length > 1)
+      {
+        html += '<hr/>';
+      }
+
+      html += '<br/>';
+
+    }
+
+    $("#selected-files").html(html);
+
+    $.each(event.files, function(key,val) {
+      var m_pre_img_id = $('#meeting_file_pre_img' + key);
+      var index = event.files[key].name.lastIndexOf(".");
+      
+      if(isAssetTypeAnImage(event.files[key].name.substr(index+1)))
+      {
+        const fr = new FileReader();
+        fr.onload = function (event) {
+          // console.log(event.target.result)
+          // console.log(m_pre_img_id)
+          m_pre_img_id.attr('src', event.target.result);//读取的结果放入圖片
+        };
+
+        fr.readAsDataURL(event.files[key]);
+      }
+    });
+
+    // $("#selected-files").html(html);
+  });
+}
 
 
 //取消重整region

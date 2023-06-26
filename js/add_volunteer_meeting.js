@@ -302,15 +302,15 @@ submit_form_data_upload = function() {
 
   var get_meeting_files = get_files_name_value();
 
-  $("input[type='file']").each(function(index, element) {
+  $("[name='signin_file'], [name='signout_file']").each(function(index, element) {
     var meeting_files = $(this).prop("files");
     // console.log(meeting_files.length)
     
     if (meeting_files != undefined) {
       if (meeting_files.length != 0) {
         for (var i = 0; i < meeting_files.length; i++) {
-          form_data.append("meeting_files"+index, meeting_files[i]);
           // console.log(meeting_files[i])
+            form_data.append("meeting_files"+index, meeting_files[i]);
         }
       } else {
         //載入量表『無重新上傳檔案』情況下按儲存，則加入File_name供後端程式判斷
@@ -318,6 +318,23 @@ submit_form_data_upload = function() {
       }
     }
   });
+
+  $("[name='meeting_file']").each(function(index, element) {
+    var meeting_files = $(this).prop("files");
+    // console.log(meeting_files.length)
+    
+    if (meeting_files != undefined) {
+      if (meeting_files.length != 0) 
+      {
+        for (var i = 0; i < meeting_files.length; i++) {
+          // console.log(meeting_files[i])
+          form_data.append("meeting_files2[]", meeting_files[i]);
+        }
+      }
+    }
+  });
+
+
 
   var meeting_date_year_split = $("#meeting_date").val().split("年");
 
@@ -434,54 +451,104 @@ test = function() {
 
 // 顯示檔名 region
 $("input[type='file']").change(function (event) {
-  //獲取 檔名.檔案格式
-  var filePath = $(this).val().split("\\");
+
+   
+  // console.log(event.target.files)
+  // console.log(event.target.files.length)
+
   //獲取 file name名稱
   var name = $(this).attr("name");
-  //獲取檔案格式
-  var filetype = filePath[filePath.length - 1].split(".");
-  var ext = filetype[filetype.length - 1];
 
-  //創建臨時檔案連結
-  // var tmppath = URL.createObjectURL(event.target.files[0]);
+  var file_names_str = "";
 
-    //若檔案為圖片格式，則顯示圖片，否則不顯示圖片
-    if (isAssetTypeAnImage(ext.toLowerCase())) {
-      $("#" + name + "_img")
-        .fadeIn("fast")
-        .attr("src", URL.createObjectURL(event.target.files[0]));
-    } else {
-      $("#" + name + "_img").css("display", "none");
+  // 顯示檔名
+  $.each(event.target.files, function(key,val) {
+
+    
+    file_names_str += "檔案" + (key + 1) + "名稱：" + val.name + "<br/>";
+
+    //若檔案類型為圖片則創建img元素
+    var index = val.name.lastIndexOf(".");
+
+    if(isAssetTypeAnImage(val.name.substr(index+1)))
+    {
+      file_names_str += '<img id="' + name + 'pre_img' + key + '" src=""/>';
     }
 
-  //預覽上傳檔名
-  $("#" + name).html("檔名：" + filePath[filePath.length - 1]);
+    if(event.target.files.length > 1)
+    {
+      file_names_str += '<hr/>';
+    }
+
+    file_names_str += '<br/>';
+
+  });
+
+  //若檔案類型為圖片則顯示圖片
+  $.each(event.target.files, function(key,val) {
+    var index = val.name.lastIndexOf(".");
+
+    if(isAssetTypeAnImage(val.name.substr(index+1)))
+    {
+      const fr = new FileReader();
+      fr.onload = function (e) {
+        $('#' + name + 'pre_img' + key).attr('src', e.target.result);//读取的结果放入圖片
+      };
+
+      fr.readAsDataURL(event.target.files[key]);
+    }
+  });
+
+  //預覽上傳檔名(圖片)
+  $("#" + name).html(file_names_str);
 
 });
 // endregion
 
-//檢查是否為圖片檔region
+
+// 檢查檔案類型是否為圖片 region
 function isAssetTypeAnImage(ext) {
-  return (
-    ["png", "jpg", "jpeg", "bmp", "gif", "webp", "psd", "svg", "tiff"].indexOf(
-      ext.toLowerCase()
-    ) !== -1
-  );
+  return [
+  'png', 'jpg', 'jpeg', 'bmp', 'gif', 'webp', 'psd', 'svg', 'tiff'].
+  indexOf(ext.toLowerCase()) !== -1;
 }
-//endregion
+// endregion
 
 // 獲取檔案的檔名、值 region
 get_files_name_value = function() {
 
   file_name = [];
   $("input[type='file']").each(function() {
-    //獲取 檔名.檔案格式
-    var filePath = $(this).val().split("\\");
+
+    // //獲取 檔名.檔案格式
+    // var filePath = $(this).val().split("\\");
+
     //獲取 file name名稱
     var name = $(this).attr("name");
     
-    file_name.push({ name: name, value: filePath[filePath.length - 1] });
+    // file_name.push({ name: name, value: filePath[filePath.length - 1] });
+
+    if($(this).context.files.length == 1)
+    {
+      file_name.push({ name: name, value: $(this).context.files[0].name });
+    }
+    else
+    {
+      var files_arr = [];
+
+      $.each($(this).context.files, function(key,val) {
+
+        files_arr.push(val.name);
+    
+      });
+
+      file_name.push({ name: name, value:files_arr});
+    }
+
+    
  });
+
+//  console.log(file_name)
 
  return file_name;
 }

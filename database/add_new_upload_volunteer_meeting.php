@@ -54,10 +54,14 @@ $end_datetime = date("Y-m-d H:s" ,strtotime("+2 day"));
 
 $file_0 = "";
 $file_1 = "";
+$file_2 = "";
+
 
 $file_name_0 = "";
 $file_name_1 = "";
+$file_name_2 = "";
 
+$file_2_arr = array();
 
 $sql = "";
 
@@ -71,7 +75,7 @@ if (!is_dir($file_dir)) {
 if (isset($_FILES["meeting_files0"]))
 {
     @$file_name_0 = $_FILES["meeting_files0"]["name"];
-    @$file_0 = "../volunteer_meeting/" . $_FILES["meeting_files0"]["name"];
+    @$file_0 = $file_dir . $_FILES["meeting_files0"]["name"];
 
     
 
@@ -82,7 +86,7 @@ if (isset($_FILES["meeting_files0"]))
         //設定檔案上傳路徑，選擇指定資料夾
         move_uploaded_file(
             $_FILES["meeting_files0"]["tmp_name"],
-            "../volunteer_meeting/" . $_FILES["meeting_files0"]["name"]
+            $file_dir . $_FILES["meeting_files0"]["name"]
         );
     }
 
@@ -91,7 +95,7 @@ if (isset($_FILES["meeting_files0"]))
 if (isset($_FILES["meeting_files1"]))
 {
     @$file_name_1 = $_FILES["meeting_files1"]["name"];
-    @$file_1 = "../volunteer_meeting/" . $_FILES["meeting_files1"]["name"];
+    @$file_1 = $file_dir . $_FILES["meeting_files1"]["name"];
 
     
 
@@ -102,26 +106,54 @@ if (isset($_FILES["meeting_files1"]))
         //設定檔案上傳路徑，選擇指定資料夾
         move_uploaded_file(
             $_FILES["meeting_files1"]["tmp_name"],
-            "../volunteer_meeting/" . $_FILES["meeting_files1"]["name"]
+            $file_dir . $_FILES["meeting_files1"]["name"]
         );
     }
 
 }
 
+if (isset($_FILES["meeting_files2"]))
+{
+    @$file_2_date = date("Y-m-d");
+
+    for ($a = 0; $a < count($_FILES["meeting_files2"]["name"]); $a++)
+    {
+        @$file_2 = $file_dir .$_FILES["meeting_files2"]["name"][$a];
+    
+        if ($_FILES["meeting_files2"]["error"][$a] > 0) {
+            echo false;
+        } else {
+            //設定檔案上傳路徑，選擇指定資料夾
+            move_uploaded_file(
+                $_FILES["meeting_files2"]["tmp_name"][$a],
+                $file_2
+            );
+        }
+
+        array_push($file_2_arr, $file_2);
+    }
+
+    $file_2_arr = json_encode($file_2_arr,JSON_UNESCAPED_UNICODE);
+}
+
+if(empty($file_2_arr))
+{
+    $file_2_arr = implode($file_2_arr);
+}
 
 $sql = "INSERT INTO `volunteer_meeting` (`Id`, `Title_name` ,`Meeting_date`, `Meeting_time_start`, `Meeting_time_end`, `Meeting_place`
 , `Expected_attendees`, `Attendees_seq_contents`, `Actual_attendence`, `Absence`
 , `Agenda_contents`, `Proposal_contents`
 , `Review_suggest`, `Extempore_motion`
 , `Next_meeting_date`
-, `Signin_file_path`, `Signout_file_path`
+, `Signin_file_path`, `Signout_file_path`, `Meeting_file_path`
 , `Create_date`, `Create_name`) VALUES 
 ($vom_id ,'$Title_name', '$Meeting_date', '$Meeting_time_start', '$Meeting_time_end', '$Meeting_place'
 , '$Expected_attendees', '$Attendees_seq_contents', '$Actual_attendence', '$Absence'
 , '$Agenda_contents', '$Proposal_contents'
 , '$Review_suggest', '$Extempore_motion'
 , '$Next_meeting_date'
-, '$file_0', '$file_1'
+, '$file_0', '$file_1', '$file_2_arr'
 , NOW(), '$user');";
 
 

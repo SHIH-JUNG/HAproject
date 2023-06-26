@@ -17,6 +17,8 @@
     <link href="css/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
     <!--  table  -->
     <link rel="stylesheet" href="css/bootstrap-table.min.css">
+    <!-- Bootstrap FileDialog -->
+    <link rel="stylesheet" href="css/bootstrap-file-dialog-dist/bootstrap.fd.css">
     <!--  日期民國  -->
     <link data-require="jqueryui@*" rel="stylesheet" href="css/jquery-ui.css" />
     <link href="css/dtsel.css" rel="stylesheet" />
@@ -67,6 +69,7 @@
         padding: 0;
         padding-top: 15px;
     }
+    .preview {position:absolute;background:#fff;padding:10px;display:none;}
 </style>
 
 <body>
@@ -153,6 +156,11 @@
                                                     <li class="nav-item" role="presentation">
                                                         <a class="nav-link" id="profile-tab" data-toggle="pill" href="#four" role="tab" aria-selected="false">
                                                             <b>閱後簽名</b>
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item" role="presentation">
+                                                        <a class="nav-link" id="profile-tab" data-toggle="pill" href="#five" role="tab" aria-selected="false">
+                                                            <b>上傳會議活動照片</b>
                                                         </a>
                                                     </li>
                                                 </ul>
@@ -390,6 +398,32 @@
                                                         </div>
                                                     </div>
 
+                                                    <div class="tab-pane fade" id="five" role="tabpanel" aria-labelledby="profile-tab">
+                                                        <div class="panel-body">
+                                                        </div>
+                                                        <div class="table-wrap">
+                                                            <div class="table-responsive col-sm-12 text-center">
+                                                                <table style="width:80%;" class="table table-bordered">
+                                                                    <tr>
+                                                                        <td colspan="2">
+                                                                            <h3>上傳會議活動照片</h3>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr style="text-align:left">
+                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;width:12em;">上傳會議活動照片</td>
+                                                                        <td style="border-bottom: solid 1px;">
+                                                                            <div class="col-sm-12">
+                                                                                <!-- <input name="meeting_file" type="file" class="form-control" multiple/>
+                                                                                <br> -->
+                                                                                <div id="meeting_file"></div>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
                                                     <div class="col-sm-12" style="padding-left:0;padding-right:0;">
                                                         <div id="edit_div">
                                                             <button style="font-size:20px" id="vo_edit" class="btn btn-default" onclick="vo_edit();">編輯</button>
@@ -437,6 +471,9 @@
     <script src="javascript/jquery.slimscroll.js"></script>
     <!-- Fancy Dropdown JS -->
     <script src="javascript/dropdown-bootstrap-extended.js"></script>
+    <!-- Bootstrap FileDialog -->
+    <script src="javascript/bootstrap-file-dialog-dist/bootstrap.fd.js"></script>
+    
     <!-- Init -->
     <script src="javascript/init.js"></script>
     <!-- ================== JS notify控制 ================== -->
@@ -447,6 +484,8 @@
     <script src="javascript/sweetalert2/core-js.js"></script>
     <!-- ================== 登出設定 ================== -->
     <script src='js/logout.js'></script>
+    <!-- ================== moment ================== -->
+    <script src='javascript/moment2.29.0.min.js'></script>
     <!-- ================== table ================== -->
     <script src="javascript/bootstrap1.18.0-table.min.js"></script>
     <script src="javascript/bootstrap-table1.11.1-zh-TW.min.js"></script>

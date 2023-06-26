@@ -141,6 +141,11 @@
                                                         <b>閱後簽名</b>
                                                     </a>
                                                 </li>
+                                                <li class="nav-item" role="presentation">
+                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#five" role="tab" aria-selected="false">
+                                                        <b>上傳會議活動照片</b>
+                                                    </a>
+                                                </li>
                                             </ul>
                                             <div class="tab-content" id="myTabContent">
                                                 <div class="tab-pane fade in active" id="one" role="tabpanel" aria-labelledby="home-tab">
@@ -190,7 +195,7 @@
                                                                             <input name="signin_file" type="file" class="form-control" />
                                                                             <br>
                                                                             <div id="signin_file"></div>
-                                                                            <img src="" id="signin_file_img" style="display:none;" />
+                                                                            <!-- <img src="" id="signin_file_img" style="display:none;" /> -->
                                                                         </div>
                                                                     </td>
                                                                 </tr>
@@ -324,11 +329,37 @@
                                                                 <tr style="text-align:left">
                                                                     <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>閱後簽名檔案上傳</td>
                                                                     <td style="border-bottom: solid 1px;">
-                                                                        <div class="col-sm-6">
+                                                                        <div class="col-sm-12">
                                                                             <input name="signout_file" type="file" class="form-control" />
                                                                             <br>
                                                                             <div id="signout_file"></div>
-                                                                            <img src="" id="signout_file_img" style="display:none;" />
+                                                                            <!-- <img src="" id="signout_file_img" style="display:none;" /> -->
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="tab-pane fade" id="five" role="tabpanel" aria-labelledby="profile-tab">
+                                                    <div class="panel-body">
+                                                    </div>
+                                                    <div class="table-wrap">
+                                                        <div class="table-responsive col-sm-12 text-center">
+                                                            <table style="width:80%;" class="table table-bordered">
+                                                                <tr>
+                                                                    <td colspan="2">
+                                                                        <h3>上傳會議活動照片</h3>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr style="text-align:left">
+                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;">上傳會議活動照片</td>
+                                                                    <td style="border-bottom: solid 1px;">
+                                                                        <div class="col-sm-12">
+                                                                            <input name="meeting_file" type="file" class="form-control" multiple/>
+                                                                            <br>
+                                                                            <div id="meeting_file"></div>
                                                                         </div>
                                                                     </td>
                                                                 </tr>

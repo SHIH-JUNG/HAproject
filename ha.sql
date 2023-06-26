@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2023-06-26 12:23:17
+-- 產生時間： 2023-06-26 15:26:13
 -- 伺服器版本： 10.4.27-MariaDB
 -- PHP 版本： 8.0.25
 
@@ -1301,7 +1301,9 @@ INSERT INTO `login_record` (`Id`, `Login_timestamp`, `Login_account`, `Login_aut
 (175, '2023-06-12 14:40:43', 'test6', '4', '執行長', '22.6699,120.5806', 1),
 (176, '2023-06-21 16:36:18', 'test6', '4', '執行長', '22.6699,120.5806', 1),
 (177, '2023-06-21 16:40:19', 'test6', '4', '執行長', '22.6699,120.5806', 0),
-(178, '2023-06-26 15:25:49', 'test6', '4', '執行長', '22.6699,120.5806', 1);
+(178, '2023-06-26 15:25:49', 'test6', '4', '執行長', '22.6699,120.5806', 1),
+(179, '2023-06-26 18:25:06', 'test6', '4', '執行長', '22.6699,120.5806', 0),
+(180, '2023-06-26 18:35:11', 'test6', '4', '執行長', '22.6699,120.5806', 0);
 
 -- --------------------------------------------------------
 
@@ -2464,8 +2466,9 @@ CREATE TABLE `volunteer_meeting` (
   `Review_suggest` varchar(2000) NOT NULL,
   `Extempore_motion` varchar(2000) NOT NULL,
   `Next_meeting_date` varchar(100) NOT NULL,
-  `Signin_file_path` varchar(2000) NOT NULL,
-  `Signout_file_path` varchar(2000) NOT NULL,
+  `Signin_file_path` longtext NOT NULL,
+  `Signout_file_path` longtext NOT NULL,
+  `Meeting_file_path` longtext NOT NULL,
   `Create_date` datetime NOT NULL,
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime DEFAULT current_timestamp(),
@@ -2476,8 +2479,9 @@ CREATE TABLE `volunteer_meeting` (
 -- 傾印資料表的資料 `volunteer_meeting`
 --
 
-INSERT INTO `volunteer_meeting` (`Id`, `Title_name`, `Meeting_date`, `Meeting_time_start`, `Meeting_time_end`, `Meeting_place`, `Expected_attendees`, `Attendees_seq_contents`, `Actual_attendence`, `Absence`, `Agenda_contents`, `Proposal_contents`, `Review_suggest`, `Extempore_motion`, `Next_meeting_date`, `Signin_file_path`, `Signout_file_path`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
-(1, '111年第1次志工會議a', '111年11月01日', '09:15', '00:00', 'test會議地點aaasda', 'teest\r\n應出席人員1\r\n\r\n應出席人員2\r\n應出席人員3', '', '27', '3', 'ttt\r\n會議議程1\r\n會議議程2\r\n\r\n會議議程3\r\n會議議程aa', '\"[{\"input_id\":\"proposal_contents_1\",\"val\":\"決議：aaaaaaaaa\"},{\"input_id\":\"proposal_contents_2\",\"val\":\"決議：\\nbbb\"},{\"input_id\":\"proposal_contents_3\",\"val\":\"決議：\\nc\\nd\\ne\"},{\"input_id\":\"proposal_contents_4\",\"val\":\"決議：test\\nasdasds\\nasda\\na\"},{\"input_id\":\"proposal_contents_5\",\"val\":\"決議：aaaa\"},{\"input_id\":\"proposal_contents_6\",\"val\":\"決議：b\"},{\"input_id\":\"proposal_contents_7\",\"val\":\"決議：\"}]\"', 'ttt\r\n檢討及建議：\r\n1daasa\r\n2wdwdawd\r\nddadsa\r\n1111111', '臨時動議：\r\n1wewdjdia\r\ndjasida\r\nddddd\r\n11111', '111年11月10日', '../volunteer_meeting/志工簽到表test1101.png', '../volunteer_meeting/志工閱後簽退test1101.png', '2022-11-11 13:13:50', '社工組長', '2022-11-11 15:34:09', '社工員1');
+INSERT INTO `volunteer_meeting` (`Id`, `Title_name`, `Meeting_date`, `Meeting_time_start`, `Meeting_time_end`, `Meeting_place`, `Expected_attendees`, `Attendees_seq_contents`, `Actual_attendence`, `Absence`, `Agenda_contents`, `Proposal_contents`, `Review_suggest`, `Extempore_motion`, `Next_meeting_date`, `Signin_file_path`, `Signout_file_path`, `Meeting_file_path`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
+(1, '111年第1次志工會議a', '111年11月01日', '09:15', '00:00', 'test會議地點aaasda', 'teest\r\n應出席人員1\r\n\r\n應出席人員2\r\n應出席人員3', '', '27', '3', 'ttt\r\n會議議程1\r\n會議議程2\r\n\r\n會議議程3\r\n會議議程aa', '\"[{\"input_id\":\"proposal_contents_1\",\"val\":\"決議：aaaaaaaaa\"},{\"input_id\":\"proposal_contents_2\",\"val\":\"決議：\\nbbb\"},{\"input_id\":\"proposal_contents_3\",\"val\":\"決議：\\nc\\nd\\ne\"},{\"input_id\":\"proposal_contents_4\",\"val\":\"決議：test\\nasdasds\\nasda\\na\"},{\"input_id\":\"proposal_contents_5\",\"val\":\"決議：aaaa\"},{\"input_id\":\"proposal_contents_6\",\"val\":\"決議：b\"},{\"input_id\":\"proposal_contents_7\",\"val\":\"決議：\"}]\"', 'ttt\r\n檢討及建議：\r\n1daasa\r\n2wdwdawd\r\nddadsa\r\n1111111', '臨時動議：\r\n1wewdjdia\r\ndjasida\r\nddddd\r\n11111', '111年11月10日', '../volunteer_meeting/志工簽到表test1101.png', '../volunteer_meeting/志工閱後簽退test1101.png', '', '2022-11-11 13:13:50', '社工組長', '2022-11-11 15:34:09', '社工員1'),
+(2, '112年第15次志工會議', '112年06月01日', '08:00', '11:00', 'test會議地點11215', 'testuser1\r\ntestuser2\r\ntestuser3\r\ntestuser4\r\ntestuser5', '', '12', '1', 'test\r\n會議議程\r\n11215', '\"[{\"input_id\":\"proposal_contents_1\",\"val\":\"決議：test決議1\"},{\"input_id\":\"proposal_contents_2\",\"val\":\"決議：test決議2\"},{\"input_id\":\"proposal_contents_3\",\"val\":\"決議：test3\"},{\"input_id\":\"proposal_contents_4\",\"val\":\"決議：\"}]\"', 'test\r\n檢討及建議\r\n11215', 'test\r\n臨時動議\r\n11215', '112年06月30日', '../volunteer_meeting/志工簽到表test11215.png', '../volunteer_meeting/志工閱後簽退test11215.png', '[\"../volunteer_meeting/p7.PNG\",\"../volunteer_meeting/p6.jpg\",\"../volunteer_meeting/p5.jpg\",\"../volunteer_meeting/p4.jpg\",\"../volunteer_meeting/p3.jpg\",\"../volunteer_meeting/p2.jpg\",\"../volunteer_meeting/p1.jpg\"]', '2023-06-26 19:55:08', '執行長', '2023-06-26 19:55:08', '');
 
 -- --------------------------------------------------------
 
@@ -2932,7 +2936,7 @@ ALTER TABLE `leave_rule_table`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `login_record`
 --
 ALTER TABLE `login_record`
-  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=179;
+  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=181;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `members_assemble`
@@ -3094,7 +3098,7 @@ ALTER TABLE `volunteer_hours_record`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `volunteer_meeting`
 --
 ALTER TABLE `volunteer_meeting`
-  MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `volunteer_v2`
