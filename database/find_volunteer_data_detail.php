@@ -5,8 +5,8 @@ $vo_id = $_POST['vo_id'];
 // $year = $_POST['year'];
 
 //region 抓資料
-// $note = "SELECT * FROM `volunteer` WHERE `Id` = '$vo_id' AND `Year` = '$year' ORDER BY `volunteer`.`Id` ASC;";
-$note = "SELECT * FROM `volunteer` WHERE `Id` = '$vo_id' ORDER BY `volunteer`.`Id` ASC;";
+// $note = "SELECT * FROM `volunteer_v2` WHERE `Id` = '$vo_id' AND `Year` = '$year' ORDER BY `volunteer_v2`.`Id` ASC;";
+$note = "SELECT * FROM `volunteer_v2` WHERE `Id` = '$vo_id' ORDER BY `volunteer_v2`.`Id` ASC;";
 
 //宣告空的陣列
 $datas = array();

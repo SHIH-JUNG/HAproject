@@ -6,7 +6,7 @@ $Year = $_POST['Year'];
 $Name = $_POST['Name'];
 
 //region 抓資料
-$note = "SELECT * FROM `volunteer_hours_record` WHERE `Volunteer_id` = '$vo_id' AND `Year` = '$Year' AND `Name` = '$Name' ORDER BY `volunteer_hours_record`.`Id` ASC;";
+$note = "SELECT * FROM `volunteer_hours_record` WHERE `Volunteer_id` = '$vo_id' AND `Year` = '$Year' AND `Name` = '$Name' ORDER BY `volunteer_hours_record`.`Id` DESC;";
 
 //宣告空的陣列
 $datas = array();
