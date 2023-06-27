@@ -109,6 +109,7 @@ $(document).ready(function () {
   });
   //endregion
 
+  tab_toggle();
 
   load_files();
 
@@ -119,7 +120,6 @@ $(document).ready(function () {
   calculate_annual_hours_diff();
 
   load_remain_hours();
-
 });
 
 calculate_annual_hours_diff = function () {
@@ -1022,4 +1022,15 @@ selected_files = function() {
     }
     $("#selected-files").html(html);
   });
+}
+
+// page reload時保持上次的頁籤狀態 region
+function tab_toggle() {
+  $('a[data-toggle="pill"]').on('show.bs.tab', function(e) {
+      localStorage.setItem('activeTab', $(e.target).attr('href'));
+  });
+  var activeTab = localStorage.getItem('activeTab');
+  if(activeTab){
+      $('#myTab a[href="' + activeTab + '"]').tab('show');
+  }
 }
