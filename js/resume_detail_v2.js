@@ -115,7 +115,7 @@ $(document).ready(function () {
 
   load_resume_datas();
 
-  $("#update_hours").val(0);
+  $("#update_hours").val(0); 
 
   calculate_annual_hours_diff();
 
