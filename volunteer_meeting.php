@@ -21,6 +21,10 @@
     <link href="css/jquery.dataTables1.10.16.min.css" rel="stylesheet" />
     <link href="css/buttons.dataTables1.5.1.min.css" rel="stylesheet" />
 
+    <!--  日期民國  -->
+    <link data-require="jqueryui@*" rel="stylesheet" href="css/jquery-ui.css" />
+    <link href="css/dtsel.css" rel="stylesheet" />
+
     <meta charset="UTF-8" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!--        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />-->
@@ -117,14 +121,14 @@
 
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">會議日期：</td>
                                                             <td class="text-left">
-                                                                <input id="meeting_min_date" type="text" name="ch_datepicker" style="width: 8em;" placeholder="會議日期搜尋"><label>～</label>
-                                                                <input id="meeting_max_date" type="text" name="ch_datepicker" style="width: 8em;" placeholder="會議日期搜尋">
+                                                                <input id="meeting_min_date" type="text" datepicker="ch_datepicker" style="width: 8em;" placeholder="會議日期搜尋"><label>～</label>
+                                                                <input id="meeting_max_date" type="text" datepicker="ch_datepicker" style="width: 8em;" placeholder="會議日期搜尋">
                                                             </td>
 
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">會議時間：</td>
                                                             <td class="text-left">
-                                                                <input id="meeting_min_time" type="time" name="ch_datepicker"><label>～</label>
-                                                                <input id="meeting_max_time" type="time" name="ch_datepicker">
+                                                                <input id="meeting_min_time" type="time" datepicker="ch_datepicker"><label>～</label>
+                                                                <input id="meeting_max_time" type="time" datepicker="ch_datepicker">
                                                             </td>
                                                         </tr>
 
@@ -143,9 +147,9 @@
 
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">下次會議日期：</td>
                                                             <td class="text-left">
-                                                                <input id="next_meeting_min_date" type="text" name="ch_datepicker" style="width: 8em;" placeholder="會議日期搜尋">
+                                                                <input id="next_meeting_min_date" type="text" datepicker="ch_datepicker" style="width: 8em;" placeholder="會議日期搜尋">
                                                                 <label>～</label>
-                                                                <input id="next_meeting_max_date" type="text" name="ch_datepicker" style="width: 8em;" placeholder="會議日期搜尋"> 
+                                                                <input id="next_meeting_max_date" type="text" datepicker="ch_datepicker" style="width: 8em;" placeholder="會議日期搜尋"> 
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -236,6 +240,9 @@
     <!-- ================== table ================== -->
     <script src="javascript/bootstrap1.18.0-table.min.js"></script>
     <script src="javascript/bootstrap-table1.11.1-zh-TW.min.js"></script>
+    <!-- 日期民國-->
+    <script src="javascript/jquery-ui.min.js"></script>
+    <script src="javascript/datepickerTw2.js"></script>
     <!-- ================== volunteer_meeting ================== -->
     <script type="text/javascript" src="js/volunteer_meeting.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
     <!-- ================== 地區選擇下拉 ================== -->

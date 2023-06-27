@@ -46,15 +46,20 @@ $url = 'volunteer_meeting_detail.php?vom_id='.$vom_id;
 
 $file_0 = "";
 $file_1 = "";
+$file_2 = "";
 
 $file_name_0 = "";
 $file_name_1 = "";
+$file_name_2 = "";
 
 
 $sqlUpdate = "";
 
 $file_0_sql = "";
 $file_1_sql = "";
+$file_2_sql = "";
+
+$file_2_arr = array();
 
 $file_sql = "";
 
@@ -67,7 +72,7 @@ if (!is_dir($file_dir)) {
 if (isset($_FILES["meeting_files0"]))
 {
     @$file_name_0 = $_FILES["meeting_files0"]["name"];
-    @$file_0 = "../volunteer_meeting/" . $_FILES["meeting_files0"]["name"];
+    @$file_0 = $file_dir . $_FILES["meeting_files0"]["name"];
 
     
 
@@ -78,7 +83,7 @@ if (isset($_FILES["meeting_files0"]))
         //設定檔案上傳路徑，選擇指定資料夾
         move_uploaded_file(
             $_FILES["meeting_files0"]["tmp_name"],
-            "../volunteer_meeting/" . $_FILES["meeting_files0"]["name"]
+            $file_0
         );
     }
 
@@ -88,7 +93,7 @@ if (isset($_FILES["meeting_files0"]))
 if (isset($_FILES["meeting_files1"]))
 {
     @$file_name_1 = $_FILES["meeting_files1"]["name"];
-    @$file_1 = "../volunteer_meeting/" . $_FILES["meeting_files1"]["name"];
+    @$file_1 = $file_dir . $_FILES["meeting_files1"]["name"];
 
     
 
@@ -99,14 +104,70 @@ if (isset($_FILES["meeting_files1"]))
         //設定檔案上傳路徑，選擇指定資料夾
         move_uploaded_file(
             $_FILES["meeting_files1"]["tmp_name"],
-            "../volunteer_meeting/" . $_FILES["meeting_files1"]["name"]
+            $file_1
         );
     }
 
     $file_1_sql = ", `Signout_file_path`= '$file_1'";
 }
 
-$file_sql = $file_0_sql . $file_1_sql;
+if (isset($_FILES["meeting_files2"]))
+{
+    @$file_2_date = date("Y-m-d");
+    @$file_name_2 = $_FILES["meeting_files2"]["name"];
+
+    for ($a = 0; $a < count($_FILES["meeting_files2"]["name"]); $a++)
+    {
+        @$file_2 = $file_dir .$_FILES["meeting_files2"]["name"][$a];
+    
+        if ($_FILES["meeting_files2"]["error"][$a] > 0) {
+            echo false;
+        } else {
+            //設定檔案上傳路徑，選擇指定資料夾
+            move_uploaded_file(
+                $_FILES["meeting_files2"]["tmp_name"][$a],
+                $file_2
+            );
+        }
+
+        array_push($file_2_arr, $file_2);
+    }
+
+    // 查詢 原本的`File_path`
+    $select_2_file_num = "SELECT `Meeting_file_path` FROM `volunteer_meeting` WHERE `Id` = '$vom_id' ORDER BY `volunteer_meeting`.`Create_date` ASC;";
+
+    $find_2_file_num = mysqli_query($conn,$select_2_file_num);
+    $row_nums = mysqli_num_rows($find_2_file_num);
+    $f2_file_num = mysqli_fetch_row($find_2_file_num);
+
+    // var_dump($f2_file_num);
+    
+    if($row_nums > 0 && $f2_file_num[0]!="")
+    {
+        $file_2_arr = json_encode(array_merge(json_decode($f2_file_num[0], true),$file_2_arr),JSON_UNESCAPED_UNICODE);
+
+        $file_2_arr = json_decode($file_2_arr, true);
+
+        $file_2_arr = array_values(array_unique($file_2_arr,SORT_REGULAR));
+
+        $file_2_arr = json_encode($file_2_arr,JSON_UNESCAPED_UNICODE);
+    }
+    else
+    {
+        $file_2_arr = json_encode($file_2_arr,JSON_UNESCAPED_UNICODE);
+    }
+
+    if(empty($file_2_arr))
+    {
+        $file_2_sql = ", `Meeting_file_path`= ''";
+    }
+    else
+    {
+        $file_2_sql = ", `Meeting_file_path`= '$file_2_arr'";
+    }
+}
+
+$file_sql = $file_0_sql . $file_1_sql. $file_2_sql;
 
 
 $sqlUpdate = "UPDATE `volunteer_meeting` SET `Title_name` = '$Title_name'

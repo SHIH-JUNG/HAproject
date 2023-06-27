@@ -27,7 +27,7 @@ datepicker_create = function (selector_id) {
     //   1
     // ),
     // maxDate: new Date(new Date().getFullYear() + 3, 11, 31),
-    yearRange: "-9:+5",
+    yearRange: "-15:+2",
     onClose: function (dateText) {
       // console.log($('#'+selector_id).val());
       // console.log(trans_to_EN(dateText));
@@ -36,23 +36,26 @@ datepicker_create = function (selector_id) {
       var $this = $(this);
       var cal = inst.dpDiv;
       var outerh = $this.outerHeight();
-      if ($this.offset().top > 1500) 
-      {
-        outerh = outerh * 8;
-      }
-      else if ($this.offset().top > 1200 && $this.offset().top < 1500) 
-      {
-          outerh = outerh * 4;
-      }
-      else 
-      {
+      var left_off = 10;
+      if ($this.offset().top > 1200) {
+        outerh = outerh * 4;
+      } else {
         outerh = outerh * 3;
       }
-      console.log($this.offset().top)
-      console.log(outerh)
+
+      if ($this.offset().left > 1000) {
+        left_off = 200;
+      } else {
+        left_off = 10;
+      }
+      // console.log($this.offset().top)
+      // console.log(outerh)
+
+      // console.log($this.offset().left)
+
 
       var top = $this.offset().top - outerh;
-      var left = $this.offset().left - 10;
+      var left = $this.offset().left - left_off;
       setTimeout(function () {
         cal.css({
           top: top,
@@ -61,13 +64,24 @@ datepicker_create = function (selector_id) {
       }, 10);
     },
   });
-  $("#" + selector_id).datepicker("setDate", "today");
+  // $("#leave_date").datepicker("setDate", "today");
 };
 //endregion
   
 // 民國年轉換日期格式yyyy-dd-mm region
 function split_date(date) {
-  return parseInt(date.split("年")[0])+1911+"-"+date.split("年")[1].split("月")[0]+"-"+date.split("年")[1].split("月")[1].split("日")[0]; 
+  var transed_date ="";
+  
+  if(date=="")
+  {
+    transed_date = formatDate(new Date());
+  }
+  else
+  {
+    transed_date = parseInt(date.split("年")[0])+1911+"-"+date.split("年")[1].split("月")[0]+"-"+date.split("年")[1].split("月")[1].split("日")[0];
+  }
+
+  return transed_date; 
 }
 //endregion
 
@@ -194,6 +208,8 @@ $(document).ready(function () {
 //endregion
 
 
+
+
 //設定table搜尋框重整後自動填入文字region
 
 //table設定region
@@ -263,22 +279,116 @@ var $table = $("#tab_all").DataTable({
   // };
   
   
-  var hours_range = function (settings, data, dataIndex) {
-    var min_time_all = parseInt($("#min_time_all").val(), 10);
-    var max_time_all = parseInt($("#max_time_all").val(), 10);
+  var ttendence_num_range = function (settings, data, dataIndex) {
+    var min_num = parseInt($("#ttendence_min_num").val(), 10);
+    var max_num = parseInt($("#ttendence_max_num").val(), 10);
     var hours = parseInt(data[4]) || 0; // use data for the date column
     
     if (
-      (isNaN(min_time_all) && isNaN(max_time_all)) ||
-      (isNaN(min_time_all) && hours <= max_time_all) ||
-      (min_time_all <= hours && isNaN(max_time_all)) ||
-      (min_time_all <= hours && hours <= max_time_all)
+      (isNaN(min_num) && isNaN(max_num)) ||
+      (isNaN(min_num) && hours <= max_num) ||
+      (min_num <= hours && isNaN(max_num)) ||
+      (min_num <= hours && hours <= max_num)
+    ) {
+      return true;
+    }
+    return false;
+  };
+
+  var absence_num_range = function (settings, data, dataIndex) {
+    var min_num = parseInt($("#absence_min_num").val(), 10);
+    var max_num = parseInt($("#absence_max_num").val(), 10);
+    var hours = parseInt(data[5]) || 0; // use data for the date column
+    
+    if (
+      (isNaN(min_num) && isNaN(max_num)) ||
+      (isNaN(min_num) && hours <= max_num) ||
+      (min_num <= hours && isNaN(max_num)) ||
+      (min_num <= hours && hours <= max_num)
     ) {
       return true;
     }
     return false;
   };
   
+  var meeting_date_range = (function( settings, data, dataIndex ) {
+    var min_date = parseInt(Date.parse( split_date($('#meeting_min_date').val())), 10 );
+    var max_date = parseInt(Date.parse( split_date($('#meeting_max_date').val())), 10 );
+    // console.log( split_date($('#meeting_min_date').val()))
+    var date = parseInt(Date.parse( split_date(data[2]) )) || 0; // use data for the date column
+    if ( ( isNaN( min_date ) && isNaN( max_date ) ) ||
+         ( isNaN( min_date ) && date <= max_date ) ||
+         ( min_date <= date   && isNaN( max_date ) ) ||
+         ( min_date <= date   && date <= max_date ) )
+    {
+        return true;
+    }
+    return false;
+  });
+
+  var next_meeting_date_range = (function( settings, data, dataIndex ) {
+    var min_date = parseInt(Date.parse( split_date($('#next_meeting_min_date').val())), 10 );
+    var max_date = parseInt(Date.parse( split_date($('#next_meeting_max_date').val())), 10 );
+    // console.log( split_date($('#meeting_min_date').val()))
+    var date = parseInt(Date.parse( split_date(data[6]) )) || 0; // use data for the date column
+    if ( ( isNaN( min_date ) && isNaN( max_date ) ) ||
+         ( isNaN( min_date ) && date <= max_date ) ||
+         ( min_date <= date   && isNaN( max_date ) ) ||
+         ( min_date <= date   && date <= max_date ) )
+    {
+        return true;
+    }
+    return false;
+  });
+
+  var meeting_time_range = (
+    function( settings, data, dataIndex ) {
+        // var min_time = parseInt(Date.parse( $('#min_time').val()), 10 );
+        // var max_time = parseInt(Date.parse( $('#max_time').val()), 10 );
+        // var time = parseInt(Date.parse( data[2] )) || 0; // use data for the date column
+        var min_time = $('#meeting_min_time').val()
+        var max_time = $('#meeting_max_time').val()
+        switch (min_time) {
+            case '00:00':
+                min_time = '12:00';
+                break;
+            case '12:00':
+                min_time = '24:00';
+                break;
+            default:
+                min_time = min_time;
+                break;
+        }
+
+        switch (max_time) {
+            case '00:00':
+                max_time = '12:00';
+                break;
+            case '12:00':
+                max_time = '24:00';
+                break;
+            default:
+                max_time = max_time;
+                break;
+        }
+
+        const [hours_i, minutes_i] = (min_time).split(':');
+        const [hours_x, minutes_x] = (max_time).split(':');
+        const [hours_filter, minutes_filter] = data[3].split(':') || 0;
+        const totalSeconds_min = (+hours_i) * 60 * 60 + (+minutes_i) * 60;
+        const totalSeconds_max = (+hours_x) * 60 * 60 + (+minutes_x) * 60;
+        const totalSeconds_time = ((+hours_filter) * 60 * 60 + (+minutes_filter) * 60) || 0;
+
+        if ( ( isNaN( totalSeconds_min ) && isNaN( totalSeconds_max ) ) ||
+             ( isNaN( totalSeconds_min ) && totalSeconds_time <= totalSeconds_max ) ||
+             ( totalSeconds_min <= totalSeconds_time   && isNaN( totalSeconds_max ) ) ||
+             ( totalSeconds_min <= totalSeconds_time   && totalSeconds_time <= totalSeconds_max ) )
+        {
+            return true;
+        }
+        return false;
+    });
+
   
   //endregion
   
@@ -312,10 +422,33 @@ var $table = $("#tab_all").DataTable({
   //   $table.draw();
   // });
   
-  $("#min_time_all, #max_time_all").keyup(function () {
-    $.fn.dataTable.ext.search.push(hours_range);
+  $("#ttendence_min_num, #ttendence_max_num").keyup(function () {
+    $.fn.dataTable.ext.search.push(ttendence_num_range);
     $table.draw();
   });
+
+  $("#absence_min_num, #absence_max_num").keyup(function () {
+    $.fn.dataTable.ext.search.push(absence_num_range);
+    $table.draw();
+  });
+
+  $('#meeting_min_date, #meeting_max_date').on('change', function() {
+    //    console.log($('#min_date').val())
+    $.fn.dataTable.ext.search.push(meeting_date_range);
+    $table.draw();
+  }); 
+
+  $('#meeting_min_time, #meeting_max_time').on('change', function() {
+    //    console.log($('#min_date').val())
+    $.fn.dataTable.ext.search.push(meeting_time_range);
+    $table.draw();
+  }); 
+
+  $('#next_meeting_min_date, #next_meeting_max_date').on('change', function() {
+    //    console.log($('#min_date').val())
+    $.fn.dataTable.ext.search.push(next_meeting_date_range);
+    $table.draw();
+  }); 
   
   $table.on("draw", function () {
     $("#count_people2").text(

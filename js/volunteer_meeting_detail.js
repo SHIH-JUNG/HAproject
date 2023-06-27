@@ -155,46 +155,50 @@ $(document).ready(function () {
             //寫入該input相對應的div元素中顯示
             $("#signout_file").html(file_1_html);
 
-            console.log(value.Meeting_file_path)
-
+            // console.log(value.Meeting_file_path)
+            
+            
             // meeting_file region
+
             var file_2_arr = value.Meeting_file_path.replace("\[", "").replace("\]", "").replace(/\"/g, "").split(",");
 
             window.file_2_input_val_arr = [];
 
             var file_2_htmlstr = "";
-
-
-            $.each(file_2_arr, function (i, val) {
-
-              var meeting_file_path = val.replace("../", "./");
-              var meeting_file_name = val.split("/");
-
-              var meeting_file_val = meeting_file_name[meeting_file_name.length - 1];
-
-              file_2_input_val_arr.push(val);
-
-              var index = meeting_file_val.lastIndexOf(".");
-              
-              if(isAssetTypeAnImage(meeting_file_val.substr(index+1)))
-              {
-                file_2_htmlstr += '<input class="resume_question" style="zoom: 1.5" class="form-check-input" type="radio" name="file_2_check" forms_sql_id="' + value.Id + '" value="' + i + '">'
-                + '<span>檔案' + (i + 1) + '：</span><a id="val_arr'+i+'" href="' + meeting_file_path + '" style="text-decoration:none;color:blue;" target="_blank">'
-                + meeting_file_val
-                + '</a><br/>'
-                +'<img src="' + meeting_file_path + '" id="val_arr_img'+i+'" title="'+meeting_file_val+'" width="200" height="200" class="apreview" />' 
-                +'<hr/><br/>';
-              }
-              else
-              {
-                file_2_htmlstr += '<input class="resume_question" style="zoom: 1.5" class="form-check-input" type="radio" name="file_2_check" forms_sql_id="' + value.Id + '" value="' + i + '">'
-                + '<span>檔案' + (i + 1) + '：</span><a id="val_arr'+i+'" href="' + meeting_file_path + '" style="text-decoration:none;color:blue;" target="_blank">'
-                + meeting_file_val
-                + '</a><br/><br/>';
-              }
-              
-            });
-
+            
+            if(value.Meeting_file_path != "")
+            {
+              $.each(file_2_arr, function (i, val) {
+  
+                var meeting_file_path = val.replace("../", "./");
+                var meeting_file_name = val.split("/");
+  
+                var meeting_file_val = meeting_file_name[meeting_file_name.length - 1];
+  
+                file_2_input_val_arr.push(val);
+  
+                var index = meeting_file_val.lastIndexOf(".");
+                
+                if(isAssetTypeAnImage(meeting_file_val.substr(index+1)))
+                {
+                  file_2_htmlstr += '<input class="resume_question" style="zoom: 1.5" class="form-check-input" type="radio" name="file_2_check" forms_sql_id="' + value.Id + '" value="' + i + '">'
+                  + '<span>檔案' + (i + 1) + '：</span><a id="val_arr'+i+'" href="' + meeting_file_path + '" style="text-decoration:none;color:blue;" target="_blank">'
+                  + meeting_file_val
+                  + '</a><br/>'
+                  +'<img src="' + meeting_file_path + '" id="val_arr_img'+i+'" title="'+meeting_file_val+'" width="200" height="200" class="apreview" />' 
+                  +'<hr/><br/>';
+                }
+                else
+                {
+                  file_2_htmlstr += '<input class="resume_question" style="zoom: 1.5" class="form-check-input" type="radio" name="file_2_check" forms_sql_id="' + value.Id + '" value="' + i + '">'
+                  + '<span>檔案' + (i + 1) + '：</span><a id="val_arr'+i+'" href="' + meeting_file_path + '" style="text-decoration:none;color:blue;" target="_blank">'
+                  + meeting_file_val
+                  + '</a><br/><br/>';
+                }
+                
+              });
+            }
+            
             file_2_htmlstr += '<br/>'
               + '<button class="resume_question" style="color:red;margin-right:3em;margin-bottom:.5em;" type="button" onclick="selectFiles_delete();">刪除</button>'
               + '<div>※點選上面要刪除的檔案</div>'
@@ -232,6 +236,8 @@ $(document).ready(function () {
     $(".vom_question").attr("disabled", true);
 
     imagePreview();
+
+    tab_toggle();
 });
 
 
@@ -510,20 +516,9 @@ submit_form_data_upload = function() {
       }
     });
   
-    $("[name='meeting_file']").each(function(index, element) {
-      var meeting_files = $(this).prop("files");
-      // console.log(meeting_files.length)
-      
-      if (meeting_files != undefined) {
-        if (meeting_files.length != 0) 
-        {
-          for (var i = 0; i < meeting_files.length; i++) {
-            // console.log(meeting_files[i])
-            form_data.append("meeting_files2[]", meeting_files[i]);
-          }
-        }
-      }
-    });
+    for (var a = 0; a < selectedFiles.length; a++) {
+      form_data.append("meeting_files2[]", selectedFiles[a]);
+    }
   
     var meeting_date_year_split = $("#meeting_date").val().split("年");
   
@@ -827,9 +822,9 @@ selectFiles_delete = function () {
           data: {
             Form_sql_id: file_2_sql_id,
             Vom_id: vom_id,
-            File_a_arr: file_2_input_val_arr,
-            File_a_delete_index: file_2_val,
-            Remove_file_a: r_file_2[0],
+            File_2_arr: file_2_input_val_arr,
+            File_2_delete_index: file_2_val,
+            Remove_file_2: r_file_2[0],
           },
           // dataType: "JSON",
           success: function (data) {
@@ -982,6 +977,17 @@ selected_files = function() {
 
     // $("#selected-files").html(html);
   });
+}
+
+// page reload時保持上次的頁籤狀態 region
+function tab_toggle() {
+  $('a[data-toggle="pill"]').on('show.bs.tab', function(e) {
+      localStorage.setItem('activeTab', $(e.target).attr('href'));
+  });
+  var activeTab = localStorage.getItem('activeTab');
+  if(activeTab){
+      $('#myTab a[href="' + activeTab + '"]').tab('show');
+  }
 }
 
 
