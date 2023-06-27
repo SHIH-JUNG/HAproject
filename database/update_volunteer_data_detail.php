@@ -90,6 +90,12 @@ if (isset($_FILES["volunteer_files0"]))
     if($row_nums > 0 && $v_file_num[0]!="")
     {
         $file_0_arr = json_encode(array_merge(json_decode($v_file_num[0], true),$file_0_arr),JSON_UNESCAPED_UNICODE);
+        
+        $file_0_arr = json_decode($file_0_arr, true);
+
+        $file_0_arr = array_values(array_unique($file_0_arr,SORT_REGULAR));
+
+        $file_0_arr = json_encode($file_0_arr,JSON_UNESCAPED_UNICODE);
     }
     else
     {
