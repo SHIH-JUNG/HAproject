@@ -11,6 +11,8 @@ $Form_type = $_REQUEST['Form_type'];
 $Case_name = $_REQUEST['Case_name'];
 $Case_pid = $_REQUEST['Case_pid'];
 @$Fillin_date = $_REQUEST['Fillin_date'];
+$Case_storage = $_REQUEST['Case_storage'];
+
 @$answer = json_encode($_REQUEST['answer'],JSON_UNESCAPED_UNICODE);
 //服務摘要表欄位內容
 @$other_info = json_encode($_REQUEST['other_info'],JSON_UNESCAPED_UNICODE);
@@ -56,7 +58,7 @@ else
 $user = $_SESSION['name'];
 
 // 儲存摘要表的資訊，顯示在case_all.php region
-@$other_info_sql = "UPDATE `form_all_info` SET `Fillin_date` = '$Fillin_date', `Other_info` = '$other_info', `Update_date` = NOW(), `Update_name`= '$user'
+@$other_info_sql = "UPDATE `form_all_info` SET `Fillin_date` = '$Fillin_date', `Other_info` = '$other_info',`Case_storage` = '$Case_storage', `Update_date` = NOW(), `Update_name`= '$user'
 WHERE `Case_id` = '$Case_id' AND `Id` = '$Form_id' AND `Form_name` = '$Form_type' AND `Case_pid` = '$Case_pid';";
 //endregion
 
@@ -182,6 +184,60 @@ if($form_id_num[0]>0)
             {
                 $sqlUpdate .= $other_info_sql;
             }
+
+            if($Case_storage == "storage")
+            {
+                $select_case_storage = "SELECT `Case_storage` FROM `current_case` WHERE `Case_id` = '$Case_id' AND `Id` = '$Case_seqid';";
+
+                $find_case_storage = mysqli_query($conn, $select_case_storage);
+                $row_nums = mysqli_num_rows($find_case_storage);
+                $case_storage_str = mysqli_fetch_row($find_case_storage);
+
+                $match_str = $Form_type . $Form_id;
+                if(!preg_match("/{$match_str}/i", $case_storage_str[0]))
+                {
+                    if($case_storage_str[0] == "")
+                    {
+                        $case_storage_str[0] = $case_storage_str[0] . $Form_type . $Form_id;
+                    }
+                    else
+                    {
+                        $case_storage_str[0] = $case_storage_str[0] . "、" . $Form_type . $Form_id;
+                    }
+                }
+
+
+                $case_storage_sql = "UPDATE `current_case` SET `Case_storage` = '$case_storage_str[0]' WHERE `Case_id` = '$Case_id' AND `Id` = '$Case_seqid';";
+                $sqlUpdate .= $case_storage_sql;
+            }
+            elseif($Case_storage == "cache")
+            {
+                $select_case_storage = "SELECT `Case_storage` FROM `current_case` WHERE `Case_id` = '$Case_id' AND `Id` = '$Case_seqid';";
+
+                $find_case_storage = mysqli_query($conn, $select_case_storage);
+                $row_nums = mysqli_num_rows($find_case_storage);
+                $case_storage_str = mysqli_fetch_row($find_case_storage);
+
+                $case_storage_arr = explode('、',$case_storage_str[0]);
+
+                $case_storage_sql_str = "";
+
+                if(in_array($Form_type . $Form_id, $case_storage_arr))
+                {
+                    $find_key = array_search($Form_type . $Form_id, $case_storage_arr);
+
+                    array_splice($case_storage_arr, $find_key, 1);
+                    $case_storage_sql_str = join("、", $case_storage_arr);
+                }
+                else
+                {
+                    $case_storage_sql_str = $case_storage_str[0];
+                }
+                
+                $case_storage_sql = "UPDATE `current_case` SET `Case_storage` = '$case_storage_sql_str' WHERE `Case_id` = '$Case_id' AND `Id` = '$Case_seqid';";
+                $sqlUpdate .= $case_storage_sql;
+            }
+
             // 工作報表新增/更新
             @$sqlUpdate .= $case_report2_sql;
             @$sqlUpdate .= $case_report_sql;
@@ -212,6 +268,59 @@ if($form_id_num[0]>0)
         {
             $sqlUpdate .= $other_info_sql;           
         }
+
+        if($Case_storage == "storage")
+        {
+            $select_case_storage = "SELECT `Case_storage` FROM `current_case` WHERE `Case_id` = '$Case_id' AND `Id` = '$Case_seqid';";
+
+            $find_case_storage = mysqli_query($conn, $select_case_storage);
+            $row_nums = mysqli_num_rows($find_case_storage);
+            $case_storage_str = mysqli_fetch_row($find_case_storage);
+            
+            $match_str = $Form_type . $Form_id;
+            if(!preg_match("/{$match_str}/i", $case_storage_str[0]))
+            {
+                if($case_storage_str[0] == "")
+                {
+                    $case_storage_str[0] = $case_storage_str[0] . $Form_type . $Form_id;
+                }
+                else
+                {
+                    $case_storage_str[0] = $case_storage_str[0] . "、" . $Form_type . $Form_id;
+                }
+            }
+            
+            $case_storage_sql = "UPDATE `current_case` SET `Case_storage` = '$case_storage_str[0]' WHERE `Case_id` = '$Case_id' AND `Id` = '$Case_seqid';";
+            $sqlUpdate .= $case_storage_sql;
+        }
+        elseif($Case_storage == "cache")
+        {
+            $select_case_storage = "SELECT `Case_storage` FROM `current_case` WHERE `Case_id` = '$Case_id' AND `Id` = '$Case_seqid';";
+
+            $find_case_storage = mysqli_query($conn, $select_case_storage);
+            $row_nums = mysqli_num_rows($find_case_storage);
+            $case_storage_str = mysqli_fetch_row($find_case_storage);
+
+            $case_storage_arr = explode('、',$case_storage_str[0]);
+
+            $case_storage_sql_str = "";
+
+            if(in_array($Form_type . $Form_id, $case_storage_arr))
+            {
+                $find_key = array_search($Form_type . $Form_id, $case_storage_arr);
+
+                array_splice($case_storage_arr, $find_key, 1);
+                $case_storage_sql_str = join("、", $case_storage_arr);
+            }
+            else
+            {
+                $case_storage_sql_str = $case_storage_str[0];
+            }
+            
+            $case_storage_sql = "UPDATE `current_case` SET `Case_storage` = '$case_storage_sql_str' WHERE `Case_id` = '$Case_id' AND `Id` = '$Case_seqid';";
+            $sqlUpdate .= $case_storage_sql;
+        }
+
         // 工作報表新增/更新
         @$sqlUpdate .= $case_report2_sql;
         @$sqlUpdate .= $case_report_sql;
@@ -254,6 +363,59 @@ else // 第一次新增至 forms 資料庫，執行insert
             {
                 $sql .=  $other_info_sql;        
             }
+
+            if($Case_storage == "storage")
+            {
+                $select_case_storage = "SELECT `Case_storage` FROM `current_case` WHERE `Case_id` = '$Case_id' AND `Id` = '$Case_seqid';";
+
+                $find_case_storage = mysqli_query($conn, $select_case_storage);
+                $row_nums = mysqli_num_rows($find_case_storage);
+                $case_storage_str = mysqli_fetch_row($find_case_storage);
+
+                $match_str = $Form_type . $Form_id;
+                if(!preg_match("/{$match_str}/i", $case_storage_str[0]))
+                {
+                    if($case_storage_str[0] == "")
+                    {
+                        $case_storage_str[0] = $case_storage_str[0] . $Form_type . $Form_id;
+                    }
+                    else
+                    {
+                        $case_storage_str[0] = $case_storage_str[0] . "、" . $Form_type . $Form_id;
+                    }
+                }
+
+                $case_storage_sql = "UPDATE `current_case` SET `Case_storage` = '$case_storage_str[0]' WHERE `Case_id` = '$Case_id' AND `Id` = '$Case_seqid';";
+                $sql .= $case_storage_sql;
+            }
+            elseif($Case_storage == "cache")
+            {
+                $select_case_storage = "SELECT `Case_storage` FROM `current_case` WHERE `Case_id` = '$Case_id' AND `Id` = '$Case_seqid';";
+
+                $find_case_storage = mysqli_query($conn, $select_case_storage);
+                $row_nums = mysqli_num_rows($find_case_storage);
+                $case_storage_str = mysqli_fetch_row($find_case_storage);
+
+                $case_storage_arr = explode('、',$case_storage_str[0]);
+
+                $case_storage_sql_str = "";
+
+                if(in_array($Form_type . $Form_id, $case_storage_arr))
+                {
+                    $find_key = array_search($Form_type . $Form_id, $case_storage_arr);
+
+                    array_splice($case_storage_arr, $find_key, 1);
+                    $case_storage_sql_str = join("、", $case_storage_arr);
+                }
+                else
+                {
+                    $case_storage_sql_str = $case_storage_str[0];
+                }
+                
+                $case_storage_sql = "UPDATE `current_case` SET `Case_storage` = '$case_storage_sql_str' WHERE `Case_id` = '$Case_id' AND `Id` = '$Case_seqid';";
+                $sql .= $case_storage_sql;
+            }
+
             // 工作報表新增/更新
             @$sql .= $case_report2_sql;
             @$sql .= $case_report_sql;
@@ -284,6 +446,59 @@ else // 第一次新增至 forms 資料庫，執行insert
         {
             $sql .=  $other_info_sql;           
         }
+
+        if($Case_storage == "storage")
+        {
+            $select_case_storage = "SELECT `Case_storage` FROM `current_case` WHERE `Case_id` = '$Case_id' AND `Id` = '$Case_seqid';";
+
+            $find_case_storage = mysqli_query($conn, $select_case_storage);
+            $row_nums = mysqli_num_rows($find_case_storage);
+            $case_storage_str = mysqli_fetch_row($find_case_storage);
+
+            $match_str = $Form_type . $Form_id;
+            if(!preg_match("/{$match_str}/i", $case_storage_str[0]))
+            {
+                if($case_storage_str[0] == "")
+                {
+                    $case_storage_str[0] = $case_storage_str[0] . $Form_type . $Form_id;
+                }
+                else
+                {
+                    $case_storage_str[0] = $case_storage_str[0] . "、" . $Form_type . $Form_id;
+                }
+            }
+
+            $case_storage_sql = "UPDATE `current_case` SET `Case_storage` = '$case_storage_str[0]' WHERE `Case_id` = '$Case_id' AND `Id` = '$Case_seqid';";
+            $sql .= $case_storage_sql;
+        }
+        elseif($Case_storage == "cache")
+        {
+            $select_case_storage = "SELECT `Case_storage` FROM `current_case` WHERE `Case_id` = '$Case_id' AND `Id` = '$Case_seqid';";
+
+            $find_case_storage = mysqli_query($conn, $select_case_storage);
+            $row_nums = mysqli_num_rows($find_case_storage);
+            $case_storage_str = mysqli_fetch_row($find_case_storage);
+
+            $case_storage_arr = explode('、',$case_storage_str[0]);
+
+            $case_storage_sql_str = "";
+
+            if(in_array($Form_type . $Form_id, $case_storage_arr))
+            {
+                $find_key = array_search($Form_type . $Form_id, $case_storage_arr);
+
+                array_splice($case_storage_arr, $find_key, 1);
+                $case_storage_sql_str = join("、", $case_storage_arr);
+            }
+            else
+            {
+                $case_storage_sql_str = $case_storage_str[0];
+            }
+            
+            $case_storage_sql = "UPDATE `current_case` SET `Case_storage` = '$case_storage_sql_str' WHERE `Case_id` = '$Case_id' AND `Id` = '$Case_seqid';";
+            $sql .= $case_storage_sql;
+        }
+
         // 工作報表新增/更新
         @$sql .= $case_report2_sql;
         @$sql .= $case_report_sql;

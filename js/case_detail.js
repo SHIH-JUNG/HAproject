@@ -914,7 +914,7 @@ test = function()
                 showCancelButton: true
             }).then(function(result) {
                 if (result) {
-                    submit_data();
+                    test_submit_data();
                 }
             }, function(dismiss){
                 if(dismiss == 'cancel'){
@@ -927,12 +927,12 @@ test = function()
         }
         else
         {
-            submit_data();
+            test_submit_data();
         }
     }
     else
     {
-        submit_data();
+        test_submit_data();
     }
    
     
@@ -940,7 +940,7 @@ test = function()
 
 
 
-function submit_data()
+function test_submit_data()
 {
     var form_type = getUrlVars()["form_type"];
     //去掉資料內前後端多餘的空白
@@ -1125,6 +1125,7 @@ function submit_data()
     form_data.append("Case_name", name);
     form_data.append("Case_pid", pid);
     form_data.append("Case_report", JSON.stringify(case_report_datas));
+    form_data.append("Case_storage", storage_type);
     
     if(form_type=="case" || form_type=="interlocution")
     {
@@ -1203,10 +1204,17 @@ $(document).ready(function () {
     load_life_data();
     //載入家庭關係量表內容 個案評估表->成效評估
     load_familyship_data();
+
+    if(form_type=="BSRS5")
+    {
     //載入BSRS-5量表內容 個案評估表->成效評估
     load_BSRS5_data();
-
+    }
+    
     //手動新增按鈕點擊跳出模態框
+    $('#case_storage_model').on('shown.bs.modal', function () {
+        $("#add_"+form_type+"_detail").trigger('focus');
+    });
     $('#trans_grade_model').on('shown.bs.modal', function () {
         $('#trans_grade').trigger('focus');
     });
@@ -1525,8 +1533,51 @@ function filterArray(inputArr){
 
 
 
-//按下儲存region
-$("#add_"+form_type+"_detail").on('click', function () {
+//按下儲存 設定存檔類型 region
+// $("#add_"+form_type+"_detail").on('click', function () {
+$("#case_storage_submit").on('click', function () {
+
+    var case_storage_type = $("#case_storage_type").val()
+
+    // console.log(case_storage_type)
+
+
+    if(case_storage_type == "cache")
+    {
+        form_check_submit(case_storage_type);
+    }
+    else if(case_storage_type == "storage")
+    {
+        if($("#case_storage_pwd").val() == "")
+        {
+            swal({
+                title:'若選擇『確認上傳』，請輸入您的使用者登入密碼',
+                type:'error',                        
+            })
+        }
+        else
+        {
+            if($("#case_storage_pwd").val() == login_user_pwd)
+            {
+                form_check_submit(case_storage_type);
+            }
+            else
+            {
+                swal({
+                    title:'您的使用者登入密碼輸入不正確，請重新輸入',
+                    type:'error',                        
+                })
+            }
+        }
+    }
+});
+//endregion
+
+
+form_check_submit = function(submit_storage_type) {
+
+    window.storage_type = submit_storage_type;
+    console.log(storage_type)
 
     //判斷該量表是否含有 input[type="file"] 類型資料
     if($('input[type="file"]').length!=0)
@@ -1568,11 +1619,7 @@ $("#add_"+form_type+"_detail").on('click', function () {
     {
         submit_form_data();
     }
-    
-
-    
-});
-//endregion
+}
 
 // 存放監聽表單的子元素變動事件的列表
 window.listen_form_change = new Array();
@@ -1926,6 +1973,8 @@ function submit_form_data() {
         form_data.append("Case_name", name);
         form_data.append("Case_pid", pid);
         form_data.append("Case_report", JSON.stringify(case_report_datas));
+        form_data.append("Case_storage", storage_type);
+        
         
         if(form_type=="case" || form_type=="interlocution")
         {

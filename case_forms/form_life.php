@@ -720,7 +720,7 @@
                                 </div> -->
 
                                 <div class="panel-footer" style="text-align:center;">
-                                    <button style="font-size:20px" id="add_life_detail" class="btn btn-default">儲存</button>
+                                    <button style="font-size:20px" id="add_life_detail" class="btn btn-default" data-toggle="modal" data-target="#case_storage_model">儲存</button>
                                     <button style="font-size:20px" onclick="history_back_btn();" class="btn btn-default">返回</button>
                                     <button style="font-size:20px" id="preview" class="btn btn-default">預覽匯出</button>
                                 </div>
