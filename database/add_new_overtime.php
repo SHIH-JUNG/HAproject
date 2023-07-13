@@ -78,7 +78,7 @@ $sql = "INSERT INTO `overtime` (`Id`, `Resume_id`, `Resume_name`,
  '$Supervise', '$Checker', '$Director');";
 
 $sql .= "INSERT INTO `signature_notice` (`Sign_id`, `Title`,`Url`,`Timestamp`, `Assign`, `Signer`, `Sign_state`, `Type`, `Create_date`, `Create_name`) 
-VALUES ($overtime_id, '$title','$url','$rec_date_time', '$user', '$signer', '$sign_state', 'overtime', Now(), '$user')";
+VALUES ('$overtime_id', '$title','$url','$rec_date_time', '$user', '$signer', '$sign_state', 'overtime', Now(), '$user')";
 
 
 if (mysqli_multi_query($conn, $sql)) {

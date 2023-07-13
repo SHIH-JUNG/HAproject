@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2023-07-12 17:24:41
--- 伺服器版本： 10.4.24-MariaDB
--- PHP 版本： 7.4.29
+-- 產生時間： 2023-07-13 13:23:59
+-- 伺服器版本： 10.4.27-MariaDB
+-- PHP 版本： 8.0.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -40,7 +40,7 @@ CREATE TABLE `accounting_record` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime NOT NULL,
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `accounting_record`
@@ -75,7 +75,7 @@ CREATE TABLE `accounting_record_cash` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime DEFAULT current_timestamp(),
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `accounting_record_cash`
@@ -124,7 +124,7 @@ CREATE TABLE `accounting_record_cash_balance` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime DEFAULT current_timestamp(),
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `accounting_record_cash_balance`
@@ -157,7 +157,7 @@ CREATE TABLE `accounting_record_report` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime DEFAULT current_timestamp(),
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `accounting_record_report`
@@ -190,7 +190,7 @@ CREATE TABLE `announcement` (
   `authority` int(11) NOT NULL,
   `publisher` varchar(10) NOT NULL,
   `datetime` date NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `announcement`
@@ -228,7 +228,7 @@ CREATE TABLE `board_supervisor` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime NOT NULL,
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `board_supervisor`
@@ -263,7 +263,7 @@ CREATE TABLE `calendar` (
   `publisher` varchar(10) NOT NULL,
   `url` varchar(100) NOT NULL,
   `date` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `calendar`
@@ -350,7 +350,7 @@ CREATE TABLE `case_report` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime DEFAULT current_timestamp(),
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `case_report`
@@ -437,7 +437,7 @@ CREATE TABLE `closed` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime DEFAULT current_timestamp(),
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `closed`
@@ -504,7 +504,7 @@ CREATE TABLE `consult` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime DEFAULT current_timestamp(),
   `Update_name` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `consult`
@@ -591,7 +591,7 @@ CREATE TABLE `counsel` (
   `Create_name` varchar(30) DEFAULT current_timestamp(),
   `Update_date` datetime NOT NULL,
   `Update_name` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `counsel`
@@ -630,7 +630,7 @@ CREATE TABLE `counsel_visit` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime NOT NULL,
   `Update_name` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `counsel_visit`
@@ -691,7 +691,7 @@ CREATE TABLE `current_case` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime NOT NULL,
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `current_case`
@@ -748,7 +748,7 @@ CREATE TABLE `day_off_v2` (
   `Director_signature` longtext NOT NULL,
   `Director_sign_msg` longtext NOT NULL,
   `Director_sign_time` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `day_off_v2`
@@ -800,7 +800,7 @@ CREATE TABLE `dlgrec` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime DEFAULT current_timestamp(),
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `dlgrec`
@@ -835,7 +835,7 @@ CREATE TABLE `forms` (
   `answer` longtext NOT NULL,
   `file_path` varchar(1000) NOT NULL,
   `Health_rec` longtext NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `forms`
@@ -847,9 +847,9 @@ INSERT INTO `forms` (`Id`, `Case_seqid`, `Case_id`, `Form_id`, `Form_type`, `Cas
 (3, '1', 'RE111', 3, 'case', 'test', 'T1334356112', '2022-08-08 19:28:17', '園主任', '2022-10-15 21:41:40', 'jia', '\"[{\"name\":\"assign_name\",\"value\":\"園主任\"},{\"name\":\"fillin_date\",\"value\":\"2022-08-08\"},{\"name\":\"name\",\"value\":\"test\"},{\"name\":\"birth\",\"value\":\"1991-02-03\"},{\"name\":\"pid\",\"value\":\"T1334356112\"},{\"name\":\"sex\",\"value\":\"男\"},{\"name\":\"phone_home\",\"value\":\"0721633\"},{\"name\":\"phone_mobile\",\"value\":\"07216332\"},{\"name\":\"address\",\"value\":\"屏東縣內埔鄉東寧村勝利路5557號\"},{\"name\":\"residence\",\"value\":\"屏東縣內埔鄉東寧村勝利路5557號\"},{\"name\":\"same_address\",\"value\":\"same_address\"},{\"name\":\"education\",\"value\":\"高中職\"},{\"name\":\"marital\",\"value\":\"不詳\"},{\"name\":\"cohabitant\",\"value\":\"獨居\"},{\"name\":\"cohabitant_other\",\"value\":\"\"},{\"name\":\"current_job\",\"value\":\"其他\"},{\"name\":\"current_job_other\",\"value\":\"待業\"},{\"name\":\"economic_status_0\",\"value\":\"\"},{\"name\":\"economic_status_1\",\"value\":\"\"},{\"name\":\"economic_status_2\",\"value\":\"\"},{\"name\":\"economic_status\",\"value\":\"3\"},{\"name\":\"economic_status_3\",\"value\":\"社會救濟每個月8000元\"},{\"name\":\"religion\",\"value\":\"其他\"},{\"name\":\"religion_other\",\"value\":\"無\"},{\"name\":\"drug_record_0\",\"value\":\"\"},{\"name\":\"drug_record_1\",\"value\":\"\"},{\"name\":\"drug_record_2\",\"value\":\"\"},{\"name\":\"drug_record\",\"value\":\"3\"},{\"name\":\"drug_record_3\",\"value\":\"嗎啡3年\"},{\"name\":\"correctional_question_count\",\"value\":\"1\"},{\"name\":\"correctional_question_start\",\"value\":\"2021-02\"},{\"name\":\"correctional_question_end\",\"value\":\"2021-10\"},{\"name\":\"correctional_year\",\"value\":\"0\"},{\"name\":\"correctional_month\",\"value\":\"8\"},{\"name\":\"family_description\",\"value\":\"test個案家庭概況描述\"},{\"name\":\"assessment\",\"value\":\"test需求評估11\"},{\"name\":\"treatment_time\",\"value\":\"0\"},{\"name\":\"treatment_time_year\",\"value\":\"109\"},{\"name\":\"treatment_time_month\",\"value\":\"12\"},{\"name\":\"treatment_time_1\",\"value\":\"\"},{\"name\":\"treatment_status\",\"value\":\"已接受治療\"},{\"name\":\"medical_name\",\"value\":\"test就醫醫院/醫師\"},{\"name\":\"medical_info\",\"value\":\"test醫院個管\"},{\"name\":\"medical_phone\",\"value\":\"test231215\"},{\"name\":\"health_clinic_name\",\"value\":\"test衛生局所/承辦者\"},{\"name\":\"health_clinic_phone\",\"value\":\"0312134513\"},{\"name\":\"CD4_index_0\",\"value\":\"1231\"},{\"name\":\"CD4_index_1\",\"value\":\"110\"},{\"name\":\"CD4_index_2\",\"value\":\"11\"},{\"name\":\"viral_0\",\"value\":\"2341\"},{\"name\":\"viral_1\",\"value\":\"100\"},{\"name\":\"viral_2\",\"value\":\"1\"},{\"name\":\"medical_other\",\"value\":\"test其他\"},{\"name\":\"medicine\",\"value\":\"3TC速汰滋\"},{\"name\":\"medicine\",\"value\":\"Duovir倍歐減\"},{\"name\":\"medicine\",\"value\":\"Truvada舒發泰\"},{\"name\":\"medicine\",\"value\":\"寧衛邁\"},{\"name\":\"medicine\",\"value\":\"抑滋靈\"},{\"name\":\"symptoms\",\"value\":\"持續疲倦\"},{\"name\":\"symptoms_other\",\"value\":\"\"},{\"name\":\"statement\",\"value\":\"test個案問題陳述\"},{\"name\":\"personal_system\",\"value\":\"\"},{\"name\":\"family_system\",\"value\":\"test家庭系統\"},{\"name\":\"social_system\",\"value\":\"\"},{\"name\":\"resource_system\",\"value\":\"\"},{\"name\":\"diagnose_main\",\"value\":\"test診斷問題主要問題\"},{\"name\":\"diagnose_minor\",\"value\":\"\"},{\"name\":\"dealwith_target\",\"value\":\"\"},{\"name\":\"dealwith_strategy\",\"value\":\"\"},{\"name\":\"resource_w_referrals\",\"value\":\"\"},{\"name\":\"pretest_depression_year\",\"value\":\"\"},{\"name\":\"pretest_depression_month\",\"value\":\"\"},{\"name\":\"pretest_depression_day\",\"value\":\"\"},{\"name\":\"pretest_depression_score\",\"value\":\"\"},{\"name\":\"midtest_depression_year\",\"value\":\"\"},{\"name\":\"midtest_depression_month\",\"value\":\"\"},{\"name\":\"midtest_depression_day\",\"value\":\"\"},{\"name\":\"midtest_depression_score\",\"value\":\"\"},{\"name\":\"posttest_depression_year\",\"value\":\"\"},{\"name\":\"posttest_depression_month\",\"value\":\"\"},{\"name\":\"posttest_depression_day\",\"value\":\"\"},{\"name\":\"posttest_depression_score\",\"value\":\"\"},{\"name\":\"BSRS5_score\",\"value\":\"\"},{\"name\":\"pretest_life_year\",\"value\":\"\"},{\"name\":\"pretest_life_month\",\"value\":\"\"},{\"name\":\"pretest_life_day\",\"value\":\"\"},{\"name\":\"pretest_life_score\",\"value\":\"\"},{\"name\":\"posttest_life_year\",\"value\":\"\"},{\"name\":\"posttest_life_month\",\"value\":\"\"},{\"name\":\"posttest_life_day\",\"value\":\"\"},{\"name\":\"posttest_life_score\",\"value\":\"\"},{\"name\":\"pretest_familyship_year\",\"value\":\"\"},{\"name\":\"pretest_familyship_month\",\"value\":\"\"},{\"name\":\"pretest_familyship_day\",\"value\":\"\"},{\"name\":\"pretest_familyship_score\",\"value\":\"\"},{\"name\":\"posttest_familyship_year\",\"value\":\"\"},{\"name\":\"posttest_familyship_month\",\"value\":\"\"},{\"name\":\"posttest_familyship_day\",\"value\":\"\"},{\"name\":\"posttest_familyship_score\",\"value\":\"\"},{\"name\":\"employment_radio\",\"value\":\"就業輔導中\"},{\"name\":\"social_adaptation_radio\",\"value\":\"佳\"},{\"name\":\"other_assessments\",\"value\":\"test其他評量\"},{\"name\":\"end_indicator\",\"value\":\"達到目標，已無需要在服務\"},{\"name\":\"case_closed_radio\",\"value\":\"結案\"},{\"name\":\"case_closed_yes\",\"value\":\"test結案原因/備註test\"},{\"name\":\"case_closed_year\",\"value\":\"\"},{\"name\":\"case_closed_month\",\"value\":\"\"},{\"name\":\"case_closed_day\",\"value\":\"\"},{\"name\":\"case_closed_totalmonth\",\"value\":\"\"},{\"name\":\"case_closed_remark\",\"value\":\"\"},{\"name\":\"customFile1\",\"value\":\"1.xls\"}]\"', '../upload/1.xls', ''),
 (4, '6', 'RE111', 7, 'employment_satif', 'test', 'T1334356112', '2022-08-08 21:26:36', '園主任', '2022-10-05 20:35:27', '社工員1', '\"[{\"name\":\"fillin_date_0\",\"value\":\"2022-08-08\"},{\"name\":\"name\",\"value\":\"test\"},{\"name\":\"sex\",\"value\":\"男生\"},{\"name\":\"birth\",\"value\":\"1991-02-03\"},{\"name\":\"phone\",\"value\":\"062223331\"},{\"name\":\"address\",\"value\":\"\"},{\"name\":\"education_graduate\",\"value\":\"畢業\"},{\"name\":\"work_experience\",\"value\":\"\"},{\"name\":\"contact_name\",\"value\":\"\"},{\"name\":\"relation\",\"value\":\"\"},{\"name\":\"contact_phone\",\"value\":\"\"},{\"name\":\"physical_mental_t_1\",\"value\":\"\"},{\"name\":\"physical_mental_t_2\",\"value\":\"\"},{\"name\":\"correction_rec_t_1\",\"value\":\"\"},{\"name\":\"correction_rec_t_2\",\"value\":\"\"},{\"name\":\"correction_rec_t_3\",\"value\":\"\"},{\"name\":\"correction_rec_t_4\",\"value\":\"\"},{\"name\":\"correction_rec_t_5\",\"value\":\"\"},{\"name\":\"correction_rec_date_start\",\"value\":\"\"},{\"name\":\"correction_rec_date_end\",\"value\":\"\"},{\"name\":\"capability_t_0\",\"value\":\"\"},{\"name\":\"capability_t_1\",\"value\":\"\"},{\"name\":\"capability_t_2\",\"value\":\"\"},{\"name\":\"capability_t_3\",\"value\":\"\"},{\"name\":\"capability_t_4\",\"value\":\"\"},{\"name\":\"other_skills_t_0\",\"value\":\"\"},{\"name\":\"traffic_capacity_t_0\",\"value\":\"\"},{\"name\":\"traffic_capacity_t_1\",\"value\":\"\"},{\"name\":\"traffic_capacity_t_2\",\"value\":\"\"},{\"name\":\"employment_status_t_date\",\"value\":\"\"},{\"name\":\"employment_status_t_1\",\"value\":\"\"},{\"name\":\"employment_status_t_2\",\"value\":\"\"},{\"name\":\"employment_status_t_3\",\"value\":\"\"},{\"name\":\"employment_status_t_4\",\"value\":\"\"},{\"name\":\"employment_status_t_5\",\"value\":\"\"},{\"name\":\"employment_status_t_6\",\"value\":\"\"},{\"name\":\"tsn_case_id\",\"value\":\"RE111\"},{\"name\":\"fillin_date_1\",\"value\":\"2022-08-08\"},{\"name\":\"answer1\",\"value\":\"4\"},{\"name\":\"answer2\",\"value\":\"4\"},{\"name\":\"answer3\",\"value\":\"4\"},{\"name\":\"answer4\",\"value\":\"4\"},{\"name\":\"answer5\",\"value\":\"2\"},{\"name\":\"answer6\",\"value\":\"3\"},{\"name\":\"answer7\",\"value\":\"4\"},{\"name\":\"answer8\",\"value\":\"4\"},{\"name\":\"answer9\",\"value\":\"3\"},{\"name\":\"answer10\",\"value\":\"3\"},{\"name\":\"answer_score\",\"value\":\"35\"}]\"', '', ''),
 (5, '6', 'RE111', 8, 'life', 'test', 'T1334356112', '2022-08-08 21:40:43', '園主任', '2022-10-05 20:35:16', '社工員1', '\"[{\"name\":\"w_test\",\"value\":\"前測\"},{\"name\":\"fillin_date\",\"value\":\"2022-08-08\"},{\"name\":\"life_answer1\",\"value\":\"5\"},{\"name\":\"life_answer2\",\"value\":\"1\"},{\"name\":\"life_answer3\",\"value\":\"3\"},{\"name\":\"life_answer4\",\"value\":\"3\"},{\"name\":\"life_answer5\",\"value\":\"4\"},{\"name\":\"life_answer6\",\"value\":\"4\"},{\"name\":\"life_answer7\",\"value\":\"5\"},{\"name\":\"life_answer8\",\"value\":\"4\"},{\"name\":\"life_answer9\",\"value\":\"5\"},{\"name\":\"life_answer10\",\"value\":\"5\"},{\"name\":\"life_answer11\",\"value\":\"5\"},{\"name\":\"life_answer12\",\"value\":\"4\"},{\"name\":\"life_answer13\",\"value\":\"5\"},{\"name\":\"life_answer14\",\"value\":\"3\"},{\"name\":\"life_answer15\",\"value\":\"5\"},{\"name\":\"life_answer16\",\"value\":\"5\"},{\"name\":\"life_answer17\",\"value\":\"4\"},{\"name\":\"life_answer18\",\"value\":\"4\"},{\"name\":\"life_answer19\",\"value\":\"4\"},{\"name\":\"life_answer20\",\"value\":\"4\"},{\"name\":\"life_answer21\",\"value\":\"3\"},{\"name\":\"life_answer22\",\"value\":\"5\"},{\"name\":\"life_answer23\",\"value\":\"3\"},{\"name\":\"life_answer24\",\"value\":\"4\"},{\"name\":\"life_answer25\",\"value\":\"5\"},{\"name\":\"life_answer26\",\"value\":\"3\"},{\"name\":\"life_answer27\",\"value\":\"5\"},{\"name\":\"life_answer28\",\"value\":\"4\"},{\"name\":\"life_answer_score1\",\"value\":\"4.07\"},{\"name\":\"customRange1\",\"value\":\"65\"},{\"name\":\"customRange2\",\"value\":\"60\"},{\"name\":\"customRange3\",\"value\":\"35\"},{\"name\":\"customRange4\",\"value\":\"75\"},{\"name\":\"customRange5\",\"value\":\"90\"},{\"name\":\"customRange6\",\"value\":\"45\"},{\"name\":\"customRange7\",\"value\":\"85\"},{\"name\":\"n0\",\"value\":\"\"},{\"name\":\"n1\",\"value\":\"\"},{\"name\":\"n2\",\"value\":\"\"},{\"name\":\"n3\",\"value\":\"\"},{\"name\":\"n4\",\"value\":\"\"},{\"name\":\"n5\",\"value\":\"\"},{\"name\":\"life_answer_score2\",\"value\":\"455\"}]\"', '', ''),
-(6, '6', 'RE111', 12, 'interlocution', 'test', 'T1334356112', '2022-08-31 20:04:38', '園主任', '2023-07-12 23:20:49', 'jia', '\"[{\"name\":\"interlocution_date\",\"value\":\"2022-06-11\"},{\"name\":\"interlocution_place\",\"value\":\"家訪\"},{\"name\":\"interlocution_ques_type\",\"value\":\"\"},{\"name\":\"interlocution_ques\",\"value\":\"test心理情緒a\"},{\"name\":\"interlocution_time\",\"value\":\"14:10\"},{\"name\":\"interlocution_content\",\"value\":\"test處遇\"},{\"name\":\"interlocution_next_target\",\"value\":\"test下次目標\"},{\"name\":\"assign_name\",\"value\":\"社工員1\"},{\"name\":\"supervise_name\",\"value\":\"園主任\"}]\"', '', ''),
+(6, '6', 'RE111', 12, 'interlocution', 'test', 'T1334356112', '2022-08-31 20:04:38', '園主任', '2023-07-13 17:47:30', '執行長', '\"[{\"name\":\"interlocution_date\",\"value\":\"2022-06-11\"},{\"name\":\"interlocution_place\",\"value\":\"家訪\"},{\"name\":\"interlocution_ques_type\",\"value\":\"\"},{\"name\":\"interlocution_ques\",\"value\":\"test心理情緒a\"},{\"name\":\"interlocution_time\",\"value\":\"14:10\"},{\"name\":\"interlocution_content\",\"value\":\"test處遇\"},{\"name\":\"interlocution_next_target\",\"value\":\"test下次目標\"},{\"name\":\"assign_name\",\"value\":\"社工員1\"},{\"name\":\"supervise_name\",\"value\":\"園主任\"}]\"', '', ''),
 (7, '6', 'RE111', 13, 'interlocution', 'test', 'T1334356112', '2022-08-31 21:54:26', '園主任', '2023-07-12 23:23:29', 'jia', '\"[{\"name\":\"interlocution_date\",\"value\":\"2022-08-31\"},{\"name\":\"interlocution_place\",\"value\":\"面訪\"},{\"name\":\"interlocution_ques_type\",\"value\":\"法律\"},{\"name\":\"interlocution_ques\",\"value\":\"vvaa\"},{\"name\":\"interlocution_time\",\"value\":\"00:00\"},{\"name\":\"interlocution_content\",\"value\":\"asasdasd\"},{\"name\":\"interlocution_next_target\",\"value\":\"dsaasdsad\"},{\"name\":\"assign_name\",\"value\":\"園主任\"},{\"name\":\"supervise_name\",\"value\":\"園主任\"}]\"', '../upload/undefined', ''),
-(8, '6', 'RE111', 6, 'case', 'test', 'T1334356112', '2022-09-01 21:40:09', '社工員1', '2023-07-12 23:23:51', 'jia', '\"[{\"name\":\"assign_name\",\"value\":\"園主任\"},{\"name\":\"fillin_date\",\"value\":\"2022-08-08\"},{\"name\":\"name\",\"value\":\"test\"},{\"name\":\"birth\",\"value\":\"1991-02-03\"},{\"name\":\"pid\",\"value\":\"T1334356112\"},{\"name\":\"sex\",\"value\":\"男\"},{\"name\":\"phone_home\",\"value\":\"0721633\"},{\"name\":\"phone_mobile\",\"value\":\"07216332\"},{\"name\":\"address\",\"value\":\"屏東縣內埔鄉東寧村勝利路5557號\"},{\"name\":\"residence\",\"value\":\"屏東縣內埔鄉東寧村勝利路5557號\"},{\"name\":\"same_address\",\"value\":\"same_address\"},{\"name\":\"education\",\"value\":\"高中職\"},{\"name\":\"marital\",\"value\":\"不詳\"},{\"name\":\"cohabitant\",\"value\":\"獨居\"},{\"name\":\"cohabitant_other\",\"value\":\"\"},{\"name\":\"current_job\",\"value\":\"其他\"},{\"name\":\"current_job_other\",\"value\":\"待業\"},{\"name\":\"economic_status_0\",\"value\":\"\"},{\"name\":\"economic_status_1\",\"value\":\"\"},{\"name\":\"economic_status_2\",\"value\":\"\"},{\"name\":\"economic_status\",\"value\":\"3\"},{\"name\":\"economic_status_3\",\"value\":\"社會救濟每個月8000元\"},{\"name\":\"religion\",\"value\":\"其他\"},{\"name\":\"religion_other\",\"value\":\"無\"},{\"name\":\"drug_record_0\",\"value\":\"\"},{\"name\":\"drug_record_1\",\"value\":\"\"},{\"name\":\"drug_record_2\",\"value\":\"\"},{\"name\":\"drug_record\",\"value\":\"3\"},{\"name\":\"drug_record_3\",\"value\":\"嗎啡3年\"},{\"name\":\"correctional_question_count\",\"value\":\"1\"},{\"name\":\"correctional_question_start\",\"value\":\"2021-02\"},{\"name\":\"correctional_question_end\",\"value\":\"2021-10\"},{\"name\":\"correctional_year\",\"value\":\"0\"},{\"name\":\"correctional_month\",\"value\":\"8\"},{\"name\":\"family_description\",\"value\":\"test個案家庭概況描述\\r\\n  aaa\"},{\"name\":\"assessment\",\"value\":\"test需求評估\"},{\"name\":\"treatment_time\",\"value\":\"0\"},{\"name\":\"treatment_time_year\",\"value\":\"109\"},{\"name\":\"treatment_time_month\",\"value\":\"12\"},{\"name\":\"treatment_time_1\",\"value\":\"\"},{\"name\":\"treatment_status\",\"value\":\"已接受治療\"},{\"name\":\"medical_name\",\"value\":\"test就醫醫院/醫師\"},{\"name\":\"medical_info\",\"value\":\"test醫院個管\"},{\"name\":\"medical_phone\",\"value\":\"test231215\"},{\"name\":\"health_clinic_name\",\"value\":\"test衛生局所/承辦者\"},{\"name\":\"health_clinic_phone\",\"value\":\"0312134513\"},{\"name\":\"CD4_index_0\",\"value\":\"1231\"},{\"name\":\"CD4_index_1\",\"value\":\"110\"},{\"name\":\"CD4_index_2\",\"value\":\"11\"},{\"name\":\"viral_0\",\"value\":\"2341\"},{\"name\":\"viral_1\",\"value\":\"100\"},{\"name\":\"viral_2\",\"value\":\"1\"},{\"name\":\"medical_other\",\"value\":\"test其他\"},{\"name\":\"medicine\",\"value\":\"3TC速汰滋\"},{\"name\":\"medicine\",\"value\":\"Duovir倍歐減\"},{\"name\":\"medicine\",\"value\":\"Truvada舒發泰\"},{\"name\":\"medicine\",\"value\":\"寧衛邁\"},{\"name\":\"medicine\",\"value\":\"抑滋靈\"},{\"name\":\"symptoms\",\"value\":\"持續疲倦\"},{\"name\":\"symptoms_other\",\"value\":\"\"},{\"name\":\"statement\",\"value\":\"test個案問題陳述\"},{\"name\":\"personal_system\",\"value\":\"\"},{\"name\":\"family_system\",\"value\":\"test家庭系統\"},{\"name\":\"social_system\",\"value\":\"\"},{\"name\":\"resource_system\",\"value\":\"\"},{\"name\":\"diagnose_main\",\"value\":\"test診斷問題主要問題\"},{\"name\":\"diagnose_minor\",\"value\":\"\"},{\"name\":\"dealwith_target\",\"value\":\"\"},{\"name\":\"dealwith_strategy\",\"value\":\"\"},{\"name\":\"resource_w_referrals\",\"value\":\"\"},{\"name\":\"employment_radio\",\"value\":\"就業輔導中\"},{\"name\":\"social_adaptation_radio\",\"value\":\"佳\"},{\"name\":\"other_assessments\",\"value\":\"test其他評量asds\"},{\"name\":\"end_indicator\",\"value\":\"達到目標，已無需要在服務\"},{\"name\":\"case_closed_radio\",\"value\":\"結案\"},{\"name\":\"case_closed_yes\",\"value\":\"test結案原因/備註test\"},{\"name\":\"case_closed_year\",\"value\":\"\"},{\"name\":\"case_closed_month\",\"value\":\"\"},{\"name\":\"case_closed_day\",\"value\":\"\"},{\"name\":\"case_closed_totalmonth\",\"value\":\"\"},{\"name\":\"case_closed_remark\",\"value\":\"\"}]\"', '../upload/1.xls', ''),
+(8, '6', 'RE111', 6, 'case', 'test', 'T1334356112', '2022-09-01 21:40:09', '社工員1', '2023-07-13 18:18:47', '執行長', '\"[{\"name\":\"assign_name\",\"value\":\"園主任\"},{\"name\":\"fillin_date\",\"value\":\"2022-08-08\"},{\"name\":\"name\",\"value\":\"test\"},{\"name\":\"birth\",\"value\":\"1991-02-03\"},{\"name\":\"pid\",\"value\":\"T1334356112\"},{\"name\":\"sex\",\"value\":\"男\"},{\"name\":\"phone_home\",\"value\":\"0721633\"},{\"name\":\"phone_mobile\",\"value\":\"07216332\"},{\"name\":\"address\",\"value\":\"屏東縣內埔鄉東寧村勝利路5557號\"},{\"name\":\"residence\",\"value\":\"屏東縣內埔鄉東寧村勝利路5557號\"},{\"name\":\"same_address\",\"value\":\"same_address\"},{\"name\":\"education\",\"value\":\"高中職\"},{\"name\":\"marital\",\"value\":\"不詳\"},{\"name\":\"cohabitant\",\"value\":\"獨居\"},{\"name\":\"cohabitant_other\",\"value\":\"\"},{\"name\":\"current_job\",\"value\":\"其他\"},{\"name\":\"current_job_other\",\"value\":\"待業\"},{\"name\":\"economic_status_0\",\"value\":\"\"},{\"name\":\"economic_status_1\",\"value\":\"\"},{\"name\":\"economic_status_2\",\"value\":\"\"},{\"name\":\"economic_status\",\"value\":\"3\"},{\"name\":\"economic_status_3\",\"value\":\"社會救濟每個月8000元\"},{\"name\":\"religion\",\"value\":\"其他\"},{\"name\":\"religion_other\",\"value\":\"無\"},{\"name\":\"drug_record_0\",\"value\":\"\"},{\"name\":\"drug_record_1\",\"value\":\"\"},{\"name\":\"drug_record_2\",\"value\":\"\"},{\"name\":\"drug_record\",\"value\":\"3\"},{\"name\":\"drug_record_3\",\"value\":\"嗎啡3年\"},{\"name\":\"correctional_question_count\",\"value\":\"1\"},{\"name\":\"correctional_question_start\",\"value\":\"2021-02\"},{\"name\":\"correctional_question_end\",\"value\":\"2021-10\"},{\"name\":\"correctional_year\",\"value\":\"0\"},{\"name\":\"correctional_month\",\"value\":\"8\"},{\"name\":\"family_description\",\"value\":\"test個案家庭概況描述\\r\\n  aaa\"},{\"name\":\"assessment\",\"value\":\"test需求評估\"},{\"name\":\"treatment_time\",\"value\":\"0\"},{\"name\":\"treatment_time_year\",\"value\":\"109\"},{\"name\":\"treatment_time_month\",\"value\":\"12\"},{\"name\":\"treatment_time_1\",\"value\":\"\"},{\"name\":\"treatment_status\",\"value\":\"已接受治療\"},{\"name\":\"medical_name\",\"value\":\"test就醫醫院/醫師\"},{\"name\":\"medical_info\",\"value\":\"test醫院個管\"},{\"name\":\"medical_phone\",\"value\":\"test231215\"},{\"name\":\"health_clinic_name\",\"value\":\"test衛生局所/承辦者\"},{\"name\":\"health_clinic_phone\",\"value\":\"0312134513\"},{\"name\":\"CD4_index_0\",\"value\":\"1231\"},{\"name\":\"CD4_index_1\",\"value\":\"110\"},{\"name\":\"CD4_index_2\",\"value\":\"11\"},{\"name\":\"viral_0\",\"value\":\"2341\"},{\"name\":\"viral_1\",\"value\":\"100\"},{\"name\":\"viral_2\",\"value\":\"1\"},{\"name\":\"medical_other\",\"value\":\"test其他\"},{\"name\":\"medicine\",\"value\":\"3TC速汰滋\"},{\"name\":\"medicine\",\"value\":\"Duovir倍歐減\"},{\"name\":\"medicine\",\"value\":\"Truvada舒發泰\"},{\"name\":\"medicine\",\"value\":\"寧衛邁\"},{\"name\":\"medicine\",\"value\":\"抑滋靈\"},{\"name\":\"symptoms\",\"value\":\"持續疲倦\"},{\"name\":\"symptoms_other\",\"value\":\"\"},{\"name\":\"statement\",\"value\":\"test個案問題陳述\"},{\"name\":\"personal_system\",\"value\":\"\"},{\"name\":\"family_system\",\"value\":\"test家庭系統\"},{\"name\":\"social_system\",\"value\":\"\"},{\"name\":\"resource_system\",\"value\":\"\"},{\"name\":\"diagnose_main\",\"value\":\"test診斷問題主要問題\"},{\"name\":\"diagnose_minor\",\"value\":\"\"},{\"name\":\"dealwith_target\",\"value\":\"\"},{\"name\":\"dealwith_strategy\",\"value\":\"\"},{\"name\":\"resource_w_referrals\",\"value\":\"\"},{\"name\":\"employment_radio\",\"value\":\"就業輔導中\"},{\"name\":\"social_adaptation_radio\",\"value\":\"佳\"},{\"name\":\"other_assessments\",\"value\":\"test其他評量asds\"},{\"name\":\"end_indicator\",\"value\":\"達到目標，已無需要在服務\"},{\"name\":\"case_closed_radio\",\"value\":\"結案\"},{\"name\":\"case_closed_yes\",\"value\":\"test結案原因/備註test\"},{\"name\":\"case_closed_year\",\"value\":\"\"},{\"name\":\"case_closed_month\",\"value\":\"\"},{\"name\":\"case_closed_day\",\"value\":\"\"},{\"name\":\"case_closed_totalmonth\",\"value\":\"\"},{\"name\":\"case_closed_remark\",\"value\":\"\"}]\"', '../upload/1.xls', ''),
 (9, '6', 'RE111', 15, 'interlocution', 'test', 'T1334356112', '2022-09-01 21:42:52', '社工員1', '2023-07-12 23:15:21', 'jia', '\"[{\"name\":\"interlocution_date\",\"value\":\"2022-06-08\"},{\"name\":\"interlocution_place\",\"value\":\"電訪\"},{\"name\":\"interlocution_ques_type\",\"value\":\"就業輔導\"},{\"name\":\"interlocution_ques\",\"value\":\"test就業\"},{\"name\":\"interlocution_time\",\"value\":\"10:30\"},{\"name\":\"interlocution_content\",\"value\":\"test\"},{\"name\":\"interlocution_next_target\",\"value\":\"asdassA\"},{\"name\":\"assign_name\",\"value\":\"社工員1\"},{\"name\":\"supervise_name\",\"value\":\"園主任\"}]\"', '', ''),
 (10, '2', 'RE112', 4, 'case', 'TEST0808', 'S167123331', '2022-09-06 18:42:13', '社工員1', '2022-10-24 10:37:21', '園主任', '\"[{\"name\":\"assign_name\",\"value\":\"社工員1\"},{\"name\":\"fillin_date\",\"value\":\"2022-09-06\"},{\"name\":\"name\",\"value\":\"TEST0808\"},{\"name\":\"birth\",\"value\":\"1993-06-22\"},{\"name\":\"pid\",\"value\":\"S167123331\"},{\"name\":\"sex\",\"value\":\"女\"},{\"name\":\"phone_home\",\"value\":\"\"},{\"name\":\"phone_mobile\",\"value\":\"0972631122\"},{\"name\":\"address\",\"value\":\"\"},{\"name\":\"residence\",\"value\":\"\"},{\"name\":\"cohabitant_other\",\"value\":\"\"},{\"name\":\"current_job_other\",\"value\":\"\"},{\"name\":\"economic_status_0\",\"value\":\"\"},{\"name\":\"economic_status_1\",\"value\":\"\"},{\"name\":\"economic_status_2\",\"value\":\"\"},{\"name\":\"economic_status_3\",\"value\":\"\"},{\"name\":\"religion_other\",\"value\":\"\"},{\"name\":\"drug_record_0\",\"value\":\"\"},{\"name\":\"drug_record_1\",\"value\":\"\"},{\"name\":\"drug_record_2\",\"value\":\"\"},{\"name\":\"drug_record_3\",\"value\":\"\"},{\"name\":\"correctional_question_count\",\"value\":\"\"},{\"name\":\"correctional_question_start\",\"value\":\"2021-06\"},{\"name\":\"correctional_question_end\",\"value\":\"2022-07\"},{\"name\":\"correctional_year\",\"value\":\"1\"},{\"name\":\"correctional_month\",\"value\":\"1\"},{\"name\":\"family_description\",\"value\":\"SD\"},{\"name\":\"assessment\",\"value\":\"cacscasa\"},{\"name\":\"treatment_time_year\",\"value\":\"\"},{\"name\":\"treatment_time_month\",\"value\":\"\"},{\"name\":\"treatment_time_1\",\"value\":\"\"},{\"name\":\"medical_name\",\"value\":\"\"},{\"name\":\"medical_info\",\"value\":\"\"},{\"name\":\"medical_phone\",\"value\":\"\"},{\"name\":\"health_clinic_name\",\"value\":\"\"},{\"name\":\"health_clinic_phone\",\"value\":\"\"},{\"name\":\"CD4_index_0\",\"value\":\"\"},{\"name\":\"CD4_index_1\",\"value\":\"\"},{\"name\":\"CD4_index_2\",\"value\":\"\"},{\"name\":\"viral_0\",\"value\":\"\"},{\"name\":\"viral_1\",\"value\":\"\"},{\"name\":\"viral_2\",\"value\":\"\"},{\"name\":\"medical_other\",\"value\":\"\"},{\"name\":\"medicine\",\"value\":\"Odefsey安以斯\"},{\"name\":\"symptoms_other\",\"value\":\"\"},{\"name\":\"statement\",\"value\":\"\"},{\"name\":\"personal_system\",\"value\":\"\"},{\"name\":\"family_system\",\"value\":\"\"},{\"name\":\"social_system\",\"value\":\"\"},{\"name\":\"resource_system\",\"value\":\"\"},{\"name\":\"diagnose_main\",\"value\":\"\"},{\"name\":\"diagnose_minor\",\"value\":\"\"},{\"name\":\"dealwith_target\",\"value\":\"\"},{\"name\":\"dealwith_strategy\",\"value\":\"\"},{\"name\":\"resource_w_referrals\",\"value\":\"\"},{\"name\":\"pretest_depression_year\",\"value\":\"\"},{\"name\":\"pretest_depression_month\",\"value\":\"\"},{\"name\":\"pretest_depression_day\",\"value\":\"\"},{\"name\":\"pretest_depression_score\",\"value\":\"\"},{\"name\":\"midtest_depression_year\",\"value\":\"\"},{\"name\":\"midtest_depression_month\",\"value\":\"\"},{\"name\":\"midtest_depression_day\",\"value\":\"\"},{\"name\":\"midtest_depression_score\",\"value\":\"\"},{\"name\":\"posttest_depression_year\",\"value\":\"\"},{\"name\":\"posttest_depression_month\",\"value\":\"\"},{\"name\":\"posttest_depression_day\",\"value\":\"\"},{\"name\":\"posttest_depression_score\",\"value\":\"\"},{\"name\":\"BSRS5_score\",\"value\":\"\"},{\"name\":\"pretest_life_year\",\"value\":\"\"},{\"name\":\"pretest_life_month\",\"value\":\"\"},{\"name\":\"pretest_life_day\",\"value\":\"\"},{\"name\":\"pretest_life_score\",\"value\":\"\"},{\"name\":\"posttest_life_year\",\"value\":\"\"},{\"name\":\"posttest_life_month\",\"value\":\"\"},{\"name\":\"posttest_life_day\",\"value\":\"\"},{\"name\":\"posttest_life_score\",\"value\":\"\"},{\"name\":\"pretest_familyship_year\",\"value\":\"\"},{\"name\":\"pretest_familyship_month\",\"value\":\"\"},{\"name\":\"pretest_familyship_day\",\"value\":\"\"},{\"name\":\"pretest_familyship_score\",\"value\":\"\"},{\"name\":\"posttest_familyship_year\",\"value\":\"\"},{\"name\":\"posttest_familyship_month\",\"value\":\"\"},{\"name\":\"posttest_familyship_day\",\"value\":\"\"},{\"name\":\"posttest_familyship_score\",\"value\":\"\"},{\"name\":\"other_assessments\",\"value\":\"d\"},{\"name\":\"case_closed_yes\",\"value\":\"\"},{\"name\":\"case_closed_year\",\"value\":\"\"},{\"name\":\"case_closed_month\",\"value\":\"\"},{\"name\":\"case_closed_day\",\"value\":\"\"},{\"name\":\"case_closed_totalmonth\",\"value\":\"\"},{\"name\":\"case_closed_remark\",\"value\":\"\"},{\"name\":\"customFile1\",\"value\":\"undefined\"}]\"', '../upload/undefined', ''),
 (11, '2', 'RE112', 5, 'employment_satif', 'TEST0808', 'S167123331', '2022-09-06 18:42:46', '社工員1', '2022-10-05 20:36:19', '社工員1', '\"[{\"name\":\"fillin_date_0\",\"value\":\"2022-09-06\"},{\"name\":\"name\",\"value\":\"TEST0808\"},{\"name\":\"sex\",\"value\":\"女生\"},{\"name\":\"birth\",\"value\":\"1993-06-22\"},{\"name\":\"phone\",\"value\":\"0972631122\"},{\"name\":\"address\",\"value\":\"\"},{\"name\":\"work_experience\",\"value\":\"\"},{\"name\":\"contact_name\",\"value\":\"\"},{\"name\":\"relation\",\"value\":\"\"},{\"name\":\"contact_phone\",\"value\":\"\"},{\"name\":\"physical_mental_t_1\",\"value\":\"\"},{\"name\":\"physical_mental_t_2\",\"value\":\"\"},{\"name\":\"correction_rec_t_1\",\"value\":\"\"},{\"name\":\"correction_rec_t_2\",\"value\":\"\"},{\"name\":\"correction_rec_t_3\",\"value\":\"\"},{\"name\":\"correction_rec_t_4\",\"value\":\"\"},{\"name\":\"correction_rec_t_5\",\"value\":\"\"},{\"name\":\"correction_rec_date_start\",\"value\":\"\"},{\"name\":\"correction_rec_date_end\",\"value\":\"\"},{\"name\":\"capability_t_0\",\"value\":\"\"},{\"name\":\"capability_t_1\",\"value\":\"\"},{\"name\":\"capability_t_2\",\"value\":\"\"},{\"name\":\"capability_t_3\",\"value\":\"\"},{\"name\":\"capability_t_4\",\"value\":\"\"},{\"name\":\"other_skills_t_0\",\"value\":\"\"},{\"name\":\"traffic_capacity_t_0\",\"value\":\"\"},{\"name\":\"traffic_capacity_t_1\",\"value\":\"\"},{\"name\":\"traffic_capacity_t_2\",\"value\":\"\"},{\"name\":\"employment_status_t_date\",\"value\":\"\"},{\"name\":\"employment_status_t_1\",\"value\":\"\"},{\"name\":\"employment_status_t_2\",\"value\":\"\"},{\"name\":\"employment_status_t_3\",\"value\":\"\"},{\"name\":\"employment_status_t_4\",\"value\":\"\"},{\"name\":\"employment_status_t_5\",\"value\":\"\"},{\"name\":\"employment_status_t_6\",\"value\":\"\"},{\"name\":\"tsn_case_id\",\"value\":\"RE112\"},{\"name\":\"fillin_date_1\",\"value\":\"2022-09-06\"},{\"name\":\"answer1\",\"value\":\"3\"},{\"name\":\"answer2\",\"value\":\"4\"},{\"name\":\"answer3\",\"value\":\"4\"},{\"name\":\"answer4\",\"value\":\"3\"},{\"name\":\"answer5\",\"value\":\"3\"},{\"name\":\"answer6\",\"value\":\"2\"},{\"name\":\"answer7\",\"value\":\"1\"},{\"name\":\"answer8\",\"value\":\"2\"},{\"name\":\"answer9\",\"value\":\"3\"},{\"name\":\"answer10\",\"value\":\"4\"},{\"name\":\"answer_score\",\"value\":\"29\"}]\"', '', ''),
@@ -889,7 +889,8 @@ INSERT INTO `forms` (`Id`, `Case_seqid`, `Case_id`, `Form_id`, `Form_type`, `Cas
 (44, '10', 'RE877', 60, 'familyship', '何竹田', 'y997501623', '2022-12-09 14:58:41', '花花', '2022-12-09 14:58:53', '花花', '\"[{\"name\":\"fillin_date\",\"value\":\"2022-12-09\"},{\"name\":\"sex\",\"value\":\"其他\"},{\"name\":\"education\",\"value\":\"其他\"},{\"name\":\"education_other\",\"value\":\"英國倫敦鐵塔博士學位第一名畢業\"},{\"name\":\"current_job\",\"value\":\"其他\"},{\"name\":\"current_job_other\",\"value\":\"無\"},{\"name\":\"marital\",\"value\":\"其他\"},{\"name\":\"marital_other\",\"value\":\"複雜\"},{\"name\":\"cohabitant\",\"value\":\"其他\"},{\"name\":\"cohabitant_other\",\"value\":\"室友\"},{\"name\":\"answer1\",\"value\":\"4\"},{\"name\":\"answer2\",\"value\":\"3\"},{\"name\":\"answer3\",\"value\":\"4\"},{\"name\":\"answer4\",\"value\":\"3\"},{\"name\":\"answer5\",\"value\":\"2\"},{\"name\":\"answer6\",\"value\":\"3\"},{\"name\":\"answer7\",\"value\":\"4\"},{\"name\":\"answer8\",\"value\":\"3\"},{\"name\":\"answer9\",\"value\":\"2\"},{\"name\":\"answer10\",\"value\":\"4\"},{\"name\":\"answer_score\",\"value\":\"32\"}]\"', '', ''),
 (45, '10', 'RE877', 61, 'BSRS5', '何竹田', 'y997501623', '2022-12-09 14:59:15', '花花', '2022-12-09 14:59:30', '花花', '\"[{\"name\":\"name\",\"value\":\"何竹田\"},{\"name\":\"sex\",\"value\":\"男\"},{\"name\":\"birth\",\"value\":\"1999-03-23\"},{\"name\":\"age\",\"value\":\"23\"},{\"name\":\"phone\",\"value\":\"0977985162\"},{\"name\":\"address\",\"value\":\"770號\"},{\"name\":\"answer1\",\"value\":\"4\"},{\"name\":\"answer2\",\"value\":\"4\"},{\"name\":\"answer3\",\"value\":\"4\"},{\"name\":\"answer4\",\"value\":\"4\"},{\"name\":\"answer5\",\"value\":\"4\"},{\"name\":\"answer6\",\"value\":\"4\"},{\"name\":\"answer_score\",\"value\":\"20\"},{\"name\":\"treatment_status\",\"value\":\"超過6分\"},{\"name\":\"treatment_status\",\"value\":\"第6題單獨得分\"},{\"name\":\"statement\",\"value\":\".\"}]\"', '', '');
 INSERT INTO `forms` (`Id`, `Case_seqid`, `Case_id`, `Form_id`, `Form_type`, `Case_name`, `Case_pid`, `Create_date`, `Create_name`, `Update_date`, `Update_name`, `answer`, `file_path`, `Health_rec`) VALUES
-(46, '10', 'RE877', 62, 'settlement', '何竹田', 'y997501623', '2022-12-09 15:03:15', '花花', '2022-12-09 15:03:58', '花花', '\"[{\"name\":\"fillin_date\",\"value\":\"2022-12-09\"},{\"name\":\"assign_name\",\"value\":\"花花\"},{\"name\":\"name\",\"value\":\"何竹田\"},{\"name\":\"birth\",\"value\":\"1999-03-23\"},{\"name\":\"pid\",\"value\":\"y997501623\"},{\"name\":\"sex\",\"value\":\"男\"},{\"name\":\"phone\",\"value\":\"0977985162\"},{\"name\":\"address\",\"value\":\"內埔外埔200鄰-999號\"},{\"name\":\"residence\",\"value\":\"馬來西亞深圳鄉慕尼黑鎮阿德雷德里墾丁54號\"},{\"name\":\"education\",\"value\":\"研究所\"},{\"name\":\"education_graduate\",\"value\":\"是\"},{\"name\":\"marital\",\"value\":\"同居\"},{\"name\":\"cohabitant\",\"value\":\"與其他人同住\"},{\"name\":\"cohabitant_other\",\"value\":\"街友\"},{\"name\":\"current_job\",\"value\":\"服務業\"},{\"name\":\"current_job_other\",\"value\":\"\"},{\"name\":\"economic_status_0\",\"value\":\"80000\"},{\"name\":\"economic_status_1\",\"value\":\"45611\"},{\"name\":\"economic_status_2\",\"value\":\"34450\"},{\"name\":\"economic_status\",\"value\":\"3\"},{\"name\":\"economic_status_3\",\"value\":\"9774\"},{\"name\":\"religion\",\"value\":\"密宗\"},{\"name\":\"religion_other\",\"value\":\"\"},{\"name\":\"drug_record_0\",\"value\":\"23\"},{\"name\":\"drug_record_1\",\"value\":\"15\"},{\"name\":\"drug_record_2\",\"value\":\"7\"},{\"name\":\"drug_record\",\"value\":\"3\"},{\"name\":\"drug_record_3\",\"value\":\"咖啡50年\"},{\"name\":\"correctional_question_count\",\"value\":\"80\"},{\"name\":\"correctional_question_start\",\"value\":\"2021-01\"},{\"name\":\"correctional_question_end\",\"value\":\"2023-08\"},{\"name\":\"correctional_year\",\"value\":\"2\"},{\"name\":\"correctional_month\",\"value\":\"7\"},{\"name\":\"family_description\",\"value\":\"1\"},{\"name\":\"assessment\",\"value\":\"2\"},{\"name\":\"treatment_time_year\",\"value\":\"1\"},{\"name\":\"treatment_time_month\",\"value\":\"1\"},{\"name\":\"treatment_status\",\"value\":\"已接受治療\"},{\"name\":\"medical_name\",\"value\":\"1\"},{\"name\":\"medical_info\",\"value\":\"1\"},{\"name\":\"medical_phone\",\"value\":\"1\"},{\"name\":\"health_clinic_name\",\"value\":\"1\"},{\"name\":\"health_clinic_phone\",\"value\":\"1\"},{\"name\":\"CD4_index_0\",\"value\":\"1\"},{\"name\":\"CD4_index_1\",\"value\":\"1\"},{\"name\":\"CD4_index_2\",\"value\":\"1\"},{\"name\":\"viral_0\",\"value\":\"1\"},{\"name\":\"viral_1\",\"value\":\"1\"},{\"name\":\"viral_2\",\"value\":\"1\"},{\"name\":\"medicine\",\"value\":\"尚未服藥\"},{\"name\":\"medicine\",\"value\":\"Atripla亞翠佩\"},{\"name\":\"medicine\",\"value\":\"Atripla亞翠佩\"},{\"name\":\"medicine\",\"value\":\"滋若愷Juluca\"},{\"name\":\"medicine\",\"value\":\"Duovir倍歐減\"},{\"name\":\"medicine\",\"value\":\"希寧\"},{\"name\":\"symptoms\",\"value\":\"持續疲倦\"},{\"name\":\"symptoms\",\"value\":\"頭痛\"},{\"name\":\"symptoms_other\",\"value\":\"\"},{\"name\":\"statement\",\"value\":\"01\"},{\"name\":\"personal_system\",\"value\":\"01\"},{\"name\":\"family_system\",\"value\":\"01\"},{\"name\":\"social_system\",\"value\":\"01\"},{\"name\":\"resource_system\",\"value\":\"01\"},{\"name\":\"diagnose_main\",\"value\":\"01\"},{\"name\":\"diagnose_minor\",\"value\":\"01\"},{\"name\":\"basic_indicator\",\"value\":\"藥癮者居無定所\"},{\"name\":\"basic_indicator\",\"value\":\"本身同意於安置中心入住並有意願重新開始者\"},{\"name\":\"basic_indicator\",\"value\":\"願意配合本聯盟社工處遇與安置中心/自立宿舍相關規定\"},{\"name\":\"basic_indicator\",\"value\":\"願意配合入住時藥癮檢測與每周、不定時藥癮檢測\"},{\"name\":\"end_indicator\",\"value\":\"入住當日與入住後都願意接受藥癮檢測 結果都呈陰性者，沒有在使用非法藥物者，但可以接受使用美沙酮或舌下錠者(丁基原啡因)\"},{\"name\":\"end_indicator\",\"value\":\"個案須接種過疫苗才能入住機構\"},{\"name\":\"end_indicator\",\"value\":\"生活可自理者且行動能力正常\"},{\"name\":\"end_indicator\",\"value\":\"個案需要至感染科就診，並附上病歷摘要表，以利審核\"},{\"name\":\"end_indicator\",\"value\":\"因應COVID-19疫情個案都必須做過快篩機制結果為陰性者才能入住\"},{\"name\":\"end_indicator\",\"value\":\"個案家屬需負擔個案就醫、生活用品等費用\"},{\"name\":\"end_indicator\",\"value\":\"無精神障礙或者經評估是輕微精神患者，且無攻擊行為、器質性、嚴重思覺失調症者才能入住\"},{\"name\":\"resource_w_referrals\",\"value\":\"01\"},{\"name\":\"customFile1\",\"value\":\"個案管理系統測試20221025(03).docx\"}]\"', '../upload/個案管理系統測試20221025(03).docx', '');
+(46, '10', 'RE877', 62, 'settlement', '何竹田', 'y997501623', '2022-12-09 15:03:15', '花花', '2022-12-09 15:03:58', '花花', '\"[{\"name\":\"fillin_date\",\"value\":\"2022-12-09\"},{\"name\":\"assign_name\",\"value\":\"花花\"},{\"name\":\"name\",\"value\":\"何竹田\"},{\"name\":\"birth\",\"value\":\"1999-03-23\"},{\"name\":\"pid\",\"value\":\"y997501623\"},{\"name\":\"sex\",\"value\":\"男\"},{\"name\":\"phone\",\"value\":\"0977985162\"},{\"name\":\"address\",\"value\":\"內埔外埔200鄰-999號\"},{\"name\":\"residence\",\"value\":\"馬來西亞深圳鄉慕尼黑鎮阿德雷德里墾丁54號\"},{\"name\":\"education\",\"value\":\"研究所\"},{\"name\":\"education_graduate\",\"value\":\"是\"},{\"name\":\"marital\",\"value\":\"同居\"},{\"name\":\"cohabitant\",\"value\":\"與其他人同住\"},{\"name\":\"cohabitant_other\",\"value\":\"街友\"},{\"name\":\"current_job\",\"value\":\"服務業\"},{\"name\":\"current_job_other\",\"value\":\"\"},{\"name\":\"economic_status_0\",\"value\":\"80000\"},{\"name\":\"economic_status_1\",\"value\":\"45611\"},{\"name\":\"economic_status_2\",\"value\":\"34450\"},{\"name\":\"economic_status\",\"value\":\"3\"},{\"name\":\"economic_status_3\",\"value\":\"9774\"},{\"name\":\"religion\",\"value\":\"密宗\"},{\"name\":\"religion_other\",\"value\":\"\"},{\"name\":\"drug_record_0\",\"value\":\"23\"},{\"name\":\"drug_record_1\",\"value\":\"15\"},{\"name\":\"drug_record_2\",\"value\":\"7\"},{\"name\":\"drug_record\",\"value\":\"3\"},{\"name\":\"drug_record_3\",\"value\":\"咖啡50年\"},{\"name\":\"correctional_question_count\",\"value\":\"80\"},{\"name\":\"correctional_question_start\",\"value\":\"2021-01\"},{\"name\":\"correctional_question_end\",\"value\":\"2023-08\"},{\"name\":\"correctional_year\",\"value\":\"2\"},{\"name\":\"correctional_month\",\"value\":\"7\"},{\"name\":\"family_description\",\"value\":\"1\"},{\"name\":\"assessment\",\"value\":\"2\"},{\"name\":\"treatment_time_year\",\"value\":\"1\"},{\"name\":\"treatment_time_month\",\"value\":\"1\"},{\"name\":\"treatment_status\",\"value\":\"已接受治療\"},{\"name\":\"medical_name\",\"value\":\"1\"},{\"name\":\"medical_info\",\"value\":\"1\"},{\"name\":\"medical_phone\",\"value\":\"1\"},{\"name\":\"health_clinic_name\",\"value\":\"1\"},{\"name\":\"health_clinic_phone\",\"value\":\"1\"},{\"name\":\"CD4_index_0\",\"value\":\"1\"},{\"name\":\"CD4_index_1\",\"value\":\"1\"},{\"name\":\"CD4_index_2\",\"value\":\"1\"},{\"name\":\"viral_0\",\"value\":\"1\"},{\"name\":\"viral_1\",\"value\":\"1\"},{\"name\":\"viral_2\",\"value\":\"1\"},{\"name\":\"medicine\",\"value\":\"尚未服藥\"},{\"name\":\"medicine\",\"value\":\"Atripla亞翠佩\"},{\"name\":\"medicine\",\"value\":\"Atripla亞翠佩\"},{\"name\":\"medicine\",\"value\":\"滋若愷Juluca\"},{\"name\":\"medicine\",\"value\":\"Duovir倍歐減\"},{\"name\":\"medicine\",\"value\":\"希寧\"},{\"name\":\"symptoms\",\"value\":\"持續疲倦\"},{\"name\":\"symptoms\",\"value\":\"頭痛\"},{\"name\":\"symptoms_other\",\"value\":\"\"},{\"name\":\"statement\",\"value\":\"01\"},{\"name\":\"personal_system\",\"value\":\"01\"},{\"name\":\"family_system\",\"value\":\"01\"},{\"name\":\"social_system\",\"value\":\"01\"},{\"name\":\"resource_system\",\"value\":\"01\"},{\"name\":\"diagnose_main\",\"value\":\"01\"},{\"name\":\"diagnose_minor\",\"value\":\"01\"},{\"name\":\"basic_indicator\",\"value\":\"藥癮者居無定所\"},{\"name\":\"basic_indicator\",\"value\":\"本身同意於安置中心入住並有意願重新開始者\"},{\"name\":\"basic_indicator\",\"value\":\"願意配合本聯盟社工處遇與安置中心/自立宿舍相關規定\"},{\"name\":\"basic_indicator\",\"value\":\"願意配合入住時藥癮檢測與每周、不定時藥癮檢測\"},{\"name\":\"end_indicator\",\"value\":\"入住當日與入住後都願意接受藥癮檢測 結果都呈陰性者，沒有在使用非法藥物者，但可以接受使用美沙酮或舌下錠者(丁基原啡因)\"},{\"name\":\"end_indicator\",\"value\":\"個案須接種過疫苗才能入住機構\"},{\"name\":\"end_indicator\",\"value\":\"生活可自理者且行動能力正常\"},{\"name\":\"end_indicator\",\"value\":\"個案需要至感染科就診，並附上病歷摘要表，以利審核\"},{\"name\":\"end_indicator\",\"value\":\"因應COVID-19疫情個案都必須做過快篩機制結果為陰性者才能入住\"},{\"name\":\"end_indicator\",\"value\":\"個案家屬需負擔個案就醫、生活用品等費用\"},{\"name\":\"end_indicator\",\"value\":\"無精神障礙或者經評估是輕微精神患者，且無攻擊行為、器質性、嚴重思覺失調症者才能入住\"},{\"name\":\"resource_w_referrals\",\"value\":\"01\"},{\"name\":\"customFile1\",\"value\":\"個案管理系統測試20221025(03).docx\"}]\"', '../upload/個案管理系統測試20221025(03).docx', ''),
+(47, '6', 'RE111', 68, 'resource', 'test', 'T1334356112', '2023-07-13 18:19:35', '執行長', '0000-00-00 00:00:00', '', '\"[{\"name\":\"rtable1&resource_rec_1[]\",\"value\":[\"a\",\"\",\"\",\"\",\"\",\"執行長\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"]}]\"', '', '');
 
 -- --------------------------------------------------------
 
@@ -916,81 +917,90 @@ CREATE TABLE `form_all_info` (
   `Create_date` datetime NOT NULL,
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime NOT NULL,
-  `Update_name` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `Update_name` varchar(20) NOT NULL,
+  `Supervise1` varchar(100) NOT NULL,
+  `Supervise1_signature` longtext NOT NULL,
+  `Supervise1_sign_msg` longtext NOT NULL,
+  `Supervise1_sign_time` varchar(200) NOT NULL,
+  `Supervise2` varchar(100) NOT NULL,
+  `Supervise2_signature` longtext NOT NULL,
+  `Supervise2_sign_msg` longtext NOT NULL,
+  `Supervise2_sign_time` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `form_all_info`
 --
 
-INSERT INTO `form_all_info` (`Id`, `Case_seqid`, `Case_id`, `Case_name`, `Case_pid`, `Is_upload`, `Url`, `Upload_path`, `Number`, `Form_name`, `Fillin_date`, `Remark`, `Other_info`, `Case_storage`, `Upload_info`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
-(1, '1', 'RE111', 'test', 'T1334356112', 0, 'case_detail.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=A&id=1&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=phone&birth=1872-02-03', '', 0, 'case', '2022-08-08', 'TEST0808', '\"[{\"name\":\"case\",\"value\":\"結案\"}]\"', '', '', '2022-08-08 00:00:00', '園主任', '2022-10-15 21:41:33', 'jia'),
-(2, '1', 'RE111', 'test', 'T1334356112', 0, 'case_detail.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=A&id=1&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=phone&birth=1872-02-03', '', 0, 'BSRS5', '0000-00-00', '', '\"[{\"name\":\"BSRS5\",\"value\":\"8\"},{\"name\":\"BSRS5\",\"value\":\"test處置情形\"}]\"', '', '', '2022-08-08 00:00:00', '園主任', '2022-10-05 20:34:12', '社工員1'),
-(3, '1', 'RE111', 'test', 'T1334356112', 0, 'case_detail.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=1&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=phone&birth=1991-02-03', '', 1, 'case', '2022-08-08', 'test', '\"[{\"name\":\"case\",\"value\":\"結案\"}]\"', '', '', '2022-08-08 00:00:00', '園主任', '2022-10-15 21:41:40', 'jia'),
-(4, '2', 'RE112', 'TEST0808', 'S167123331', 0, 'case_detail.php?name=TEST0808&gender=女&pid=S167123331&date=2022-08-08&property=安置家園&type=一般藥癮者&grade=B&id=2&open_id=RE112&referral=醫院&case_Create_date=2022-08-08&unopen_type=case&birth=1993-06-22', '', 0, 'case', '2022-09-06', 'ttt', '\"[{\"name\":\"case\",\"value\":\"\"}]\"', '', '', '2022-08-08 00:00:00', '園主任', '2022-10-24 10:37:21', '園主任'),
-(5, '2', 'RE112', 'TEST0808', 'S167123331', 0, 'case_detail.php?name=TEST0808&gender=女&pid=S167123331&date=2022-08-08&property=安置家園&type=一般藥癮者&grade=B&id=2&open_id=RE112&referral=醫院&case_Create_date=2022-08-08&unopen_type=case&birth=1993-06-22', '', 0, 'employment_satif', '2022-09-06', 'ttt', '\"[{\"name\":\"employment_satif\",\"value\":\"29\"}]\"', '', '', '2022-08-08 00:00:00', '園主任', '2022-10-05 20:36:19', '社工員1'),
-(6, '6', 'RE111', 'test', 'T1334356112', 0, 'case_detail.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03', '', 0, 'case', '2022-08-08', 'ttt2', '\"[{\"name\":\"case\",\"value\":\"結案\"}]\"', 'storage', '', '2022-08-08 00:00:00', '園主任', '2023-07-12 23:23:51', 'jia'),
-(7, '6', 'RE111', 'test', 'T1334356112', 0, 'case_detail.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03', '', 0, 'employment_satif', '2022-08-08', 'tt', '\"[{\"name\":\"employment_satif\",\"value\":\"35\"}]\"', '', '', '2022-08-08 00:00:00', '園主任', '2022-10-05 20:35:27', '社工員1'),
-(8, '6', 'RE111', 'test', 'T1334356112', 0, 'case_detail.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03', '', 0, 'life', '2022-08-08', 'ttt', '\"[{\"name\":\"life\",\"value\":\"<div>第一部分得分：4.07分，結果：滿意。<br/>第二部分得分：455分。</div>\"},{\"name\":\"life\",\"value\":\"前測\"}]\"', '', '', '2022-08-08 00:00:00', '園主任', '2022-10-05 20:35:16', '社工員1'),
-(9, '2', 'RE112', 'TEST0808', 'S167123331', 0, 'case_detail.php?name=TEST0808&gender=女&pid=S167123331&date=2022-08-08&property=安置家園&type=一般藥癮者&grade=B&id=2&open_id=RE112&referral=醫院&case_Create_date=2022-08-08&unopen_type=case&birth=1993-06-22', '', 0, 'interlocution', '0000-00-00', '11', '\"[{\"name\":\"interlocution\",\"value\":\"2022-07-21\"},{\"name\":\"interlocution\",\"value\":\"dasdsa\"},{\"name\":\"interlocution\",\"value\":\"社工員1\"}]\"', '', '', '2022-08-13 00:00:00', '園主任', '2022-10-15 21:40:49', 'jia'),
-(10, '2', 'RE112', 'TEST0808', 'S167123331', 0, 'case_detail.php?name=TEST0808&gender=女&pid=S167123331&date=2022-08-08&property=安置家園&type=一般藥癮者&grade=B&id=2&open_id=RE112&referral=醫院&case_Create_date=2022-08-08&unopen_type=case&birth=1993-06-22', '', 0, 'life', '2022-10-05', '777', '\"[{\"name\":\"life\",\"value\":\"<div>第一部分得分：NaN分，結果：。<br/>第二部分得分：NaN分。</div>\"},{\"name\":\"life\",\"value\":\"\"}]\"', '', '', '2022-08-13 00:00:00', '園主任', '2022-10-05 20:36:08', '社工員1'),
-(11, '2', 'RE112', 'TEST0808', 'S167123331', 0, 'case_detail.php?name=TEST0808&gender=女&pid=S167123331&date=2022-08-08&property=安置家園&type=一般藥癮者&grade=B&id=2&open_id=RE112&referral=醫院&case_Create_date=2022-08-08&unopen_type=case&birth=1993-06-22', '', 0, 'BSRS5', '0000-00-00', '', '\"[{\"name\":\"BSRS5\",\"value\":\"0\"},{\"name\":\"BSRS5\",\"value\":\"\"}]\"', '', '', '2022-08-18 00:00:00', '園主任', '2022-10-05 20:36:28', '社工員1'),
-(12, '6', 'RE111', 'test', 'T1334356112', 0, 'case_detail.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03', '', 0, 'interlocution', '0000-00-00', '111', '\"[{\"name\":\"interlocution\",\"value\":\"2022-06-11\"},{\"name\":\"interlocution\",\"value\":\"test心理情緒a\"},{\"name\":\"interlocution\",\"value\":\"社工員1\"}]\"', 'storage', '', '2022-08-26 00:00:00', '園主任', '2023-07-12 23:20:49', 'jia'),
-(13, '6', 'RE111', 'test', 'T1334356112', 0, 'case_detail.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03', '', 1, 'interlocution', '0000-00-00', 'dsasd', '\"[{\"name\":\"interlocution\",\"value\":\"2022-08-31\"},{\"name\":\"interlocution\",\"value\":\"vvaa\"},{\"name\":\"interlocution\",\"value\":\"園主任\"}]\"', 'storage', '', '2022-08-31 00:00:00', '園主任', '2023-07-12 23:23:29', 'jia'),
-(14, '6', 'RE111', 'test', 'T1334356112', 0, 'case_detail.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03', '', 0, 'settlement', '2022-10-05', 'TEST', '\"[{\"name\":\"settlement\",\"value\":\"\"}]\"', '', '', '2022-09-01 00:00:00', '社工員1', '2022-10-05 20:35:39', '社工員1'),
-(15, '6', 'RE111', 'test', 'T1334356112', 0, 'case_detail.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03', '', 2, 'interlocution', '0000-00-00', 'test', '\"[{\"name\":\"interlocution\",\"value\":\"2022-06-08\"},{\"name\":\"interlocution\",\"value\":\"test就業\"},{\"name\":\"interlocution\",\"value\":\"社工員1\"}]\"', 'cache', '', '2022-09-01 00:00:00', '社工員1', '2023-07-12 23:15:21', 'jia'),
-(16, '1', 'RE111', 'test', 'T1334356112', 0, 'case_detail.php?name=test&gender=男&pid=T1334356112&date=2021-08-08&property=安置家園&type=藥癮家庭&grade=B&id=1&open_id=RE111&referral=其他&case_Create_date=2021-08-08&unopen_type=phone&birth=1991-02-03', '', 0, 'interlocution', '0000-00-00', 'd', '\"[{\"name\":\"interlocution\",\"value\":\"2022-08-18\"},{\"name\":\"interlocution\",\"value\":\"sad\"},{\"name\":\"interlocution\",\"value\":\"社工員1\"}]\"', '', '', '2022-09-06 00:00:00', '社工員1', '2022-10-15 21:41:46', 'jia'),
-(17, '1', 'RE111', 'test', 'T1334356112', 0, 'case_detail.php?name=test&gender=男&pid=T1334356112&date=2021-08-08&property=安置家園&type=藥癮家庭&grade=B&id=1&open_id=RE111&referral=其他&case_Create_date=2021-08-08&unopen_type=phone&birth=1991-02-03', '', 0, 'interlocution', '0000-00-00', 'd', '\"[{\"name\":\"interlocution\",\"value\":\"2022-03-17\"},{\"name\":\"interlocution\",\"value\":\"a\"},{\"name\":\"interlocution\",\"value\":\"社工員1\"}]\"', '', '', '2022-09-06 00:00:00', '社工員1', '2022-10-15 21:41:50', 'jia'),
-(18, '4', 'RE113', '黃QQ', 'B123555515', 0, 'case_detail.php?name=黃QQ&gender=男&pid=B123555515&date=2022-08-03&property=社區&type=一般藥癮者&grade=A&id=4&open_id=RE113&referral=社區&case_Create_date=2022-08-03&unopen_type=case&birth=1993-10-15', '', 0, 'interlocution', '0000-00-00', 'A', '\"[{\"name\":\"interlocution\",\"value\":\"\"},{\"name\":\"interlocution\",\"value\":\"就業媒合\"},{\"name\":\"interlocution\",\"value\":\"社工組長\"}]\"', '', '', '2022-09-06 00:00:00', '社工員1', '2022-10-15 21:42:02', 'jia'),
-(19, '4', 'RE113', '黃QQ', 'B123555515', 0, 'case_detail.php?name=黃QQ&gender=男&pid=B123555515&date=2022-08-03&property=社區&type=一般藥癮者&grade=A&id=4&open_id=RE113&referral=社區&case_Create_date=2022-08-03&unopen_type=case&birth=1993-10-15', '', 1, 'interlocution', '0000-00-00', 'B', '\"[{\"name\":\"interlocution\",\"value\":\"2022-06-06\"},{\"name\":\"interlocution\",\"value\":\"家庭關係\"},{\"name\":\"interlocution\",\"value\":\"社工員1\"}]\"', '', '', '2022-09-06 00:00:00', '社工員1', '2022-10-15 21:42:07', 'jia'),
-(20, '4', 'RE113', '黃QQ', 'B123555515', 0, 'case_detail.php?name=黃QQ&gender=男&pid=B123555515&date=2022-08-03&property=社區&type=一般藥癮者&grade=A&id=4&open_id=RE113&referral=社區&case_Create_date=2022-08-03&unopen_type=case&birth=1993-10-15', '', 0, 'employment_satif', '2022-09-06', 'TT', '\"[{\"name\":\"employment_satif\",\"value\":\"0\"}]\"', '', '', '2022-09-06 00:00:00', '社工員1', '2022-10-05 20:37:05', '社工員1'),
-(21, '5', 'RE114', 'test611', 'C248491122', 0, 'case_detail.php?name=test611&gender=跨性別&pid=C248491122&date=2021-06-11&property=安置家園&type=一般藥癮者&grade=B&id=5&open_id=RE114&referral=自行求助&case_Create_date=2021-06-11&unopen_type=case&birth=1995-12-12', '', 0, 'case', '2022-10-06', '720', '\"[{\"name\":\"case\",\"value\":\"\"}]\"', '', '', '2022-10-06 00:00:00', '園主任', '2022-10-15 21:42:18', 'jia'),
-(22, '6', 'RE111', 'test', 'T1334356112', 0, 'case_detail.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03', '', 0, 'health', '2021-11-18', 'aa', '', '', '', '2022-10-13 00:00:00', '社工組長', '0000-00-00 00:00:00', ''),
-(23, '6', 'RE111', 'test', 'T1334356112', 1, '', '../upload/case_all/憂鬱量表.docx', 0, 'sullen', '0000-00-00', '', '', '', '\"[{\"name\":\"upload_date_sullen0\",\"value\":\"2022-10-15\"},{\"name\":\"scoresullen0\",\"value\":\"89\"},{\"name\":\"filesullen0\",\"value\":\"憂鬱量表.docx\"},{\"name\":\"test_typesullen0\",\"value\":\"中測\"},{\"name\":\"remarksullen0\",\"value\":\"tttt憂鬱量表89\"}]\"', '2022-10-15 21:08:45', 'jia', '0000-00-00 00:00:00', ''),
-(24, '6', 'RE111', 'test', 'T1334356112', 1, '', '../upload/case_all/bsrs5.docx', 0, 'BSRS5', '0000-00-00', '', '', '', '\"[{\"name\":\"create_date_BSRS50\",\"value\":\"2022-10-15\"},{\"name\":\"add_new_typeBSRS50\",\"value\":\"上傳檔案\"},{\"name\":\"scoreBSRS50\",\"value\":\"12\"},{\"name\":\"disposeBSRS50\",\"value\":\"teee86處置情形\"},{\"name\":\"fileBSRS50\",\"value\":\"bsrs5.docx\"},{\"name\":\"remarkBSRS50\",\"value\":\"BSRS-5量表teee86\"}]\"', '2022-10-15 21:09:19', 'jia', '0000-00-00 00:00:00', ''),
-(25, '6', 'RE111', 'test', 'T1334356112', 0, 'case_detail.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03', '', 1, 'BSRS5', '0000-00-00', 'ttt1015', '\"[{\"name\":\"BSRS5\",\"value\":\"16\"},{\"name\":\"BSRS5\",\"value\":\"tttt處置情形第6題單獨得分\"}]\"', '', '', '2022-10-15 00:00:00', 'jia', '2022-10-15 21:10:40', 'jia'),
-(26, '1', 'RE111', 'test', 'T1334356112', 1, '', '../upload/case_all/test18.txt', 0, 'sullen', '0000-00-00', '', '', '', '\"[{\"name\":\"upload_date_sullen0\",\"value\":\"2022-10-18\"},{\"name\":\"scoresullen0\",\"value\":\"88\"},{\"name\":\"filesullen0\",\"value\":\"test18.txt\"},{\"name\":\"test_typesullen0\",\"value\":\"中測\"},{\"name\":\"remarksullen0\",\"value\":\"test18\"}]\"', '2022-10-18 16:37:58', '社工員1', '0000-00-00 00:00:00', ''),
-(27, '7', '123', '瓜', 'M2224786629', 0, 'case_detail.php?name=瓜&gender=女&pid=M2224786629&date=2022-10-24&property=安置家園&type=愛滋感染者&grade=A&id=7&open_id=123&referral=教會&case_Create_date=2022-10-14&unopen_type=case&birth=2022-10-20', '', 0, 'case', '2022-10-24', '', '\"[{\"name\":\"case\",\"value\":\"\"}]\"', '', '', '2022-10-24 00:00:00', 'jia', '2022-10-24 11:41:54', '園主任'),
-(28, '7', '123', '瓜', 'M2224786629', 0, 'case_detail.php?name=瓜&gender=女&pid=M2224786629&date=2022-10-24&property=安置家園&type=愛滋感染者&grade=A&id=7&open_id=123&referral=教會&case_Create_date=2022-10-14&unopen_type=case&birth=2022-10-20', '', 0, 'BSRS5', '0000-00-00', '', '', '', '', '2022-10-24 00:00:00', 'jia', '0000-00-00 00:00:00', ''),
-(29, '7', '123', '瓜', 'M2224786629', 0, 'case_detail.php?name=瓜&gender=女&pid=M2224786629&date=2022-10-24&property=安置家園&type=愛滋感染者&grade=A&id=7&open_id=123&referral=教會&case_Create_date=2022-10-14&unopen_type=case&birth=2022-10-20', '', 1, 'BSRS5', '0000-00-00', '', '', '', '', '2022-10-24 00:00:00', 'jia', '0000-00-00 00:00:00', ''),
-(30, '7', '123', '瓜', 'M2224786629', 0, 'case_detail.php?name=瓜&gender=女&pid=M2224786629&date=2022-10-24&property=安置家園&type=愛滋感染者&grade=A&id=7&open_id=123&referral=教會&case_Create_date=2022-10-14&unopen_type=case&birth=2022-10-20', '', 2, 'BSRS5', '0000-00-00', '', '', '', '', '2022-10-24 00:00:00', '園主任', '0000-00-00 00:00:00', ''),
-(31, '7', '123', '瓜', 'M2224786629', 0, 'case_detail.php?name=瓜&gender=女&pid=M2224786629&date=2022-10-24&property=安置家園&type=愛滋感染者&grade=A&id=7&open_id=123&referral=教會&case_Create_date=2022-10-14&unopen_type=case&birth=2022-10-20', '', 3, 'BSRS5', '0000-00-00', 'ttt', '', '', '', '2022-10-24 00:00:00', '園主任', '0000-00-00 00:00:00', ''),
-(32, '7', '123', '瓜', 'M2224786629', 1, '', '../upload/case_all/ttt.txt', 0, 'sullen', '0000-00-00', '', '', '', '\"[{\"name\":\"upload_date_sullen0\",\"value\":\"2022-10-24\"},{\"name\":\"scoresullen0\",\"value\":\"89\"},{\"name\":\"filesullen0\",\"value\":\"ttt.txt\"},{\"name\":\"test_typesullen0\",\"value\":\"前測\"},{\"name\":\"remarksullen0\",\"value\":\"hjhj\"}]\"', '2022-10-24 10:54:49', '園主任', '0000-00-00 00:00:00', ''),
-(33, '8', '440', '測O試', 'V123456788', 0, 'case_detail.php?name=測O試&gender=女&pid=V123456788&date=2022-10-01&property=自立宿舍&type=愛滋感染者&grade=B&id=8&open_id=440&referral=警政&case_Create_date=2022-10-25&unopen_type=case&birth=1974-04-21', '', 0, 'case', '2022-10-25', '沒有', '\"[{\"name\":\"case\",\"value\":\"暫不結案，持續服務至民國119年7月32日\"}]\"', '', '', '2022-10-25 00:00:00', '花花', '2022-10-25 11:39:40', '花花'),
-(34, '8', '440', '測O試', 'V123456788', 0, 'case_detail.php?name=測O試&gender=女&pid=V123456788&date=2022-10-01&property=自立宿舍&type=愛滋感染者&grade=B&id=8&open_id=440&referral=警政&case_Create_date=2022-10-25&unopen_type=case&birth=1974-04-21', '', 0, 'interlocution', '0000-00-00', '沒有備註', '\"[{\"name\":\"interlocution\",\"value\":\"2022-10-22\"},{\"name\":\"interlocution\",\"value\":\"沒有\"},{\"name\":\"interlocution\",\"value\":\"花花\"}]\"', '', '', '2022-10-25 00:00:00', '花花', '2022-10-25 11:44:06', '花花'),
-(35, '8', '440', '測O試', 'V123456788', 0, 'case_detail.php?name=測O試&gender=女&pid=V123456788&date=2022-10-01&property=自立宿舍&type=愛滋感染者&grade=B&id=8&open_id=440&referral=警政&case_Create_date=2022-10-25&unopen_type=case&birth=1974-04-21', '', 0, 'resource', '0000-00-00', '0', '', '', '', '2022-10-25 00:00:00', '花花', '0000-00-00 00:00:00', ''),
-(36, '8', '440', '測O試', 'V123456788', 0, 'case_detail.php?name=測O試&gender=女&pid=V123456788&date=2022-10-01&property=自立宿舍&type=愛滋感染者&grade=B&id=8&open_id=440&referral=警政&case_Create_date=2022-10-25&unopen_type=case&birth=1974-04-21', '', 0, 'life', '2022-10-25', '1025測試', '\"[{\"name\":\"life\",\"value\":\"<div>第一部分得分：3分，結果：普通。<br/>第二部分得分：320分。</div>\"},{\"name\":\"life\",\"value\":\"\"}]\"', '', '', '2022-10-25 00:00:00', '花花', '2022-10-25 11:54:59', '花花'),
-(37, '8', '440', '測O試', 'V123456788', 0, 'case_detail.php?name=測O試&gender=女&pid=V123456788&date=2022-10-01&property=自立宿舍&type=愛滋感染者&grade=B&id=8&open_id=440&referral=警政&case_Create_date=2022-10-25&unopen_type=case&birth=1974-04-21', '', 0, 'health', '2022-10-25', '1111025測試', '', '', '', '2022-10-25 00:00:00', '花花', '0000-00-00 00:00:00', ''),
-(38, '8', '440', '測O試', 'V123456788', 1, '', '../upload/case_all/個案管理系統測試20221025(01).docx', 0, 'sullen', '0000-00-00', '', '', '', '\"[{\"name\":\"upload_date_sullen0\",\"value\":\"2022-10-25\"},{\"name\":\"scoresullen0\",\"value\":\"20\"},{\"name\":\"filesullen0\",\"value\":\"個案管理系統測試20221025(01).docx\"},{\"name\":\"test_typesullen0\",\"value\":\"中測\"},{\"name\":\"remarksullen0\",\"value\":\"1025測試\"}]\"', '2022-10-25 13:14:21', '花花', '0000-00-00 00:00:00', ''),
-(39, '8', '440', '測O試', 'V123456788', 0, 'case_detail.php?name=測O試&gender=女&pid=V123456788&date=2022-10-01&property=自立宿舍&type=愛滋感染者&grade=B&id=8&open_id=440&referral=警政&case_Create_date=2022-10-25&unopen_type=case&birth=1974-04-21', '', 0, 'employment_satif', '2022-10-25', '1025測試', '\"[{\"name\":\"employment_satif\",\"value\":\"20\"}]\"', '', '', '2022-10-25 00:00:00', '花花', '2022-10-25 14:04:40', '花花'),
-(40, '8', '440', '測O試', 'V123456788', 0, 'case_detail.php?name=測O試&gender=女&pid=V123456788&date=2022-10-01&property=自立宿舍&type=愛滋感染者&grade=B&id=8&open_id=440&referral=警政&case_Create_date=2022-10-25&unopen_type=case&birth=1974-04-21', '', 0, 'satif', '2022-10-25', '1025測試', '\"[{\"name\":\"satif\",\"value\":\"46\"}]\"', '', '', '2022-10-25 00:00:00', '花花', '2022-10-25 14:06:07', '花花'),
-(41, '8', '440', '測O試', 'V123456788', 0, 'case_detail.php?name=測O試&gender=女&pid=V123456788&date=2022-10-01&property=自立宿舍&type=愛滋感染者&grade=B&id=8&open_id=440&referral=警政&case_Create_date=2022-10-25&unopen_type=case&birth=1974-04-21', '', 0, 'familyship', '2022-10-25', '1025測試', '\"[{\"name\":\"familyship\",\"value\":\"0\"},{\"name\":\"familyship\",\"value\":\"後測\"}]\"', '', '', '2022-10-25 00:00:00', '花花', '2022-10-25 14:07:11', '花花'),
-(42, '8', '440', '測O試', 'V123456788', 0, 'case_detail.php?name=測O試&gender=女&pid=V123456788&date=2022-10-01&property=自立宿舍&type=愛滋感染者&grade=B&id=8&open_id=440&referral=警政&case_Create_date=2022-10-25&unopen_type=case&birth=1974-04-21', '', 0, 'BSRS5', '0000-00-00', '1025測試', '\"[{\"name\":\"BSRS5\",\"value\":\"11\"},{\"name\":\"BSRS5\",\"value\":\"已通報\"}]\"', '', '', '2022-10-25 00:00:00', '花花', '2022-10-25 14:08:38', '花花'),
-(43, '8', '440', '測O試', 'V123456788', 0, 'case_detail.php?name=測O試&gender=女&pid=V123456788&date=2022-10-01&property=自立宿舍&type=愛滋感染者&grade=B&id=8&open_id=440&referral=警政&case_Create_date=2022-10-25&unopen_type=case&birth=1974-04-21', '', 0, 'settlement', '2022-10-25', '1025測試', '\"[{\"name\":\"settlement\",\"value\":\"符合基本條件指標條件共4項，符合收案指標條件共7項。\"}]\"', '', '', '2022-10-25 00:00:00', '花花', '2022-10-25 14:12:36', '花花'),
-(44, '7', '123', '瓜', 'M2224786629', 0, 'case_detail.php?name=瓜&gender=女&pid=M2224786629&date=2022-10-24&property=安置家園&type=愛滋感染者&grade=A&id=7&open_id=123&referral=教會&case_Create_date=2022-10-14&unopen_type=case&birth=2022-10-20', '', 0, 'interlocution', '0000-00-00', '', '', '', '', '2022-11-01 00:00:00', '社工員1', '0000-00-00 00:00:00', ''),
-(45, '6', 'RE111', 'test', 'T1334356112', 0, 'case_detail.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03', '', 0, 'familyship', '2022-11-01', '111', '', '', '', '2022-11-01 00:00:00', '社工員1', '0000-00-00 00:00:00', ''),
-(46, '6', 'RE111', 'test', 'T1334356112', 0, 'case_detail.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03', '', 0, 'satif', '2022-11-01', '111111', '', '', '', '2022-11-01 00:00:00', '社工員1', '0000-00-00 00:00:00', ''),
-(47, '9', 'RE115', '十二月零九日', 'Z652123745', 0, 'case_detail.php?name=十二月零九日&gender=男&pid=Z652123745&date=2022-12-09&property=自立宿舍&type=一般藥癮者&grade=A&id=9&open_id=RE115&referral=教會&case_Create_date=2022-12-09&unopen_type=phone&birth=1980-02-12', '', 0, 'satif', '2022-12-09', '00', '', '', '', '2022-12-09 00:00:00', '花花', '0000-00-00 00:00:00', ''),
-(48, '9', 'RE115', '十二月零九日', 'Z652123745', 0, 'case_detail.php?name=十二月零九日&gender=男&pid=Z652123745&date=2022-12-09&property=自立宿舍&type=一般藥癮者&grade=A&id=9&open_id=RE115&referral=教會&case_Create_date=2022-12-09&unopen_type=phone&birth=1980-02-12', '', 0, 'case', '2022-12-09', '', '', '', '', '2022-12-09 00:00:00', '花花', '0000-00-00 00:00:00', ''),
-(49, '10', 'RE877', '何竹田', 'y997501623', 0, 'case_detail.php?name=何竹田&gender=男&pid=y997501623&date=2022-12-09&property=社區&type=藥癮家庭&grade=A&id=10&open_id=RE877&referral=藥癮家庭&case_Create_date=2022-12-09&unopen_type=case&birth=1999-03-23', '', 0, 'life', '2022-12-09', '', '\"[{\"name\":\"life\",\"value\":\"<div>第一部分得分：1分，結果：極不滿意。<br/>第二部分得分：425分。</div>\"},{\"name\":\"life\",\"value\":\"前測\"}]\"', '', '', '2022-12-09 00:00:00', '花花', '2022-12-09 10:17:30', '花花'),
-(50, '10', 'RE877', '何竹田', 'y997501623', 0, 'case_detail.php?name=何竹田&gender=男&pid=y997501623&date=2022-12-09&property=社區&type=藥癮家庭&grade=A&id=10&open_id=RE877&referral=藥癮家庭&case_Create_date=2022-12-09&unopen_type=case&birth=1999-03-23', '', 0, 'interlocution', '0000-00-00', '', '\"[{\"name\":\"interlocution\",\"value\":\"2022-12-09\"},{\"name\":\"interlocution\",\"value\":\"1111111111111111111111111111111111111111111111111111111111111111111111111111111111\"},{\"name\":\"interlocution\",\"value\":\"之痾ㄒㄧ安\"}]\"', '', '', '2022-12-09 00:00:00', '花花', '2022-12-09 10:21:20', '花花'),
-(51, '10', 'RE877', '何竹田', 'y997501623', 0, 'case_detail.php?name=何竹田&gender=男&pid=y997501623&date=2022-12-09&property=社區&type=藥癮家庭&grade=A&id=10&open_id=RE877&referral=藥癮家庭&case_Create_date=2022-12-09&unopen_type=case&birth=1999-03-23', '', 0, 'satif', '2022-12-09', '', '\"[{\"name\":\"satif\",\"value\":\"46\"}]\"', '', '', '2022-12-09 00:00:00', '花花', '2022-12-09 10:21:59', '花花'),
-(52, '11', '441', '立可貸', 'j744510096', 0, 'case_detail.php?name=立可貸&gender=其他&pid=j744510096&date=2022-12-09&property=社區&type=親職兒少&grade=C&id=11&open_id=441&referral=民間社福機構&case_Create_date=2022-12-09&unopen_type=case&birth=1997-10-19', '', 0, 'case', '2022-12-09', '', '\"[{\"name\":\"case\",\"value\":\"暫不結案，持續服務至民國115年3月4日\"}]\"', '', '', '2022-12-09 00:00:00', '花花', '2022-12-09 10:23:59', '花花'),
-(53, '11', '441', '立可貸', 'j744510096', 0, 'case_detail.php?name=立可貸&gender=其他&pid=j744510096&date=2022-12-09&property=社區&type=親職兒少&grade=C&id=11&open_id=441&referral=民間社福機構&case_Create_date=2022-12-09&unopen_type=case&birth=1997-10-19', '', 0, 'interlocution', '0000-00-00', '', '\"[{\"name\":\"interlocution\",\"value\":\"2022-12-13\"},{\"name\":\"interlocution\",\"value\":\"1\"},{\"name\":\"interlocution\",\"value\":\"ㄓㄜㄒㄧㄢ\"}]\"', '', '', '2022-12-09 00:00:00', '花花', '2022-12-09 10:26:55', '花花'),
-(54, '11', '441', '立可貸', 'j744510096', 0, 'case_detail.php?name=立可貸&gender=其他&pid=j744510096&date=2022-12-09&property=社區&type=親職兒少&grade=C&id=11&open_id=441&referral=民間社福機構&case_Create_date=2022-12-09&unopen_type=case&birth=1997-10-19', '', 1, 'interlocution', '0000-00-00', '', '\"[{\"name\":\"interlocution\",\"value\":\"2022-12-16\"},{\"name\":\"interlocution\",\"value\":\"0\"},{\"name\":\"interlocution\",\"value\":\"ㄓㄜㄒㄧㄢ\"}]\"', '', '', '2022-12-09 00:00:00', '花花', '2022-12-09 10:27:41', '花花'),
-(55, '11', '441', '立可貸', 'j744510096', 0, 'case_detail.php?name=立可貸&gender=其他&pid=j744510096&date=2022-12-09&property=社區&type=親職兒少&grade=C&id=11&open_id=441&referral=民間社福機構&case_Create_date=2022-12-09&unopen_type=case&birth=1997-10-19', '', 0, 'BSRS5', '0000-00-00', '', '\"[{\"name\":\"BSRS5\",\"value\":\"20\"},{\"name\":\"BSRS5\",\"value\":\"通報\"}]\"', '', '', '2022-12-09 00:00:00', '花花', '2022-12-09 10:28:44', '花花'),
-(56, '10', 'RE877', '何竹田', 'y997501623', 0, 'case_detail.php?name=何竹田&gender=男&pid=y997501623&date=2022-12-09&property=社區&type=藥癮家庭&grade=A&id=10&open_id=RE877&referral=藥癮家庭&case_Create_date=2022-12-09&unopen_type=case&birth=1999-03-23', '', 0, 'resource', '0000-00-00', '', '', '', '', '2022-12-09 00:00:00', '花花', '0000-00-00 00:00:00', ''),
-(57, '10', 'RE877', '何竹田', 'y997501623', 0, 'case_detail.php?name=何竹田&gender=男&pid=y997501623&date=2022-12-09&property=社區&type=藥癮家庭&grade=A&id=10&open_id=RE877&referral=藥癮家庭&case_Create_date=2022-12-09&unopen_type=case&birth=1999-03-23', '', 0, 'health', '2022-12-05', '', '', '', '', '2022-12-09 00:00:00', '花花', '0000-00-00 00:00:00', ''),
-(58, '10', 'RE877', '何竹田', 'y997501623', 1, '', '../upload/case_all/個案管理系統測試20221025(03).docx', 0, 'sullen', '0000-00-00', '', '', '', '\"[{\"name\":\"upload_date_sullen0\",\"value\":\"2022-12-09\"},{\"name\":\"scoresullen0\",\"value\":\"30\"},{\"name\":\"filesullen0\",\"value\":\"個案管理系統測試20221025(03).docx\"},{\"name\":\"test_typesullen0\",\"value\":\"中測\"},{\"name\":\"remarksullen0\",\"value\":\"\"}]\"', '2022-12-09 14:49:49', '花花', '0000-00-00 00:00:00', ''),
-(59, '10', 'RE877', '何竹田', 'y997501623', 0, 'case_detail.php?name=何竹田&gender=男&pid=y997501623&date=2022-12-09&property=社區&type=藥癮家庭&grade=A&id=10&open_id=RE877&referral=藥癮家庭&case_Create_date=2022-12-09&unopen_type=case&birth=1999-03-23', '', 0, 'employment_satif', '2022-12-09', '', '\"[{\"name\":\"employment_satif\",\"value\":\"6\"}]\"', '', '', '2022-12-09 00:00:00', '花花', '2022-12-09 14:57:41', '花花'),
-(60, '10', 'RE877', '何竹田', 'y997501623', 0, 'case_detail.php?name=何竹田&gender=男&pid=y997501623&date=2022-12-09&property=社區&type=藥癮家庭&grade=A&id=10&open_id=RE877&referral=藥癮家庭&case_Create_date=2022-12-09&unopen_type=case&birth=1999-03-23', '', 0, 'familyship', '2022-12-09', '', '\"[{\"name\":\"familyship\",\"value\":\"32\"},{\"name\":\"familyship\",\"value\":\"\"}]\"', '', '', '2022-12-09 00:00:00', '花花', '2022-12-09 14:58:53', '花花'),
-(61, '10', 'RE877', '何竹田', 'y997501623', 0, 'case_detail.php?name=何竹田&gender=男&pid=y997501623&date=2022-12-09&property=社區&type=藥癮家庭&grade=A&id=10&open_id=RE877&referral=藥癮家庭&case_Create_date=2022-12-09&unopen_type=case&birth=1999-03-23', '', 0, 'BSRS5', '0000-00-00', '', '\"[{\"name\":\"BSRS5\",\"value\":\"20\"},{\"name\":\"BSRS5\",\"value\":\".\"}]\"', '', '', '2022-12-09 00:00:00', '花花', '2022-12-09 14:59:30', '花花'),
-(62, '10', 'RE877', '何竹田', 'y997501623', 0, 'case_detail.php?name=何竹田&gender=男&pid=y997501623&date=2022-12-09&property=社區&type=藥癮家庭&grade=A&id=10&open_id=RE877&referral=藥癮家庭&case_Create_date=2022-12-09&unopen_type=case&birth=1999-03-23', '', 0, 'settlement', '2022-12-09', '', '\"[{\"name\":\"settlement\",\"value\":\"符合基本條件指標條件共4項，符合收案指標條件共7項。\"}]\"', '', '', '2022-12-09 00:00:00', '花花', '2022-12-09 15:03:58', '花花'),
-(63, '2', 'RE112', 'TEST0808', 'S167123331', 0, 'case_detail.php?name=TEST0808&gender=女&pid=S167123331&date=2022-08-08&property=安置家園&type=一般藥癮者&grade=B&id=2&open_id=RE112&referral=醫院&case_Create_date=2022-08-08&unopen_type=case&birth=1993-06-22', '', 0, 'resource', '0000-00-00', 'xxxx', '', '', '', '2022-12-29 00:00:00', '社工員1', '0000-00-00 00:00:00', ''),
-(64, '2', 'RE112', 'TEST0808', 'S167123331', 0, 'case_detail.php?name=TEST0808&gender=女&pid=S167123331&date=2022-08-08&property=安置家園&type=一般藥癮者&grade=B&id=2&open_id=RE112&referral=醫院&case_Create_date=2022-08-08&unopen_type=case&birth=1993-06-22', '', 0, 'health', '2022-12-08', '', '', '', '', '2022-12-29 00:00:00', '社工員1', '0000-00-00 00:00:00', ''),
-(65, '2', 'RE112', 'TEST0808', 'S167123331', 0, 'case_detail.php?name=TEST0808&gender=女&pid=S167123331&date=2022-08-08&property=安置家園&type=一般藥癮者&grade=B&id=2&open_id=RE112&referral=醫院&case_Create_date=2022-08-08&unopen_type=case&birth=1993-06-22', '', 0, 'satif', '2022-12-15', '', '', '', '', '2022-12-29 00:00:00', '社工員1', '0000-00-00 00:00:00', ''),
-(66, '2', 'RE112', 'TEST0808', 'S167123331', 0, 'case_detail.php?name=TEST0808&gender=女&pid=S167123331&date=2022-08-08&property=安置家園&type=一般藥癮者&grade=B&id=2&open_id=RE112&referral=醫院&case_Create_date=2022-08-08&unopen_type=case&birth=1993-06-22', '', 0, 'familyship', '2022-11-30', '', '', '', '', '2022-12-29 00:00:00', '社工員1', '0000-00-00 00:00:00', ''),
-(67, '2', 'RE112', 'TEST0808', 'S167123331', 0, 'case_detail.php?name=TEST0808&gender=女&pid=S167123331&date=2022-08-08&property=安置家園&type=一般藥癮者&grade=B&id=2&open_id=RE112&referral=醫院&case_Create_date=2022-08-08&unopen_type=case&birth=1993-06-22', '', 0, 'settlement', '2022-11-30', '', '', '', '', '2022-12-29 00:00:00', '社工員1', '0000-00-00 00:00:00', '');
+INSERT INTO `form_all_info` (`Id`, `Case_seqid`, `Case_id`, `Case_name`, `Case_pid`, `Is_upload`, `Url`, `Upload_path`, `Number`, `Form_name`, `Fillin_date`, `Remark`, `Other_info`, `Case_storage`, `Upload_info`, `Create_date`, `Create_name`, `Update_date`, `Update_name`, `Supervise1`, `Supervise1_signature`, `Supervise1_sign_msg`, `Supervise1_sign_time`, `Supervise2`, `Supervise2_signature`, `Supervise2_sign_msg`, `Supervise2_sign_time`) VALUES
+(1, '1', 'RE111', 'test', 'T1334356112', 0, 'case_detail.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=A&id=1&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=phone&birth=1872-02-03', '', 0, 'case', '2022-08-08', 'TEST0808', '\"[{\"name\":\"case\",\"value\":\"結案\"}]\"', '', '', '2022-08-08 00:00:00', '園主任', '2022-10-15 21:41:33', 'jia', '', '', '', '', '', '', '', ''),
+(2, '1', 'RE111', 'test', 'T1334356112', 0, 'case_detail.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=A&id=1&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=phone&birth=1872-02-03', '', 0, 'BSRS5', '0000-00-00', '', '\"[{\"name\":\"BSRS5\",\"value\":\"8\"},{\"name\":\"BSRS5\",\"value\":\"test處置情形\"}]\"', '', '', '2022-08-08 00:00:00', '園主任', '2022-10-05 20:34:12', '社工員1', '', '', '', '', '', '', '', ''),
+(3, '1', 'RE111', 'test', 'T1334356112', 0, 'case_detail.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=1&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=phone&birth=1991-02-03', '', 1, 'case', '2022-08-08', 'test', '\"[{\"name\":\"case\",\"value\":\"結案\"}]\"', '', '', '2022-08-08 00:00:00', '園主任', '2022-10-15 21:41:40', 'jia', '', '', '', '', '', '', '', ''),
+(4, '2', 'RE112', 'TEST0808', 'S167123331', 0, 'case_detail.php?name=TEST0808&gender=女&pid=S167123331&date=2022-08-08&property=安置家園&type=一般藥癮者&grade=B&id=2&open_id=RE112&referral=醫院&case_Create_date=2022-08-08&unopen_type=case&birth=1993-06-22', '', 0, 'case', '2022-09-06', 'ttt', '\"[{\"name\":\"case\",\"value\":\"\"}]\"', '', '', '2022-08-08 00:00:00', '園主任', '2022-10-24 10:37:21', '園主任', '', '', '', '', '', '', '', ''),
+(5, '2', 'RE112', 'TEST0808', 'S167123331', 0, 'case_detail.php?name=TEST0808&gender=女&pid=S167123331&date=2022-08-08&property=安置家園&type=一般藥癮者&grade=B&id=2&open_id=RE112&referral=醫院&case_Create_date=2022-08-08&unopen_type=case&birth=1993-06-22', '', 0, 'employment_satif', '2022-09-06', 'ttt', '\"[{\"name\":\"employment_satif\",\"value\":\"29\"}]\"', '', '', '2022-08-08 00:00:00', '園主任', '2022-10-05 20:36:19', '社工員1', '', '', '', '', '', '', '', ''),
+(6, '6', 'RE111', 'test', 'T1334356112', 0, 'case_detail.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03', '', 0, 'case', '2022-08-08', 'ttt2', '\"[{\"name\":\"case\",\"value\":\"結案\"}]\"', 'storage', '', '2022-08-08 00:00:00', '園主任', '2023-07-13 18:18:47', '執行長', '園主任', '', '', '', '執行長', '', '', ''),
+(7, '6', 'RE111', 'test', 'T1334356112', 0, 'case_detail.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03', '', 0, 'employment_satif', '2022-08-08', 'tt', '\"[{\"name\":\"employment_satif\",\"value\":\"35\"}]\"', '', '', '2022-08-08 00:00:00', '園主任', '2022-10-05 20:35:27', '社工員1', '', '', '', '', '', '', '', ''),
+(8, '6', 'RE111', 'test', 'T1334356112', 0, 'case_detail.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03', '', 0, 'life', '2022-08-08', 'ttt', '\"[{\"name\":\"life\",\"value\":\"<div>第一部分得分：4.07分，結果：滿意。<br/>第二部分得分：455分。</div>\"},{\"name\":\"life\",\"value\":\"前測\"}]\"', '', '', '2022-08-08 00:00:00', '園主任', '2022-10-05 20:35:16', '社工員1', '', '', '', '', '', '', '', ''),
+(9, '2', 'RE112', 'TEST0808', 'S167123331', 0, 'case_detail.php?name=TEST0808&gender=女&pid=S167123331&date=2022-08-08&property=安置家園&type=一般藥癮者&grade=B&id=2&open_id=RE112&referral=醫院&case_Create_date=2022-08-08&unopen_type=case&birth=1993-06-22', '', 0, 'interlocution', '0000-00-00', '11', '\"[{\"name\":\"interlocution\",\"value\":\"2022-07-21\"},{\"name\":\"interlocution\",\"value\":\"dasdsa\"},{\"name\":\"interlocution\",\"value\":\"社工員1\"}]\"', '', '', '2022-08-13 00:00:00', '園主任', '2022-10-15 21:40:49', 'jia', '', '', '', '', '', '', '', ''),
+(10, '2', 'RE112', 'TEST0808', 'S167123331', 0, 'case_detail.php?name=TEST0808&gender=女&pid=S167123331&date=2022-08-08&property=安置家園&type=一般藥癮者&grade=B&id=2&open_id=RE112&referral=醫院&case_Create_date=2022-08-08&unopen_type=case&birth=1993-06-22', '', 0, 'life', '2022-10-05', '777', '\"[{\"name\":\"life\",\"value\":\"<div>第一部分得分：NaN分，結果：。<br/>第二部分得分：NaN分。</div>\"},{\"name\":\"life\",\"value\":\"\"}]\"', '', '', '2022-08-13 00:00:00', '園主任', '2022-10-05 20:36:08', '社工員1', '', '', '', '', '', '', '', ''),
+(11, '2', 'RE112', 'TEST0808', 'S167123331', 0, 'case_detail.php?name=TEST0808&gender=女&pid=S167123331&date=2022-08-08&property=安置家園&type=一般藥癮者&grade=B&id=2&open_id=RE112&referral=醫院&case_Create_date=2022-08-08&unopen_type=case&birth=1993-06-22', '', 0, 'BSRS5', '0000-00-00', '', '\"[{\"name\":\"BSRS5\",\"value\":\"0\"},{\"name\":\"BSRS5\",\"value\":\"\"}]\"', '', '', '2022-08-18 00:00:00', '園主任', '2022-10-05 20:36:28', '社工員1', '', '', '', '', '', '', '', ''),
+(12, '6', 'RE111', 'test', 'T1334356112', 0, 'case_detail.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03', '', 0, 'interlocution', '0000-00-00', '111', '\"[{\"name\":\"interlocution\",\"value\":\"2022-06-11\"},{\"name\":\"interlocution\",\"value\":\"test心理情緒a\"},{\"name\":\"interlocution\",\"value\":\"社工員1\"}]\"', 'storage', '', '2022-08-26 00:00:00', '園主任', '2023-07-13 17:47:30', '執行長', '', '', '', '', '', '', '', ''),
+(13, '6', 'RE111', 'test', 'T1334356112', 0, 'case_detail.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03', '', 1, 'interlocution', '0000-00-00', 'dsasd', '\"[{\"name\":\"interlocution\",\"value\":\"2022-08-31\"},{\"name\":\"interlocution\",\"value\":\"vvaa\"},{\"name\":\"interlocution\",\"value\":\"園主任\"}]\"', 'storage', '', '2022-08-31 00:00:00', '園主任', '2023-07-12 23:23:29', 'jia', '', '', '', '', '', '', '', ''),
+(14, '6', 'RE111', 'test', 'T1334356112', 0, 'case_detail.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03', '', 0, 'settlement', '2022-10-05', 'TEST', '\"[{\"name\":\"settlement\",\"value\":\"\"}]\"', '', '', '2022-09-01 00:00:00', '社工員1', '2022-10-05 20:35:39', '社工員1', '', '', '', '', '', '', '', ''),
+(15, '6', 'RE111', 'test', 'T1334356112', 0, 'case_detail.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03', '', 2, 'interlocution', '0000-00-00', 'test', '\"[{\"name\":\"interlocution\",\"value\":\"2022-06-08\"},{\"name\":\"interlocution\",\"value\":\"test就業\"},{\"name\":\"interlocution\",\"value\":\"社工員1\"}]\"', 'cache', '', '2022-09-01 00:00:00', '社工員1', '2023-07-12 23:15:21', 'jia', '', '', '', '', '', '', '', ''),
+(16, '1', 'RE111', 'test', 'T1334356112', 0, 'case_detail.php?name=test&gender=男&pid=T1334356112&date=2021-08-08&property=安置家園&type=藥癮家庭&grade=B&id=1&open_id=RE111&referral=其他&case_Create_date=2021-08-08&unopen_type=phone&birth=1991-02-03', '', 0, 'interlocution', '0000-00-00', 'd', '\"[{\"name\":\"interlocution\",\"value\":\"2022-08-18\"},{\"name\":\"interlocution\",\"value\":\"sad\"},{\"name\":\"interlocution\",\"value\":\"社工員1\"}]\"', '', '', '2022-09-06 00:00:00', '社工員1', '2022-10-15 21:41:46', 'jia', '', '', '', '', '', '', '', ''),
+(17, '1', 'RE111', 'test', 'T1334356112', 0, 'case_detail.php?name=test&gender=男&pid=T1334356112&date=2021-08-08&property=安置家園&type=藥癮家庭&grade=B&id=1&open_id=RE111&referral=其他&case_Create_date=2021-08-08&unopen_type=phone&birth=1991-02-03', '', 0, 'interlocution', '0000-00-00', 'd', '\"[{\"name\":\"interlocution\",\"value\":\"2022-03-17\"},{\"name\":\"interlocution\",\"value\":\"a\"},{\"name\":\"interlocution\",\"value\":\"社工員1\"}]\"', '', '', '2022-09-06 00:00:00', '社工員1', '2022-10-15 21:41:50', 'jia', '', '', '', '', '', '', '', ''),
+(18, '4', 'RE113', '黃QQ', 'B123555515', 0, 'case_detail.php?name=黃QQ&gender=男&pid=B123555515&date=2022-08-03&property=社區&type=一般藥癮者&grade=A&id=4&open_id=RE113&referral=社區&case_Create_date=2022-08-03&unopen_type=case&birth=1993-10-15', '', 0, 'interlocution', '0000-00-00', 'A', '\"[{\"name\":\"interlocution\",\"value\":\"\"},{\"name\":\"interlocution\",\"value\":\"就業媒合\"},{\"name\":\"interlocution\",\"value\":\"社工組長\"}]\"', '', '', '2022-09-06 00:00:00', '社工員1', '2022-10-15 21:42:02', 'jia', '', '', '', '', '', '', '', ''),
+(19, '4', 'RE113', '黃QQ', 'B123555515', 0, 'case_detail.php?name=黃QQ&gender=男&pid=B123555515&date=2022-08-03&property=社區&type=一般藥癮者&grade=A&id=4&open_id=RE113&referral=社區&case_Create_date=2022-08-03&unopen_type=case&birth=1993-10-15', '', 1, 'interlocution', '0000-00-00', 'B', '\"[{\"name\":\"interlocution\",\"value\":\"2022-06-06\"},{\"name\":\"interlocution\",\"value\":\"家庭關係\"},{\"name\":\"interlocution\",\"value\":\"社工員1\"}]\"', '', '', '2022-09-06 00:00:00', '社工員1', '2022-10-15 21:42:07', 'jia', '', '', '', '', '', '', '', ''),
+(20, '4', 'RE113', '黃QQ', 'B123555515', 0, 'case_detail.php?name=黃QQ&gender=男&pid=B123555515&date=2022-08-03&property=社區&type=一般藥癮者&grade=A&id=4&open_id=RE113&referral=社區&case_Create_date=2022-08-03&unopen_type=case&birth=1993-10-15', '', 0, 'employment_satif', '2022-09-06', 'TT', '\"[{\"name\":\"employment_satif\",\"value\":\"0\"}]\"', '', '', '2022-09-06 00:00:00', '社工員1', '2022-10-05 20:37:05', '社工員1', '', '', '', '', '', '', '', ''),
+(21, '5', 'RE114', 'test611', 'C248491122', 0, 'case_detail.php?name=test611&gender=跨性別&pid=C248491122&date=2021-06-11&property=安置家園&type=一般藥癮者&grade=B&id=5&open_id=RE114&referral=自行求助&case_Create_date=2021-06-11&unopen_type=case&birth=1995-12-12', '', 0, 'case', '2022-10-06', '720', '\"[{\"name\":\"case\",\"value\":\"\"}]\"', '', '', '2022-10-06 00:00:00', '園主任', '2022-10-15 21:42:18', 'jia', '', '', '', '', '', '', '', ''),
+(22, '6', 'RE111', 'test', 'T1334356112', 0, 'case_detail.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03', '', 0, 'health', '2021-11-18', 'aa', '', '', '', '2022-10-13 00:00:00', '社工組長', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', ''),
+(23, '6', 'RE111', 'test', 'T1334356112', 1, '', '../upload/case_all/憂鬱量表.docx', 0, 'sullen', '0000-00-00', '', '', '', '\"[{\"name\":\"upload_date_sullen0\",\"value\":\"2022-10-15\"},{\"name\":\"scoresullen0\",\"value\":\"89\"},{\"name\":\"filesullen0\",\"value\":\"憂鬱量表.docx\"},{\"name\":\"test_typesullen0\",\"value\":\"中測\"},{\"name\":\"remarksullen0\",\"value\":\"tttt憂鬱量表89\"}]\"', '2022-10-15 21:08:45', 'jia', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', ''),
+(24, '6', 'RE111', 'test', 'T1334356112', 1, '', '../upload/case_all/bsrs5.docx', 0, 'BSRS5', '0000-00-00', '', '', '', '\"[{\"name\":\"create_date_BSRS50\",\"value\":\"2022-10-15\"},{\"name\":\"add_new_typeBSRS50\",\"value\":\"上傳檔案\"},{\"name\":\"scoreBSRS50\",\"value\":\"12\"},{\"name\":\"disposeBSRS50\",\"value\":\"teee86處置情形\"},{\"name\":\"fileBSRS50\",\"value\":\"bsrs5.docx\"},{\"name\":\"remarkBSRS50\",\"value\":\"BSRS-5量表teee86\"}]\"', '2022-10-15 21:09:19', 'jia', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', ''),
+(25, '6', 'RE111', 'test', 'T1334356112', 0, 'case_detail.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03', '', 1, 'BSRS5', '0000-00-00', 'ttt1015', '\"[{\"name\":\"BSRS5\",\"value\":\"16\"},{\"name\":\"BSRS5\",\"value\":\"tttt處置情形第6題單獨得分\"}]\"', '', '', '2022-10-15 00:00:00', 'jia', '2022-10-15 21:10:40', 'jia', '', '', '', '', '', '', '', ''),
+(26, '1', 'RE111', 'test', 'T1334356112', 1, '', '../upload/case_all/test18.txt', 0, 'sullen', '0000-00-00', '', '', '', '\"[{\"name\":\"upload_date_sullen0\",\"value\":\"2022-10-18\"},{\"name\":\"scoresullen0\",\"value\":\"88\"},{\"name\":\"filesullen0\",\"value\":\"test18.txt\"},{\"name\":\"test_typesullen0\",\"value\":\"中測\"},{\"name\":\"remarksullen0\",\"value\":\"test18\"}]\"', '2022-10-18 16:37:58', '社工員1', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', ''),
+(27, '7', '123', '瓜', 'M2224786629', 0, 'case_detail.php?name=瓜&gender=女&pid=M2224786629&date=2022-10-24&property=安置家園&type=愛滋感染者&grade=A&id=7&open_id=123&referral=教會&case_Create_date=2022-10-14&unopen_type=case&birth=2022-10-20', '', 0, 'case', '2022-10-24', '', '\"[{\"name\":\"case\",\"value\":\"\"}]\"', '', '', '2022-10-24 00:00:00', 'jia', '2022-10-24 11:41:54', '園主任', '', '', '', '', '', '', '', ''),
+(28, '7', '123', '瓜', 'M2224786629', 0, 'case_detail.php?name=瓜&gender=女&pid=M2224786629&date=2022-10-24&property=安置家園&type=愛滋感染者&grade=A&id=7&open_id=123&referral=教會&case_Create_date=2022-10-14&unopen_type=case&birth=2022-10-20', '', 0, 'BSRS5', '0000-00-00', '', '', '', '', '2022-10-24 00:00:00', 'jia', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', ''),
+(29, '7', '123', '瓜', 'M2224786629', 0, 'case_detail.php?name=瓜&gender=女&pid=M2224786629&date=2022-10-24&property=安置家園&type=愛滋感染者&grade=A&id=7&open_id=123&referral=教會&case_Create_date=2022-10-14&unopen_type=case&birth=2022-10-20', '', 1, 'BSRS5', '0000-00-00', '', '', '', '', '2022-10-24 00:00:00', 'jia', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', ''),
+(30, '7', '123', '瓜', 'M2224786629', 0, 'case_detail.php?name=瓜&gender=女&pid=M2224786629&date=2022-10-24&property=安置家園&type=愛滋感染者&grade=A&id=7&open_id=123&referral=教會&case_Create_date=2022-10-14&unopen_type=case&birth=2022-10-20', '', 2, 'BSRS5', '0000-00-00', '', '', '', '', '2022-10-24 00:00:00', '園主任', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', ''),
+(31, '7', '123', '瓜', 'M2224786629', 0, 'case_detail.php?name=瓜&gender=女&pid=M2224786629&date=2022-10-24&property=安置家園&type=愛滋感染者&grade=A&id=7&open_id=123&referral=教會&case_Create_date=2022-10-14&unopen_type=case&birth=2022-10-20', '', 3, 'BSRS5', '0000-00-00', 'ttt', '', '', '', '2022-10-24 00:00:00', '園主任', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', ''),
+(32, '7', '123', '瓜', 'M2224786629', 1, '', '../upload/case_all/ttt.txt', 0, 'sullen', '0000-00-00', '', '', '', '\"[{\"name\":\"upload_date_sullen0\",\"value\":\"2022-10-24\"},{\"name\":\"scoresullen0\",\"value\":\"89\"},{\"name\":\"filesullen0\",\"value\":\"ttt.txt\"},{\"name\":\"test_typesullen0\",\"value\":\"前測\"},{\"name\":\"remarksullen0\",\"value\":\"hjhj\"}]\"', '2022-10-24 10:54:49', '園主任', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', ''),
+(33, '8', '440', '測O試', 'V123456788', 0, 'case_detail.php?name=測O試&gender=女&pid=V123456788&date=2022-10-01&property=自立宿舍&type=愛滋感染者&grade=B&id=8&open_id=440&referral=警政&case_Create_date=2022-10-25&unopen_type=case&birth=1974-04-21', '', 0, 'case', '2022-10-25', '沒有', '\"[{\"name\":\"case\",\"value\":\"暫不結案，持續服務至民國119年7月32日\"}]\"', '', '', '2022-10-25 00:00:00', '花花', '2022-10-25 11:39:40', '花花', '', '', '', '', '', '', '', ''),
+(34, '8', '440', '測O試', 'V123456788', 0, 'case_detail.php?name=測O試&gender=女&pid=V123456788&date=2022-10-01&property=自立宿舍&type=愛滋感染者&grade=B&id=8&open_id=440&referral=警政&case_Create_date=2022-10-25&unopen_type=case&birth=1974-04-21', '', 0, 'interlocution', '0000-00-00', '沒有備註', '\"[{\"name\":\"interlocution\",\"value\":\"2022-10-22\"},{\"name\":\"interlocution\",\"value\":\"沒有\"},{\"name\":\"interlocution\",\"value\":\"花花\"}]\"', '', '', '2022-10-25 00:00:00', '花花', '2022-10-25 11:44:06', '花花', '', '', '', '', '', '', '', ''),
+(35, '8', '440', '測O試', 'V123456788', 0, 'case_detail.php?name=測O試&gender=女&pid=V123456788&date=2022-10-01&property=自立宿舍&type=愛滋感染者&grade=B&id=8&open_id=440&referral=警政&case_Create_date=2022-10-25&unopen_type=case&birth=1974-04-21', '', 0, 'resource', '0000-00-00', '0', '', '', '', '2022-10-25 00:00:00', '花花', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', ''),
+(36, '8', '440', '測O試', 'V123456788', 0, 'case_detail.php?name=測O試&gender=女&pid=V123456788&date=2022-10-01&property=自立宿舍&type=愛滋感染者&grade=B&id=8&open_id=440&referral=警政&case_Create_date=2022-10-25&unopen_type=case&birth=1974-04-21', '', 0, 'life', '2022-10-25', '1025測試', '\"[{\"name\":\"life\",\"value\":\"<div>第一部分得分：3分，結果：普通。<br/>第二部分得分：320分。</div>\"},{\"name\":\"life\",\"value\":\"\"}]\"', '', '', '2022-10-25 00:00:00', '花花', '2022-10-25 11:54:59', '花花', '', '', '', '', '', '', '', ''),
+(37, '8', '440', '測O試', 'V123456788', 0, 'case_detail.php?name=測O試&gender=女&pid=V123456788&date=2022-10-01&property=自立宿舍&type=愛滋感染者&grade=B&id=8&open_id=440&referral=警政&case_Create_date=2022-10-25&unopen_type=case&birth=1974-04-21', '', 0, 'health', '2022-10-25', '1111025測試', '', '', '', '2022-10-25 00:00:00', '花花', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', ''),
+(38, '8', '440', '測O試', 'V123456788', 1, '', '../upload/case_all/個案管理系統測試20221025(01).docx', 0, 'sullen', '0000-00-00', '', '', '', '\"[{\"name\":\"upload_date_sullen0\",\"value\":\"2022-10-25\"},{\"name\":\"scoresullen0\",\"value\":\"20\"},{\"name\":\"filesullen0\",\"value\":\"個案管理系統測試20221025(01).docx\"},{\"name\":\"test_typesullen0\",\"value\":\"中測\"},{\"name\":\"remarksullen0\",\"value\":\"1025測試\"}]\"', '2022-10-25 13:14:21', '花花', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', ''),
+(39, '8', '440', '測O試', 'V123456788', 0, 'case_detail.php?name=測O試&gender=女&pid=V123456788&date=2022-10-01&property=自立宿舍&type=愛滋感染者&grade=B&id=8&open_id=440&referral=警政&case_Create_date=2022-10-25&unopen_type=case&birth=1974-04-21', '', 0, 'employment_satif', '2022-10-25', '1025測試', '\"[{\"name\":\"employment_satif\",\"value\":\"20\"}]\"', '', '', '2022-10-25 00:00:00', '花花', '2022-10-25 14:04:40', '花花', '', '', '', '', '', '', '', ''),
+(40, '8', '440', '測O試', 'V123456788', 0, 'case_detail.php?name=測O試&gender=女&pid=V123456788&date=2022-10-01&property=自立宿舍&type=愛滋感染者&grade=B&id=8&open_id=440&referral=警政&case_Create_date=2022-10-25&unopen_type=case&birth=1974-04-21', '', 0, 'satif', '2022-10-25', '1025測試', '\"[{\"name\":\"satif\",\"value\":\"46\"}]\"', '', '', '2022-10-25 00:00:00', '花花', '2022-10-25 14:06:07', '花花', '', '', '', '', '', '', '', ''),
+(41, '8', '440', '測O試', 'V123456788', 0, 'case_detail.php?name=測O試&gender=女&pid=V123456788&date=2022-10-01&property=自立宿舍&type=愛滋感染者&grade=B&id=8&open_id=440&referral=警政&case_Create_date=2022-10-25&unopen_type=case&birth=1974-04-21', '', 0, 'familyship', '2022-10-25', '1025測試', '\"[{\"name\":\"familyship\",\"value\":\"0\"},{\"name\":\"familyship\",\"value\":\"後測\"}]\"', '', '', '2022-10-25 00:00:00', '花花', '2022-10-25 14:07:11', '花花', '', '', '', '', '', '', '', ''),
+(42, '8', '440', '測O試', 'V123456788', 0, 'case_detail.php?name=測O試&gender=女&pid=V123456788&date=2022-10-01&property=自立宿舍&type=愛滋感染者&grade=B&id=8&open_id=440&referral=警政&case_Create_date=2022-10-25&unopen_type=case&birth=1974-04-21', '', 0, 'BSRS5', '0000-00-00', '1025測試', '\"[{\"name\":\"BSRS5\",\"value\":\"11\"},{\"name\":\"BSRS5\",\"value\":\"已通報\"}]\"', '', '', '2022-10-25 00:00:00', '花花', '2022-10-25 14:08:38', '花花', '', '', '', '', '', '', '', ''),
+(43, '8', '440', '測O試', 'V123456788', 0, 'case_detail.php?name=測O試&gender=女&pid=V123456788&date=2022-10-01&property=自立宿舍&type=愛滋感染者&grade=B&id=8&open_id=440&referral=警政&case_Create_date=2022-10-25&unopen_type=case&birth=1974-04-21', '', 0, 'settlement', '2022-10-25', '1025測試', '\"[{\"name\":\"settlement\",\"value\":\"符合基本條件指標條件共4項，符合收案指標條件共7項。\"}]\"', '', '', '2022-10-25 00:00:00', '花花', '2022-10-25 14:12:36', '花花', '', '', '', '', '', '', '', ''),
+(44, '7', '123', '瓜', 'M2224786629', 0, 'case_detail.php?name=瓜&gender=女&pid=M2224786629&date=2022-10-24&property=安置家園&type=愛滋感染者&grade=A&id=7&open_id=123&referral=教會&case_Create_date=2022-10-14&unopen_type=case&birth=2022-10-20', '', 0, 'interlocution', '0000-00-00', '', '', '', '', '2022-11-01 00:00:00', '社工員1', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', ''),
+(45, '6', 'RE111', 'test', 'T1334356112', 0, 'case_detail.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03', '', 0, 'familyship', '2022-11-01', '111', '', '', '', '2022-11-01 00:00:00', '社工員1', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', ''),
+(46, '6', 'RE111', 'test', 'T1334356112', 0, 'case_detail.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03', '', 0, 'satif', '2022-11-01', '111111', '', '', '', '2022-11-01 00:00:00', '社工員1', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', ''),
+(47, '9', 'RE115', '十二月零九日', 'Z652123745', 0, 'case_detail.php?name=十二月零九日&gender=男&pid=Z652123745&date=2022-12-09&property=自立宿舍&type=一般藥癮者&grade=A&id=9&open_id=RE115&referral=教會&case_Create_date=2022-12-09&unopen_type=phone&birth=1980-02-12', '', 0, 'satif', '2022-12-09', '00', '', '', '', '2022-12-09 00:00:00', '花花', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', ''),
+(48, '9', 'RE115', '十二月零九日', 'Z652123745', 0, 'case_detail.php?name=十二月零九日&gender=男&pid=Z652123745&date=2022-12-09&property=自立宿舍&type=一般藥癮者&grade=A&id=9&open_id=RE115&referral=教會&case_Create_date=2022-12-09&unopen_type=phone&birth=1980-02-12', '', 0, 'case', '2022-12-09', '', '', '', '', '2022-12-09 00:00:00', '花花', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', ''),
+(49, '10', 'RE877', '何竹田', 'y997501623', 0, 'case_detail.php?name=何竹田&gender=男&pid=y997501623&date=2022-12-09&property=社區&type=藥癮家庭&grade=A&id=10&open_id=RE877&referral=藥癮家庭&case_Create_date=2022-12-09&unopen_type=case&birth=1999-03-23', '', 0, 'life', '2022-12-09', '', '\"[{\"name\":\"life\",\"value\":\"<div>第一部分得分：1分，結果：極不滿意。<br/>第二部分得分：425分。</div>\"},{\"name\":\"life\",\"value\":\"前測\"}]\"', '', '', '2022-12-09 00:00:00', '花花', '2022-12-09 10:17:30', '花花', '', '', '', '', '', '', '', ''),
+(50, '10', 'RE877', '何竹田', 'y997501623', 0, 'case_detail.php?name=何竹田&gender=男&pid=y997501623&date=2022-12-09&property=社區&type=藥癮家庭&grade=A&id=10&open_id=RE877&referral=藥癮家庭&case_Create_date=2022-12-09&unopen_type=case&birth=1999-03-23', '', 0, 'interlocution', '0000-00-00', '', '\"[{\"name\":\"interlocution\",\"value\":\"2022-12-09\"},{\"name\":\"interlocution\",\"value\":\"1111111111111111111111111111111111111111111111111111111111111111111111111111111111\"},{\"name\":\"interlocution\",\"value\":\"之痾ㄒㄧ安\"}]\"', '', '', '2022-12-09 00:00:00', '花花', '2022-12-09 10:21:20', '花花', '', '', '', '', '', '', '', ''),
+(51, '10', 'RE877', '何竹田', 'y997501623', 0, 'case_detail.php?name=何竹田&gender=男&pid=y997501623&date=2022-12-09&property=社區&type=藥癮家庭&grade=A&id=10&open_id=RE877&referral=藥癮家庭&case_Create_date=2022-12-09&unopen_type=case&birth=1999-03-23', '', 0, 'satif', '2022-12-09', '', '\"[{\"name\":\"satif\",\"value\":\"46\"}]\"', '', '', '2022-12-09 00:00:00', '花花', '2022-12-09 10:21:59', '花花', '', '', '', '', '', '', '', ''),
+(52, '11', '441', '立可貸', 'j744510096', 0, 'case_detail.php?name=立可貸&gender=其他&pid=j744510096&date=2022-12-09&property=社區&type=親職兒少&grade=C&id=11&open_id=441&referral=民間社福機構&case_Create_date=2022-12-09&unopen_type=case&birth=1997-10-19', '', 0, 'case', '2022-12-09', '', '\"[{\"name\":\"case\",\"value\":\"暫不結案，持續服務至民國115年3月4日\"}]\"', '', '', '2022-12-09 00:00:00', '花花', '2022-12-09 10:23:59', '花花', '', '', '', '', '', '', '', ''),
+(53, '11', '441', '立可貸', 'j744510096', 0, 'case_detail.php?name=立可貸&gender=其他&pid=j744510096&date=2022-12-09&property=社區&type=親職兒少&grade=C&id=11&open_id=441&referral=民間社福機構&case_Create_date=2022-12-09&unopen_type=case&birth=1997-10-19', '', 0, 'interlocution', '0000-00-00', '', '\"[{\"name\":\"interlocution\",\"value\":\"2022-12-13\"},{\"name\":\"interlocution\",\"value\":\"1\"},{\"name\":\"interlocution\",\"value\":\"ㄓㄜㄒㄧㄢ\"}]\"', '', '', '2022-12-09 00:00:00', '花花', '2022-12-09 10:26:55', '花花', '', '', '', '', '', '', '', ''),
+(54, '11', '441', '立可貸', 'j744510096', 0, 'case_detail.php?name=立可貸&gender=其他&pid=j744510096&date=2022-12-09&property=社區&type=親職兒少&grade=C&id=11&open_id=441&referral=民間社福機構&case_Create_date=2022-12-09&unopen_type=case&birth=1997-10-19', '', 1, 'interlocution', '0000-00-00', '', '\"[{\"name\":\"interlocution\",\"value\":\"2022-12-16\"},{\"name\":\"interlocution\",\"value\":\"0\"},{\"name\":\"interlocution\",\"value\":\"ㄓㄜㄒㄧㄢ\"}]\"', '', '', '2022-12-09 00:00:00', '花花', '2022-12-09 10:27:41', '花花', '', '', '', '', '', '', '', ''),
+(55, '11', '441', '立可貸', 'j744510096', 0, 'case_detail.php?name=立可貸&gender=其他&pid=j744510096&date=2022-12-09&property=社區&type=親職兒少&grade=C&id=11&open_id=441&referral=民間社福機構&case_Create_date=2022-12-09&unopen_type=case&birth=1997-10-19', '', 0, 'BSRS5', '0000-00-00', '', '\"[{\"name\":\"BSRS5\",\"value\":\"20\"},{\"name\":\"BSRS5\",\"value\":\"通報\"}]\"', '', '', '2022-12-09 00:00:00', '花花', '2022-12-09 10:28:44', '花花', '', '', '', '', '', '', '', ''),
+(56, '10', 'RE877', '何竹田', 'y997501623', 0, 'case_detail.php?name=何竹田&gender=男&pid=y997501623&date=2022-12-09&property=社區&type=藥癮家庭&grade=A&id=10&open_id=RE877&referral=藥癮家庭&case_Create_date=2022-12-09&unopen_type=case&birth=1999-03-23', '', 0, 'resource', '0000-00-00', '', '', '', '', '2022-12-09 00:00:00', '花花', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', ''),
+(57, '10', 'RE877', '何竹田', 'y997501623', 0, 'case_detail.php?name=何竹田&gender=男&pid=y997501623&date=2022-12-09&property=社區&type=藥癮家庭&grade=A&id=10&open_id=RE877&referral=藥癮家庭&case_Create_date=2022-12-09&unopen_type=case&birth=1999-03-23', '', 0, 'health', '2022-12-05', '', '', '', '', '2022-12-09 00:00:00', '花花', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', ''),
+(58, '10', 'RE877', '何竹田', 'y997501623', 1, '', '../upload/case_all/個案管理系統測試20221025(03).docx', 0, 'sullen', '0000-00-00', '', '', '', '\"[{\"name\":\"upload_date_sullen0\",\"value\":\"2022-12-09\"},{\"name\":\"scoresullen0\",\"value\":\"30\"},{\"name\":\"filesullen0\",\"value\":\"個案管理系統測試20221025(03).docx\"},{\"name\":\"test_typesullen0\",\"value\":\"中測\"},{\"name\":\"remarksullen0\",\"value\":\"\"}]\"', '2022-12-09 14:49:49', '花花', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', ''),
+(59, '10', 'RE877', '何竹田', 'y997501623', 0, 'case_detail.php?name=何竹田&gender=男&pid=y997501623&date=2022-12-09&property=社區&type=藥癮家庭&grade=A&id=10&open_id=RE877&referral=藥癮家庭&case_Create_date=2022-12-09&unopen_type=case&birth=1999-03-23', '', 0, 'employment_satif', '2022-12-09', '', '\"[{\"name\":\"employment_satif\",\"value\":\"6\"}]\"', '', '', '2022-12-09 00:00:00', '花花', '2022-12-09 14:57:41', '花花', '', '', '', '', '', '', '', ''),
+(60, '10', 'RE877', '何竹田', 'y997501623', 0, 'case_detail.php?name=何竹田&gender=男&pid=y997501623&date=2022-12-09&property=社區&type=藥癮家庭&grade=A&id=10&open_id=RE877&referral=藥癮家庭&case_Create_date=2022-12-09&unopen_type=case&birth=1999-03-23', '', 0, 'familyship', '2022-12-09', '', '\"[{\"name\":\"familyship\",\"value\":\"32\"},{\"name\":\"familyship\",\"value\":\"\"}]\"', '', '', '2022-12-09 00:00:00', '花花', '2022-12-09 14:58:53', '花花', '', '', '', '', '', '', '', ''),
+(61, '10', 'RE877', '何竹田', 'y997501623', 0, 'case_detail.php?name=何竹田&gender=男&pid=y997501623&date=2022-12-09&property=社區&type=藥癮家庭&grade=A&id=10&open_id=RE877&referral=藥癮家庭&case_Create_date=2022-12-09&unopen_type=case&birth=1999-03-23', '', 0, 'BSRS5', '0000-00-00', '', '\"[{\"name\":\"BSRS5\",\"value\":\"20\"},{\"name\":\"BSRS5\",\"value\":\".\"}]\"', '', '', '2022-12-09 00:00:00', '花花', '2022-12-09 14:59:30', '花花', '', '', '', '', '', '', '', ''),
+(62, '10', 'RE877', '何竹田', 'y997501623', 0, 'case_detail.php?name=何竹田&gender=男&pid=y997501623&date=2022-12-09&property=社區&type=藥癮家庭&grade=A&id=10&open_id=RE877&referral=藥癮家庭&case_Create_date=2022-12-09&unopen_type=case&birth=1999-03-23', '', 0, 'settlement', '2022-12-09', '', '\"[{\"name\":\"settlement\",\"value\":\"符合基本條件指標條件共4項，符合收案指標條件共7項。\"}]\"', '', '', '2022-12-09 00:00:00', '花花', '2022-12-09 15:03:58', '花花', '', '', '', '', '', '', '', ''),
+(63, '2', 'RE112', 'TEST0808', 'S167123331', 0, 'case_detail.php?name=TEST0808&gender=女&pid=S167123331&date=2022-08-08&property=安置家園&type=一般藥癮者&grade=B&id=2&open_id=RE112&referral=醫院&case_Create_date=2022-08-08&unopen_type=case&birth=1993-06-22', '', 0, 'resource', '0000-00-00', 'xxxx', '', '', '', '2022-12-29 00:00:00', '社工員1', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', ''),
+(64, '2', 'RE112', 'TEST0808', 'S167123331', 0, 'case_detail.php?name=TEST0808&gender=女&pid=S167123331&date=2022-08-08&property=安置家園&type=一般藥癮者&grade=B&id=2&open_id=RE112&referral=醫院&case_Create_date=2022-08-08&unopen_type=case&birth=1993-06-22', '', 0, 'health', '2022-12-08', '', '', '', '', '2022-12-29 00:00:00', '社工員1', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', ''),
+(65, '2', 'RE112', 'TEST0808', 'S167123331', 0, 'case_detail.php?name=TEST0808&gender=女&pid=S167123331&date=2022-08-08&property=安置家園&type=一般藥癮者&grade=B&id=2&open_id=RE112&referral=醫院&case_Create_date=2022-08-08&unopen_type=case&birth=1993-06-22', '', 0, 'satif', '2022-12-15', '', '', '', '', '2022-12-29 00:00:00', '社工員1', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', ''),
+(66, '2', 'RE112', 'TEST0808', 'S167123331', 0, 'case_detail.php?name=TEST0808&gender=女&pid=S167123331&date=2022-08-08&property=安置家園&type=一般藥癮者&grade=B&id=2&open_id=RE112&referral=醫院&case_Create_date=2022-08-08&unopen_type=case&birth=1993-06-22', '', 0, 'familyship', '2022-11-30', '', '', '', '', '2022-12-29 00:00:00', '社工員1', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', ''),
+(67, '2', 'RE112', 'TEST0808', 'S167123331', 0, 'case_detail.php?name=TEST0808&gender=女&pid=S167123331&date=2022-08-08&property=安置家園&type=一般藥癮者&grade=B&id=2&open_id=RE112&referral=醫院&case_Create_date=2022-08-08&unopen_type=case&birth=1993-06-22', '', 0, 'settlement', '2022-11-30', '', '', '', '', '2022-12-29 00:00:00', '社工員1', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', ''),
+(68, '6', 'RE111', 'test', 'T1334356112', 0, 'case_detail.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03', '', 0, 'resource', '0000-00-00', 'tttt', '', '', '', '2023-07-13 00:00:00', '執行長', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -1018,15 +1028,15 @@ CREATE TABLE `form_case_report` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime DEFAULT current_timestamp(),
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `form_case_report`
 --
 
 INSERT INTO `form_case_report` (`Id`, `Case_seqid`, `Case_id`, `Form_id`, `Form_type`, `Open_case_date`, `Name`, `Birth`, `Gender`, `Address`, `Education`, `Drug_record`, `Referral`, `Demand`, `Case_assign`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
-(1, '6', 'RE111', 6, 'case', '2022-08-08', 'test', '1991-02-03', '男', '屏東縣', '高中職', '其他', '其他', '', '社工員1', '2022-10-06 14:50:22', '園主任', '2023-07-12 23:23:51', 'jia'),
-(2, '6', 'RE111', 12, 'interlocution', '2022-08-08', 'test', '0000-00-00', '', '', '', '', '', '', '社工員1', '2022-10-06 14:50:46', '園主任', '2023-07-12 23:20:49', 'jia'),
+(1, '6', 'RE111', 6, 'case', '2022-08-08', 'test', '1991-02-03', '男', '屏東縣', '高中職', '其他', '其他', '', '社工員1', '2022-10-06 14:50:22', '園主任', '2023-07-13 18:18:47', '執行長'),
+(2, '6', 'RE111', 12, 'interlocution', '2022-08-08', 'test', '0000-00-00', '', '', '', '', '', '', '社工員1', '2022-10-06 14:50:46', '園主任', '2023-07-13 17:47:30', '執行長'),
 (3, '6', 'RE111', 13, 'interlocution', '2022-08-08', 'test', '0000-00-00', '', '', '', '', '', '法律', '社工員1', '2022-10-06 14:52:03', '園主任', '2023-07-12 23:23:29', 'jia'),
 (4, '6', 'RE111', 15, 'interlocution', '2022-08-08', 'test', '0000-00-00', '', '', '', '', '', '就業輔導', '社工員1', '2022-10-06 14:52:35', '園主任', '2023-07-12 23:15:21', 'jia'),
 (5, '1', 'RE111', 1, 'case', '2021-08-08', 'test', '1991-02-03', '男', '屏東縣', '高中職', '其他', '其他', '', '社工員1', '2022-10-06 14:52:58', '園主任', '2022-10-15 21:41:33', 'jia'),
@@ -1062,7 +1072,8 @@ INSERT INTO `form_case_report` (`Id`, `Case_seqid`, `Case_id`, `Form_id`, `Form_
 (35, '10', 'RE877', 59, 'employment_satif', '2022-12-09', '何竹田', '0000-00-00', '', '', '', '', '', '', 'ㄓㄜㄒㄧㄢ', '2022-12-09 14:57:25', '花花', '2022-12-09 14:57:41', '花花'),
 (36, '10', 'RE877', 60, 'familyship', '2022-12-09', '何竹田', '0000-00-00', '', '', '', '', '', '', 'ㄓㄜㄒㄧㄢ', '2022-12-09 14:58:41', '花花', '2022-12-09 14:58:53', '花花'),
 (37, '10', 'RE877', 61, 'BSRS5', '2022-12-09', '何竹田', '0000-00-00', '', '', '', '', '', '', 'ㄓㄜㄒㄧㄢ', '2022-12-09 14:59:15', '花花', '2022-12-09 14:59:30', '花花'),
-(38, '10', 'RE877', 62, 'settlement', '2022-12-09', '何竹田', '0000-00-00', '', '', '', '', '', '', 'ㄓㄜㄒㄧㄢ', '2022-12-09 15:03:15', '花花', '2022-12-09 15:03:58', '花花');
+(38, '10', 'RE877', 62, 'settlement', '2022-12-09', '何竹田', '0000-00-00', '', '', '', '', '', '', 'ㄓㄜㄒㄧㄢ', '2022-12-09 15:03:15', '花花', '2022-12-09 15:03:58', '花花'),
+(39, '6', 'RE111', 68, 'resource', '2022-08-08', 'test', '0000-00-00', '', '', '', '', '', '', '社工員1', '2023-07-13 18:19:35', '執行長', '2023-07-13 18:19:35', '');
 
 -- --------------------------------------------------------
 
@@ -1073,7 +1084,7 @@ INSERT INTO `form_case_report` (`Id`, `Case_seqid`, `Case_id`, `Form_id`, `Form_
 CREATE TABLE `form_interlocution_queskeywords` (
   `Id` int(244) NOT NULL,
   `Ques_type` varchar(2000) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `form_interlocution_queskeywords`
@@ -1110,7 +1121,7 @@ CREATE TABLE `leave_rule_table` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime DEFAULT current_timestamp(),
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `leave_rule_table`
@@ -1133,7 +1144,7 @@ CREATE TABLE `login_record` (
   `Login_name` varchar(30) NOT NULL,
   `Login_coordinate` varchar(100) NOT NULL,
   `Is_day_first` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `login_record`
@@ -1330,7 +1341,7 @@ CREATE TABLE `members_assemble` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime NOT NULL,
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `members_assemble`
@@ -1378,7 +1389,7 @@ CREATE TABLE `overtime` (
   `Director_signature` longtext NOT NULL,
   `Director_sign_msg` longtext NOT NULL,
   `Director_sign_time` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `overtime`
@@ -1417,7 +1428,7 @@ CREATE TABLE `placement_case` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime NOT NULL,
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `placement_case`
@@ -1447,7 +1458,7 @@ CREATE TABLE `placement_forms` (
   `answer` longtext NOT NULL,
   `file_path` varchar(1000) NOT NULL,
   `Health_rec` longtext NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `placement_forms`
@@ -1481,7 +1492,7 @@ CREATE TABLE `placement_form_all_info` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime NOT NULL,
   `Update_name` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `placement_form_all_info`
@@ -1511,7 +1522,7 @@ CREATE TABLE `program_act` (
   `Create_name` varchar(300) NOT NULL,
   `Update_date` datetime NOT NULL,
   `Update_name` varchar(300) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `program_act`
@@ -1543,7 +1554,7 @@ CREATE TABLE `program_plan` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime NOT NULL,
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `program_plan`
@@ -1569,7 +1580,7 @@ CREATE TABLE `program_plan_form` (
   `Upload_name` varchar(30) NOT NULL,
   `Update_date` datetime NOT NULL,
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `program_plan_form`
@@ -1615,7 +1626,7 @@ CREATE TABLE `program_result` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` date NOT NULL,
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -1634,7 +1645,7 @@ CREATE TABLE `program_result_form` (
   `Upload_name` varchar(30) NOT NULL,
   `Update_date` datetime NOT NULL,
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -1663,7 +1674,7 @@ CREATE TABLE `published` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` date NOT NULL,
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `published`
@@ -1691,7 +1702,7 @@ CREATE TABLE `published_form` (
   `Upload_name` varchar(30) NOT NULL,
   `Update_date` datetime NOT NULL,
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -1701,39 +1712,39 @@ CREATE TABLE `published_form` (
 
 CREATE TABLE `received` (
   `Id` int(255) NOT NULL,
-  `Year` varchar(300) CHARACTER SET utf8mb4 NOT NULL,
-  `Title_name` varchar(300) CHARACTER SET utf8mb4 NOT NULL,
+  `Year` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Title_name` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `Received_date` varchar(30) NOT NULL,
-  `Subject` varchar(300) CHARACTER SET utf8mb4 NOT NULL,
-  `Unit` varchar(300) CHARACTER SET utf8mb4 NOT NULL,
+  `Subject` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Unit` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `Num_receive` varchar(1000) NOT NULL,
   `Upload_name` varchar(500) NOT NULL,
   `Upload_path` varchar(2000) NOT NULL,
   `Create_date` date NOT NULL,
-  `Create_name` varchar(30) CHARACTER SET utf8mb4 NOT NULL,
+  `Create_name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `Update_date` date NOT NULL,
-  `Update_name` varchar(30) CHARACTER SET utf8mb4 NOT NULL,
-  `Executive` varchar(30) CHARACTER SET utf8mb4 NOT NULL,
-  `Executive_signature` varchar(500) CHARACTER SET utf8mb4 NOT NULL,
-  `Executive_sign_msg` varchar(2000) CHARACTER SET utf8mb4 NOT NULL,
-  `Executive_sign_time` varchar(54) CHARACTER SET utf8mb4 NOT NULL,
-  `Supervise` varchar(30) CHARACTER SET utf8mb4 NOT NULL,
-  `Supervise_signature` varchar(500) CHARACTER SET utf8mb4 NOT NULL,
-  `Supervise_sign_msg` varchar(2000) CHARACTER SET utf8mb4 NOT NULL,
-  `Supervise_sign_time` varchar(54) CHARACTER SET utf8mb4 NOT NULL,
-  `Leader` varchar(30) CHARACTER SET utf8mb4 NOT NULL,
-  `Leader_signature` varchar(500) CHARACTER SET utf8mb4 NOT NULL,
-  `Leader_sign_msg` varchar(2000) CHARACTER SET utf8mb4 NOT NULL,
-  `Leader_sign_time` varchar(54) CHARACTER SET utf8mb4 NOT NULL,
-  `Director` varchar(30) CHARACTER SET utf8mb4 NOT NULL,
-  `Director_signature` varchar(500) CHARACTER SET utf8mb4 NOT NULL,
-  `Director_sign_msg` varchar(2000) CHARACTER SET utf8mb4 NOT NULL,
-  `Director_sign_time` varchar(54) CHARACTER SET utf8mb4 NOT NULL,
-  `Distribution` varchar(30) CHARACTER SET utf8mb4 NOT NULL,
-  `Distribution_signature` varchar(500) CHARACTER SET utf8mb4 NOT NULL,
-  `Distribution_sign_msg` varchar(500) CHARACTER SET utf8mb4 NOT NULL,
-  `Distribution_sign_time` varchar(54) CHARACTER SET utf8mb4 NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `Update_name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Executive` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Executive_signature` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Executive_sign_msg` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Executive_sign_time` varchar(54) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Supervise` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Supervise_signature` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Supervise_sign_msg` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Supervise_sign_time` varchar(54) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Leader` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Leader_signature` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Leader_sign_msg` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Leader_sign_time` varchar(54) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Director` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Director_signature` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Director_sign_msg` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Director_sign_time` varchar(54) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Distribution` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Distribution_signature` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Distribution_sign_msg` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Distribution_sign_time` varchar(54) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- 傾印資料表的資料 `received`
@@ -1770,7 +1781,7 @@ CREATE TABLE `received_forms` (
   `Upload_name` varchar(30) NOT NULL,
   `Update_date` datetime NOT NULL,
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -1801,7 +1812,7 @@ CREATE TABLE `resume` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime DEFAULT current_timestamp(),
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `resume`
@@ -1835,7 +1846,7 @@ CREATE TABLE `resume_forms` (
   `Upload_name` varchar(30) NOT NULL,
   `Update_date` datetime DEFAULT current_timestamp(),
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `resume_forms`
@@ -1892,7 +1903,7 @@ CREATE TABLE `resume_seniority` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime DEFAULT current_timestamp(),
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `resume_seniority`
@@ -1939,7 +1950,7 @@ CREATE TABLE `screening` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime NOT NULL,
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `screening`
@@ -1964,7 +1975,7 @@ INSERT INTO `screening` (`Id`, `Screening_id`, `Reservation_date`, `Reservation_
 CREATE TABLE `screening_result_keywords` (
   `Id` int(100) NOT NULL,
   `screening_result` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `screening_result_keywords`
@@ -1988,7 +1999,7 @@ INSERT INTO `screening_result_keywords` (`Id`, `screening_result`) VALUES
 CREATE TABLE `screening_type_keywords` (
   `Id` int(100) NOT NULL,
   `screening_type` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `screening_type_keywords`
@@ -2010,7 +2021,7 @@ INSERT INTO `screening_type_keywords` (`Id`, `screening_type`) VALUES
 
 CREATE TABLE `signature_notice` (
   `Id` int(11) NOT NULL,
-  `Sign_id` int(244) NOT NULL,
+  `Sign_id` varchar(2000) NOT NULL,
   `Title` varchar(1000) NOT NULL,
   `Url` text NOT NULL,
   `Timestamp` varchar(100) NOT NULL,
@@ -2022,62 +2033,63 @@ CREATE TABLE `signature_notice` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime DEFAULT current_timestamp(),
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `signature_notice`
 --
 
 INSERT INTO `signature_notice` (`Id`, `Sign_id`, `Title`, `Url`, `Timestamp`, `Assign`, `Signer`, `Sign_state`, `Type`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
-(7, 0, '團督記錄簽核：test會議記錄標題818', 'supervisor_record_detail.php?year=111&id=17&sr_id=17&rec_type=fillin', '2022-08-18 16:05', '社工員1', '執行長', '未簽核', 'supervisor_record', '2022-08-18 16:10:58', '社工員1', '2022-08-18 16:10:58', ''),
-(8, 0, '團督記錄簽核：uploadtt會議記錄標題818', 'supervisor_record_detail.php?year=111&id=18&sr_id=18&rec_type=upload', '2022-08-18 00:00', '社工員1', '園主任', '已簽核', 'supervisor_record', '2022-08-18 16:11:27', '社工員1', '2022-08-18 16:11:27', ''),
-(9, 0, '理監事會議記錄簽核：test理監事會議會議記錄標題818', 'board_supervisor_detail.php?year=111&id=32&bs_id=32&rec_type=fillin', '2022-08-18 17:20', '園主任', '園主任', '已簽核', 'board_supervisor', '2022-08-18 16:35:25', '園主任', '2022-08-18 16:35:25', ''),
-(11, 0, '理監事會議記錄簽核：test上傳會議記錄理監事會議818', 'board_supervisor_detail.php?year=111&id=33&bs_id=33&rec_type=upload', '2022-08-18 00:00', '社工員1', '社工組長', '已簽核', 'board_supervisor', '2022-08-18 16:38:40', '社工員1', '2022-08-18 16:38:40', ''),
-(12, 0, '會員大會記錄簽核：test會員大會記錄標題818', 'members_assemble_detail.php?year=111&id=14&ma_id=14&rec_type=fillin', '2022-08-18 14:00', '社工員2', '社工組長', '未簽核', 'members_assemble', '2022-08-18 16:55:38', '社工員2', '2022-08-18 16:55:38', ''),
-(13, 0, '會員大會記錄簽核：upload會員大會記錄標題818', 'members_assemble_detail.php?year=111&id=15&ma_id=15&rec_type=upload', '2022-08-18 00:00', '社工員2', '園主任', '已簽核', 'members_assemble', '2022-08-18 16:56:50', '社工員2', '2022-08-18 16:56:50', ''),
-(14, 0, '團督記錄簽核：test會議記錄標題920', 'supervisor_record_detail.php?year=111&id=19&sr_id=19&rec_type=fillin', '2022-09-20 07:07', '園主任', '社工組長', '未簽核', 'supervisor_record', '2022-09-20 18:04:02', '園主任', '2022-09-20 18:04:02', ''),
-(15, 0, '會員大會記錄簽核：test會員大會記錄標題	123', 'members_assemble_detail.php?year=109&id=0&ma_id=0&rec_type=fillin', '2020-08-13 09:00', '社工員1', '社工組長', '未簽核', 'members_assemble', '2022-10-07 20:57:28', '社工員1', '2022-10-07 20:57:28', ''),
-(16, 0, '會員大會記錄簽核：test會員大會記錄標題	upload', 'members_assemble_detail.php?year=111&id=2&ma_id=2&rec_type=upload', '2022-10-07 00:00', '社工員1', '園主任', '未簽核', 'members_assemble', '2022-10-07 21:01:24', '社工員1', '2022-10-07 21:01:24', ''),
-(17, 0, '理監事會記錄簽核：test理監事會記錄標題1007', 'board_supervisor_detail.php?year=111&id=34&bs_id=34&rec_type=fillin', '2022-10-07 10:05', '社工員1', '社工組長', '未簽核', 'board_supervisor', '2022-10-07 21:03:01', '社工員1', '2022-10-07 21:03:01', ''),
-(18, 0, '會員大會記錄簽核：會員大會記錄標題2', 'members_assemble_detail.php?year=109&id=3&ma_id=3&rec_type=fillin', '2020-11-11 13:10', '社工員1', '社工組長', '未簽核', 'members_assemble', '2022-10-07 21:05:07', '社工員1', '2022-10-07 21:05:07', ''),
-(19, 0, '團督記錄簽核：TEST團督記錄標題1231007', 'supervisor_record_detail.php?year=111&id=20&sr_id=20&rec_type=fillin', '2022-10-07 10:15', '社工員1', '園主任', '未簽核', 'supervisor_record', '2022-10-07 21:15:09', '社工員1', '2022-10-07 21:15:09', ''),
-(20, 0, '理監事會議記錄簽核：uploadtt理監事會記錄標題1209', 'board_supervisor_detail.php?year=109&id=35&bs_id=35&rec_type=upload', '2022-10-13 00:00', '社工組長', '社工員2', '未簽核', 'board_supervisor', '2022-10-13 16:26:15', '社工組長', '2022-10-13 16:26:15', ''),
-(21, 0, '理監事會記錄簽核：adasad', 'board_supervisor_detail.php?year=111&id=36&bs_id=36&rec_type=fillin', '2022-10-15 01:11', 'jia', '力聖臨', '未簽核', 'board_supervisor', '2022-10-15 23:08:50', 'jia', '2022-10-15 23:08:50', ''),
-(22, 0, '團督記錄簽核：test團督記錄標題1015', 'supervisor_record_detail.php?year=111&id=21&sr_id=21&rec_type=fillin', '2022-10-15 00:20', 'jia', '社工組長', '未簽核', 'supervisor_record', '2022-10-15 23:16:59', 'jia', '2022-10-15 23:16:59', ''),
-(23, 0, '理監事會議記錄簽核：ttttt理監事會記錄標題1015', 'board_supervisor_detail.php?year=111&id=36&bs_id=36&rec_type=upload', '2022-10-15 00:00', 'jia', '園主任', '未簽核', 'board_supervisor', '2022-10-15 23:17:58', 'jia', '2022-10-15 23:17:58', ''),
-(24, 15, '結案簽核：案號RE111姓名test', 'closed_detail.php?closed_id=15', '2022-10-24 00:00', '社工員1', '社工組長', '已簽核', 'closed', '2022-10-25 20:02:03', '社工員1', '2022-10-25 21:40:23', '社工組長'),
-(25, 22, '團督記錄簽核：2022年度12月06日第六次團督', 'supervisor_record_detail.php?year=111&id=22&sr_id=22&rec_type=fillin', '2022-12-06 15:16', '花花', '花花', '未簽核', 'supervisor_record', '2022-12-06 16:41:02', '花花', '2022-12-06 16:41:02', ''),
-(26, 23, '團督記錄簽核：2022年度12月06日第六次團督但是是16時42分', 'supervisor_record_detail.php?year=111&id=23&sr_id=23&rec_type=fillin', '2022-12-06 04:54', '花花', 'ㄓㄜㄒㄧㄢ', '未簽核', 'supervisor_record', '2022-12-06 16:46:09', '花花', '2022-12-06 16:46:09', ''),
-(27, 24, '團督記錄簽核：2022年度12月06日第六次團督16時47分', 'supervisor_record_detail.php?year=109&id=24&sr_id=24&rec_type=fillin', '2020-11-11 23:11', '花花', 'ㄓㄜㄒㄧㄢ', '未簽核', 'supervisor_record', '2022-12-06 16:49:53', '花花', '2022-12-06 16:50:14', '花花'),
-(28, 25, '團督記錄簽核：2022年度12月06日第六次團督16時50分', 'supervisor_record_detail.php?year=110&id=25&sr_id=25&rec_type=fillin', '2021-07-17 21:57', '花花', 'ㄓㄜㄒㄧㄢ', '未簽核', 'supervisor_record', '2022-12-06 16:54:39', '花花', '2022-12-06 16:54:39', ''),
-(29, 37, '理監事會記錄簽核：2022年度12月06日第六次理監事會', 'board_supervisor_detail.php?year=111&id=37&bs_id=37&rec_type=fillin', '2022-12-06 07:13', '花花', 'ㄓㄜㄒㄧㄢ', '未簽核', 'board_supervisor', '2022-12-06 17:23:42', '花花', '2022-12-06 17:23:42', ''),
-(30, 38, '理監事會記錄簽核：2022年度12月06日第六次理監事會不過現在是17點26分', 'board_supervisor_detail.php?year=109&id=38&bs_id=38&rec_type=fillin', '2020-12-30 22:31', '花花', 'ㄓㄜㄒㄧㄢ', '未簽核', 'board_supervisor', '2022-12-06 17:28:46', '花花', '2022-12-06 17:28:46', ''),
-(31, 4, '會員大會記錄簽核：2022年度12月08日第八次理監事會', 'members_assemble_detail.php?year=111&id=4&ma_id=4&rec_type=fillin', '2022-12-08 01:40', '花花', 'ㄓㄜㄒㄧㄢ', '未簽核', 'members_assemble', '2022-12-08 11:38:06', '花花', '2022-12-08 11:38:06', ''),
-(32, 5, '會員大會記錄簽核：2022年度12月08日第八次會員大會', 'members_assemble_detail.php?year=109&id=5&ma_id=5&rec_type=fillin', '2020-12-13 20:52', '花花', 'ㄓㄜㄒㄧㄢ', '未簽核', 'members_assemble', '2022-12-08 11:44:35', '花花', '2022-12-08 11:44:35', ''),
-(33, 6, '會員大會記錄簽核：一加一等於二', 'members_assemble_detail.php?year=111&id=6&ma_id=6&rec_type=upload', '2022-12-08 00:00', '花花', 'ㄓㄜㄒㄧㄢ', '未簽核', 'members_assemble', '2022-12-08 11:46:48', '花花', '2022-12-08 11:46:48', ''),
-(34, 16, '結案簽核：案號RE115姓名十二月零九日', 'closed_detail.php?closed_id=16', '2022-12-09 00:00', 'ㄓㄜㄒㄧㄢ', 'ㄓㄜㄒㄧㄢ', '未簽核', 'closed', '2022-12-09 10:11:21', '花花', '2023-05-24 15:04:37', '社工員1'),
-(35, 26, '團督記錄簽核：444', 'supervisor_record_detail.php?year=112&id=26&sr_id=26&rec_type=fillin', '2023-01-11 15:53', '社工員1', '晏傳恕', '未簽核', 'supervisor_record', '2023-01-12 13:53:30', '社工員1', '2023-01-12 14:18:12', '社工員1'),
-(36, 27, '團督記錄簽核：wwww', 'supervisor_record_detail.php?year=112&id=27&sr_id=27&rec_type=fillin', '2023-03-23 10:30', 'jia', '丘培民', '未簽核', 'supervisor_record', '2023-03-30 09:31:17', 'jia', '2023-03-30 09:31:17', ''),
-(37, 37, '收文簽核：主旨fefe,來文單位fewfw', 'received_detail.php?re_id=37&year=112', '2023-06-07 00:00', '社工員1', '李萬榮、施朝根、力聖臨', '未簽核', 'received', '2023-06-06 13:30:23', '社工員1', '2023-06-06 13:30:23', ''),
-(38, 38, '收文簽核：主旨efefe,來文單位efefew', 'received_detail.php?re_id=38&year=112', '2023-06-15 00:00', '社工員1', '洪勝霖、洪勝霖、力聖臨', '未簽核', 'received', '2023-06-06 13:31:08', '社工員1', '2023-06-06 13:31:08', ''),
-(39, 39, '收文簽核：主旨www,來文單位www', 'received_detail.php?re_id=39&year=112', '2023-06-05 00:00', '社工員1', '、、', '未簽核', 'received', '2023-06-06 18:59:36', '社工員1', '2023-06-06 18:59:36', ''),
-(40, 0, '發文簽核：主旨ddd', 'published_detail.php?pu_id=0&year=112', '2023-06-07 00:00', '社工員1', '、undefined、undefined', '未簽核', 'published', '2023-06-06 19:04:09', '社工員1', '2023-06-06 19:04:09', ''),
-(41, 24, '發文簽核：主旨', 'published_detail.php?pu_id=24&year=', ' 00:00', '社工員1', 'undefined、undefined', '未簽核', 'published', '2023-06-06 19:06:28', '社工員1', '2023-06-06 19:06:28', ''),
-(42, 25, '發文簽核：主旨', 'published_detail.php?pu_id=25&year=', ' 00:00', '社工員1', 'undefined、undefined', '未簽核', 'published', '2023-06-06 19:07:00', '社工員1', '2023-06-06 19:07:00', ''),
-(43, 26, '發文簽核：主旨', 'published_detail.php?pu_id=26&year=', ' 00:00', '社工員1', 'undefined、undefined', '未簽核', 'published', '2023-06-06 19:07:42', '社工員1', '2023-06-06 19:07:42', ''),
-(44, 27, '發文簽核：主旨ffff', 'published_detail.php?pu_id=27&year=112', '2023-06-05 00:00', '社工員1', 'undefined、undefined', '未簽核', 'published', '2023-06-06 19:09:25', '社工員1', '2023-06-06 19:09:25', ''),
-(45, 28, '發文簽核：主旨ddddd', 'published_detail.php?pu_id=28&year=112', '2023-06-04 00:00', '社工員1', 'undefined、undefined', '未簽核', 'published', '2023-06-06 19:31:22', '社工員1', '2023-06-06 19:31:22', ''),
-(46, 29, '發文簽核：主旨qwqeasdzddsd', 'published_detail.php?pu_id=29&year=112', '2023-06-08 00:00', '社工員1', 'undefined、undefined', '未簽核', 'published', '2023-06-06 20:02:50', '社工員1', '2023-06-06 20:02:50', ''),
-(47, 0, '發文簽核：主旨rewrw', 'published_detail.php?pu_id=0&year=112', '2023-06-07 00:00', '社工員1', 'undefined、undefined', '未簽核', 'published', '2023-06-06 20:08:23', '社工員1', '2023-06-06 20:08:23', ''),
-(48, 40, '收文簽核：主旨wdw,來文單位wadaw', 'received_detail.php?re_id=40&year=112', '2023-06-07 00:00', '社工員1', '執行長、洪勝霖、施朝根', '未簽核', 'received', '2023-06-06 21:59:11', '社工員1', '2023-06-06 21:59:11', ''),
-(49, 41, '收文簽核：主旨sfsdfdsf,來文單位sfsdfsf', 'received_detail.php?re_id=41&year=112', '2023-06-02 00:00', '社工員1', '社工組長、力聖臨、洪勝霖', '未簽核', 'received', '2023-06-06 22:00:24', '社工員1', '2023-06-06 22:00:24', ''),
-(50, 0, '請假單簽核：undefined', 'day_off_detail.php?day_off_id=0&resume_id=1', '2023-06-03 00:00', 'jia', '社工員2、社工組長、執行長', '社工員2未簽核、社工組長已簽核、執行長已簽核', 'day_off', '2023-06-03 20:06:43', 'jia', '2023-06-03 20:06:43', ''),
-(51, 0, '加班紀錄簽核：jia 加班日期112.04.05', 'overtime_detail.php?overtime_id=0&resume_id=1', '2023-06-03 00:00', 'jia', '社工員2、社工組長、執行長', '社工員2未簽核、社工組長已簽核、執行長已簽核', 'overtime', '2023-06-03 21:13:21', 'jia', '2023-06-03 21:13:21', ''),
-(52, 17, '結案簽核：案號RE111姓名test', 'closed_detail.php?closed_id=17', '2023-06-05 00:00', 'jia', '園主任、執行長', '園主任未簽核、執行長已簽核', 'closed', '2023-06-05 19:30:22', 'jia', '2023-06-05 19:30:22', ''),
-(53, 6, '生輔紀錄簽核：日期2023-03-04生活輔導員test生活輔導員', 'dlgrec_detail.php?dlgrec_id=6', '2023-06-05 15:44', '社工員1', '社工員1、園主任、執行長', '社工員1未簽核、園主任未簽核、執行長已簽核', 'dlgrec', '2023-06-05 21:11:44', '執行長', '2023-06-05 21:11:44', ''),
-(54, 43, '收文簽核：主旨ttas,來文單位units', 'received_detail.php?re_id=43&year=112', '2023-06-07 00:00', '社工組長', '歐陽美悌、園主任、執行長、社工組長、洪勝霖', '歐陽美悌未簽核、園主任未簽核、執行長未簽核、社工組長未簽核、洪勝霖未簽核', 'received', '2023-06-08 15:48:41', '社工組長', '2023-06-08 15:48:41', ''),
-(55, 32, '發文簽核：主旨tt123', 'published_detail.php?pu_id=32&year=112', '2023-06-07 00:00', '社工組長', '社工組長、園主任', '社工組長未簽核、園主任未簽核', 'published', '2023-06-08 15:49:53', '社工組長', '2023-06-08 15:49:53', ''),
-(56, 1, '志工資料簽核：111年度 志工姓名TEST111_Vuser54', 'volunteer_detail.php?vo_id=1', '2023-06-21 00:00', '社工員1', '園主任、執行長', '園主任未簽核、執行長已簽核', 'volunteer', '2023-06-21 19:17:57', '執行長', '2023-06-21 19:17:57', '');
+(7, '0', '團督記錄簽核：test會議記錄標題818', 'supervisor_record_detail.php?year=111&id=17&sr_id=17&rec_type=fillin', '2022-08-18 16:05', '社工員1', '執行長', '未簽核', 'supervisor_record', '2022-08-18 16:10:58', '社工員1', '2022-08-18 16:10:58', ''),
+(8, '0', '團督記錄簽核：uploadtt會議記錄標題818', 'supervisor_record_detail.php?year=111&id=18&sr_id=18&rec_type=upload', '2022-08-18 00:00', '社工員1', '園主任', '已簽核', 'supervisor_record', '2022-08-18 16:11:27', '社工員1', '2022-08-18 16:11:27', ''),
+(9, '0', '理監事會議記錄簽核：test理監事會議會議記錄標題818', 'board_supervisor_detail.php?year=111&id=32&bs_id=32&rec_type=fillin', '2022-08-18 17:20', '園主任', '園主任', '已簽核', 'board_supervisor', '2022-08-18 16:35:25', '園主任', '2022-08-18 16:35:25', ''),
+(11, '0', '理監事會議記錄簽核：test上傳會議記錄理監事會議818', 'board_supervisor_detail.php?year=111&id=33&bs_id=33&rec_type=upload', '2022-08-18 00:00', '社工員1', '社工組長', '已簽核', 'board_supervisor', '2022-08-18 16:38:40', '社工員1', '2022-08-18 16:38:40', ''),
+(12, '0', '會員大會記錄簽核：test會員大會記錄標題818', 'members_assemble_detail.php?year=111&id=14&ma_id=14&rec_type=fillin', '2022-08-18 14:00', '社工員2', '社工組長', '未簽核', 'members_assemble', '2022-08-18 16:55:38', '社工員2', '2022-08-18 16:55:38', ''),
+(13, '0', '會員大會記錄簽核：upload會員大會記錄標題818', 'members_assemble_detail.php?year=111&id=15&ma_id=15&rec_type=upload', '2022-08-18 00:00', '社工員2', '園主任', '已簽核', 'members_assemble', '2022-08-18 16:56:50', '社工員2', '2022-08-18 16:56:50', ''),
+(14, '0', '團督記錄簽核：test會議記錄標題920', 'supervisor_record_detail.php?year=111&id=19&sr_id=19&rec_type=fillin', '2022-09-20 07:07', '園主任', '社工組長', '未簽核', 'supervisor_record', '2022-09-20 18:04:02', '園主任', '2022-09-20 18:04:02', ''),
+(15, '0', '會員大會記錄簽核：test會員大會記錄標題	123', 'members_assemble_detail.php?year=109&id=0&ma_id=0&rec_type=fillin', '2020-08-13 09:00', '社工員1', '社工組長', '未簽核', 'members_assemble', '2022-10-07 20:57:28', '社工員1', '2022-10-07 20:57:28', ''),
+(16, '0', '會員大會記錄簽核：test會員大會記錄標題	upload', 'members_assemble_detail.php?year=111&id=2&ma_id=2&rec_type=upload', '2022-10-07 00:00', '社工員1', '園主任', '未簽核', 'members_assemble', '2022-10-07 21:01:24', '社工員1', '2022-10-07 21:01:24', ''),
+(17, '0', '理監事會記錄簽核：test理監事會記錄標題1007', 'board_supervisor_detail.php?year=111&id=34&bs_id=34&rec_type=fillin', '2022-10-07 10:05', '社工員1', '社工組長', '未簽核', 'board_supervisor', '2022-10-07 21:03:01', '社工員1', '2022-10-07 21:03:01', ''),
+(18, '0', '會員大會記錄簽核：會員大會記錄標題2', 'members_assemble_detail.php?year=109&id=3&ma_id=3&rec_type=fillin', '2020-11-11 13:10', '社工員1', '社工組長', '未簽核', 'members_assemble', '2022-10-07 21:05:07', '社工員1', '2022-10-07 21:05:07', ''),
+(19, '0', '團督記錄簽核：TEST團督記錄標題1231007', 'supervisor_record_detail.php?year=111&id=20&sr_id=20&rec_type=fillin', '2022-10-07 10:15', '社工員1', '園主任', '未簽核', 'supervisor_record', '2022-10-07 21:15:09', '社工員1', '2022-10-07 21:15:09', ''),
+(20, '0', '理監事會議記錄簽核：uploadtt理監事會記錄標題1209', 'board_supervisor_detail.php?year=109&id=35&bs_id=35&rec_type=upload', '2022-10-13 00:00', '社工組長', '社工員2', '未簽核', 'board_supervisor', '2022-10-13 16:26:15', '社工組長', '2022-10-13 16:26:15', ''),
+(21, '0', '理監事會記錄簽核：adasad', 'board_supervisor_detail.php?year=111&id=36&bs_id=36&rec_type=fillin', '2022-10-15 01:11', 'jia', '力聖臨', '未簽核', 'board_supervisor', '2022-10-15 23:08:50', 'jia', '2022-10-15 23:08:50', ''),
+(22, '0', '團督記錄簽核：test團督記錄標題1015', 'supervisor_record_detail.php?year=111&id=21&sr_id=21&rec_type=fillin', '2022-10-15 00:20', 'jia', '社工組長', '未簽核', 'supervisor_record', '2022-10-15 23:16:59', 'jia', '2022-10-15 23:16:59', ''),
+(23, '0', '理監事會議記錄簽核：ttttt理監事會記錄標題1015', 'board_supervisor_detail.php?year=111&id=36&bs_id=36&rec_type=upload', '2022-10-15 00:00', 'jia', '園主任', '未簽核', 'board_supervisor', '2022-10-15 23:17:58', 'jia', '2022-10-15 23:17:58', ''),
+(24, '15', '結案簽核：案號RE111姓名test', 'closed_detail.php?closed_id=15', '2022-10-24 00:00', '社工員1', '社工組長', '已簽核', 'closed', '2022-10-25 20:02:03', '社工員1', '2022-10-25 21:40:23', '社工組長'),
+(25, '22', '團督記錄簽核：2022年度12月06日第六次團督', 'supervisor_record_detail.php?year=111&id=22&sr_id=22&rec_type=fillin', '2022-12-06 15:16', '花花', '花花', '未簽核', 'supervisor_record', '2022-12-06 16:41:02', '花花', '2022-12-06 16:41:02', ''),
+(26, '23', '團督記錄簽核：2022年度12月06日第六次團督但是是16時42分', 'supervisor_record_detail.php?year=111&id=23&sr_id=23&rec_type=fillin', '2022-12-06 04:54', '花花', 'ㄓㄜㄒㄧㄢ', '未簽核', 'supervisor_record', '2022-12-06 16:46:09', '花花', '2022-12-06 16:46:09', ''),
+(27, '24', '團督記錄簽核：2022年度12月06日第六次團督16時47分', 'supervisor_record_detail.php?year=109&id=24&sr_id=24&rec_type=fillin', '2020-11-11 23:11', '花花', 'ㄓㄜㄒㄧㄢ', '未簽核', 'supervisor_record', '2022-12-06 16:49:53', '花花', '2022-12-06 16:50:14', '花花'),
+(28, '25', '團督記錄簽核：2022年度12月06日第六次團督16時50分', 'supervisor_record_detail.php?year=110&id=25&sr_id=25&rec_type=fillin', '2021-07-17 21:57', '花花', 'ㄓㄜㄒㄧㄢ', '未簽核', 'supervisor_record', '2022-12-06 16:54:39', '花花', '2022-12-06 16:54:39', ''),
+(29, '37', '理監事會記錄簽核：2022年度12月06日第六次理監事會', 'board_supervisor_detail.php?year=111&id=37&bs_id=37&rec_type=fillin', '2022-12-06 07:13', '花花', 'ㄓㄜㄒㄧㄢ', '未簽核', 'board_supervisor', '2022-12-06 17:23:42', '花花', '2022-12-06 17:23:42', ''),
+(30, '38', '理監事會記錄簽核：2022年度12月06日第六次理監事會不過現在是17點26分', 'board_supervisor_detail.php?year=109&id=38&bs_id=38&rec_type=fillin', '2020-12-30 22:31', '花花', 'ㄓㄜㄒㄧㄢ', '未簽核', 'board_supervisor', '2022-12-06 17:28:46', '花花', '2022-12-06 17:28:46', ''),
+(31, '4', '會員大會記錄簽核：2022年度12月08日第八次理監事會', 'members_assemble_detail.php?year=111&id=4&ma_id=4&rec_type=fillin', '2022-12-08 01:40', '花花', 'ㄓㄜㄒㄧㄢ', '未簽核', 'members_assemble', '2022-12-08 11:38:06', '花花', '2022-12-08 11:38:06', ''),
+(32, '5', '會員大會記錄簽核：2022年度12月08日第八次會員大會', 'members_assemble_detail.php?year=109&id=5&ma_id=5&rec_type=fillin', '2020-12-13 20:52', '花花', 'ㄓㄜㄒㄧㄢ', '未簽核', 'members_assemble', '2022-12-08 11:44:35', '花花', '2022-12-08 11:44:35', ''),
+(33, '6', '會員大會記錄簽核：一加一等於二', 'members_assemble_detail.php?year=111&id=6&ma_id=6&rec_type=upload', '2022-12-08 00:00', '花花', 'ㄓㄜㄒㄧㄢ', '未簽核', 'members_assemble', '2022-12-08 11:46:48', '花花', '2022-12-08 11:46:48', ''),
+(34, '16', '結案簽核：案號RE115姓名十二月零九日', 'closed_detail.php?closed_id=16', '2022-12-09 00:00', 'ㄓㄜㄒㄧㄢ', 'ㄓㄜㄒㄧㄢ', '未簽核', 'closed', '2022-12-09 10:11:21', '花花', '2023-05-24 15:04:37', '社工員1'),
+(35, '26', '團督記錄簽核：444', 'supervisor_record_detail.php?year=112&id=26&sr_id=26&rec_type=fillin', '2023-01-11 15:53', '社工員1', '晏傳恕', '未簽核', 'supervisor_record', '2023-01-12 13:53:30', '社工員1', '2023-01-12 14:18:12', '社工員1'),
+(36, '27', '團督記錄簽核：wwww', 'supervisor_record_detail.php?year=112&id=27&sr_id=27&rec_type=fillin', '2023-03-23 10:30', 'jia', '丘培民', '未簽核', 'supervisor_record', '2023-03-30 09:31:17', 'jia', '2023-03-30 09:31:17', ''),
+(37, '37', '收文簽核：主旨fefe,來文單位fewfw', 'received_detail.php?re_id=37&year=112', '2023-06-07 00:00', '社工員1', '李萬榮、施朝根、力聖臨', '未簽核', 'received', '2023-06-06 13:30:23', '社工員1', '2023-06-06 13:30:23', ''),
+(38, '38', '收文簽核：主旨efefe,來文單位efefew', 'received_detail.php?re_id=38&year=112', '2023-06-15 00:00', '社工員1', '洪勝霖、洪勝霖、力聖臨', '未簽核', 'received', '2023-06-06 13:31:08', '社工員1', '2023-06-06 13:31:08', ''),
+(39, '39', '收文簽核：主旨www,來文單位www', 'received_detail.php?re_id=39&year=112', '2023-06-05 00:00', '社工員1', '、、', '未簽核', 'received', '2023-06-06 18:59:36', '社工員1', '2023-06-06 18:59:36', ''),
+(40, '0', '發文簽核：主旨ddd', 'published_detail.php?pu_id=0&year=112', '2023-06-07 00:00', '社工員1', '、undefined、undefined', '未簽核', 'published', '2023-06-06 19:04:09', '社工員1', '2023-06-06 19:04:09', ''),
+(41, '24', '發文簽核：主旨', 'published_detail.php?pu_id=24&year=', ' 00:00', '社工員1', 'undefined、undefined', '未簽核', 'published', '2023-06-06 19:06:28', '社工員1', '2023-06-06 19:06:28', ''),
+(42, '25', '發文簽核：主旨', 'published_detail.php?pu_id=25&year=', ' 00:00', '社工員1', 'undefined、undefined', '未簽核', 'published', '2023-06-06 19:07:00', '社工員1', '2023-06-06 19:07:00', ''),
+(43, '26', '發文簽核：主旨', 'published_detail.php?pu_id=26&year=', ' 00:00', '社工員1', 'undefined、undefined', '未簽核', 'published', '2023-06-06 19:07:42', '社工員1', '2023-06-06 19:07:42', ''),
+(44, '27', '發文簽核：主旨ffff', 'published_detail.php?pu_id=27&year=112', '2023-06-05 00:00', '社工員1', 'undefined、undefined', '未簽核', 'published', '2023-06-06 19:09:25', '社工員1', '2023-06-06 19:09:25', ''),
+(45, '28', '發文簽核：主旨ddddd', 'published_detail.php?pu_id=28&year=112', '2023-06-04 00:00', '社工員1', 'undefined、undefined', '未簽核', 'published', '2023-06-06 19:31:22', '社工員1', '2023-06-06 19:31:22', ''),
+(46, '29', '發文簽核：主旨qwqeasdzddsd', 'published_detail.php?pu_id=29&year=112', '2023-06-08 00:00', '社工員1', 'undefined、undefined', '未簽核', 'published', '2023-06-06 20:02:50', '社工員1', '2023-06-06 20:02:50', ''),
+(47, '0', '發文簽核：主旨rewrw', 'published_detail.php?pu_id=0&year=112', '2023-06-07 00:00', '社工員1', 'undefined、undefined', '未簽核', 'published', '2023-06-06 20:08:23', '社工員1', '2023-06-06 20:08:23', ''),
+(48, '40', '收文簽核：主旨wdw,來文單位wadaw', 'received_detail.php?re_id=40&year=112', '2023-06-07 00:00', '社工員1', '執行長、洪勝霖、施朝根', '未簽核', 'received', '2023-06-06 21:59:11', '社工員1', '2023-06-06 21:59:11', ''),
+(49, '41', '收文簽核：主旨sfsdfdsf,來文單位sfsdfsf', 'received_detail.php?re_id=41&year=112', '2023-06-02 00:00', '社工員1', '社工組長、力聖臨、洪勝霖', '未簽核', 'received', '2023-06-06 22:00:24', '社工員1', '2023-06-06 22:00:24', ''),
+(50, '0', '請假單簽核：undefined', 'day_off_detail.php?day_off_id=0&resume_id=1', '2023-06-03 00:00', 'jia', '社工員2、社工組長、執行長', '社工員2未簽核、社工組長已簽核、執行長已簽核', 'day_off', '2023-06-03 20:06:43', 'jia', '2023-06-03 20:06:43', ''),
+(51, '0', '加班紀錄簽核：jia 加班日期112.04.05', 'overtime_detail.php?overtime_id=0&resume_id=1', '2023-06-03 00:00', 'jia', '社工員2、社工組長、執行長', '社工員2未簽核、社工組長已簽核、執行長已簽核', 'overtime', '2023-06-03 21:13:21', 'jia', '2023-06-03 21:13:21', ''),
+(52, '17', '結案簽核：案號RE111姓名test', 'closed_detail.php?closed_id=17', '2023-06-05 00:00', 'jia', '園主任、執行長', '園主任未簽核、執行長已簽核', 'closed', '2023-06-05 19:30:22', 'jia', '2023-06-05 19:30:22', ''),
+(53, '6', '生輔紀錄簽核：日期2023-03-04生活輔導員test生活輔導員', 'dlgrec_detail.php?dlgrec_id=6', '2023-06-05 15:44', '社工員1', '社工員1、園主任、執行長', '社工員1未簽核、園主任未簽核、執行長已簽核', 'dlgrec', '2023-06-05 21:11:44', '執行長', '2023-06-05 21:11:44', ''),
+(54, '43', '收文簽核：主旨ttas,來文單位units', 'received_detail.php?re_id=43&year=112', '2023-06-07 00:00', '社工組長', '歐陽美悌、園主任、執行長、社工組長、洪勝霖', '歐陽美悌未簽核、園主任未簽核、執行長未簽核、社工組長未簽核、洪勝霖未簽核', 'received', '2023-06-08 15:48:41', '社工組長', '2023-06-08 15:48:41', ''),
+(55, '32', '發文簽核：主旨tt123', 'published_detail.php?pu_id=32&year=112', '2023-06-07 00:00', '社工組長', '社工組長、園主任', '社工組長未簽核、園主任未簽核', 'published', '2023-06-08 15:49:53', '社工組長', '2023-06-08 15:49:53', ''),
+(56, '1', '志工資料簽核：111年度 志工姓名TEST111_Vuser54', 'volunteer_detail.php?vo_id=1', '2023-06-21 00:00', '社工員1', '園主任、執行長', '園主任未簽核、執行長已簽核', 'volunteer', '2023-06-21 19:17:57', '執行長', '2023-06-21 19:17:57', ''),
+(61, '6_6_RE111', '開案個案-(個案評估表)簽核：案號：RE111', 'case_all.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03&form_type=case', '2023-07-13 00:00', '社工員1', '園主任、執行長', '園主任未簽核、執行長未簽核', 'current_case', '2023-07-13 18:18:47', '執行長', '2023-07-13 18:18:47', '');
 
 -- --------------------------------------------------------
 
@@ -2093,7 +2105,7 @@ CREATE TABLE `sign_notice` (
   `person` varchar(10) NOT NULL,
   `datetime` varchar(16) NOT NULL,
   `authority_name` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `sign_notice`
@@ -2179,7 +2191,7 @@ CREATE TABLE `supervisor_record` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime NOT NULL,
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `supervisor_record`
@@ -2231,7 +2243,7 @@ CREATE TABLE `training` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` date NOT NULL,
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `training`
@@ -2245,7 +2257,8 @@ INSERT INTO `training` (`Id`, `Name`, `Training_date`, `Training_name`, `Hours`,
 (35, '', '111年12月06日', '場地理論介紹', 0, '萊爾富天花板', '', '0000-00-00', '', '0000-00-00', ''),
 (36, 'fff', '111年12月07日', 'ff', 0, 'ff', '', '2022-12-29', '社工員1', '0000-00-00', ''),
 (37, '', '111年12月07日', 'ff', 0, 'ff', '', '0000-00-00', '', '0000-00-00', ''),
-(38, 'fdfsf', '112年05月05日', 'sfdf', 333, 'fdsf', '', '2023-05-24', '社工員1', '0000-00-00', '');
+(38, 'fdfsf', '112年05月05日', 'sfdf', 333, 'fdsf', '', '2023-05-24', '社工員1', '0000-00-00', ''),
+(39, '', '112年05月05日', 'sfdf', 0, 'fdsf', '', '0000-00-00', '', '0000-00-00', '');
 
 -- --------------------------------------------------------
 
@@ -2257,7 +2270,7 @@ CREATE TABLE `tw_counties` (
   `Id` int(20) NOT NULL,
   `Area` varchar(30) NOT NULL,
   `Counties_Cities` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `tw_counties`
@@ -2307,7 +2320,7 @@ CREATE TABLE `user_info` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime DEFAULT current_timestamp(),
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `user_info`
@@ -2364,7 +2377,7 @@ CREATE TABLE `volunteer` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime NOT NULL,
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `volunteer`
@@ -2406,7 +2419,7 @@ CREATE TABLE `volunteer_hours_record` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime NOT NULL,
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `volunteer_hours_record`
@@ -2478,7 +2491,7 @@ CREATE TABLE `volunteer_meeting` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime DEFAULT current_timestamp(),
   `Update_name` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `volunteer_meeting`
@@ -2530,7 +2543,7 @@ CREATE TABLE `volunteer_v2` (
   `Create_name` varchar(100) NOT NULL,
   `Update_date` datetime DEFAULT current_timestamp(),
   `Update_name` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `volunteer_v2`
@@ -2911,19 +2924,19 @@ ALTER TABLE `current_case`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `forms`
 --
 ALTER TABLE `forms`
-  MODIFY `Id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `Id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `form_all_info`
 --
 ALTER TABLE `form_all_info`
-  MODIFY `Id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+  MODIFY `Id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `form_case_report`
 --
 ALTER TABLE `form_case_report`
-  MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `form_interlocution_queskeywords`
@@ -3055,7 +3068,7 @@ ALTER TABLE `screening_type_keywords`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `signature_notice`
 --
 ALTER TABLE `signature_notice`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `sign_notice`
@@ -3073,7 +3086,7 @@ ALTER TABLE `supervisor_record`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `training`
 --
 ALTER TABLE `training`
-  MODIFY `Id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `Id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `tw_counties`

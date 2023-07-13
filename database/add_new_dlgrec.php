@@ -68,7 +68,7 @@ $signers = $social_worker . "、" . $supervise1 . "、" . $supervise2;
 $sign_state = $social_worker . "未簽核" . "、" . $supervise1 . "未簽核" . "、" . $supervise2  . "未簽核";
 
 $sql .= "INSERT INTO `signature_notice` (`Sign_id`, `Title`,`Url`,`Timestamp`, `Assign`, `Signer`, `Sign_state`, `Type`, `Create_date`, `Create_name`) 
-VALUES ($dlgrec_id, '$title', '$url', '$sign_date', '$social_worker', '$signers', '$sign_state', 'dlgrec', Now(), '$user');";
+VALUES ('$dlgrec_id', '$title', '$url', '$sign_date', '$social_worker', '$signers', '$sign_state', 'dlgrec', Now(), '$user');";
 
 	if(mysqli_multi_query($conn,$sql)){
         echo true;

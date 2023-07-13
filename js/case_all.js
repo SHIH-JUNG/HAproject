@@ -9,6 +9,19 @@ function getUrlVars() {
 }
 //endregion
 
+$(function() {
+    imagePreview();  
+
+    
+    //jsignature插件初始化 region
+    jsignature_initialization();
+    //endregion
+
+    //隱藏jsignature畫布區域 region
+    $("#signature_area").hide();
+    //endregion 
+});
+
 const notyf = new Notyf();
 
 //設置存放有資料的量表名稱之陣列
@@ -32,12 +45,21 @@ var case_Create_date = getUrlVars()["case_Create_date"];
 var unopen_type = decodeURIComponent(getUrlVars()["unopen_type"]);
 var birth = getUrlVars()["birth"];
 
+var form_type = getUrlVars()["form_type"];
+
+
 case_url = 'case_detail.php?name='+name+'&gender='+gender+'&pid='+pid+'&date='+date+'&property='+ property +'&type='+ type+'&grade='+ grade+'&id='+id+'&open_id='+open_id+'&referral='+referral+'&case_Create_date='+case_Create_date+'&unopen_type='+unopen_type+'&birth='+birth+'';
 // console.log(case_url);
 // console.log(name, date, grade, property, type, id, open_id, addition, age, gender);
 
 // $(".case_addiction").text(addition);
 //endregion
+
+supervise1_msg_arr = [];
+supervise2_msg_arr = [];
+
+window.sign_name_type = "";
+
 
 //抓所有量表region
 $(document).ready(function () {
@@ -66,14 +88,21 @@ $(document).ready(function () {
     $(".case_object_type").text(type);
     $(".case_property_type").text(property);
 
-
     //設定麵包屑返回region
     var url = 'case_all_all.php?id='+id+'&open_id='+open_id+'';
+
     $("#history").attr('href',url);
     //獲取有資料的量表
     load_form_type_array();
 
-    tab_toggle();
+    if(form_type !== undefined)
+    {
+        $('#myTab a[href="#' + form_type + '_tab"]').tab('show');
+    }
+    else
+    {
+        tab_toggle();
+    }
 });
 //endregion
 
@@ -134,58 +163,119 @@ function load_each_form()
 
                 // console.log(data)
                 $.each(data,function(index,value){
-                
+
+                    var supervise1_sign_arr = datatable_sign_show('supervise1', value.Supervise1, value.Supervise1_signature, value.Supervise1_sign_time, value.Supervise1_sign_msg);
+                    var supervise2_sign_arr = datatable_sign_show('supervise2', value.Supervise2, value.Supervise2_signature, value.Supervise2_sign_time, value.Supervise2_sign_msg);
+
+                    var sign_str = "";
+
+                    var sign_btn_str = "";
+
+                    var bg_color = "";
+
+                    if(supervise1_sign_arr[0] == "" && supervise2_sign_arr[0] == "")
+                    {
+                        sign_str = "";
+                        bg_color = "none";
+                    }
+                    else
+                    {
+                        if(supervise1_sign_arr[0] != "")
+                        {
+                            sign_str += supervise1_sign_arr[0] + supervise1_sign_arr[1] + "\r\n";
+                        }
+
+                        if(supervise2_sign_arr[0] != "")
+                        {
+                            sign_str += supervise2_sign_arr[0] + supervise2_sign_arr[1];
+                        }
+
+                        if(login_user_name == supervise1_sign_arr[0])
+                        {
+                            sign_name_type = "supervise1";
+                        }
+                        else if(login_user_name == supervise2_sign_arr[0])
+                        {
+                            sign_name_type = "supervise2";
+                        }
+                        
+
+                        if(supervise1_sign_arr[1].includes("已簽章") && supervise2_sign_arr[1].includes("已簽章"))
+                        {
+                            bg_color = "#90ee90";
+                        }
+                        else
+                        {
+                            bg_color = "#f4fc3b";
+                        }
+                        
+                        // sign_btn_str += '<button style="margin:.5em;color:red;" type="button" onclick="signature_btn_click();">簽名</button><br/>'+
+                        // '<button style="margin:.5em;" type="button" id="signature_msg_btn" onclick="sign_msg_model();" data-toggle="modal" data-target="#myModal2">查看留言</button><br/>'+
+                        // '<a src="" id="signature_simg" style="color:blue;" target="_blank" alt="簽名圖片連結"></a>';
+
+                        sign_btn_str += '<button style="margin:.5em;color:red;" type="button" onclick="signature_btn_click(this);" sign_info="'+value.Id+"_"+value.Case_seqid+"_"+value.Case_id+'">簽名</button><br/>';
+                    }
+
                     if(value.Is_upload==0)
                     {
                         //獲取相對應td字串格式
                         var othercssstring = load_forms_other_row(form_name,index);
+
                         if(form_name=="BSRS5")
                         {
                             cssstring += 
-                            '<tr name="'+form_name+'_num[]" id="'+value.Case_pid+"_"+value.Id+"_"+value.Id+"_"+value.Case_id+'">'+
+                            '<tr name="'+form_name+'_num[]" id="'+value.Id+"_"+value.Case_seqid+"_"+value.Case_id+'">'+
                                 '<td>'+value.Form_Create_date+'</td>'+
                                 '<td>線上建檔</td>'+
                                 othercssstring+
                                 '<td><a href="'+case_url+'&form_id='+value.Id+'&form_type='+value.Form_name+'">點擊進入</a></td>'+
                                 '<td>'+value.Remark+'</td>'+
+                                '<td style="background-color:'+bg_color+';">'+sign_str+'</td>'+
+                                '<td>'+sign_btn_str+'</td>'+
                             '</tr>';
                         }
                         else if(form_name=="resource")
                         {
                             cssstring += 
-                            '<tr name="'+form_name+'_num[]" id="'+value.Case_pid+"_"+value.Id+"_"+value.Id+"_"+value.Case_id+'">'+
+                            '<tr name="'+form_name+'_num[]" id="'+value.Id+"_"+value.Case_seqid+"_"+value.Case_id+'">'+
                                 '<td>'+value.Form_Create_date+'</td>'+
                                 '<td><a href="'+case_url+'&form_id='+value.Id+'&form_type='+value.Form_name+'">點擊進入</a></td>'+
                                 '<td>'+value.Remark+'</td>'+
+                                '<td style="background-color:'+bg_color+';">'+sign_str+'</td>'+
+                                '<td>'+sign_btn_str+'</td>'+
                             '</tr>';
                         }
                         else if(form_name=="interlocution")
                         {
                             cssstring += 
-                            '<tr name="'+form_name+'_num[]" id="'+value.Case_pid+"_"+value.Id+"_"+value.Id+"_"+value.Case_id+'">'+
+                            '<tr name="'+form_name+'_num[]" id="'+value.Id+"_"+value.Case_seqid+"_"+value.Case_id+'">'+
                                 '<td>'+value.Form_Create_date+'</td>'+
                                 othercssstring+
                                 '<td><a href="'+case_url+'&form_id='+value.Id+'&form_type='+value.Form_name+'">點擊進入</a></td>'+
                                 '<td>'+value.Remark+'</td>'+
+                                '<td style="background-color:'+bg_color+';">'+sign_str+'</td>'+
+                                '<td>'+sign_btn_str+'</td>'+
                             '</tr>';
                         }
                         
                         else
                         {
                             cssstring += 
-                            '<tr name="'+form_name+'_num[]" id="'+value.Case_pid+"_"+value.Id+"_"+value.Id+"_"+value.Case_id+'">'+
+                            '<tr name="'+form_name+'_num[]" id="'+value.Id+"_"+value.Case_seqid+"_"+value.Case_id+'">'+
                                 '<td>'+value.Form_Create_date+'</td>'+
                                 '<td>'+value.Fillin_date+'</td>'+
                                 othercssstring+
                                 '<td><a href="'+case_url+'&form_id='+value.Id+'&form_type='+value.Form_name+'">點擊進入</a></td>'+
                                 '<td>'+value.Remark+'</td>'+
+                                '<td style="background-color:'+bg_color+';">'+sign_str+'</td>'+
+                                '<td>'+sign_btn_str+'</td>'+
                             '</tr>';
                         }
                         
                     }
                     else
                     {
-                        console.log(value.Upload_info)
+                        // console.log(value.Upload_info)
 
                         var upload_info_json = JSON.parse("[" +value.Upload_info.replace('\"\[', '\[').replace('\]\"', '\]') + "]");
                         
@@ -202,8 +292,10 @@ function load_each_form()
                             }
                             });
                         cssstring += 
-                        '<tr name="'+form_name+'_num[]" id="'+value.Case_pid+"_"+value.Id+"_"+value.Id+"_"+value.Case_id+'">'+
+                        '<tr name="'+form_name+'_num[]" id="'+value.Id+"_"+value.Case_seqid+"_"+value.Case_id+'">'+
                         td_str+
+                        '<td style="background-color:'+bg_color+';">'+sign_str+'</td>'+
+                        '<td>'+sign_btn_str+'</td>'+
                         '</tr>';
                     }
                     
@@ -298,7 +390,7 @@ form_add_new = function(obj){
     //空的td標籤
     var empty_td = '<td></td>';
     //除了 建立日期、填表日期、最末端的量表內容，三位置之外都生成 空的td標籤
-    empty_td = empty_td.repeat(th_len-3);
+    empty_td = empty_td.repeat(th_len-5);
 
     if(obj_name=="resource")
     {
@@ -307,6 +399,8 @@ form_add_new = function(obj){
             '<td><span id="create_date_'+obj_name+num+'">'+timenow+'</span></td>'+
             '<td></td>'+
             '<td><input id="remark'+obj_name+num+'" type="text"></td>'+
+            '<td></td>'+
+            '<td></td>'+
         '</tr>'+
         '<tr>'+
         '<td colspan="'+th_len+'"><button onClick="store('+num+',&quot;'+obj_name+'&quot;);">儲存</button> <button onClick="location.reload();">取消</button></td>'+
@@ -321,6 +415,8 @@ form_add_new = function(obj){
             '<td></td>'+
             empty_td+
             '<td><input id="remark'+obj_name+num+'" type="text"></td>'+
+            '<td></td>'+
+            '<td></td>'+
         '</tr>'+
         '<tr>'+
         '<td colspan="'+th_len+'"><button onClick="store('+num+',&quot;'+obj_name+'&quot;);">儲存</button> <button onClick="location.reload();">取消</button></td>'+
@@ -334,6 +430,8 @@ form_add_new = function(obj){
             '<td><input id="fillin_date_'+obj_name+num+'" type="date"></td>'+
             empty_td+
             '<td><input id="remark'+obj_name+num+'" type="text"></td>'+
+            '<td></td>'+
+            '<td></td>'+
         '</tr>'+
         '<tr>'+
         '<td colspan="'+th_len+'"><button onClick="store('+num+',&quot;'+obj_name+'&quot;);">儲存</button> <button onClick="location.reload();">取消</button></td>'+
@@ -457,6 +555,8 @@ form_upload_new = function(obj) {
                     '</select>'+
                     '</td>'+
                     '<td><input id="remark'+obj_name+num+'" type="text"></td>'+
+                    '<td></td>'+
+                    '<td></td>'+
                 '</tr>'+
                 '<tr>'+
                 '<td colspan="'+th_len+'"><button onClick="i_store('+num+',&quot;'+obj_name+'&quot;);">儲存</button> <button onClick="location.reload();">取消</button></td>'+
@@ -512,6 +612,8 @@ form_BSRS5_add_new = function(obj) {
                         '<td id="dispose_td'+obj_name+num+'"></td>'+
                         '<td id="content_type'+obj_name+num+'"></td>'+
                         '<td><input id="remark'+obj_name+num+'" type="text"></td>'+
+                        '<td></td>'+
+                        '<td></td>'+
                     '</tr>'+
                     '<tr>'+
                     '<td id="store_btn'+obj_name+num+'" colspan="'+th_len+'"><button onClick="store('+num+',&quot;'+obj_name+'&quot;);">儲存</button> <button onClick="location.reload();">取消</button></td>'+
@@ -729,4 +831,279 @@ $('#menu_tab_nav li a, .breadcrumb li span a').on('click',function() {
     localStorage.removeItem('activeTab');
 });
 //endregion
+
+// 顯示簽核相關欄位 region
+function datatable_sign_show(signer_type ,signer, sign_path, sign_time, sign_msg) {
+    var sign_arr = [];
+  
+    var sign_stus = "";
+    var sign_css_str = "";
+    var type_name = "";
+  
+    switch (signer_type) {
+      case "supervise1":
+        type_name = "督導";
+        break;
+    case "supervise2":
+        type_name = "執行長";
+        break;
+    }
+  
+    if (sign_msg == "") {
+      sign_stus = "目前尚無留言內容";
+    } else {
+      sign_stus =
+        "留言時間：" +
+        sign_time +
+        "，留言內容：" +
+        sign_msg;
+    }
+  
+    if (sign_path != "") {
+      var supervise_sign_file_val = sign_path.replace(
+        "../signature/",
+        "./signature/"
+      );
+      sign_css_str +=
+        '<a src="' +
+        supervise_sign_file_val +
+        '" style="color:blue;display: block;" target="_blank" alt="' +
+        sign_stus +
+        '" data-bs-toggle="tooltip" data-bs-placement="left" title="' +
+        sign_stus +
+        '">'+type_name+'已簽章<img style="vertical-align:middle;" class="apreview" width="25px" title="' +
+        sign_stus +
+        '" src="' +
+        supervise_sign_file_val +
+        '"></a>';
+    }
+  
+    if (sign_css_str == "") {
+      sign_css_str = '<i style="color:gray;">待簽核</i>';
+    }
+  
+    sign_arr.push(signer);
+    sign_arr.push(sign_css_str);
+  
+    return sign_arr;
+  }
+  // endregion
+  
+  
+  // 簽章圖片、留言、時間懸浮顯示region
+  // 設定移到該img元素的parent元素，觸發懸浮框圖片效果
+  // 要觸發該事件的圖片需 設定title、src、width，class設為apreview
+  this.imagePreview = function () {
+    // 圖片距離鼠標的位置
+    this.xOffset = -800;
+    this.yOffset = -10;
+  
+    //hover([over,]out)
+    //over:鼠標移到元素上所觸發的函數
+    //out:鼠標移出元素所觸發的函數
+  
+    //鼠標圖片內容懸浮的事件
+    $(".apreview")
+      .parent()
+      .hover(
+        function (e) {
+          this.t = $(this).children().attr("title"); //顯示在圖片下的標題
+          $(this).children().attr("title", ""); //將title設定為空值，不讓文字懸浮提示
+          this.imgSr = $(this).children().attr("src"); //圖片的連結
+          this.c = this.t != "" ? "<br/>" + this.t : "";
+          $("body").append(
+            "<p class='preview'><img src='" +
+              this.imgSr +
+              "' alt='Image preview' width='800' height='200' />" +
+              this.c +
+              "</p>"
+          );
+          $(".preview")
+            .css("top", e.pageY + yOffset + "px")
+            .css("left", e.pageX + xOffset + "px")
+            .fadeIn("fast");
+        },
+        function () {
+          $(this).children().attr("title", this.t); //恢復title
+          $(".preview").remove();
+        }
+      );
+  
+    //鼠標移動的事件，讓圖片隨著移動
+    $(".apreview")
+      .parent()
+      .mousemove(function (e) {
+        $(".preview")
+          .css("top", e.pageY - yOffset + "px")
+          .css("left", e.pageX + xOffset + "px");
+      });
+  };
+  //endregion
+
+
+  sign_msg_model = function (sign_type_name) {
+    //手動新增按鈕點擊跳出模態框
+    $("#myModal2").on("shown.bs.modal", function () {
+      $("#" + sign_type_name).trigger("focus");
+    });
+  
+    switch (sign_type_name) {
+        case "supervise1":
+            var type_name = "督導";
+            $(".sign_msg").text(supervise1_msg_arr[0]);
+            $(".sign_msg_time").val(supervise1_msg_arr[1]);
+        break;
+      
+  
+      case "supervise2":
+        var type_name = "執行長";
+        $(".sign_msg").text(supervise2_msg_arr[0]);
+        $(".sign_msg_time").val(supervise2_msg_arr[1]);
+        break;
+  
+        // case "social_worker":
+        //     var type_name = "社工員";
+        //     $(".sign_msg").text(social_worker_msg_arr[0]);
+        //     $(".sign_msg_time").val(social_worker_msg_arr[1]);
+        //     break;
+    }
+  
+    $(".sign_msg_td_name").text(type_name + "簽名留言內容");
+  };
+  
+  //jsignature插件初始化 region
+  function jsignature_initialization() {
+    var $sigdiv = $("#signature_div");
+    $sigdiv.jSignature({ UndoButton: true }); // 初始化jSignature插件-属性用","隔开
+    // $sigdiv.jSignature({'decor-color':'red'}); // 初始化jSignature插件-设置横线颜色
+    // $sigdiv.jSignature({'lineWidth':"6"});// 初始化jSignature插件-设置横线粗细
+    // $sigdiv.jSignature({"decor-color":"transparent"});// 初始化jSignature插件-去掉横线
+    // $sigdiv.jSignature({'UndoButton':true});// 初始化jSignature插件-撤销功能
+    // $sigdiv.jSignature({'height': 100, 'width': 200}); // 初始化jSignature插件-设置书写范围(大小)
+  
+    // 同步更新畫布中的簽名圖片和簽名檔案格式 region
+    $("#signature_div").bind("change", function (e) {
+      var datapair = $sigdiv.jSignature("getData", "image");
+      $("#signature_images").attr(
+        "src",
+        "data:" + datapair[0] + "," + datapair[1]
+      );
+    });
+    //endregion
+  
+    //重設繪製簽名 region
+    $("#signature_reset").click(function () {
+      $("#signature_div").jSignature("reset"); //重置画布，可以进行重新作画
+      $("#signature_images").attr("src", "");
+    });
+    //endregion
+  }
+  //endregion
+  
+  
+  // 儲存該簽名 region
+  signature_submit = function(this_btn) {
+  
+    // 獲取簽名類型(督導、組長、主管)
+    var sign_type = $(this_btn).attr("board_name");
+  
+    // console.log(sign_type);
+  
+    var ajax_url = "database/update_case_all_data_signature.php";
+  
+    var src_data = $("#signature_images").attr("src");
+    // console.log(src);
+  
+    // 判斷有無簽名圖片，若有送出簽名並儲存檔案
+    if (src_data) {
+      // console.log("submit_sign");
+      $.ajax({
+        type: "post",
+        url: ajax_url,
+        data: {
+          form_id:id,
+          case_id:open_id,
+          sign_id:sign_info,
+          src_data: src_data,
+          sign_msg: $("#signature_msg").val(),
+          sign_type: sign_type,
+          sign_name:login_user_name,
+        },
+        async: false,
+        success: function (data) {
+            // console.log(data);
+            if (data == 1) 
+            {
+                swal({
+                title: "送出簽名成功！",
+                type: "success",
+                }).then(function () {
+                location.reload();
+                });
+            }
+            else if(data.includes("noallowsign"))
+            {
+                swal({
+                    type: 'error',
+                    title: '您無權限簽核此欄位',
+                    text: '當前登入的帳號名稱與簽核欄位名稱不符',
+                    allowOutsideClick: false //不可點背景關閉
+                });
+            }
+           else 
+           {
+            swal({
+              title: "生成簽名圖片失敗！請聯絡負責單位",
+              type: "error",
+            });
+          }
+        },
+      });
+    } 
+    else 
+    {
+      alert("簽名圖片檔不能為空！");
+      return false;
+    }
+  }
+  //endregion
+  
+  //按簽名 按紐，顯示簽名畫布 隱藏其他詳細資料 region
+  signature_btn_click = function(this_btn) {
+    
+    window.sign_info = $(this_btn).attr("sign_info");
+    
+    var type_name = "";
+  
+    switch (sign_name_type) {
+    case "supervise1":
+        type_name = "督導";
+        break;
+  
+      case "supervise2":
+        type_name = "執行長";
+        break;
+  
+    // case "social_worker":
+    //     type_name = "社工員";
+    //     break;
+    }
+  
+    $("#signature_h4").text(type_name + "簽名");
+    $("#signature_title_td").text(type_name);
+    $("#signature_msg_td").text(type_name);
+    $("#sign_submit_btn").attr("board_name", sign_name_type);
+  
+    $("#signature_area").show();
+    $("#collapseTwo").hide();
+  }
+  //endregion
+  
+  //在簽名畫布區域按取消，返回詳細資料，並自動滾動卷軸至最頂部 region
+  show_main_panel = function () {
+    $("#signature_area").hide();
+    $("#collapseTwo").show();
+    // $('html, body').scrollTop(0);
+  };
+  //endregions
 

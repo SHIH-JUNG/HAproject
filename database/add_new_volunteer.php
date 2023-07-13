@@ -120,7 +120,7 @@ Now(), '$user');";
 // ($volunteer_id, '$Year', '$Name', '$Time_all', '$Sign_date', 1, Now(), '$user');";
 
 $sql .= "INSERT INTO `signature_notice` (`Sign_id`, `Title`,`Url`,`Timestamp`, `Assign`, `Signer`, `Sign_state`, `Type`, `Create_date`, `Create_name`) 
-VALUES ($volunteer_id, '$title','$url','$rec_date_time', '$Social_worker', '$signer', '$sign_state', 'volunteer', Now(), '$user')";
+VALUES ('$volunteer_id', '$title','$url','$rec_date_time', '$Social_worker', '$signer', '$sign_state', 'volunteer', Now(), '$user')";
 
 if (mysqli_multi_query($conn, $sql)) {
     echo true;

@@ -143,7 +143,7 @@ function load_each_form()
                         if(form_name=="BSRS5")
                         {
                             cssstring += 
-                            '<tr name="'+form_name+'_num[]" id="'+value.Case_pid+"_"+value.Id+"_"+value.Id+"_"+value.Case_id+'">'+
+                            '<tr name="'+form_name+'_num[]" id="'+value.Id+"_"+value.Case_seqid+"_"+value.Case_id+'">'+
                                 '<td>'+value.Form_Create_date+'</td>'+
                                 '<td>線上建檔</td>'+
                                 othercssstring+
@@ -154,7 +154,7 @@ function load_each_form()
                         else
                         {
                             cssstring += 
-                            '<tr name="'+form_name+'_num[]" id="'+value.Case_pid+"_"+value.Id+"_"+value.Id+"_"+value.Case_id+'">'+
+                            '<tr name="'+form_name+'_num[]" id="'+value.Id+"_"+value.Case_seqid+"_"+value.Case_id+'">'+
                                 '<td>'+value.Form_Create_date+'</td>'+
                                 '<td>'+value.Fillin_date+'</td>'+
                                 othercssstring+
@@ -183,7 +183,7 @@ function load_each_form()
                             }
                             });
                         cssstring += 
-                        '<tr name="'+form_name+'_num[]" id="'+value.Case_pid+"_"+value.Id+"_"+value.Id+"_"+value.Case_id+'">'+
+                        '<tr name="'+form_name+'_num[]" id="'+value.Id+"_"+value.Case_seqid+"_"+value.Case_id+'">'+
                         td_str+
                         '</tr>';
                     }

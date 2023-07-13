@@ -984,7 +984,9 @@ function tab_toggle() {
   $('a[data-toggle="pill"]').on('show.bs.tab', function(e) {
       localStorage.setItem('activeTab', $(e.target).attr('href'));
   });
+  // console.log(localStorage)
   var activeTab = localStorage.getItem('activeTab');
+  // console.log(activeTab)
   if(activeTab){
       $('#myTab a[href="' + activeTab + '"]').tab('show');
   }

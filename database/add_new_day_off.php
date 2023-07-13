@@ -124,7 +124,7 @@ $sql = "INSERT INTO `day_off_v2` (`Id`, `Resume_id`, `Resume_name`,
 
 
 $sql .= "INSERT INTO `signature_notice` (`Sign_id`, `Title`,`Url`,`Timestamp`, `Assign`, `Signer`, `Sign_state`, `Type`, `Create_date`, `Create_name`) 
-VALUES ($day_off_id, '$title','$url','$rec_date_time', '$user', '$signer', '$sign_state', 'day_off', Now(), '$user')";
+VALUES ('$day_off_id', '$title','$url','$rec_date_time', '$user', '$signer', '$sign_state', 'day_off', Now(), '$user')";
 
 if (mysqli_multi_query($conn, $sql)) {
     echo true;

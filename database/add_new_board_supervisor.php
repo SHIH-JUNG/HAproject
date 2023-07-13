@@ -38,7 +38,7 @@ $sql = "INSERT INTO `board_supervisor` (`Id`, `Year`, `record_content`,`Create_d
 
 // $sql .= "INSERT INTO `calendar` (`title`,`description`,`start`, `end`, `publisher`) VALUES ('$title','$url','$start_datetime', '$end_datetime', '$user')";
 $sql .= "INSERT INTO `signature_notice` (`Sign_id`, `Title`,`Url`,`Timestamp`, `Assign`, `Signer`, `Sign_state`, `Type`, `Create_date`, `Create_name`) 
-VALUES ($bs_id, '$title','$url','$rec_date_time', '$user', '$signer', '未簽核', 'board_supervisor', Now(), '$user')";
+VALUES ('$bs_id', '$title','$url','$rec_date_time', '$user', '$signer', '未簽核', 'board_supervisor', Now(), '$user')";
 
 	if(mysqli_multi_query($conn,$sql)){
         echo true;

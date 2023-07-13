@@ -74,7 +74,7 @@ $signers = $Supervise1 . "、" . $Supervise2;
 $sign_state = $Supervise1 . "未簽核" . "、" . $Supervise2  . "未簽核";
 
 $sql .= "INSERT INTO `signature_notice` (`Sign_id`, `Title`,`Url`,`Timestamp`, `Assign`, `Signer`, `Sign_state`, `Type`, `Create_date`, `Create_name`) 
-VALUES ($closed_id, '$title', '$url', '$sign_closed_date', '$Assign', '$signers', '$sign_state', 'closed', Now(), '$user');";
+VALUES ('$closed_id', '$title', '$url', '$sign_closed_date', '$Assign', '$signers', '$sign_state', 'closed', Now(), '$user');";
 
 	// if(mysqli_query($conn,$sql)){
     if(mysqli_multi_query($conn, $sql)){

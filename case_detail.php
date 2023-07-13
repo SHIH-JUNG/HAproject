@@ -128,10 +128,29 @@
                         <tr style="text-align:left">
                             <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>個案資料儲存方式</td>
                             <td style="border-bottom: solid 1px;">
-                                <select id="case_storage_type" style="width:200px;">
+                                <select id="case_storage_type" style="width:100%;">
                                     <option value="cache">暫存</option>
                                     <option value="storage">確認上傳</option>
                                 </select>
+                            </td>
+                        </tr>
+                        <tr class="case_storage_tr" style="text-align:left">
+                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">督導</td>
+                            <td style="border-bottom: solid 1px;">
+                                <select id="supervise1" style="width:100%;">
+                                    <option value="">請選擇</option>
+                                </select><br/>
+                                <span style="font-size:8px;color:red;">若選擇『確認上傳』，請選擇督導名稱。</span>
+                            </td>
+                        </tr>
+                        
+                        <tr class="case_storage_tr" style="text-align:left">
+                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">執行長</td>
+                            <td style="border-bottom: solid 1px;">
+                                <select id="supervise2" style="width:100%;">
+                                    <option value="">請選擇</option>
+                                </select><br/>
+                                <span style="font-size:8px;color:red;">若選擇『確認上傳』，請選擇執行長名稱。</span>
                             </td>
                         </tr>
                         <tr class="case_storage_tr" style="text-align:left">
@@ -141,6 +160,7 @@
                                 <span style="font-size:8px;color:red;">若選擇『確認上傳』，請輸入您的使用者登入密碼。</span>
                             </td>
                         </tr>
+
                     </table>
                 </div>
                 <div class="modal-footer">

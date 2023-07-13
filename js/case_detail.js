@@ -1237,6 +1237,9 @@ $(document).ready(function () {
         },
     });
 
+    // 載入全部user至下拉式選單
+    append_user();
+
 
     $.ajax({
         url: "database/find_case.php",
@@ -1548,26 +1551,37 @@ $("#case_storage_submit").on('click', function () {
     }
     else if(case_storage_type == "storage")
     {
-        if($("#case_storage_pwd").val() == "")
+        if($("#supervise1").val() != "" && $("#supervise2").val() != "")
         {
-            swal({
-                title:'若選擇『確認上傳』，請輸入您的使用者登入密碼',
-                type:'error',                        
-            })
-        }
-        else
-        {
-            if($("#case_storage_pwd").val() == login_user_pwd)
-            {
-                form_check_submit(case_storage_type);
-            }
-            else
+            if($("#case_storage_pwd").val() == "")
             {
                 swal({
-                    title:'您的使用者登入密碼輸入不正確，請重新輸入',
+                    title:'若選擇『確認上傳』，請輸入您的使用者登入密碼',
                     type:'error',                        
                 })
             }
+            else
+            {
+           
+                if($("#case_storage_pwd").val() == login_user_pwd)
+                {
+                    form_check_submit(case_storage_type);
+                }
+                else
+                {
+                    swal({
+                        title:'您的使用者登入密碼輸入不正確，請重新輸入',
+                        type:'error',                        
+                    })
+                }
+            }
+        }
+        else
+        {
+            swal({
+                title:'請選擇督導/執行長名稱',
+                type:'error',                        
+            })
         }
     }
 });
@@ -1803,6 +1817,9 @@ function submit_form_data() {
             }
         });
 
+        //Time Now
+        var timenow = moment().format('YYYY-MM-DD');
+        
         //將 以下資料添加到 FormData Oject region
 
         //創立FormData Oject
@@ -1975,6 +1992,69 @@ function submit_form_data() {
         form_data.append("Case_report", JSON.stringify(case_report_datas));
         form_data.append("Case_storage", storage_type);
         
+        if(storage_type == "storage")
+        {
+            form_data.append("Supervise1",$("#supervise1").val());
+            form_data.append("Supervise2",$("#supervise2").val());
+
+            window.form_type_ch_name = "";
+            // window.form_type_tag_num = "#" + form_type + "_tab";
+
+            switch (form_type) {
+                case "case":
+                    form_type_ch_name = "個案評估表";
+                    
+                    break;
+            
+                case "interlocution":
+                    form_type_ch_name = "個案會談紀錄";
+                    break;
+
+                case "resource":
+                    form_type_ch_name = "社會資源應用表格";
+                    break;
+
+                case "life":
+                    form_type_ch_name = "生活品質問卷";
+                    break;
+                    
+                case "health":
+                    form_type_ch_name = "健康管理評估表";
+                    break;
+                    
+                case "sullen":
+                    form_type_ch_name = "憂鬱量表";
+                    break;
+                    
+                case "employment_satif":
+                    form_type_ch_name = "就業需求評估表&就業服務滿意度調查表";
+                    break;
+                
+                case "satif":
+                    form_type_ch_name = "服務滿意度量表";
+                    break;
+                
+                case "familyship":
+                    form_type_ch_name = "家庭關係";
+                    break;
+                
+                case "BSRS5":
+                    form_type_ch_name = "BSRS-5量表";
+                    break;
+                
+                case "settlement":
+                    form_type_ch_name = "安置、自立宿舍評估量表";
+                    break;
+            }
+
+            form_data.append("history_url", history_url + "&form_type=" + form_type);
+            form_data.append("case_user", $("#case_user").val());          
+
+            form_data.append("title", '開案個案-(' + form_type_ch_name + ')簽核：' + '案號：' + open_id);
+            form_data.append("signer", $("#supervise1").val() + "、" + $("#supervise2").val());
+            form_data.append("rec_date_time", timenow +" 00:00");          
+        }
+        
         
         if(form_type=="case" || form_type=="interlocution")
         {
@@ -2111,11 +2191,11 @@ $("#preview").on('click', function(){
 
 //設定麵包屑返回region
 
-var url = 'case_all.php?name='+name+'&gender='+gender+'&pid='+pid+'&date='+date+'&property='+property+'&type='+type+'&grade='+ grade+'&id='+id+'&open_id='+open_id+'&referral='+referral+'&case_Create_date='+case_Create_date+'&unopen_type='+unopen_type+'&birth='+birth+'';
-$("#history").attr('href',url);
+window.history_url = 'case_all.php?name='+name+'&gender='+gender+'&pid='+pid+'&date='+date+'&property='+property+'&type='+type+'&grade='+ grade+'&id='+id+'&open_id='+open_id+'&referral='+referral+'&case_Create_date='+case_Create_date+'&unopen_type='+unopen_type+'&birth='+birth+'';
+$("#history").attr('href',history_url);
 
 history_back_btn = function() {
-    location.href=url;
+    location.href=history_url;
 }
 
 
@@ -2291,3 +2371,21 @@ $("#face_page").on('click', function(){
     
 });
 //endregion
+
+//呼叫user方法region
+function append_user(){             
+    $.ajax({
+        type:'POST',
+        url:'database/find_check_user.php',
+        dataType: "JSON",
+        async: false,//啟用同步請求
+        success: function (data) {
+            // console.log('test',data)
+            for (var index in data.Id) {
+              $("#supervise1").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+              $("#supervise2").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+            }
+        },
+    });
+  }
+  //endregion

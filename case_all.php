@@ -32,6 +32,13 @@
         margin-left: auto;
         margin-right: auto;
     }
+
+    .NOline {
+        word-break: keep-all;
+        /*必須*/
+    }
+
+    .preview {position:absolute;background:#fff;padding:10px;display:none;}  
 </style>
 
 <body>
@@ -99,7 +106,7 @@
                         <div class="panel panel-default card-view">
                             <div class="panel-wrapper collapse in">
                                 <div class="panel-body">
-                                    <div class="row">
+                                    <div class="row" id="collapseTwo">
                                         <div class="col-sm-12 col-xs-12">
                                             <ul style="font-size:17px" class="nav nav-tabs" id="myTab" role="tablist">
                                                 <li class="nav-item active" role="presentation">
@@ -180,6 +187,8 @@
                                                                     <th>評估結果</th>
                                                                     <th>評估表內容</th>
                                                                     <th>備註</th>
+                                                                    <th>簽核狀態</th>
+                                                                    <th></th>
                                                                     <tbody id="case_full_add"></tbody>
                                                                 </table>
                                                             </div>
@@ -211,6 +220,8 @@
                                                                     <th>社工/關懷員</th>
                                                                     <th>會談紀錄內容</th>
                                                                     <th>備註</th>
+                                                                    <th>簽核狀態</th>
+                                                                    <th></th>
                                                                     <tbody id="interlocution_full_add"></tbody>
                                                                 </table>
                                                             </div>
@@ -237,6 +248,8 @@
                                                                     <th>建立日期</th>
                                                                     <th>表格內容</th>
                                                                     <th>備註</th>
+                                                                    <th>簽核狀態</th>
+                                                                    <th></th>
                                                                     <tbody id="resource_full_add"></tbody>
                                                                 </table>
                                                             </div>
@@ -266,6 +279,8 @@
                                                                     <th>前/中/後測</th>
                                                                     <th>量表內容</th>
                                                                     <th>備註</th>
+                                                                    <th>簽核狀態</th>
+                                                                    <th></th>
                                                                     <tbody id="life_full_add"></tbody>
                                                                 </table>
                                                             </div>
@@ -295,6 +310,8 @@
                                                                     <th>填表日期</th>
                                                                     <th>量表內容</th>
                                                                     <th>備註</th>
+                                                                    <th>簽核狀態</th>
+                                                                    <th></th>
                                                                     <tbody id="health_full_add"></tbody>
                                                                 </table>
                                                             </div>
@@ -320,6 +337,8 @@
                                                                         <th>檔案名稱</th>
                                                                         <th>前/中/後測</th>
                                                                         <th>備註</th>
+                                                                        <th>簽核狀態</th>
+                                                                    <th></th>
                                                                         <tbody id="sullen_full_add"></tbody>
                                                                     </table>
                                                            </div>
@@ -351,6 +370,8 @@
                                                                         <th>總分</th>
                                                                         <th>量表內容</th>
                                                                         <th>備註</th>
+                                                                        <th>簽核狀態</th>
+                                                                    <th></th>
                                                                         <tbody id="employment_satif_full_add"></tbody>
                                                                     </table>
                                                                 </div>
@@ -381,6 +402,8 @@
                                                                         <th>總分</th>
                                                                         <th>量表內容</th>
                                                                         <th>備註</th>
+                                                                        <th>簽核狀態</th>
+                                                                    <th></th>
                                                                         <tbody id="satif_full_add"></tbody>
                                                                     </table>
                                                                 </div>
@@ -412,6 +435,8 @@
                                                                         <th>前/中/後測</th>
                                                                         <th>量表內容</th>
                                                                         <th>備註</th>
+                                                                        <th>簽核狀態</th>
+                                                                    <th></th>
                                                                         <tbody id="familyship_full_add"></tbody>
                                                                     </table>
                                                                 </div>
@@ -436,6 +461,8 @@
                                                                         <th>處置情形</th>
                                                                         <th>檔案名稱/量表內容</th>
                                                                         <th>備註</th>
+                                                                        <th>簽核狀態</th>
+                                                                    <th></th>
                                                                         <tbody id="BSRS5_full_add"></tbody>
                                                                     </table>
                                                                 </div>
@@ -465,6 +492,8 @@
                                                                     <th>評估結果</th>
                                                                     <th>評估表內容</th>
                                                                     <th>備註</th>
+                                                                    <th>簽核狀態</th>
+                                                                    <th></th>
                                                                     <tbody id="settlement_full_add"></tbody>
                                                                 </table>
                                                             </div>
@@ -483,16 +512,52 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <?php include("signnature_canvas2.php"); ?>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
             <input id="stage_end" type="text" hidden>
             <!--/網頁內容-->
         </div>
     </div>
+
+
+    <!--\ Modal -->
+    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" data-backdrop="static">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel2" class="sign_msg_td_name">簽名留言</h4>
+                </div>
+                <div class="modal-body">
+                    <table id="all_data" style="width:auto;margin:0 auto;" class="table table-bordered">
+                        <tr style="text-align:left">
+                            <td class="sign_msg_td_name" style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">簽名留言內容</td>
+                            <td style="border-bottom: solid 1px;">
+                                <textarea style="width:100%;resize: none;font-size: 20px;min-height:10em;" class="sign_msg" disabled="disabled"></textarea>
+                            </td>
+                        </tr>
+                        <tr style="text-align:left">
+                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">留言時間</td>
+                            <td style="border-bottom: solid 1px;">
+                                <input style="width:15em;" class="sign_msg_time" type="datetime" disabled="disabled">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal /-->
+
     <!-- /#wrapper -->
     <!-- JavaScript -->
     <!-- Bootstrap and jQuery -->
@@ -526,6 +591,13 @@
     <script src="javascript/sweetalert2/core-js.js"></script>
     <!-- ================== 登出設定 ================== -->
     <script src='js/logout.js'></script>
+    <!-- ================== jSignature ================== -->
+    <script src="jSignature/jSignature.min.js"></script>
+    
+    <script>
+        //設定js變數抓取使用者名稱
+        var login_user_name = '<?php echo $_SESSION["name"]; ?>';
+    </script>
     <!-- ================== case_all.js ================== -->
     <script src='js/case_all.js<?php echo "?".date("Y-m-d h:i:sa")?>'></script>
     <!-- ================== moment ================== -->

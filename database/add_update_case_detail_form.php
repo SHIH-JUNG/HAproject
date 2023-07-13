@@ -41,6 +41,49 @@ $Case_storage = $_REQUEST['Case_storage'];
 @$r_case_referral = $Case_report2["case_referral"];
 @$r_ques_type = $Case_report2["ques_type"];
 
+$user = $_SESSION['name'];
+
+
+//是否確認上傳表單，若是則設定簽核提醒
+if($Case_storage == "storage")
+{
+    @$Supervise1 = $_REQUEST['Supervise1'];
+    @$Supervise2 = $_REQUEST['Supervise2'];
+    
+    $history_url = $_REQUEST['history_url'];
+    $case_user = $_REQUEST['case_user'];
+
+    $title = $_REQUEST['title'];
+    $signer = $_REQUEST['signer'];
+    $rec_date_time = $_REQUEST['rec_date_time'];
+
+
+    $sign_state = $Supervise1 . "未簽核" . "、" . $Supervise2 . "未簽核";
+
+    $sign_id = $Form_id . "_" . $Case_seqid . "_" . $Case_id;
+
+    $select_sign_id = "SELECT `Sign_id` FROM `signature_notice` WHERE `Sign_id` = '$sign_id';";
+
+    $find_sign_id = mysqli_query($conn, $select_sign_id);
+    $row_nums_0 = mysqli_num_rows($find_sign_id);
+    $sign_id_str = mysqli_fetch_row($find_sign_id);
+
+    if($row_nums_0 > 0)
+    {
+        $sign_sql = "";
+    }
+    else
+    {
+        $sign_sql = "UPDATE `form_all_info` SET `Supervise1` = '$Supervise1', `Supervise2` = '$Supervise2', `Update_date` = NOW(), `Update_name`= '$user'
+        WHERE `Case_id` = '$Case_id' AND `Id` = '$Form_id' AND `Form_name` = '$Form_type' AND `Case_pid` = '$Case_pid';";
+        
+        $sign_sql .= "INSERT INTO `signature_notice` (`Sign_id`, `Title`,`Url`,`Timestamp`, `Assign`, `Signer`, `Sign_state`, `Type`, `Create_date`, `Create_name`) 
+        VALUES ('$sign_id', '$title','$history_url','$rec_date_time', '$case_user', '$signer', '$sign_state', 'current_case', Now(), '$user');";
+    }
+
+    
+}
+
 //是否有醫療表單資料
 if(!isset($_REQUEST['health_rec']))
 {
@@ -55,7 +98,6 @@ else
 
 @$file = "../upload/" . $_FILES["file4"]["name"];
 
-$user = $_SESSION['name'];
 
 // 儲存摘要表的資訊，顯示在case_all.php region
 @$other_info_sql = "UPDATE `form_all_info` SET `Fillin_date` = '$Fillin_date', `Other_info` = '$other_info',`Case_storage` = '$Case_storage', `Update_date` = NOW(), `Update_name`= '$user'
@@ -209,6 +251,9 @@ if($form_id_num[0]>0)
 
                 $case_storage_sql = "UPDATE `current_case` SET `Case_storage` = '$case_storage_str[0]' WHERE `Case_id` = '$Case_id' AND `Id` = '$Case_seqid';";
                 $sqlUpdate .= $case_storage_sql;
+
+                // 簽核提醒
+                $sqlUpdate .= $sign_sql;
             }
             elseif($Case_storage == "cache")
             {
@@ -292,6 +337,9 @@ if($form_id_num[0]>0)
             
             $case_storage_sql = "UPDATE `current_case` SET `Case_storage` = '$case_storage_str[0]' WHERE `Case_id` = '$Case_id' AND `Id` = '$Case_seqid';";
             $sqlUpdate .= $case_storage_sql;
+
+            // 簽核提醒
+            $sqlUpdate .= $sign_sql;
         }
         elseif($Case_storage == "cache")
         {
@@ -387,6 +435,9 @@ else // 第一次新增至 forms 資料庫，執行insert
 
                 $case_storage_sql = "UPDATE `current_case` SET `Case_storage` = '$case_storage_str[0]' WHERE `Case_id` = '$Case_id' AND `Id` = '$Case_seqid';";
                 $sql .= $case_storage_sql;
+
+                // 簽核提醒
+                $sql .= $sign_sql;
             }
             elseif($Case_storage == "cache")
             {
@@ -415,6 +466,9 @@ else // 第一次新增至 forms 資料庫，執行insert
                 $case_storage_sql = "UPDATE `current_case` SET `Case_storage` = '$case_storage_sql_str' WHERE `Case_id` = '$Case_id' AND `Id` = '$Case_seqid';";
                 $sql .= $case_storage_sql;
             }
+
+            
+
 
             // 工作報表新增/更新
             @$sql .= $case_report2_sql;
@@ -470,6 +524,9 @@ else // 第一次新增至 forms 資料庫，執行insert
 
             $case_storage_sql = "UPDATE `current_case` SET `Case_storage` = '$case_storage_str[0]' WHERE `Case_id` = '$Case_id' AND `Id` = '$Case_seqid';";
             $sql .= $case_storage_sql;
+
+            // 簽核提醒
+            $sql .= $sign_sql;
         }
         elseif($Case_storage == "cache")
         {
@@ -498,6 +555,7 @@ else // 第一次新增至 forms 資料庫，執行insert
             $case_storage_sql = "UPDATE `current_case` SET `Case_storage` = '$case_storage_sql_str' WHERE `Case_id` = '$Case_id' AND `Id` = '$Case_seqid';";
             $sql .= $case_storage_sql;
         }
+
 
         // 工作報表新增/更新
         @$sql .= $case_report2_sql;

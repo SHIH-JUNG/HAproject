@@ -28,7 +28,7 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <div class="col-sm-12">
+                        <div class="text-center col-sm-12">
                             <button type="button" style="margin-right:2em;" class="btn btn-default btn-lg cancel-btn" onclick="show_main_panel();">取消</button>
                             <button type="button" id="sign_submit_btn" onclick="signature_submit(this)" class="btn btn-default btn-lg">確認送出</button>
                         </div>
