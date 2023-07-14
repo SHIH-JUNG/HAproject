@@ -583,6 +583,7 @@ function reservation_rec_new() {
 
       //新增至在職訓練總表region
       var training_id = getUrlVars()["training_id"];
+      // console.log(training_id)
       $.ajax({
         url: "database/add_new_training_data.php",
         data: {
@@ -634,11 +635,13 @@ function training_show() {
   $.ajax({
       url: "database/find_training_rec.php",
       data:{
-        training_id:training_id,
+        Training_id:training_id,
       },
       type: "POST",
       dataType: "JSON",
-      success: function (data) {      
+      success: function (data) {   
+        console.log("test")
+        console.log(data)   
           var cssString5 = "";
           var hometabcssString5 = "";
           var Name_arr = [];
@@ -729,19 +732,19 @@ function training_show() {
                   '<tr style="text-align:left">' +
                       '<td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">課程內容</td>' +
                       '<td style="">'+
-                      '<input id="content_detail'+value.Id+'" value="'+value.Training_name+'" type="text">' +
+                      '<input class="question'+value.Id+'" id="content_detail'+value.Id+'" value="'+value.Content_detail +'" type="text">' +
                       '</td>' +
                   '</tr>' +
                   '<tr style="text-align:left">' +
                       '<td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">在職訓練地點</td>' +
                       '<td style="">'+
-                      '<input id="location_detail'+value.Id+'" value="'+value.Place+'" type="text">' +
+                      '<input class="question'+value.Id+'" id="location_detail'+value.Id+'" value="'+value.Location_detail	+'" type="text">' +
                       '</td>' +
                   '</tr>' +
                   '<tr style="text-align:left">' +
                       '<td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;">備註</td>' +
                       '<td >'+
-                          '<textarea class="question'+value.Id+'" style="height:150px;width:700px;resize: none;font-size: 20px;" name="new_remark" id="new_remark'+value.Id+'" placeholder="請輸入備註內容" >'+value.Remark+'</textarea>'+
+                          '<textarea class="question'+value.Id+'" style="height:150px;width:700px;resize: none;font-size: 20px;" name="new_remark" id="new_remark'+value.Id+'" placeholder="請輸入備註內容" >'+value.New_remark	+'</textarea>'+
                       '</td>' +
                   '</tr>' +
                   '<tr>' +
@@ -832,7 +835,7 @@ function training_show() {
              
           //填入預約下拉開始結束時間region
           $.each(data,function(index,value){
-
+            console.log(data)
             $('#start_time_h' + value.Id + '').val(value.Start_time_h);
             $('#start_time_m' + value.Id + '').val(value.Start_time_m);
             $('#end_time_h' + value.Id + '').val(value.End_time_h);

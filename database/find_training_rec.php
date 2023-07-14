@@ -6,7 +6,7 @@ include("sql_connect.php");
 
 //region 抓資料
 if($Training_id != "" ){
-    $note = "SELECT * FROM `training` WHERE `Training_id` = '$Training_id' ORDER BY `training`.`Training_date` ASC ,`training`.`Id` ASC";
+    $note = "SELECT * FROM `training` WHERE `Training_id` = '$Training_id' AND `First_insert`<>1 ORDER BY `training`.`Training_date` ASC ,`training`.`Id` ASC";
 }else{
     $note = "SELECT * FROM `training` ORDER BY `training`.`Training_date` ASC ,`training`.`Id` ASC";
 }

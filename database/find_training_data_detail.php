@@ -1,9 +1,10 @@
 <?php
 include("sql_connect.php");
-
+$Id = $_POST['Id'];
+$Training_id = $_POST['Training_id'];
 
 //region 抓資料
-$note = "SELECT * FROM `training` ORDER BY `training`.`Id` ASC;";
+$note = "SELECT * FROM `training` WHERE `Id`='$Id' AND `Training_id` = '$Training_id' ORDER BY `training`.`Id` ASC;";
 
 //宣告空的陣列
 $datas = array();

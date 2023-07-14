@@ -19,12 +19,13 @@ $New_remark = $_POST['New_remark'];
 $user = $_SESSION['name'];
 
 
-$sql = "INSERT INTO `training` (`Start_date`,`Training_id`,`Start_time_h`,`Start_time_m`,`End_time_h`,
+$sql = "INSERT INTO `training` (`Training_id`,`Start_date`,`Start_time_h`,`Start_time_m`,`End_time_h`,
                                 `End_time_m`,`Content_detail`,`Location_detail`,`New_remark`) VALUES
  ('$Training_id','$Start_date','$Start_time_h','$Start_time_m','$End_time_h',
  '$End_time_m','$Content_detail','$Location_detail','$New_remark');";
 if (mysqli_query($conn, $sql)) {
     echo true;
+    // echo $sql;
 } else {
     echo false;
 }

@@ -2,7 +2,8 @@
 include("sql_connect.php");
 //region 抓資料
 
-$note = "SELECT * FROM `training` ORDER BY `training`.`Id` ASC;";
+// $note = "SELECT * FROM `training` ORDER BY `training`.`Id` ASC;";
+$note = "SELECT * FROM `training` GROUP BY `training`.`Training_id`;";
 
 //宣告空的陣列
 $datas = array();
