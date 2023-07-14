@@ -146,70 +146,51 @@ $.ajax({
     console.log(data);
     $.each(data, function (index, value) {
       cssString +=
-        '<tr id="' +
-        value.Id +
-        '">' +
-        '<td style="text-align:center">' +
-        value.Name +
-        "</td>" +
-        '<td style="text-align:center">' +
-        value.Training_date +
-        "</td>" +
-        '<td style="text-align:center">' +
-        value.Training_name +
-        "</td>" +
-        '<td style="text-align:center">' +
-        value.Hours +
-        "</td>" +
-        '<td style="text-align:center">' +
-        value.Place +
-        "</td>" +
-        '<td style="text-align:center">' +
-        value.Create_date +
-        "</td>" +
-        '<td style="text-align:center">' +
-        value.Create_name +
-        "</td>" +
-        '<td style="text-align:center">' +
-        value.Update_date +
-        "</td>" +
-        '<td style="text-align:center">' +
-        value.Update_name +
-        "</td>" +
+      '<tr id="'+value.Id+'" training_id ="'+value.Training_id+'">' +
+        '<td style="text-align:center">'+ value.Name + "</td>" +
+        '<td style="text-align:center">' + value.Training_date + "</td>" +
+        '<td style="text-align:center">' + value.Training_name + "</td>" +
+        '<td style="text-align:center">' + value.Hours + "</td>" +
+        '<td style="text-align:center">' + value.Place + "</td>" +
+        '<td style="text-align:center">' + value.Create_date + "</td>" +
+        '<td style="text-align:center">' + value.Create_name + "</td>" +
+        '<td style="text-align:center">' + value.Update_date + "</td>" +
+        '<td style="text-align:center">' + value.Update_name + "</td>" +
         "</tr>";
 
-      $("#name").append(
-        '<option value="' + value.Name + '">' + value.Name + "</option>"
-      );
-      $("#training_date").append(
-        '<option value="' +
-          value.Training_date +
-          '">' +
-          value.Training_date +
-          "</option>"
-      );
-      $("#training_name").append(
-        '<option value="' +
-          value.Training_name +
-          '">' +
-          value.Training_name +
-          "</option>"
-      );
-      $("#hours").append(
-        '<option value="' + value.Hours + '">' + value.Hours + "</option>"
-      );
-      $("#place").append(
-        '<option value="' + value.Place + '">' + value.Place + "</option>"
-      );
+        $("#training_id").append('<option value="'+value.Training_id+'">'+value.Training_id+'</option>');
     });
+
+     //option小到大排序
+     $('#training_id option').sort(function(a,b){
+      var aText = $(a).text().toUpperCase();
+      var bText = $(b).text().toUpperCase();
+      // if(aText>bText) return 1;
+      // if(aText<bText) return -1;
+      // return 0;
+
+      return aText - bText;
+  }).appendTo('#training_id')
+
+  //最前面新增"所有"選像
+  $('#training_id').prepend("<option value='' selected='selected'>所有</option>");
+
+  $("#training_id").children().each(function() {
+      text = $(this).text();
+      //if($("select#training_id option:contains("+text+")").length > 1){
+      //    $("select#training_id option:contains("+text+"):gt(0)").remove();
+      //}
+      $(this).siblings('[value="' + this.value + '"]').remove();
+      //    console.log(text)
+  });
+
 
     //印出表格
     $("#call_view").html(cssString);
 
     //點擊table tr 進入詳細頁面
     $(".table-hover tbody").on("click", "tr", function () {
-      window.location.href =
-        "training_detail.php?id=" + $(this).attr("id") + "";
+      window.location.href = 'training_detail.php?id='+$(this).attr("id")+'&training_id='+$(this).attr("training_id")+'';
     });
   },
 

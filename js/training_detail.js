@@ -123,18 +123,25 @@ check_sql_date_format = function (date) {
 
 //抓發文表region
 $(document).ready(function () {
+
+  var id = getUrlVars()["id"];
+  var training_id = getUrlVars()["training_id"];
+
   $.ajax({
     url: "database/find_training_data_detail.php",
-    data: {},
+    data: {
+      Id:id,
+      Training_id:training_id,
+    },
     type: "POST",
     dataType: "JSON",
     async: false,
     success: function (data) {
       console.log(data);
       $.each(data, function (index, value) {
+
         $("#name").val(value.Name);
         $("#training_date").val(check_sql_date_format(value.Training_date));
-        $("#on_or_off").val(value.On_or_off);
         $("#training_name").val(value.Training_name);
         $("#place").val(value.Place);
         $("#hours").val(value.Hours);
@@ -143,6 +150,7 @@ $(document).ready(function () {
         $("#create_name").val(value.Create_name);
         $("#update_date").val(check_sql_date_format(value.Update_date));
         $("#update_name").val(value.Update_name);
+
       });
     },
     error: function (e) {
@@ -159,14 +167,27 @@ $(document).ready(function () {
   });
   //endregion
 
+  $('a[data-toggle="pill"]').on('shown.bs.tab', function (e) {
+    if($(e.target).attr("id")=="home-tab")
+    {
+        $("#all_data").show();
+    }
+  })
+
   training_show();
+
+    //手動新增按鈕點擊跳出模態框
+  $('#myModal').on('shown.bs.modal', function () {
+      $('#trans_to_opencase').trigger('focus');
+  });
 });
 
 //endregion
 
 //更新發文個案表基本資料region
 $("#tra_update").on("click", function () {
-  var tra_id = getUrlVars()["tra_id"];
+  var id = getUrlVars()["id"];
+  var training_id = getUrlVars()["training_id"];
 
   var stau = false;
 
@@ -186,10 +207,9 @@ $("#tra_update").on("click", function () {
     $.ajax({
       url: "database/update_training_data_detail.php",
       data: {
-        tra_id: tra_id,
+        training_id: training_id,
         name: $("#name").val(),
         training_date: trans_to_EN($("#training_date").val()),
-        on_or_off: $("#on_or_off"),
         training_name: $("#training_name").val(),
         place: $("#place").val(),
         hours: $("#hours").val(),
@@ -230,9 +250,6 @@ function check_updat_training_data() {
   if (training_date == null) {
     errorstr += "未填寫在職訓練日期!\r\n";
   }
-  if (on_or_off == null) {
-    errorstr += "未選是否在職!\r\n";
-  }
   if (training_name == null) {
     errorstr += "未填寫在職訓練標題!\r\n";
   }
@@ -258,15 +275,15 @@ function tra_cancel() {
 
 //進入預覽WORD頁面region
 $("#preview_word").on("click", function () {
-  var tra_id = getUrlVars()["tra_id"];
+  var training_id = getUrlVars()["training_id"];
   //    console.log(id);
-  location.href = "preview_word.php?tra_id=" + tra_id + "";
+  location.href = "preview_word.php?training_id=" + training_id + "";
 });
 
 $("#preview_word2").on("click", function () {
-  var tra_id = getUrlVars()["tra_id"];
+  var training_id = getUrlVars()["training_id"];
   //    console.log(id);
-  location.href = "preview_word2.php?tra_id=" + tra_id + "";
+  location.href = "preview_word2.php?training_id=" + training_id + "";
 });
 //endregion
 
@@ -397,7 +414,7 @@ function reservation_rec_new() {
     '<tr style="text-align:left">' +
     '<td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;">備註</td>' +
     "<td >" +
-    '<textarea style="height:150px;width:700px;resize: none;font-size: 20px;" name="remark" id="remark" placeholder="請輸入備註內容" ></textarea>' +
+    '<textarea style="height:150px;width:700px;resize: none;font-size: 20px;" name="new_remark" id="new_remark" placeholder="請輸入備註內容" ></textarea>' +
     "</td>" +
     "</tr>" +
     "<tr>" +
@@ -565,17 +582,20 @@ function reservation_rec_new() {
       //    //endregion
 
       //新增至在職訓練總表region
-      var tra_id = getUrlVars()["tra_id"];
+      var training_id = getUrlVars()["training_id"];
       $.ajax({
         url: "database/add_new_training_data.php",
         data: {
-          tra_id: tra_id,
+          Training_id: training_id,
           // Name: $("#name").val(),
-          Training_date: $("#training_date").val(),
-          Training_name: $("#training_name").val(),
-          Hours: $("#hours").val(),
-          Place: $("#place").val(),
-          Remark: $("#remark").val(),
+          Start_date: $("#start_date").val(),
+          Start_time_h: $("#start_time_h").val(),
+          Start_time_m: $("#start_time_m").val(),
+          End_time_h: $("#end_time_h").val(),
+          End_time_m: $("#end_time_m").val(),
+          Content_detail: $("#content_detail").val(),
+          Location_detail: $("#location_detail").val(),
+          New_remark: $("#new_remark").val(),
         },
         type: "POST",
         dataType: "JSON",
@@ -609,12 +629,12 @@ function reservation_rec_new() {
 
 function training_show() {
   //印出監所服務預約訪談紀錄表格region
-  var tra_id = getUrlVars()["tra_id"];
+  var training_id = getUrlVars()["training_id"];
   //console.log(id);
   $.ajax({
       url: "database/find_training_rec.php",
       data:{
-        Tra_id:tra_id,
+        training_id:training_id,
       },
       type: "POST",
       dataType: "JSON",
@@ -637,7 +657,7 @@ function training_show() {
                   '<tr  style="text-align:left">' +
                       '<td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">在職訓練時間</td>' +
                       '<td style="">'+
-                          '<input class="question'+value.Id+'" id="start_date'+value.Id+'" type="date" value='+value.Start_date+' >'+
+                          '<input class="question'+value.Id+'" id="start_date'+value.Id+'" type="text" value='+value.Start_date+' >'+
                           ' '+
                           '<select class="question'+value.Id+'" id="start_time_h'+value.Id+'" >'+
                               '<option>00</option>'+
@@ -721,7 +741,7 @@ function training_show() {
                   '<tr style="text-align:left">' +
                       '<td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;">備註</td>' +
                       '<td >'+
-                          '<textarea class="question'+value.Id+'" style="height:150px;width:700px;resize: none;font-size: 20px;" name="remark" id="remark'+value.Id+'" placeholder="請輸入備註內容" >'+value.Remark+'</textarea>'+
+                          '<textarea class="question'+value.Id+'" style="height:150px;width:700px;resize: none;font-size: 20px;" name="new_remark" id="new_remark'+value.Id+'" placeholder="請輸入備註內容" >'+value.Remark+'</textarea>'+
                       '</td>' +
                   '</tr>' +
                   '<tr>' +
@@ -812,21 +832,11 @@ function training_show() {
              
           //填入預約下拉開始結束時間region
           $.each(data,function(index,value){
-              var s_ArrArr=[];
-              var e_ArrArr=[];
-              var s_date = value.Start_time;
-              var e_date = value.End_time;
-              s_Arr = s_date.split(":"); // 根据“-”分割
-              s_h = s_Arr[0];
-              s_m = s_Arr[1];
-//                console.log(value.Id);
-              e_Arr = e_date.split(":"); // 根据“-”分割
-              e_h = e_Arr[0];
-              e_m = e_Arr[1];
-              $('#start_time_h'+value.Id+'').val(s_h);
-              $('#start_time_m'+value.Id+'').val(s_m);
-              $('#end_time_h'+value.Id+'').val(e_h);
-              $('#end_time_m'+value.Id+'').val(e_m);
+
+            $('#start_time_h' + value.Id + '').val(value.Start_time_h);
+            $('#start_time_m' + value.Id + '').val(value.Start_time_m);
+            $('#end_time_h' + value.Id + '').val(value.End_time_h);
+            $('#end_time_m' + value.Id + '').val(value.End_time_m);
           });
           //endregion
           
@@ -1030,7 +1040,7 @@ function check_open_reservation_note_value_str() {
 
 //新增至開案個案按鈕 region
 $("#trans_to_opencase_submit").on("click", function () {
-  var counsel_id = getUrlVars()["counsel_id"];
+  var training_id = getUrlVars()["training_id"];
   var id = getUrlVars()["id"];
 
   var tran_case_name = "";
@@ -1056,10 +1066,10 @@ $("#trans_to_opencase_submit").on("click", function () {
     });
   } else {
     $.ajax({
-      url: "database/find_counsel_data_detail.php",
+      url: "database/find_training_data_detail.php",
       data: {
         Id: id,
-        Counsel_id: counsel_id,
+        Training_id: training_id,
       },
       type: "POST",
       dataType: "JSON",
@@ -1079,8 +1089,8 @@ $("#trans_to_opencase_submit").on("click", function () {
     });
 
     window.location.href =
-      "phone_trans_to_opencase.php?unopen_type=counsel&id=" +
-      counsel_id.replace(/^\s+|\s+$/gm, "") +
+      "phone_trans_to_opencase.php?unopen_type=training&id=" +
+      training_id.replace(/^\s+|\s+$/gm, "") +
       "&case_id=" +
       $("#open_case_t_sn")
         .val()
@@ -1207,7 +1217,7 @@ function check_trans_to_opencase_value() {
 //endregion
 
 //取消重整region
-function counsel_cancel() {
+function training_cancel() {
   location.reload();
 }
 //endregion
@@ -1285,8 +1295,8 @@ function cancel_face(id) {
 //endregion
 
 //監所服務總表格鎖定控制region
-function counsel_edit() {
-  $(".counsel_question").attr("disabled", false);
+function training_edit() {
+  $(".training_question").attr("disabled", false);
   $("#edit_div").attr("hidden", true);
   $("#save_div").attr("hidden", false);
 }
@@ -1308,7 +1318,7 @@ function phone_cancel2(id) {
 
 //修改面訪紀錄region
 function update_add_face(id) {
-  var counsel_id = getUrlVars()["counsel_id"];
+  var training_id = getUrlVars()["training_id"];
   var stau = false;
 
   if (check_open_reservation_note_value_str2(id) != "") {
@@ -1349,10 +1359,10 @@ function update_add_face(id) {
     }
 
     $.ajax({
-      url: "database/update_counsel_face.php",
+      url: "database/update_training_face.php",
       data: {
         Id: id,
-        Counsel_id: counsel_id,
+        Training_id: training_id,
         Add_date: $("#start_date" + id + "").val(),
         End_date: $("#start_date" + id + "").val(),
         Start_time: start_time,
@@ -1390,14 +1400,14 @@ function update_add_face(id) {
 
 //進入預覽WORD頁面region
 $("#preview_word").on("click", function () {
-  var counsel_id = getUrlVars()["counsel_id"];
+  var training_id = getUrlVars()["training_id"];
   //    console.log(id);
-  location.href = "preview_word.php?counsel_id=" + counsel_id + "";
+  location.href = "preview_word.php?training_id=" + training_id + "";
 });
 
 $("#preview_word2").on("click", function () {
-  var counsel_id = getUrlVars()["counsel_id"];
+  var training_id = getUrlVars()["training_id"];
   //    console.log(id);
-  location.href = "preview_word2.php?counsel_id=" + counsel_id + "";
+  location.href = "preview_word2.php?training_id=" + training_id + "";
 });
 //endregion

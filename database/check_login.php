@@ -23,8 +23,8 @@ if($id != null && $pw !=null){
         $_SESSION['job'] = $row[8];
 
         $_SESSION['login']= 10;
-
         $_SESSION['pwd'] = $pw;
+
         $a = session_id();
 
         echo true;

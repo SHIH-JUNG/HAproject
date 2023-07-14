@@ -164,7 +164,6 @@
                                                             <tr style="background-color:rgb(255 201 54);">
                                                                 <th>姓名</th>
                                                                 <th>在職訓練日期</th>
-                                                                <!-- <th>是否在職</th> -->
                                                                 <th>課程主題</th>
                                                                 <th>時數</th>
                                                                 <th>在職訓練地點</th>

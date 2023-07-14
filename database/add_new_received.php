@@ -86,7 +86,7 @@ $sql = "INSERT INTO `received` (`Id`, `Year`,`Title_name`,`Received_date`,`Subje
  ($received_id, '$Year','$Title_Name','$Received_date','$Subject','$Unit','$Num_receive', '$file', '$file_name', '$Executive', '$Supervise', '$Leader', '$Director', '$Distribution',Now(),'$user');";
 
 $sql .= "INSERT INTO `signature_notice` (`Sign_id`, `Title`,`Url`,`Timestamp`, `Assign`, `Signer`, `Sign_state`, `Type`, `Create_date`, `Create_name`) 
-VALUES ('$received_id', '$title', '$url', '$sign_received_date', '$user', '$signers', '$sign_state', 'received', Now(), '$user');";
+VALUES ($received_id, '$title', '$url', '$sign_received_date', '$user', '$signers', '$sign_state', 'received', Now(), '$user');";
 
 if (mysqli_multi_query($conn, $sql)) {
     echo true;

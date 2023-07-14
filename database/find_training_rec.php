@@ -1,14 +1,14 @@
 <?php 
 include("sql_connect.php"); 
-@$Tra_id = $_POST['Tra_id'];
+@$Training_id = $_POST['Training_id'];
 // @$Phone_id = '2'; 
 
 
 //region 抓資料
-if($Tra_id != "" ){
-    $note = "SELECT * FROM `training` WHERE `Id` = '$Tra_id' ORDER BY `training`.`Start_date` ASC ,`training`.`Id` ASC";
+if($Training_id != "" ){
+    $note = "SELECT * FROM `training` WHERE `Training_id` = '$Training_id' ORDER BY `training`.`Training_date` ASC ,`training`.`Id` ASC";
 }else{
-    $note = "SELECT * FROM `training` ORDER BY `training`.`Start_date` ASC ,`training`.`Id` ASC";
+    $note = "SELECT * FROM `training` ORDER BY `training`.`Training_date` ASC ,`training`.`Id` ASC";
 }
 
 //宣告空的陣列
