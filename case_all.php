@@ -21,6 +21,8 @@
     <link href="css/buttons.dataTables1.5.1.min.css" rel="stylesheet" />
     <!--  日期民國  -->
     <link data-require="jqueryui@*" rel="stylesheet" href="css/jquery-ui.css" />
+    <link href="css/dtsel.css" rel="stylesheet" />
+
     <meta charset="UTF-8" />
     <!--    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />-->
     <meta name="description" content="快樂聯盟資管系統">
@@ -191,6 +193,7 @@
                                                                     <th></th>
                                                                     <tbody id="case_full_add"></tbody>
                                                                 </table>
+                                                                <div class="text-right" style="font-size:16px;color:red;">※點擊簽核狀態已簽章藍字查看留言內容</div>
                                                             </div>
                                                         </div>
                                                         <div class="text-center">
@@ -224,6 +227,7 @@
                                                                     <th></th>
                                                                     <tbody id="interlocution_full_add"></tbody>
                                                                 </table>
+                                                                <div class="text-right" style="font-size:16px;color:red;">※點擊簽核狀態已簽章藍字查看留言內容</div>
                                                             </div>
                                                         </div>
                                                         <button id="interlocution_add_new" type="button" class="btn btn-default" onclick="form_add_new(this)">新增</button>
@@ -252,6 +256,7 @@
                                                                     <th></th>
                                                                     <tbody id="resource_full_add"></tbody>
                                                                 </table>
+                                                                <div class="text-right" style="font-size:16px;color:red;">※點擊簽核狀態已簽章藍字查看留言內容</div>
                                                             </div>
                                                         </div>
                                                         <button id="resource_add_new" type="button" class="btn btn-default" onclick="form_add_new(this)">新增</button>
@@ -283,6 +288,7 @@
                                                                     <th></th>
                                                                     <tbody id="life_full_add"></tbody>
                                                                 </table>
+                                                                <div class="text-right" style="font-size:16px;color:red;">※點擊簽核狀態已簽章藍字查看留言內容</div>
                                                             </div>
                                                         </div>
                                                         <button id="life_add_new" class="btn btn-default" onclick="form_add_new(this)">新增</button>
@@ -314,6 +320,7 @@
                                                                     <th></th>
                                                                     <tbody id="health_full_add"></tbody>
                                                                 </table>
+                                                                <div class="text-right" style="font-size:16px;color:red;">※點擊簽核狀態已簽章藍字查看留言內容</div>
                                                             </div>
                                                             </div>
                                                         </div>
@@ -341,6 +348,7 @@
                                                                     <th></th>
                                                                         <tbody id="sullen_full_add"></tbody>
                                                                     </table>
+                                                                    <div class="text-right" style="font-size:16px;color:red;">※點擊簽核狀態已簽章藍字查看留言內容</div>
                                                            </div>
                                                             </div>
                                                         </div>
@@ -374,6 +382,7 @@
                                                                     <th></th>
                                                                         <tbody id="employment_satif_full_add"></tbody>
                                                                     </table>
+                                                                    <div class="text-right" style="font-size:16px;color:red;">※點擊簽核狀態已簽章藍字查看留言內容</div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -406,6 +415,7 @@
                                                                     <th></th>
                                                                         <tbody id="satif_full_add"></tbody>
                                                                     </table>
+                                                                    <div class="text-right" style="font-size:16px;color:red;">※點擊簽核狀態已簽章藍字查看留言內容</div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -439,6 +449,7 @@
                                                                     <th></th>
                                                                         <tbody id="familyship_full_add"></tbody>
                                                                     </table>
+                                                                    <div class="text-right" style="font-size:16px;color:red;">※點擊簽核狀態已簽章藍字查看留言內容</div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -465,6 +476,7 @@
                                                                     <th></th>
                                                                         <tbody id="BSRS5_full_add"></tbody>
                                                                     </table>
+                                                                    <div class="text-right" style="font-size:16px;color:red;">※點擊簽核狀態已簽章藍字查看留言內容</div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -496,6 +508,7 @@
                                                                     <th></th>
                                                                     <tbody id="settlement_full_add"></tbody>
                                                                 </table>
+                                                                <div class="text-right" style="font-size:16px;color:red;">※點擊簽核狀態已簽章藍字查看留言內容</div>
                                                             </div>
                                                         </div>
                                                         <div class="text-center">
@@ -525,6 +538,51 @@
         </div>
     </div>
 
+
+    <!--\ Modal -->
+    <!-- <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" data-backdrop="static">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel2" class="sign_msg_td_name">簽名留言</h4>
+                </div>
+                <div class="modal-body">
+                    <table id="all_data" style="width:auto;margin:0 auto;" class="table table-bordered">
+                        <tr style="text-align:left">
+                            <td class="sign_msg_td_name" style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">督導<br/>留言內容</td>
+                            
+                            <td class="sign_msg_td_name" style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">執行長<br/>留言內容</td>
+                        </tr>
+                        <tr>
+                            <td style="border-bottom: solid 1px;">
+                                <textarea style="width:100%;resize: none;font-size: 20px;min-height:10em;" class="sign_msg1" disabled="disabled"></textarea>
+                            </td>
+                            <td style="border-bottom: solid 1px;">
+                                <textarea style="width:100%;resize: none;font-size: 20px;min-height:10em;" class="sign_msg2" disabled="disabled"></textarea>
+                            </td>
+                        </tr>
+                        <tr style="text-align:left">
+                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">督導<br/>留言時間</td>
+                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">執行長<br/>留言時間</td>
+                        </tr>
+                        <tr>
+                            <td style="border-bottom: solid 1px;">
+                                <input style="width:15em;" class="sign_msg_time1" type="datetime" disabled="disabled">
+                            </td>
+                            <td style="border-bottom: solid 1px;">
+                                <input style="width:15em;" class="sign_msg_time2" type="datetime" disabled="disabled">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <!-- Modal /-->
 
     <!--\ Modal -->
     <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" data-backdrop="static">
@@ -562,7 +620,7 @@
     <!-- JavaScript -->
     <!-- Bootstrap and jQuery -->
     <script src="javascript/jquery.min.js"></script>
-    <script src="javascript/jquery-ui.js"></script>
+    <!-- <script src="javascript/jquery-ui.js"></script> -->
     <script src="javascript/bootstrap.min.js"></script>
     <!-- PDF -->
     <script type="text/javascript" src="javascript/jquery.media.js"></script>
@@ -591,22 +649,24 @@
     <script src="javascript/sweetalert2/core-js.js"></script>
     <!-- ================== 登出設定 ================== -->
     <script src='js/logout.js'></script>
-    <!-- ================== jSignature ================== -->
-    <script src="jSignature/jSignature.min.js"></script>
-    
-    <script>
-        //設定js變數抓取使用者名稱
-        var login_user_name = '<?php echo $_SESSION["name"]; ?>';
-    </script>
-    <!-- ================== case_all.js ================== -->
-    <script src='js/case_all.js<?php echo "?".date("Y-m-d h:i:sa")?>'></script>
+
     <!-- ================== moment ================== -->
     <script src='javascript/moment2.29.0.min.js'></script>
     <!-- ================== table ================== -->
     <script src="javascript/bootstrap1.18.0-table.min.js"></script>
     <script src="javascript/bootstrap-table1.11.1-zh-TW.min.js"></script>
     <!-- 日期民國-->
-    <script src="javascript/TW_YEAR.js"></script>
+    <script src="javascript/jquery-ui.min.js"></script>
+    <script src="javascript/datepickerTw.js"></script>
+    <!-- ================== jSignature ================== -->
+    <script src="jSignature/jSignature.min.js"></script>
+    <script>
+        //設定js變數抓取使用者名稱
+        var login_user_name = '<?php echo $_SESSION["name"]; ?>';
+    </script>
+    <!-- ================== case_all.js ================== -->
+    <script src='js/case_all.js<?php echo "?".date("Y-m-d h:i:sa")?>'></script>
+    
 </body>
 
 </html>
