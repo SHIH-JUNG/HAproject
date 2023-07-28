@@ -134,12 +134,17 @@ $(document).ready(function () {
           '<td style="text-align:center">' +
           value.Next_meeting_date +
           "</td>" +
+          '<td style="text-align:center">' +
+          value.Create_name +
+          "</td>" +
           "</tr>";
   
         $("#year").append(
           '<option value="' + value.Meeting_date.split("年")[0] + '">' + value.Meeting_date.split("年")[0] + "</option>"
         );
-
+        $("#case_user").append(
+          '<option value="' + value.Create_name + '">' + value.Create_name + "</option>"
+        );
       });
   
       //找出所有查詢表格下拉式選單，將內容排序、加上"所有查詢"、去除重複值

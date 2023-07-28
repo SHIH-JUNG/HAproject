@@ -133,6 +133,13 @@
                                                         </tr>
 
                                                         <tr>
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">承辦人員：</td>
+                                                            <td class="text-left">
+                                                                <select id="case_user" rel="7" class="filter search">
+                                                                    <!-- <option value="">所有</option> -->
+                                                                </select>
+                                                            </td>
+
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">出席人數：</td>
                                                             <td class="text-left">
                                                                 <input style="width:5em;" id="ttendence_min_num" class="" type="number"><label>～</label>
@@ -183,6 +190,7 @@
                                                                 <th>出席人數</th>
                                                                 <th>請假人數</th>
                                                                 <th>下次開會日期</th>
+                                                                <th>承辦人員</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody id="call_view"></tbody>
