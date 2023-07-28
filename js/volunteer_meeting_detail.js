@@ -211,19 +211,30 @@ $(document).ready(function () {
 
             var proposal_contents_json = JSON.parse("[" +value.Proposal_contents.replace('\"\[', '\[').replace('\]\"', '\]') + "]");
 
+            var resolution_contents_json = JSON.parse("[" +value.Resolution_contents.replace('\"\[', '\[').replace('\]\"', '\]') + "]");
+            
+            console.log(resolution_contents_json[0])
+
             $.each(proposal_contents_json[0], function (i, datan) {
-                var css_str = '<tr>' +
-                  '<td colspan="2"><label for="proposal_contents_'+ ( i + 1 ) +'">提案'+toChinesNum(( i + 1 ))+'、</label></td>' + 
+                var css_str = 
+                '<tr>' +
+                  '<td colspan="2">' +
+                  '<textarea class="vom_question" style="height:6em;width:100%;resize: none;font-size: 20px;" id="proposal_contents_'+ ( i + 1 ) +'" name="proposal_contents" placeholder="請輸入提案內容">提案'+toChinesNum(( i + 1 ))+'、</textarea>' +
+                  '</td>' + 
                 '</tr>' +
                 '<tr>' +
                   '<td colspan="2">' +
-                    '<textarea class="vom_question" style="height:6em;width:100%;resize: none;font-size: 20px;" id="proposal_contents_'+ ( i + 1 ) +'" name="proposal_contents" placeholder="請輸入提案討論內容"></textarea>' +
+                    '<textarea class="vom_question" style="height:6em;width:100%;resize: none;font-size: 20px;" id="resolution_contents_'+ ( i + 1 ) +'" name="resolution_contents" placeholder="請輸入決議內容"></textarea><hr/>' +
                   '</td>' +
                 '</tr>' + '';
   
                 $("#proposal_table_last_tr").before(css_str);
 
                 $('#proposal_contents_'+ ( i + 1 )).val(datan.val);
+            });
+
+            $.each(resolution_contents_json[0], function (i, datan) {
+              $('#resolution_contents_'+ ( i + 1 )).val(datan.val);
             });
           });
         },
@@ -290,15 +301,18 @@ imagePreview = function () {
 add_proposal_contents = function() {
     var len =  $("[name='proposal_contents']").length;
 
-    var new_id = "proposal_contents_" +  (len + 1);
+    var new_id_proposal = "proposal_contents_" +  (len + 1);
+    var new_id_resolution = "resolution_contents_" +  (len + 1);
 
     var new_str = '<tr>' +
-                    '<td colspan="2"><label for="'+new_id+'">提案'+toChinesNum((len + 1))+'、</label></td>' + 
+                  '<td colspan="2">' +
+                  '<textarea class="vom_question" style="height:6em;width:100%;resize: none;font-size: 20px;" id="'+new_id_proposal+'" name="proposal_contents" placeholder="請輸入提案內容">提案'+toChinesNum((len + 1))+'、</textarea>' +
+                  '</td>' + 
                 '</tr>' +
                 '<tr>' +
-                    '<td colspan="2">' +
-                    '<textarea class="vom_question" style="height:6em;width:100%;resize: none;font-size: 20px;" id="'+new_id+'" name="proposal_contents" placeholder="請輸入提案討論內容">決議：</textarea>' +
-                    '</td>' +
+                  '<td colspan="2">' +
+                    '<textarea class="vom_question" style="height:6em;width:100%;resize: none;font-size: 20px;" id="'+new_id_resolution+'" name="resolution_contents" placeholder="請輸入決議內容">決議：</textarea><hr/>' +
+                  '</td>' +
                 '</tr>' + '';
 
     $("#proposal_table_last_tr").before(new_str);
@@ -335,9 +349,9 @@ minus_proposal_contents  = function() {
 
           // console.log($("#proposal_table tr td").children())
 
-          $("#proposal_table tr td").children()[len * 2 - 1].remove();
+          $("#proposal_table tr").children()[len * 2 - 1].remove();
 
-          $("#proposal_table tr td").children()[len * 2 - 2].remove();
+          $("#proposal_table tr").children()[len * 2 - 2].remove();
         }
       }
     )
@@ -379,6 +393,23 @@ get_proposal_contents = function() {
   
   
     return proposal_contents_json;
+}
+//endregion
+
+// 決議內容json獲取 region
+get_resolution_contents = function() {
+
+  var resolution_contents_json = [];
+  
+  $("[name='resolution_contents']").each(function () {
+    var this_id = $(this).attr("id");
+    var this_id_val = $("#"+this_id).val();
+
+    resolution_contents_json.push({ input_id: this_id, val: this_id_val });
+  });
+
+
+  return resolution_contents_json;
 }
 //endregion
 
@@ -523,7 +554,8 @@ submit_form_data_upload = function() {
     var meeting_date_year_split = $("#meeting_date").val().split("年");
   
     var proposal_contents_json = get_proposal_contents();
-  
+    var resolution_contents_json = get_resolution_contents();
+
     // var attendees_seq_contents = get_attendees_seq_contents();
   
     form_data.append("vom_id", vom_id);
@@ -540,6 +572,8 @@ submit_form_data_upload = function() {
   
     form_data.append("Agenda_contents", $("#agenda_contents").val());
     form_data.append("Proposal_contents", JSON.stringify(proposal_contents_json));
+    form_data.append("Resolution_contents", JSON.stringify(resolution_contents_json));
+
     form_data.append("Review_suggest", $("#review_suggest").val());
     form_data.append("Extempore_motion", $("#extempore_motion").val());
     form_data.append("Next_meeting_date", $("#next_meeting_date").val());

@@ -263,28 +263,36 @@
                                                                         <div class="col-sm-10" id="proposal_div">
                                                                             <table style="width:100%;" id="proposal_table">
                                                                                 <tr>
-                                                                                    <td colspan="2"><label for="proposal_contents_1">提案一、</label></td>
+                                                                                    <td colspan="2">
+                                                                                        <textarea style="height:6em;width:100%;resize: none;font-size: 20px;" id="proposal_contents_1" name="proposal_contents" placeholder="請輸入提案內容">提案一、</textarea>
+                                                                                    </td>
                                                                                 </tr>
                                                                                 <tr>
-                                                                                    <td colspan="2"><textarea style="height:6em;width:100%;resize: none;font-size: 20px;" id="proposal_contents_1" name="proposal_contents" placeholder="請輸入提案討論內容">決議：</textarea></td>
+                                                                                    <td colspan="2"><textarea style="height:6em;width:100%;resize: none;font-size: 20px;" id="resolution_contents_1" name="resolution_contents" placeholder="請輸入決議內容">決議：</textarea><hr/></td>
                                                                                 </tr>
                                                                                 <tr>
-                                                                                    <td colspan="2"><label for="proposal_contents_2">提案二、</label></td>
+                                                                                    <td colspan="2">
+                                                                                        <textarea style="height:6em;width:100%;resize: none;font-size: 20px;" id="proposal_contents_2" name="proposal_contents" placeholder="請輸入提案內容">提案二、</textarea>
+                                                                                    </td>
                                                                                 </tr>
                                                                                 <tr>
-                                                                                    <td colspan="2"><textarea style="height:6em;width:100%;resize: none;font-size: 20px;" id="proposal_contents_2" name="proposal_contents" placeholder="請輸入提案討論內容">決議：</textarea></td>
+                                                                                    <td colspan="2"><textarea style="height:6em;width:100%;resize: none;font-size: 20px;" id="resolution_contents_2" name="resolution_contents" placeholder="請輸入決議內容">決議：</textarea><hr/></td>
                                                                                 </tr>
                                                                                 <tr>
-                                                                                    <td colspan="2"><label for="proposal_contents_3">提案三、</label></td>
+                                                                                    <td colspan="2">
+                                                                                        <textarea style="height:6em;width:100%;resize: none;font-size: 20px;" id="proposal_contents_3" name="proposal_contents" placeholder="請輸入提案內容">提案三、</textarea>
+                                                                                    </td>
                                                                                 </tr>
                                                                                 <tr>
-                                                                                    <td colspan="2"><textarea style="height:6em;width:100%;resize: none;font-size: 20px;" id="proposal_contents_3" name="proposal_contents" placeholder="請輸入提案討論內容">決議：</textarea></td>
+                                                                                    <td colspan="2"><textarea style="height:6em;width:100%;resize: none;font-size: 20px;" id="resolution_contents_3" name="resolution_contents" placeholder="請輸入決議內容">決議：</textarea><hr/></td>
                                                                                 </tr>
                                                                                 <tr>
-                                                                                    <td colspan="2"><label for="proposal_contents_4">提案四、</label></td>
+                                                                                    <td colspan="2">
+                                                                                        <textarea style="height:6em;width:100%;resize: none;font-size: 20px;" id="proposal_contents_4" name="proposal_contents" placeholder="請輸入提案內容">提案四、</textarea>
+                                                                                    </td>
                                                                                 </tr>
                                                                                 <tr>
-                                                                                    <td colspan="2"><textarea style="height:6em;width:100%;resize: none;font-size: 20px;" id="proposal_contents_4" name="proposal_contents" placeholder="請輸入提案討論內容">決議：</textarea></td>
+                                                                                    <td colspan="2"><textarea style="height:6em;width:100%;resize: none;font-size: 20px;" id="resolution_contents_4" name="resolution_contents" placeholder="請輸入決議內容">決議：</textarea><hr/></td>
                                                                                 </tr>
 
                                                                                 <tr id="proposal_table_last_tr">

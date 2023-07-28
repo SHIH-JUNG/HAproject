@@ -17,6 +17,8 @@ $vom_id = $_REQUEST['vom_id'];
 
 @$Agenda_contents = $_REQUEST['Agenda_contents'];
 @$Proposal_contents = json_encode($_REQUEST['Proposal_contents'],JSON_UNESCAPED_UNICODE);
+@$Resolution_contents = json_encode($_REQUEST['Resolution_contents'],JSON_UNESCAPED_UNICODE);
+
 @$Review_suggest = $_REQUEST['Review_suggest'];
 @$Extempore_motion = $_REQUEST['Extempore_motion'];
 @$Next_meeting_date = $_REQUEST['Next_meeting_date'];
@@ -174,7 +176,7 @@ $sqlUpdate = "UPDATE `volunteer_meeting` SET `Title_name` = '$Title_name'
 , `Meeting_date`= '$Meeting_date', `Meeting_time_start`= '$Meeting_time_start', `Meeting_time_end`= '$Meeting_time_end', `Meeting_place`= '$Meeting_place'
 , `Expected_attendees`= '$Expected_attendees', `Attendees_seq_contents`= '$Attendees_seq_contents'
 , `Actual_attendence`= '$Actual_attendence', `Absence`= '$Absence'
-, `Agenda_contents`= '$Agenda_contents', `Proposal_contents`= '$Proposal_contents'
+, `Agenda_contents`= '$Agenda_contents', `Proposal_contents`= '$Proposal_contents', `Resolution_contents`='$Resolution_contents'
 , `Review_suggest`= '$Review_suggest', `Extempore_motion`= '$Extempore_motion'
 , `Next_meeting_date`= '$Next_meeting_date' ". $file_sql  ."
 , `Update_date` = NOW(), `Update_name`= '$user'
