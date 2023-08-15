@@ -215,6 +215,8 @@ function check_file_exist() {
   var file_n = "";
   var exist_info = [];
 
+  var upload_rec_date_year_split = $("#upload_rec_date").val().split("年");
+
   for (var i = 0; i < check_file_value.length; i++) {
     file_arr.push(check_file_value[i]["name"]);
   }
@@ -223,26 +225,27 @@ function check_file_exist() {
       url: "database/supervisor_record_file_check_v2.php",
       data: {
         file_name: value,
+        year: upload_rec_date_year_split[0],
       },
       type: "POST",
       dataType: "JSON",
       async: false,
       success: function (data) {
         //  console.log(data)
-        if (data != "") {
-          $.each(data, function (index, value) {
-            file_n = data[index].file_path.replace(
-              "../supervisor_record/upload/",
-              ""
-            );
+        // if (data != "") {
+        //   $.each(data, function (index, value) {
+        //     var files_arr1 = data[index].file_path.replace("\[", "").replace("\]", "").replace(/\"/g, "").split(",");
+        //     file_n = files_arr1.split("\/")[files_arr1.length-1];
 
-            warning_str += "已有重複檔案名稱：\n" + file_n;
+        //     warning_str += "已有重複檔案名稱：\n" + file_n;
 
-            exist_info.push([file_n, warning_str]);
-          });
-        } else {
-          warning_str = "";
-        }
+        //     exist_info.push([file_n, warning_str]);
+        //   });
+        // } else {
+        //   warning_str = "";
+        // }
+
+        warning_str += "已有重複檔案";
       },
       error: function (e) {
         console.log(e);

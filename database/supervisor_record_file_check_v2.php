@@ -4,7 +4,7 @@
 //只要此頁面上有用到連接MySQL就要include它
 include("sql_connect.php");
 
-@$file = "../supervisor_record/upload/" . $_POST['file_name'];
+@$file = "../supervisor_record/".$_POST['year']."data/upload/" . $_POST['file_name'];
 
 
 //宣告空的陣列

@@ -79,7 +79,7 @@
                     <ul style="font-size:15px" id="meeting_non_open" class="collapse">
                         <li>
                         <li>
-                            <a href="supervisor_record_yearlist.php">團督記錄
+                            <a href="supervisor_record_yearlist_v2.php">團督記錄
                             </a>
                         </li>
                         <li>
