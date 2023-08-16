@@ -8,12 +8,13 @@ datepicker_create = function (selector_id) {
     currentText: "今天",
     dateFormat: "R年mm月dd日",
     showButtonPanel: true,
-    minDate: new Date(
-      new Date().getFullYear() - 2,
-      new Date().getMonth() - 3,
-      1
-    ),
-    maxDate: new Date(new Date().getFullYear() + 3, 11, 31),
+    // minDate: new Date(
+    //   new Date().getFullYear() - 2,
+    //   new Date().getMonth() - 3,
+    //   1
+    // ),
+    // maxDate: new Date(new Date().getFullYear() + 3, 11, 31),
+    yearRange: "-12:+5",
     onClose: function (dateText) {
       // console.log($('#'+selector_id).val());
       // console.log(trans_to_EN(dateText));
@@ -207,58 +208,39 @@ get_files_name_value = function() {
 }
 // endregion
 
-//檢查檔名是否重複，提示使用者region
-function check_file_exist() {
-  var check_file_value = $('input[type="file"]').prop("files");
-  var warning_str = "";
-  var file_arr = [];
-  var file_n = "";
-  var exist_info = [];
-
-  var upload_rec_date_year_split = $("#upload_rec_date").val().split("年");
-
-  for (var i = 0; i < check_file_value.length; i++) {
-    file_arr.push(check_file_value[i]["name"]);
-  }
-  $.each(file_arr, function (index, value) {
-    $.ajax({
-      url: "database/supervisor_record_file_check_v2.php",
-      data: {
-        file_name: value,
-        year: upload_rec_date_year_split[0],
-      },
-      type: "POST",
-      dataType: "JSON",
-      async: false,
-      success: function (data) {
-        //  console.log(data)
-        // if (data != "") {
-        //   $.each(data, function (index, value) {
-        //     var files_arr1 = data[index].file_path.replace("\[", "").replace("\]", "").replace(/\"/g, "").split(",");
-        //     file_n = files_arr1.split("\/")[files_arr1.length-1];
-
-        //     warning_str += "已有重複檔案名稱：\n" + file_n;
-
-        //     exist_info.push([file_n, warning_str]);
-        //   });
-        // } else {
-        //   warning_str = "";
-        // }
-
-        warning_str += "已有重複檔案";
-      },
-      error: function (e) {
-        console.log(e);
-        notyf.alert('伺服器錯誤,無法載入');
-      },
-    });
-  });
-  return exist_info;
-}
-//endregion
 
 //檢查檔案重複，並上傳會議記錄 region
 $("#rec_add_new_upload").on("click", function () {
+
+  var stau = false;
+
+  if (check_add_rec_data_upload() != "") 
+  {
+    stau = false;
+  } 
+  else 
+  {
+    stau = true;
+  }
+
+  if (!stau) 
+  {
+    swal({
+      title: check_add_rec_data_upload(),
+      type: "error",
+    });
+  } 
+  else 
+  {
+    submit_form_data_upload();
+  }
+
+});
+//endregion
+
+//上傳會議記錄ajax資料格式 region
+function submit_form_data_upload() 
+{
   //去掉資料內前後端多餘的空白，file類型須排除，否則報錯
   $("input, textarea").each(function () {
     if ($(this).attr("type") != "file") {
@@ -266,66 +248,6 @@ $("#rec_add_new_upload").on("click", function () {
     }
   });
 
-  //判斷該量表是否含有 input[type="file"] 類型資料
-  if ($('input[type="file"]').length != 0) {
-    var exist_arr = check_file_exist();
-
-    // console.log(exist_arr);
-    //如果上傳的檔案檔名重複則提示使用者
-    if (exist_arr.length != 0) {
-      swal({
-        title: exist_arr[0][1],
-        text: "選擇『確認送出』覆蓋現有檔案，或是按『取消』更改檔名",
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#DD6B55",
-        confirmButtonText: "確認送出",
-        cancelButtonText: "取消",
-        showConfirmButton: true,
-        showCancelButton: true,
-      })
-        .then(
-          function (result) {
-            if (result) {
-              submit_form_data_upload();
-            }
-          },
-          function (dismiss) {
-            if (dismiss == "cancel") {
-              swal({
-                title: "已取消，建議請更改檔名",
-                type: "success",
-              });
-            }
-          }
-        )
-        .catch(swal.noop);
-    } else {
-      var stau = false;
-
-      if (check_add_rec_data_upload() != "") {
-        stau = false;
-      } else {
-        stau = true;
-      }
-
-      if (!stau) {
-        swal({
-          title: check_add_rec_data_upload(),
-          type: "error",
-        });
-      } else {
-        submit_form_data_upload();
-      }
-    }
-  } else {
-    return false;
-  }
-});
-//endregion
-
-//上傳會議記錄ajax資料格式 region
-function submit_form_data_upload() {
   var form_data = new FormData();
   var form = $(".form").serializeArray();
 
@@ -417,7 +339,7 @@ function submit_form_data_upload() {
           allowOutsideClick: false, //不可點背景關閉
         }).then(function () {
           window.location.href =
-            "supervisor_record.php?year=" + upload_rec_date_year_split[0];
+            "supervisor_record_v2.php?year=" + upload_rec_date_year_split[0];
         });
       } else {
         swal({

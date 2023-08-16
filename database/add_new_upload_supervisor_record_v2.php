@@ -34,13 +34,15 @@ else
 
 $sign_state = $Director . "未簽核" . "、" . $Supervise . "未簽核";
 
-$url = 'supervisor_record_detail.php?year='.$year.'&id='.$sr_id.'&sr_id='.$sr_id.'&rec_type='.$rec_type .'';
+$dirname_tamp = $year . "_" . $sr_id;
+
+$url = 'supervisor_record_detail_v2.php?year='.$year.'&id='.$sr_id.'&sr_id='.$sr_id.'&rec_type='.$rec_type .'';
 
 $start_datetime = date("Y-m-d H:s");
 $end_datetime = date("Y-m-d H:s" ,strtotime("+2 day"));
 
 // 上傳報表路徑
-@$file_dir = "../supervisor_record/" . $year . "data/upload/";
+@$file_dir = "../supervisor_record/" . $dirname_tamp . "_data/upload/";
 
 $file_0 = "";
 $file_1 = "";

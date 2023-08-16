@@ -26,12 +26,13 @@ datepicker_create = function (selector_id) {
     currentText: "今天",
     dateFormat: "R年mm月dd日",
     showButtonPanel: true,
-    minDate: new Date(
-      new Date().getFullYear() - 2,
-      new Date().getMonth() - 3,
-      1
-    ),
-    maxDate: new Date(new Date().getFullYear() + 3, 11, 31),
+    // minDate: new Date(
+    //   new Date().getFullYear() - 2,
+    //   new Date().getMonth() - 3,
+    //   1
+    // ),
+    // maxDate: new Date(new Date().getFullYear() + 3, 11, 31),
+    yearRange: "-12:+5",
     onClose: function (dateText) {
       // console.log($('#'+selector_id).val());
       // console.log(trans_to_EN(dateText));
@@ -97,10 +98,254 @@ check_sql_date_format = function (date) {
 };
 
 //存放簽章相關留言arr
+director_msg_arr = [];
 supervise_msg_arr = [];
 
 // 抓會議記錄資料 region
 $(document).ready(function () {
+
+
+  //將name名稱為ch_datepicker創建datepicker初始化 region
+  $("[datepicker='ch_datepicker']").each(function () {
+    var this_id = $(this).attr("id");
+    datepicker_create(this_id);
+  });
+  //endregion
+
+  $.ajax({
+    type:'POST',
+    url:'database/find_check_user.php',
+    dataType: "JSON",
+    async: false,//啟用同步請求
+    success: function (data) {
+        // console.log('test',data)
+        for (var index in data.Id) {
+            $("[id=supervise]").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+            $("[id=director]").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+        }
+    },
+  });
+
+
+  //載入會議資料
+  load_rec_datas();
+
+  if(user_name == $("#supervise").val() || user_name == $("#director").val())
+  {
+    $("#allow_status").attr("disabled", false);
+    $("#submit_area").show();
+  }
+  else
+  {
+    $("#allow_status").attr("disabled", true);
+    $("#submit_area").hide();
+  }
+
+  //jsignature插件初始化 region
+  jsignature_initialization();
+  //endregion  
+
+  //隱藏jsignature畫布區域 region
+  $("#signature_area").hide();
+  //endregion
+
+  tab_toggle();
+});
+
+//endregion
+
+sign_msg_model = function (sign_type_name) {
+  //手動新增按鈕點擊跳出模態框
+  $("#myModal2").on("shown.bs.modal", function () {
+    $("#" + sign_type_name).trigger("focus");
+  });
+
+  // console.log(social_worker_msg_arr)
+  // console.log(supervise_msg_arr)
+
+  switch (sign_type_name) {
+    case "director":
+      var type_name = "主管";
+      $(".sign_msg").text(director_msg_arr[0]);
+      $(".sign_msg_time").val(director_msg_arr[1]);
+      break;
+
+    case "supervise":
+      var type_name = "執行長";
+      $(".sign_msg").text(supervise_msg_arr[0]);
+      $(".sign_msg_time").val(supervise_msg_arr[1]);
+      break;
+  }
+
+  $(".sign_msg_td_name").text(type_name + "簽名留言內容");
+};
+
+//jsignature插件初始化 region
+function jsignature_initialization() {
+  var $sigdiv = $("#signature_div");
+  $sigdiv.jSignature({ UndoButton: true }); // 初始化jSignature插件-属性用","隔开
+  // $sigdiv.jSignature({'decor-color':'red'}); // 初始化jSignature插件-设置横线颜色
+  // $sigdiv.jSignature({'lineWidth':"6"});// 初始化jSignature插件-设置横线粗细
+  // $sigdiv.jSignature({"decor-color":"transparent"});// 初始化jSignature插件-去掉横线
+  // $sigdiv.jSignature({'UndoButton':true});// 初始化jSignature插件-撤销功能
+  // $sigdiv.jSignature({'height': 100, 'width': 200}); // 初始化jSignature插件-设置书写范围(大小)
+
+  // 同步更新畫布中的簽名圖片和簽名檔案格式 region
+  $("#signature_div").bind("change", function (e) {
+    var datapair = $sigdiv.jSignature("getData", "image");
+    $("#signature_images").attr(
+      "src",
+      "data:" + datapair[0] + "," + datapair[1]
+    );
+  });
+  //endregion
+
+  //重設繪製簽名 region
+  $("#signature_reset").click(function () {
+    $("#signature_div").jSignature("reset"); //重置画布，可以进行重新作画
+    $("#signature_images").attr("src", "");
+  });
+  //endregion
+}
+//endregion
+
+// 儲存該簽名 region
+signature_submit = function(this_btn) {
+
+  // 獲取簽名類型(督導、組長、主管)
+  var sign_type = $(this_btn).attr("board_name");
+
+  // console.log(sign_type);
+
+  var ajax_url = "database/update_supervisor_record_data_detail_signature_v2.php";
+
+  var src_data = $("#signature_images").attr("src");
+  // console.log(src);
+
+  // 判斷有無簽名圖片，若有送出簽名並儲存檔案
+  if (src_data) {
+    // console.log("submit_sign");
+    $.ajax({
+      type: "post",
+      url: ajax_url,
+      data: {
+        sr_id: sr_id,
+        src_data: src_data,
+        sign_msg: $("#signature_msg").val(),
+        sign_type: sign_type,
+        sign_name:$("#"+sign_type+"").val(),
+        sign_url:window.location.href.split("HA\/")[1],
+      },
+      async: false,
+      success: function (data) {
+        console.log(data);
+        if (data == 1) 
+        {
+          swal({
+          title: "送出簽名成功！",
+          type: "success",
+          }).then(function () {
+          location.reload();
+          });
+        }
+        else if(data.includes("noallowsign"))
+        {
+          swal({
+              type: 'error',
+              title: '您無權限簽核此欄位',
+              text: '當前登入的帳號名稱與簽核欄位名稱不符',
+              allowOutsideClick: false //不可點背景關閉
+          });
+        }
+        else 
+        {
+          swal({
+            title: "生成簽名圖片失敗！請聯絡負責單位",
+            type: "error",
+          });
+        }
+      },
+    });
+  } else {
+    alert("簽名圖片檔不能為空！");
+    return false;
+  }
+}
+//endregion
+
+//按簽名 按紐，顯示簽名畫布 隱藏其他詳細資料 region
+signature_btn_click = function(sign_board_name) {
+
+  var type_name = "";
+
+  switch (sign_board_name) {
+    case "director":
+      type_name = "主管";
+      break;
+
+    case "supervise":
+      type_name = "執行長";
+      break;
+  }
+
+  $("#signature_h4").text(type_name + "簽名");
+  $("#signature_title_td").text(type_name);
+  $("#signature_msg_td").text(type_name);
+  $("#sign_submit_btn").attr("board_name", sign_board_name);
+
+  $("#signature_area").show();
+  $("#collapseOne").hide();
+  $("#collapseTwo").hide();
+}
+//endregion
+
+//在簽名畫布區域按取消，返回詳細資料，並自動滾動卷軸至最頂部 region
+show_main_panel = function () {
+  $("#signature_area").hide();
+  $("#collapseOne").show();
+  $("#collapseTwo").show();
+
+  // $('html, body').scrollTop(0);
+};
+//endregion
+
+
+// 民國年轉換日期格式yyyy-dd-mm region
+function split_date(date) {
+  return parseInt(date.split("年")[0])+1911+"-"+date.split("年")[1].split("月")[0]+"-"+date.split("年")[1].split("月")[1].split("日")[0]; 
+}
+//endregion
+
+// 判斷會議記錄 是屬於上傳檔案或填寫檔案 region
+function rec_update() {
+  var rec_type = getUrlVars()["rec_type"];
+
+  switch (rec_type) {
+    // case "fillin":
+    //   rec_update_fillin();
+    //   break;
+    case "upload":
+      rec_update_upload();
+      break;
+  }
+}
+//endregion
+
+
+//宣告存入 file Object的空陣列
+var file_name = [];
+
+
+// 檢查檔案類型是否為圖片 region
+function isAssetTypeAnImage(ext) {
+  return [
+  'png', 'jpg', 'jpeg', 'bmp', 'gif', 'webp', 'psd', 'svg', 'tiff'].
+  indexOf(ext.toLowerCase()) !== -1;
+}
+// endregion
+
+function load_rec_datas() 
+{
   $.ajax({
     url: "database/find_supervisor_record_data_detail_v2.php",
     data: {
@@ -109,6 +354,7 @@ $(document).ready(function () {
     },
     type: "POST",
     dataType: "JSON",
+    async: false,//啟用同步請求
     success: function (data) {
       // console.log(data);
 
@@ -176,42 +422,106 @@ $(document).ready(function () {
           }
         });
 
-        //file類型顯示資料處理 region
-        //獲取所有 type="file" 的元素
-        var inputs_type_files = $('[type="file"]');
+        //customFile1顯示資料處理 region
+        
+        var customFile1_arr = value.Agenda_file_path.replace("\[", "").replace("\]", "").replace(/\"/g, "").split(",");
 
-        //如果存在 type="file" 的元素，繼續以下動作
-        if (inputs_type_files.length > 0) {
-          //顯示檔案圖片、路徑
-          for (var i = 0; i < inputs_type_files.length; i++) {
-            //從資料庫抓取的格式為 "../upload/檔案.檔名"
-            //replace()更改為 "檔案.檔名"
-            var file_val = data[0].file_path.replace(
-              "../supervisor_record'+sr_year+'/upload/",
-              ""
-            );
+        window.customFile1_input_val_arr = [];
 
-            //該input value寫入"檔案.檔名"
-            $("input[name*='customFile']").eq(i).attr("value", file_val);
+        var customFile1_htmlstr = "";
+        
+        if(value.Agenda_file_path != "")
+        {
+          $.each(customFile1_arr, function (i, val) {
 
-            //檔案連結與圖片string
-            var file_html =
-              '<a name="customFile' +
-              (i + 1) +
-              '_a" href="./supervisor_record'+sr_year+'/upload/' +
-              file_val +
-              '" style="text-decoration:none;color:blue;" target="_blank">' +
-              file_val +
-              '<br/><img style="vertical-align:middle;" width="auto" src="./supervisor_record'+sr_year+'/upload/' +
-              file_val +
-              '"></a>';
+            var agenda_file_path = val.replace("../", "./");
+            var agenda_file_name = val.split("/");
 
-            //寫入該input相對應的div元素 (id="customFile^") 中顯示
-            $("#customFile" + (i + 1)).html(file_html);
-          }
+            var agenda_file_val = agenda_file_name[agenda_file_name.length - 1];
+
+            customFile1_input_val_arr.push(val);
+
+            var index = agenda_file_val.lastIndexOf(".");
+            
+            if(isAssetTypeAnImage(agenda_file_val.substr(index+1)))
+            {
+              customFile1_htmlstr += '<input class="sr_question" style="zoom: 1.5" class="form-check-input" type="radio" name="customFile1_check" file_type_name="agenda_file_path" forms_sql_id="' + value.Id + '" value="' + i + '">'
+              + '<span>檔案' + (i + 1) + '：</span><a id="val_arr'+i+'" href="' + agenda_file_path + '" style="text-decoration:none;color:blue;" target="_blank">'
+              + agenda_file_val
+              + '</a><br/>'
+              +'<img src="' + agenda_file_path + '" id="val_arr_img'+i+'" title="'+agenda_file_val+'" width="200" height="200" class="apreview" />' 
+              +'<hr/><br/>';
+            }
+            else
+            {
+              customFile1_htmlstr += '<input class="sr_question" style="zoom: 1.5" class="form-check-input" type="radio" name="customFile1_check" file_type_name="agenda_file_path" forms_sql_id="' + value.Id + '" value="' + i + '">'
+              + '<span>檔案' + (i + 1) + '：</span><a id="val_arr'+i+'" href="' + agenda_file_path + '" style="text-decoration:none;color:blue;" target="_blank">'
+              + agenda_file_val
+              + '</a><br/><br/>';
+            }
+            
+          });
         }
-        //endregion
+        
+        customFile1_htmlstr += '<br/>'
+          + '<button class="sr_question" style="color:red;margin-right:3em;margin-bottom:.5em;" type="button" onclick="selectFiles_delete(0);">刪除</button>'
+          + '<div>※點選上面要刪除的檔案</div>'
+          + '<br/><hr style="border:3px dashed blue; height:1px">'
+          + '<button class="sr_question" style="color:blue;" type="button" onclick="selectFiles_insert(0);">新增檔案+</button><br/><div id="selected-files1"><span style="color:red;">上傳檔案清單預覽：</span><br/></div>';
 
+        $("#customFile1").html(customFile1_htmlstr);
+        //customFile1顯示資料處理 endregion
+
+        //customFile1顯示資料處理 region
+        var customFile2_arr = value.Rec_file_path.replace("\[", "").replace("\]", "").replace(/\"/g, "").split(",");
+
+        window.customFile2_input_val_arr = [];
+
+        var customFile2_htmlstr = "";
+        
+        if(value.Rec_file_path != "")
+        {
+          $.each(customFile2_arr, function (i, val) {
+
+            var rec_file_path = val.replace("../", "./");
+            var rec_file_name = val.split("/");
+
+            var rec_file_val = rec_file_name[rec_file_name.length - 1];
+
+            customFile2_input_val_arr.push(val);
+
+            var index = rec_file_val.lastIndexOf(".");
+            
+            if(isAssetTypeAnImage(rec_file_val.substr(index+1)))
+            {
+              customFile2_htmlstr += '<input class="sr_question" style="zoom: 1.5" class="form-check-input" type="radio" name="customFile2_check" file_type_name="rec_file_path" forms_sql_id="' + value.Id + '" value="' + i + '">'
+              + '<span>檔案' + (i + 1) + '：</span><a id="val_arr'+i+'" href="' + rec_file_path + '" style="text-decoration:none;color:blue;" target="_blank">'
+              + rec_file_val
+              + '</a><br/>'
+              +'<img src="' + rec_file_path + '" id="val_arr_img'+i+'" title="'+rec_file_val+'" width="200" height="200" class="apreview" />' 
+              +'<hr/><br/>';
+            }
+            else
+            {
+              customFile2_htmlstr += '<input class="sr_question" style="zoom: 1.5" class="form-check-input" type="radio" name="customFile2_check" file_type_name="rec_file_path" forms_sql_id="' + value.Id + '" value="' + i + '">'
+              + '<span>檔案' + (i + 1) + '：</span><a id="val_arr'+i+'" href="' + rec_file_path + '" style="text-decoration:none;color:blue;" target="_blank">'
+              + rec_file_val
+              + '</a><br/><br/>';
+            }
+            
+          });
+        }
+        
+        customFile2_htmlstr += '<br/>'
+          + '<button class="sr_question" style="color:red;margin-right:3em;margin-bottom:.5em;" type="button" onclick="selectFiles_delete(1);">刪除</button>'
+          + '<div>※點選上面要刪除的檔案</div>'
+          + '<br/><hr style="border:3px dashed blue; height:1px">'
+          + '<button class="sr_question" style="color:blue;" type="button" onclick="selectFiles_insert(1);">新增檔案+</button><br/><div id="selected-files2"><span style="color:red;">上傳檔案清單預覽：</span><br/></div>';
+
+        $("#customFile2").html(customFile2_htmlstr);
+        //customFile1顯示資料處理 endregion
+
+        //supervise顯示簽名 region
         var supervise_sign_file_val = value.Supervise_signature.replace("\.\.\/supervisor_record\/signature\/", "");
         
         $("#supervise").val(value.Supervise)
@@ -230,6 +540,28 @@ $(document).ready(function () {
 
         supervise_msg_arr.push(value.Supervise_sign_msg)
         supervise_msg_arr.push(value.Supervise_sign_time)
+        //supervise顯示簽名 endregion
+
+        //director顯示簽名 region
+        var director_sign_file_val = value.Director_signature.replace("\.\.\/supervisor_record\/signature\/", "");
+        
+        $("#director").val(value.Director)
+
+
+        $("#director_signature_simg").text("點擊顯示簽名圖片")
+
+        if(director_sign_file_val=="")
+        {
+          $("#director_signature_simg").attr("onclick", "javascript:swal({title: '未簽名',type: 'error',}); return false;")
+        }
+        else
+        {
+          $("#director_signature_simg").attr("href", "./supervisor_record/signature/"+director_sign_file_val)
+        }
+
+        director_msg_arr.push(value.Director_sign_msg)
+        director_msg_arr.push(value.Director_sign_time)
+        //director顯示簽名 endregion
 
         $("#adate").text(
           value.Create_date != "0000-00-00 00:00:00" ? value.Create_date : ""
@@ -245,418 +577,50 @@ $(document).ready(function () {
       notyf.alert('伺服器錯誤,無法載入');
     },
   });
-  $(".sr_question").attr("disabled", true);
 
-  //將name名稱為ch_datepicker創建datepicker初始化 region
-  $("[datepicker='ch_datepicker']").each(function () {
-    var this_id = $(this).attr("id");
-    datepicker_create(this_id);
-  });
-  //endregion
-
-  //jsignature插件初始化 region
-  jsignature_initialization("supervise");
-  //endregion  
-
-  //隱藏jsignature畫布區域 region
-  $("#supervise_signature_area").hide();
-  $("#social_worker_signature_area").hide();
-  //endregion  
-});
-
-//endregion
-
-sign_msg_model = function(sign_type_name) {
-  //手動新增按鈕點擊跳出模態框
-  $('#myModal').on('shown.bs.modal', function () {
-      $('#'+sign_type_name).trigger('focus');
-  });
-
-  // console.log(social_worker_msg_arr)
-  // console.log(supervise_msg_arr)
-
-  switch (sign_type_name) {
-      case 'supervise':
-              var type_name = "督導";
-              $(".sign_msg").text(supervise_msg_arr[0]);
-              $(".sign_msg_time").val(supervise_msg_arr[1]);
-          break;
-  
-      case 'social_worker':
-              var type_name = "社工員";
-              $(".sign_msg").text(social_worker_msg_arr[0]);
-              $(".sign_msg_time").val(social_worker_msg_arr[1]);
-          break;
-  }
-
-  $(".sign_msg_td_name").text(type_name+"簽名留言內容");
+  $(".sr_question").prop("disabled", true);
 }
 
-
-//jsignature插件初始化 region
-function jsignature_initialization(init_name) {
-  var $sigdiv = $("#"+init_name+"_signature");
-  $sigdiv.jSignature({'UndoButton':true}); // 初始化jSignature插件-属性用","隔开
-  // $sigdiv.jSignature({'decor-color':'red'}); // 初始化jSignature插件-设置横线颜色
-  // $sigdiv.jSignature({'lineWidth':"6"});// 初始化jSignature插件-设置横线粗细
-  // $sigdiv.jSignature({"decor-color":"transparent"});// 初始化jSignature插件-去掉横线
-  // $sigdiv.jSignature({'UndoButton':true});// 初始化jSignature插件-撤销功能
-  // $sigdiv.jSignature({'height': 100, 'width': 200}); // 初始化jSignature插件-设置书写范围(大小)
-
-  $("#"+init_name+"_signature").bind('change', function(e){
-      var datapair = $sigdiv.jSignature("getData", "image");
-      $("#"+init_name+"_images").attr('src','data:' + datapair[0] + "," + datapair[1]);
-  })
-
-  $("#"+init_name+"_signature_submit").click(function(){
-
-      var ajax_url = 'database/update_supervisor_record_data_detail_signature.php';
-
-      var src_data = $("#"+init_name+"_images").attr('src');
-      // console.log(src);
-      console.log(sr_id);
-      if(src_data){
-          $.ajax({
-              type:'post',
-              url:ajax_url,
-              data:{
-                  sr_id: sr_id,
-                  src_data:src_data,
-                  sign_msg:$("#"+init_name+"_signature_msg").val(),
-                  sign_type:init_name,
-                  sign_url:window.location.href.split("HA\/")[1],
-              },
-              async:false,
-              success:function(data){
-                  // console.log(data);
-                  if(data){
-                      swal({
-                          title:'送出簽名成功！',
-                          type:'success',                        
-                      }).then(function(){
-                          location.reload();
-                      }) 
-                  }else{
-                      swal({
-                          title:'簽核失敗！請聯絡負責單位',
-                          type:'error',
-                      })
-                  }
-              }
-          });
-      }else{
-          alert('簽名圖片檔不能為空！');return false;
-      }
-  });
-  $("#"+init_name+"_reset").click(function(){
-      $("#"+init_name+"_signature").jSignature("reset"); //重置画布，可以进行重新作画
-      $("#"+init_name+"_images").attr('src','');
-  });
-}
-//endregion
-
-//按督導簽名，顯示簽名畫布 region
-$("#supervise_signature_btn").on('click',function(){
-  $("#supervise_signature_area").show();
-  $("#collapseTwo").hide();
-});
-//endregion
-
-//在簽名畫布區域按取消，返回詳細資料，並自動滾動卷軸至最頂部 region
-show_main_panel = function() {
-  $("#supervise_signature_area").hide();
-  $("#social_worker_signature_area").hide();
-  $("#collapseTwo").show();
-  // $('html, body').scrollTop(0);
-}
-//endregion
-
-// 民國年轉換日期格式yyyy-dd-mm region
-function split_date(date) {
-  return parseInt(date.split("年")[0])+1911+"-"+date.split("年")[1].split("月")[0]+"-"+date.split("年")[1].split("月")[1].split("日")[0]; 
-}
-//endregion
-
-// 判斷會議記錄 是屬於上傳檔案或填寫檔案 region
-function rec_update() {
-  var rec_type = getUrlVars()["rec_type"];
-
-  switch (rec_type) {
-    case "fillin":
-      rec_update_fillin();
-      break;
-    case "upload":
-      rec_update_upload();
-      break;
-  }
-}
-//endregion
-
-//修改會議記錄region
-function rec_update_fillin() {
-  //去掉資料內前後端多餘的空白，file類型須排除，否則報錯
-  $("input, textarea").each(function () {
-    if ($(this).attr("type") != "file") {
-      $(this).val(jQuery.trim($(this).val()));
-    }
-  });
-
-  var form = $("#form_a").serializeArray();
-
-  $.each(form, function (seq, element) {
-
-    var inputs_type = $("[name='"+element.name+"']").prop("tagName");
-
-    if(inputs_type == "TEXTAREA")
-    {
-      element.value = element.value.replace(/\r\n/g, ";;");
-    }
-
-  });
-
-  var meeting_date_year_split = $("#meeting_date").val().split("年");
-  var title = '團督記錄簽核：'+$("#title_name").val();
-
-  // console.log(form)
-
-  var stau = false;
-
-  if (check_updat_supervisor_record_data() != "") {
-    stau = false;
-  } else {
-    stau = true;
-  }
-
-  if (!stau) {
-    swal({
-      title: check_updat_supervisor_record_data(),
-      type: "error",
-    });
-  } else {
-    $.ajax({
-      url: "database/update_supervisor_record_data_detail.php",
-      type: "POST",
-      data: {
-        sr_id: sr_id,
-        record_content: form,
-        year: meeting_date_year_split[0],
-
-        signed_timestamp:$(".sign_msg_time").val(),
-        assign:$("#applicant").text(),
-        title:title,
-        signer:$("#supervise").val(),
-        rec_date_time:split_date($("#meeting_date").val())+" "+$("#meeting_time").val(),
-      },
-      //            dataType: "JSON",
-      success: function (data) {
-        // console.log(data);
-        if (data == 1) {
-          swal({
-            type: "success",
-            title: "更新成功!",
-            allowOutsideClick: false, //不可點背景關閉
-          }).then(function () {
-            window.location.href =
-              "supervisor_record_detail.php?year=" +
-              meeting_date_year_split[0] +
-              "&id=" +
-              id +
-              "&sr_id=" +
-              sr_id +
-              "&rec_type=" +
-              rec_type +
-              "";
-          });
-        } else {
-          swal({
-            type: "error",
-            title: "更新失敗!請聯絡負責人",
-            allowOutsideClick: false, //不可點背景關閉
-          });
-        }
-      },
-      error: function () {
-        swal({
-          type: "error",
-          title: "更新失敗!請聯絡負責人",
-          allowOutsideClick: false, //不可點背景關閉
-        });
-      },
-    });
-  }
-}
-//endregion
-
-//宣告存入 file Object的空陣列
-var file_name = [];
-
-//選擇檔案的動作region
-$("input[name*='customFile']").change(function (event) {
-  //獲取 檔名.檔案格式
-  var filePath = $(this).val().split("\\");
-  //獲取 file name名稱
-  var name = $(this).attr("name");
-  //獲取檔案格式
-  var filetype = filePath[filePath.length - 1].split(".");
-  var ext = filetype[filetype.length - 1];
-  // console.log(ext)
-
-  //file_name中name值 重複次數
-  var repeat_num = 0;
-  //file_name中name值 重複的索引值
-  var repeat_index;
-
-  //創建臨時檔案連結
-  // var tmppath = URL.createObjectURL(event.target.files[0]);
-
-  //若檔案為圖片格式，則顯示圖片，否則不顯示圖片
-  if (isAssetTypeAnImage(ext.toLowerCase())) {
-    $("#" + name + "_img")
-      .fadeIn("fast")
-      .attr("src", URL.createObjectURL(event.target.files[0]));
-  } else {
-    $("#" + name + "_img").css("display", "none");
-  }
-
-  //預覽上傳檔名
-  $("#" + name).html("檔名：" + filePath[filePath.length - 1]);
-
-  //查看 file_name 中是否已有重複元素
-  $.each(file_name, function (i, obj) {
-    if (obj.name == name) {
-      repeat_num++;
-      repeat_index = i;
-    } else {
-      repeat_num = 0;
-    }
-  });
-  // console.log(repeat_num);
-
-  //如果file_name中未找到相同name值，則新加入一筆資料至file_name
-  //否則，找到相對應索引repeat_index name值，更新該value值
-  if (repeat_num == 0) {
-    file_name.push({ name: name, value: filePath[filePath.length - 1] });
-  } else {
-    file_name[repeat_index]["value"] = filePath[filePath.length - 1];
-  }
-
-  // console.log(file_name)
-});
-//endregion
-
-//檢查是否為圖片檔region
-function isAssetTypeAnImage(ext) {
-  return (
-    ["png", "jpg", "jpeg", "bmp", "gif", "webp", "psd", "svg", "tiff"].indexOf(
-      ext.toLowerCase()
-    ) !== -1
-  );
-}
-//endregion
-
-//檢查檔名是否重複，提示使用者region
-function check_file_exist() {
-  var check_file_value = $('input[type="file"]').prop("files");
-  var warning_str = "";
-  var file_arr = [];
-  var file_n = "";
-  var exist_info = [];
-
-  for (var i = 0; i < check_file_value.length; i++) {
-    file_arr.push(check_file_value[i]["name"]);
-  }
-  $.each(file_arr, function (index, value) {
-    $.ajax({
-      url: "database/supervisor_record_file_check.php",
-      data: {
-        file_name: value,
-      },
-      type: "POST",
-      dataType: "JSON",
-      async: false,
-      success: function (data) {
-        //  console.log(data)
-        if (data != "") {
-          $.each(data, function (index, value) {
-            file_n = data[index].file_path.replace(
-              "../supervisor_record'+sr_year+'/upload/",
-              ""
-            );
-
-            warning_str += "已有重複檔案名稱：\n" + file_n;
-
-            exist_info.push([file_n, warning_str]);
-          });
-        } else {
-          warning_str = "";
-        }
-      },
-      error: function (e) {
-        console.log(e);
-        notyf.alert('伺服器錯誤,無法載入');
-      },
-    });
-  });
-  return exist_info;
-}
-//endregion
 
 //檢查檔案重複，並更新上傳會議記錄 region
 function rec_update_upload() {
-  //去掉資料內前後端多餘的空白，file類型須排除，否則報錯
-  $("input, textarea").each(function () {
-    if ($(this).attr("type") != "file") {
-      $(this).val(jQuery.trim($(this).val()));
-    }
-  });
+  var stau = false;
 
-  //判斷該量表是否含有 input[type="file"] 類型資料
-  if ($('input[type="file"]').length != 0) {
-    var exist_arr = check_file_exist();
+  if (check_updat_data() != "") 
+  {
+    stau = false;
+  } 
+  else 
+  {
+    stau = true;
+  }
 
-    console.log(exist_arr);
-    //如果上傳的檔案檔名重複則提示使用者
-    if (exist_arr.length != 0) {
-      swal({
-        title: exist_arr[0][1],
-        text: "選擇『確認送出』覆蓋現有檔案，或是按『取消』更改檔名",
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#DD6B55",
-        confirmButtonText: "確認送出",
-        cancelButtonText: "取消",
-        showConfirmButton: true,
-        showCancelButton: true,
-      })
-        .then(
-          function (result) {
-            if (result) {
-              submit_form_data_upload();
-            }
-          },
-          function (dismiss) {
-            if (dismiss == "cancel") {
-              swal({
-                title: "已取消，建議請更改檔名",
-                type: "success",
-              });
-            }
-          }
-        )
-        .catch(swal.noop);
-    } else {
-      submit_form_data_upload();
-    }
-  } else {
+  if (!stau) 
+  {
+    swal({
+      title: check_updat_data(),
+      type: "error",
+    });
+  } 
+  else 
+  {
     submit_form_data_upload();
   }
 }
 //endregion
 
 //更新上傳會議記錄ajax資料格式 region
-function submit_form_data_upload() {
+function submit_form_data_upload() 
+{
+  //去掉資料內前後端多餘的空白，file類型須排除，否則報錯
+  $("input, textarea").each(function () {
+    if ($(this).attr("type") != "file") {
+      $(this).val(jQuery.trim($(this).val()));
+    }
+  });
+
   var form_data = new FormData();
-  var form = $("#form_b").serializeArray();
+  var form = $(".form").serializeArray();
 
   $.each(form, function (seq, element) {
 
@@ -669,12 +633,7 @@ function submit_form_data_upload() {
 
   });
 
-
-  var customfile = $('[type="file"]').prop("files");
-
   var upload_rec_date_year_split = $("#upload_rec_date").val().split("年");
-
-  // console.log(customfile)
 
   if (file_name.length == 0) {
     var input_files_len = $('[type="file"]');
@@ -692,35 +651,34 @@ function submit_form_data_upload() {
     form = form.concat(file_name);
   }
 
-  if (customfile != undefined) {
-    if (customfile.length != 0) {
-      for (var i = 0; i < customfile.length; i++) {
-        form_data.append("file4", customfile[i]);
-        // console.log(customfile[i])
-      }
-    } else {
-      //載入量表『無重新上傳檔案』情況下按儲存，則加入File_name供後端程式判斷
-      form_data.append("File_name", $('[type="file"]').attr("value"));
-    }
+  for (var a = 0; a < selectedFiles1.length; a++) {
+    form_data.append("agenda_files[]", selectedFiles1[a]);
+  }
+
+  for (var a = 0; a < selectedFiles2.length; a++) {
+    form_data.append("rec_files[]", selectedFiles2[a]);
   }
 
   form_data.append("sr_id", sr_id);
+  form_data.append("rec_type", rec_type);
+
   form_data.append("year", upload_rec_date_year_split[0]);
   form_data.append("upload_content", JSON.stringify(form));
   form_data.append("signed_timestamp", $(".sign_msg_time").val());
-
+  // form_data.append("Director",$("#director").val());
+  // form_data.append("Supervise",$("#supervise").val());
   form_data.append("assign", $("#applicant").text());
   form_data.append("title", '團督記錄簽核：'+$("#upload_title_name").val());
-  form_data.append("signer", $("#supervise").val());
+  form_data.append("signer", $("#director").val() + "、" + $("#supervise").val());
   form_data.append("rec_date_time", split_date($("#upload_rec_date").val())+" 00:00");
   
 
-  for (var pair of form_data.entries()) {
-    console.log(pair[0] + ", " + pair[1]);
-  }
+  // for (var pair of form_data.entries()) {
+  //   console.log(pair[0] + ", " + pair[1]);
+  // }
 
   $.ajax({
-    url: "database/update_upload_supervisor_record_data_detail.php",
+    url: "database/update_upload_supervisor_record_data_detail_v2.php",
     type: "POST",
     data: form_data,
     contentType: false,
@@ -736,7 +694,7 @@ function submit_form_data_upload() {
           allowOutsideClick: false, //不可點背景關閉
         }).then(function () {
           window.location.href =
-            "supervisor_record_detail.php?year=" +
+            "supervisor_record_detail_v2.php?year=" +
             upload_rec_date_year_split[0] +
             "&id=" +
             id +
@@ -767,65 +725,402 @@ function submit_form_data_upload() {
 //endregion
 
 //會議記錄(update)的必填欄位 region
-function check_updat_supervisor_record_data() {
-  var ceo_name = $("#ceo_name").val();
-  var attendees = $("#attendees").val();
-  var absent = $("#absent").val();
-  var record = $("#record").val();
-  var meeting_date = $("#meeting_date").val();
-  var meeting_time = $("#meeting_time").val();
-  var place = $("#place").val();
+function check_updat_data() {
+  var upload_title_name = $("#upload_title_name").val();
+  var upload_agenda_title_name = $("#upload_agenda_title_name").val();
+  // var customFile1 = $("[name*=customFile1]").prop("files").length;
+  // var customFile2 = $("[name*=customFile2]").prop("files").length;
+
+  var director = $("#director").val();
+  var supervise = $("#supervise").val();
 
   var errorstr = "";
 
-  if (ceo_name == null) {
-    errorstr += "未填寫主席!\r\n";
+  if(upload_title_name == null) {
+    errorstr += "未填寫團督記錄標題!\r\n";
   }
-  if (attendees == null) {
-    errorstr += "未填寫出席人員!\r\n";
+  if(upload_agenda_title_name == null) {
+    errorstr += "未填寫會議章程標題!\r\n";
   }
-  if (absent == null) {
-    errorstr += "未填寫請假人員!\r\n";
+  // if(customFile1 == 0) {
+  //   errorstr += "未上傳會議章程檔案!\r\n";
+  // }
+  // if(customFile2 == 0) {
+  //   errorstr += "未上傳會議記錄檔案!\r\n";
+  // }
+  if (director == null) {
+    errorstr += "未選擇主管!\r\n";
   }
-  if (record == null) {
-    errorstr += "未填寫紀錄者!\r\n";
-  }
-  if (meeting_date == null) {
-    errorstr += "未填寫會議日期!\r\n";
-  }
-  if (meeting_time == null) {
-    errorstr += "未填寫會議時間!\r\n";
-  }
-  if (place == null) {
-    errorstr += "未填寫會議地點!\r\n";
+  if (supervise == null) {
+    errorstr += "未選擇執行長!\r\n";
   }
   if (errorstr == "") {
-    if (ceo_name.replace(/\s*/g, "") == "") {
-      errorstr += "未填寫主席!\r\n";
+    if(upload_title_name.replace(/\s*/g, "") == "") {
+      errorstr += "未填寫團督記錄標題!\r\n";
     }
-    if (attendees.replace(/\s*/g, "") == "") {
-      errorstr += "未填寫出席人員!\r\n";
+    if(upload_agenda_title_name.replace(/\s*/g, "") == "") {
+      errorstr += "未填寫會議章程標題!\r\n";
     }
-    if (absent.replace(/\s*/g, "") == "") {
-      errorstr += "未填寫請假人員!\r\n";
+    if (director.replace(/\s*/g, "") == "") {
+      errorstr += "未選擇主管!\r\n";
     }
-    if (record.replace(/\s*/g, "") == "") {
-      errorstr += "未填寫紀錄者!\r\n";
-    }
-    if (meeting_date.replace(/\s*/g, "") == "") {
-      errorstr += "未填寫會議日期!\r\n";
-    }
-    if (meeting_time.replace(/\s*/g, "") == "") {
-      errorstr += "未填寫會議時間!\r\n";
-    }
-    if (place.replace(/\s*/g, "") == "") {
-      errorstr += "未填寫會議地點!\r\n";
+    if (supervise.replace(/\s*/g, "") == "") {
+      errorstr += "未選擇執行長!\r\n";
     }
   }
 
   return errorstr;
 }
 //endregion
+
+// 刪除履歷表檔案內容 多檔案上傳 region
+selectFiles_delete = function (select_file_type_n) {
+
+
+  var file_type_n = "";
+
+  switch (select_file_type_n) {
+    case 0:
+      file_type_n = "customFile1";
+      var file_input_val_arr = customFile1_input_val_arr;
+      break;
+  
+    case 1:
+      file_type_n = "customFile2";
+      var file_input_val_arr = customFile2_input_val_arr;
+      break;
+  }
+
+  if ($("[name='"+file_type_n+"_check']:checked").length > 0) {
+    console.log($("#val_arr" + $("[name='"+file_type_n+"_check']:checked").attr("value")))
+    swal({
+      title: "是否刪除該檔案？\n" + "檔名："+ $("#val_arr" + $("[name='"+file_type_n+"_check']:checked").attr("value")).text(),
+      text: "確認刪除後將無法復原操作",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#DD6B55",
+      confirmButtonText: "確認",
+      cancelButtonText: "取消",
+      showConfirmButton: true,
+      showCancelButton: true
+    }).then(function (result) {
+      if (result) {
+        var file_sql_id = $("[name='"+file_type_n+"_check']:checked").attr("forms_sql_id");
+        var file_val = $("[name='"+file_type_n+"_check']:checked").attr("value");
+
+        
+        console.log(file_input_val_arr)
+        var sr_file = file_input_val_arr.splice(parseInt(file_val), 1);
+        console.log("------------------------")
+        console.log(file_sql_id)
+        console.log(sr_id)
+        console.log(file_input_val_arr)
+        console.log(file_val)
+        console.log(sr_file[0])
+
+        $.ajax({
+          url: "database/delete_sr_file.php",
+          type: "POST",
+          data: {
+            File_type_n:file_type_n,
+            Form_sql_id: file_sql_id,
+            sr_id: sr_id,
+            File_arr: file_input_val_arr,
+            File_delete_index: file_val,
+            Remove_file: sr_file[0],
+          },
+          // dataType: "JSON",
+          success: function (data) {
+            console.log(data);
+            if (data == 1) {
+              swal({
+                type: "success",
+                title: "刪除檔案成功!",
+                allowOutsideClick: false, //不可點背景關閉
+              }).then(function () {
+                location.reload();
+              });
+            }
+
+          },
+          error: function (e) {
+            console.log(e)
+            swal({
+              type: "error",
+              title: "刪除檔案失敗!請聯絡負責人",
+              allowOutsideClick: false, //不可點背景關閉
+            });
+          },
+        });
+
+      }
+    }, function (dismiss) {
+      if (dismiss == 'cancel') {
+        swal({
+          title: '已取消',
+          type: 'success',
+        })
+      }
+    }).catch(swal.noop)
+  }
+  else {
+    swal({
+      type: 'warning',
+      title: '請選取要刪除的檔案!',
+      allowOutsideClick: false //不可點背景關閉
+    })
+  }
+}
+//endregion
+
+window.selectedFiles1 = [];
+window.selectedFiles1_str = "";
+
+
+window.selectedFiles2 = [];
+window.selectedFiles2_str = "";
+
+selectFiles_insert = function (select_file_type_n) 
+{
+
+
+
+  switch (select_file_type_n) {
+    case 0:
+      // console.log("a1")
+      if(selectedFiles1.length==0)
+      {
+        selected_files(select_file_type_n);
+      }
+      else
+      {
+          swal({
+            title: "已經有選擇檔案，是否清空當前檔案清單，重新選取？",
+            text: "目前檔案清單："+selectedFiles1_str,
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "確認",
+            cancelButtonText: "取消",
+            showConfirmButton: true,
+            showCancelButton: true
+          }).then(function (result) {
+            if (result) {
+              selected_files(select_file_type_n);
+            }
+          }, function (dismiss) {
+            if (dismiss == 'cancel') {
+              swal({
+                title: '已取消',
+                type: 'success',
+              })
+            }
+          }).catch(swal.noop)
+      }
+      break;
+  
+    case 1:
+      // console.log("a2")
+      if(selectedFiles2.length==0)
+      {
+        selected_files(select_file_type_n);
+      }
+      else
+      {
+          swal({
+            title: "已經有選擇檔案，是否清空當前檔案清單，重新選取？",
+            text: "目前檔案清單："+selectedFiles2_str,
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "確認",
+            cancelButtonText: "取消",
+            showConfirmButton: true,
+            showCancelButton: true
+          }).then(function (result) {
+            if (result) {
+              selected_files(select_file_type_n);
+            }
+          }, function (dismiss) {
+            if (dismiss == 'cancel') {
+              swal({
+                title: '已取消',
+                type: 'success',
+              })
+            }
+          }).catch(swal.noop)
+      }
+      break;
+  }  
+
+
+    
+}
+
+
+selected_files = function(select_file_type_n) {
+
+
+  switch (select_file_type_n) {
+    case 0:
+
+      selectedFiles1 = [];
+      selectedFiles1_str = "";
+
+      var html = '<span style="color:red;">上傳檔案清單預覽：</span><br/>';
+
+      $("#selected-files1").html(html);
+
+      $.FileDialog({
+        "accept": "*",
+        "drag_message": "將檔案拖曳至此處新增",
+        "title": "載入檔案",
+      }).on("files.bs.filedialog", function (event) {
+        for (var a = 0; a < event.files.length; a++) {
+          selectedFiles1.push(event.files[a]);
+    
+          console.log(event.files[a])
+          console.log(selectedFiles1)
+          if(a == 0)
+          {
+            selectedFiles1_str += event.files[a].name;
+          }
+          else
+          {
+            selectedFiles1_str += "," + event.files[a].name;
+          }
+    
+          html += '<span style="color:red;" value="' + event.files[a].name + '">' + event.files[a].name + '</span><br/>';
+    
+          //若檔案類型為圖片則創建img元素
+          var index = event.files[a].name.lastIndexOf(".");
+    
+          if(isAssetTypeAnImage(event.files[a].name.substr(index+1)))
+          {
+            html += '<img width="300" height="300" id="customFile1_pre_img' + a + '" src=""/>';
+          }
+    
+          if(event.files.length > 1)
+          {
+            html += '<hr/>';
+          }
+    
+          html += '<br/>';
+    
+        }
+    
+        $("#selected-files1").html(html);
+    
+        $.each(event.files, function(key,val) {
+          var m_pre_img_id = $('#customFile1_pre_img' + key);
+          var index = event.files[key].name.lastIndexOf(".");
+          
+          if(isAssetTypeAnImage(event.files[key].name.substr(index+1)))
+          {
+            const fr = new FileReader();
+            fr.onload = function (event) {
+              // console.log(event.target.result)
+              // console.log(m_pre_img_id)
+              m_pre_img_id.attr('src', event.target.result);//读取的结果放入圖片
+            };
+    
+            fr.readAsDataURL(event.files[key]);
+          }
+        });
+    
+        // $("#selected-files").html(html);
+      });
+      break;
+  
+    case 1:
+
+      selectedFiles2 = [];
+      selectedFiles2_str = "";
+
+      var html = '<span style="color:red;">上傳檔案清單預覽：</span><br/>';
+      
+      $("#selected-files2").html(html);
+
+      $.FileDialog({
+        "accept": "*",
+        "drag_message": "將檔案拖曳至此處新增",
+        "title": "載入檔案",
+      }).on("files.bs.filedialog", function (event) {
+        for (var a = 0; a < event.files.length; a++) {
+          selectedFiles2.push(event.files[a]);
+    
+          console.log(event.files[a])
+          console.log(selectedFiles2)
+    
+          if(a == 0)
+          {
+            selectedFiles2_str += event.files[a].name;
+          }
+          else
+          {
+            selectedFiles2_str += "," + event.files[a].name;
+          }
+    
+          html += '<span style="color:red;" value="' + event.files[a].name + '">' + event.files[a].name + '</span><br/>';
+    
+          //若檔案類型為圖片則創建img元素
+          var index = event.files[a].name.lastIndexOf(".");
+    
+          if(isAssetTypeAnImage(event.files[a].name.substr(index+1)))
+          {
+            html += '<img width="300" height="300" id="customFile2_pre_img' + a + '" src=""/>';
+          }
+    
+          if(event.files.length > 1)
+          {
+            html += '<hr/>';
+          }
+    
+          html += '<br/>';
+    
+        }
+    
+        $("#selected-files2").html(html);
+    
+        $.each(event.files, function(key,val) {
+          var m_pre_img_id = $('#customFile2_pre_img' + key);
+          var index = event.files[key].name.lastIndexOf(".");
+          
+          if(isAssetTypeAnImage(event.files[key].name.substr(index+1)))
+          {
+            const fr = new FileReader();
+            fr.onload = function (event) {
+              // console.log(event.target.result)
+              // console.log(m_pre_img_id)
+              m_pre_img_id.attr('src', event.target.result);//读取的结果放入圖片
+            };
+    
+            fr.readAsDataURL(event.files[key]);
+          }
+        });
+    
+        // $("#selected-files").html(html);
+      });
+      break;
+  }
+  
+
+
+}
+
+// page reload時保持上次的頁籤狀態 region
+function tab_toggle() {
+  $('a[data-toggle="pill"]').on('show.bs.tab', function(e) {
+      localStorage.setItem('activeTab', $(e.target).attr('href'));
+  });
+  // console.log(localStorage)
+  var activeTab = localStorage.getItem('activeTab');
+  // console.log(activeTab)
+  if(activeTab){
+      $('#myTab a[href="' + activeTab + '"]').tab('show');
+  }
+}
+
 
 // 禁止所有輸入框輸入 反斜線符號\ region
 $("input, textarea").on("input", function() {

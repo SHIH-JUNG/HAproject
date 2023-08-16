@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2023-08-15 06:11:01
+-- 產生時間： 2023-08-16 16:16:48
 -- 伺服器版本： 10.4.24-MariaDB
 -- PHP 版本： 7.4.29
 
@@ -1362,7 +1362,9 @@ INSERT INTO `login_record` (`Id`, `Login_timestamp`, `Login_account`, `Login_aut
 (194, '2023-07-14 12:27:35', 'test6', '4', '執行長', '22.6699,120.5806', 0),
 (195, '2023-07-28 15:04:15', 'test6', '4', '執行長', '22.6483444,120.3262535', 1),
 (196, '2023-08-08 12:16:54', 'test6', '4', '執行長', '22.6699,120.5806', 1),
-(197, '2023-08-08 20:23:11', 'testuser', '1', 'jia', '22.593849,120.48889199999999', 1);
+(197, '2023-08-08 20:23:11', 'testuser', '1', 'jia', '22.593849,120.48889199999999', 1),
+(198, '2023-08-16 18:57:00', 'testuser', '1', 'jia', '22.593833,120.48885299999999', 1),
+(199, '2023-08-16 21:01:06', 'test5', '3', '園主任', '22.593833,120.48885299999999', 1);
 
 -- --------------------------------------------------------
 
@@ -2080,7 +2082,7 @@ CREATE TABLE `signature_notice` (
 --
 
 INSERT INTO `signature_notice` (`Id`, `Sign_id`, `Title`, `Url`, `Timestamp`, `Assign`, `Signer`, `Sign_state`, `Type`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
-(7, '0', '團督記錄簽核：test會議記錄標題818', 'supervisor_record_detail.php?year=111&id=17&sr_id=17&rec_type=fillin', '2022-08-18 16:05', '社工員1', '執行長', '未簽核', 'supervisor_record', '2022-08-18 16:10:58', '社工員1', '2022-08-18 16:10:58', ''),
+(7, '0', '團督記錄簽核：test會議記錄標題818', 'supervisor_record_detail.php?year=111&id=17&sr_id=17&rec_type=fillin', '2022-08-18 16:05', '社工員1', '執行長', '已簽核', 'supervisor_record', '2022-08-18 16:10:58', '社工員1', '2022-08-18 16:10:58', ''),
 (8, '0', '團督記錄簽核：uploadtt會議記錄標題818', 'supervisor_record_detail.php?year=111&id=18&sr_id=18&rec_type=upload', '2022-08-18 00:00', '社工員1', '園主任', '已簽核', 'supervisor_record', '2022-08-18 16:11:27', '社工員1', '2022-08-18 16:11:27', ''),
 (9, '0', '理監事會議記錄簽核：test理監事會議會議記錄標題818', 'board_supervisor_detail.php?year=111&id=32&bs_id=32&rec_type=fillin', '2022-08-18 17:20', '園主任', '園主任', '已簽核', 'board_supervisor', '2022-08-18 16:35:25', '園主任', '2022-08-18 16:35:25', ''),
 (11, '0', '理監事會議記錄簽核：test上傳會議記錄理監事會議818', 'board_supervisor_detail.php?year=111&id=33&bs_id=33&rec_type=upload', '2022-08-18 00:00', '社工員1', '社工組長', '已簽核', 'board_supervisor', '2022-08-18 16:38:40', '社工員1', '2022-08-18 16:38:40', ''),
@@ -2131,9 +2133,7 @@ INSERT INTO `signature_notice` (`Id`, `Sign_id`, `Title`, `Url`, `Timestamp`, `A
 (56, '39', '理監事會議記錄簽核：第五屆第十五次', 'board_supervisor_detail.php?year=112&id=39&bs_id=39&rec_type=upload', '2023-06-16 00:00', '社工員1', '社工員2', '未簽核', 'board_supervisor', '2023-06-16 10:46:19', '社工員1', '2023-06-16 10:46:19', ''),
 (57, '40', '理監事會議記錄簽核：第五屆第四促', 'board_supervisor_detail.php?year=112&id=40&bs_id=40&rec_type=upload', '2023-06-16 00:00', '社工員1', '社工員2', '未簽核', 'board_supervisor', '2023-06-16 10:47:08', '社工員1', '2023-06-16 10:47:08', ''),
 (58, '8_6_RE111', '開案個案-(生活品質問卷)簽核：案號：RE111', 'case_all.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03&form_type=life', '2023-07-14 00:00', '社工員1', '園主任、執行長', '園主任已簽核、執行長已簽核', 'current_case', '2023-07-14 12:17:27', '執行長', '2023-07-14 12:17:27', ''),
-(59, '28', '團督記錄簽核：test團督記錄標題', 'supervisor_record_detail.php?year=112&id=28&sr_id=28&rec_type=upload', '2023-08-08 00:00', '執行長', '園主任', '未簽核', 'supervisor_record', '2023-08-08 12:44:36', '執行長', '2023-08-08 12:44:36', ''),
-(60, '0', '團督記錄簽核：test團督記錄標題1120808', 'supervisor_record_detail.php?year=112&id=0&sr_id=0&rec_type=upload', '2023-08-08 00:00', '執行長', '社工組長、執行長', '社工組長未簽核、執行長未簽核', 'supervisor_record', '2023-08-08 13:21:02', '執行長', '2023-08-08 13:21:02', ''),
-(61, '0', '團督記錄簽核：test團督記錄標題1120808', 'supervisor_record_detail.php?year=112&id=0&sr_id=0&rec_type=upload', '2023-08-08 00:00', '執行長', '社工組長、執行長', '社工組長未簽核、執行長未簽核', 'supervisor_record', '2023-08-08 13:24:50', '執行長', '2023-08-08 13:24:50', '');
+(62, '0', '團督記錄簽核：test團督記錄標題816', 'supervisor_record_detail_v2.php?year=112&id=0&sr_id=0&rec_type=upload', '2023-08-16 00:00', 'jia', '園主任、執行長', '園主任未簽核、執行長未簽核', 'supervisor_record', '2023-08-16 19:18:10', 'jia', '2023-08-16 19:18:10', '');
 
 -- --------------------------------------------------------
 
@@ -2318,7 +2318,7 @@ CREATE TABLE `supervisor_record_v2` (
 --
 
 INSERT INTO `supervisor_record_v2` (`Id`, `Year`, `record_content`, `upload_content`, `Agenda_file_path`, `Rec_file_path`, `Director`, `Director_signature`, `Director_sign_msg`, `Director_sign_time`, `Supervise`, `Supervise_signature`, `Supervise_sign_msg`, `Supervise_sign_time`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
-(1, '112', '', '\"[{\"name\":\"upload_agenda_title_name\",\"value\":\"test會議章程標題1120808\"},{\"name\":\"upload_agenda_date\",\"value\":\"112年08月08日\"},{\"name\":\"upload_agenda_remark\",\"value\":\"test;;會議章程;;備註;;1120808\"},{\"name\":\"upload_title_name\",\"value\":\"test團督記錄標題1120808\"},{\"name\":\"upload_rec_date\",\"value\":\"112年08月08日\"},{\"name\":\"upload_rec_remark\",\"value\":\"test;;團督記錄 備註;;1120808\"},{\"name\":\"upload_rec_director\",\"value\":\"社工組長\"},{\"name\":\"upload_rec_supervise\",\"value\":\"執行長\"}]\"', '[\"../supervisor_record/112data/upload/test會議章程88_1.odt\",\"../supervisor_record/112data/upload/test會議章程88_2.odt\"]', '[\"../supervisor_record/112data/upload/test會議紀錄_1.odt\",\"../supervisor_record/112data/upload/test會議紀錄_2.odt\"]', '社工組長', '', '', '', '執行長', '', '', '', '2023-08-08 13:24:50', '執行長', '0000-00-00 00:00:00', '');
+(0, '112', '', '\"[{\"name\":\"upload_agenda_title_name\",\"value\":\"test會議章程標題815\"},{\"name\":\"upload_agenda_date\",\"value\":\"112年08月15日\"},{\"name\":\"upload_agenda_remark\",\"value\":\"test會議章程標題;;815;;abaaaa\"},{\"name\":\"upload_title_name\",\"value\":\"test團督記錄標題815\"},{\"name\":\"upload_rec_date\",\"value\":\"112年08月15日\"},{\"name\":\"upload_rec_remark\",\"value\":\"test;;團督記錄標題;;815;;a\"},{\"name\":\"director\",\"value\":\"園主任\"},{\"name\":\"supervise\",\"value\":\"執行長\"}]\"', '[\"../supervisor_record/112_0_data/upload/testd1234.docx\",\"../supervisor_record/112_0_data/upload/testd123.docx\",\"../supervisor_record/112_0_data/upload/testd123 - 複製.docx\",\"../supervisor_record/112_0_data/upload/testd1234 - 複製 (2).docx\"]', '[\"../supervisor_record/112_0_data/upload/tcsacas.docx\",\"../supervisor_record/112_0_data/upload/tstaaaa.docx\",\"../supervisor_record/112_0_data/upload/asdadasdsb - 複製.jpg\",\"../supervisor_record/112_0_data/upload/asdadasdsb.jpg\"]', '園主任', '../supervisor_record/signature/1692191331.png', 'dwdw', '2023-08-16 21:08:51', '執行長', '', '', '', '2023-08-16 19:18:10', 'jia', '2023-08-16 22:16:31', '園主任');
 
 -- --------------------------------------------------------
 
@@ -3060,7 +3060,7 @@ ALTER TABLE `leave_rule_table`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `login_record`
 --
 ALTER TABLE `login_record`
-  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=198;
+  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=200;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `members_assemble`
@@ -3174,7 +3174,7 @@ ALTER TABLE `screening_type_keywords`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `signature_notice`
 --
 ALTER TABLE `signature_notice`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `sign_notice`
@@ -3187,12 +3187,6 @@ ALTER TABLE `sign_notice`
 --
 ALTER TABLE `supervisor_record`
   MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
-
---
--- 使用資料表自動遞增(AUTO_INCREMENT) `supervisor_record_v2`
---
-ALTER TABLE `supervisor_record_v2`
-  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `training`

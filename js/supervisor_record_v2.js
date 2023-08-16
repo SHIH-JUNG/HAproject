@@ -231,13 +231,13 @@ function datatable_sign_show(signer_type ,signer, sign_path, sign_time, sign_msg
 
   if (sign_path != "") {
     var supervise_sign_file_val = sign_path.replace(
-      "../signature/",
-      "./signature/"
+      "../supervisor_record/signature/",
+      "./supervisor_record/signature/"
     );
     sign_css_str +=
       '<a src="' +
       supervise_sign_file_val +
-      '" style="color:blue;display: block;" target="_blank" alt="' +
+      '" style="color:blue;" target="_blank" alt="' +
       sign_stus +
       '" data-bs-toggle="tooltip" data-bs-placement="left" title="' +
       sign_stus +

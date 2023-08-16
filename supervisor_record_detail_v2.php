@@ -18,6 +18,8 @@
     <link href="css/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
     <!--  table  -->
     <link rel="stylesheet" href="css/bootstrap-table.min.css">
+    <!-- Bootstrap FileDialog -->
+    <link rel="stylesheet" href="css/bootstrap-file-dialog-dist/bootstrap.fd.css">
     <!--  日期民國  -->
     <link data-require="jqueryui@*" rel="stylesheet" href="css/jquery-ui.css" />
     <link href="css/dtsel.css" rel="stylesheet" />
@@ -125,7 +127,7 @@
                 <!-- /Footer -->
                 <!-- /Title -->
                 <!---Table--->
-                <div style="zoom:80%" class="row text-center">
+                <div style="zoom:80%" class="row text-center" >
                     <div class="col-sm-12">
                         <div class="panel panel-default panel-view">
                             <div class="panel-wrapper collapse in">
@@ -154,34 +156,35 @@
                                                     <div class="tab-pane fade in active" id="one" role="tabpanel" aria-labelledby="home-tab">
                                                         <div class="accordion" id="accordionExample">
                                                             <div class="panel panel-default">
-                                                                <div class="panel-heading" id="headingTwo">
+                                                                <div class="panel-heading" id="headingOne">
                                                                     <h2 class="mb-0">
-                                                                        <button class="btn btn-link btn-block collapsed" type="button" data-toggle="collapse" data-parent="#myTabContent" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                                        <button class="btn btn-link btn-block collapsed" type="button" data-toggle="collapse" data-parent="#myTabContent" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                                                                             <span style="color:black;font-size:17px">會議章程</span>
                                                                         </button>
                                                                     </h2>
                                                                 </div>
-                                                                <div id="collapseTwo" class="collapse in" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                                                <div id="collapseOne" class="collapse in" aria-labelledby="headingOne" data-parent="#accordionExample">
                                                                     <div class="panel-body scr_container">
                                                                         <form id="form_a" class="form">
                                                                             <table style="width:75%;margin-bottom: 0px;" class="table table-bordered">
                                                                                 <tr style="text-align:left">
                                                                                     <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;width:12em;">會議章程標題</td>
-                                                                                    <td style="border-bottom: solid 1px;"><div class="col-sm-10"><input id="upload_agenda_title_name" name="upload_agenda_title_name" type="text" style="width:100%;"></div></td>
+                                                                                    <td style="border-bottom: solid 1px;"><div class="col-sm-10"><input class="sr_question" id="upload_agenda_title_name" name="upload_agenda_title_name" type="text" style="width:100%;"></div></td>
                                                                                 </tr>
                                                                                 <tr style="text-align:left">
                                                                                     <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">上傳日期</td>
-                                                                                    <td style="border-bottom: solid 1px;"><div class="col-sm-10"><input id="upload_agenda_date" name="upload_agenda_date" datepicker="ch_datepicker" type="text"></div></td>
+                                                                                    <td style="border-bottom: solid 1px;"><div class="col-sm-10"><input class="sr_question" id="upload_agenda_date" name="upload_agenda_date" datepicker="ch_datepicker" type="text"></div></td>
                                                                                 </tr>
                                                                                 <tr style="text-align:left">
                                                                                     <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">檔案上傳</td>
                                                                                     <td style="border-bottom: solid 1px;">
                                                                                         <div class="col-sm-12">
                                                                                             <div class="text-left">
-                                                                                                <input name="customFile1" type="file" class="form-control" multiple/>
+                                                                                                <!-- <input name="customFile1" type="file" class="form-control" multiple/>
                                                                                                 <br>
                                                                                                 <div id="customFile1"></div>
-                                                                                                <img src="" id="customFile1_img" style="display:none;" />
+                                                                                                <img src="" id="customFile1_img" style="display:none;" /> -->
+                                                                                                <div id="customFile1"></div>
                                                                                             </div>
                                                                                         </div>
                                                                                     </td>
@@ -189,7 +192,7 @@
                                                                                 <tr style="text-align:left">
                                                                                     <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white">備註</td>
                                                                                     <td>
-                                                                                        <div class="col-sm-10"><textarea style="height:10em;width:100%;resize: none;font-size: 20px;" id="upload_agenda_remark" name="upload_agenda_remark" placeholder="請輸入備註"></textarea></div>
+                                                                                        <div class="col-sm-10"><textarea class="sr_question" style="height:10em;width:100%;resize: none;font-size: 20px;" id="upload_agenda_remark" name="upload_agenda_remark" placeholder="請輸入備註"></textarea></div>
                                                                                     </td>
                                                                                 </tr>
                                                                             </table>
@@ -236,21 +239,22 @@
                                                                             <table style="width:75%;margin-bottom: 0px;" class="table table-bordered">
                                                                                 <tr style="text-align:left">
                                                                                     <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;width:12em;">團督記錄標題</td>
-                                                                                    <td style="border-bottom: solid 1px;"><div class="col-sm-10"><input id="upload_title_name" name="upload_title_name" type="text" style="width:100%;"></div></td>
+                                                                                    <td style="border-bottom: solid 1px;"><div class="col-sm-10"><input class="sr_question" id="upload_title_name" name="upload_title_name" type="text" style="width:100%;"></div></td>
                                                                                 </tr>
                                                                                 <tr style="text-align:left">
                                                                                     <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">上傳日期</td>
-                                                                                    <td style="border-bottom: solid 1px;"><div class="col-sm-10"><input id="upload_rec_date" name="upload_rec_date" datepicker="ch_datepicker" type="text"></div></td>
+                                                                                    <td style="border-bottom: solid 1px;"><div class="col-sm-10"><input class="sr_question" id="upload_rec_date" name="upload_rec_date" datepicker="ch_datepicker" type="text"></div></td>
                                                                                 </tr>
                                                                                 <tr style="text-align:left">
                                                                                     <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">檔案上傳</td>
                                                                                     <td style="border-bottom: solid 1px;">
                                                                                         <div class="col-sm-12">
                                                                                             <div class="text-left">
-                                                                                                <input name="customFile2" type="file" class="form-control" multiple/>
+                                                                                                <!-- <input name="customFile2" type="file" class="form-control" multiple/>
                                                                                                 <br>
                                                                                                 <div id="customFile2"></div>
-                                                                                                <img src="" id="customFile2_img" style="display:none;" />
+                                                                                                <img src="" id="customFile2_img" style="display:none;" /> -->
+                                                                                                <div id="customFile2"></div>
                                                                                             </div>
                                                                                         </div>
                                                                                     </td>
@@ -258,26 +262,36 @@
                                                                                 <tr style="text-align:left">
                                                                                     <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white">備註</td>
                                                                                     <td>
-                                                                                        <div class="col-sm-10"><textarea style="height:10em;width:100%;resize: none;font-size: 20px;" id="upload_rec_remark" name="upload_rec_remark" placeholder="請輸入備註"></textarea></div>
+                                                                                        <div class="col-sm-10"><textarea class="sr_question" style="height:10em;width:100%;resize: none;font-size: 20px;" id="upload_rec_remark" name="upload_rec_remark" placeholder="請輸入備註"></textarea></div>
                                                                                     </td>
                                                                                 </tr>
                                                                                 <tr style="text-align:left">
                                                                                     <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;">主管(簽核)</td>
                                                                                     <td style="border-bottom: solid 1px;">
-                                                                                        <div class="col-sm-3">
-                                                                                            <select name="upload_rec_director" id="upload_rec_director" style="width:100%;">
+                                                                                        <div class="col-sm-3" style="margin-top: 0.6em;">
+                                                                                            <select class="sr_question" name="director" id="director" style="width:100%;">
                                                                                                 <option value="">請選擇</option>
                                                                                             </select>
                                                                                         </div>
+                                                                                        <div class="col-sm-9">
+                                                                                        <button style="margin:.5em;margin-right:3em;color:red;" type="button" onclick="signature_btn_click('director');">簽名</button>
+                                                                                        <button style="margin:.5em;" type="button" id="director_signature_msg_btn" onclick="sign_msg_model('director');" data-toggle="modal" data-target="#myModal2">查看留言</button>
+                                                                                        <a src="" id="director_signature_simg" style="color:blue;" target="_blank" alt="簽名圖片連結"></a>
+                                                                                    </div>
                                                                                     </td>
                                                                                 </tr>
                                                                                 <tr style="text-align:left">
                                                                                     <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;">執行長(簽核)</td>
                                                                                     <td style="border-bottom: solid 1px;">
-                                                                                        <div class="col-sm-3">
-                                                                                            <select name="upload_rec_supervise" id="upload_rec_supervise" style="width:100%;">
+                                                                                        <div class="col-sm-3" style="margin-top: 0.6em;">
+                                                                                            <select class="sr_question" name="supervise" id="supervise" style="width:100%;">
                                                                                                 <option value="">請選擇</option>
                                                                                             </select>
+                                                                                        </div>
+                                                                                        <div class="col-sm-9">
+                                                                                            <button style="margin:.5em;margin-right:3em;color:red;" type="button" onclick="signature_btn_click('supervise');">簽名</button>
+                                                                                            <button style="margin:.5em;" type="button" id="supervise_signature_msg_btn" onclick="sign_msg_model('supervise');" data-toggle="modal" data-target="#myModal2">查看留言</button>
+                                                                                            <a src="" id="supervise_signature_simg" style="color:blue;" target="_blank" alt="簽名圖片連結"></a>
                                                                                         </div>
                                                                                     </td>
                                                                                 </tr>
@@ -367,6 +381,9 @@
     <script src="javascript/jquery.slimscroll.js"></script>
     <!-- Fancy Dropdown JS -->
     <script src="javascript/dropdown-bootstrap-extended.js"></script>
+    <!-- Bootstrap FileDialog -->
+    <script src="javascript/bootstrap-file-dialog-dist/bootstrap.fd.js"></script>
+    
     <!-- Init -->
     <script src="javascript/init.js"></script>
     <!-- ================== JS notify控制 ================== -->
@@ -389,6 +406,10 @@
     <script src="javascript/datepickerTw2.js"></script>
     <!-- ================== jSignature ================== -->
     <script src="jSignature/jSignature.min.js"></script>
+    <script>
+        //設定js變數抓取使用者名稱
+        var user_name = '<?php echo $_SESSION["name"]; ?>';
+    </script>
     <!-- ================== detail ================== -->
     <script type="text/javascript" src="js/supervisor_record_detail_v2.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
 
