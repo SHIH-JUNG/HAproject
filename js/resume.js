@@ -8,12 +8,13 @@ datepicker_create = function (selector_id) {
     currentText: "今天",
     dateFormat: "R年mm月dd日",
     showButtonPanel: true,
-    minDate: new Date(
-      new Date().getFullYear() - 2,
-      new Date().getMonth() - 3,
-      1
-    ),
-    maxDate: new Date(new Date().getFullYear() + 3, 11, 31),
+    // minDate: new Date(
+    //   new Date().getFullYear() - 2,
+    //   new Date().getMonth() - 3,
+    //   1
+    // ),
+    // maxDate: new Date(new Date().getFullYear() + 3, 11, 31),
+    yearRange: "-15:+5",
     onClose: function (dateText) {
       // console.log($('#'+selector_id).val());
       // console.log(trans_to_EN(dateText));

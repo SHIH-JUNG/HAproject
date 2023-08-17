@@ -103,7 +103,7 @@
             </a>
             <ul style="font-size:15px" id="accounting_non_open" class="collapse">
                 <li>
-                    <a href="accounting_record_cash_yearlist.php">零用金
+                    <a href="accounting_record_cash_yearlist_v2.php">零用金
                     </a>
                 </li>
                 <li>

@@ -54,8 +54,9 @@ datepicker_create = function (selector_id) {
       currentText: "今天",
       dateFormat: "R.mm.dd",
       showButtonPanel: true,
-      minDate: new Date(new Date().getFullYear() - 10, 0, 1),
-      maxDate: new Date(new Date().getFullYear() + 10, 11, 31),
+      // minDate: new Date(new Date().getFullYear() - 10, 0, 1),
+      // maxDate: new Date(new Date().getFullYear() + 10, 11, 31),
+      yearRange: "-15:+5",
       onClose: function (dateText) {
         // console.log($('#'+selector_id).val());
         // console.log(trans_to_EN(dateText));

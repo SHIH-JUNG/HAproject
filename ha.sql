@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2023-08-16 16:16:48
+-- 產生時間： 2023-08-17 14:00:53
 -- 伺服器版本： 10.4.24-MariaDB
 -- PHP 版本： 7.4.29
 
@@ -143,6 +143,59 @@ INSERT INTO `accounting_record_cash_balance` (`Id`, `Year`, `Month`, `Income_sum
 (7, 111, 12, '30001', '2000', '0', '2022-12-08 11:51:27', '花花', '2022-12-08 11:53:36', '花花'),
 (8, 112, 6, '0', '1768', '0', '2023-06-15 14:56:23', '社工員1', '2023-06-16 11:17:50', '社工員1'),
 (9, 112, 7, '0', '12', '-1768', '2023-07-13 13:51:36', '社工員1', '2023-07-13 13:51:36', '');
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `accounting_record_cash_balance_v2`
+--
+
+CREATE TABLE `accounting_record_cash_balance_v2` (
+  `Id` int(244) NOT NULL,
+  `Year` int(100) NOT NULL,
+  `Month` int(10) NOT NULL,
+  `Income_sum` decimal(10,0) NOT NULL,
+  `Cost_sum` decimal(10,0) NOT NULL,
+  `Last_pb` decimal(10,0) NOT NULL,
+  `Create_date` datetime NOT NULL,
+  `Create_name` varchar(30) NOT NULL,
+  `Update_date` datetime DEFAULT current_timestamp(),
+  `Update_name` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- 傾印資料表的資料 `accounting_record_cash_balance_v2`
+--
+
+INSERT INTO `accounting_record_cash_balance_v2` (`Id`, `Year`, `Month`, `Income_sum`, `Cost_sum`, `Last_pb`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
+(1, 110, 3, '5565', '0', '0', '2023-08-17 19:52:41', '園主任', '2023-08-17 19:52:41', '');
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `accounting_record_cash_v2`
+--
+
+CREATE TABLE `accounting_record_cash_v2` (
+  `Id` int(244) NOT NULL,
+  `Year` int(100) NOT NULL,
+  `Month` int(10) NOT NULL,
+  `Form_class` varchar(10) NOT NULL,
+  `Invoice_type` varchar(20) NOT NULL,
+  `Amount` decimal(10,0) NOT NULL,
+  `Remark` varchar(2000) NOT NULL,
+  `Create_date` datetime NOT NULL,
+  `Create_name` varchar(30) NOT NULL,
+  `Update_date` datetime DEFAULT current_timestamp(),
+  `Update_name` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- 傾印資料表的資料 `accounting_record_cash_v2`
+--
+
+INSERT INTO `accounting_record_cash_v2` (`Id`, `Year`, `Month`, `Form_class`, `Invoice_type`, `Amount`, `Remark`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
+(0, 110, 3, '日記帳', '收入', '5565', 'test\n110\n3\n5565', '2023-08-17 19:52:41', '園主任', '2023-08-17 19:52:41', '');
 
 -- --------------------------------------------------------
 
@@ -1364,7 +1417,8 @@ INSERT INTO `login_record` (`Id`, `Login_timestamp`, `Login_account`, `Login_aut
 (196, '2023-08-08 12:16:54', 'test6', '4', '執行長', '22.6699,120.5806', 1),
 (197, '2023-08-08 20:23:11', 'testuser', '1', 'jia', '22.593849,120.48889199999999', 1),
 (198, '2023-08-16 18:57:00', 'testuser', '1', 'jia', '22.593833,120.48885299999999', 1),
-(199, '2023-08-16 21:01:06', 'test5', '3', '園主任', '22.593833,120.48885299999999', 1);
+(199, '2023-08-16 21:01:06', 'test5', '3', '園主任', '22.593833,120.48885299999999', 1),
+(200, '2023-08-17 18:02:28', 'test5', '3', '園主任', '22.593833,120.488853', 1);
 
 -- --------------------------------------------------------
 
@@ -2675,6 +2729,18 @@ ALTER TABLE `accounting_record_cash_balance`
   ADD PRIMARY KEY (`Id`);
 
 --
+-- 資料表索引 `accounting_record_cash_balance_v2`
+--
+ALTER TABLE `accounting_record_cash_balance_v2`
+  ADD PRIMARY KEY (`Id`);
+
+--
+-- 資料表索引 `accounting_record_cash_v2`
+--
+ALTER TABLE `accounting_record_cash_v2`
+  ADD PRIMARY KEY (`Id`);
+
+--
 -- 資料表索引 `accounting_record_report`
 --
 ALTER TABLE `accounting_record_report`
@@ -2979,6 +3045,12 @@ ALTER TABLE `accounting_record_cash_balance`
   MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
+-- 使用資料表自動遞增(AUTO_INCREMENT) `accounting_record_cash_balance_v2`
+--
+ALTER TABLE `accounting_record_cash_balance_v2`
+  MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- 使用資料表自動遞增(AUTO_INCREMENT) `accounting_record_report`
 --
 ALTER TABLE `accounting_record_report`
@@ -3060,7 +3132,7 @@ ALTER TABLE `leave_rule_table`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `login_record`
 --
 ALTER TABLE `login_record`
-  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=200;
+  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=201;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `members_assemble`

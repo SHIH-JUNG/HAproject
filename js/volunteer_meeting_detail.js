@@ -27,7 +27,7 @@ datepicker_create = function (selector_id) {
       //   1
       // ),
       // maxDate: new Date(new Date().getFullYear() + 3, 11, 31),
-      yearRange: "-9:+5",
+      yearRange: "-15:+5",
       onClose: function (dateText) {
         // console.log($('#'+selector_id).val());
         // console.log(trans_to_EN(dateText));
