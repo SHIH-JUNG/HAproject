@@ -112,6 +112,75 @@ load_invoice_month_optios = function(id_arr_val)
 //   console.log(form_class)
 // }
 
+//宣告存入 file Object的空陣列
+window.file_name = [];
+
+// 顯示檔名 region
+$("input[type='file']").change(function (event) {
+
+   
+  // console.log(event.target.files)
+  // console.log(event.target.files.length)
+
+  //獲取 file name名稱
+  var name = $(this).attr("name");
+
+  var file_names_str = "";
+
+  // 顯示檔名
+  $.each(event.target.files, function(key,val) {
+
+    
+    file_names_str += "檔案" + (key + 1) + "名稱：" + val.name + "<br/>";
+
+    //若檔案類型為圖片則創建img元素
+    var index = val.name.lastIndexOf(".");
+
+    if(isAssetTypeAnImage(val.name.substr(index+1)))
+    {
+      file_names_str += '<img id="' + name + 'pre_img' + key + '" src=""/>';
+    }
+
+    // if(event.target.files.length > 1)
+    // {
+    //   file_names_str += '<hr/>';
+    // }
+
+    // file_names_str += '<br/>';
+
+  });
+
+  //若檔案類型為圖片則顯示圖片
+  $.each(event.target.files, function(key,val) {
+    var index = val.name.lastIndexOf(".");
+
+    if(isAssetTypeAnImage(val.name.substr(index+1)))
+    {
+      const fr = new FileReader();
+      fr.onload = function (e) {
+        $('#' + name + 'pre_img' + key).attr('src', e.target.result);//读取的结果放入圖片
+      };
+
+      fr.readAsDataURL(event.target.files[key]);
+    }
+  });
+
+  //預覽上傳檔名(圖片)
+  $("#" + name).html(file_names_str);
+
+});
+// endregion
+
+
+// 檢查檔案類型是否為圖片 region
+function isAssetTypeAnImage(ext) {
+  return [
+  'png', 'jpg', 'jpeg', 'bmp', 'gif', 'webp', 'psd', 'svg', 'tiff'].
+  indexOf(ext.toLowerCase()) !== -1;
+}
+// endregion
+
+
 
 // 新增零用金資料 region
 $("#rec_add_new").on("click", function () {
@@ -124,48 +193,134 @@ $("#rec_add_new").on("click", function () {
 
     var form_class = $("[name='form_class']:checked").val();
 
-    var submit_data = {};
+    // var submit_data = {};
+
+    //去掉資料內前後端多餘的空白，file類型須排除，否則報錯
+    $("input, textarea").each(function () {
+      if ($(this).attr("type") != "file") {
+        $(this).val(jQuery.trim($(this).val()));
+      }
+    });
+
+    var form_data = new FormData();
+
+    var submit_trans_href = "";
 
     switch (form_class) {
       case "0":
+        submit_trans_href = "accounting_record_cash_v2.php?year=" + $("#invoice_year2").val()
 
-        submit_data = {}
-        submit_data={
-          Invoice_year:$("#invoice_year2").val(),
-          Invoice_month:$("#invoice_month2").val(),
-          Form_class:"兒少單據",
-          Invoice_type:$("#invoice_type2").val(),
-          Amount:$("#amount2").val(),
-          Remark:$("#remark2").val(),
-        };
+        $("[name='customFile2']").each(function(index, element) {
+          var arc_files = $(this).prop("files");
+          // console.log(arc_files.length)
+          
+          if (arc_files != undefined) {
+            if (arc_files.length != 0) 
+            {
+              for (var i = 0; i < arc_files.length; i++) {
+                // console.log(arc_files[i])
+                form_data.append("arc_files[]", arc_files[i]);
+              }
+            }
+          }
+        });
+
+        form_data.append("Invoice_year", $("#invoice_year2").val());
+        form_data.append("Invoice_month", $("#invoice_month2").val());
+        form_data.append("Form_class", "兒少單據");
+        form_data.append("Invoice_type", $("#invoice_type2").val());
+        form_data.append("Amount", $("#amount2").val());
+        form_data.append("Remark", $("#remark2").val());
+
+        // submit_data = {}
+        // submit_data={
+        //   Invoice_year:$("#invoice_year2").val(),
+        //   Invoice_month:$("#invoice_month2").val(),
+        //   Form_class:"兒少單據",
+        //   Invoice_type:$("#invoice_type2").val(),
+        //   Amount:$("#amount2").val(),
+        //   Remark:$("#remark2").val(),
+        // };
 
         break;
       case "1":
+        
+        submit_trans_href = "accounting_record_cash_v2.php?year=" + $("#invoice_year").val()
 
-        submit_data = {}
-        submit_data={
-          Invoice_year:$("#invoice_year").val(),
-          Invoice_month:$("#invoice_month").val(),
-          Form_class:"轉帳",
-          Invoice_type:$("#invoice_type").val(),
-          Amount:$("#amount").val(),
-          Remark:$("#remark").val(),
-        };
+        $("[name='customFile1']").each(function(index, element) {
+          var arc_files = $(this).prop("files");
+          // console.log(arc_files.length)
+          
+          if (arc_files != undefined) {
+            if (arc_files.length != 0) 
+            {
+              for (var i = 0; i < arc_files.length; i++) {
+                // console.log(arc_files[i])
+                form_data.append("arc_files[]", arc_files[i]);
+              }
+            }
+          }
+        });
+
+        form_data.append("Invoice_year", $("#invoice_year").val());
+        form_data.append("Invoice_month", $("#invoice_month").val());
+        form_data.append("Form_class", "轉帳");
+        form_data.append("Invoice_type", $("#invoice_type").val());
+        form_data.append("Amount", $("#amount").val());
+        form_data.append("Remark", $("#remark").val());
+
+        // submit_data = {}
+        // submit_data={
+        //   Invoice_year:$("#invoice_year").val(),
+        //   Invoice_month:$("#invoice_month").val(),
+        //   Form_class:"轉帳",
+        //   Invoice_type:$("#invoice_type").val(),
+        //   Amount:$("#amount").val(),
+        //   Remark:$("#remark").val(),
+        // };
       break;
       case "2":
 
-        submit_data = {}
-        submit_data={
-          Invoice_year:$("#invoice_year").val(),
-          Invoice_month:$("#invoice_month").val(),
-          Form_class:"日記帳",
-          Invoice_type:$("#invoice_type").val(),
-          Amount:$("#amount").val(),
-          Remark:$("#remark").val(),
-        };
+        submit_trans_href = "accounting_record_cash_v2.php?year=" + $("#invoice_year").val()
+
+        $("[name='customFile1']").each(function(index, element) {
+          var arc_files = $(this).prop("files");
+          // console.log(arc_files.length)
+          
+          if (arc_files != undefined) {
+            if (arc_files.length != 0) 
+            {
+              for (var i = 0; i < arc_files.length; i++) {
+                // console.log(arc_files[i])
+                form_data.append("arc_files[]", arc_files[i]);
+              }
+            }
+          }
+        });
+
+        form_data.append("Invoice_year", $("#invoice_year").val());
+        form_data.append("Invoice_month", $("#invoice_month").val());
+        form_data.append("Form_class", "日記帳");
+        form_data.append("Invoice_type", $("#invoice_type").val());
+        form_data.append("Amount", $("#amount").val());
+        form_data.append("Remark", $("#remark").val());
+
+        // submit_data = {}
+        // submit_data={
+        //   Invoice_year:$("#invoice_year").val(),
+        //   Invoice_month:$("#invoice_month").val(),
+        //   Form_class:"日記帳",
+        //   Invoice_type:$("#invoice_type").val(),
+        //   Amount:$("#amount").val(),
+        //   Remark:$("#remark").val(),
+        // };
         break;
     }
   
+    for (var pair of form_data.entries()) {
+      console.log(pair[0] + ", " + pair[1]);
+    }
+
     var stau = false;
   
     if (check_add_rec_data(form_class) != "") {
@@ -183,7 +338,12 @@ $("#rec_add_new").on("click", function () {
       $.ajax({
         url: "database/add_new_accounting_record_cash_v2.php",
         type: "POST",
-        data: submit_data,
+        data: form_data,
+        contentType: false,
+        cache: false,
+        processData: false,
+        async: true,
+        // data: submit_data,
         //            dataType: "JSON",
         success: function (data) {
           console.log(data);
@@ -231,7 +391,9 @@ function check_add_rec_data(form_class) {
     var invoice_type2 = $("#invoice_type2").val();
     var amount2 = $("#amount2").val();
 
-    
+    var customFile1 = $("[name*=customFile1]").prop("files").length;
+    var customFile2 = $("[name*=customFile2]").prop("files").length;
+
      var errorstr = "";
     
      if(form_class=="1" || form_class=="2")
@@ -247,6 +409,10 @@ function check_add_rec_data(form_class) {
       }
       if (amount == null) {
           errorstr += "未填寫金額!\r\n";
+      }
+      
+      if(customFile1 == 0) {
+        errorstr += "未上傳會計零用金檔案!\r\n";
       }
       if (errorstr == "") {
           if (invoice_year.replace(/\s*/g, "") == "") {
@@ -277,6 +443,9 @@ function check_add_rec_data(form_class) {
       }
       if (amount2 == null) {
           errorstr += "未填寫金額!\r\n";
+      }
+      if(customFile2 == 0) {
+        errorstr += "未上傳會計零用金檔案!\r\n";
       }
       if (errorstr == "") {
           if (invoice_year2.replace(/\s*/g, "") == "") {
@@ -324,3 +493,4 @@ function select_form_class(option)
             break;
     }
 }
+
