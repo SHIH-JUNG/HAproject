@@ -101,6 +101,10 @@
                                                                 <br>
                                                                 <table id="ar_cash_yearlist_all" style="width:auto;" class="table table-bordered">
                                                                     <th>年度</th>
+                                                                    <th>去年結餘</th>
+                                                                    <th>總收入</th>
+                                                                    <th>總支出</th>
+                                                                    <th>今年結餘</th>
                                                                     <th>零用金紀錄資料</th>
                                                                     <tbody id="ar_cash_yearlist_add"></tbody>
                                                                 </table>
@@ -157,7 +161,7 @@
     <!-- ================== 登出設定 ================== -->
     <script src='js/logout.js'></script>
     <!-- 日期民國-->
-    <script src="javascript/TW_YEAR.js"></script>
+    <!-- <script src="javascript/TW_YEAR.js"></script> -->
     <!-- ================== accounting_record_yearlist.js ================== -->
     <script src='js/accounting_record_cash_yearlist_v2.js<?php echo "?".date("Y-m-d h:i:sa")?>'></script>
     <!-- ================== moment ================== -->

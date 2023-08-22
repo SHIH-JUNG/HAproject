@@ -134,7 +134,7 @@
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span><a href="accounting_record_cash_yearlist.php">零用金</a></span></li>
+                        <li><span><a href="accounting_record_cash_yearlist_v2.php">零用金</a></span></li>
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
@@ -165,8 +165,16 @@
                                             <div class="text-center">
                                                 <h4 id="form_type">零用金</h4>
                                             </div>
+                                            <div class="text-right">
+                                                <button style="font-size:20px;" type="button" class="btn btn-default" onclick="location.href='add_accounting_record_cash_v2.php';"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
+                                                <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z" />
+                                                <path fill-rule="evenodd" d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5z" />
+                                                </svg>新增零用金紀錄</button>
+                                            </div>
                                             <br>
-                                            <ul style="font-size:17px" class="nav nav-tabs" id="myTab" role="tablist">
+                                            <br>
+                                            <ul style="font-size:17px;" class="nav nav-tabs" id="myTab" role="tablist">
                                                 <li class="nav-item active" role="presentation">
                                                     <a class="nav-link" id="home-tab" data-toggle="pill" href="#one" role="tab" aria-selected="true">
                                                         <b>兒少單據</b>
@@ -258,15 +266,13 @@
                                                                                     <table class="table display dataTable no-footer" style="font-size:15px;font-family:微軟正黑體;width:100%" data-toolbar="#toolbar">
                                                                                         <thead>
                                                                                             <tr style="background-color:rgb(255 201 54);">
-                                                                                                <th style="width:2em;">修改</th>
-                                                                                                <th>日期</th>
-                                                                                                <th>類別</th>
-                                                                                                <th>項目</th>
-                                                                                                <th>收入</th>
-                                                                                                <th>支出</th>
-                                                                                                <th>上傳日期</th>
-                                                                                                <th>登記日期</th>
+                                                                                                <th style="width:2em;"></th>
+                                                                                                <th style="width:6em;">收入</th>
+                                                                                                <th style="width:6em;">支出</th>
+                                                                                                <th>檔案</th>
+                                                                                                <th>建立日期</th>
                                                                                                 <th>備註</th>
+                                                                                                <th style="width:5em;">詳細內容</th>
                                                                                             </tr>
                                                                                         </thead>
                                                                                         <tbody class="arc_table" id="ct_invoice_tbody">
@@ -307,16 +313,13 @@
                                                                                     <table class="table display dataTable no-footer" style="font-size:15px;font-family:微軟正黑體;width:100%" data-toolbar="#toolbar">
                                                                                         <thead>
                                                                                             <tr style="background-color:rgb(255 201 54);">
-                                                                                                <th style="width:2em;">修改</th>
-                                                                                                <th>日期</th>
-                                                                                                <th>憑證號碼</th>
-                                                                                                <th>項目</th>
-                                                                                                <th>收入</th>
-                                                                                                <th>支出</th>
-                                                                                                <th>領款日期</th>
-                                                                                                <th>領款人</th>
-                                                                                                <th>登記日期</th>
+                                                                                                <th style="width:2em;"></th>
+                                                                                                <th style="width:6em;">收入</th>
+                                                                                                <th style="width:6em;">支出</th>
+                                                                                                <th>檔案</th>
+                                                                                                <th>建立日期</th>
                                                                                                 <th>備註</th>
+                                                                                                <th style="width:5em;">詳細內容</th>
                                                                                             </tr>
                                                                                         </thead>
                                                                                         <tbody class="arc_table" id="transfer_tbody"></tbody>
@@ -355,16 +358,13 @@
                                                                                     <table class="table display dataTable no-footer" style="font-size:15px;font-family:微軟正黑體;width:100%" data-toolbar="#toolbar">
                                                                                         <thead>
                                                                                             <tr style="background-color:rgb(255 201 54);">
-                                                                                                <th style="width:2em;">修改</th>
-                                                                                                <th>日期</th>
-                                                                                                <th>憑證號碼</th>
-                                                                                                <th>項目</th>
-                                                                                                <th>收入</th>
-                                                                                                <th>支出</th>
-                                                                                                <th>領款日期</th>
-                                                                                                <th>領款人</th>
-                                                                                                <th>登記日期</th>
+                                                                                                <th style="width:2em;"></th>
+                                                                                                <th style="width:6em;">收入</th>
+                                                                                                <th style="width:6em;">支出</th>
+                                                                                                <th>檔案</th>
+                                                                                                <th>建立日期</th>
                                                                                                 <th>備註</th>
+                                                                                                <th style="width:5em;">詳細內容</th>
                                                                                             </tr>
                                                                                         </thead>
                                                                                         <tbody class="arc_table" id="tbody_1"></tbody>
@@ -403,16 +403,13 @@
                                                                                     <table class="table display dataTable no-footer" style="font-size:15px;font-family:微軟正黑體;width:100%" data-toolbar="#toolbar">
                                                                                         <thead>
                                                                                             <tr style="background-color:rgb(255 201 54);">
-                                                                                                <th style="width:2em;">修改</th>
-                                                                                                <th>日期</th>
-                                                                                                <th>憑證號碼</th>
-                                                                                                <th>項目</th>
-                                                                                                <th>收入</th>
-                                                                                                <th>支出</th>
-                                                                                                <th>領款日期</th>
-                                                                                                <th>領款人</th>
-                                                                                                <th>登記日期</th>
+                                                                                                <th style="width:2em;"></th>
+                                                                                                <th style="width:6em;">收入</th>
+                                                                                                <th style="width:6em;">支出</th>
+                                                                                                <th>檔案</th>
+                                                                                                <th>建立日期</th>
                                                                                                 <th>備註</th>
+                                                                                                <th style="width:5em;">詳細內容</th>
                                                                                             </tr>
                                                                                         </thead>
                                                                                         <tbody class="arc_table" id="tbody_2"></tbody>
@@ -451,16 +448,13 @@
                                                                                     <table class="table display dataTable no-footer" style="font-size:15px;font-family:微軟正黑體;width:100%" data-toolbar="#toolbar">
                                                                                         <thead>
                                                                                             <tr style="background-color:rgb(255 201 54);">
-                                                                                                <th style="width:2em;">修改</th>
-                                                                                                <th>日期</th>
-                                                                                                <th>憑證號碼</th>
-                                                                                                <th>項目</th>
-                                                                                                <th>收入</th>
-                                                                                                <th>支出</th>
-                                                                                                <th>領款日期</th>
-                                                                                                <th>領款人</th>
-                                                                                                <th>登記日期</th>
+                                                                                                <th style="width:2em;"></th>
+                                                                                                <th style="width:6em;">收入</th>
+                                                                                                <th style="width:6em;">支出</th>
+                                                                                                <th>檔案</th>
+                                                                                                <th>建立日期</th>
                                                                                                 <th>備註</th>
+                                                                                                <th style="width:5em;">詳細內容</th>
                                                                                             </tr>
                                                                                         </thead>
                                                                                         <tbody class="arc_table" id="tbody_3"></tbody>
@@ -499,16 +493,13 @@
                                                                                     <table class="table display dataTable no-footer" style="font-size:15px;font-family:微軟正黑體;width:100%" data-toolbar="#toolbar">
                                                                                         <thead>
                                                                                             <tr style="background-color:rgb(255 201 54);">
-                                                                                                <th style="width:2em;">修改</th>    
-                                                                                                <th>日期</th>
-                                                                                                <th>憑證號碼</th>
-                                                                                                <th>項目</th>
-                                                                                                <th>收入</th>
-                                                                                                <th>支出</th>
-                                                                                                <th>領款日期</th>
-                                                                                                <th>領款人</th>
-                                                                                                <th>登記日期</th>
+                                                                                                <th style="width:2em;"></th>
+                                                                                                <th style="width:6em;">收入</th>
+                                                                                                <th style="width:6em;">支出</th>
+                                                                                                <th>檔案</th>
+                                                                                                <th>建立日期</th>
                                                                                                 <th>備註</th>
+                                                                                                <th style="width:5em;">詳細內容</th>
                                                                                             </tr>
                                                                                         </thead>
                                                                                         <tbody class="arc_table" id="tbody_4"></tbody>
@@ -547,16 +538,13 @@
                                                                                     <table class="table display dataTable no-footer" style="font-size:15px;font-family:微軟正黑體;width:100%" data-toolbar="#toolbar">
                                                                                         <thead>
                                                                                             <tr style="background-color:rgb(255 201 54);">
-                                                                                                <th style="width:2em;">修改</th>
-                                                                                                <th>日期</th>
-                                                                                                <th>憑證號碼</th>
-                                                                                                <th>項目</th>
-                                                                                                <th>收入</th>
-                                                                                                <th>支出</th>
-                                                                                                <th>領款日期</th>
-                                                                                                <th>領款人</th>
-                                                                                                <th>登記日期</th>
+                                                                                                <th style="width:2em;"></th>
+                                                                                                <th style="width:6em;">收入</th>
+                                                                                                <th style="width:6em;">支出</th>
+                                                                                                <th>檔案</th>
+                                                                                                <th>建立日期</th>
                                                                                                 <th>備註</th>
+                                                                                                <th style="width:5em;">詳細內容</th>
                                                                                             </tr>
                                                                                         </thead>
                                                                                         <tbody class="arc_table" id="tbody_5"></tbody>
@@ -595,16 +583,13 @@
                                                                                     <table class="table display dataTable no-footer" style="font-size:15px;font-family:微軟正黑體;width:100%" data-toolbar="#toolbar">
                                                                                         <thead>
                                                                                             <tr style="background-color:rgb(255 201 54);">
-                                                                                                <th style="width:2em;">修改</th>
-                                                                                                <th>日期</th>
-                                                                                                <th>憑證號碼</th>
-                                                                                                <th>項目</th>
-                                                                                                <th>收入</th>
-                                                                                                <th>支出</th>
-                                                                                                <th>領款日期</th>
-                                                                                                <th>領款人</th>
-                                                                                                <th>登記日期</th>
+                                                                                                <th style="width:2em;"></th>
+                                                                                                <th style="width:6em;">收入</th>
+                                                                                                <th style="width:6em;">支出</th>
+                                                                                                <th>檔案</th>
+                                                                                                <th>建立日期</th>
                                                                                                 <th>備註</th>
+                                                                                                <th style="width:5em;">詳細內容</th>
                                                                                             </tr>
                                                                                         </thead>
                                                                                         <tbody class="arc_table" id="tbody_6"></tbody>
@@ -643,16 +628,13 @@
                                                                                     <table class="table display dataTable no-footer" style="font-size:15px;font-family:微軟正黑體;width:100%" data-toolbar="#toolbar">
                                                                                         <thead>
                                                                                             <tr style="background-color:rgb(255 201 54);">
-                                                                                                <th style="width:2em;">修改</th>
-                                                                                                <th>日期</th>
-                                                                                                <th>憑證號碼</th>
-                                                                                                <th>項目</th>
-                                                                                                <th>收入</th>
-                                                                                                <th>支出</th>
-                                                                                                <th>領款日期</th>
-                                                                                                <th>領款人</th>
-                                                                                                <th>登記日期</th>
+                                                                                                <th style="width:2em;"></th>
+                                                                                                <th style="width:6em;">收入</th>
+                                                                                                <th style="width:6em;">支出</th>
+                                                                                                <th>檔案</th>
+                                                                                                <th>建立日期</th>
                                                                                                 <th>備註</th>
+                                                                                                <th style="width:5em;">詳細內容</th>
                                                                                             </tr>
                                                                                         </thead>
                                                                                         <tbody class="arc_table" id="tbody_7"></tbody>
@@ -691,16 +673,13 @@
                                                                                     <table class="table display dataTable no-footer" style="font-size:15px;font-family:微軟正黑體;width:100%" data-toolbar="#toolbar">
                                                                                         <thead>
                                                                                             <tr style="background-color:rgb(255 201 54);">
-                                                                                                <th style="width:2em;">修改</th>
-                                                                                                <th>日期</th>
-                                                                                                <th>憑證號碼</th>
-                                                                                                <th>項目</th>
-                                                                                                <th>收入</th>
-                                                                                                <th>支出</th>
-                                                                                                <th>領款日期</th>
-                                                                                                <th>領款人</th>
-                                                                                                <th>登記日期</th>
+                                                                                                <th style="width:2em;"></th>
+                                                                                                <th style="width:6em;">收入</th>
+                                                                                                <th style="width:6em;">支出</th>
+                                                                                                <th>檔案</th>
+                                                                                                <th>建立日期</th>
                                                                                                 <th>備註</th>
+                                                                                                <th style="width:5em;">詳細內容</th>
                                                                                             </tr>
                                                                                         </thead>
                                                                                         <tbody class="arc_table" id="tbody_8"></tbody>
@@ -739,16 +718,13 @@
                                                                                     <table class="table display dataTable no-footer" style="font-size:15px;font-family:微軟正黑體;width:100%" data-toolbar="#toolbar">
                                                                                         <thead>
                                                                                             <tr style="background-color:rgb(255 201 54);">
-                                                                                                <th style="width:2em;">修改</th>
-                                                                                                <th>日期</th>
-                                                                                                <th>憑證號碼</th>
-                                                                                                <th>項目</th>
-                                                                                                <th>收入</th>
-                                                                                                <th>支出</th>
-                                                                                                <th>領款日期</th>
-                                                                                                <th>領款人</th>
-                                                                                                <th>登記日期</th>
+                                                                                                <th style="width:2em;"></th>
+                                                                                                <th style="width:6em;">收入</th>
+                                                                                                <th style="width:6em;">支出</th>
+                                                                                                <th>檔案</th>
+                                                                                                <th>建立日期</th>
                                                                                                 <th>備註</th>
+                                                                                                <th style="width:5em;">詳細內容</th>
                                                                                             </tr>
                                                                                         </thead>
                                                                                         <tbody class="arc_table" id="tbody_9"></tbody>
@@ -787,16 +763,13 @@
                                                                                     <table class="table display dataTable no-footer" style="font-size:15px;font-family:微軟正黑體;width:100%" data-toolbar="#toolbar">
                                                                                         <thead>
                                                                                             <tr style="background-color:rgb(255 201 54);">
-                                                                                                <th style="width:2em;">修改</th>
-                                                                                                <th>日期</th>
-                                                                                                <th>憑證號碼</th>
-                                                                                                <th>項目</th>
-                                                                                                <th>收入</th>
-                                                                                                <th>支出</th>
-                                                                                                <th>領款日期</th>
-                                                                                                <th>領款人</th>
-                                                                                                <th>登記日期</th>
+                                                                                                <th style="width:2em;"></th>
+                                                                                                <th style="width:6em;">收入</th>
+                                                                                                <th style="width:6em;">支出</th>
+                                                                                                <th>檔案</th>
+                                                                                                <th>建立日期</th>
                                                                                                 <th>備註</th>
+                                                                                                <th style="width:5em;">詳細內容</th>
                                                                                             </tr>
                                                                                         </thead>
                                                                                         <tbody class="arc_table" id="tbody_10"></tbody>
@@ -835,16 +808,13 @@
                                                                                     <table class="table display dataTable no-footer" style="font-size:15px;font-family:微軟正黑體;width:100%" data-toolbar="#toolbar">
                                                                                         <thead>
                                                                                             <tr style="background-color:rgb(255 201 54);">
-                                                                                                <th style="width:2em;">修改</th>
-                                                                                                <th>日期</th>
-                                                                                                <th>憑證號碼</th>
-                                                                                                <th>項目</th>
-                                                                                                <th>收入</th>
-                                                                                                <th>支出</th>
-                                                                                                <th>領款日期</th>
-                                                                                                <th>領款人</th>
-                                                                                                <th>登記日期</th>
+                                                                                                <th style="width:2em;"></th>
+                                                                                                <th style="width:6em;">收入</th>
+                                                                                                <th style="width:6em;">支出</th>
+                                                                                                <th>檔案</th>
+                                                                                                <th>建立日期</th>
                                                                                                 <th>備註</th>
+                                                                                                <th style="width:5em;">詳細內容</th>
                                                                                             </tr>
                                                                                         </thead>
                                                                                         <tbody class="arc_table" id="tbody_11"></tbody>
@@ -883,16 +853,13 @@
                                                                                     <table class="table display dataTable no-footer" style="font-size:15px;font-family:微軟正黑體;width:100%" data-toolbar="#toolbar">
                                                                                         <thead>
                                                                                             <tr style="background-color:rgb(255 201 54);">
-                                                                                                <th style="width:2em;">修改</th>
-                                                                                                <th>日期</th>
-                                                                                                <th>憑證號碼</th>
-                                                                                                <th>項目</th>
-                                                                                                <th>收入</th>
-                                                                                                <th>支出</th>
-                                                                                                <th>領款日期</th>
-                                                                                                <th>領款人</th>
-                                                                                                <th>登記日期</th>
+                                                                                                <th style="width:2em;"></th>
+                                                                                                <th style="width:6em;">收入</th>
+                                                                                                <th style="width:6em;">支出</th>
+                                                                                                <th>檔案</th>
+                                                                                                <th>建立日期</th>
                                                                                                 <th>備註</th>
+                                                                                                <th style="width:5em;">詳細內容</th>
                                                                                             </tr>
                                                                                         </thead>
                                                                                         <tbody class="arc_table2" id="tbody_12"></tbody>
@@ -911,16 +878,12 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="col-sm-12 text-center">
-                                                    <br />
-                                                    <br />
-                                                    <button style="font-size:15px" type="button" class="btn btn-default" onclick="update_arc()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-check" viewBox="0 0 16 16">
-                                                            <path d="M10.854 7.854a.5.5 0 0 0-.708-.708L7.5 9.793 6.354 8.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
-                                                            <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
-                                                        </svg>修改</button>
-                                                    <br/>
-                                                    <br/>
-                                                    <span style="color:red;font-size:0.7em;">※勾選要修改的資料</span>
+                                                <div class="text-center">
+                                                    <button style="font-size:17px;" type="button" class="btn btn-default" onclick="window.history.back();"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
+                                                    <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z" />
+                                                    <path fill-rule="evenodd" d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5z" />
+                                                    </svg>返回</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -976,7 +939,7 @@
     <script src="javascript/jquery-ui.min.js"></script>
     <script src="javascript/datepickerTw3.js"></script>
     <!-- ================== accounting_record_cash ================== -->
-    <script type="text/javascript" src="js/accounting_record_cash.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
+    <script type="text/javascript" src="js/accounting_record_cash_v2.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
     <!-- ================== 地區選擇下拉 ================== -->
     <!--
     <script src="js/jQuery-TWzipcode-master/twzipcode.js"></script>

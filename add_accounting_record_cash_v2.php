@@ -133,36 +133,58 @@
                                                             <tr style="text-align:left">
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>年度</td>
                                                                 <td style="border-bottom: solid 1px;">
-                                                                    <select id="invoice_year" invoice_arr="year">
-                                                                        <!-- <option value=""  disabled selected>請選擇年度</option> -->
-                                                                    </select>
+                                                                    <div class="col-sm-10">
+                                                                        <select id="invoice_year" invoice_arr="year">
+                                                                            <!-- <option value=""  disabled selected>請選擇年度</option> -->
+                                                                        </select>
+                                                                    </div>
                                                                 </td>
                                                             </tr>
                                                             <tr style="text-align:left">
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>月份</td>
                                                                 <td style="border-bottom: solid 1px;">
-                                                                    <select id="invoice_month" invoice_arr="month">
-                                                                        <!-- <option value=""  disabled selected>請選擇月份</option> -->
-                                                                    </select>
+                                                                    <div class="col-sm-10">
+                                                                        <select id="invoice_month" invoice_arr="month">
+                                                                            <!-- <option value=""  disabled selected>請選擇月份</option> -->
+                                                                        </select>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>檔案上傳</td>
+                                                                <td style="border-bottom: solid 1px;">
+                                                                    <div class="col-sm-12">
+                                                                        <div class="text-left">
+                                                                            <input name="customFile1" type="file" class="form-control" multiple/>
+                                                                            <br>
+                                                                            <div id="customFile1"></div>
+                                                                            <img src="" id="customFile1_img" style="display:none;" />
+                                                                        </div>
+                                                                    </div>
                                                                 </td>
                                                             </tr>
                                                            
                                                             <tr style="text-align:left">
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>金額</td>
                                                                 <td style="border-bottom: solid 1px;">
-                                                                    <select id="invoice_type">
-                                                                        <option value=""  disabled selected>請選擇支出或收入</option>
-                                                                        <option value="支出">支出</option>
-                                                                        <option value="收入">收入</option>
-                                                                    </select><span style="margin-right:2em;"></span>
-                                                                    <input id="amount" type="number" placeholder="請輸入金額，範例：1000">
+                                                                    <div class="col-sm-10">
+                                                                        <select id="invoice_type">
+                                                                            <option value=""  disabled selected>請選擇支出或收入</option>
+                                                                            <option value="支出">支出</option>
+                                                                            <option value="收入">收入</option>
+                                                                        </select><span style="margin-right:2em;"></span>
+                                                                        <input id="amount" type="number" placeholder="請輸入金額，範例：1000">
+                                                                    </div>
                                                                 </td>
                                                             </tr>
                                                            
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;"><i style="color:red;">※</i>備註</td>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;">備註</td>
                                                                 <td style="border-bottom: solid 1px;">
-                                                                    <textarea style="width:65%;resize: none;font-size: 20px;min-height:8em;" id="remark" placeholder="備註"></textarea>
+                                                                    <div class="col-sm-10">
+                                                                        <textarea style="width:65%;resize: none;font-size: 20px;min-height:8em;" id="remark" placeholder="備註"></textarea>
+                                                                    </div>
                                                                 </td>
                                                             </tr>
                                                         </table>
@@ -175,34 +197,57 @@
                                                             <tr style="text-align:left">
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>年度</td>
                                                                 <td style="border-bottom: solid 1px;">
-                                                                    <select id="invoice_year2" invoice_arr="year">
-                                                                        <!-- <option value=""  disabled selected>請選擇年度</option> -->
-                                                                    </select>
+                                                                    <div class="col-sm-10">
+                                                                        <select id="invoice_year2" invoice_arr="year">
+                                                                            <!-- <option value=""  disabled selected>請選擇年度</option> -->
+                                                                        </select>
+                                                                    </div>
                                                                 </td>
                                                             </tr>
                                                             <tr style="text-align:left">
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>月份</td>
                                                                 <td style="border-bottom: solid 1px;">
-                                                                    <select id="invoice_month2" invoice_arr="month">
-                                                                        <!-- <option value=""  disabled selected>請選擇月份</option> -->
-                                                                    </select>
+                                                                    <div class="col-sm-10">
+                                                                        <select id="invoice_month2" invoice_arr="month">
+                                                                            <!-- <option value=""  disabled selected>請選擇月份</option> -->
+                                                                        </select>
+                                                                    </div> 
                                                                 </td>
                                                             </tr>
+
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>檔案上傳</td>
+                                                                <td style="border-bottom: solid 1px;">
+                                                                    <div class="col-sm-12">
+                                                                        <div class="text-left">
+                                                                            <input name="customFile2" type="file" class="form-control" multiple/>
+                                                                            <br>
+                                                                            <div id="customFile2"></div>
+                                                                            <img src="" id="customFile2_img" style="display:none;" />
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+
                                                             <tr style="text-align:left">
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>金額</td>
                                                                 <td style="border-bottom: solid 1px;">
-                                                                    <select id="invoice_type2">
-                                                                        <option value=""  disabled selected>請選擇支出或收入</option>
-                                                                        <option value="支出" selected="selected">支出</option>
-                                                                        <option value="收入">收入</option>
-                                                                    </select><span style="margin-right:2em;"></span>
-                                                                    <input id="amount2" type="number" placeholder="請輸入金額，範例：1000">
+                                                                    <div class="col-sm-10">
+                                                                        <select id="invoice_type2">
+                                                                            <option value=""  disabled selected>請選擇支出或收入</option>
+                                                                            <option value="支出" selected="selected">支出</option>
+                                                                            <option value="收入">收入</option>
+                                                                        </select><span style="margin-right:2em;"></span>
+                                                                        <input id="amount2" type="number" placeholder="請輸入金額，範例：1000">
+                                                                    </div> 
                                                                 </td>
                                                             </tr>
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;"><i style="color:red;">※</i>備註</td>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;">備註</td>
                                                                 <td style="border-bottom: solid 1px;">
-                                                                    <textarea style="width:65%;resize: none;font-size: 20px;min-height:8em;" id="remark2" placeholder="備註"></textarea>
+                                                                    <div class="col-sm-10">
+                                                                        <textarea style="width:65%;resize: none;font-size: 20px;min-height:8em;" id="remark2" placeholder="備註"></textarea>
+                                                                    </div> 
                                                                 </td>
                                                             </tr>
                                                         </table>

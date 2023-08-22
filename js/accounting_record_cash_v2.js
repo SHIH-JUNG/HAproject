@@ -10,82 +10,6 @@ function getUrlVars() {
 
 var arc_year = getUrlVars()["year"];
 
-//datepicker創建 region
-datepicker_create = function (selector_id) {
-    $("#" + selector_id).datepicker({
-      changeYear: true,
-      changeMonth: true,
-      currentText: "今天",
-      dateFormat: "R/mm/dd",
-      showButtonPanel: true,
-      minDate: new Date(
-        new Date().getFullYear() - 2,
-        new Date().getMonth() - 3,
-        1
-      ),
-      maxDate: new Date(new Date().getFullYear() + 3, 11, 31),
-      onClose: function (dateText) {
-        // console.log($('#'+selector_id).val());
-        // console.log(trans_to_EN(dateText));
-      },
-      beforeShow: function (input, inst) {
-        var $this = $(this);
-        var cal = inst.dpDiv;
-        var outerh = $this.outerHeight();
-        if ($this.offset().top > 1200) {
-          outerh = outerh * 4;
-        } else {
-          outerh = outerh * 3;
-        }
-        // console.log($this.offset().top)
-        // console.log(outerh)
-  
-        var top = $this.offset().top - outerh;
-
-        if($this.offset().left < 460)
-        {
-            var left = $this.offset().left - 50;
-        }
-        else
-        {
-            var left = $this.offset().left - 450;
-        }
-        setTimeout(function () {
-          cal.css({
-            top: top,
-            left: left,
-          });
-        }, 10);
-      },
-    });
-    // $("#" + selector_id).datepicker("setDate", "today");
-  };
-  //endregion
-  
-  //將日期轉為民國年格式111.03.07 region
-  trans_to_Tw = function (endate) {
-    var strAry = endate.split(".");
-  
-    if (parseInt(strAry[0]) > 1911) {
-      strAry[0] = parseInt(strAry[0]) - 1911;
-    }
-  
-    return strAry.join(".");
-  };
-  //endregion
-  
-  //將日期轉為西元年格式2022-03-07(mysql date格式) region
-  trans_to_EN = function (endate) {
-    var strAry = endate.split(".");
-  
-    if (parseInt(strAry[0]) < 1911) {
-      strAry[0] = parseInt(strAry[0]) + 1911;
-    }
-  
-    return strAry.join("-");
-};
-//endregion
-
 // page reload時保持上次的頁籤狀態 region
 function tab_toggle() {
   $('a[data-toggle="pill"]').on('show.bs.tab', function(e) {
@@ -96,6 +20,7 @@ function tab_toggle() {
       $('#myTab a[href="' + activeTab + '"]').tab('show');
   }
 }
+
 
 $('#menu_tab_nav li a, .breadcrumb li span a').on('click',function() {
   localStorage.removeItem('activeTab');
@@ -114,102 +39,76 @@ $(document).ready(function () {
         type: "POST",
         dataType: "JSON",
         success: function (data) {
-          // console.log(data);
+          console.log(data);
           var cssStr = "";
           
           $.each(data, function (index, value) {
             var invoice_type_str="";
-            var payee = "";
 
             switch (value.Invoice_type) {
                 case "收入":
-                    invoice_type_str = '<td style="text-align:center">' + '<input value="'+value.Amount+'" type="text">' + '</td>' +
-                    '<td style="text-align:center">'+'<input value="" type="text">'+'</td>' ;
+                    invoice_type_str = '<td style="text-align:center">' + value.Amount + '</td>' +
+                    '<td style="text-align:center">' + '</td>' ;
                     break;
                 case "支出":
-                    invoice_type_str = '<td style="text-align:center">'+'<input value="" type="text">'+'</td>' +
-                    '<td style="text-align:center">' + '<input value="'+value.Amount+'" type="text">' + '</td>' ;
-                    break;
-                default:
-                    invoice_type_str = '<td style="text-align:center">' + '<input value="'+value.Amount+'" type="text">' + '</td>' +
-                    '<td style="text-align:center">'+'<input value="" type="text">'+'</td>' ;
+                    invoice_type_str = '<td style="text-align:center">' + '</td>' +
+                    '<td style="text-align:center">' + value.Amount + '</td>' ;
                     break;
             }
 
+            //customFile 顯示資料處理 region
+            var customFile_arr = value.Files_path.replace("\[", "").replace("\]", "").replace(/\"/g, "").split(",");
 
-            // console.log(value.Form_class)
+            window.customFile_input_val_arr = [];
+    
+            var customFile_htmlstr = "";
+            
+            if(value.Files_path != "")
+            {
+              $.each(customFile_arr, function (i, val) {
+    
+                var arc_file_path = val.replace("../", "./");
+                var arc_file_name = val.split("/");
+    
+                var arc_file_val = arc_file_name[arc_file_name.length - 1];
+    
+                customFile_input_val_arr.push(val);
+                    
+                customFile_htmlstr +=
+                  '<span>檔案' + (i + 1) + '：</span><a id="val_arr'+i+'" href="' + arc_file_path + '" style="text-decoration:none;color:blue;" target="_blank">'
+                  + arc_file_val
+                  + '</a><br/><br/>';
+                
+              });
+            }
+
+            cssStr = ""; 
+
+            cssStr = '<tr id="tr'+value.Id+'">' +
+            '<td style="text-align:center"></td>' +
+            invoice_type_str+
+            '<td style="text-align:center">' + customFile_htmlstr + '</td>' +
+            '<td style="text-align:center">' + value.Create_date + '</td>' +
+            '<td style="text-align:center">' + value.Remark + '</td>' +
+            '<td style="text-align:center">' + 
+            '<a href="accounting_record_cash_detail_v2.php?year='+value.Year+'&month='+value.Month+'&arc_id='+value.Id+'&i_type='+value.Form_class+'" style="text-decoration: underline;color:black;">查看</a>' +
+            '</td>' +
+            '</tr>';
+
+            console.log(cssStr)
+
             if(value.Form_class=="轉帳")
             {
-                cssStr = ""; 
-                payee = value.Payee;
-
-                cssStr = '<tr id="tr'+value.Id+'">' +
-                '<td style="text-align:center">' + '<input name="tr_update" id="tr_update'+value.Id+'" i_type="'+value.Form_class+'" style="zoom: 1.5" value="'+value.Id+'" type="checkbox">' + '</td>' +
-                '<td style="text-align:center">' + '<input value="'+value.Invoice_date+'" type="text" id="invoice_date'+value.Id+'" datepicker="ch_datepicker">' + '</td>' +
-                '<td style="text-align:center">' + '<input value="'+value.Invoice_seq+'" type="text">' + '</td>' +
-                '<td style="text-align:center">' + '<input value="'+value.Invoice_content+'" type="text">' + '</td>' +
-                invoice_type_str+
-                '<td style="text-align:center">' + '<input value="'+value.Withdrawal_date +'" type="text" id="withdrawal_date'+value.Id+'" datepicker="ch_datepicker">'+ '</td>' +
-                // '<td style="text-align:center">' + '<input value="'+value.Payee+'" type="text">' + '</td>' +
-                '<td style="text-align:center">' + '<select name="payee" id="payee'+value.Id+'"><option value="">無</option></select>' + '</td>' +
-                '<td style="text-align:center">' + '<input value="'+value.Record_date+'" type="text" id="record_date'+value.Id+'" datepicker="ch_datepicker">' + '</td>' +
-                '<td style="text-align:center">' + '<input value="'+value.Remark+'" type="text">' + '</td>' +
-                '</tr>';
-
                 $("#transfer_tbody").append(cssStr);
             }
             else if(value.Form_class=="日記帳")
             {
-                cssStr = ""; 
-                payee = value.Payee;
-
-                cssStr = '<tr id="tr'+value.Id+'">' +
-                '<td style="text-align:center">' + '<input name="tr_update" id="tr_update'+value.Id+'" i_type="'+value.Form_class+'" style="zoom: 1.5" value="'+value.Id+'" type="checkbox">' + '</td>' +
-                '<td style="text-align:center">' + '<input value="'+value.Invoice_date+'" type="text" id="invoice_date'+value.Id+'" datepicker="ch_datepicker">' + '</td>' +
-                '<td style="text-align:center">' + '<input value="'+value.Invoice_seq+'" type="text">' + '</td>' +
-                '<td style="text-align:center">' + '<input value="'+value.Invoice_content+'" type="text">' + '</td>' +
-                invoice_type_str+
-                '<td style="text-align:center">' + '<input value="'+value.Withdrawal_date +'" type="text" id="withdrawal_date'+value.Id+'" datepicker="ch_datepicker">'+ '</td>' +
-                // '<td style="text-align:center">' + '<input value="'+value.Payee+'" type="text">' + '</td>' +
-                '<td style="text-align:center">' + '<select name="payee" id="payee'+value.Id+'"><option value="">無</option></select>' + '</td>' +
-                '<td style="text-align:center">' + '<input value="'+value.Record_date+'" type="text" id="record_date'+value.Id+'" datepicker="ch_datepicker">' + '</td>' +
-                '<td style="text-align:center">' + '<input value="'+value.Remark+'" type="text">' + '</td>' +
-                '</tr>';
-
                 $("#tbody_"+value.Month).append(cssStr);
             }
             else if(value.Form_class=="兒少單據")
             {
-                cssStr = '<tr id="tr'+value.Id+'">' +
-                '<td style="text-align:center">' + '<input name="tr_update" id="tr_update'+value.Id+'" i_type="'+value.Form_class+'" style="zoom: 1.5" value="'+value.Id+'" type="checkbox">' + '</td>' +
-                '<td style="text-align:center">' + '<input value="'+value.Invoice_date+'" type="text" id="invoice_date'+value.Id+'" datepicker="ch_datepicker">' + '</td>' +
-                '<td style="text-align:center">' + '<input value="'+value.Invoice_class+'" type="text">' + '</td>' +
-                '<td style="text-align:center">' + '<input value="'+value.Invoice_content+'" type="text">' + '</td>' +
-                invoice_type_str+
-                '<td style="text-align:center">' + '<input value="'+value.Upload_date +'" type="text" id="upload_date'+value.Id+'" datepicker="ch_datepicker">'+ '</td>' +
-                '<td style="text-align:center">' + '<input value="'+value.Record_date+'" type="text" id="record_date'+value.Id+'" datepicker="ch_datepicker">' + '</td>' +
-                '<td style="text-align:center">' + '<input value="'+value.Remark+'" type="text">' + '</td>' +
-                '</tr>';
-                
                 $("#ct_invoice_tbody").append(cssStr);
             }
-              // 請款人選項連動在職人員 region
-              $.ajax({
-                type:'POST',
-                url:'database/find_check_user.php',
-                dataType: "JSON",
-                async: false,//啟用同步請求
-                success: function (data) {
-                    // console.log('test',data)
-                    for (var index in data.Id) {
-                        $("[id*=payee]").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
-                    }
-                },
-              });
-              //endregion           
-              // console.log(payee)
-
-              $("#payee"+value.Id).val(payee);
           });
 
 
@@ -222,22 +121,16 @@ $(document).ready(function () {
             });
           });
 
-              //將input datepicker屬性名稱為ch_datepicker創建datepicker初始化 region
-            $("input[datepicker='ch_datepicker']").each(function () {
-                var this_id = $(this).attr("id");
-                datepicker_create(this_id);
-            });
-            //endregion
-
         },
         error: function (e) {
           swal({
             type: "error",
             title: "系統錯誤!請聯絡負責人",
             allowOutsideClick: false, //不可點背景關閉
-          }).then(function () {
-            history.back();
-          });
+          })
+          // .then(function () {
+          //   history.back();
+          // });
         },
       });
       //endregion
@@ -258,16 +151,13 @@ $(document).ready(function () {
           $.each(data, function (index, value) {
 
             cssStr_bylastpb = '<tr id="tr'+value.Year+'_'+value.Month+'_lastpb">' +
-                '<td style="text-align:center"></td>' +
-                '<td style="text-align:center"></td>' +
-                '<td style="text-align:center"></td>' +
                 '<td style="text-align:center"><span style="color:red;">上期結餘</span></td>' +
                 '<td style="text-align:center">' + value.Last_pb + '</td>' +
                 '<td style="text-align:center"></td>' +
                 '<td style="text-align:center"></td>' +
-                '<td style="text-align:center"><span> </span></td>' +
-                '<td style="text-align:center"><span> </span></td>' +
-                '<td style="text-align:center"><span> </span></td>' +
+                '<td style="text-align:center"></td>' +
+                '<td style="text-align:center"></td>' +
+                '<td style="text-align:center"></td>' +
                 '</tr>';
 
             $("#tbody_"+value.Month).prepend(cssStr_bylastpb);
@@ -277,15 +167,12 @@ $(document).ready(function () {
 
             cssStr_bysum = '<tr id="tr'+value.Year+'_'+value.Month+'" class="balance_tab">' +
                 '<td style="text-align:center"><span style="color:red;">合計</span></td>' +
-                '<td style="text-align:center"><span> </span></td>' +
-                '<td style="text-align:center"><span> </span></td>' +
-                '<td style="text-align:center"><span> </span></td>' +
                 '<td style="text-align:center">' + value.Income_sum + '</td>' +
                 '<td style="text-align:center">' + value.Cost_sum + '</td>' +
                 '<td style="text-align:center">' + value.This_pb + '</td>' +
-                '<td style="text-align:center"><span> </span></td>' +
-                '<td style="text-align:center"><span> </span></td>' +
-                '<td style="text-align:center"><span> </span></td>' +
+                '<td style="text-align:center"></td>' +
+                '<td style="text-align:center"></td>' +
+                '<td style="text-align:center"></td>' +
                 '</tr>';
 
             $("#tbody_"+value.Month).after(cssStr_bysum);
@@ -299,9 +186,10 @@ $(document).ready(function () {
             type: "error",
             title: "系統錯誤!請聯絡負責人",
             allowOutsideClick: false, //不可點背景關閉
-          }).then(function () {
-            history.back();
-          });
+          })
+          // .then(function () {
+          //   history.back();
+          // });
         },
       });
       //endregion
