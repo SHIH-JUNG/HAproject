@@ -73,7 +73,7 @@ $(document).ready(function () {
             //customFile1顯示資料處理 region
             var customFile1_arr = value.Files_path.replace("\[", "").replace("\]", "").replace(/\"/g, "").split(",");
 
-            window.customFile1_input_val_arr = [];
+            window.file_input_val_arr = [];
 
             var customFile1_htmlstr = "";
             
@@ -86,7 +86,7 @@ $(document).ready(function () {
 
                 var arc_file_val = arc_file_name[arc_file_name.length - 1];
 
-                customFile1_input_val_arr.push(val);
+                file_input_val_arr.push(val);
                 
                 customFile1_htmlstr += '<input class="arc_question" style="zoom: 1.5" class="form-check-input" type="radio" name="customFile1_check" forms_sql_id="' + value.Id + '" value="' + i + '">'
                 + '<span>檔案' + (i + 1) + '：</span><a id="val_arr'+i+'" href="' + files_path + '" style="text-decoration:none;color:blue;" target="_blank">'
@@ -97,10 +97,10 @@ $(document).ready(function () {
             }
             
             customFile1_htmlstr += '<br/>'
-            + '<button class="arc_question" style="color:red;margin-right:3em;margin-bottom:.5em;" type="button" onclick="selectFiles_delete(0);">刪除</button>'
+            + '<button class="arc_question" style="color:red;margin-right:3em;margin-bottom:.5em;" type="button" onclick="selectFiles_delete();">刪除</button>'
             + '<div>※點選上面要刪除的檔案</div>'
             + '<br/><hr style="border:3px dashed blue; height:1px">'
-            + '<button class="arc_question" style="color:blue;" type="button" onclick="selectFiles_insert(0);">新增檔案+</button><br/><div id="selected-files1"><span style="color:red;">上傳檔案清單預覽：</span><br/></div>';
+            + '<button class="arc_question" style="color:blue;" type="button" onclick="selectFiles_insert();">新增檔案+</button><br/><div id="selected-files1"><span style="color:red;">上傳檔案清單預覽：</span><br/></div>';
 
             $("#customFile1").html(customFile1_htmlstr);
             //customFile1顯示資料處理 endregion
@@ -125,7 +125,7 @@ load_invoice_year_optios = function(id_arr_val)
 
     var max_range = currentYear + 5;
 
-    console.log(min_range, max_range)
+    // console.log(min_range, max_range)
 
     $("[id='"+id_arr_val+"']").append('<option value=""  disabled selected>請選擇年度</option>');
 
@@ -293,7 +293,8 @@ function submit_form_data_upload()
             title: "更新成功!",
             allowOutsideClick: false, //不可點背景關閉
             }).then(function () {
-            window.location.href = submit_trans_href;
+            // window.location.href = submit_trans_href;
+            location.reload();
             });
         } else {
             swal({
@@ -362,7 +363,7 @@ selectFiles_delete = function () {
 
 
     if ($("[name='customFile1_check']:checked").length > 0) {
-      console.log($("#val_arr" + $("[name='customFile1_check']:checked").attr("value")))
+      // console.log($("#val_arr" + $("[name='customFile1_check']:checked").attr("value")))
       swal({
         title: "是否刪除該檔案？\n" + "檔名："+ $("#val_arr" + $("[name='customFile1_check']:checked").attr("value")).text(),
         text: "確認刪除後將無法復原操作",
@@ -375,16 +376,21 @@ selectFiles_delete = function () {
         showCancelButton: true
       }).then(function (result) {
         if (result) {
+          // console.log(result)
           var file_sql_id = $("[name='customFile1_check']:checked").attr("forms_sql_id");
           var file_val = $("[name='customFile1_check']:checked").attr("value");
   
           // console.log(file_input_val_arr)
   
-          var r_file = file_input_val_arr.splice(parseInt(file_val), 1);
-  
+          
+          // console.log(file_sql_id)
           // console.log(file_input_val_arr)
+          // console.log(file_val)
           // console.log(r_file)
-  
+
+          var r_file = file_input_val_arr.splice(parseInt(file_val), 1);
+
+
           $.ajax({
             url: "database/delete_accounting_record_cash_file.php",
             type: "POST",

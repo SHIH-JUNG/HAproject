@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2023-08-23 16:17:41
+-- 產生時間： 2023-08-23 16:47:06
 -- 伺服器版本： 10.4.28-MariaDB
 -- PHP 版本： 8.1.17
 
@@ -178,7 +178,7 @@ INSERT INTO `accounting_record_cash_v2` (`Id`, `Year`, `Month`, `Form_class`, `I
 (5, 109, 4, '日記帳', '支出', 215, 'dasd', '[\"../accounting_record_cash/109_data/upload/test10904type2-1.xlsx\",\"../accounting_record_cash/109_data/upload/test10904type2-1 - 複製.xlsx\"]', '2023-08-22 21:00:18', '園主任', '2023-08-22 21:00:18', ''),
 (6, 109, 2, '日記帳', '支出', 522, 'test', '[\"../accounting_record_cash/109_data/upload/test10902type2-1.xlsx\"]', '2023-08-23 18:42:42', 'jia', '2023-08-23 18:42:42', ''),
 (7, 109, 3, '日記帳', '支出', 121, 'dddd', '[\"../accounting_record_cash/109_data/upload/test10903type2-1 - 複製 - 複製.xlsx\"]', '2023-08-23 18:46:40', 'jia', '2023-08-23 18:46:40', ''),
-(8, 109, 4, '日記帳', '收入', 333, 'dasdasd333\r\nasdasdadsa', '[\"../accounting_record_cash/_data/upload/test10904type2-2.xlsx\",\"../accounting_record_cash/_data/upload/test10904type2-1 (2).xlsx\",\"../accounting_record_cash/_data/upload/test10904type2-2 - 複製.xlsx\"]', '2023-08-23 20:59:48', 'jia', '2023-08-23 21:11:39', 'jia');
+(8, 109, 4, '日記帳', '收入', 333, 'dasdasd333\r\nasdasdadsada1dsada', '[\"../accounting_record_cash/_data/upload/test10904type2-2.xlsx\",\"../accounting_record_cash/_data/upload/test10904type2-2 - 複製.xlsx\",\"../accounting_record_cash/_data/upload/tesadasdasd.xlsx\"]', '2023-08-23 20:59:48', 'jia', '2023-08-23 22:46:28', 'jia');
 
 -- --------------------------------------------------------
 
