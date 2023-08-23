@@ -149,6 +149,8 @@ $(document).ready(function () {
   $("#signature_area").hide();
   //endregion
 
+  imagePreview();
+  
   tab_toggle();
 });
 
@@ -1108,6 +1110,44 @@ selected_files = function(select_file_type_n) {
 
 }
 
+imagePreview = function () {
+  // 图片距离鼠标的位置
+  this.xOffset = 10;
+  this.yOffset = -10;
+
+  //hover([over,]out)
+  //over:鼠标移到元素上要触发的函数
+  //out:鼠标移出元素要触发的函数
+
+  //鼠标悬浮的事件
+  $(".apreview").hover(function (e) {
+      this.t = this.title;//显示在图片下的标题
+      this.title = "";    //将title置为空，不让文字悬浮提示
+      this.imgSr = this.src;//图片的连接
+      this.c = (this.t != "") ? "<br/>" + this.t : "";
+      $("body").append("<p class='preview'><img src='" + this.imgSr + "' alt='Image preview' width='auto' height='auto' />" + this.c + "</p>");
+      
+      $(".preview")
+          .css("top", (e.pageY + yOffset) + "px")
+          .css("left", (e.pageX + xOffset) + "px")
+          // .css("max-width", "400px")
+          // .css("max-height", "400px")
+          .fadeIn("fast");
+  },
+  function () {
+      this.title = this.t;//恢复title
+      $(".preview").remove();
+  });
+
+
+  //鼠标移动的事件，让图片随着移动
+  $(".apreview").mousemove(function (e) {  
+      $(".preview")
+          .css("top", (e.pageY - yOffset) + "px")
+          .css("left", (e.pageX + xOffset) + "px");
+  });
+};
+
 // page reload時保持上次的頁籤狀態 region
 function tab_toggle() {
   $('a[data-toggle="pill"]').on('show.bs.tab', function(e) {
@@ -1120,6 +1160,10 @@ function tab_toggle() {
       $('#myTab a[href="' + activeTab + '"]').tab('show');
   }
 }
+
+$('#menu_tab_nav li a, .breadcrumb li, .brand-img').on('click',function() {
+  localStorage.removeItem('activeTab');
+});
 
 
 // 禁止所有輸入框輸入 反斜線符號\ region

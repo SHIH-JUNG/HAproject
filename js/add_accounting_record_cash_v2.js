@@ -1,30 +1,3 @@
-
-//將日期轉為民國年格式111.03.07 region
-trans_to_Tw = function (endate) 
-{
-  var strAry = endate.split(".");
-
-  if (parseInt(strAry[0]) > 1911) {
-    strAry[0] = parseInt(strAry[0]) - 1911;
-  }
-
-  return strAry.join(".");
-};
-//endregion
-
-//將日期轉為西元年格式2022-03-07(mysql date格式) region
-trans_to_EN = function (endate) 
-{
-  var strAry = endate.split(".");
-
-  if (parseInt(strAry[0]) < 1911) {
-    strAry[0] = parseInt(strAry[0]) + 1911;
-  }
-
-  return strAry.join("-");
-};
-//endregion
-
 $(document).ready(function () {
   
   // 依據單據類型顯示表單 region
@@ -34,21 +7,6 @@ $(document).ready(function () {
   
   //預設選擇日記帳
   select_form_class(2);
-  //endregion
-
-  // 請款人選項連動在職人員 region
-  // $.ajax({
-  //   type:'POST',
-  //   url:'database/find_check_user.php',
-  //   dataType: "JSON",
-  //   async: false,//啟用同步請求
-  //   success: function (data) {
-  //       // console.log('test',data)
-  //       for (var index in data.Id) {
-  //           $("[id*=payee]").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
-  //       }
-  //   },
-  // });
   //endregion
 
   window.invoice_year_arr = [];
@@ -76,6 +34,7 @@ $(document).ready(function () {
 
 });
 
+// 載入 年份、月份下拉式選單內容 region
 load_invoice_year_optios = function(id_arr_val) 
 {
   var currentYear = new Date().getFullYear() - 1911;
@@ -104,7 +63,7 @@ load_invoice_month_optios = function(id_arr_val)
 
   
 }
-
+// 載入 年份、月份下拉式選單內容 endregion
 
 // function test1() {
     
@@ -194,13 +153,6 @@ $("#rec_add_new").on("click", function () {
     var form_class = $("[name='form_class']:checked").val();
 
     // var submit_data = {};
-
-    //去掉資料內前後端多餘的空白，file類型須排除，否則報錯
-    $("input, textarea").each(function () {
-      if ($(this).attr("type") != "file") {
-        $(this).val(jQuery.trim($(this).val()));
-      }
-    });
 
     var form_data = new FormData();
 

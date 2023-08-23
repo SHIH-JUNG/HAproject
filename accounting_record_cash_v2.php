@@ -176,78 +176,78 @@
                                             <br>
                                             <ul style="font-size:17px;" class="nav nav-tabs" id="myTab" role="tablist">
                                                 <li class="nav-item active" role="presentation">
-                                                    <a class="nav-link" id="home-tab" data-toggle="pill" href="#one" role="tab" aria-selected="true">
+                                                    <a class="nav-link" id="home-tab" data-toggle="pill" href="#type0" role="tab" aria-selected="true">
                                                         <b>兒少單據</b>
                                                     </a>
                                                 </li>
                                                 <li class="nav-item" role="presentation">
-                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#two" role="tab" aria-selected="false">
+                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#type1" role="tab" aria-selected="false">
                                                         <b>轉帳</b>
                                                     </a>
                                                 </li>
                                                 <li class="nav-item" role="presentation">
-                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#three" role="tab" aria-selected="false">
+                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#type2_1" role="tab" aria-selected="false">
                                                         <b>一月</b>
                                                     </a>
                                                 </li>
                                                 <li class="nav-item" role="presentation">
-                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#four" role="tab" aria-selected="false">
+                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#type2_2" role="tab" aria-selected="false">
                                                         <b>二月</b>
                                                     </a>
                                                 </li>
                                                 <li class="nav-item" role="presentation">
-                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#five" role="tab" aria-selected="false">
+                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#type2_3" role="tab" aria-selected="false">
                                                         <b>三月</b>
                                                     </a>
                                                 </li>
                                                 <li class="nav-item" role="presentation">
-                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#six" role="tab" aria-selected="false">
+                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#type2_4" role="tab" aria-selected="false">
                                                         <b>四月</b>
                                                     </a>
                                                 </li>
                                                 <li class="nav-item" role="presentation">
-                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#seven" role="tab" aria-selected="false">
+                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#type2_5" role="tab" aria-selected="false">
                                                         <b>五月</b>
                                                     </a>
                                                 </li>
                                                 <li class="nav-item" role="presentation">
-                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#eight" role="tab" aria-selected="false">
+                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#type2_6" role="tab" aria-selected="false">
                                                         <b>六月</b>
                                                     </a>
                                                 </li>
                                                 <li class="nav-item" role="presentation">
-                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#nine" role="tab" aria-selected="false">
+                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#type2_7" role="tab" aria-selected="false">
                                                         <b>七月</b>
                                                     </a>
                                                 </li>
                                                 <li class="nav-item" role="presentation">
-                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#ten" role="tab" aria-selected="false">
+                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#type2_8" role="tab" aria-selected="false">
                                                         <b>八月</b>
                                                     </a>
                                                 </li>
                                                 <li class="nav-item" role="presentation">
-                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#eleven" role="tab" aria-selected="false">
+                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#type2_9" role="tab" aria-selected="false">
                                                         <b>九月</b>
                                                     </a>
                                                 </li>
                                                 <li class="nav-item" role="presentation">
-                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#twelve" role="tab" aria-selected="false">
+                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#type2_10" role="tab" aria-selected="false">
                                                         <b>十月</b>
                                                     </a>
                                                 </li>
                                                 <li class="nav-item" role="presentation">
-                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#thirteen" role="tab" aria-selected="false">
+                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#type2_11" role="tab" aria-selected="false">
                                                         <b>十一月</b>
                                                     </a>
                                                 </li>
                                                 <li class="nav-item" role="presentation">
-                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#fourteen" role="tab" aria-selected="false">
+                                                    <a class="nav-link" id="profile-tab" data-toggle="pill" href="#type2_12" role="tab" aria-selected="false">
                                                         <b>十二月</b>
                                                     </a>
                                                 </li>
                                             </ul>
                                             <div class="tab-content" id="myTabContent">
-                                                <div class="tab-pane fade in active" id="one" role="tabpanel" aria-labelledby="home-tab">
+                                                <div class="tab-pane fade in active" id="type0" role="tabpanel" aria-labelledby="home-tab">
                                                     <div class="panel-body">
                                                     </div>
                                                     <div class="table-wrap" style="user-select: auto;">
@@ -293,7 +293,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="tab-pane fade" id="two" role="tabpanel" aria-labelledby="profile-tab">
+                                                <div class="tab-pane fade" id="type1" role="tabpanel" aria-labelledby="profile-tab">
                                                     <div class="panel-body">
                                                     </div>
                                                     <div class="table-wrap">
@@ -338,7 +338,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="tab-pane fade" id="three" role="tabpanel" aria-labelledby="profile-tab">
+                                                <div class="tab-pane fade" id="type2_1" role="tabpanel" aria-labelledby="profile-tab">
                                                     <div class="panel-body">
                                                     </div>
                                                     <div class="table-wrap">
@@ -383,7 +383,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="tab-pane fade" id="four" role="tabpanel" aria-labelledby="profile-tab">
+                                                <div class="tab-pane fade" id="type2_2" role="tabpanel" aria-labelledby="profile-tab">
                                                     <div class="panel-body">
                                                     </div>
                                                     <div class="table-wrap">
@@ -428,7 +428,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="tab-pane fade" id="five" role="tabpanel" aria-labelledby="profile-tab">
+                                                <div class="tab-pane fade" id="type2_3" role="tabpanel" aria-labelledby="profile-tab">
                                                     <div class="panel-body">
                                                     </div>
                                                     <div class="table-wrap">
@@ -473,7 +473,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="tab-pane fade" id="six" role="tabpanel" aria-labelledby="profile-tab">
+                                                <div class="tab-pane fade" id="type2_4" role="tabpanel" aria-labelledby="profile-tab">
                                                     <div class="panel-body">
                                                     </div>
                                                     <div class="table-wrap">
@@ -518,7 +518,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="tab-pane fade" id="seven" role="tabpanel" aria-labelledby="profile-tab">
+                                                <div class="tab-pane fade" id="type2_5" role="tabpanel" aria-labelledby="profile-tab">
                                                     <div class="panel-body">
                                                     </div>
                                                     <div class="table-wrap">
@@ -563,7 +563,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="tab-pane fade" id="eight" role="tabpanel" aria-labelledby="profile-tab">
+                                                <div class="tab-pane fade" id="type2_6" role="tabpanel" aria-labelledby="profile-tab">
                                                     <div class="panel-body">
                                                     </div>
                                                     <div class="table-wrap">
@@ -608,7 +608,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="tab-pane fade" id="nine" role="tabpanel" aria-labelledby="profile-tab">
+                                                <div class="tab-pane fade" id="type2_7" role="tabpanel" aria-labelledby="profile-tab">
                                                     <div class="panel-body">
                                                     </div>
                                                     <div class="table-wrap">
@@ -653,7 +653,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="tab-pane fade" id="ten" role="tabpanel" aria-labelledby="profile-tab">
+                                                <div class="tab-pane fade" id="type2_8" role="tabpanel" aria-labelledby="profile-tab">
                                                     <div class="panel-body">
                                                     </div>
                                                     <div class="table-wrap">
@@ -698,7 +698,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="tab-pane fade" id="eleven" role="tabpanel" aria-labelledby="profile-tab">
+                                                <div class="tab-pane fade" id="type2_9" role="tabpanel" aria-labelledby="profile-tab">
                                                     <div class="panel-body">
                                                     </div>
                                                     <div class="table-wrap">
@@ -743,7 +743,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="tab-pane fade" id="twelve" role="tabpanel" aria-labelledby="profile-tab">
+                                                <div class="tab-pane fade" id="type2_10" role="tabpanel" aria-labelledby="profile-tab">
                                                     <div class="panel-body">
                                                     </div>
                                                     <div class="table-wrap">
@@ -788,7 +788,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="tab-pane fade" id="thirteen" role="tabpanel" aria-labelledby="profile-tab">
+                                                <div class="tab-pane fade" id="type2_11" role="tabpanel" aria-labelledby="profile-tab">
                                                     <div class="panel-body">
                                                     </div>
                                                     <div class="table-wrap">
@@ -833,7 +833,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="tab-pane fade" id="fourteen" role="tabpanel" aria-labelledby="profile-tab">
+                                                <div class="tab-pane fade" id="type2_12" role="tabpanel" aria-labelledby="profile-tab">
                                                     <div class="panel-body">
                                                     </div>
                                                     <div class="table-wrap">
@@ -879,10 +879,8 @@
                                                 </div>
 
                                                 <div class="text-center">
-                                                    <button style="font-size:17px;" type="button" class="btn btn-default" onclick="window.history.back();"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
-                                                    <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z" />
-                                                    <path fill-rule="evenodd" d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5z" />
+                                                    <button style="font-size:17px;" type="button" class="btn btn-default" onclick="back_arc_page();"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-skip-backward-fill" viewBox="0 0 16 16">
+                                                    <path d="M.5 3.5A.5.5 0 0 0 0 4v8a.5.5 0 0 0 1 0V8.753l6.267 3.636c.54.313 1.233-.066 1.233-.697v-2.94l6.267 3.636c.54.314 1.233-.065 1.233-.696V4.308c0-.63-.693-1.01-1.233-.696L8.5 7.248v-2.94c0-.63-.692-1.01-1.233-.696L1 7.248V4a.5.5 0 0 0-.5-.5z"/>
                                                     </svg>返回</button>
                                                 </div>
                                             </div>

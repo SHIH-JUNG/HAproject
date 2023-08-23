@@ -67,7 +67,7 @@ window.sign_name_type = "";
 
 //抓所有量表region
 $(document).ready(function () {
-
+       
     // 顯示摘要表重要資訊(姓名、開案日期、個案類別、類別屬性、接案工作人員...)
     $.ajax({
         url: "database/find_case.php",
@@ -832,9 +832,10 @@ function tab_toggle() {
     }
 }
 
-$('#menu_tab_nav li a, .breadcrumb li span a').on('click',function() {
-    localStorage.removeItem('activeTab');
+$('#menu_tab_nav li a, .breadcrumb li, .brand-img').on('click',function() {
+  localStorage.removeItem('activeTab');
 });
+
 //endregion
 
 // 顯示簽核相關欄位 region

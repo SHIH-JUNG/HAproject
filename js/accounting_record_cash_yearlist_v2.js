@@ -3,7 +3,6 @@ const notyf = new Notyf();
 window.year_list = [];
 
 
-
 $(document).ready(function () {
   $.ajax({
     // url: "database/find_ar_cash_yearlist.php",
@@ -21,7 +20,7 @@ $(document).ready(function () {
           "<td>民國" +
           value.Year +
           "年度</td>" +
-          '<td id="'+value.Year+'_last_pb"></td>' +
+          // '<td id="'+value.Year+'_last_pb"></td>' +
           '<td id="'+value.Year+'_year_i"></td>' +
           '<td id="'+value.Year+'_year_c"></td>' +
           '<td id="'+value.Year+'_this_pb"></td>' +
@@ -45,37 +44,51 @@ $(document).ready(function () {
   
   // console.log(year_list)
   
+  window.balance_arr = [];
+
   $.each(year_list, function (i, year_num) {
-    // 顯示各期零用金紀錄、兒少單據、轉帳資料之餘額總計 region
-   
-    var this_year_datas = load_year_balance_num(year_num);
-    // console.log(this_year_datas)
-    var last_year_datas = [];
+    // 顯示各期零用金紀錄資料之餘額總計 region
+    
     var total_last_pb = 0;
 
+    var this_year_datas = load_year_balance_num(year_num);
+    // console.log(this_year_datas);
+    
     if(i == 0)
     {
-      last_year_datas = [];
       total_last_pb = 0;
     }
     else
     {
-      last_year_datas = load_year_balance_num((parseInt(year_num) - 1));
-      total_last_pb = Number(last_year_datas[2]);
+      total_last_pb = balance_arr[i-1]["value"][2];
     }    
 
+    // console.log(total_last_pb);
 
-    $("#"+year_num+"_last_pb").html(total_last_pb);
+
  
-    var new_total_this_pb = Number(this_year_datas[2]) + total_last_pb;
-
-    $("#"+year_num+"_year_i").html(Number(this_year_datas[0]));
-    $("#"+year_num+"_year_c").html(Number(this_year_datas[1]));
-    $("#"+year_num+"_this_pb").html(new_total_this_pb);
+    var new_total_this_pb = Number(this_year_datas[0]) - Number(this_year_datas[1]) + Number(total_last_pb);
     
-    // console.log(total_last_pb, Number(this_year_datas[0]), Number(this_year_datas[1]), new_total_this_pb)
+    
+    balance_arr.push({year:year_num,value:[this_year_datas[0], this_year_datas[1], new_total_this_pb]});
 
    //endregion
+  });
+
+  
+  $.each(year_list, function (i, year_num) {
+    // if(i == 0)
+    // {
+    //   $("#"+year_num+"_last_pb").text("0");
+    // }
+    // else
+    // {
+    //   $("#"+year_num+"_last_pb").text(balance_arr[i-1]["value"][2]);
+    // }
+    
+    $("#"+year_num+"_year_i").text(balance_arr[i]["value"][0]);
+    $("#"+year_num+"_year_c").text(balance_arr[i]["value"][1]);
+    $("#"+year_num+"_this_pb").text(balance_arr[i]["value"][2]);
   });
 });
 
@@ -94,20 +107,27 @@ load_year_balance_num = function(year_num) {
     async: false,
     success: function (data) {
      // console.log(data);
-      var total_year_i = 0;
-     var total_year_c = 0;
-     var total_this_pb = 0;
- 
-     $.each(data, function (index, value) {
-       total_year_i += Number(value.Income_sum);
-       total_year_c += Number(value.Cost_sum);
-       total_this_pb += Number(value.This_pb);
-     });
 
-     balance_arr.push(total_year_i)
-     balance_arr.push(total_year_c)
-     balance_arr.push(total_this_pb)
- 
+     var total_year_i = 0;
+     var total_year_c = 0;
+
+     $.each(data, function (index, value) {
+      // 根據Invoice_type計算 今年的收入、支出
+      switch (value.Invoice_type) {
+        case "收入":
+          total_year_i += Number(value.Amount);
+          break;
+        
+        case "支出":
+          total_year_c += Number(value.Amount);
+          break;
+      }
+    });
+
+    balance_arr.push(total_year_i);
+    balance_arr.push(total_year_c);
+
+    // console.log(balance_arr)
     },
     error: function (e) {
     //  console.log(e)

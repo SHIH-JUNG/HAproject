@@ -97,7 +97,7 @@ function tab_toggle() {
   }
 }
 
-$('#menu_tab_nav li a, .breadcrumb li span a').on('click',function() {
+$('#menu_tab_nav li a, .breadcrumb li, .brand-img').on('click',function() {
   localStorage.removeItem('activeTab');
 });
 //endregion

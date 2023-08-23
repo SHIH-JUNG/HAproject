@@ -2,8 +2,10 @@
 include("sql_connect.php"); 
 //region 抓資料
 $year = $_POST['year'];
+$month = $_POST['month'];
 
-$note = "SELECT *, ROUND(`Income_sum`,0) AS Income_sum, ROUND(`Cost_sum`,0) AS Cost_sum, ROUND(`Last_pb`,0) AS Last_pb, ROUND((`accounting_record_cash_balance_v2`.`Income_sum`-`accounting_record_cash_balance_v2`.`Cost_sum`), 0) AS This_pb FROM `accounting_record_cash_balance_v2` Where `Year` = '$year' ORDER BY `accounting_record_cash_balance_v2`.`Id` ASC;";
+// $note = "SELECT *, ROUND(`Income_sum`,0) AS Income_sum, ROUND(`Cost_sum`,0) AS Cost_sum, ROUND(`Last_pb`,0) AS Last_pb, ROUND((`accounting_record_cash_balance_v2`.`Income_sum`-`accounting_record_cash_balance_v2`.`Cost_sum`), 0) AS This_pb FROM `accounting_record_cash_balance_v2` Where `Year` = '$year' ORDER BY `accounting_record_cash_balance_v2`.`Id` ASC;";
+$note = "SELECT * FROM `accounting_record_cash_v2` Where `Year` = '$year' AND `Month` = '$month' AND `Form_class` = '日記帳' ORDER BY `accounting_record_cash_v2`.`Id` ASC;";
 
 //宣告空的陣列
 $datas = array();

@@ -69,6 +69,13 @@
     padding: 0;
     padding-top: 15px;
     }
+    
+    .preview {position:absolute;background:#fff;padding:10px;display:none;}
+
+    img {
+        max-width: 40em;
+        max-height: 40em;
+    }
 </style>
 
 <body>

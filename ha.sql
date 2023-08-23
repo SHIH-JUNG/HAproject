@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2023-08-23 10:06:52
+-- 產生時間： 2023-08-23 16:17:41
 -- 伺服器版本： 10.4.28-MariaDB
 -- PHP 版本： 8.1.17
 
@@ -109,7 +109,8 @@ INSERT INTO `accounting_record_cash` (`Id`, `Year`, `Month`, `Form_class`, `Invo
 (25, 112, 6, '日記帳', '112/06/15', '120', '', '吃的', '支出', 120, '112/06/15', '社工組長', '', '112/06/15', '', '2023-06-15 14:56:23', '社工員1', '2023-06-15 14:56:23', ''),
 (26, 112, 6, '日記帳', '112/06/16', '1233', '', '吃', '支出', 100, '112/06/16', '許文瀞', '', '112/06/16', '', '2023-06-16 10:52:14', '社工員1', '2023-06-16 10:52:14', ''),
 (27, 112, 6, '日記帳', '112/06/16', '1213', '', '5487436', '支出', 1548, '112/06/16', '執行長', '', '112/06/16', '', '2023-06-16 11:17:50', '社工員1', '2023-06-16 11:17:50', ''),
-(28, 112, 7, '日記帳', '112/07/13', '123', '', '5', '支出', 12, '112/07/13', '晏傳恕', '', '112/07/13', '', '2023-07-13 13:51:36', '社工員1', '2023-07-13 13:51:36', '');
+(28, 112, 7, '日記帳', '112/07/13', '123', '', '5', '支出', 12, '112/07/13', '晏傳恕', '', '112/07/13', '', '2023-07-13 13:51:36', '社工員1', '2023-07-13 13:51:36', ''),
+(29, 110, 2, '日記帳', '110/02/01', '1512', '', '測試', '支出', 1512, '110/02/01', '社工組長', '', '110/02/01', '', '2021-02-01 14:56:23', '社工員1', '2021-02-01 14:56:23', '');
 
 -- --------------------------------------------------------
 
@@ -147,33 +148,6 @@ INSERT INTO `accounting_record_cash_balance` (`Id`, `Year`, `Month`, `Income_sum
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `accounting_record_cash_balance_v2`
---
-
-CREATE TABLE `accounting_record_cash_balance_v2` (
-  `Id` int(244) NOT NULL,
-  `Year` int(100) NOT NULL,
-  `Month` int(10) NOT NULL,
-  `Income_sum` decimal(10,0) NOT NULL,
-  `Cost_sum` decimal(10,0) NOT NULL,
-  `Last_pb` decimal(10,0) NOT NULL,
-  `Create_date` datetime NOT NULL,
-  `Create_name` varchar(30) NOT NULL,
-  `Update_date` datetime DEFAULT current_timestamp(),
-  `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- 傾印資料表的資料 `accounting_record_cash_balance_v2`
---
-
-INSERT INTO `accounting_record_cash_balance_v2` (`Id`, `Year`, `Month`, `Income_sum`, `Cost_sum`, `Last_pb`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
-(1, 109, 3, 2212, 555, 0, '2023-08-22 20:56:51', '園主任', '2023-08-22 20:58:01', '園主任'),
-(2, 109, 4, 0, 215, 1657, '2023-08-22 21:00:18', '園主任', '2023-08-22 21:00:18', '');
-
--- --------------------------------------------------------
-
---
 -- 資料表結構 `accounting_record_cash_v2`
 --
 
@@ -201,7 +175,10 @@ INSERT INTO `accounting_record_cash_v2` (`Id`, `Year`, `Month`, `Form_class`, `I
 (2, 109, 2, '兒少單據', '支出', 155, 'dass', '[\"../accounting_record_cash/109_data/upload/test10902type0-2 - 複製.xlsx\",\"../accounting_record_cash/109_data/upload/test10902type0-1 - 複製.xlsx\"]', '2023-08-22 20:00:58', 'jia', '2023-08-22 20:00:58', ''),
 (3, 109, 3, '日記帳', '收入', 2212, 'dwa asas', '[\"../accounting_record_cash/109_data/upload/test10903type2-1 - 複製.xlsx\",\"../accounting_record_cash/109_data/upload/test10903type2-1.xlsx\"]', '2023-08-22 20:56:51', '園主任', '2023-08-22 20:56:51', ''),
 (4, 109, 3, '日記帳', '支出', 555, 'as', '[\"../accounting_record_cash/109_data/upload/test10903type2-22.xlsx\",\"../accounting_record_cash/109_data/upload/test10903type2-22 - 複製.xlsx\"]', '2023-08-22 20:58:01', '園主任', '2023-08-22 20:58:01', ''),
-(5, 109, 4, '日記帳', '支出', 215, 'dasd', '[\"../accounting_record_cash/109_data/upload/test10904type2-1.xlsx\",\"../accounting_record_cash/109_data/upload/test10904type2-1 - 複製.xlsx\"]', '2023-08-22 21:00:18', '園主任', '2023-08-22 21:00:18', '');
+(5, 109, 4, '日記帳', '支出', 215, 'dasd', '[\"../accounting_record_cash/109_data/upload/test10904type2-1.xlsx\",\"../accounting_record_cash/109_data/upload/test10904type2-1 - 複製.xlsx\"]', '2023-08-22 21:00:18', '園主任', '2023-08-22 21:00:18', ''),
+(6, 109, 2, '日記帳', '支出', 522, 'test', '[\"../accounting_record_cash/109_data/upload/test10902type2-1.xlsx\"]', '2023-08-23 18:42:42', 'jia', '2023-08-23 18:42:42', ''),
+(7, 109, 3, '日記帳', '支出', 121, 'dddd', '[\"../accounting_record_cash/109_data/upload/test10903type2-1 - 複製 - 複製.xlsx\"]', '2023-08-23 18:46:40', 'jia', '2023-08-23 18:46:40', ''),
+(8, 109, 4, '日記帳', '收入', 333, 'dasdasd333\r\nasdasdadsa', '[\"../accounting_record_cash/_data/upload/test10904type2-2.xlsx\",\"../accounting_record_cash/_data/upload/test10904type2-1 (2).xlsx\",\"../accounting_record_cash/_data/upload/test10904type2-2 - 複製.xlsx\"]', '2023-08-23 20:59:48', 'jia', '2023-08-23 21:11:39', 'jia');
 
 -- --------------------------------------------------------
 
@@ -2742,12 +2719,6 @@ ALTER TABLE `accounting_record_cash_balance`
   ADD PRIMARY KEY (`Id`);
 
 --
--- 資料表索引 `accounting_record_cash_balance_v2`
---
-ALTER TABLE `accounting_record_cash_balance_v2`
-  ADD PRIMARY KEY (`Id`);
-
---
 -- 資料表索引 `accounting_record_cash_v2`
 --
 ALTER TABLE `accounting_record_cash_v2`
@@ -3049,19 +3020,13 @@ ALTER TABLE `accounting_record`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `accounting_record_cash`
 --
 ALTER TABLE `accounting_record_cash`
-  MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `accounting_record_cash_balance`
 --
 ALTER TABLE `accounting_record_cash_balance`
   MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- 使用資料表自動遞增(AUTO_INCREMENT) `accounting_record_cash_balance_v2`
---
-ALTER TABLE `accounting_record_cash_balance_v2`
-  MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `accounting_record_report`

@@ -9,6 +9,8 @@ function getUrlVars() {
 //endregion
 
 var arc_year = getUrlVars()["year"];
+var i_type = decodeURIComponent(getUrlVars()["i_type"]);
+var arc_month = getUrlVars()["arc_month"];
 
 // page reload時保持上次的頁籤狀態 region
 function tab_toggle() {
@@ -22,13 +24,18 @@ function tab_toggle() {
 }
 
 
-$('#menu_tab_nav li a, .breadcrumb li span a').on('click',function() {
+$('#menu_tab_nav li a, .breadcrumb li, .brand-img').on('click',function() {
   localStorage.removeItem('activeTab');
 });
 //endregion
 
-$(document).ready(function () {
+back_arc_page = function() {
+  window.location.href = "accounting_record_cash_yearlist_v2.php";
+}
 
+window.month_list = [];
+
+$(document).ready(function () {
 
     // 顯示各期零用金紀錄、兒少單據、轉帳資料 region
     $.ajax({
@@ -38,8 +45,9 @@ $(document).ready(function () {
         },
         type: "POST",
         dataType: "JSON",
+        async: false,
         success: function (data) {
-          console.log(data);
+          // console.log(data);
           var cssStr = "";
           
           $.each(data, function (index, value) {
@@ -95,7 +103,7 @@ $(document).ready(function () {
             '</td>' +
             '</tr>';
 
-            console.log(cssStr)
+            // console.log(cssStr)
 
             if(value.Form_class=="轉帳")
             {
@@ -109,76 +117,33 @@ $(document).ready(function () {
             {
                 $("#ct_invoice_tbody").append(cssStr);
             }
+
+            month_list.push(value.Month);
+
           });
 
-
-          $("input[name='tr_update']").each(function(index) {
-            $(this).on("click", function(){
-                // For the mammal value
-                var mammalKey = $(this).attr('value'); 
-                $("input[name*='tr_update']").prop('checked',false);
-                $("#tr_update"+mammalKey).prop('checked',true);
-            });
-          });
-
-        },
-        error: function (e) {
-          swal({
-            type: "error",
-            title: "系統錯誤!請聯絡負責人",
-            allowOutsideClick: false, //不可點背景關閉
-          })
-          // .then(function () {
-          //   history.back();
-          // });
-        },
-      });
-      //endregion
-
-      // 顯示各期零用金紀錄、兒少單據、轉帳資料之餘額總計 region
-      $.ajax({
-        url: "database/find_accounting_record_cash_balance_v2.php",
-        data: {
-          year: arc_year,
-        },
-        type: "POST",
-        dataType: "JSON",
-        success: function (data) {
-          console.log(data);
-          var cssStr_bylastpb = "";
-          var cssStr_bysum = "";
-
-          $.each(data, function (index, value) {
-
-            cssStr_bylastpb = '<tr id="tr'+value.Year+'_'+value.Month+'_lastpb">' +
-                '<td style="text-align:center"><span style="color:red;">上期結餘</span></td>' +
-                '<td style="text-align:center">' + value.Last_pb + '</td>' +
-                '<td style="text-align:center"></td>' +
-                '<td style="text-align:center"></td>' +
-                '<td style="text-align:center"></td>' +
-                '<td style="text-align:center"></td>' +
-                '<td style="text-align:center"></td>' +
-                '</tr>';
-
-            $("#tbody_"+value.Month).prepend(cssStr_bylastpb);
-          });
           
-          $.each(data, function (index, value) {
+          
+          if(month_list.length > 0)
+          {
+              //option小到大排序
+              month_list.sort(function(a,b){
+                  var aText = $(a).text().toUpperCase();
+                  var bText = $(b).text().toUpperCase();
+                  // if(aText>bText) return 1;
+                  // if(aText<bText) return -1;
+                  // return 0;
 
-            cssStr_bysum = '<tr id="tr'+value.Year+'_'+value.Month+'" class="balance_tab">' +
-                '<td style="text-align:center"><span style="color:red;">合計</span></td>' +
-                '<td style="text-align:center">' + value.Income_sum + '</td>' +
-                '<td style="text-align:center">' + value.Cost_sum + '</td>' +
-                '<td style="text-align:center">' + value.This_pb + '</td>' +
-                '<td style="text-align:center"></td>' +
-                '<td style="text-align:center"></td>' +
-                '<td style="text-align:center"></td>' +
-                '</tr>';
+                  return aText - bText;
+              })
 
-            $("#tbody_"+value.Month).after(cssStr_bysum);
-          });
+              month_list = month_list.filter(function(elem, index, self) {
+                return index === self.indexOf(elem);
+              })
+          }
+        
 
-
+        //  console.log(month_list)
 
         },
         error: function (e) {
@@ -193,110 +158,150 @@ $(document).ready(function () {
         },
       });
       //endregion
+      
+      window.balance_arr = [];
 
-      tab_toggle();
+
+      $.each(month_list, function (i, month_num) {
+        // 顯示各期零用金紀錄資料之餘額總計 region
+  
+        var total_last_pb = 0;
+
+        var this_month_datas = load_month_balance_num(month_num);
+        // console.log(this_month_datas)
+        
+        if(i == 0)
+        {
+          total_last_pb = 0;
+        }
+        else
+        {
+          total_last_pb = balance_arr[i-1]["value"][2];
+        }    
+        
+        var new_total_this_pb = Number(this_month_datas[0]) - Number(this_month_datas[1]) + Number(total_last_pb);
+        
+        balance_arr.push({month:month_num,value:[this_month_datas[0], this_month_datas[1], new_total_this_pb]});
+
+        //endregion
+      });
+
+      // console.log(balance_arr)
+
+      $.each(month_list, function (i, month_num) {
+
+        var cssStr_bylastpb = "";
+        var cssStr_bysum = "";
+        var last_pb_str = "";
+        if(i == 0)
+        {
+          last_pb_str = "0";
+        }
+        else
+        {
+          last_pb_str = balance_arr[i-1]["value"][2];
+        }
+
+        cssStr_bylastpb = '<tr id="tr'+balance_arr[i]["year"]+'_'+month_num+'_lastpb">' +
+              '<td style="text-align:center"><span style="color:red;">上期結餘</span></td>' +
+              '<td style="text-align:center">' + last_pb_str + '</td>' +
+              '<td style="text-align:center"></td>' +
+              '<td style="text-align:center"></td>' +
+              '<td style="text-align:center"></td>' +
+              '<td style="text-align:center"></td>' +
+              '<td style="text-align:center"></td>' +
+              '</tr>';
+
+        $("#tbody_"+month_num).prepend(cssStr_bylastpb);
+
+        cssStr_bysum = '<tr id="tr'+balance_arr[i]["year"]+'_'+month_num+'" class="balance_tab">' +
+        '<td style="text-align:center"><span style="color:red;">合計</span></td>' +
+        '<td style="text-align:center">' + balance_arr[i]["value"][0] + '</td>' +
+        '<td style="text-align:center">' + balance_arr[i]["value"][1] + '</td>' +
+        '<td style="text-align:center">' + balance_arr[i]["value"][2] + '</td>' +
+        '<td style="text-align:center"></td>' +
+        '<td style="text-align:center"></td>' +
+        '<td style="text-align:center"></td>' +
+        '</tr>';
+
+        $("#tbody_"+month_num).after(cssStr_bysum);
+      });
+
+    if(i_type !== undefined)
+    {
+      switch (i_type) {
+        case "兒少單據":
+            $('#myTab a[href="#type0"]').tab('show');
+            break;
+
+        case "轉帳":
+            $('#myTab a[href="#type1"]').tab('show');
+            break;
+
+        case "日記帳":
+            $('#myTab a[href="#type2_' + arc_month + '"]').tab('show');
+            break;
+      }
+        
+    }
+    else
+    {
+        tab_toggle();
+    }
 });
 
 
+load_month_balance_num = function(month_num) {
 
+  var balance_arr = [];
 
+  // 顯示各期零用金紀錄、兒少單據、轉帳資料之餘額總計 region
+  $.ajax({
+    url: "database/find_accounting_record_cash_balance_v2.php",
+    data: {
+      year: arc_year,
+      month: month_num,
+    },
+    type: "POST",
+    dataType: "JSON",
+    async: false,
+    success: function (data) {
+      // console.log(data); 
+      
+      var total_year_i = 0;
+      var total_year_c = 0;
 
-update_arc = function() {
-    var check_id = $("input[name='tr_update']:checked").attr("value");
-    var i_type = $("input[name='tr_update']:checked").attr("i_type");
-    var answer = [];
-    var submitdata = {};
-    answer.push(i_type);
-
-    $("#tr"+check_id+" td  > *").each(function(index) {
-        answer.push($(this).val());
-    });
-    console.log(answer);
-
-    var invoice_date_year_split = answer[2].split("\/");
-
-    if(answer[5]=="" && answer[6]!="")
-   {
-    var amount = answer[6];
-    var invoice_type = "支出";
-   }
-   else if(answer[6]=="" && answer[5]!="")
-   {
-    var amount = answer[5];
-    var invoice_type = "收入";
-   }
-
-   if(i_type=="兒少單據")
-   {
-    submitdata={
-      Id:answer[1],
-      o_year:arc_year,
-      year:invoice_date_year_split[0],
-      month:invoice_date_year_split[1],
-      Form_class:answer[0],
-      Invoice_date:answer[2],
-      Invoice_class:answer[3],
-      Invoice_content:answer[4],
-      Invoice_type:invoice_type,
-      Amount:amount,
-      Upload_date:answer[7],
-      Record_date:answer[8],
-      Remark:answer[9],
-    };
-   }
-   else
-   {
-    submitdata={
-      Id:answer[1],
-      o_year:arc_year,
-      year:invoice_date_year_split[0],
-      month:invoice_date_year_split[1],
-      Form_class:answer[0],
-      Invoice_date:answer[2],
-      Invoice_seq:answer[3],
-      Invoice_content:answer[4],
-      Invoice_type:invoice_type,
-      Amount:amount,
-      Withdrawal_date:answer[7],
-      Payee:answer[8],
-      Record_date:answer[9],
-      Remark:answer[10],
-    };
-   }
-
-   console.log(submitdata);
-
-    $.ajax({
-        url: "database/update_accounting_record_cash_data_v2.php",
-        type: "POST",
-        data: submitdata,
-        //            dataType: "JSON",
-        success: function (data) {
-          console.log(data);
-          if (data == 1) {
-            swal({
-              type: "success",
-              title: "更新成功!",
-              allowOutsideClick: false, //不可點背景關閉
-            }).then(function () {
-                location.reload();
-            });
-          } else {
-            swal({
-              type: "error",
-              title: "更新失敗!請聯絡負責人",
-              allowOutsideClick: false, //不可點背景關閉
-            });
-          }
-        },
-        error: function () {
-          swal({
-            type: "error",
-            title: "更新失敗!請聯絡負責人",
-            allowOutsideClick: false, //不可點背景關閉
-          });
-        },
+      $.each(data, function (index, value) {
+        // 根據Invoice_type計算 今年的收入、支出
+        switch (value.Invoice_type) {
+          case "收入":
+            total_year_i += Number(value.Amount);
+            break;
+          
+          case "支出":
+            total_year_c += Number(value.Amount);
+            break;
+        }
       });
+
+      balance_arr.push(total_year_i);
+      balance_arr.push(total_year_c);
+      // console.log(balance_arr)
+    },
+    error: function (e) {
+      swal({
+        type: "error",
+        title: "系統錯誤!請聯絡負責人",
+        allowOutsideClick: false, //不可點背景關閉
+      })
+      // .then(function () {
+      //   history.back();
+      // });
+    },
+  });
+  //endregion
+
+  return balance_arr;
 }
 
 

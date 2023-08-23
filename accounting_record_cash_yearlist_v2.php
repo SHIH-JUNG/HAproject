@@ -101,10 +101,10 @@
                                                                 <br>
                                                                 <table id="ar_cash_yearlist_all" style="width:auto;" class="table table-bordered">
                                                                     <th>年度</th>
-                                                                    <th>去年結餘</th>
+                                                                    <!-- <th>去年結餘</th> -->
                                                                     <th>總收入</th>
                                                                     <th>總支出</th>
-                                                                    <th>今年結餘</th>
+                                                                    <th>當年度結餘</th>
                                                                     <th>零用金紀錄資料</th>
                                                                     <tbody id="ar_cash_yearlist_add"></tbody>
                                                                 </table>

@@ -1034,3 +1034,7 @@ function tab_toggle() {
       $('#myTab a[href="' + activeTab + '"]').tab('show');
   }
 }
+
+$('#menu_tab_nav li a, .breadcrumb li, .brand-img').on('click',function() {
+  localStorage.removeItem('activeTab');
+});

@@ -1,12 +1,10 @@
 <?php
 include("sql_connect.php"); 
 //region 抓資料
-$year = $_POST['year'];
-// $year = "111";
-// $last_year = (int)$year - 1;
+$Year = $_POST['Year'];
+$Id = $_POST['Id'];
 
-// $note = "SELECT *, SUM(ROUND(`Income_sum`,0)) AS Income_sum, SUM(ROUND(`Cost_sum`,0)) AS Cost_sum, SUM(ROUND(`Last_pb`,0)) AS Last_pb, SUM(ROUND((`accounting_record_cash_v2_balance_v2`.`Income_sum`-`accounting_record_cash_v2_balance_v2`.`Cost_sum`), 0)) AS This_pb FROM `accounting_record_cash_v2_balance_v2` Where `Year` = '$year' ORDER BY `accounting_record_cash_v2_balance_v2`.`Id` ASC;";
-$note = "SELECT * FROM `accounting_record_cash_v2` Where `Year` = '$year' AND `Form_class` = '日記帳' ORDER BY `accounting_record_cash_v2`.`Id` ASC;";
+$note = "SELECT * FROM `accounting_record_cash_v2` Where `Id` = '$Id' AND `Year` = '$Year';";
 
 //宣告空的陣列
 $datas = array();
@@ -36,11 +34,6 @@ else
   echo "{$note} 語法執行失敗，錯誤訊息：" . mysqli_error($conn);
 }
 
-
-
-
-// var_dump($datas);
-
-mysqli_close($conn);
-echo json_encode($datas);
+  mysqli_close($conn);
+    echo json_encode($datas);
 //endregion

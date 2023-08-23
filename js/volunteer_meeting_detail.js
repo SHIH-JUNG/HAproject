@@ -1026,6 +1026,10 @@ function tab_toggle() {
   }
 }
 
+$('#menu_tab_nav li a, .breadcrumb li, .brand-img').on('click',function() {
+  localStorage.removeItem('activeTab');
+});
+
 
 //取消重整region
 function cancel() {
