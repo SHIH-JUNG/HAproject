@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2023-08-22 16:47:30
+-- 產生時間： 2023-08-23 10:06:52
 -- 伺服器版本： 10.4.28-MariaDB
 -- PHP 版本： 8.1.17
 
@@ -271,7 +271,9 @@ INSERT INTO `announcement` (`Id`, `title`, `authority`, `publisher`, `datetime`)
 (2, '電訪', 3, '園主任', '2021-12-11'),
 (3, '開會', 3, '園主任', '2021-12-13'),
 (0, '', 1, '社工員1', '2022-09-11'),
-(0, '123', 1, '社工員1', '2022-09-11');
+(0, '123', 1, '社工員1', '2022-09-11'),
+(0, 'test', 2, 'jia', '2023-08-23'),
+(0, 'dwd15', 1, 'jia', '2023-08-23');
 
 -- --------------------------------------------------------
 
@@ -406,7 +408,8 @@ INSERT INTO `calendar` (`id`, `title`, `description`, `start`, `end`, `publisher
 (110, '黃QQ(2023-07-05)監所服務-訪談', 'https://140.127.22.2/HappyAlliance/HAproject/counsel_detail.php?id=1&counsel_id=766', '2023-07-05 12:00', '2023-07-05 13:00', '社工員1', '', '2023-07-12 13:12:04'),
 (111, '(2023-07-10)在職訓練', 'https://140.127.22.2/HappyAlliance/HAproject/training_detail.php?id=51', '2023-07-10 12:00', '2023-07-10 13:00', '社工組長', '', '2023-07-13 14:45:49'),
 (112, '(2023-07-06)在職訓練', 'https://140.127.22.2/HappyAlliance/HAproject/training_detail.php?id=51', '2023-07-06 08:00', '2023-07-06 09:00', '社工組長', '', '2023-07-13 14:47:56'),
-(113, 'fffg(2023-06-29)在職訓練', 'https://140.127.22.2/HappyAlliance/HAproject/training_detail.php?id=55&training_id=0', '2023-06-29 12:00', '2023-06-29 13:00', '社工員1', '', '2023-07-14 10:01:24');
+(113, 'fffg(2023-06-29)在職訓練', 'https://140.127.22.2/HappyAlliance/HAproject/training_detail.php?id=55&training_id=0', '2023-06-29 12:00', '2023-06-29 13:00', '社工員1', '', '2023-07-14 10:01:24'),
+(114, 'trssad', '16adsadsdasdwdwdwdwaaaa1133', '2023-08-16 12:00', '2023-08-16 13:00', 'jia', '', '2023-08-23 16:06:12');
 
 -- --------------------------------------------------------
 
@@ -1426,7 +1429,8 @@ INSERT INTO `login_record` (`Id`, `Login_timestamp`, `Login_account`, `Login_aut
 (199, '2023-08-16 21:01:06', 'test5', '3', '園主任', '22.593833,120.48885299999999', 1),
 (200, '2023-08-17 18:02:28', 'test5', '3', '園主任', '22.593833,120.488853', 1),
 (201, '2023-08-22 19:49:54', 'testuser', '1', 'jia', '22.593839499999998,120.48884925', 1),
-(202, '2023-08-22 20:29:31', 'test5', '3', '園主任', '22.593839499999998,120.48884925', 1);
+(202, '2023-08-22 20:29:31', 'test5', '3', '園主任', '22.593839499999998,120.48884925', 1),
+(203, '2023-08-23 15:17:08', 'testuser', '1', 'jia', '22.593839499999998,120.48884925', 1);
 
 -- --------------------------------------------------------
 
@@ -2292,7 +2296,8 @@ INSERT INTO `sign_notice` (`Id`, `file_name`, `authority`, `date`, `person`, `da
 (73, '黃QQ(2023-07-05)監所服務-訪談', 1, '0000-00-00', '社工員1', '2023-07-05 12:00', '執行長、許文瀞、'),
 (74, '(2023-07-10)在職訓練', 1, '0000-00-00', '社工組長', '2023-07-10 12:00', '、、'),
 (75, '(2023-07-06)在職訓練', 1, '0000-00-00', '社工組長', '2023-07-06 08:00', '、、'),
-(76, 'fffg(2023-06-29)在職訓練', 1, '0000-00-00', '社工員1', '2023-06-29 12:00', '、、');
+(76, 'fffg(2023-06-29)在職訓練', 1, '0000-00-00', '社工員1', '2023-06-29 12:00', '、、'),
+(77, 'trssad', 1, '0000-00-00', 'jia', '2023-08-16 12:00', '、');
 
 -- --------------------------------------------------------
 
@@ -3074,7 +3079,7 @@ ALTER TABLE `board_supervisor`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `calendar`
 --
 ALTER TABLE `calendar`
-  MODIFY `id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
+  MODIFY `id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `case_report`
@@ -3140,7 +3145,7 @@ ALTER TABLE `leave_rule_table`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `login_record`
 --
 ALTER TABLE `login_record`
-  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=203;
+  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=204;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `members_assemble`
@@ -3260,7 +3265,7 @@ ALTER TABLE `signature_notice`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `sign_notice`
 --
 ALTER TABLE `sign_notice`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `supervisor_record`

@@ -427,13 +427,13 @@
     <!-- ================== JQ cookie.js ================== -->
     <script src="javascript/cookie/js.cookie-2.1.3.min.js"></script>
     <!-- ================== 行事曆 ================== -->
-    <script src='js/lib/main.js'></script>
+    <script src="js/lib/main.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
     <!-- ================== 行事曆設定 ================== -->
-    <script src='js/fullcalendar.js'></script>
+    <script src="js/fullcalendar.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
     <!-- ================== 登出設定 ================== -->
-    <script src='js/logout.js'></script>
+    <script src="js/logout.js"></script>
     <!-- ================== moment ================== -->
-    <script src='javascript/moment.min.js'></script>
+    <script src="javascript/moment.min.js"></script>
     <!-- ================== table ================== -->
     <script src="javascript/bootstrap-table.min.js"></script>
     <script src="javascript/bootstrap-table-zh-TW.min.js"></script>

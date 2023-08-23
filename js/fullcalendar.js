@@ -195,34 +195,42 @@ document.addEventListener('DOMContentLoaded', function() {
 
 //新增行事曆活動region
 $("#add_new_note").click(function(){
+    console.log("a")
 //    console.log($("#end").val(),$("#start").val())
     if($("#title").val() != ""){
 //        console.log("OK");
         $.ajax({
             url: "database/add_new_note.php",
             data: {
-                title:$("#title").val(),
-                description:$("#description").val(),
-                start_date:$("#start").val(),
-                end_date:$("#end").val(),
+                Title:$("#title").val(),
+                Url: "",
+                Description:$("#description").val(),
+                Start_date:$("#start").val(),
+                End_date:$("#end").val(),
+                One_user: "",
+                Two_user: "",
             },
             type: "POST",
             success: function (data) {
-                if(data == 1){
-                    swal({
-                        title:'新增成功！',
-                        type:'success',                        
-                    }).then(function(){
-                        formreload();
-                    }) 
-                }else{
-                    swal({
-                      title:'新增失敗！',
-                      type:'error',
-                    })
-                }                
-//                formreload();                
-            }
+                console.log(data)
+                
+                if (data == 1) {
+                  swal({
+                    title: "新增成功！",
+                    type: "success",
+                  }).then(function () {
+                    location.reload();
+                  });
+                } else {
+                  swal({
+                    title: "新增失敗！",
+                    type: "error",
+                  });
+                }
+              },
+              error: function (e) {
+                console.log("錯誤"+e);
+              },
         });   
     }else{
 //        console.log("NO");

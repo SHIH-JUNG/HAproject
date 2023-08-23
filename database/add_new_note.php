@@ -13,9 +13,16 @@ include("sql_connect.php");
 @$end_datetime = $_POST['End_date'];
 @$publisher = $_SESSION['name'];
 
-@$Other_user = implode("、",$other_user);
+if(!empty($_POST['Other_user']))
+{
+    @$Other_user = implode("、",$other_user);
+    @$see_note =$one_user."、".$two_user."、".$Other_user;
+}
+else
+{
+    @$see_note =$one_user."、".$two_user;
+}
 
-$see_note =$one_user."、".$two_user."、".$Other_user;
 
 $add_auto_note = "INSERT INTO `sign_notice` (`file_name`,`datetime`,`authority`,`person`,`authority_name`) VALUES ('$title', '$start_datetime', '1' ,'$publisher','$see_note')";
 mysqli_query($conn,$add_auto_note);
