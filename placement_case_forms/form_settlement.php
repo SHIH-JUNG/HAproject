@@ -232,12 +232,12 @@
                                                         <td colspan="5">
                                                             <div class="col-sm-12">
                                                                 <div class="text-left">
-                                                                    <input name="religion" style="zoom: 1.5" value="道教" type="radio"><span>道教</span>
-                                                                    <input name="religion" style="zoom: 1.5" value="佛教" type="radio"><span>佛教</span>
-                                                                    <input name="religion" style="zoom: 1.5" value="基督教" type="radio"><span>基督教</span>
-                                                                    <input name="religion" style="zoom: 1.5" value="天主教" type="radio"><span>天主教</span>
-                                                                    <input name="religion" style="zoom: 1.5" value="密宗" type="radio"><span>密宗</span>
-                                                                    <input name="religion" style="zoom: 1.5" value="其他" type="radio"><span>其他</span><input name="religion_other" id="religion_other" type="text">
+                                                                    <input name="religion" style="zoom: 1.5" value="道教" type="checkbox"><span>道教</span>
+                                                                    <input name="religion" style="zoom: 1.5" value="佛教" type="checkbox"><span>佛教</span>
+                                                                    <input name="religion" style="zoom: 1.5" value="基督教" type="checkbox"><span>基督教</span>
+                                                                    <input name="religion" style="zoom: 1.5" value="天主教" type="checkbox"><span>天主教</span>
+                                                                    <input name="religion" style="zoom: 1.5" value="密宗" type="checkbox"><span>密宗</span>
+                                                                    <input name="religion" style="zoom: 1.5" value="其他" type="checkbox"><span>其他</span><input name="religion_other" id="religion_other" type="text">
                                                                 </div>
                                                             </div>
                                                         </td>
@@ -651,7 +651,11 @@
                                     </div>
                                 </div>
                                 <div class="panel-footer" style="text-align:center;">
-                                    <button style="font-size:20px" id="add_settlement_detail" class="btn btn-default">儲存</button>
+                                    <button style="font-size:20px" id="add_settlement_detail" class="btn btn-default" data-toggle="modal"data-target="#case_storage_model">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-save2" viewBox="0 0 16 16">
+                                    <path d="M2 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H9.5a1 1 0 0 0-1 1v4.5h2a.5.5 0 0 1 .354.854l-2.5 2.5a.5.5 0 0 1-.708 0l-2.5-2.5A.5.5 0 0 1 5.5 6.5h2V2a2 2 0 0 1 2-2H14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h2.5a.5.5 0 0 1 0 1H2z"/>
+                                    </svg>
+                                    儲存</button>
                                     <button style="font-size:20px" onclick="history_back_btn();" class="btn btn-default">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-skip-backward-fill" viewBox="0 0 16 16">
                                     <path d="M.5 3.5A.5.5 0 0 0 0 4v8a.5.5 0 0 0 1 0V8.753l6.267 3.636c.54.313 1.233-.066 1.233-.697v-2.94l6.267 3.636c.54.314 1.233-.065 1.233-.696V4.308c0-.63-.693-1.01-1.233-.696L8.5 7.248v-2.94c0-.63-.692-1.01-1.233-.696L1 7.248V4a.5.5 0 0 0-.5-.5z"/>

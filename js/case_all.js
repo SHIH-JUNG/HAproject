@@ -9,14 +9,6 @@ function getUrlVars() {
 }
 //endregion
 
-function getVars(varstr) {
-    var vars = {};
-    var parts = varstr.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-        vars[key] = value;
-    });
-    return vars;
-}
-
 $(function() {
     imagePreview();  
     
@@ -220,7 +212,9 @@ function load_each_form()
 
                         sign_btn_str += '<button style="margin:.5em;color:red;" type="button" onclick="signature_btn_click(this);" board_type="'+form_name+'" sign_info="'+value.Id+"_"+value.Case_seqid+"_"+value.Case_id+'">簽名</button><br/>';
                     }
-        
+                    
+                    console.log(supervise1_sign_arr)
+
                     if(value.Is_upload==0)
                     {
                         //獲取相對應td字串格式

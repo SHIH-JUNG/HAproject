@@ -882,10 +882,6 @@ function check_file_exist(){
                 other_info_arr.push({name:form_tpye,value:interlocution_ques});
                 other_info_arr.push({name:form_tpye,value:interlocution_assign_name});
             break;
-
-        default:
-            
-            break;
     }
 
     return other_info_arr;
@@ -1591,7 +1587,7 @@ $("#case_storage_submit").on('click', function () {
 form_check_submit = function(submit_storage_type) {
 
     window.storage_type = submit_storage_type;
-    console.log(storage_type)
+    // console.log(storage_type)
 
     //判斷該量表是否含有 input[type="file"] 類型資料
     if($('input[type="file"]').length!=0)
@@ -2195,7 +2191,7 @@ window.history_url = 'case_all.php?name='+name+'&gender='+gender+'&pid='+pid+'&d
 $("#history").attr('href',history_url);
 
 history_back_btn = function() {
-    location.href=history_url;
+    location.href = history_url;
 }
 
 
@@ -2342,33 +2338,6 @@ $("#end").on('click', function () {
         }
 
     });
-});
-//endregion
-
-//跳轉至個案會談紀錄region
-$("#face_page").on('click', function(){
-    var face_id = getUrlVars()["id"];
-    var num = getUrlVars()["face_num"];
-    console.log(num)
-    $.ajax({
-        url: "database/find_open_all.php",
-        type: "POST",
-        data: {
-            face_id: face_id,
-            num:num
-        },
-        dataType: "JSON",
-        async: false, //啟用同步請求
-        success: function (data) {
-//            console.log(data.url[0])
-            window.open(data.url[0]);
-        },
-
-        error: function (e) {
-            console.log(e)
-        }
-    });
-    
 });
 //endregion
 

@@ -19,8 +19,9 @@
     <!-- ================== 匯出EXCEL ================== -->
     <link href="css/jquery.dataTables1.10.16.min.css" rel="stylesheet" />
     <link href="css/buttons.dataTables1.5.1.min.css" rel="stylesheet" />
-    <!--  日期民國  -->
-    <link data-require="jqueryui@*" data-semver="1.10.0" rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.0/css/smoothness/jquery-ui-1.10.0.custom.min.css" />
+     <!--  日期民國  -->
+     <link data-require="jqueryui@*" rel="stylesheet" href="css/jquery-ui.css" />
+    <link href="css/dtsel.css" rel="stylesheet" />
 
     <meta charset="UTF-8" />
     <!--    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />-->
@@ -33,6 +34,13 @@
         margin-left: auto;
         margin-right: auto;
     }
+
+    .NOline {
+        word-break: keep-all;
+        /*必須*/
+    }
+
+    .preview {position:absolute;background:#fff;padding:10px;display:none;}  
 </style>
 
 <body>
@@ -100,17 +108,17 @@
                         <div class="panel panel-default card-view">
                             <div class="panel-wrapper collapse in">
                                 <div class="panel-body">
-                                    <div class="row">
+                                    <div class="row" id="collapseTwo">
                                         <div class="col-sm-12 col-xs-12">
                                             <ul style="font-size:17px" class="nav nav-tabs" id="myTab" role="tablist">
                                                 <li class="nav-item active" role="presentation">
-                                                    <a class="nav-link" id="home-tab" data-toggle="pill" href="#one" role="tab" aria-selected="true">
+                                                    <a class="nav-link" id="home-tab" data-toggle="pill" href="#settlement_tab" role="tab" aria-selected="true">
                                                         <b>安置、自立宿舍評估量表</b>
                                                     </a>
                                                 </li>
                                             </ul>
                                             <div class="tab-content" id="myTabContent">
-                                                <div class="tab-pane fade in active" id="one" role="tabpanel" aria-labelledby="home-tab">
+                                                <div class="tab-pane fade in active" id="settlement_tab" role="tabpanel" aria-labelledby="home-tab">
                                                     <div class="col-sm-12 text-center">
                                                         <div class="table-wrap">
                                                             <div class="table-responsive">
@@ -130,6 +138,8 @@
                                                                     <th>評估結果</th>
                                                                     <th>評估表內容</th>
                                                                     <th>備註</th>
+                                                                    <th>簽核狀態</th>
+                                                                    <th></th>
                                                                     <tbody id="settlement_full_add"></tbody>
                                                                 </table>
                                                             </div>
@@ -150,6 +160,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <?php include("signnature_canvas2.php"); ?>
                                 </div>
                             </div>
                         </div>
@@ -160,11 +171,46 @@
             <!--/網頁內容-->
         </div>
     </div>
+
+    <!--\ Modal -->
+    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" data-backdrop="static">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel2" class="sign_msg_td_name">簽名留言</h4>
+                </div>
+                <div class="modal-body">
+                    <table id="all_data" style="width:auto;margin:0 auto;" class="table table-bordered">
+                        <tr style="text-align:left">
+                            <td class="sign_msg_td_name" style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">簽名留言內容</td>
+                            <td style="border-bottom: solid 1px;">
+                                <textarea style="width:100%;resize: none;font-size: 20px;min-height:10em;" class="sign_msg" disabled="disabled"></textarea>
+                            </td>
+                        </tr>
+                        <tr style="text-align:left">
+                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">留言時間</td>
+                            <td style="border-bottom: solid 1px;">
+                                <input style="width:15em;" class="sign_msg_time" type="datetime" disabled="disabled">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal /-->
+
+
+
     <!-- /#wrapper -->
     <!-- JavaScript -->
     <!-- Bootstrap and jQuery -->
     <script src="javascript/jquery.min.js"></script>
-    <script src="javascript/jquery-ui.js"></script>
+    <!-- <script src="javascript/jquery-ui.js"></script> -->
     <script src="javascript/bootstrap.min.js"></script>
     <!-- PDF -->
     <script type="text/javascript" src="javascript/jquery.media.js"></script>
@@ -193,15 +239,23 @@
     <script src="javascript/sweetalert2/core-js.js"></script>
     <!-- ================== 登出設定 ================== -->
     <script src='js/logout.js'></script>
-    <!-- ================== placement_case_all.js ================== -->
-    <script src='js/placement_case_all.js<?php echo "?".date("Y-m-d h:i:sa")?>'></script>
+
     <!-- ================== moment ================== -->
     <script src='javascript/moment2.29.0.min.js'></script>
     <!-- ================== table ================== -->
     <script src="javascript/bootstrap1.18.0-table.min.js"></script>
     <script src="javascript/bootstrap-table1.11.1-zh-TW.min.js"></script>
     <!-- 日期民國-->
-    <script src="javascript/TW_YEAR.js"></script>
+    <script src="javascript/jquery-ui.min.js"></script>
+    <script src="javascript/datepickerTw.js"></script>
+    <!-- ================== jSignature ================== -->
+    <script src="jSignature/jSignature.min.js"></script>
+    <script>
+        //設定js變數抓取使用者名稱
+        var login_user_name = '<?php echo $_SESSION["name"]; ?>';
+    </script>
+    <!-- ================== placement_case_all.js ================== -->
+    <script src='js/placement_case_all.js<?php echo "?".date("Y-m-d h:i:sa")?>'></script>
 </body>
 
 </html>

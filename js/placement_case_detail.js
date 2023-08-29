@@ -43,88 +43,6 @@ trans_to_Tw = function (endate) {
 };
 //endregion
 
-//當量表分數改變(選項)的時候，重算分數
-$("input[name*='answer']").change( function(event) {
-    
-    //加總所有選項分數
-    answer_score_counting();
-
-    //BSRS5量表總分計算和得分評估
-    if(form_type=="BSRS5")
-    {
-        BSRS5_answer_score_counting();
-        BSRS5_answer_score_evaluation();
-    }
-});
-
-//量表分數計算region
-function answer_score_counting() {
-    var t_score = 0;
-
-    $("input[name*='answer']").each(function(i,n){
-
-        if($(this).is(":checked"))
-        {
-            var score = parseInt($(this).val())
-            t_score += score;
-        }
-    });
-
-    $("#answer_score").val(t_score);
-}
-//endregion
-
-//BSRS5量表分數計算(扣除附加題分數) region
-function BSRS5_answer_score_counting() {
-    var t_score = 0;
-    var answer_last_ques = $("input[name*='answer'][type='radio']").last().attr("name");
-
-    $("input[name*='answer']").each(function(i,n){
-
-        if($(this).is(":checked"))
-        {
-            var score = parseInt($(this).val())
-            t_score += score;
-        }
-    });
-
-    var add_ques_score = parseInt($("input[name='"+answer_last_ques+"']:checked").attr("value")) || 0;
-
-
-    $("#answer_score").val(t_score - add_ques_score);
-}
-//endregion
-
-//BSRS5量表分數評估 region
-function BSRS5_answer_score_evaluation() {
-
-    var answer_score = $("#answer_score").val();
-
-    var answer_last_ques = $("input[name*='answer'][type='radio']").last().attr("name");
-
-    //評估是否總分大於6分，除附加題以外
-    if(parseInt(answer_score) > 6)
-    {
-        $("input[name='treatment_status']").first().prop("checked",true);
-    }
-    else
-    {
-        $("input[name='treatment_status']").first().prop("checked",false);
-    }
-
-
-    //評估附加題分數是否大於0
-    if(parseInt($("input[name='"+answer_last_ques+"']:checked").attr("value")) > 0)
-    {
-        $("input[name='treatment_status']").last().prop("checked",true);
-    }
-    else
-    {
-        $("input[name='treatment_status']").last().prop("checked",false);
-    }
-    
-}
-//endregion
 
 //宣告存入 file Object的空陣列
 var file_name=[];
@@ -261,7 +179,7 @@ function check_file_exist(){
                  }               
              },
              error: function (e) {
-                 console.log(e);
+                //  console.log(e);
                  notyf.alert('伺服器錯誤,無法載入');
              }
          });
@@ -295,109 +213,6 @@ function check_file_exist(){
               
             break;
 
-        case 'life':
-
-            var w_test = $('input[name="w_test"]:checked').val();
-            var life_answer_score1 = parseFloat($('input[name="life_answer_score1"]').val());
-            var life_answer_score2 = parseFloat($('input[name="life_answer_score2"]').val());
-            // var total_answer_score = parseFloat(life_answer_score1) + parseFloat(life_answer_score2);
-            var score1_index = "";
-
-            if(life_answer_score1>0 && life_answer_score1<=1)
-            {
-                score1_index = "極不滿意";
-            }
-            else if(life_answer_score1>1 && life_answer_score1<=1.9)
-            {
-                score1_index = "介於為極不滿意至不滿意";
-            }
-            else if(life_answer_score1>1.9 && life_answer_score1<=2)
-            {
-                score1_index = "不滿意";
-            }
-            else if(life_answer_score1>2 && life_answer_score1<=2.9)
-            {
-                score1_index = "介於為不滿意至普通";
-            }
-            else if(life_answer_score1>2.9 && life_answer_score1<3.1)
-            {
-                score1_index = "普通";
-            }
-            else if(life_answer_score1>=3.1 && life_answer_score1<=3.9)
-            {
-                score1_index = "介於為普通(中等程度滿意)至滿意";
-            }
-            else if(life_answer_score1>3.9 && life_answer_score1<4.1)
-            {
-                score1_index = "滿意";
-            }
-            else if(life_answer_score1>=4.1 && life_answer_score1<=4.9)
-            {
-                score1_index = "介於為滿意至極滿意(非常滿意)";
-            }
-            else if(life_answer_score1>=5)
-            {
-                score1_index = "極滿意(非常滿意)";
-            }
-
-            if(isNaN(life_answer_score1))
-            {
-                life_answer_score1 = "-";
-            }
-            if(isNaN(life_answer_score2))
-            {
-                life_answer_score2 = "-";
-            }
-            
-            other_info_arr.push({name:form_tpye,value:"<div>第一部分得分："+life_answer_score1+"分，結果："+score1_index+"。<br/>第二部分得分："+life_answer_score2+"分。</div>"});
-
-            // other_info_arr.push({name:form_tpye,value:total_answer_score});
-
-            if(w_test==undefined)
-            {
-                other_info_arr.push({name:form_tpye,value:''});
-            }
-            else
-            {
-                other_info_arr.push({name:form_tpye,value:w_test});
-            }
-
-            break;
-
-        case 'employment_satif':
-        case 'satif':
-
-            var answer_score = $('input[name="answer_score"]').val();
-            other_info_arr.push({name:form_tpye,value:answer_score});
-
-            break;
-
-        case 'familyship':
-
-            var answer_score = $('input[name="answer_score"]').val();
-            other_info_arr.push({name:form_tpye,value:answer_score});
-
-            var w_test = $('input[name="w_test"]:checked').val();
-            if(w_test==undefined)
-            {
-                other_info_arr.push({name:form_tpye,value:''});
-            }
-            else
-            {
-                other_info_arr.push({name:form_tpye,value:w_test});
-            }
-
-            break;
-
-        case 'BSRS5':
-
-            var answer_score = $('input[name="answer_score"]').val();
-            other_info_arr.push({name:form_tpye,value:answer_score});
-            var statement = $('textarea[name="statement"]').val();
-            other_info_arr.push({name:form_tpye,value:statement});
-
-            break;
-
         case 'settlement':
             var basic_indicator = $('input[name="basic_indicator"]:checked').length;
             var end_indicator = $('input[name="end_indicator"]:checked').length;
@@ -415,273 +230,11 @@ function check_file_exist(){
             other_info_arr.push({name:form_tpye,value:indicators_str});
 
             break;
-
-        case 'health':
-            
-            break;
-        case 'interlocution':
-            var interlocution_date = $('input[name="interlocution_date"]').val();
-            var interlocution_ques = $('textarea[name="interlocution_ques"]').val();
-            var interlocution_assign_name = $('input[name="assign_name"]').val();
-
-            other_info_arr.push({name:form_tpye,value:interlocution_date});
-            other_info_arr.push({name:form_tpye,value:interlocution_ques});
-            other_info_arr.push({name:form_tpye,value:interlocution_assign_name});
-            break;
-
-        default:
-            
-            break;
     }
 
     return other_info_arr;
 
  }
-
-
-//儲存後資料預覽測試region
-test = function()
-{   
-    if($('input[type="file"]').length!=0)
-    {
-        var exist_arr = check_file_exist();
-
-        if(exist_arr.length!=0)
-        {
-            swal({
-                title: exist_arr[0][0]+"已存在。相關資訊如下：\n"+exist_arr[0][1],
-                text: "選擇『確認送出』覆蓋現有檔案，或是按『取消』更改檔名",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#DD6B55",
-                confirmButtonText: "確認送出",
-                cancelButtonText: "取消",
-                showConfirmButton: true,
-                showCancelButton: true
-            }).then(function(result) {
-                if (result) {
-                    submit_data();
-                }
-            }, function(dismiss){
-                if(dismiss == 'cancel'){
-                    swal({
-                        title:'已取消，建議請更改檔名',
-                        type:'success',                        
-                    })
-                }
-            }).catch(swal.noop)
-        }
-        else
-        {
-            submit_data();
-        }
-    }
-    else
-    {
-        submit_data();
-    }
-   
-    
-}
-
-
-
-function submit_data()
-{
-    var form_type = getUrlVars()["form_type"];
-    //去掉資料內前後端多餘的空白
-    $('input, textarea').each(function(){
-        if($(this).attr('type')!='file')
-        {
-            $(this).val(jQuery.trim($(this).val()));
-        }
-    });
-
-    var form_data = new FormData();
-
-    var customfile = $('[type="file"]').prop('files');
-
-
-    // console.log(typeof customfile)
-    
-    var form = $('.form').serializeArray();
-    // console.log(form)
-
-    if(file_name.length==0)
-    {
-        var input_files_len = $('[type="file"]');
-        var inputs_files_value = $('[type="file"]').attr("value");
-        var inputs_files_name = $('[type="file"]').attr("name");
-
-        if(inputs_files_value!=undefined)
-        {
-            for(var i=0;i<input_files_len.length;i++)
-            {
-                file_name.push({name:inputs_files_name,value:inputs_files_value}); 
-            }
-        }
-
-        form = form.concat(file_name);
-    }
-    else
-    {
-        form = form.concat(file_name);
-    }
-
-    if(form_type=="health")
-    {
-        form_health_arr = new Array();
-
-        $(".form_health table").each(function(index, name){
-            var get_tab_id = $(this).attr("id");
-            var name_arr1 = $("[name='"+get_tab_id+"&medical_rec_1[]']");
-            var name_arr2 = $("[name='"+get_tab_id+"&medical_rec_2[]']");
-        
-            var arr_len  = name_arr1.length;
-            var arr2_len  = name_arr2.length;
-        
-            var arr1 = new Array();
-            var arr2 = new Array();
-           
-            for (i = 0; i < arr_len; i++)
-            {
-                arr1.push(name_arr1[i].value); 
-            } 
-            
-            for (i = 0; i < arr2_len; i++)
-            {
-                arr2.push(name_arr2[i].value); 
-            }
-            var isstrspace = 0;
-
-            arr1.forEach(function(item, index, arr) {
-                if (item==null || item=="") {
-                    isstrspace ++
-                }
-            });
-
-            arr2.forEach(function(item, index, arr) {
-                if (item==null || item=="") {
-                    isstrspace ++
-                }
-            });
-
-            console.log(isstrspace)
-            if(isstrspace!=(arr_len+arr2_len))
-            {
-                form_health_arr.push({name:name_arr1.attr("name"),value:arr1})
-                form_health_arr.push({name:name_arr2.attr("name"),value:arr2})
-            }
-            else
-            {
-                console.log("no")
-            }
-
-
-        });
-        // var form_health_arr = $('.form_health').serializeArray();
-
-        form_data.append("health_rec", JSON.stringify(form_health_arr));
-    }
-
-    if(form_type=="resource")
-    {
-        form_resource_arr = new Array();
-
-        $(".form_resource table").each(function(index, name){
-            var get_tab_id = $(this).attr("id");
-            var name_arr1 = $("[name='"+get_tab_id+"&resource_rec_1[]']");
-        
-            var arr_len  = name_arr1.length;
-        
-            var arr1 = new Array();
-           
-            for (i = 0; i < arr_len; i++)
-            {
-                arr1.push(name_arr1[i].value); 
-            } 
-            
-            var isstrspace = 0;
-
-            arr1.forEach(function(item, index, arr) {
-                if (item==null || item=="") {
-                    isstrspace ++
-                }
-            });
-
-            if(isstrspace!=arr_len)
-            {
-                form_resource_arr.push({name:name_arr1.attr("name"),value:arr1})
-            }
-        });
-
-        form_data.append("answer", JSON.stringify(form_resource_arr));
-    }
-    else
-    {
-        form_data.append("answer", JSON.stringify(form));
-    }
-
-    var other_info = other_info_push(form_type);
-
-    if(other_info.length>0)
-    {
-        form_data.append("other_info", JSON.stringify(other_info));
-    }
-
-    // console.log(form)
-
-     //將其他摘要訊息添加至form_data，other_info用來顯示在placement_case_all.php的各量表摘要表格上
-     var other_info = other_info_push(form_type);
-
-    //  console.log(other_info)
-    //  console.log(other_info.length)
-     if(other_info.length>0)
-     {
-         form_data.append("other_info", JSON.stringify(other_info));
-     }
- 
-     form_data.append("Fillin_date", $("input[name*='fillin_date']").val());
-
-
-     if(typeof customfile !== 'undefined')
-     {
-         if(customfile.length!=0)
-         {
-             for(var i=0; i<customfile.length; i++){
-                 form_data.append("file4", customfile[i]);
-                 // console.log(customfile[i])
-             }
-         }
-         else
-         {
-             //載入量表『無重新上傳檔案』情況下按儲存，則加入File_name供後端程式判斷
-             form_data.append("File_name", $('[type="file"]').attr("value"));
-         }
-     }
-
-    form_data.append("Case_seqid", pcase_id);
-    form_data.append("Case_id", open_id);
-    form_data.append("Form_id", form_id);
-    form_data.append("Form_type", form_type);
-    form_data.append("Case_name", name);
-    form_data.append("Case_pid", pid);
-    // form_data.append("Case_report", JSON.stringify(case_report_datas));
-
-    // if(form_type=="case" || form_type=="interlocution")
-    // {
-    //     var case_report2_datas = get_case_report2_datas();
-    //     form_data.append("Case_report2", JSON.stringify(case_report2_datas));
-    // }
-
-    // form_data.append("answer", JSON.stringify(form));
-
-    for (var pair of form_data.entries()) {
-        console.log(pair[0]+ ', ' + pair[1]); 
-    }
-}
-//endregion
-
 
 //網頁載入 region
 $(document).ready(function () {
@@ -692,7 +245,7 @@ $(document).ready(function () {
 
     
     //家庭關係量表自動填入性別
-    // $("input[name='sex'][value='"+gender+"生']").attr('checked',true);
+    $("input[name='sex'][value='"+gender+"生']").attr('checked',true);
 
     //個案服務滿意度調查表自動填入資料
     $("#case_name").val(name);
@@ -717,9 +270,6 @@ $(document).ready(function () {
         $(this).val(timenow);
     });
 
-    // 載入 會談紀錄表 問題類型
-    // add_form_interlocution_ques_type_keywords();
-
     var url = "";
 
     //判斷是否為個案評估表或安置、自立宿舍評估量表
@@ -737,19 +287,11 @@ $(document).ready(function () {
     //載入各量表 資料
     load_all_forms_data(form_type,url);
 
-    //計算各量表 分數
-    // answer_score_counting();
-
-    //載入憂鬱量表內容 個案評估表->成效評估
-    // load_sullen_data();
-    //載入生活品質量表內容 個案評估表->成效評估
-    // load_life_data();
-    //載入家庭關係量表內容 個案評估表->成效評估
-    // load_familyship_data();
-    //載入BSRS-5量表內容 個案評估表->成效評估
-    // load_BSRS5_data();
 
     //手動新增按鈕點擊跳出模態框
+    $('#case_storage_model').on('shown.bs.modal', function () {
+        $("#add_"+form_type+"_detail").trigger('focus');
+    });
     $('#trans_grade_model').on('shown.bs.modal', function () {
         $('#trans_grade').trigger('focus');
     });
@@ -771,6 +313,10 @@ $(document).ready(function () {
             }
         },
     });
+
+    // 載入全部user至下拉式選單
+    append_user();
+
 
     $.ajax({
         url: "database/find_placement_case.php",
@@ -941,109 +487,8 @@ function load_all_forms_data(type_name,url_str)
                     }
                 }
                 //endregion
-
-                if(form_type == "health")
-                {
-                    health_form_names = new Array();
-
-                    var data_json_health = JSON.parse("[" +data[0].Health_rec.replace('\"\[\{', '\[\{').replace('\}\]\"', '\}\]') + "]");
-
-                    $.each(data_json_health[0], function (i, datan) {
-                        health_form_names.push(datan.name);
-                    });
-
-                    uniqueArr = filterArray(health_form_names)
-                    var tab_arr = new Array();
-
-                    for(var i = 0; i < uniqueArr.length; i++)
-                    {
-                        var tab_n = uniqueArr[i].split('\&');
-                        tab_arr.push(tab_n[0])
-                    }
-                    tab_arr = filterArray(tab_arr)
-                    tab_arr_len = tab_arr.length;
-
-                    for(var i=1;i<=tab_arr_len;i++)
-                    {
-                        if(i!=1)
-                        {
-                            var cssString = "";
-
-                            var table_str = "";
-    
-                            cssString += '<li class="nav-item" role="presentation">' +
-                                '<a class="nav-link" id="profile-tab'+(parseInt(i)+1)+'" data-toggle="pill" href="#tabx0_'+i+'" role="tab"  aria-selected="false">' +
-                                '<b>' + '就診紀錄表'+i+'</b>' +
-                                '</a>' +
-                                '</li>';
-        
-                            table_str += 
-                            '<div class="tab-pane fade" id="tabx0_'+i+'" role="tabpanel" aria-labelledby="profile-tab'+(parseInt(i)+1)+'">'+
-                                '<div class="col-sm-12">'+
-                                    '<div style="margin-top:15px" class="text-center">'+
-                                        '<h4>就診紀錄表'+i+'</h4>'+
-                                    '</div>'+
-                                '</div>'+
-                                '<div class="panel-body">'+
-                                '</div>'+
-                                '<div class="table-wrap">'+
-                                    '<div class="table-responsive">'+
-                                        '<form class="form_health">'+
-                                            '<table style="width:100%;" class="table table-bordered medical_rec_table" id="mtable'+i+'">'+
-                                            '<thead class="medical_rec_1_th"></thead>'+
-                                            '<tbody class="medical_rec_1"></tbody>'+
-                                            '<thead class="medical_rec_2_th"></thead>'+
-                                            '<tbody class="medical_rec_2"></tbody>'+
-                                            '</table>'+
-                                        '</form>'+
-                                    '</div>'+
-                                '</div>'+
-                            '</div>';
-    
-                            $("#new_rec").before(cssString);
-    
-                            $(".panel-footer").before(table_str);
-    
-                            get_generate_medical_thead();
-                            generate_medical_td_default();
-    
-    
-                            $(".nav-link").click(function (e) {
-                                e.preventDefault();
-                                $(this).tab('show');
-                            })
-                        }
-                        
-                    }
-
-                    // console.log(data_json_health[0])
-                    //依據input的type類型名稱寫入資料，file類型名稱另外寫 region
-                    $.each(data_json_health[0], function (i, datan) {
-                        $.each(datan.value, function (e, v) {
-                            $("input[name='"+datan.name+"']").eq(e).val(v);                            
-                        });
-                    });
-
-                }
             }
 
-            if(form_type == "resource")
-            {
-                var data_json_resource = JSON.parse("[" +data[0].answer.replace('\"\[\{', '\[\{').replace('\}\]\"', '\}\]') + "]");
-
-                console.log(data_json_resource[0])
-                // console.log(data_json_resource[0])
-                //依據input的type類型名稱寫入資料，file類型名稱另外寫 region
-                $.each(data_json_resource[0], function (i, datan) {
-                    $.each(datan.value, function (e, v) {
-                        $("input[name='"+datan.name+"']").eq(e).val(v);                            
-                    });
-                });
-
-            }
-
-           
-        
         },
         error: function (e) {
             console.log(e)
@@ -1066,8 +511,61 @@ function filterArray(inputArr){
 
 
 
-//按下儲存region
-$("#add_"+form_type+"_detail").on('click', function () {
+//按下儲存 設定存檔類型 region
+// $("#add_"+form_type+"_detail").on('click', function () {
+$("#case_storage_submit").on('click', function () {
+
+    var case_storage_type = $("#case_storage_type").val()
+
+    // console.log(case_storage_type)
+
+
+    if(case_storage_type == "cache")
+    {
+        form_check_submit(case_storage_type);
+    }
+    else if(case_storage_type == "storage")
+    {
+        if($("#supervise1").val() != "" && $("#supervise2").val() != "")
+        {
+            if($("#case_storage_pwd").val() == "")
+            {
+                swal({
+                    title:'若選擇『確認上傳』，請輸入您的使用者登入密碼',
+                    type:'error',                        
+                })
+            }
+            else
+            {
+            
+                if($("#case_storage_pwd").val() == login_user_pwd)
+                {
+                    form_check_submit(case_storage_type);
+                }
+                else
+                {
+                    swal({
+                        title:'您的使用者登入密碼輸入不正確，請重新輸入',
+                        type:'error',                        
+                    })
+                }
+            }
+        }
+        else
+        {
+            swal({
+                title:'請選擇督導/執行長名稱',
+                type:'error',                        
+            })
+        }
+    }
+});
+//endregion
+    
+form_check_submit = function(submit_storage_type) {
+
+    window.storage_type = submit_storage_type;
+    // console.log(storage_type)
 
     //判斷該量表是否含有 input[type="file"] 類型資料
     if($('input[type="file"]').length!=0)
@@ -1109,11 +607,7 @@ $("#add_"+form_type+"_detail").on('click', function () {
     {
         submit_form_data();
     }
-    
-
-    
-});
-//endregion
+}
 
 // 存放監聽表單的子元素變動事件的列表
 window.listen_form_change = new Array();
@@ -1280,239 +774,269 @@ window.submit_detail_click = true;
 
 //送出量表資料region
 function submit_form_data() {
-    var form_type = getUrlVars()["form_type"];
+    if(submit_detail_click)
+    {
+        submit_detail_click = false;
 
-    //先執行 出入矯正機關 計算約共幾年幾月
-    calculation_date();
+        var form_type = getUrlVars()["form_type"];
 
-    //去掉資料內前後端多餘的空白，file類型須排除，否則報錯
-    $('input, textarea').each(function(){
-        if($(this).attr('type')!='file')
-        {
-            $(this).val(jQuery.trim($(this).val()));
-        }
-    });
+        //先執行 出入矯正機關 計算約共幾年幾月
+        calculation_date();
     
-    //創立FormData Oject
-    //傳輸 input type="file"類型檔案需用FormData Oject格式傳送ajax
-    var form_data = new FormData();
-
-    //獲取File Object
-    var customfile = $('[type="file"]').prop('files');
-    // console.log(typeof customfile)
-
-    //獲取所有form的資料轉為serializeArray
-    var form = $('.form').serializeArray();
-
-    //form serializeArray物件合併input type="file"類型物件 (serializeArray不會將input type="file"類型資料加入，需額外設定)
-    if(file_name.length==0)
-    {
-        var input_files_len = $('[type="file"]');
-        var inputs_files_value = $('[type="file"]').attr("value");
-        var inputs_files_name = $('[type="file"]').attr("name");
-
-        if(inputs_files_value!=undefined)
-        {
-            for(var i=0;i<input_files_len.length;i++)
+        //去掉資料內前後端多餘的空白，file類型須排除，否則報錯
+        $('input, textarea').each(function(){
+            if($(this).attr('type')!='file')
             {
-                file_name.push({name:inputs_files_name,value:inputs_files_value}); 
-            }
-        }
-
-        form = form.concat(file_name);
-    }
-    else
-    {
-        form = form.concat(file_name);
-    }
-
-    if(form_type=="health")
-    {
-        form_health_arr = new Array();
-
-        $(".form_health table").each(function(index, name){
-            var get_tab_id = $(this).attr("id");
-            var name_arr1 = $("[name='"+get_tab_id+"&medical_rec_1[]']");
-            var name_arr2 = $("[name='"+get_tab_id+"&medical_rec_2[]']");
-        
-            var arr_len  = name_arr1.length;
-            var arr2_len  = name_arr2.length;
-        
-            var arr1 = new Array();
-            var arr2 = new Array();
-           
-            for (i = 0; i < arr_len; i++)
-            {
-                arr1.push(name_arr1[i].value); 
-            } 
-            
-            for (i = 0; i < arr2_len; i++)
-            {
-                arr2.push(name_arr2[i].value); 
-            }
-            var isstrspace = 0;
-
-            arr1.forEach(function(item, index, arr) {
-                if (item==null || item=="") {
-                    isstrspace ++
-                }
-            });
-
-            arr2.forEach(function(item, index, arr) {
-                if (item==null || item=="") {
-                    isstrspace ++
-                }
-            });
-
-            if(isstrspace!=(arr_len+arr2_len))
-            {
-                form_health_arr.push({name:name_arr1.attr("name"),value:arr1})
-                form_health_arr.push({name:name_arr2.attr("name"),value:arr2})
-            }
-        });
-        // var form_health_arr = $('.form_health').serializeArray();
-
-        form_data.append("health_rec", JSON.stringify(form_health_arr));
-    }
-
-    // 社會資源應用表格
-    if(form_type=="resource")
-    {
-        form_resource_arr = new Array();
-
-        $(".form_resource table").each(function(index, name){
-            var get_tab_id = $(this).attr("id");
-            var name_arr1 = $("[name='"+get_tab_id+"&resource_rec_1[]']");
-        
-            var arr_len  = name_arr1.length;
-        
-            var arr1 = new Array();
-        
-            for (i = 0; i < arr_len; i++)
-            {
-                arr1.push(name_arr1[i].value); 
-            } 
-            
-            var isstrspace = 0;
-
-            arr1.forEach(function(item, index, arr) {
-                if (item==null || item=="") {
-                    isstrspace ++
-                }
-            });
-
-            if(isstrspace!=arr_len)
-            {
-                form_resource_arr.push({name:name_arr1.attr("name"),value:arr1})
+                $(this).val(jQuery.trim($(this).val()));
             }
         });
 
-        form_data.append("answer", JSON.stringify(form_resource_arr));
-    }
-    else
-    {
-        form_data.append("answer", JSON.stringify(form));
-    }
-
-    //將其他摘要訊息添加至form_data，other_info用來顯示在placement_case_all.php的各量表摘要表格上
-    var other_info = other_info_push(form_type);
-
-    // console.log(other_info)
-    // console.log(other_info.length)
-    if(other_info.length>0)
-    {
-        form_data.append("other_info", JSON.stringify(other_info));
-    }
-
-    //將填寫日期添加至form_data，fillin_date用來顯示在placement_case_all.php的各量表摘要表格上
-    form_data.append("Fillin_date", $("input[name*='fillin_date']").val());
-
-    //將 以下資料添加到 FormData Oject region
-
-    //若量表無 input type="file"類型資料 則不執行該迴圈
-    //量表沒有input type="file"類型資料，customfile會顯示undefined，customfile.length會報錯
-    //量表存在input type="file"類型資料，但無任何檔案上傳customfile.length會顯示0
-    if(typeof customfile !== 'undefined')
-    {
-        if(customfile.length!=0)
+        //Time Now
+        var timenow = moment().format('YYYY-MM-DD');
+        
+        //創立FormData Oject
+        //傳輸 input type="file"類型檔案需用FormData Oject格式傳送ajax
+        var form_data = new FormData();
+    
+        //獲取File Object
+        var customfile = $('[type="file"]').prop('files');
+        // console.log(typeof customfile)
+    
+        //獲取所有form的資料轉為serializeArray
+        var form = $('.form').serializeArray();
+    
+        //form serializeArray物件合併input type="file"類型物件 (serializeArray不會將input type="file"類型資料加入，需額外設定)
+        if(file_name.length==0)
         {
-            for(var i=0; i<customfile.length; i++){
-                form_data.append("file4", customfile[i]);
-                // console.log(customfile[i])
+            var input_files_len = $('[type="file"]');
+            var inputs_files_value = $('[type="file"]').attr("value");
+            var inputs_files_name = $('[type="file"]').attr("name");
+    
+            if(inputs_files_value!=undefined)
+            {
+                for(var i=0;i<input_files_len.length;i++)
+                {
+                    file_name.push({name:inputs_files_name,value:inputs_files_value}); 
+                }
             }
+    
+            form = form.concat(file_name);
         }
         else
         {
-            //載入量表『無重新上傳檔案』情況下按儲存，則加入File_name供後端程式判斷
-            form_data.append("File_name", $('[type="file"]').attr("value"));
+            form = form.concat(file_name);
         }
-    }
+    
 
-    form_data.append("Case_seqid", pcase_id);
-    form_data.append("Case_id", open_id);
-    form_data.append("Form_id", form_id);
-    form_data.append("Form_type", form_type);
-    form_data.append("Case_name", name);
-    form_data.append("Case_pid", pid);
-    // form_data.append("Case_report", JSON.stringify(case_report_datas));
-        
-    // if(form_type=="case" || form_type=="interlocution")
-    // {
-    //     var case_report2_datas = get_case_report2_datas();
-    //     form_data.append("Case_report2", JSON.stringify(case_report2_datas));
-    // }
-
-    // form_data.append("answer", JSON.stringify(form));
-    //endregion
-
-    // for (var pair of form_data.entries()) {
-    //     console.log(pair[0]+ ', ' + pair[1]); 
-    // }
-
-    //傳輸 FormData Oject 格式資料ajax須設定如下
-    $.ajax({
-        type: 'POST',
-        url: 'database/add_update_placement_case_detail_form.php',
-        // data: {
-        //     Case_id:open_id,
-        //     Form_id:form_id,
-        //     Form_type:form_type,
-        //     Case_name:name,
-        //     Case_pid:pid,
-        //     answer:form
-        // },
-        data:form_data,
-        contentType:false,
-        cache:false,
-        processData:false,
-        async:true,
-        success: function (data) {
-            console.log(data)
-            //console.log(typeof data)
-            if(data == 1){
-                swal({
-                    title:'上傳成功！',
-                    type:'success',                        
-                }).then(function(){
-                    location.reload();
-                }) 
+    
+        // 社會資源應用表格
+        if(form_type=="resource")
+        {
+            form_resource_arr = new Array();
+    
+            $(".form_resource table").each(function(index, name){
+                var get_tab_id = $(this).attr("id");
+                var name_arr1 = $("[name='"+get_tab_id+"&resource_rec_1[]']");
+            
+                var arr_len  = name_arr1.length;
+            
+                var arr1 = new Array();
+            
+                for (i = 0; i < arr_len; i++)
+                {
+                    arr1.push(name_arr1[i].value); 
+                } 
+                
+                var isstrspace = 0;
+    
+                arr1.forEach(function(item, index, arr) {
+                    if (item==null || item=="") {
+                        isstrspace ++
+                    }
+                });
+    
+                if(isstrspace!=arr_len)
+                {
+                    form_resource_arr.push({name:name_arr1.attr("name"),value:arr1})
+                }
+            });
+    
+            form_data.append("answer", JSON.stringify(form_resource_arr));
+        }
+        else
+        {
+            form_data.append("answer", JSON.stringify(form));
+        }
+    
+        //將其他摘要訊息添加至form_data，other_info用來顯示在placement_case_all.php的各量表摘要表格上
+        var other_info = other_info_push(form_type);
+    
+        // console.log(other_info)
+        // console.log(other_info.length)
+        if(other_info.length>0)
+        {
+            form_data.append("other_info", JSON.stringify(other_info));
+        }
+    
+        //將填寫日期添加至form_data，fillin_date用來顯示在placement_case_all.php的各量表摘要表格上
+        form_data.append("Fillin_date", $("input[name*='fillin_date']").val());
+    
+        //將 以下資料添加到 FormData Oject region
+    
+        //若量表無 input type="file"類型資料 則不執行該迴圈
+        //量表沒有input type="file"類型資料，customfile會顯示undefined，customfile.length會報錯
+        //量表存在input type="file"類型資料，但無任何檔案上傳customfile.length會顯示0
+        if(typeof customfile !== 'undefined')
+        {
+            if(customfile.length!=0)
+            {
+                for(var i=0; i<customfile.length; i++){
+                    form_data.append("file4", customfile[i]);
+                    // console.log(customfile[i])
+                }
             }
-           else
-           {
+            else
+            {
+                //載入量表『無重新上傳檔案』情況下按儲存，則加入File_name供後端程式判斷
+                form_data.append("File_name", $('[type="file"]').attr("value"));
+            }
+        }
+    
+        form_data.append("Case_seqid", pcase_id);
+        form_data.append("Case_id", open_id);
+        form_data.append("Form_id", form_id);
+        form_data.append("Form_type", form_type);
+        form_data.append("Case_name", name);
+        form_data.append("Case_pid", pid);
+        // form_data.append("Case_report", JSON.stringify(case_report_datas));
+        form_data.append("Case_storage", storage_type);
+
+        if(storage_type == "storage")
+        {
+            form_data.append("Supervise1",$("#supervise1").val());
+            form_data.append("Supervise2",$("#supervise2").val());
+
+            window.form_type_ch_name = "";
+            // window.form_type_tag_num = "#" + form_type + "_tab";
+
+            switch (form_type) {
+                case "case":
+                    form_type_ch_name = "個案評估表";
+                    
+                    break;
+            
+                case "interlocution":
+                    form_type_ch_name = "個案會談紀錄";
+                    break;
+
+                case "resource":
+                    form_type_ch_name = "社會資源應用表格";
+                    break;
+
+                case "life":
+                    form_type_ch_name = "生活品質問卷";
+                    break;
+                    
+                case "health":
+                    form_type_ch_name = "健康管理評估表";
+                    break;
+                    
+                case "sullen":
+                    form_type_ch_name = "憂鬱量表";
+                    break;
+                    
+                case "employment_satif":
+                    form_type_ch_name = "就業需求評估表&就業服務滿意度調查表";
+                    break;
+                
+                case "satif":
+                    form_type_ch_name = "服務滿意度量表";
+                    break;
+                
+                case "familyship":
+                    form_type_ch_name = "家庭關係";
+                    break;
+                
+                case "BSRS5":
+                    form_type_ch_name = "BSRS-5量表";
+                    break;
+                
+                case "settlement":
+                    form_type_ch_name = "安置、自立宿舍評估量表";
+                    break;
+            }
+
+            form_data.append("history_url", history_url + "&form_type=" + form_type);
+            form_data.append("case_user", $("#case_user").val());          
+
+            form_data.append("title", '安置評估-(' + form_type_ch_name + ')簽核：' + '案號：' + open_id);
+            form_data.append("signer", $("#supervise1").val() + "、" + $("#supervise2").val());
+            form_data.append("rec_date_time", timenow +" 00:00");          
+        }
+            
+        // if(form_type=="case" || form_type=="interlocution")
+        // {
+        //     var case_report2_datas = get_case_report2_datas();
+        //     form_data.append("Case_report2", JSON.stringify(case_report2_datas));
+        // }
+    
+        // for (var pair of form_data.entries()) {
+        //     console.log(pair[0]+ ', ' + pair[1]); 
+        // }
+    
+        //傳輸 FormData Oject 格式資料ajax須設定如下
+        $.ajax({
+            type: 'POST',
+            url: 'database/add_update_placement_case_detail_form.php',
+            // data: {
+            //     Case_id:open_id,
+            //     Form_id:form_id,
+            //     Form_type:form_type,
+            //     Case_name:name,
+            //     Case_pid:pid,
+            //     answer:form
+            // },
+            data:form_data,
+            contentType:false,
+            cache:false,
+            processData:false,
+            async:true,
+            success: function (data) {
+                console.log(data)
+                //console.log(typeof data)
+                if(data == 1){
+                    swal({
+                        title:'上傳成功！',
+                        type:'success',                        
+                    }).then(function(){
+                        location.reload();
+                    }) 
+                }
+               else
+               {
+                    swal({
+                        title:'上傳失敗！請聯絡負責單位',
+                        type:'error',
+                    })
+                }
+            },
+            error: function (e) {
+                console.log(e);
                 swal({
                     title:'上傳失敗！請聯絡負責單位',
                     type:'error',
                 })
             }
-        },
-        error: function (e) {
-            console.log(e);
-            swal({
-                title:'上傳失敗！請聯絡負責單位',
-                type:'error',
-            })
-        }
-    });
+        });
+    
+    
+        setTimeout(function() {
+            submit_detail_click = true;
+        }, 5000);//五秒内不能重复点击
+
+    }
+
+
 }
 //endregion
 
@@ -1583,11 +1107,11 @@ $("#preview").on('click', function(){
 
 //設定麵包屑返回region
 
-var url = 'placement_case_all.php?name='+name+'&gender='+gender+'&pid='+pid+'&date='+date+'&property='+property+'&type='+type+'&grade='+ grade+'&id='+pcase_id+'&open_id='+open_id+'&referral='+referral+'&case_Create_date='+case_Create_date+'&unopen_type='+unopen_type+'&birth='+birth+'';
-$("#history").attr('href',url);
+window.history_url = 'placement_case_all.php?name='+name+'&gender='+gender+'&pid='+pid+'&date='+date+'&property='+property+'&type='+type+'&grade='+ grade+'&id='+pcase_id+'&open_id='+open_id+'&referral='+referral+'&case_Create_date='+case_Create_date+'&unopen_type='+unopen_type+'&birth='+birth+'';
+$("#history").attr('href',history_url);
 
 history_back_btn = function() {
-    location.href=url;
+    location.href = history_url;
 }
 
 var url2 = 'placement_case_all_all.php?id='+pcase_id+'&open_id='+open_id+'';
@@ -1715,50 +1239,41 @@ $("#end").on('click', function () {
         confirmButtonText: '確認！',
         cancelButtonText: '取消'
     }).then(function (isConfirm) {
-        // if (isConfirm) {
+        if (isConfirm) {
 
-        //     var end_indicator_text = $("[name*='end_indicator']").val();
-        //     var diagnose_main_text = $("[name*='diagnose_main']").val();
-        //     var diagnose_minor_text = $("[name*='diagnose_minor']").val();
-        //     var case_closed_yes_text = $("[name*='case_closed_yes']").val();
-        //     var customFile_text = $("[name*='customFile']").text();
-        //     var employment_radio_checked = $("[name*='employment_radio']:checked").val();
-        //     var social_adaptation_radio_checked = $("[name*='social_adaptation_radio']:checked").val();
-        //     // alert(customFile_text)
-        //     // alert(end_indicator_text)
-        //     // alert(diagnose_main_text)
-        //     // alert(case_closed_yes_text)
-        //     closed_href = 'placement_case_trans_closed.php?name='+name+'&gender='+gender+'&id='+pcase_id+'&open_id='+open_id+'&birth='+birth+'&open_date='+date+'&main_issue='+diagnose_main_text+'&minor_issue='+diagnose_minor_text+'&closed_reason='+end_indicator_text+'&closed_remark='+case_closed_yes_text+'&file='+customFile_text+'&checked_1='+employment_radio_checked+'&checked_2='+social_adaptation_radio_checked+'';
-        //     window.open(closed_href);
-        // }
-
-    });
-});
-//endregion
-
-//跳轉至個案會談紀錄region
-$("#face_page").on('click', function(){
-    var face_id = getUrlVars()["id"];
-    var num = getUrlVars()["face_num"];
-    console.log(num)
-    $.ajax({
-        url: "database/find_open_all.php",
-        type: "POST",
-        data: {
-            face_id: face_id,
-            num:num
-        },
-        dataType: "JSON",
-        async: false, //啟用同步請求
-        success: function (data) {
-//            console.log(data.url[0])
-            window.open(data.url[0]);
-        },
-
-        error: function (e) {
-            console.log(e)
+            var end_indicator_text = $("[name*='end_indicator']").val();
+            var diagnose_main_text = $("[name*='diagnose_main']").val();
+            var diagnose_minor_text = $("[name*='diagnose_minor']").val();
+            var case_closed_yes_text = $("[name*='case_closed_yes']").val();
+            var customFile_text = $("[name*='customFile']").text();
+            var employment_radio_checked = $("[name*='employment_radio']:checked").val();
+            var social_adaptation_radio_checked = $("[name*='social_adaptation_radio']:checked").val();
+            // alert(customFile_text)
+            // alert(end_indicator_text)
+            // alert(diagnose_main_text)
+            // alert(case_closed_yes_text)
+            closed_href = 'placement_case_trans_closed.php?name='+name+'&gender='+gender+'&id='+pcase_id+'&open_id='+open_id+'&birth='+birth+'&open_date='+date+'&main_issue='+diagnose_main_text+'&minor_issue='+diagnose_minor_text+'&closed_reason='+end_indicator_text+'&closed_remark='+case_closed_yes_text+'&file='+customFile_text+'&checked_1='+employment_radio_checked+'&checked_2='+social_adaptation_radio_checked+'';
+            window.open(closed_href);
         }
+
     });
-    
 });
 //endregion
+
+//呼叫user方法region
+function append_user(){             
+    $.ajax({
+        type:'POST',
+        url:'database/find_check_user.php',
+        dataType: "JSON",
+        async: false,//啟用同步請求
+        success: function (data) {
+            // console.log('test',data)
+            for (var index in data.Id) {
+              $("#supervise1").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+              $("#supervise2").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+            }
+        },
+    });
+  }
+  //endregion

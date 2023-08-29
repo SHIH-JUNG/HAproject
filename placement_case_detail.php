@@ -116,6 +116,63 @@
     </div>
 
 
+   <!--\ Modal -->
+        <div class="modal fade" id="case_storage_model" tabindex="-1" role="dialog" aria-labelledby="case_storage_modelLabel" data-backdrop="static">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="case_storage_modelLabel">選擇儲存方式</h4>
+                </div>
+                <div class="modal-body">
+                    <table style="width:auto;margin:0 auto;" class="table table-bordered">
+                        <tr style="text-align:left">
+                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>個案資料儲存方式</td>
+                            <td style="border-bottom: solid 1px;">
+                                <select id="case_storage_type" style="width:100%;">
+                                    <option value="cache">暫存</option>
+                                    <option value="storage">確認上傳</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr class="case_storage_tr" style="text-align:left">
+                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">督導</td>
+                            <td style="border-bottom: solid 1px;">
+                                <select id="supervise1" style="width:100%;">
+                                    <option value="">請選擇</option>
+                                </select><br/>
+                                <span style="font-size:8px;color:red;">若選擇『確認上傳』，請選擇督導名稱。</span>
+                            </td>
+                        </tr>
+                        
+                        <tr class="case_storage_tr" style="text-align:left">
+                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">執行長</td>
+                            <td style="border-bottom: solid 1px;">
+                                <select id="supervise2" style="width:100%;">
+                                    <option value="">請選擇</option>
+                                </select><br/>
+                                <span style="font-size:8px;color:red;">若選擇『確認上傳』，請選擇執行長名稱。</span>
+                            </td>
+                        </tr>
+                        <tr class="case_storage_tr" style="text-align:left">
+                            <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;">使用者登入密碼</td>
+                            <td style="border-bottom: solid 1px;">
+                                <input id="case_storage_pwd" type="password"><br/>
+                                <span style="font-size:8px;color:red;">若選擇『確認上傳』，請輸入您的使用者登入密碼。</span>
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="case_storage_submit" class="btn btn-default">送出</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal /-->
+
+
     <!--\ Modal -->
     <div class="modal fade" id="trans_grade_model" tabindex="-1" role="dialog" aria-labelledby="trans_grade_modelLabel" data-backdrop="static">
         <div class="modal-dialog modal-lg" role="document">
@@ -211,6 +268,10 @@
     <script>
         //設定js變數抓取使用者名稱
         var assign_name = '<?php echo $_SESSION["name"]; ?>';
+
+        //設定js變數抓取使用者權限
+        var login_user_pwd = '<?php echo $_SESSION['pwd']; ?>';
+
     </script>
     <script>
          $(document).ready(function () {

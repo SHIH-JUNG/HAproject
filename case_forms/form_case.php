@@ -962,7 +962,7 @@
                                     </svg>
                                     返回</button>
                                     <button style="font-size:20px" id="preview" class="btn btn-default">預覽匯出</button>
-                                    <button style="font-size:20px" onclick="test()" class="btn btn-default">測試</button>
+                                    <!-- <button style="font-size:20px" onclick="test()" class="btn btn-default">測試</button> -->
                                 </div>
                                 <div class="text-right">
                                     <button style="font-size:20px" id="trans_grade" type="button" class="btn btn-default" data-toggle="modal" data-target="#trans_grade_model">轉級</button>
