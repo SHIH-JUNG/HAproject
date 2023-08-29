@@ -26,6 +26,299 @@ var checked_1 = (typeof checked_1 === undefined) ? '' : decodeURI(getUrlVars()["
 var checked_2 = (typeof checked_2 === undefined) ? '' : decodeURI(getUrlVars()["checked_2"]);
 //endregion
 
+//將日期轉為民國年格式111.03.07 region
+trans_to_Tw = function (endate) {
+    var strAry = endate.split("-");
+  
+    if (parseInt(strAry[0]) > 1911) {
+      strAry[0] = parseInt(strAry[0]) - 1911;
+    }
+  
+    return strAry[0] + "年" + strAry[1] + "月" + strAry[2] + "日";
+};
+//endregion
+
+window.sullen_data_str = "";
+window.life_data_str = "";
+window.familyship_data_str = "";
+window.BSRS5_data_str = "";
+
+// 載入憂鬱量表的測驗內容 region
+function load_sullen_data() {
+    $.ajax({
+        url: "database/find_case_all.php",
+        data: {
+            Open_id:open_id,
+            Id:open_seqid,
+            Form_type:'sullen'
+        },
+        type: "POST",
+        dataType: "JSON",
+        async: false,
+        success: function (data) {
+    
+            var sp_str0 = 
+            '（' + '---年--月--日' + ' ' + '&emsp;' + '前測' + '）' + '---' + '分\n';
+
+            var sp_str1 = 
+            '（' + '---年--月--日' + ' ' + '&emsp;' + '中測' + '）' + '---' + '分\n';
+
+            var sp_str2 =
+            '（' + '---年--月--日' + ' ' + '&emsp;' + '後測' + '）' + '---' + '分\n';
+    
+    
+            $.each(data,function(index,value){
+                        
+                var upload_info_json = JSON.parse("[" +value.Upload_info.replace('\"\[', '\[').replace('\]\"', '\]') + "]");
+                            
+                if(upload_info_json.length > 0)
+                {
+                    if(upload_info_json[0].length == 5)
+                    {
+                        var upload_date  = (trans_to_Tw(upload_info_json[0][0].value) === undefined) ? '' : trans_to_Tw(upload_info_json[0][0].value);
+                        var test_type = ((upload_info_json[0][3].value) === undefined) ? '' : (upload_info_json[0][3].value);
+                        var test_score = ((upload_info_json[0][1].value) === undefined) ? '' : (upload_info_json[0][1].value);
+                        // var test_remark = ((upload_info_json[0][4].value) === undefined) ? '' : (upload_info_json[0][4].value);
+            
+                        switch (test_type) {
+                            case '前測':
+                                sp_str0 = 
+                                '（' + upload_date + ' ' + test_type + '）' + test_score + '分\n';
+                                break;
+                        
+                            case '中測':
+                                sp_str1 = 
+                                '（' + upload_date + ' ' + test_type + '）' + test_score + '分\n';
+                                break;
+                                
+                            case '後測':
+                                sp_str2 = 
+                                '（' + upload_date + ' ' + test_type + '）' + test_score + '分\n';
+                                break;
+                        }
+                    }
+                }
+    
+            });
+            // $("#pretest_depression_area").append(sp_str0);
+            // $("#midtest_depression_area").append(sp_str1);
+            // $("#posttest_depression_area").append(sp_str2);
+
+            // console.log(sp_str0)
+            // console.log(sp_str1)
+            // console.log(sp_str2)
+
+            sullen_data_str = sp_str0 + sp_str1 + sp_str2;
+        },
+        error: function (e) {
+            notyf.alert('伺服器錯誤,無法載入');
+            console.log(e)
+        }
+    });
+}
+//endregion
+
+// 載入生活品質量表的測驗內容 region
+function load_life_data() {
+    $.ajax({
+        url: "database/find_case_all.php",
+        data: {
+            Open_id:open_id,
+            Id:open_seqid,
+            Form_type:'life'
+        },
+        type: "POST",
+        dataType: "JSON",
+        async: false,
+        success: function (data) {
+    
+            var sp_str0 = 
+            '（' + '---年--月--日' + ' ' + '&emsp;' + '前測' + '）' + '得分/結果：' + '---\n';
+
+            var sp_str1 = 
+            '（' + '---年--月--日' + ' ' + '&emsp;' + '中測' + '）' + '得分/結果：' + '---\n';
+
+            var sp_str2 = 
+            '（' + '---年--月--日' + ' ' + '&emsp;' + '後測' + '）' + '得分/結果：' + '---\n';
+    
+    
+            $.each(data,function(index,value){
+                        
+                var other_info_json = JSON.parse("[" +value.Other_info.replace('\"\[', '\[').replace('\]\"', '\]') + "]");
+                            
+                if(other_info_json.length > 0)
+                {
+                    if(other_info_json[0].length == 2)
+                    {
+                        var fillin_date = (trans_to_Tw(value.Fillin_date) === undefined) ? '' : trans_to_Tw(value.Fillin_date);
+                        var test_type = ((other_info_json[0][1].value)  === undefined) ? '' : (other_info_json[0][1].value);
+                        var test_score_result = ((other_info_json[0][0].value) === undefined) ? '' : (other_info_json[0][0].value);
+                        
+                        test_score_result_r = test_score_result.replace("<div>", "").replace("</div>", "");
+
+                        switch (test_type) {
+                            case '前測':
+                                sp_str0 = 
+                                '（' + fillin_date + ' ' + test_type + '）' + '得分/結果：' + test_score_result_r +'\n';
+                                break;
+                        
+                            case '中測':
+                                sp_str1 = 
+                                '（' + fillin_date + ' ' + test_type + '）' + '得分/結果：' + test_score_result_r +'\n';
+                                break;
+                                
+                            case '後測':
+                                sp_str2 = 
+                                '（' + fillin_date + ' ' + test_type + '）' + '得分/結果：' + test_score_result_r +'\n';
+                                break;
+                        }
+                    }
+                }
+                
+            });
+
+            life_data_str = sp_str0 + sp_str1 + sp_str2;
+
+            // $("#pretest_life_area").append(sp_str0);
+            // $("#midtest_life_area").append(sp_str1);
+            // $("#posttest_life_area").append(sp_str2);
+
+            // console.log(sp_str0)
+            // console.log(sp_str1)
+            // console.log(sp_str2)
+        },
+        error: function (e) {
+            notyf.alert('伺服器錯誤,無法載入');
+            console.log(e)
+        }
+    });
+}
+//endregion
+
+// 載入家庭關係量表的測驗內容 region
+function load_familyship_data() {
+    $.ajax({
+        url: "database/find_case_all.php",
+        data: {
+            Open_id:open_id,
+            Id:open_seqid,
+            Form_type:'familyship'
+        },
+        type: "POST",
+        dataType: "JSON",
+        async: false,
+        success: function (data) {
+    
+            var sp_str0 = 
+            '（' + '---年--月--日' + ' ' + '&emsp;' + '前測' + '）' + '---' + '分\n';
+
+            var sp_str1 = 
+            '（' + '---年--月--日' + ' ' + '&emsp;' + '中測' + '）' + '---' + '分\n';
+
+            var sp_str2 = 
+            '（' + '---年--月--日' + ' ' + '&emsp;' + '後測' + '）' + '---' + '分\n';
+    
+    
+            $.each(data,function(index,value){
+                        
+                var other_info_json = JSON.parse("[" +value.Other_info.replace('\"\[', '\[').replace('\]\"', '\]') + "]");
+                console.log(other_info_json)
+                                
+                if(other_info_json.length > 0)
+                {
+                    if(other_info_json[0].length == 2)
+                    {
+                        var fillin_date = (trans_to_Tw(value.Fillin_date) === undefined) ? '' : trans_to_Tw(value.Fillin_date);
+                        var test_score =(other_info_json[0][0].value === undefined) ? '' : other_info_json[0][0].value;
+                        var test_type = (other_info_json[0][1].value === undefined) ? '' : other_info_json[0][1].value;
+    
+                        switch (test_type) {
+                            case '前測':
+                                sp_str0 = 
+                                '（' + fillin_date + ' ' + test_type + '）' + test_score + '分\n';
+                                break;
+                        
+                            case '中測':
+                                sp_str1 = 
+                                '（' + fillin_date + ' ' + test_type + '）' + test_score + '分\n';
+                                break;
+                                
+                            case '後測':
+                                sp_str2 = 
+                                '（' + fillin_date + ' ' + test_type + '）' + test_score + '分\n';
+                                break;
+                        }
+                    }
+                }
+                
+               
+               
+            });
+            // $("#pretest_familyship_area").append(sp_str0);
+            // $("#midtest_familyship_area").append(sp_str1);
+            // $("#posttest_familyship_area").append(sp_str2);
+
+            // console.log(sp_str0)
+            // console.log(sp_str1)
+            // console.log(sp_str2)
+
+            familyship_data_str = sp_str0 + sp_str1 + sp_str2;
+        },
+        error: function (e) {
+            notyf.alert('伺服器錯誤,無法載入');
+            console.log(e)
+        }
+    });
+}
+//endregion
+
+// 載入生活品質量表的測驗內容 region
+function load_BSRS5_data() {
+    $.ajax({
+        url: "database/find_case_all.php",
+        data: {
+            Open_id:open_id,
+            Id:open_seqid,
+            Form_type:'BSRS5'
+        },
+        type: "POST",
+        dataType: "JSON",
+        async: false,
+        success: function (data) {
+    
+            console.log(data)
+            var sp_str = 
+            // '填寫日期：'+ '&emsp;' +'，總分：' + '&emsp;' + '分，' + '處置情形：' + '---\n';
+            '無紀錄 \n';
+    
+            $.each(data,function(index,value){
+                        
+                var other_info_json = JSON.parse("[" +value.Other_info.replace('\"\[', '\[').replace('\]\"', '\]') + "]");
+                            
+                if(other_info_json.length > 0)
+                {
+                    if(other_info_json[0].length == 2)
+                    {
+                        var create_date = (trans_to_Tw(value.Create_date.split(" ")[0]) === undefined) ? '' : trans_to_Tw(value.Create_date.split(" ")[0]);
+                        var test_score_result = ((other_info_json[0][0].value) === undefined) ? '' : (other_info_json[0][0].value);
+                        var test_result = ((other_info_json[0][1].value)  === undefined) ? '' : (other_info_json[0][1].value);
+                        
+                        sp_str = '填寫日期：' + create_date +'，總分：' + test_score_result + '分，' + '處置情形：' + test_result + '\n';
+                    }
+                }
+                
+            });
+
+            BSRS5_data_str = sp_str;
+        },
+        error: function (e) {
+            notyf.alert('伺服器錯誤,無法載入');
+            console.log(e)
+        }
+    });
+}
+//endregion
+
 function checked_content(checked_1, checked_2) {
 
     var checked_content = new Array();
@@ -92,21 +385,30 @@ function checked_content(checked_1, checked_2) {
 
 var checked_content_arr = checked_content(checked_1, checked_2);
 
+load_sullen_data();
+load_life_data();
+load_familyship_data();
+load_BSRS5_data();
+
 var evaluation_default_text = '一、-(已緩解)'+
-                                '\n\n二、-(已緩解)'+
-                                '\n\n三、-(                    )'+
-                                '\n四、量表評量成效'+
+                                '\n\n\n二、-(已緩解)'+
+                                '\n\n\n三、-(                    )'+
+                                '\n\n\n四、量表評量成效'+
                                 '\n1.	憂鬱程度:'+
+                                '\n' + sullen_data_str +
                                 '\n重點文字說明:'+
-                                '\n2.	BSRS-5'+
+                                '\n\n2.	BSRS-5'+
+                                '\n' + BSRS5_data_str +
                                 '\n重點文字說明:'+
-                                '\n3.	生活品質量表：'+
+                                '\n\n3.	生活品質量表：'+
+                                '\n'+ life_data_str +
                                 '\n重點文字說明:'+
-                                '\n4.	家庭關係量表：'+
+                                '\n\n4.	家庭關係量表：'+
+                                '\n'+ familyship_data_str +
                                 '\n重點文字說明:'+
-                                '\n5.	就業輔導評估 '+ checked_content_arr[0] +
-                                '\n6.	社會適應程度評估 '+ checked_content_arr[1] +
-                                '\n7.	整體成效說明：'+
+                                '\n\n5.	就業輔導評估 '+ checked_content_arr[0] +
+                                '\n\n6.	社會適應程度評估 '+ checked_content_arr[1] +
+                                '\n\n7.	整體成效說明：'+
                                 '';
 
 var intervention_default_text = '一、'+
@@ -115,6 +417,10 @@ var intervention_default_text = '一、'+
 
 //獲取個案評估表既有的資料顯示在新增個案表格中 region
 $(document).ready(function(){
+
+    // console.log(sullen_data_str);
+    // console.log(life_data_str);
+    // console.log(familyship_data_str);
 
     //設置麵包屑
     var history_back_url = document.referrer;
@@ -173,6 +479,7 @@ $(document).ready(function(){
     //         notyf.alert('伺服器錯誤,無法載入結案所需資料!');
     //     }
     // });
+
 });
 //endregion
 

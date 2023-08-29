@@ -201,7 +201,7 @@ input[type=number] {
                                                             <tr style="text-align:left">
                                                                 <td colspan="1" style="text-align:right;background-color:rgb(255 201 54);border-right-color: white"><i style="color:red;">※</i>成效評估</td>
                                                                 <td colspan="5">
-                                                                    <textarea style="min-height:700px;width:100%;resize: none;font-size: 20px;" name="evaluation" id="evaluation" placeholder="請輸入成效評估內容"></textarea>
+                                                                    <textarea style="min-height:50em;width:100%;resize: none;font-size: 20px;" name="evaluation" id="evaluation" placeholder="請輸入成效評估內容"></textarea>
                                                                     <br/><span style="color:red;">*此欄位請填寫個案最後執行的狀況並寫出是否有達緩解或未達緩解；把所有測過的量表成效數值呈現(請呈現在最後面順位)，並針對各項說明量表使用「重點文字說明」成效為何做敘述，最後總體成效做說明(各項標號請依照各自內容多寡自行訂定。</span>
                                                                 </td>
                                                             </tr>
