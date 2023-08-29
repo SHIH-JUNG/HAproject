@@ -1,19 +1,23 @@
 <?php 
 include("sql_connect.php"); 
 $Closed_id = $_POST['Closed_id'];
-// $Closed_id = '672';
+// $Closed_id = '17';
 
-$sql = "SELECT `Open_case_id`, `Closed_date`, `Name` FROM `closed` WHERE `Closed_id`='$Closed_id' ORDER BY `closed`.`Closed_id` ASC";
+$sql = "SELECT `Open_case_id`, `Open_case_seqid`, `Name` FROM `closed` WHERE `Id`='$Closed_id' ORDER BY `closed`.`Id` ASC;";
+
+// echo $sql;
 $select_sql = mysqli_query($conn,$sql);
 $sql_text = mysqli_fetch_row($select_sql);
 
 $Open_case_id = $sql_text[0];
-$Closed_date = $sql_text[1];
+$Open_case_seqid = $sql_text[1];
 $Case_name = $sql_text[2];
 
 
 //region 抓資料
-$note = "SELECT * FROM `current_case` WHERE `Case_id` = '$Open_case_id' AND `Close_case_date` = '$Closed_date' AND `Name` = '$Case_name' ORDER BY `Create_date` ASC";
+$note = "SELECT * FROM `current_case` WHERE `Case_id` = '$Open_case_id' AND `Id` = '$Open_case_seqid' AND `Name` = '$Case_name' ORDER BY `Create_date` ASC;";
+
+// echo $note;
 //宣告空的陣列
 $datas = array();
 

@@ -256,12 +256,12 @@
                                                         <td colspan="5">
                                                             <div class="col-sm-12">
                                                                 <div class="text-left">
-                                                                    <input name="religion" style="zoom: 1.5" value="道教" type="radio"><span>道教</span>
-                                                                    <input name="religion" style="zoom: 1.5" value="佛教" type="radio"><span>佛教</span>
-                                                                    <input name="religion" style="zoom: 1.5" value="基督教" type="radio"><span>基督教</span>
-                                                                    <input name="religion" style="zoom: 1.5" value="天主教" type="radio"><span>天主教</span>
-                                                                    <input name="religion" style="zoom: 1.5" value="密宗" type="radio"><span>密宗</span>
-                                                                    <input name="religion" style="zoom: 1.5" value="其他" type="radio"><span>其他</span><input name="religion_other" id="religion_other" type="text">
+                                                                    <input name="religion" style="zoom: 1.5" value="道教" type="checkbox"><span>道教</span>
+                                                                    <input name="religion" style="zoom: 1.5" value="佛教" type="checkbox"><span>佛教</span>
+                                                                    <input name="religion" style="zoom: 1.5" value="基督教" type="checkbox"><span>基督教</span>
+                                                                    <input name="religion" style="zoom: 1.5" value="天主教" type="checkbox"><span>天主教</span>
+                                                                    <input name="religion" style="zoom: 1.5" value="密宗" type="checkbox"><span>密宗</span>
+                                                                    <input name="religion" style="zoom: 1.5" value="其他" type="checkbox"><span>其他</span><input name="religion_other" id="religion_other" type="text">
                                                                 </div>
                                                             </div>
                                                         </td>

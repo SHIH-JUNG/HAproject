@@ -106,6 +106,8 @@ $(document).ready(function () {
         datepicker_create(this_id);
     });
     //endregion
+
+    Init_datatable();
 });
 
 // 抓今年度所有負責社工的工作報告 region
@@ -398,6 +400,8 @@ $.ajax({
 submit_case_report_select = function() {
     var filter_date = $("[name='filter_date']:checked").val();
 
+    $("[name='tab_all_1']").DataTable().destroy();
+
     switch (filter_date) {
         case "0":
             filter_date_input();
@@ -407,7 +411,7 @@ submit_case_report_select = function() {
             break;
     }
 
-    
+    Init_datatable();
 }
 //endregion
 
@@ -474,13 +478,13 @@ filter_date_select = function() {
                 // $(".table-hover tbody").on("click","tr",function () {
                 //     window.location.href = 'case_all_all.php?id='+$(this).attr("id")+'&open_id='+$(this).attr("openid")+'';
                 // });
-
         },
         error: function (e) {
             notyf.alert('伺服器錯誤,無法載入');
             console.log(e);
         }
     });
+
     
 }
 //endregion
@@ -570,6 +574,7 @@ filter_date_input = function() {
                     // $(".table-hover tbody").on("click","tr",function () {
                     //     window.location.href = 'case_all_all.php?id='+$(this).attr("id")+'&open_id='+$(this).attr("openid")+'';
                     // });
+                
             },
             error: function (e) {
                 notyf.alert('伺服器錯誤,無法載入');
@@ -633,52 +638,55 @@ check_case_report_date_filter = function(min_date, max_date) {
 //設定table搜尋框重整後自動填入文字 region
 
 //table設定region
-var $table_1 = $("[name='tab_all_1']").DataTable({
-    "ordering": false,
-    "info": true,
-    "paging": true,
-    "lengthChange": false,
-    "pageLength": 10,
-    "pagingType": "simple_numbers",
-    "searching": true,
-    "dom":
-        "<'col-sm-12'tr>"+
-        "<'col-sm-6'<'text-left'i>><'col-sm-6'<'text-right'p>>"+
-        "<'col-sm-12'<'text-left'B>>",
-    language: {
-    
-        "sZeroRecords": "没有匹配结果",
-        "sInfo": "顯示 _START_ 到 _END_ 筆資料，總共有 _TOTAL_ 筆資料",
-        "sInfoEmpty": "目前共有 0 筆紀錄",
-        "sInfoFiltered": "(由 _MAX_ 筆資料结果過濾)",
-        "fnInfoCallback": function (oSettings, iStart, iEnd, iMax, iTotal, sPre) {
-            $("#count_people").text("人次："+iTotal);
-            return sPre
-        },
-        paginate: {
-            previous: '‹上一頁',
-            next:     '下一頁›'
-        },
-        aria: {
+function Init_datatable() {
+$table_1 = $("[name='tab_all_1']").DataTable({
+        "ordering": true,
+        "info": true,
+        "paging": true,
+        "lengthChange": false,
+        "pageLength": 10,
+        "pagingType": "simple_numbers",
+        "searching": true,
+        "destory": true,
+        "retrieve": true,
+        "dom":
+            "<'col-sm-12'tr>"+
+            "<'col-sm-6'<'text-left'i>><'col-sm-6'<'text-right'p>>"+
+            "<'col-sm-12'<'text-left'B>>",
+        language: {
+        
+            "sZeroRecords": "没有匹配结果",
+            "sInfo": "顯示 _START_ 到 _END_ 筆資料，總共有 _TOTAL_ 筆資料",
+            "sInfoEmpty": "目前共有 0 筆紀錄",
+            "sInfoFiltered": "(由 _MAX_ 筆資料结果過濾)",
+            "fnInfoCallback": function (oSettings, iStart, iEnd, iMax, iTotal, sPre) {
+                $("#count_people").text("人次："+iTotal);
+                return sPre
+            },
             paginate: {
-                previous: 'Previous',
-                next:     'Next'
+                previous: '‹上一頁',
+                next:     '下一頁›'
+            },
+            aria: {
+                paginate: {
+                    previous: 'Previous',
+                    next:     'Next'
+                }
             }
-        }
-    },
-    buttons: [
-        {
-            extend: 'excelHtml5',
-            title: '快樂聯盟個案服務表1',
-            text:'匯出Excel'
         },
-    ]
-});
-
+        buttons: [
+            {
+                extend: 'excelHtml5',
+                title: '快樂聯盟個案服務表1',
+                text:'匯出Excel'
+            },
+        ]
+    });
+}
 
 
 var $table = $("[name='tab_all_2']").DataTable({
-    "ordering": false,
+    "ordering": true,
     "info": true,
     "paging": true,
     "lengthChange": false,

@@ -158,7 +158,7 @@ $(document).ready(function(){
     $("input[type='radio']").each(function(i,n){
 
         if($(this).is(":checked"))
-        {
+        {   
             $(".radio_label").eq(i).css("color", "red");
         }
     });

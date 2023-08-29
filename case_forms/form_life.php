@@ -69,19 +69,19 @@
                                                     <tr>
                                                         <td></td>
                                                         <td>
-                                                            <input name="life_answer1" style="zoom: 1.5" value="1" type="radio"><span>極不好</span>
+                                                            <input name="life_answer1" style="zoom: 1.5" value="1" type="radio"><span>非常不好</span>
                                                             <input name="life_answer1" style="zoom: 1.5" value="2" type="radio"><span>不好</span>
                                                             <input name="life_answer1" style="zoom: 1.5" value="3" type="radio"><span>中等程度好</span>
                                                             <input name="life_answer1" style="zoom: 1.5" value="4" type="radio"><span>好</span>
-                                                            <input name="life_answer1" style="zoom: 1.5" value="5" type="radio"><span>極好</span>
+                                                            <input name="life_answer1" style="zoom: 1.5" value="5" type="radio"><span>非常好</span>
                                                         </td>
                                                         <td></td>
                                                         <td>
-                                                            <input name="life_answer2" style="zoom: 1.5" value="1" type="radio"><span>極不滿意</span>
+                                                            <input name="life_answer2" style="zoom: 1.5" value="1" type="radio"><span>非常不滿意</span>
                                                             <input name="life_answer2" style="zoom: 1.5" value="2" type="radio"><span>不滿意</span>
                                                             <input name="life_answer2" style="zoom: 1.5" value="3" type="radio"><span>中等程度滿意</span>
                                                             <input name="life_answer2" style="zoom: 1.5" value="4" type="radio"><span>滿意</span>
-                                                            <input name="life_answer2" style="zoom: 1.5" value="5" type="radio"><span>極滿意</span>
+                                                            <input name="life_answer2" style="zoom: 1.5" value="5" type="radio"><span>非常滿意</span>
                                                         </td>
                                                     </tr>
                                                   
@@ -98,7 +98,7 @@
                                                             <input name="life_answer3" style="zoom: 1.5" value="4" type="radio"><span>有一點妨礙</span>
                                                             <input name="life_answer3" style="zoom: 1.5" value="3" type="radio"><span>中等程度妨礙</span>
                                                             <input name="life_answer3" style="zoom: 1.5" value="2" type="radio"><span>很妨礙</span>
-                                                            <input name="life_answer3" style="zoom: 1.5" value="1" type="radio"><span>極妨礙</span>
+                                                            <input name="life_answer3" style="zoom: 1.5" value="1" type="radio"><span>非常妨礙</span>
                                                         </td>
                                                         <td></td>
                                                         <td>
@@ -106,7 +106,7 @@
                                                             <input name="life_answer4" style="zoom: 1.5" value="4" type="radio"><span>有一點需要</span>
                                                             <input name="life_answer4" style="zoom: 1.5" value="3" type="radio"><span>中等程度需要</span>
                                                             <input name="life_answer4" style="zoom: 1.5" value="2" type="radio"><span>很需要</span>
-                                                            <input name="life_answer4" style="zoom: 1.5" value="1" type="radio"><span>極需要</span>
+                                                            <input name="life_answer4" style="zoom: 1.5" value="1" type="radio"><span>非常需要</span>
                                                         </td>
                                                     </tr>
                                                
@@ -123,7 +123,7 @@
                                                             <input name="life_answer5" style="zoom: 1.5" value="2" type="radio"><span>有一點享受</span>
                                                             <input name="life_answer5" style="zoom: 1.5" value="3" type="radio"><span>中等程度享受</span>
                                                             <input name="life_answer5" style="zoom: 1.5" value="4" type="radio"><span>很享受</span>
-                                                            <input name="life_answer5" style="zoom: 1.5" value="5" type="radio"><span>極享受</span>
+                                                            <input name="life_answer5" style="zoom: 1.5" value="5" type="radio"><span>非常享受</span>
                                                         </td>
                                                         <td></td>
                                                         <td>
@@ -131,7 +131,7 @@
                                                             <input name="life_answer6" style="zoom: 1.5" value="2" type="radio"><span>有一點有</span>
                                                             <input name="life_answer6" style="zoom: 1.5" value="3" type="radio"><span>中等程度有</span>
                                                             <input name="life_answer6" style="zoom: 1.5" value="4" type="radio"><span>很有</span>
-                                                            <input name="life_answer6" style="zoom: 1.5" value="5" type="radio"><span>極有</span>
+                                                            <input name="life_answer6" style="zoom: 1.5" value="5" type="radio"><span>非常有</span>
                                                         </td>
                                                     </tr>
                                                    
@@ -148,7 +148,7 @@
                                                             <input name="life_answer7" style="zoom: 1.5" value="2" type="radio"><span>有一點好</span>
                                                             <input name="life_answer7" style="zoom: 1.5" value="3" type="radio"><span>中等程度好</span>
                                                             <input name="life_answer7" style="zoom: 1.5" value="4" type="radio"><span>很好</span>
-                                                            <input name="life_answer7" style="zoom: 1.5" value="5" type="radio"><span>極好</span>
+                                                            <input name="life_answer7" style="zoom: 1.5" value="5" type="radio"><span>非常好</span>
                                                         </td>
                                                         <td></td>
                                                         <td>
@@ -156,7 +156,7 @@
                                                             <input name="life_answer8" style="zoom: 1.5" value="2" type="radio"><span>有一點安全</span>
                                                             <input name="life_answer8" style="zoom: 1.5" value="3" type="radio"><span>中等程度安全</span>
                                                             <input name="life_answer8" style="zoom: 1.5" value="4" type="radio"><span>很安全</span>
-                                                            <input name="life_answer8" style="zoom: 1.5" value="5" type="radio"><span>極安全</span>
+                                                            <input name="life_answer8" style="zoom: 1.5" value="5" type="radio"><span>非常安全</span>
                                                         </td>
                                                     </tr>
                                                    
@@ -173,7 +173,7 @@
                                                             <input name="life_answer9" style="zoom: 1.5" value="2" type="radio"><span>有一點健康</span>
                                                             <input name="life_answer9" style="zoom: 1.5" value="3" type="radio"><span>中等程度健康</span>
                                                             <input name="life_answer9" style="zoom: 1.5" value="4" type="radio"><span>很健康</span>
-                                                            <input name="life_answer9" style="zoom: 1.5" value="5" type="radio"><span>極健康</span>
+                                                            <input name="life_answer9" style="zoom: 1.5" value="5" type="radio"><span>非常健康</span>
                                                         </td>
                                                         <td></td>
                                                         <td>
@@ -249,15 +249,15 @@
                                                             <input name="life_answer15" style="zoom: 1.5" value="2" type="radio"><span>有一點好</span>
                                                             <input name="life_answer15" style="zoom: 1.5" value="3" type="radio"><span>中等程度好</span>
                                                             <input name="life_answer15" style="zoom: 1.5" value="4" type="radio"><span>很好</span>
-                                                            <input name="life_answer15" style="zoom: 1.5" value="5" type="radio"><span>極好</span>
+                                                            <input name="life_answer15" style="zoom: 1.5" value="5" type="radio"><span>非常好</span>
                                                         </td>
                                                         <td></td>
                                                         <td>
-                                                            <input name="life_answer16" style="zoom: 1.5" value="1" type="radio"><span>極不滿意</span>
+                                                            <input name="life_answer16" style="zoom: 1.5" value="1" type="radio"><span>非常不滿意</span>
                                                             <input name="life_answer16" style="zoom: 1.5" value="2" type="radio"><span>不滿意</span>
                                                             <input name="life_answer16" style="zoom: 1.5" value="3" type="radio"><span>中等程度滿意</span>
                                                             <input name="life_answer16" style="zoom: 1.5" value="4" type="radio"><span>滿意</span>
-                                                            <input name="life_answer16" style="zoom: 1.5" value="5" type="radio"><span>極滿意</span>
+                                                            <input name="life_answer16" style="zoom: 1.5" value="5" type="radio"><span>非常滿意</span>
                                                         </td>
                                                     </tr>
                                                    
@@ -270,19 +270,19 @@
                                                     <tr>
                                                         <td></td>
                                                         <td>
-                                                            <input name="life_answer17" style="zoom: 1.5" value="1" type="radio"><span>極不滿意</span>
+                                                            <input name="life_answer17" style="zoom: 1.5" value="1" type="radio"><span>非常不滿意</span>
                                                             <input name="life_answer17" style="zoom: 1.5" value="2" type="radio"><span>不滿意</span>
                                                             <input name="life_answer17" style="zoom: 1.5" value="3" type="radio"><span>中等程度滿意</span>
                                                             <input name="life_answer17" style="zoom: 1.5" value="4" type="radio"><span>滿意</span>
-                                                            <input name="life_answer17" style="zoom: 1.5" value="5" type="radio"><span>極滿意</span>
+                                                            <input name="life_answer17" style="zoom: 1.5" value="5" type="radio"><span>非常滿意</span>
                                                         </td>
                                                         <td></td>
                                                         <td>
-                                                            <input name="life_answer18" style="zoom: 1.5" value="1" type="radio"><span>極不滿意</span>
+                                                            <input name="life_answer18" style="zoom: 1.5" value="1" type="radio"><span>非常不滿意</span>
                                                             <input name="life_answer18" style="zoom: 1.5" value="2" type="radio"><span>不滿意</span>
                                                             <input name="life_answer18" style="zoom: 1.5" value="3" type="radio"><span>中等程度滿意</span>
                                                             <input name="life_answer18" style="zoom: 1.5" value="4" type="radio"><span>滿意</span>
-                                                            <input name="life_answer18" style="zoom: 1.5" value="5" type="radio"><span>極滿意</span>
+                                                            <input name="life_answer18" style="zoom: 1.5" value="5" type="radio"><span>非常滿意</span>
                                                         </td>
                                                     </tr>
                                                     
@@ -295,19 +295,19 @@
                                                     <tr>
                                                         <td></td>
                                                         <td>
-                                                            <input name="life_answer19" style="zoom: 1.5" value="1" type="radio"><span>極不滿意</span>
+                                                            <input name="life_answer19" style="zoom: 1.5" value="1" type="radio"><span>非常不滿意</span>
                                                             <input name="life_answer19" style="zoom: 1.5" value="2" type="radio"><span>不滿意</span>
                                                             <input name="life_answer19" style="zoom: 1.5" value="3" type="radio"><span>中等程度滿意</span>
                                                             <input name="life_answer19" style="zoom: 1.5" value="4" type="radio"><span>滿意</span>
-                                                            <input name="life_answer19" style="zoom: 1.5" value="5" type="radio"><span>極滿意</span>
+                                                            <input name="life_answer19" style="zoom: 1.5" value="5" type="radio"><span>非常滿意</span>
                                                         </td>
                                                         <td></td>
                                                         <td>
-                                                            <input name="life_answer20" style="zoom: 1.5" value="1" type="radio"><span>極不滿意</span>
+                                                            <input name="life_answer20" style="zoom: 1.5" value="1" type="radio"><span>非常不滿意</span>
                                                             <input name="life_answer20" style="zoom: 1.5" value="2" type="radio"><span>不滿意</span>
                                                             <input name="life_answer20" style="zoom: 1.5" value="3" type="radio"><span>中等程度滿意</span>
                                                             <input name="life_answer20" style="zoom: 1.5" value="4" type="radio"><span>滿意</span>
-                                                            <input name="life_answer20" style="zoom: 1.5" value="5" type="radio"><span>極滿意</span>
+                                                            <input name="life_answer20" style="zoom: 1.5" value="5" type="radio"><span>非常滿意</span>
                                                         </td>
                                                     </tr>
                                                     
@@ -320,19 +320,19 @@
                                                     <tr>
                                                         <td></td>
                                                         <td>
-                                                            <input name="life_answer21" style="zoom: 1.5" value="1" type="radio"><span>極不滿意</span>
+                                                            <input name="life_answer21" style="zoom: 1.5" value="1" type="radio"><span>非常不滿意</span>
                                                             <input name="life_answer21" style="zoom: 1.5" value="2" type="radio"><span>不滿意</span>
                                                             <input name="life_answer21" style="zoom: 1.5" value="3" type="radio"><span>中等程度滿意</span>
                                                             <input name="life_answer21" style="zoom: 1.5" value="4" type="radio"><span>滿意</span>
-                                                            <input name="life_answer21" style="zoom: 1.5" value="5" type="radio"><span>極滿意</span>
+                                                            <input name="life_answer21" style="zoom: 1.5" value="5" type="radio"><span>非常滿意</span>
                                                         </td>
                                                         <td></td>
                                                         <td>
-                                                            <input name="life_answer22" style="zoom: 1.5" value="1" type="radio"><span>極不滿意</span>
+                                                            <input name="life_answer22" style="zoom: 1.5" value="1" type="radio"><span>非常不滿意</span>
                                                             <input name="life_answer22" style="zoom: 1.5" value="2" type="radio"><span>不滿意</span>
                                                             <input name="life_answer22" style="zoom: 1.5" value="3" type="radio"><span>中等程度滿意</span>
                                                             <input name="life_answer22" style="zoom: 1.5" value="4" type="radio"><span>滿意</span>
-                                                            <input name="life_answer22" style="zoom: 1.5" value="5" type="radio"><span>極滿意</span>
+                                                            <input name="life_answer22" style="zoom: 1.5" value="5" type="radio"><span>非常滿意</span>
                                                         </td>
                                                     </tr>
                                                     
@@ -345,19 +345,19 @@
                                                     <tr>
                                                         <td></td>
                                                         <td>
-                                                            <input name="life_answer23" style="zoom: 1.5" value="1" type="radio"><span>極不滿意</span>
+                                                            <input name="life_answer23" style="zoom: 1.5" value="1" type="radio"><span>非常不滿意</span>
                                                             <input name="life_answer23" style="zoom: 1.5" value="2" type="radio"><span>不滿意</span>
                                                             <input name="life_answer23" style="zoom: 1.5" value="3" type="radio"><span>中等程度滿意</span>
                                                             <input name="life_answer23" style="zoom: 1.5" value="4" type="radio"><span>滿意</span>
-                                                            <input name="life_answer23" style="zoom: 1.5" value="5" type="radio"><span>極滿意</span>
+                                                            <input name="life_answer23" style="zoom: 1.5" value="5" type="radio"><span>非常滿意</span>
                                                         </td>
                                                         <td></td>
                                                         <td>
-                                                            <input name="life_answer24" style="zoom: 1.5" value="1" type="radio"><span>極不滿意</span>
+                                                            <input name="life_answer24" style="zoom: 1.5" value="1" type="radio"><span>非常不滿意</span>
                                                             <input name="life_answer24" style="zoom: 1.5" value="2" type="radio"><span>不滿意</span>
                                                             <input name="life_answer24" style="zoom: 1.5" value="3" type="radio"><span>中等程度滿意</span>
                                                             <input name="life_answer24" style="zoom: 1.5" value="4" type="radio"><span>滿意</span>
-                                                            <input name="life_answer24" style="zoom: 1.5" value="5" type="radio"><span>極滿意</span>
+                                                            <input name="life_answer24" style="zoom: 1.5" value="5" type="radio"><span>非常滿意</span>
                                                         </td>
                                                     </tr>
                                                   
@@ -370,11 +370,11 @@
                                                     <tr>
                                                         <td></td>
                                                         <td>
-                                                            <input name="life_answer25" style="zoom: 1.5" value="1" type="radio"><span>極不滿意</span>
+                                                            <input name="life_answer25" style="zoom: 1.5" value="1" type="radio"><span>非常不滿意</span>
                                                             <input name="life_answer25" style="zoom: 1.5" value="2" type="radio"><span>不滿意</span>
                                                             <input name="life_answer25" style="zoom: 1.5" value="3" type="radio"><span>中等程度滿意</span>
                                                             <input name="life_answer25" style="zoom: 1.5" value="4" type="radio"><span>滿意</span>
-                                                            <input name="life_answer25" style="zoom: 1.5" value="5" type="radio"><span>極滿意</span>
+                                                            <input name="life_answer25" style="zoom: 1.5" value="5" type="radio"><span>非常滿意</span>
                                                         </td>
                                                         <td></td>
                                                         <td>
@@ -399,7 +399,7 @@
                                                             <input name="life_answer27" style="zoom: 1.5" value="2" type="radio"><span>有一點有</span>
                                                             <input name="life_answer27" style="zoom: 1.5" value="3" type="radio"><span>中等程度有</span>
                                                             <input name="life_answer27" style="zoom: 1.5" value="4" type="radio"><span>很有</span>
-                                                            <input name="life_answer27" style="zoom: 1.5" value="5" type="radio"><span>極有</span>
+                                                            <input name="life_answer27" style="zoom: 1.5" value="5" type="radio"><span>非常有</span>
                                                         </td>
                                                         <td></td>
                                                         <td>

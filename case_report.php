@@ -13,6 +13,9 @@
     <link href="css/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
     <!-- ================== CSS bootstrap-select ================== -->
     <link href="css/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
+    <!-- ================== CSS font-awesome ================== -->
+    <link href="font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    
     <!--  table  -->
     <!--    <link rel="stylesheet" href="css/bootstrap-table.min.css">-->
     <!-- ================== 匯出EXCEL ================== -->

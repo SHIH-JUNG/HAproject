@@ -124,12 +124,12 @@
                                                                         <td>
                                                                             <div class="col-sm-12">
                                                                                 <div class="text-left">
-                                                                                    <input name="cohabitant" style="zoom: 1.5" value="爸爸" type="radio"><span>爸爸</span>
-                                                                                    <input name="cohabitant" style="zoom: 1.5" value="媽媽" type="radio"><span>媽媽</span>
-                                                                                    <input name="cohabitant" style="zoom: 1.5" value="阿公、阿嬤" type="radio"><span>阿公、阿嬤</span>
-                                                                                    <input name="cohabitant" style="zoom: 1.5" value="外公、外婆" type="radio"><span>外公、外婆</span>
-                                                                                    <input name="cohabitant" style="zoom: 1.5" value="小孩" type="radio"><span>小孩</span>
-                                                                                    <input name="cohabitant" style="zoom: 1.5" value="其他" type="radio"><span>其他</span><input name="cohabitant_other" id="cohabitant_other" type="text">
+                                                                                    <input name="cohabitant" style="zoom: 1.5" value="爸爸" type="checkbox"><span>爸爸</span>
+                                                                                    <input name="cohabitant" style="zoom: 1.5" value="媽媽" type="checkbox"><span>媽媽</span>
+                                                                                    <input name="cohabitant" style="zoom: 1.5" value="阿公、阿嬤" type="checkbox"><span>阿公、阿嬤</span>
+                                                                                    <input name="cohabitant" style="zoom: 1.5" value="外公、外婆" type="checkbox"><span>外公、外婆</span>
+                                                                                    <input name="cohabitant" style="zoom: 1.5" value="小孩" type="checkbox"><span>小孩</span>
+                                                                                    <input name="cohabitant" style="zoom: 1.5" value="其他" type="checkbox"><span>其他</span><input name="cohabitant_other" id="cohabitant_other" type="text">
                                                                                 </div>
                                                                             </div>
                                                                         </td>
@@ -319,19 +319,19 @@
                                                                         <td style="background-color:rgb(255 201 54);text-align:right;">9.</td>
                                                                         <td colspan="4">告訴家人我是愛滋感染者，會對我產生很大的壓力</td>
                                                                         <td>
-                                                                            <input name="answer9" style="zoom: 1.5" value="4" type="radio">
-                                                                        </td>
-                                                                        <td>
-                                                                            <input name="answer9" style="zoom: 1.5" value="3" type="radio">
-                                                                        </td>
-                                                                        <td>
-                                                                            <input name="answer9" style="zoom: 1.5" value="2" type="radio">
+                                                                            <input name="answer9" style="zoom: 1.5" value="0" type="radio">
                                                                         </td>
                                                                         <td>
                                                                             <input name="answer9" style="zoom: 1.5" value="1" type="radio">
                                                                         </td>
                                                                         <td>
-                                                                            <input name="answer9" style="zoom: 1.5" value="0" type="radio">
+                                                                            <input name="answer9" style="zoom: 1.5" value="2" type="radio">
+                                                                        </td>
+                                                                        <td>
+                                                                            <input name="answer9" style="zoom: 1.5" value="3" type="radio">
+                                                                        </td>
+                                                                        <td>
+                                                                            <input name="answer9" style="zoom: 1.5" value="4" type="radio">
                                                                         </td>
                                                                     </tr>
                                                                     <tr>

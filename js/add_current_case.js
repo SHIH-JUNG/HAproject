@@ -52,6 +52,16 @@ $("#case_add_new").on('click',function(){
 });
 //endregion
 
+// 字母匹配
+function dislodgeLetter(str) {
+    var result;
+    var reg = /[a-zA-Z]+/;  //[a-zA-Z]表示匹配字母，g表示全局匹配
+    while (result = str.match(reg)) { //判断str.match(reg)是否没有字母了
+      str = str.replace(result[0], ''); //替换掉字母  result[0] 是 str.match(reg)匹配到的字母
+    }
+    return str;
+}
+
 //檢查新增個案表格有無未填寫欄位，若有未填寫欄位將會在點擊新增按鈕時提示region
 function check_update_currentcase_data()
 {
@@ -108,6 +118,14 @@ function check_update_currentcase_data()
         if (pid == null || pid.replace(/\s*/g, "") == '') {
             warningstr += "身分證字號\r\n";
         }
+        else
+        {
+            if(dislodgeLetter(pid).substr(0,1) != "1" && dislodgeLetter(pid).substr(0,1) != "2")
+            {
+                warningstr += "請輸入有效的身分證字號!\r\n";
+            }
+        }
+
         if (referral == null || referral.replace(/\s*/g, "") == '') {
             warningstr += "轉介來源\r\n";
         }
@@ -239,9 +257,18 @@ function check_current_case_value()
         if (case_grade.replace(/\s*/g, "") == '') {
             errorstr += "未選擇個案分級!\r\n";
         }
+        
         if (pid.replace(/\s*/g, "") == '') {
             errorstr += "未選擇身分證字號!\r\n";
         }
+        else
+        {
+            if(dislodgeLetter(pid).substr(0,1) != "1" && dislodgeLetter(pid).substr(0,1) != "2")
+            {
+                errorstr += "請輸入有效的身分證字號!\r\n";
+            }
+        }
+
         if (referral.replace(/\s*/g, "") == '') {
             errorstr += "未選擇轉介來源!\r\n";
         }

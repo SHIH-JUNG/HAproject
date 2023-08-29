@@ -216,11 +216,11 @@
                                                                             <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">毒品施用方式</td>
                                                                                 <td style="border-bottom: solid 1px;">
-                                                                                    <input class="phone_question" name="m_type[]" style="zoom: 1.5" type="radio" value="口服"><label>口服</label>
-                                                                                    <input class="phone_question" name="m_type[]" style="zoom: 1.5" type="radio" value="鼻吸"><label>鼻吸</label>
-                                                                                    <input class="phone_question" name="m_type[]" style="zoom: 1.5" type="radio" value="注射"><label>注射</label>
+                                                                                    <input class="phone_question" name="m_type[]" style="zoom: 1.5" type="radio" value="口服"><label class="radio_label">口服</label>
+                                                                                    <input class="phone_question" name="m_type[]" style="zoom: 1.5" type="radio" value="鼻吸"><label class="radio_label">鼻吸</label>
+                                                                                    <input class="phone_question" name="m_type[]" style="zoom: 1.5" type="radio" value="注射"><label class="radio_label">注射</label>
                                                                                     <br>
-                                                                                    <input class="phone_question" name="m_type[]" style="zoom: 1.5" type="radio" value="其他"><label>其他：</label>   
+                                                                                    <input class="phone_question" name="m_type[]" style="zoom: 1.5" type="radio" value="其他"><label class="radio_label">其他：</label>   
                                                                                     <input class="phone_question" id="m_type_other" type="text">
                                                                                 
                                                                                 </td>

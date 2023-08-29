@@ -303,7 +303,7 @@ this.imagePreview = function () {
 
 //table設定region
 var $table = $("#tab_all").DataTable({
-  ordering: false,
+  ordering: true,
   info: true,
   paging: true,
   lengthChange: false,

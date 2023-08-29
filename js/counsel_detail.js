@@ -317,6 +317,16 @@ var stau = false;
 
 });
 
+// 字母匹配
+function dislodgeLetter(str) {
+    var result;
+    var reg = /[a-zA-Z]+/;  //[a-zA-Z]表示匹配字母，g表示全局匹配
+    while (result = str.match(reg)) { //判断str.match(reg)是否没有字母了
+      str = str.replace(result[0], ''); //替换掉字母  result[0] 是 str.match(reg)匹配到的字母
+    }
+    return str;
+}
+
 //監所服務紀錄表(update)的必填欄位 region
 function check_updat_counsel_data()
 {
@@ -327,6 +337,7 @@ function check_updat_counsel_data()
    var cocktail_therapy_status = $("#cocktail_therapy_status").val();
    var cocktail_therapy_name = $("#cocktail_therapy_name").val();
 
+   
     var errorstr = "";
 
     if (refferal == null) {
@@ -353,9 +364,18 @@ function check_updat_counsel_data()
         if (birth.replace(/\s*/g, "") == '') {
             errorstr += "未填寫出生年月日!\r\n";
         }
+
         if (pid.replace(/\s*/g, "") == '') {
             errorstr += "未填寫身分證字號!\r\n";
         }
+        else
+        {
+            if(dislodgeLetter(pid).substr(0,1) != "1" && dislodgeLetter(pid).substr(0,1) != "2")
+            {
+                errorstr += "請輸入有效的身分證字號!\r\n";
+            }
+        }
+        
         if(cocktail_therapy_status=="是")
         {
             if (cocktail_therapy_name.replace(/\s*/g, "") == '') {
