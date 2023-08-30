@@ -83,11 +83,11 @@
                             </a>
                         </li>
                         <li>
-                            <a href="board_supervisor_yearlist.php">理監事會議
+                            <a href="board_supervisor_yearlist_v2.php">理監事會議
                             </a>
                         </li>
                         <li>
-                            <a href="members_assemble_yearlist.php">會員大會
+                            <a href="members_assemble_yearlist_v2.php">會員大會
                             </a>
                         </li>
                 </li>

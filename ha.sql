@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2023-08-30 15:10:48
+-- 產生時間： 2023-08-30 16:08:29
 -- 伺服器版本： 10.4.28-MariaDB
 -- PHP 版本： 8.1.17
 
@@ -293,6 +293,40 @@ INSERT INTO `board_supervisor` (`Id`, `Year`, `record_content`, `upload_content`
 (38, '109', '[{\"name\":\"title_name\",\"value\":\"2022年度12月06日第六次理監事會不過現在是17點26分\"},{\"name\":\"meeting_date\",\"value\":\"109年12月30日\"},{\"name\":\"meeting_time\",\"value\":\"22:31\"},{\"name\":\"place\",\"value\":\"中午在販賣機買的20元可樂丟的那個垃圾桶的前面那間麵包店\"},{\"name\":\"ceo_name\",\"value\":\"我快下班了主席\"},{\"name\":\"attendees\",\"value\":\"時鐘、分針、秒針\"},{\"name\":\"absent\",\"value\":\"休假、加薪\"},{\"name\":\"record\",\"value\":\"鑰匙\"},{\"name\":\"discuss\",\"value\":\"開會請不要在大太陽底下的龜殼上開會，謝謝。\"},{\"name\":\"motion\",\"value\":\"今天沒有擦防曬乳，黑掉了\"},{\"name\":\"supervise\",\"value\":\"ㄓㄜㄒㄧㄢ\"}]', '', '', 'ㄓㄜㄒㄧㄢ', '', '', '0000-00-00 00:00:00', '2022-12-06 17:28:46', '花花', '0000-00-00 00:00:00', ''),
 (39, '112', '', '\"[{\"name\":\"upload_title_name\",\"value\":\"第五屆第十五次\"},{\"name\":\"upload_rec_date\",\"value\":\"112年06月16日\"},{\"name\":\"upload_rec_remark\",\"value\":\"\"},{\"name\":\"upload_rec_supervise\",\"value\":\"社工員2\"},{\"name\":\"customFile1\",\"value\":\"1bZYPyDJiiTVVstmxuFXrq.jpg\"}]\"', '../board_supervisor/upload/1bZYPyDJiiTVVstmxuFXrq.jpg', '社工員2', '', '', '0000-00-00 00:00:00', '2023-06-16 10:46:19', '社工員1', '0000-00-00 00:00:00', ''),
 (40, '112', '', '\"[{\"name\":\"upload_title_name\",\"value\":\"第五屆第四促\"},{\"name\":\"upload_rec_date\",\"value\":\"112年06月16日\"},{\"name\":\"upload_rec_remark\",\"value\":\"\"},{\"name\":\"upload_rec_supervise\",\"value\":\"社工員2\"},{\"name\":\"customFile1\",\"value\":\"倉庫食物.xlsx\"}]\"', '../board_supervisor/upload/倉庫食物.xlsx', '社工員2', '', '', '0000-00-00 00:00:00', '2023-06-16 10:47:08', '社工員1', '0000-00-00 00:00:00', '');
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `board_supervisor_v2`
+--
+
+CREATE TABLE `board_supervisor_v2` (
+  `Id` int(240) NOT NULL,
+  `Year` varchar(300) NOT NULL,
+  `record_content` longtext NOT NULL,
+  `upload_content` longtext NOT NULL,
+  `Agenda_file_path` longtext NOT NULL,
+  `Rec_file_path` longtext NOT NULL,
+  `Director` varchar(300) NOT NULL,
+  `Director_signature` longtext NOT NULL,
+  `Director_sign_msg` longtext NOT NULL,
+  `Director_sign_time` varchar(300) NOT NULL,
+  `Supervise` varchar(300) NOT NULL,
+  `Supervise_signature` longtext NOT NULL,
+  `Supervise_sign_msg` longtext NOT NULL,
+  `Supervise_sign_time` varchar(300) NOT NULL,
+  `Create_date` datetime NOT NULL,
+  `Create_name` varchar(30) NOT NULL,
+  `Update_date` datetime NOT NULL,
+  `Update_name` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- 傾印資料表的資料 `board_supervisor_v2`
+--
+
+INSERT INTO `board_supervisor_v2` (`Id`, `Year`, `record_content`, `upload_content`, `Agenda_file_path`, `Rec_file_path`, `Director`, `Director_signature`, `Director_sign_msg`, `Director_sign_time`, `Supervise`, `Supervise_signature`, `Supervise_sign_msg`, `Supervise_sign_time`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
+(0, '112', '', '\"[{\"name\":\"upload_agenda_title_name\",\"value\":\"test理監事會記錄議程test25\"},{\"name\":\"upload_agenda_date\",\"value\":\"112年08月25日\"},{\"name\":\"upload_agenda_remark\",\"value\":\"test;;議程test25\"},{\"name\":\"upload_title_name\",\"value\":\"test理監事會記錄標題825\"},{\"name\":\"upload_rec_date\",\"value\":\"112年08月25日\"},{\"name\":\"upload_rec_remark\",\"value\":\"test;;理監事會記錄;;825\"},{\"name\":\"upload_rec_director\",\"value\":\"園主任\"},{\"name\":\"upload_rec_supervise\",\"value\":\"執行長\"}]\"', '[\"../board_supervisor/112_0_data/upload/test825-1.docx\",\"../board_supervisor/112_0_data/upload/test825-2.docx\",\"../board_supervisor/112_0_data/upload/test825-1 - 複製.docx\"]', '[\"../board_supervisor/112_0_data/upload/rec_test825-1.docx\",\"../board_supervisor/112_0_data/upload/rec_test825-1 - 複製.docx\",\"../board_supervisor/112_0_data/upload/rec_test825-2.docx\"]', '園主任', '', '', '', '執行長', '', '', '', '2023-08-30 21:36:02', '園主任', '0000-00-00 00:00:00', '');
 
 -- --------------------------------------------------------
 
@@ -1453,6 +1487,40 @@ INSERT INTO `members_assemble` (`Id`, `Year`, `record_content`, `upload_content`
 -- --------------------------------------------------------
 
 --
+-- 資料表結構 `members_assemble_v2`
+--
+
+CREATE TABLE `members_assemble_v2` (
+  `Id` int(240) NOT NULL,
+  `Year` varchar(300) NOT NULL,
+  `record_content` longtext NOT NULL,
+  `upload_content` longtext NOT NULL,
+  `Agenda_file_path` longtext NOT NULL,
+  `Rec_file_path` longtext NOT NULL,
+  `Director` varchar(300) NOT NULL,
+  `Director_signature` longtext NOT NULL,
+  `Director_sign_msg` longtext NOT NULL,
+  `Director_sign_time` varchar(300) NOT NULL,
+  `Supervise` varchar(300) NOT NULL,
+  `Supervise_signature` longtext NOT NULL,
+  `Supervise_sign_msg` longtext NOT NULL,
+  `Supervise_sign_time` varchar(300) NOT NULL,
+  `Create_date` datetime NOT NULL,
+  `Create_name` varchar(30) NOT NULL,
+  `Update_date` datetime NOT NULL,
+  `Update_name` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- 傾印資料表的資料 `members_assemble_v2`
+--
+
+INSERT INTO `members_assemble_v2` (`Id`, `Year`, `record_content`, `upload_content`, `Agenda_file_path`, `Rec_file_path`, `Director`, `Director_signature`, `Director_sign_msg`, `Director_sign_time`, `Supervise`, `Supervise_signature`, `Supervise_sign_msg`, `Supervise_sign_time`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
+(0, '111', '', '\"[{\"name\":\"upload_agenda_title_name\",\"value\":\"test會員大會記錄_議程test1111\"},{\"name\":\"upload_agenda_date\",\"value\":\"111年11月11日\"},{\"name\":\"upload_agenda_remark\",\"value\":\"test;;議程;;111年11月11日\"},{\"name\":\"upload_title_name\",\"value\":\"test會員大會記錄標題1111111\"},{\"name\":\"upload_rec_date\",\"value\":\"111年11月11日\"},{\"name\":\"upload_rec_remark\",\"value\":\"111年11月11日;;test會員大會記錄\"},{\"name\":\"upload_rec_director\",\"value\":\"園主任\"},{\"name\":\"upload_rec_supervise\",\"value\":\"執行長\"}]\"', '[\"../members_assemble/111_0_data/upload/test111_11_11-1.docx\",\"../members_assemble/111_0_data/upload/test111_11_11-1 - 複製.docx\",\"../members_assemble/111_0_data/upload/test111_11_11-2.docx\"]', '[\"../members_assemble/111_0_data/upload/test111_11_11-recx1.docx\",\"../members_assemble/111_0_data/upload/test111_11_11-recx2.docx\"]', '園主任', '', '', '', '執行長', '', '', '', '2023-08-30 22:06:49', '園主任', '0000-00-00 00:00:00', '');
+
+-- --------------------------------------------------------
+
+--
 -- 資料表結構 `overtime`
 --
 
@@ -2195,7 +2263,9 @@ INSERT INTO `signature_notice` (`Id`, `Sign_id`, `Title`, `Url`, `Timestamp`, `A
 (58, '8_6_RE111', '開案個案-(生活品質問卷)簽核：案號：RE111', 'case_all.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03&form_type=life', '2023-07-14 00:00', '社工員1', '園主任、執行長', '園主任已簽核、執行長已簽核', 'current_case', '2023-07-14 12:17:27', '執行長', '2023-07-14 12:17:27', ''),
 (62, '0', '團督記錄簽核：test團督記錄標題816', 'supervisor_record_detail_v2.php?year=112&id=0&sr_id=0&rec_type=upload', '2023-08-16 00:00', 'jia', '園主任、執行長', '園主任未簽核、執行長未簽核', 'supervisor_record', '2023-08-16 19:18:10', 'jia', '2023-08-16 19:18:10', ''),
 (65, '14_6_RE111', '開案個案-(安置、自立宿舍評估量表)簽核：案號：RE111', 'case_all.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03&form_type=settlement', '2023-08-30 00:00', '社工員1', '園主任、執行長', '園主任未簽核、執行長未簽核', 'current_case', '2023-08-30 00:08:27', '園主任', '2023-08-30 00:08:27', ''),
-(66, '1_1_SC001', '安置評估-(安置、自立宿舍評估量表)簽核：案號：SC001', 'placement_case_all.php?name=TESTAB12&gender=男&pid=HG12314341&date=2020-11-10&property=自立宿舍&type=愛滋感染者&grade=A&id=1&open_id=SC001&referral=民間社福機構&case_Create_date=2020-11-11&unopen_type=placement_case&birth=1945-02-05&form_type=settlement', '2023-08-30 00:00', '社工員2', '園主任、執行長', '園主任未簽核、執行長未簽核', 'placement_case', '2023-08-30 00:16:22', '園主任', '2023-08-30 00:16:22', '');
+(66, '1_1_SC001', '安置評估-(安置、自立宿舍評估量表)簽核：案號：SC001', 'placement_case_all.php?name=TESTAB12&gender=男&pid=HG12314341&date=2020-11-10&property=自立宿舍&type=愛滋感染者&grade=A&id=1&open_id=SC001&referral=民間社福機構&case_Create_date=2020-11-11&unopen_type=placement_case&birth=1945-02-05&form_type=settlement', '2023-08-30 00:00', '社工員2', '園主任、執行長', '園主任未簽核、執行長未簽核', 'placement_case', '2023-08-30 00:16:22', '園主任', '2023-08-30 00:16:22', ''),
+(67, '0', '理監事會記錄簽核：test理監事會記錄標題825', 'board_supervisor_detail_v2.php?year=112&id=0&bs_id=0&rec_type=upload', '2023-08-25 00:00', '園主任', '園主任、執行長', '園主任未簽核、執行長未簽核', 'board_supervisor', '2023-08-30 21:36:02', '園主任', '2023-08-30 21:36:02', ''),
+(68, '0', '會員大會記錄簽核：test會員大會記錄標題1111111', 'members_assemble_detail_v2.php?year=111&id=0&ma_id=0&rec_type=upload', '2022-11-11 00:00', '園主任', '園主任、執行長', '園主任未簽核、執行長未簽核', 'members_assemble', '2023-08-30 22:06:49', '園主任', '2023-08-30 22:06:49', '');
 
 -- --------------------------------------------------------
 
@@ -3243,7 +3313,7 @@ ALTER TABLE `screening_type_keywords`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `signature_notice`
 --
 ALTER TABLE `signature_notice`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `sign_notice`
