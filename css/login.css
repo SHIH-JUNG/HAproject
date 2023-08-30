@@ -51,7 +51,8 @@
   border-color: #cd9ba6;
 }
 *[role="form"] {
-    max-width: 500px;
+    /* max-width: 500px; */
+    max-width: 25.000em;
     padding: 15px;
     margin: 50px auto;
     border-radius: 0.3em;
@@ -67,4 +68,24 @@
     font-weight: 600;
     width: 50%;
     cursor: pointer;
+}
+
+#logo_img,#logo_font_img {
+  top:5.750em;
+}
+
+#form_login{
+  top: 3em;
+}
+
+@media (max-height: 800px)
+{
+
+  #logo_img,#logo_font_img {
+    top:3em;
+  }
+
+  #form_login{
+    top: .4em;
+  }
 }

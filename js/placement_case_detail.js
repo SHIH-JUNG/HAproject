@@ -924,42 +924,6 @@ function submit_form_data() {
                     form_type_ch_name = "個案評估表";
                     
                     break;
-            
-                case "interlocution":
-                    form_type_ch_name = "個案會談紀錄";
-                    break;
-
-                case "resource":
-                    form_type_ch_name = "社會資源應用表格";
-                    break;
-
-                case "life":
-                    form_type_ch_name = "生活品質問卷";
-                    break;
-                    
-                case "health":
-                    form_type_ch_name = "健康管理評估表";
-                    break;
-                    
-                case "sullen":
-                    form_type_ch_name = "憂鬱量表";
-                    break;
-                    
-                case "employment_satif":
-                    form_type_ch_name = "就業需求評估表&就業服務滿意度調查表";
-                    break;
-                
-                case "satif":
-                    form_type_ch_name = "服務滿意度量表";
-                    break;
-                
-                case "familyship":
-                    form_type_ch_name = "家庭關係";
-                    break;
-                
-                case "BSRS5":
-                    form_type_ch_name = "BSRS-5量表";
-                    break;
                 
                 case "settlement":
                     form_type_ch_name = "安置、自立宿舍評估量表";
@@ -1241,18 +1205,10 @@ $("#end").on('click', function () {
     }).then(function (isConfirm) {
         if (isConfirm) {
 
-            var end_indicator_text = $("[name*='end_indicator']").val();
-            var diagnose_main_text = $("[name*='diagnose_main']").val();
-            var diagnose_minor_text = $("[name*='diagnose_minor']").val();
-            var case_closed_yes_text = $("[name*='case_closed_yes']").val();
-            var customFile_text = $("[name*='customFile']").text();
-            var employment_radio_checked = $("[name*='employment_radio']:checked").val();
-            var social_adaptation_radio_checked = $("[name*='social_adaptation_radio']:checked").val();
-            // alert(customFile_text)
-            // alert(end_indicator_text)
-            // alert(diagnose_main_text)
-            // alert(case_closed_yes_text)
-            closed_href = 'placement_case_trans_closed.php?name='+name+'&gender='+gender+'&id='+pcase_id+'&open_id='+open_id+'&birth='+birth+'&open_date='+date+'&main_issue='+diagnose_main_text+'&minor_issue='+diagnose_minor_text+'&closed_reason='+end_indicator_text+'&closed_remark='+case_closed_yes_text+'&file='+customFile_text+'&checked_1='+employment_radio_checked+'&checked_2='+social_adaptation_radio_checked+'';
+            var local_href = window.location.href;
+            var closed_href_str = local_href.split("?")[1];
+
+            closed_href = 'placement_case_trans_closed.php?'+closed_href_str+'';
             window.open(closed_href);
         }
 

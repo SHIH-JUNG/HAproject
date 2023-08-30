@@ -26,39 +26,42 @@
 <script src="javascript/jquery3.5.1.min.js"></script>
 <!-- -->
 </head>
-  <body class="text-center">
-    <!--讀取進度條-->
-    <div class="preloader-it">
-        <div class="la-anim-1"></div>
-    </div>
-    <!--/讀取進度條-->
-<!--  網頁內容  -->
-    <div class="container">
-    <img width="350px" height="250px" style="position:relative; top:115px" src="image/HA.png">
-    <br>
-    <img  style="position:relative; top:115px" src="image/login eng.png">
-      <form method="post" class="form-signin" id="form_login" role="form" style="position:relative; top: 60px;">
-        <h2>登入</h2>        
-        <input type="text" id="id" name="id" class="form-control" placeholder="請輸入您的帳號">
-        <input type="password" id="pw"  name="pw" class="form-control" placeholder="請輸入您的密碼" onkeydown="keyLogin();">
-          <label>
-              <input  type="checkbox" id="rememberMe" value="remember-me"> 記住帳號
-          </label>
-        <section>
-            <input type="button" class="btnRegister" id="login" value="登入">  
-        </section>
-      </form>
-    </div>
-<!--  /網頁內容  --> 
-<!--頁尾-->
-<footer class="footer">
-    <div class="row">
-        <div class="col-sm-12 text-center" style="color:black">
-            <p>Copyright &copy; 2020國立屏東科技大學資訊管理系</p>
+<body class="text-center">
+    <div style="position:relative;min-height: 100vh;">
+        <!--讀取進度條-->
+        <div class="preloader-it">
+            <div class="la-anim-1"></div>
         </div>
+        <!--/讀取進度條-->
+        <!--  網頁內容  -->
+        <div class="container">
+            <img id="logo_img" width="350em" height="250em" style="position:relative;" src="image/HA.png">
+            <br>
+            <img id="logo_font_img" style="position:relative;" src="image/login eng.png">
+            <form method="post" class="form-signin" id="form_login" role="form" style="position:relative; ">
+                <h2>登入</h2>        
+                <input type="text" id="id" name="id" class="form-control" placeholder="請輸入您的帳號">
+                <input type="password" id="pw"  name="pw" class="form-control" placeholder="請輸入您的密碼" onkeydown="keyLogin();">
+                <label>
+                    <input  type="checkbox" id="rememberMe" value="remember-me"> 記住帳號
+                </label>
+                <section>
+                    <input type="button" class="btnRegister" id="login" value="登入">  
+                </section>
+            </form>
+        </div>
+        <!--  /網頁內容  --> 
+        <!--頁尾-->
+        <footer class="footer">
+            <div class="row">
+                <div class="col-sm-12 text-center" style="color:black">
+                    <p>Copyright &copy; 2020國立屏東科技大學資訊管理系</p>
+                </div>
+            </div>
+        </footer>
+        <!--/頁尾-->
     </div>
-</footer>
-<!--/頁尾-->
+    
     <!-- JavaScript -->
     <!-- Bootstrap and jQuery -->
     <script src="javascript/jquery.min.js"></script>

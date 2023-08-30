@@ -10,20 +10,34 @@ function getUrlVars() {
 }
 //endregion
 
+//設置麵包屑
+var local_href = window.location.href;
+var local_href_str = local_href.split("?")[1];
+
+var history1 = local_href_str.split("&form_id")[0];
+
+$("#history").attr('href',"case_all.php?"+history1);
+$("#history2").attr('href',"case_all_all.php?"+'id='+ open_seqid +'&open_id='+ open_id);
+$(".history3").attr('href',"case_detail.php?"+local_href_str);
+
 //獲取本網址從簡短服務詳細資料網頁(case_detail.php)傳過來的屬性值region
 var name = decodeURI(getUrlVars()["name"]);
 var gender = decodeURI(getUrlVars()["gender"]);
 var open_id = getUrlVars()["open_id"];
 var open_seqid = getUrlVars()["id"];
 var birth = getUrlVars()["birth"];
-var open_date = getUrlVars()["open_date"];
-var main_issue = (typeof main_issue === undefined) ? '' : decodeURI(getUrlVars()["main_issue"]);
-var minor_issue = (typeof minor_issue === undefined) ? '' : decodeURI(getUrlVars()["minor_issue"]);
-var closed_reason = (typeof closed_reason === undefined) ? '' : decodeURI(getUrlVars()["closed_reason"]);
-var closed_remark = (typeof closed_remark === undefined) ? '' : decodeURI(getUrlVars()["closed_remark"]);
-var file = (typeof file === undefined) ? '' : decodeURI(getUrlVars()["file"]);
-var checked_1 = (typeof checked_1 === undefined) ? '' : decodeURI(getUrlVars()["checked_1"]);
-var checked_2 = (typeof checked_2 === undefined) ? '' : decodeURI(getUrlVars()["checked_2"]);
+var open_date = getUrlVars()["date"];
+
+var form_id = getUrlVars()["form_id"];
+var form_type = decodeURI(getUrlVars()["form_type"]);
+
+// var main_issue = (typeof main_issue === undefined) ? '' : decodeURI(getUrlVars()["main_issue"]);
+// var minor_issue = (typeof minor_issue === undefined) ? '' : decodeURI(getUrlVars()["minor_issue"]);
+// var closed_reason = (typeof closed_reason === undefined) ? '' : decodeURI(getUrlVars()["closed_reason"]);
+// var closed_remark = (typeof closed_remark === undefined) ? '' : decodeURI(getUrlVars()["closed_remark"]);
+// var file = (typeof file === undefined) ? '' : decodeURI(getUrlVars()["file"]);
+// var checked_1 = (typeof checked_1 === undefined) ? '' : decodeURI(getUrlVars()["checked_1"]);
+// var checked_2 = (typeof checked_2 === undefined) ? '' : decodeURI(getUrlVars()["checked_2"]);
 //endregion
 
 //將日期轉為民國年格式111.03.07 region
@@ -222,7 +236,7 @@ function load_familyship_data() {
             $.each(data,function(index,value){
                         
                 var other_info_json = JSON.parse("[" +value.Other_info.replace('\"\[', '\[').replace('\]\"', '\]') + "]");
-                console.log(other_info_json)
+                // console.log(other_info_json)
                                 
                 if(other_info_json.length > 0)
                 {
@@ -286,7 +300,7 @@ function load_BSRS5_data() {
         async: false,
         success: function (data) {
     
-            console.log(data)
+            // console.log(data)
             var sp_str = 
             // '填寫日期：'+ '&emsp;' +'，總分：' + '&emsp;' + '分，' + '處置情形：' + '---\n';
             '無紀錄 \n';
@@ -318,6 +332,95 @@ function load_BSRS5_data() {
     });
 }
 //endregion
+
+window.customFile = "";
+window.main_issue = "";
+window.minor_issue = "";
+window.employment_radio_checked = "";
+window.social_adaptation_radio_checked = "";
+window.other_assessments = "";
+// window.evaluation_str = "";
+window.closed_reason = "";
+window.closed_result = "";
+
+$.ajax({
+    url: "database/find_case_forms_data.php",
+    data: {
+        Open_id:open_id,
+        Id:open_seqid,
+        Form_id:form_id,
+        Form_type:form_type,
+    },
+    type: "POST",
+    dataType: "JSON",
+    async: false,
+    success: function (data) {
+
+        console.log(data)
+
+        //將ajax結果轉為json
+        var data_json = JSON.parse("[" +data[0].answer.replace('\"\[', '\[').replace('\]\"', '\]') + "]");
+        // console.log(data_json)
+        //依據input的type類型名稱寫入資料，file類型名稱另外寫 region
+        $.each(data_json[0], function (i, datan) {
+
+            switch (datan.name) {
+                case "customFile1":
+                    var file = datan.value.replace("\.\.\/upload\/", "");
+                    $("#customFile1").html('<a name="customFile_a" href="./upload/'+file+'" style="text-decoration:none;color:blue;" target="_blank">'+file+'<br/></a><img style="vertical-align:middle;" width="auto" onerror="hideContainer(this)" src="./upload/'+file+'">');
+                    
+                    customFile = datan.value;
+                    break;
+
+                case "diagnose_main":
+                    $("[name='main_issue']").val(datan.value);
+
+                    main_issue = datan.value;
+                    break;
+            
+                case "diagnose_minor":
+                    $("[name='minor_issue']").val(datan.value);
+
+                    minor_issue = datan.value;
+                    break;
+                
+                case "employment_radio":
+                    employment_radio_checked = datan.value;
+                    break;
+
+                case "social_adaptation_radio":
+                    social_adaptation_radio_checked = datan.value;
+                    break;
+
+                case "other_assessments":
+                    other_assessments = datan.value;
+                    break;
+                
+                case "end_indicator":
+                    $("[name='closed_reason'][value='"+datan.value+"']").attr('checked',true);
+                    
+                    closed_reason += datan.value + " ";
+                    break;
+                
+                case "case_closed_yes":
+                    $("[id='closed_result']").val(datan.value);
+
+                    closed_result = datan.value;
+                    break;
+
+            }
+
+            
+        });
+        //endregion
+
+    },
+    error: function (e) {
+        notyf.alert('伺服器錯誤,無法載入');
+        console.log(e)
+    }
+});
+
 
 function checked_content(checked_1, checked_2) {
 
@@ -383,7 +486,9 @@ function checked_content(checked_1, checked_2) {
     return checked_content;
 }
 
-var checked_content_arr = checked_content(checked_1, checked_2);
+// var checked_content_arr = checked_content(checked_1, checked_2);
+
+var checked_content_arr = checked_content(employment_radio_checked, social_adaptation_radio_checked);
 
 load_sullen_data();
 load_life_data();
@@ -417,17 +522,6 @@ var intervention_default_text = '一、'+
 
 //獲取個案評估表既有的資料顯示在新增個案表格中 region
 $(document).ready(function(){
-
-    // console.log(sullen_data_str);
-    // console.log(life_data_str);
-    // console.log(familyship_data_str);
-
-    //設置麵包屑
-    var history_back_url = document.referrer;
-    var history = history_back_url.split("?")[1].split("&form_id")[0]
-    $("#history").attr('href',"case_all.php?"+history);
-    $("#history2").attr('href',"case_all_all.php?"+history_back_url.split("&")[7]+"&"+history_back_url.split("&")[8]);
-
     //抓取今天日期
     var datetoday = moment().format('YYYY-MM-DD');
 
@@ -440,14 +534,14 @@ $(document).ready(function(){
     $("#open_date").val(open_date);
     $("#closed_date").val(datetoday);
 
-    $("#customFile1").html('<a name="customFile_a" href="./upload/'+file+'" style="text-decoration:none;color:blue;" target="_blank">'+file+'<br/></a><img style="vertical-align:middle;" width="auto" onerror="hideContainer(this)" src="./upload/'+file+'">');
+    // $("#customFile1").html('<a name="customFile_a" href="./upload/'+file+'" style="text-decoration:none;color:blue;" target="_blank">'+file+'<br/></a><img style="vertical-align:middle;" width="auto" onerror="hideContainer(this)" src="./upload/'+file+'">');
 
-    $("#main_issue").val(main_issue);
-    $("#minor_issue").val(minor_issue);
+    // $("#main_issue").val(main_issue);
+    // $("#minor_issue").val(minor_issue);
     $("#intervention").html(intervention_default_text);
     $("#evaluation").html(evaluation_default_text);
-    $("[name='closed_reason'][value='"+closed_reason+"']").attr('checked',true);
-    $("#remark").val(closed_remark);
+    // $("[name='closed_reason'][value='"+closed_reason+"']").attr('checked',true);
+    // $("#remark").val(closed_remark);
 
     $.ajax({
         type:'POST',

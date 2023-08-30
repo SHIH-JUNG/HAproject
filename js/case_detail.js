@@ -1388,22 +1388,25 @@ function load_all_forms_data(type_name,url_str)
                         //從資料庫抓取的格式為 "../upload/檔案.檔名"
                         //replace()更改為 "檔案.檔名"
 
-                        if (typeof value.Other_info !== 'undefined') 
-                        var file_val = data[0].file_path.replace("\.\.\/upload\/", "");
+                        if (typeof data[0].file_path !== 'undefined')
+                        {
+                            var file_val = data[0].file_path.replace("\.\.\/upload\/", "");
 
-                        //該input value寫入"檔案.檔名"
-                        $("input[name*='customFile']").eq(i).attr("value",file_val)
-
-                        //檔案連結與圖片string
-                        var file_html='<a name="customFile'+(i+1)+'_a" href="./upload/'+file_val+'" style="text-decoration:none;color:blue;" target="_blank">'+file_val+'<br/></a><img style="vertical-align:middle;" width="auto" onerror="hideContainer(this)" src="./upload/'+file_val+'">';
-
-                        // if()
-                        // {
-                        //     file_html += '<img style="vertical-align:middle;" width="auto" src="./upload/'+file_val+'">';
-                        // }
+                            //該input value寫入"檔案.檔名"
+                            $("input[name*='customFile']").eq(i).attr("value",file_val)
+    
+                            //檔案連結與圖片string
+                            var file_html='<a name="customFile'+(i+1)+'_a" href="./upload/'+file_val+'" style="text-decoration:none;color:blue;" target="_blank">'+file_val+'<br/></a><img style="vertical-align:middle;" width="auto" onerror="hideContainer(this)" src="./upload/'+file_val+'">';
+    
+                            // if()
+                            // {
+                            //     file_html += '<img style="vertical-align:middle;" width="auto" src="./upload/'+file_val+'">';
+                            // }
+                            
+                            //寫入該input相對應的div元素 (id="customFile^") 中顯示
+                            $("#customFile"+(i+1)).html(file_html);
+                        } 
                         
-                        //寫入該input相對應的div元素 (id="customFile^") 中顯示
-                        $("#customFile"+(i+1)).html(file_html);
                     }
                 }
                 //endregion
@@ -2322,18 +2325,24 @@ $("#end").on('click', function () {
     }).then(function (isConfirm) {
         if (isConfirm) {
 
-            var end_indicator_text = $("[name*='end_indicator']").val();
-            var diagnose_main_text = $("[name*='diagnose_main']").val();
-            var diagnose_minor_text = $("[name*='diagnose_minor']").val();
-            var case_closed_yes_text = $("[name*='case_closed_yes']").val();
-            var customFile_text = $("[name*='customFile']").text();
-            var employment_radio_checked = $("[name*='employment_radio']:checked").val();
-            var social_adaptation_radio_checked = $("[name*='social_adaptation_radio']:checked").val();
+            // var end_indicator_text = $("[name*='end_indicator']").val();
+            // var diagnose_main_text = $("[name*='diagnose_main']").val();
+            // var diagnose_minor_text = $("[name*='diagnose_minor']").val();
+            // var case_closed_yes_text = $("[name*='case_closed_yes']").val();
+            // var customFile_text = $("[name*='customFile']").text();
+            // var employment_radio_checked = $("[name*='employment_radio']:checked").val();
+            // var social_adaptation_radio_checked = $("[name*='social_adaptation_radio']:checked").val();
             // alert(customFile_text)
             // alert(end_indicator_text)
             // alert(diagnose_main_text)
             // alert(case_closed_yes_text)
-            closed_href = 'trans_closed.php?name='+name+'&gender='+gender+'&id='+id+'&open_id='+open_id+'&birth='+birth+'&open_date='+date+'&main_issue='+diagnose_main_text+'&minor_issue='+diagnose_minor_text+'&closed_reason='+end_indicator_text+'&closed_remark='+case_closed_yes_text+'&file='+customFile_text+'&checked_1='+employment_radio_checked+'&checked_2='+social_adaptation_radio_checked+'';
+            
+            // closed_href = 'trans_closed.php?name='+name+'&gender='+gender+'&id='+id+'&open_id='+open_id+'&birth='+birth+'&open_date='+date+'&main_issue='+diagnose_main_text+'&minor_issue='+diagnose_minor_text+'&closed_reason='+end_indicator_text+'&closed_remark='+case_closed_yes_text+'&file='+customFile_text+'&checked_1='+employment_radio_checked+'&checked_2='+social_adaptation_radio_checked+'';
+            
+            var local_href = window.location.href;
+            var closed_href_str = local_href.split("?")[1];
+            
+            closed_href = 'trans_closed.php?'+closed_href_str+'';
             window.open(closed_href);
         }
 

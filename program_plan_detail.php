@@ -168,7 +168,7 @@
                                                                             <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">經費來源</td>
                                                                                 <td style="border-bottom: solid 1px;">
-                                                                                    <select id="person" class="program_question">
+                                                                                    <select id="fund" class="program_question">
                                                                                         <option value="人事">人事</option>
                                                                                         <option value="事務">事務</option>
                                                                                         <option value="專管">專管</option>
@@ -257,7 +257,7 @@
                                                                                         <button style="font-size:20px" id="program_edit" class="btn btn-default" onclick="program_edit();">編輯</button>
                                                                                     </div>
                                                                                     <div id="save_div" hidden>
-                                                                                        <button style="font-size:20px" id="program_update" class="btn btn-default">修改</button>
+                                                                                        <button style="font-size:20px" id="program_update" class="btn btn-default" onclick="program_update();">修改</button>
                                                                                         <button style="font-size:20px" id="program_cancel" class="btn btn-default" onclick="program_cancel();">取消</button>
                                                                                     </div>
                                                                                 </td>

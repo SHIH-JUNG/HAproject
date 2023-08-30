@@ -421,9 +421,9 @@ program_update = function() {
       form_data.append("Plan_name", $("#plan_name").val());
 
       // 預覽傳到後端的資料詳細內容
-      // for (var pair of form_data.entries()) {
-      //   console.log(pair[0] + ", " + pair[1]);
-      // }
+      for (var pair of form_data.entries()) {
+        console.log(pair[0] + ", " + pair[1]);
+      }
 
 
       $.ajax({
@@ -438,7 +438,7 @@ program_update = function() {
           processData: false,
           async: true,
         success: function (data) {
-          // console.log(data);
+          console.log(data);
           if (data == 1) {
             swal({
               type: "success",
