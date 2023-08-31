@@ -154,7 +154,7 @@ program_id = getUrlVars()["program_id"];
 
 function load_files() {
   // $.ajax({
-  //     url: "database/find_program_plan_forms_data_detail.php",
+  //     url: "database/find_program_Plan_froms_data_detail.php",
   //     data:{
   //         program_id:program_id,
   //     },
@@ -417,13 +417,17 @@ program_update = function() {
       // 未選擇檔案的file陣列no_file_arr加入File_name變數供後端程式判斷
       // form_data.append("File_name", JSON.stringify(no_file_arr));
 
+      form_data.append("Program_id", program_id);
       form_data.append("Date", $("#date").val());
+      form_data.append("Year", $("#year").val());
       form_data.append("Plan_name", $("#plan_name").val());
+      form_data.append("Plan_from", $("#Plan_from").val());
+      form_data.append("Fund", $("#fund").val());
 
       // 預覽傳到後端的資料詳細內容
-      for (var pair of form_data.entries()) {
-        console.log(pair[0] + ", " + pair[1]);
-      }
+      // for (var pair of form_data.entries()) {
+      //   console.log(pair[0] + ", " + pair[1]);
+      // }
 
 
       $.ajax({
@@ -446,8 +450,8 @@ program_update = function() {
               allowOutsideClick: false, //不可點背景關閉
             }).then(function () {
               window.location.href =
-                "program_detail.php?"+
-                "&id=" +
+                "program_plan_detail.php?"+
+                "&program_id=" +
                 program_id +
                 "";
             });
@@ -475,7 +479,7 @@ function check_updat_program_user_data() {
   var date = $("#date").val();
   var plan_name = $("#plan_name").val();
   var plan_from = $("#plan_from").val();
-  var fund = $("#fund").val();
+  // var fund = $("#fund").val();
 
   var errorstr = "";
 
@@ -491,10 +495,10 @@ function check_updat_program_user_data() {
   {
       errorstr += "未填寫計畫來源!\r\n";
   }
-  if(fund == null)
-  {
-      errorstr += "未填寫經費來源!\r\n";
-  }
+  // if(fund == null)
+  // {
+  //     errorstr += "未填寫經費來源!\r\n";
+  // }
   if (errorstr == "") {
       if (date.replace(/\s*/g, "") == "") {
         errorstr += "未填寫日期!\r\n";
@@ -505,9 +509,9 @@ function check_updat_program_user_data() {
       if (plan_from.replace(/\s*/g, "") == "") {
         errorstr += "未填寫計畫來源!\r\n";
       }
-      if (fund.replace(/\s*/g, "") == "") {
-        errorstr += "未填寫經費來源!\r\n";
-      }
+      // if (fund.replace(/\s*/g, "") == "") {
+      //   errorstr += "未填寫經費來源!\r\n";
+      // }
     }
   
     return errorstr;
@@ -559,7 +563,7 @@ $.ajax({
       }).then(function () {
         window.location.href =
           "program_plan_detail.php?"+
-          "&id=" +
+          "&program_id=" +
           program_id +
           "";
       });

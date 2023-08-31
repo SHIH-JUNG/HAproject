@@ -54,9 +54,8 @@ datepicker_create = function (selector_id) {
       currentText: "今天",
       dateFormat: "R.mm.dd",
       showButtonPanel: true,
-      // minDate: new Date(new Date().getFullYear() - 10, 0, 1),
-      // maxDate: new Date(new Date().getFullYear() + 10, 11, 31),
-      yearRange: "-15:+5",
+      minDate: new Date(new Date().getFullYear() - 10, 0, 1),
+      maxDate: new Date(new Date().getFullYear() + 10, 11, 31),
       onClose: function (dateText) {
         // console.log($('#'+selector_id).val());
         // console.log(trans_to_EN(dateText));
@@ -122,6 +121,8 @@ check_sql_date_format = function (date) {
   return date;
 };
 
+training_id = getUrlVars()["training_id"];
+
 //抓發文表region
 $(document).ready(function () {
 
@@ -147,6 +148,18 @@ $(document).ready(function () {
         $("#place").val(value.Place);
         $("#hours").val(value.Hours);
         $("#remark").val(value.Remark);
+
+        var training_file_path = value.Upload_path.replace("../", "./");
+        training_file_name = value.Upload_name;
+
+        var a_element_content = '<a href="'+training_file_path+'" style="text-decoration:none;color:blue;" target="_blank">'
+        +training_file_name
+        +'</a><br/><br/>';
+
+
+        $("#upload").html(a_element_content);
+        // $("#upload_cert").html(b_element_content);
+
         $("#create_date").val(check_sql_date_format(value.Create_date));
         $("#create_name").val(value.Create_name);
         $("#update_date").val(check_sql_date_format(value.Update_date));
@@ -185,9 +198,54 @@ $(document).ready(function () {
 
 //endregion
 
-//更新發文個案表基本資料region
+function check_file_exist() {
+  var check_file_value = $('input[type="file"]').prop("files");
+  var warning_str = "";
+  var file_arr = [];
+  var file_n = "";
+  var exist_info = [];
+
+  for (var i = 0; i < check_file_value.length; i++) {
+    file_arr.push(check_file_value[i]["name"]);
+  }
+  $.each(file_arr, function (index, value) {
+    $.ajax({
+      url: "database/training_file_check.php",
+      data: {
+        file_name: value,
+      },
+      type: "POST",
+      dataType: "JSON",
+      async: false,
+      success: function (data) {
+        //  console.log(data)
+        if (data != "") {
+          $.each(data, function (index, value) {
+            file_n = data[index].file_path.replace(
+              "../training/",
+              ""
+            );
+
+            warning_str += "已有重複檔案名稱：\n" + file_n;
+
+            exist_info.push([file_n, warning_str]);
+          });
+        } else {
+          warning_str = "";
+        }
+      },
+      error: function (e) {
+        console.log(e);
+        notyf.alert('伺服器錯誤,無法載入');
+      },
+    });
+  });
+  return exist_info;
+}
+//endregion
+
+
 $("#tra_update").on("click", function () {
-  var id = getUrlVars()["id"];
   var training_id = getUrlVars()["training_id"];
 
   var stau = false;
@@ -205,44 +263,116 @@ $("#tra_update").on("click", function () {
       type: "error",
     });
   } else {
-    $.ajax({
-      url: "database/update_training_data_detail.php",
-      data: {
-        training_id: training_id,
-        name: $("#name").val(),
-        training_date: trans_to_EN($("#training_date").val()),
-        training_name: $("#training_name").val(),
-        place: $("#place").val(),
-        hours: $("#hours").val(),
-        remark: $("#remark").val(),
-        create_date: trans_to_EN($("#create_date").val()),
-        create_name: $("#create_name").val(),
-        update_date: trans_to_EN($("#update_date").val()),
-        update_name: $("#update_name").val(),
-      },
-      type: "POST",
-      dataType: "JSON",
-      success: function (data) {
-        if (data == 1) {
-          swal({
-            title: "修改成功！",
-            type: "success",
-          }).then(function () {
-            location.reload();
-          });
-        } else {
-          swal({
-            title: "修改失敗！請聯絡負責單位",
-            type: "error",
-          });
-        }
-      },
-      error: function (e) {
-        console.log(e);
-      },
-    });
+    var exist_arr = check_file_exist();
+      if(exist_arr.length != 0)
+      {
+        swal({
+          title: exist_arr[0][1],
+          text: "選擇『確認送出』覆蓋現有檔案，或是按『取消』更改檔名",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#DD6B55",
+          confirmButtonText: "確認送出",
+          cancelButtonText: "取消",
+          showConfirmButton: true,
+          showCancelButton: true,
+        })
+          .then(
+            function (result) {
+              if (result) {
+                submit_form();
+              }
+            },
+            function (dismiss) {
+              if (dismiss == "cancel") {
+                swal({
+                  title: "已取消，建議請更改檔名",
+                  type: "success",
+                });
+              }
+            }
+          )
+          .catch(swal.noop);
+      }
+      else
+      {
+        submit_form();
+      }
   }
 });
+
+function submit_form() {
+
+  //去掉資料內前後端多餘的空白，file類型須排除，否則報錯
+  $("input, textarea").each(function () {
+    if ($(this).attr("type") != "file") {
+        $(this).val(jQuery.trim($(this).val()));
+    }
+    });
+  
+    var form_data = new FormData();
+
+
+    $("input[type='file']").each(function(index, element) {
+        var received_files = $(this).prop("files");
+
+        if (received_files != undefined) {
+          if (received_files.length != 0) {
+            for (var i = 0; i < received_files.length; i++) {
+              form_data.append("received_files"+index, received_files[i]);
+              // console.log(received_files[i])
+            }
+          } 
+        }
+    });
+
+    form_data.append("training_id", training_id);
+    form_data.append("Name", $("#name").val());
+    form_data.append("Training_date", $("#training_date").val());
+    form_data.append("Training_name", $("#training_name").val());
+    form_data.append("Place",$("#place").val());
+    form_data.append("Hours",$("#hours").val());
+    form_data.append("Remark", $("#remark").val());
+    form_data.append("Create_date",$("#create_date").val());
+    form_data.append("Create_name",$("#create_name").val());
+    form_data.append("Update_date",$("#update_date").val());
+    form_data.append("Update_name",$("#update_name").val());
+
+    // 預覽傳到後端的資料詳細內容
+    for (var pair of form_data.entries()) {
+      console.log(pair[0] + ", " + pair[1]);
+    }
+
+
+  $.ajax({
+    url: "database/update_training_data_detail.php",
+    type: "POST",
+    data: form_data,
+    contentType: false,
+    cache: false,
+    processData: false,
+    async: true,
+    success: function (data) {
+      console.log(data);
+      if (data == 1) {
+        swal({
+          title: "修改成功！",
+          type: "success",
+        }).then(function () {
+          location.reload();
+        });
+      } else {
+        swal({
+          title: "修改失敗！請聯絡負責單位",
+          type: "error",
+        });
+      }
+    },
+    error: function (e) {
+      console.log(e);
+    },
+  });
+}
 
 //結案個案表(update)的必填欄位 region
 function check_updat_training_data() {
@@ -401,7 +531,7 @@ function reservation_rec_new() {
     "</td>" +
     "</tr>" +
     '<tr style="text-align:left">' +
-    '<td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">課程內容</td>' +
+    '<td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">課程名稱</td>' +
     '<td style="">' +
     '<input id="content_detail" type="text">' +
     "</td>" +
@@ -731,7 +861,7 @@ function training_show() {
                       '</td>' +
                   '</tr>' +
                   '<tr style="text-align:left">' +
-                      '<td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">課程內容</td>' +
+                      '<td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">課程名稱</td>' +
                       '<td style="">'+
                       '<input class="question'+value.Id+'" id="content_detail'+value.Id+'" value="'+value.Content_detail +'" type="text">' +
                       '</td>' +
@@ -868,7 +998,7 @@ function check_open_reservation_note_value_str() {
     errorstr += "未填寫在職訓練日期!\r\n";
   }
   if (training_name == null) {
-    errorstr += "未填寫課程內容!\r\n";
+    errorstr += "未填寫課程名稱!\r\n";
   }
   if (hours == null) {
     errorstr += "未填寫時數!\r\n";
@@ -947,38 +1077,38 @@ function check_open_reservation_note_value_str() {
 //   ).length;
 //   var errorstr = "";
 
-//   if (start_date == null) {
-//     errorstr += "未填寫預約訪談日期!\r\n";
-//   }
-//   if (one_user == null) {
-//     errorstr += "未選擇主要負責同工!\r\n";
-//   }
-//   // if (two_user == null) {
-//   //     errorstr += "未選擇副同工!\r\n";
-//   // }
-//   if (location_detail == null && location_other == null) {
-//     errorstr += "未填寫面訪方式!\r\n";
-//   }
-//   if (location_radio <= 0) {
-//     errorstr += "未選擇面訪方式分類!\r\n";
-//   }
-//   if (errorstr == "") {
-//     if (start_date.replace(/\s*/g, "") == "") {
-//       errorstr += "未填寫預約訪談日期!\r\n";
-//     }
-//     if (one_user.replace(/\s*/g, "") == "") {
-//       errorstr += "未選擇主要負責同工!\r\n";
-//     }
-//     // if (two_user.replace(/\s*/g, "") == '') {
-//     //     errorstr += "未選擇副同工!\r\n";
-//     // }
-//     if (
-//       location_detail.replace(/\s*/g, "") == "" &&
-//       location_other.replace(/\s*/g, "") == ""
-//     ) {
-//       errorstr += "未填寫面訪方式!\r\n";
-//     }
-//   }
+  // if (start_date == null) {
+  //   errorstr += "未填寫預約訪談日期!\r\n";
+  // }
+  // if (one_user == null) {
+  //   errorstr += "未選擇主要負責同工!\r\n";
+  // }
+  // if (two_user == null) {
+  //     errorstr += "未選擇副同工!\r\n";
+  // }
+  // if (location_detail == null && location_other == null) {
+  //   errorstr += "未填寫面訪方式!\r\n";
+  // }
+  // if (location_radio <= 0) {
+  //   errorstr += "未選擇面訪方式分類!\r\n";
+  // }
+  // if (errorstr == "") {
+  //   if (start_date.replace(/\s*/g, "") == "") {
+  //     errorstr += "未填寫預約訪談日期!\r\n";
+  //   }
+  //   if (one_user.replace(/\s*/g, "") == "") {
+  //     errorstr += "未選擇主要負責同工!\r\n";
+  //   }
+  //   // if (two_user.replace(/\s*/g, "") == '') {
+  //   //     errorstr += "未選擇副同工!\r\n";
+  //   // }
+  //   if (
+  //     location_detail.replace(/\s*/g, "") == "" &&
+  //     location_other.replace(/\s*/g, "") == ""
+  //   ) {
+  //     errorstr += "未填寫面訪方式!\r\n";
+  //   }
+  // }
 
 //   return errorstr;
 // }

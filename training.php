@@ -116,7 +116,7 @@
                                                                 <input id="upload_max_date" type="text" name="ch_datepicker" style="width: 10em;" placeholder="在職訓練日期搜尋">
                                                             </td>
                                                             
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">課程主題：</td>
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">課程名稱：</td>
                                                             <td class="text-left">
                                                                 <select id="training_name" rel="3" class="filter search">
                                                                     <option value="">所有</option>
@@ -137,6 +137,15 @@
                                                             <td class="text-left">
                                                                 <select id="place" rel="5" class="filter search">
                                                                     <option value="">所有</option>
+                                                                </select>
+                                                            </td>
+
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">檔案是否上傳：</td>
+                                                            <td class="text-left">
+                                                                <select id="file_upload" rel="9" class="filter search">
+                                                                    <option value="">所有</option>
+                                                                    <option value="已上傳">已上傳</option>
+                                                                    <option value="未上傳">未上傳</option>
                                                                 </select>
                                                             </td>
 
@@ -166,9 +175,10 @@
                                                             <tr style="background-color:rgb(255 201 54);">
                                                                 <th>姓名</th>
                                                                 <th>在職訓練日期</th>
-                                                                <th>課程主題</th>
+                                                                <th>課程名稱</th>
                                                                 <th>時數</th>
                                                                 <th>在職訓練地點</th>
+                                                                <th>檔案是否上傳</th>
                                                                 <th>創建日期</th>
                                                                 <th>創建者</th>
                                                                 <th>更新日期</th>

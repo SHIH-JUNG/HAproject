@@ -172,7 +172,6 @@
                                                                     </td>
                                                                 </tr>
                                                             
-                                                                
                                                                 <tr style="text-align:left">
                                                                     <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>執行長(簽核)</td>
                                                                     <td style="border-bottom: solid 1px;">

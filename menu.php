@@ -174,8 +174,24 @@
         </a>
     </li>
     <li>
-        <a href="dlgrec.php">生輔紀錄
+        <a href="javascript:void(0);" class="" data-toggle="collapse" data-target="#non_open3">安置中心生輔紀錄
+            <span class="pull-right">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-down-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                </svg>
+            </span>
         </a>
+        <ul style="font-size:15px" id="non_open3" class="collapse">
+            <li>
+            <li>
+                <a href="dlgrec.php">生輔紀錄
+                </a>
+            </li>
+            <li>
+                <a href="peers_dlgrec.php">同儕生輔紀錄
+                </a>
+            </li>
+        </ul>
     </li>
     <li>
         <a href="case_report.php">服務報表

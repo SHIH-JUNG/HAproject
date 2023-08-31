@@ -1,137 +1,144 @@
+const notyf = new Notyf();
+
 //datepicker創建 region
-datepicker_create = function (selector_id) {
-  if (selector_id == "birth") {
-    $("#" + selector_id).datepicker({
-      changeYear: true,
-      changeMonth: true,
-      currentText: "今天",
-      dateFormat: "R年mm月dd日",
-      showButtonPanel: true,
-      yearRange: "-109:+0",
-      onClose: function (dateText) {
-        console.log($("#" + selector_id).val());
-        console.log(trans_to_EN(dateText));
-      },
-      beforeShow: function (input, inst) {
-        var $this = $(this);
-        var cal = inst.dpDiv;
-        var outerh = $this.outerHeight();
-        if ($this.offset().top > 1200) {
-          outerh = outerh * 4;
-        } else {
-          outerh = outerh * 3;
-        }
-        // console.log($this.offset().top)
-        // console.log(outerh)
+datepicker_create = function(selector_id) {
 
-        var top = $this.offset().top - outerh;
-        var left = $this.offset().left - 10;
-        setTimeout(function () {
-          cal.css({
-            top: top,
-            left: left,
-          });
-        }, 10);
-      },
-    });
-  } else {
-    $("#" + selector_id).datepicker({
-      changeYear: true,
-      changeMonth: true,
-      currentText: "今天",
-      dateFormat: "R年mm月dd日",
-      showButtonPanel: true,
-      // minDate: new Date(new Date().getFullYear(), new Date().getMonth() - 3, 1),
-      // maxDate: new Date(new Date().getFullYear() + 3, 11, 31),
-      yearRange: "-15:+5",
-      onClose: function (dateText) {
-        // console.log($('#'+selector_id).val());
-        // console.log(trans_to_EN(dateText));
-      },
-      beforeShow: function (input, inst) {
-        var $this = $(this);
-        var cal = inst.dpDiv;
-        var outerh = $this.outerHeight();
-        if ($this.offset().top > 1200) {
-          outerh = outerh * 4;
-        } else {
-          outerh = outerh * 3;
-        }
-        // console.log($this.offset().top)
-        // console.log(outerh)
-
-        var top = $this.offset().top - outerh;
-        var left = $this.offset().left - 10;
-        setTimeout(function () {
-          cal.css({
-            top: top,
-            left: left,
-          });
-        }, 10);
-      },
-    });
-  }
-};
-//endregion
-
-//將日期轉為民國年格式111.03.07 region
-trans_to_Tw = function (endate) {
-  var strAry = endate.split(".");
-
-  if (parseInt(strAry[0]) > 1911) {
-    strAry[0] = parseInt(strAry[0]) - 1911;
-  }
-
-  return strAry.join(".");
-};
-//endregion
-
-//將日期轉為西元年格式2022-03-07(mysql date格式) region
-trans_to_EN = function (endate) {
-  var strAry = endate.split(".");
-
-  if (parseInt(strAry[0]) < 1911) {
-    strAry[0] = parseInt(strAry[0]) + 1911;
-  }
-
-  return strAry.join("-");
-};
-//endregion
-
-// 民國年轉換日期格式yyyy-dd-mm region
-function split_date(date) {
- if(date!=="")
- {
-  return parseInt(date.split("年")[0])+1911+"-"+date.split("年")[1].split("月")[0]+"-"+date.split("年")[1].split("月")[1].split("日")[0];
- }
- else
- {
-  return "0000-00-00";
- }
+    if(selector_id.includes("birth"))
+    {
+        $('#'+selector_id).datepicker({
+            changeYear: true,
+            changeMonth: true,
+            currentText: "今天",
+            dateFormat:"R.mm.dd",
+            showButtonPanel: true,
+            yearRange: "-109:+0",
+            onClose: function(dateText) {
+                // console.log($('#'+selector_id).val());
+                // console.log(trans_to_EN(dateText));
+            }
+            ,beforeShow: function(input, inst) {
+                var $this = $(this);
+                var cal = inst.dpDiv;
+                var outerh = $this.outerHeight();
+                if($this.offset().top>1200)
+                {
+                    outerh = outerh*4;
+                }
+                else
+                {
+                    outerh = outerh*3;
+                }
+                // console.log($this.offset().top)
+                // console.log(outerh)
+    
+    
+                var top = $this.offset().top - outerh;
+                var left = $this.offset().left*0.9;
+                setTimeout(function() {
+                    cal.css({
+                        'top': top,
+                        'left': left
+                    });
+                }, 10);
+            }
+        });
+    }
+    else
+    {
+        $('#'+selector_id).datepicker({
+            changeYear: true,
+            changeMonth: true,
+            currentText: "今天",
+            dateFormat:"R.mm.dd",
+            showButtonPanel: true,
+            // minDate:new Date(new Date().getFullYear() - 10, 0, 1),
+            // maxDate:new Date(new Date().getFullYear() + 10, 11, 31),
+            yearRange: "-80:+5",
+            onClose: function(dateText) {
+                // console.log($('#'+selector_id).val());
+                // console.log(trans_to_EN(dateText));
+            }
+            ,beforeShow: function(input, inst) {
+                var $this = $(this);
+                var cal = inst.dpDiv;
+                var outerh = $this.outerHeight();
+                if($this.offset().top>1200)
+                {
+                    outerh = outerh*4;
+                }
+                else
+                {
+                    outerh = outerh*3;
+                }
+                // console.log($this.offset().top)
+                // console.log(outerh)
+    
+    
+                var top = $this.offset().top - outerh;
+                var left = $this.offset().left*0.86;
+                setTimeout(function() {
+                    cal.css({
+                        'top': top,
+                        'left': left
+                    });
+                }, 10);
+            }
+        });
+    }
 }
 //endregion
 
 $(document).ready(function () {
-  //將input name名稱為ch_datepicker創建datepicker初始化 region
-  $("input[name='ch_datepicker']").each(function () {
-    var this_id = $(this).attr("id");
-    datepicker_create(this_id);
-  });
-  //endregion
-});
+
+    //將name名稱為ch_datepicker創建datepicker初始化 region
+    $("[name='ch_datepicker']").each(function(){
+
+        var this_id = $(this).attr("id");
+        datepicker_create(this_id);
+    });
+    //endregion
+}); 
 
 
-//取得url id值region
-function getUrlVars() {
-  var vars = {};
-  var parts = window.location.href.replace(
-    /[?&]+([^=&]+)=([^&]*)/gi,
-    function (m, key, value) {
-      vars[key] = value;
+
+//將日期轉為民國年格式111.03.07 region
+trans_to_Tw =  function(endate) {
+    var strAry = endate.split('-');
+
+    if(parseInt(strAry[0]) > 1911){
+        strAry[0] = parseInt(strAry[0]) - 1911;
     }
-  );
-  return vars;
+
+    return strAry.join(".");
 }
+//endregion
+
+//將日期轉為西元年格式2022-03-07(mysql date格式) region
+trans_to_EN =  function(endate) {
+    var strAry = endate.split('.');
+
+    if(parseInt(strAry[0]) < 1911){
+        strAry[0] = parseInt(strAry[0]) + 1911;
+    }
+
+    return strAry.join("-");
+}
+//endregion
+
+//檢查SQL撈出來的日期格式region
+check_sql_date_format = function(date) {
+    if(date=="0000-00-00")
+    {
+        date = "";
+    }
+    else
+    {
+        date  = trans_to_Tw(date);
+    }
+
+    return date;
+}
+
 //endregion
 
 //抓所有電話詢戒表region
@@ -145,13 +152,21 @@ $.ajax({
     var cssString = "";
     console.log(data);
     $.each(data, function (index, value) {
+      var isUpload = '未上傳';
+      // var cert_isUpload = '未上傳';
+
+      if(value.Upload_name != ""){
+        isUpload = '已上傳';
+      }
+
       cssString +=
       '<tr id="'+value.Id+'" training_id ="'+value.Training_id+'">' +
         '<td style="text-align:center">'+ value.Name + "</td>" +
-        '<td style="text-align:center">' + value.Training_date + "</td>" +
+        '<td style="text-align:center">' + check_sql_date_format(value.Training_date) + "</td>" +
         '<td style="text-align:center">' + value.Training_name + "</td>" +
         '<td style="text-align:center">' + value.Hours + "</td>" +
         '<td style="text-align:center">' + value.Place + "</td>" +
+        '<td style="text-align:center">' + isUpload + "</td>" +
         '<td style="text-align:center">' + value.Create_date + "</td>" +
         '<td style="text-align:center">' + value.Create_name + "</td>" +
         '<td style="text-align:center">' + value.Update_date + "</td>" +

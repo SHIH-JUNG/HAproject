@@ -137,27 +137,23 @@
                                                                 <td style="border-bottom: solid 1px;"><input id="place" type="text"></td>
                                                             </tr>
                                                             <tr style="text-align:left">
+                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">檔案上傳</td>
+                                                                    <td style="border-bottom: solid 1px;">
+                                                                        <div class="col-sm-8">
+                                                                            <div class="text-left">
+                                                                                <input name="training_file" type="file" class="form-control" />
+                                                                                <br>
+                                                                                <div id="training_file"></div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            <tr style="text-align:left">
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">備註</td>
                                                                 <td>
                                                                     <textarea style="height:10em;width:700px;resize: none;font-size: 20px;" id="remark" placeholder="請輸入備註"></textarea>
                                                                 </td>
                                                             </tr>
-                                                            <!-- <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>創建日期</td>
-                                                                <td style="border-bottom: solid 1px;"><input id="create_date" datepicker="ch_datepicker" type="text"></td>
-                                                            </tr>
-                                                            <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>創建者</td>
-                                                                <td style="border-bottom: solid 1px;"><input id="create_name" type="text"></td>
-                                                            </tr>
-                                                            <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>更新日期</td>
-                                                                <td style="border-bottom: solid 1px;"><input id="update_date" datepicker="ch_datepicker" type="text"></td>
-                                                            </tr>
-                                                            <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>更新者</td>
-                                                                <td style="border-bottom: solid 1px;"><input id="update_name" type="text"></td>
-                                                            </tr> -->
                                                         </table>
                                                     </div>
                                                 </div>

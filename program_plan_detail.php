@@ -168,7 +168,7 @@
                                                                             <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">經費來源</td>
                                                                                 <td style="border-bottom: solid 1px;">
-                                                                                    <select id="fund" class="program_question">
+                                                                                    <select id="person" class="program_question">
                                                                                         <option value="人事">人事</option>
                                                                                         <option value="事務">事務</option>
                                                                                         <option value="專管">專管</option>
@@ -184,7 +184,7 @@
                                                                                 <td style="border-bottom: solid 1px;">
                                                                                     <div class="col-sm-8">
                                                                                         <div class="text-left">
-                                                                                            <input name="proposal_file" type="file" class="resume_question form-control">
+                                                                                            <input name="proposal_file" type="file" class="program_question form-control">
                                                                                             <br>
                                                                                             <div id="proposal_file"></div>
                                                                                         </div>
@@ -197,7 +197,7 @@
                                                                                 <td style="border-bottom: solid 1px;">
                                                                                     <div class="col-sm-8">
                                                                                         <div class="text-left">
-                                                                                            <input name="interim_file" type="file" class="resume_question form-control">
+                                                                                            <input name="interim_file" type="file" class="program_question form-control">
                                                                                             <br>
                                                                                             <div id="interim_file"></div>
                                                                                         </div>
@@ -210,7 +210,7 @@
                                                                                 <td style="border-bottom: solid 1px;">
                                                                                     <div class="col-sm-8">
                                                                                         <div class="text-left">
-                                                                                            <input name="achieve_file" type="file" class="resume_question form-control">
+                                                                                            <input name="achieve_file" type="file" class="program_question form-control">
                                                                                             <br>
                                                                                             <div id="achieve_file"></div>
                                                                                         </div>
@@ -223,7 +223,7 @@
                                                                                 <td style="border-bottom: solid 1px;">
                                                                                     <div class="col-sm-8">
                                                                                         <div class="text-left">
-                                                                                            <input name="other_file" type="file" class="resume_question form-control">
+                                                                                            <input name="other_file" type="file" class="program_question form-control">
                                                                                             <br>
                                                                                             <div id="other_file"></div>
                                                                                         </div>
