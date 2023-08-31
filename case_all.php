@@ -379,6 +379,7 @@
                                                                         <th>檔案名稱</th>
                                                                         <th>前/中/後測</th>
                                                                         <th>備註</th>
+                                                                        <th>修改/刪除</th>
                                                                         <th>簽核狀態</th>
                                                                     <th></th>
                                                                         <tbody id="sullen_full_add"></tbody>
@@ -530,6 +531,7 @@
                                                                         <th>處置情形</th>
                                                                         <th>檔案名稱/量表內容</th>
                                                                         <th>備註</th>
+                                                                        <th>修改/刪除</th>
                                                                         <th>簽核狀態</th>
                                                                     <th></th>
                                                                         <tbody id="BSRS5_full_add"></tbody>
@@ -660,7 +662,7 @@
                     <h4 class="modal-title" id="myModalLabel2" class="sign_msg_td_name">簽名留言</h4>
                 </div>
                 <div class="modal-body">
-                    <table id="all_data" style="width:auto;margin:0 auto;" class="table table-bordered">
+                    <table id="myModal2_all_data" style="width:auto;margin:0 auto;" class="table table-bordered">
                         <tr style="text-align:left">
                             <td class="sign_msg_td_name" style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">簽名留言內容</td>
                             <td style="border-bottom: solid 1px;">
@@ -677,6 +679,202 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal /-->
+
+    <!--\ Modal -->
+    <div class="modal fade" id="delete_upload_data_modal" tabindex="-1" role="dialog" aria-labelledby="delete_upload_data_modal_label" data-backdrop="static">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="delete_upload_data_modal_label">刪除量表檔案</h4>
+                </div>
+                <div class="modal-body">
+                    <table id="delete_upload_all_data" style="width:auto;margin:0 auto;" class="table table-bordered">
+                        <tr style="text-align:left">
+                            <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">使用者密碼</td>
+                            <td style="border-bottom: solid 1px;">
+                                <input style="width:15em;" id="input_user_password" type="datetime">
+                                <br/>
+                                <span style="color:red;">
+                                    ※請輸入您的使用者登入密碼，以確認繼續當前操作
+                                </span>                           
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button id="delete_upload_data_btn" type="button" class="btn btn-default">送出</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal /-->
+
+    <!--\ Modal -->
+    <div class="modal fade" id="update_upload_data_modal_type1" tabindex="-1" role="dialog" aria-labelledby="update_upload_data_modal_type1_label" data-backdrop="static">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="update_upload_data_modal_type1_label">修改量表檔案</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="form_modal_type1">
+                        <table id="update_upload_all_data_1" style="width:auto;margin:0 auto;" class="table table-bordered">
+                            <tr style="text-align:left">
+                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">上傳日期</td>
+                                <td style="border-bottom: solid 1px;">
+                                    <div class="col-sm-12">
+                                        <div class="text-left">
+                                            <input name="modal_type1_answer1" type="date" class="form-control"/>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr style="text-align:left">
+                                    <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">量表分數</td>
+                                    <td style="border-bottom: solid 1px;">
+                                        <div class="col-sm-12">
+                                            <div class="text-left">
+                                                <input name="modal_type1_answer2" type="number" class="form-control"/>
+                                            </div>
+                                        </div>
+                                    </td>
+                            </tr>
+                            <tr style="text-align:left">
+                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">上傳檔案</td>
+                                <td style="border-bottom: solid 1px;">
+                                    <div class="col-sm-12">
+                                        <div class="text-left">
+                                            <input name="modal_type1_answer_file" type="file" class="form-control"/>
+                                            <br>
+                                            <div id="modal_type1_answer_file"></div>
+                                            <img src="" id="modal_type1_answer_file_img" style="display:none;" />
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <span style="color:blue;">                          
+                                        ※原先的檔案將會被刪除或覆蓋
+                                    </span>                           
+                                </td>
+                            </tr>
+                            <tr style="text-align:left">
+                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">前/中/後測</td>
+                                <td style="border-bottom: solid 1px;">
+                                    <div class="col-sm-12">
+                                        <div class="text-left">
+                                            <select name="modal_type1_answer3" class="form-control">
+                                                <option value="">請選擇</option>
+                                                <option value="前測">前測</option>
+                                                <option value="中測">中測</option>
+                                                <option value="後測">後測</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr style="text-align:left">
+                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">備註</td>
+                                <td style="border-bottom: solid 1px;">
+                                    <div class="col-sm-12">
+                                        <div class="text-left">
+                                            <textarea name="modal_type1_answer4" placeholder="請輸入內容" class="form-control"></textarea>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </from>
+                </div>
+
+                <div class="modal-footer">
+                    <button id="modal_type1_btn" onclick="update_upload_data(this);" type="button" class="btn btn-default">送出</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal /-->
+
+    <!--\ Modal -->
+    <div class="modal fade" id="update_upload_data_modal_type2" tabindex="-1" role="dialog" aria-labelledby="update_upload_data_modal_type2_label" data-backdrop="static">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="update_upload_data_modal_type2_label">修改量表檔案</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="">
+                    </form>
+                    <form id="form_modal_type2">
+                        <table id="update_upload_all_data_2" style="width:auto;margin:0 auto;" class="table table-bordered">
+                            <tr style="text-align:left">
+                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">建立日期</td>
+                                <td style="border-bottom: solid 1px;">
+                                    <div class="col-sm-12">
+                                        <div class="text-left">
+                                            <input name="modal_type2_answer1" type="date" class="form-control"/>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr style="text-align:left">
+                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">量表分數</td>
+                                <td style="border-bottom: solid 1px;">
+                                    <div class="col-sm-12">
+                                        <div class="text-left">
+                                            <input name="modal_type2_answer2" type="number" class="form-control"/>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr style="text-align:left">
+                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">處置情形</td>
+                                <td style="border-bottom: solid 1px;">
+                                    <div class="col-sm-12">
+                                        <div class="text-left">
+                                            <textarea name="modal_type2_answer3" placeholder="請輸入內容" class="form-control"></textarea>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr style="text-align:left">
+                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">上傳檔案</td>
+                                <td style="border-bottom: solid 1px;">
+                                    <div class="col-sm-12">
+                                        <div class="text-left">
+                                            <input name="modal_type2_answer_file" type="file" class="form-control"/>
+                                            <br>
+                                            <div id="modal_type2_answer_file"></div>
+                                            <img src="" id="modal_type2_answer_file_img" style="display:none;" />
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <span style="color:blue;">                          
+                                        ※原先的檔案將會被刪除或覆蓋
+                                    </span>                           
+                                </td>
+                            </tr>
+                            <tr style="text-align:left">
+                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">備註</td>
+                                <td style="border-bottom: solid 1px;">
+                                    <div class="col-sm-12">
+                                        <div class="text-left">
+                                            <textarea name="modal_type2_answer4" placeholder="請輸入內容" class="form-control"></textarea>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button id="modal_type2_btn" onclick="update_upload_data(this);" type="button" class="btn btn-default">送出</button>
                 </div>
             </div>
         </div>
@@ -730,9 +928,12 @@
     <script>
         //設定js變數抓取使用者名稱
         var login_user_name = '<?php echo $_SESSION["name"]; ?>';
+
+        //設定js變數抓取使用者權限
+        var login_user_pwd = '<?php echo $_SESSION['pwd']; ?>';
     </script>
     <!-- ================== case_all.js ================== -->
-    <script src='js/case_all.js<?php echo "?".date("Y-m-d h:i:sa")?>'></script>
+    <script src='js/case_all.js<?php echo "?" . date("Y-m-d h:i:sa") ?>'></script>
     
 </body>
 

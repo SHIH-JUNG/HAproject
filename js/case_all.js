@@ -213,7 +213,7 @@ function load_each_form()
                         sign_btn_str += '<button style="margin:.5em;color:red;" type="button" onclick="signature_btn_click(this);" board_type="'+form_name+'" sign_info="'+value.Id+"_"+value.Case_seqid+"_"+value.Case_id+'">簽名</button><br/>';
                     }
                     
-                    console.log(supervise1_sign_arr)
+                    // console.log(supervise1_sign_arr)
 
                     if(value.Is_upload==0)
                     {
@@ -293,6 +293,10 @@ function load_each_form()
                         cssstring += 
                         '<tr name="'+form_name+'_num[]" id="'+value.Id+"_"+value.Case_seqid+"_"+value.Case_id+'">'+
                         td_str+
+                        '<td>'+ '<button data-toggle="modal" sql_data="'+ form_name+"_"+value.Id+'" onclick="load_update_upload_data(this);">修改</button>' +
+                        '<br/><br/>' +
+                        '<button data-toggle="modal" data-target="#delete_upload_data_modal">刪除</button>' +
+                        '</td>'+
                         '<td style="background-color:'+bg_color+';">'+sign_str+'</td>'+
                         '<td>'+sign_btn_str+'</td>'+
                         '</tr>';
@@ -366,6 +370,179 @@ function load_forms_other_row(form_type,index)
 }
 //endregion
 
+
+//點擊確認刪除上傳的檔案（憂鬱量表、BSRS5量表） region
+$("#delete_upload_data_btn").on('click',function(){
+    if($("#input_user_password").val() == login_user_pwd)
+    {
+        delete_upload_data();
+    }
+    else
+    {
+        swal({
+            title:'請輸入正確的使用者密碼',
+            type:'error',                        
+        })
+    }
+});    
+//endregion
+
+// 刪除上傳的檔案（憂鬱量表、BSRS5量表） region
+delete_upload_data = function() {
+    
+    
+
+}
+//endregion
+
+// 點擊修改按鈕時，載入原本的內容 region
+load_update_upload_data = function(this_btn) {
+    
+    var form_name_sql_id = $(this_btn).attr("sql_data");
+    var form_name_str = form_name_sql_id.split("_")[0];
+    var sql_id_str = form_name_sql_id.split("_")[1];
+
+    if(form_name_str == "sullen")
+    {
+        load_update_type1_data();
+
+        $("#update_upload_data_modal_type1").modal('show');
+
+        $("#modal_type1_btn").attr("sql_id", sql_id_str);
+        $("#modal_type1_btn").attr("upload_form_type", "1");
+    }
+    else if(form_name_str == "BSRS5")
+    {
+        load_update_type2_data();
+
+        $("#update_upload_data_modal_type2").modal('show');
+
+        $("#modal_type2_btn").attr("sql_id", sql_id_str);
+        $("#modal_type2_btn").attr("upload_form_type", "2");
+    }
+    
+
+}
+//endregion
+
+// 資料庫查詢量表，載入原本的內容 region
+load_update_type1_data = function() {
+    
+    var attr_sql_id = $("#modal_type1_btn").attr("sql_id");
+
+    $.ajax({
+        url: "database/find_case_all_upload.php",
+        data: {
+            Id:attr_sql_id
+            },
+        type: "POST",
+        dataType: "JSON",
+        success: function (data) {
+            // console.log(data)
+            $.each(data,function(index,value){
+                
+                
+            })
+            
+            //顯示所有量表資料摘要
+            load_each_form();
+        },
+        error: function (e) {
+            notyf.alert('伺服器錯誤,無法載入');
+        }
+    });
+
+}
+//endregion
+
+// 修改上傳的檔案和資料（憂鬱量表、BSRS5量表） region
+update_upload_data = function(this_btn) {
+
+    var attr_sql_id = $(this_btn).attr("sql_id");
+    var attr_upload_form_type = $(this_btn).attr("upload_form_type");
+
+
+    var update_file = $("[name=modal_type"+attr_upload_form_type+"_answer_file]").prop("files").length;
+
+    if(update_file > 0)
+    {
+        var submit_data  = new FormData();
+
+        var form = $("#form_modal_type"+attr_upload_form_type+"").serializeArray();
+        var upload_info_arr = new Array(); 
+
+        upload_info_arr.push({name:"modal_type"+attr_upload_form_type+"_answer_file",value:$("[name='modal_type"+attr_upload_form_type+"_answer_file']").val().replace("C\:\\fakepath\\", "")});
+
+        form = form.concat(upload_info_arr);
+
+        $("[name='modal_type"+attr_upload_form_type+"_answer_file']").each(function(index, element) {
+            var update_files = $(this).prop("files");
+            // console.log(update_files.length)
+            
+            if (update_files != undefined) {
+                if (update_files.length != 0) 
+                {
+                for (var i = 0; i < update_files.length; i++) {
+                    // console.log(update_files[i])
+                    submit_data.append("files", update_files[i]);
+                }
+                }
+            }
+        });
+
+        submit_data.append("Id", attr_sql_id);
+        submit_data.append("upload_content", JSON.stringify(form));
+        
+        for (var pair of submit_data.entries()) {
+            console.log(pair[0]+ ', ' + pair[1]); 
+        }
+
+        
+        $.ajax({
+            url: "database/update_case_all_upload.php",
+            type: "POST",
+            data:form_data,
+            contentType:false,
+            cache:false,
+            processData:false,
+            async:true,
+            success: function (data) {
+                console.log(data)
+                //console.log(typeof data)
+                if(data == 1){
+                    swal({
+                        title:'上傳成功！',
+                        type:'success',                        
+                    }).then(function(){
+                        location.reload();
+                    }) 
+                }
+            else
+            {
+                    swal({
+                        title:'上傳失敗！請聯絡負責單位',
+                        type:'error',
+                    })
+                }
+            },
+            error: function (e) {
+                console.log(e);
+                swal({
+                    title:'上傳失敗！請聯絡負責單位',
+                    type:'error',
+                })
+            }
+        });
+    }
+    else
+    {
+        swal({
+            title:'請選擇要上傳的檔案',
+            type:'error',                        
+        })
+    }
+}  
+//endregion
 
 //點擊新增各表(個案評估表、會談紀錄、生活品質量表、健康量表、就業量表、就業滿意度、滿意度量表、家庭關係)region
 form_add_new = function(obj){
@@ -556,6 +733,7 @@ form_upload_new = function(obj) {
                     '<td><input id="remark'+obj_name+num+'" type="text"></td>'+
                     '<td></td>'+
                     '<td></td>'+
+                    '<td></td>'+
                 '</tr>'+
                 '<tr>'+
                 '<td colspan="'+th_len+'"><button onClick="i_store('+num+',&quot;'+obj_name+'&quot;);">儲存</button> <button onClick="location.reload();">取消</button></td>'+
@@ -611,6 +789,7 @@ form_BSRS5_add_new = function(obj) {
                         '<td id="dispose_td'+obj_name+num+'"></td>'+
                         '<td id="content_type'+obj_name+num+'"></td>'+
                         '<td><input id="remark'+obj_name+num+'" type="text"></td>'+
+                        '<td></td>'+
                         '<td></td>'+
                         '<td></td>'+
                     '</tr>'+
@@ -968,6 +1147,13 @@ function datatable_sign_show(signer_type ,signer, sign_path, sign_time, sign_msg
 
     //手動新增按鈕點擊跳出模態框
     $("#myModal2").on("shown.bs.modal", function () {
+        $parent.children().trigger("focus");
+    });
+
+    $("#delete_upload_data_modal").on("shown.bs.modal", function () {
+        $parent.children().trigger("focus");
+    });
+    $("#update_upload_data_modal").on("shown.bs.modal", function () {
         $parent.children().trigger("focus");
     });
 
