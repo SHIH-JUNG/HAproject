@@ -6,7 +6,11 @@ $keyword = $_POST['keyword'];
 
 if($keyword=="一般藥癮者" || $keyword=="藥癮家庭")
 {
-    $sqlstr = "SELECT REPLACE(`Case_id`, 'RE', '') AS `Case_id` FROM `current_case` WHERE `Case_id` like '%RE%' ORDER BY REPLACE(`Case_id`, 'RE', '') DESC LIMIT 1";
+    $sqlstr = "SELECT REPLACE(`Case_id`, 'RE', '') AS `Case_id` FROM `current_case` WHERE `Case_id` like '%RE%' ORDER BY REPLACE(`Case_id`, 'RE', '') DESC LIMIT 1;";
+}
+elseif($keyword=="愛滋感染者")
+{
+    $sqlstr = "SELECT `Case_id` FROM `current_case` WHERE `Object_type`='愛滋感染者' UNION ALL SELECT `Case_id` FROM `placement_case` WHERE `Object_type`='愛滋感染者' ORDER BY `Case_id` DESC LIMIT 1;";
 }
 else
 {

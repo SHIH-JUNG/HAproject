@@ -8,6 +8,10 @@ function getUrlVars() {
 }
 //endregion
 
+const notyf = new Notyf();
+
+var resume_id = getUrlVars()["id"];
+
 //datepicker創建 region
 datepicker_create = function (selector_id) {
   $("#" + selector_id).datepicker({
@@ -87,10 +91,6 @@ trans_to_Tw = function (endate) {
 };
 //endregion
 
-const notyf = new Notyf();
-
-var resume_id = getUrlVars()["id"];
-
 window.file_year_arr = new Array();
 
 window.the_day = new Date();
@@ -102,6 +102,19 @@ window.file_name = [];
 
 //網頁載入 region
 $(document).ready(function () {
+
+  if(resume_id == '')
+  {
+    swal({
+      type: "error",
+      title: "當前使用者帳號未創建履歷表檔案",
+      text: "請先創建您的履歷表檔案資料",
+      allowOutsideClick: false, //不可點背景關閉
+    }).then(function () {
+      window.history.go(-1);
+    });
+  }
+
   //將input name名稱為ch_datepicker創建datepicker初始化 region
   $("input[name='ch_datepicker']").each(function () {
     var this_id = $(this).attr("id");

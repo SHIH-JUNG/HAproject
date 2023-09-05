@@ -425,53 +425,53 @@ program_update = function() {
       form_data.append("Fund", $("#fund").val());
 
       // 預覽傳到後端的資料詳細內容
-      // for (var pair of form_data.entries()) {
-      //   console.log(pair[0] + ", " + pair[1]);
-      // }
+      for (var pair of form_data.entries()) {
+        console.log(pair[0] + ", " + pair[1]);
+      }
 
 
-      $.ajax({
-          url: "database/update_program_plan_data_detail.php",
-          type: "POST",
-          //   data: {
-          //     Program_id:program_id,
-          //   },
-          data: form_data,
-          contentType: false,
-          cache: false,
-          processData: false,
-          async: true,
-        success: function (data) {
-          console.log(data);
-          if (data == 1) {
-            swal({
-              type: "success",
-              title: "更新成功!",
-              allowOutsideClick: false, //不可點背景關閉
-            }).then(function () {
-              window.location.href =
-                "program_plan_detail.php?"+
-                "&program_id=" +
-                program_id +
-                "";
-            });
-          } else {
-            swal({
-              type: "error",
-              title: "更新失敗!請聯絡負責人",
-              allowOutsideClick: false, //不可點背景關閉
-            });
-          }
-        },
-        error: function (e) {
-          console.log(e)
-          swal({
-              type: "error",
-              title: "更新失敗!請聯絡負責人",
-              allowOutsideClick: false, //不可點背景關閉
-          });
-        },
-      });
+      // $.ajax({
+      //     url: "database/update_program_plan_data_detail.php",
+      //     type: "POST",
+      //     //   data: {
+      //     //     Program_id:program_id,
+      //     //   },
+      //     data: form_data,
+      //     contentType: false,
+      //     cache: false,
+      //     processData: false,
+      //     async: true,
+      //   success: function (data) {
+      //     console.log(data);
+      //     if (data == 1) {
+      //       swal({
+      //         type: "success",
+      //         title: "更新成功!",
+      //         allowOutsideClick: false, //不可點背景關閉
+      //       }).then(function () {
+      //         window.location.href =
+      //           "program_plan_detail.php?"+
+      //           "&program_id=" +
+      //           program_id +
+      //           "";
+      //       });
+      //     } else {
+      //       swal({
+      //         type: "error",
+      //         title: "更新失敗!請聯絡負責人",
+      //         allowOutsideClick: false, //不可點背景關閉
+      //       });
+      //     }
+      //   },
+      //   error: function (e) {
+      //     console.log(e)
+      //     swal({
+      //         type: "error",
+      //         title: "更新失敗!請聯絡負責人",
+      //         allowOutsideClick: false, //不可點背景關閉
+      //     });
+      //   },
+      // });
     }
 }
 

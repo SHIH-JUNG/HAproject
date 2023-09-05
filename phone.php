@@ -199,6 +199,7 @@ word-break: keep-all;/*必須*/
                                                                     <option value="社區">社區</option>
                                                                     <option value="家訪">家訪</option>
                                                                     <option value="監所">監所</option>
+                                                                    <option value="快樂聯盟">快樂聯盟</option>
                                                                 </select>
                                                             </td>
 

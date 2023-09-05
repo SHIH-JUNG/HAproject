@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2023-08-31 15:42:54
--- 伺服器版本： 10.4.24-MariaDB
--- PHP 版本： 7.4.29
+-- 產生時間： 2023-09-05 15:14:18
+-- 伺服器版本： 10.4.27-MariaDB
+-- PHP 版本： 7.4.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -40,7 +40,7 @@ CREATE TABLE `accounting_record` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime NOT NULL,
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `accounting_record`
@@ -75,7 +75,7 @@ CREATE TABLE `accounting_record_cash` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime DEFAULT current_timestamp(),
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `accounting_record_cash`
@@ -128,7 +128,7 @@ CREATE TABLE `accounting_record_cash_balance` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime DEFAULT current_timestamp(),
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `accounting_record_cash_balance`
@@ -163,7 +163,7 @@ CREATE TABLE `accounting_record_cash_v2` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime DEFAULT current_timestamp(),
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `accounting_record_cash_v2`
@@ -198,7 +198,7 @@ CREATE TABLE `accounting_record_report` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime DEFAULT current_timestamp(),
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `accounting_record_report`
@@ -231,7 +231,7 @@ CREATE TABLE `announcement` (
   `authority` int(11) NOT NULL,
   `publisher` varchar(10) NOT NULL,
   `datetime` date NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `announcement`
@@ -269,7 +269,7 @@ CREATE TABLE `board_supervisor` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime NOT NULL,
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `board_supervisor`
@@ -316,7 +316,7 @@ CREATE TABLE `board_supervisor_v2` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime NOT NULL,
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `board_supervisor_v2`
@@ -340,7 +340,7 @@ CREATE TABLE `calendar` (
   `publisher` varchar(10) NOT NULL,
   `url` varchar(100) NOT NULL,
   `date` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `calendar`
@@ -449,7 +449,7 @@ CREATE TABLE `case_report` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime DEFAULT current_timestamp(),
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `case_report`
@@ -539,7 +539,7 @@ CREATE TABLE `closed` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime DEFAULT current_timestamp(),
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `closed`
@@ -607,7 +607,7 @@ CREATE TABLE `consult` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime DEFAULT current_timestamp(),
   `Update_name` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `consult`
@@ -696,7 +696,7 @@ CREATE TABLE `counsel` (
   `Create_name` varchar(30) DEFAULT current_timestamp(),
   `Update_date` datetime NOT NULL,
   `Update_name` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `counsel`
@@ -736,7 +736,7 @@ CREATE TABLE `counsel_visit` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime NOT NULL,
   `Update_name` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `counsel_visit`
@@ -800,7 +800,7 @@ CREATE TABLE `current_case` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime NOT NULL,
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `current_case`
@@ -859,7 +859,7 @@ CREATE TABLE `day_off_v2` (
   `Director_signature` longtext NOT NULL,
   `Director_sign_msg` longtext NOT NULL,
   `Director_sign_time` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `day_off_v2`
@@ -911,7 +911,7 @@ CREATE TABLE `dlgrec` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime DEFAULT current_timestamp(),
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `dlgrec`
@@ -947,7 +947,7 @@ CREATE TABLE `forms` (
   `answer` longtext NOT NULL,
   `file_path` varchar(1000) NOT NULL,
   `Health_rec` longtext NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `forms`
@@ -1048,7 +1048,7 @@ CREATE TABLE `form_all_info` (
   `Supervise2_signature` longtext NOT NULL,
   `Supervise2_sign_msg` longtext NOT NULL,
   `Supervise2_sign_time` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `form_all_info`
@@ -1162,7 +1162,7 @@ CREATE TABLE `form_case_report` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime DEFAULT current_timestamp(),
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `form_case_report`
@@ -1228,7 +1228,7 @@ INSERT INTO `form_case_report` (`Id`, `Case_seqid`, `Case_id`, `Form_id`, `Form_
 CREATE TABLE `form_interlocution_queskeywords` (
   `Id` int(244) NOT NULL,
   `Ques_type` varchar(2000) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `form_interlocution_queskeywords`
@@ -1266,7 +1266,7 @@ CREATE TABLE `leave_rule_table` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime DEFAULT current_timestamp(),
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `leave_rule_table`
@@ -1289,7 +1289,7 @@ CREATE TABLE `login_record` (
   `Login_name` varchar(30) NOT NULL,
   `Login_coordinate` varchar(100) NOT NULL,
   `Is_day_first` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `login_record`
@@ -1492,7 +1492,17 @@ INSERT INTO `login_record` (`Id`, `Login_timestamp`, `Login_account`, `Login_aut
 (208, '2023-08-30 21:47:54', 'test5', '3', '園主任', '22.5937062,120.4889085', 0),
 (209, '2023-08-31 14:48:04', 'test5', '3', '園主任', '24.1769764,120.6424333', 1),
 (210, '2023-08-31 19:43:21', 'test5', '3', '園主任', '24.1769764,120.6424333', 0),
-(211, '2023-08-31 21:31:10', 'test5', '3', '園主任', '22.6478722,120.6119505', 0);
+(211, '2023-08-31 21:31:10', 'test5', '3', '園主任', '22.6478722,120.6119505', 0),
+(212, '2023-08-31 22:33:13', 'test5', '3', '園主任', '22.5938715,120.4888746', 0),
+(213, '2023-09-05 20:06:15', 'test5', '3', '園主任', '22.593865083333338,120.48887100000002', 1),
+(214, '2023-09-05 20:06:29', 'text1', '1', '社工員1', '22.593865083333338,120.48887100000002', 1),
+(215, '2023-09-05 20:07:10', 'testuser', '1', 'jia', '22.593865083333338,120.48887100000002', 1),
+(216, '2023-09-05 20:20:00', 'testuser', '1', 'jia', '22.593865083333338,120.48887100000002', 0),
+(217, '2023-09-05 20:20:15', 'test5', '3', '園主任', '22.593865083333338,120.48887100000002', 0),
+(218, '2023-09-05 20:32:06', 'test5', '3', '園主任', '22.5938715,120.4888746', 0),
+(219, '2023-09-05 20:32:34', 'testuser', '1', 'jia', '22.5938715,120.4888746', 0),
+(220, '2023-09-05 20:32:49', 'test5', '3', '園主任', '22.5938715,120.4888746', 0),
+(221, '2023-09-05 20:44:58', 'twha202212061600', '3', 'ㄓㄒ', '22.593867916666667,120.48887750000003', 1);
 
 -- --------------------------------------------------------
 
@@ -1514,7 +1524,7 @@ CREATE TABLE `members_assemble` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime NOT NULL,
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `members_assemble`
@@ -1553,7 +1563,7 @@ CREATE TABLE `members_assemble_v2` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime NOT NULL,
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `members_assemble_v2`
@@ -1596,7 +1606,7 @@ CREATE TABLE `overtime` (
   `Director_signature` longtext NOT NULL,
   `Director_sign_msg` longtext NOT NULL,
   `Director_sign_time` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `overtime`
@@ -1648,7 +1658,7 @@ CREATE TABLE `peers_dlgrec` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime DEFAULT current_timestamp(),
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `peers_dlgrec`
@@ -1696,14 +1706,14 @@ CREATE TABLE `placement_case` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime NOT NULL,
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `placement_case`
 --
 
 INSERT INTO `placement_case` (`Id`, `Case_id`, `Unopen_type`, `Case_Create_date`, `Object_type`, `Case_grade`, `Case_property`, `Case_stage`, `Open_case_date`, `Name`, `Gender`, `Sexual_orientation`, `Phone`, `Birth`, `Case_pid`, `Referral`, `Case_state`, `Case_storage`, `Close_case_date`, `Case_assign`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
-(1, 'SC001', 'placement_case', '2020-11-11', '愛滋感染者', 'A', '自立宿舍', '3', '2020-11-10', 'TESTAB12', '男', '異性', '052342342', '1945-02-05', 'HG12314341', '民間社福機構', '未結案', 'settlement1', '0000-00-00', '社工員2', '2023-08-29 22:53:28', 'jia', '2023-08-29 23:47:44', 'jia');
+(1, '471', 'placement_case', '2020-11-11', '愛滋感染者', 'A', '自立宿舍', '3', '2020-11-10', 'TESTAB12', '男', '異性', '052342342', '1945-02-05', 'HG12314341', '民間社福機構', '未結案', 'settlement1', '0000-00-00', '社工員2', '2023-08-29 22:53:28', 'jia', '2023-08-29 23:47:44', 'jia');
 
 -- --------------------------------------------------------
 
@@ -1726,14 +1736,14 @@ CREATE TABLE `placement_forms` (
   `answer` longtext NOT NULL,
   `file_path` varchar(1000) NOT NULL,
   `Health_rec` longtext NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `placement_forms`
 --
 
 INSERT INTO `placement_forms` (`Id`, `Case_seqid`, `Case_id`, `Form_id`, `Form_type`, `Case_name`, `Case_pid`, `Create_date`, `Create_name`, `Update_date`, `Update_name`, `answer`, `file_path`, `Health_rec`) VALUES
-(1, '1', 'SC001', 1, 'settlement', 'TESTAB12', 'HG12314341', '2023-08-29 23:45:24', 'jia', '2023-08-30 00:16:22', '園主任', '\"[{\"name\":\"fillin_date\",\"value\":\"2023-08-29\"},{\"name\":\"assign_name\",\"value\":\"jia\"},{\"name\":\"name\",\"value\":\"TESTAB12\"},{\"name\":\"birth\",\"value\":\"1945-02-05\"},{\"name\":\"pid\",\"value\":\"HG12314341\"},{\"name\":\"sex\",\"value\":\"男生\"},{\"name\":\"phone\",\"value\":\"052342342\"},{\"name\":\"address\",\"value\":\"tesadada\"},{\"name\":\"residence\",\"value\":\"tesadada\"},{\"name\":\"same_address\",\"value\":\"same_address\"},{\"name\":\"education\",\"value\":\"高中職\"},{\"name\":\"education_graduate\",\"value\":\"是\"},{\"name\":\"marital\",\"value\":\"未婚\"},{\"name\":\"cohabitant\",\"value\":\"與其他人同住\"},{\"name\":\"cohabitant_other\",\"value\":\"aaa同住\"},{\"name\":\"current_job\",\"value\":\"其他\"},{\"name\":\"current_job_other\",\"value\":\"aaaa其他職業\"},{\"name\":\"economic_status\",\"value\":\"0\"},{\"name\":\"economic_status_0\",\"value\":\"24221\"},{\"name\":\"economic_status_1\",\"value\":\"\"},{\"name\":\"economic_status_2\",\"value\":\"\"},{\"name\":\"economic_status_3\",\"value\":\"\"},{\"name\":\"religion\",\"value\":\"佛教\"},{\"name\":\"religion\",\"value\":\"天主教\"},{\"name\":\"religion\",\"value\":\"其他\"},{\"name\":\"religion_other\",\"value\":\"test其他宗教信仰\"},{\"name\":\"drug_record_0\",\"value\":\"\"},{\"name\":\"drug_record_1\",\"value\":\"\"},{\"name\":\"drug_record\",\"value\":\"2\"},{\"name\":\"drug_record_2\",\"value\":\"2\"},{\"name\":\"drug_record_3\",\"value\":\"\"},{\"name\":\"correctional_question_count\",\"value\":\"1\"},{\"name\":\"correctional_question_start\",\"value\":\"2019-02\"},{\"name\":\"correctional_question_end\",\"value\":\"2020-01\"},{\"name\":\"correctional_year\",\"value\":\"0\"},{\"name\":\"correctional_month\",\"value\":\"11\"},{\"name\":\"family_description\",\"value\":\"test個案家庭概況描述\"},{\"name\":\"assessment\",\"value\":\"test\\r\\n需求評估\"},{\"name\":\"treatment_time_year\",\"value\":\"\"},{\"name\":\"treatment_time_month\",\"value\":\"\"},{\"name\":\"treatment_status\",\"value\":\"尚未接受治療\"},{\"name\":\"medical_name\",\"value\":\"\"},{\"name\":\"medical_info\",\"value\":\"\"},{\"name\":\"medical_phone\",\"value\":\"\"},{\"name\":\"health_clinic_name\",\"value\":\"\"},{\"name\":\"health_clinic_phone\",\"value\":\"\"},{\"name\":\"CD4_index_0\",\"value\":\"\"},{\"name\":\"CD4_index_1\",\"value\":\"\"},{\"name\":\"CD4_index_2\",\"value\":\"\"},{\"name\":\"viral_0\",\"value\":\"\"},{\"name\":\"viral_1\",\"value\":\"\"},{\"name\":\"viral_2\",\"value\":\"\"},{\"name\":\"medicine\",\"value\":\"吉他韋Biktarvy\"},{\"name\":\"medicine\",\"value\":\"信澤力Symtuza\"},{\"name\":\"medicine\",\"value\":\"3TC速汰滋\"},{\"name\":\"medicine\",\"value\":\"Duovir倍歐減\"},{\"name\":\"medicine\",\"value\":\"Kivexa克為滋\"},{\"name\":\"symptoms\",\"value\":\"無\"},{\"name\":\"symptoms_other\",\"value\":\"\"},{\"name\":\"statement\",\"value\":\"dasda個案問題陳述\"},{\"name\":\"personal_system\",\"value\":\"sadssa個人系統\"},{\"name\":\"family_system\",\"value\":\"dsadas家庭系統\"},{\"name\":\"social_system\",\"value\":\"dsadsd社會系統\"},{\"name\":\"resource_system\",\"value\":\"ssadsada資源層面\"},{\"name\":\"diagnose_main\",\"value\":\"assdads主要問題\"},{\"name\":\"diagnose_minor\",\"value\":\"asdadsdsaa次要問題\"},{\"name\":\"basic_indicator\",\"value\":\"本身同意於安置中心入住並有意願重新開始者\"},{\"name\":\"basic_indicator\",\"value\":\"願意配合本聯盟社工處遇與安置中心/自立宿舍相關規定\"},{\"name\":\"basic_indicator\",\"value\":\"願意配合入住時藥癮檢測與每周、不定時藥癮檢測\"},{\"name\":\"end_indicator\",\"value\":\"入住當日與入住後都願意接受藥癮檢測 結果都呈陰性者，沒有在使用非法藥物者，但可以接受使用美沙酮或舌下錠者(丁基原啡因)\"},{\"name\":\"end_indicator\",\"value\":\"生活可自理者且行動能力正常\"},{\"name\":\"end_indicator\",\"value\":\"個案需要至感染科就診，並附上病歷摘要表，以利審核\"},{\"name\":\"end_indicator\",\"value\":\"個案家屬需負擔個案就醫、生活用品等費用\"},{\"name\":\"resource_w_referrals\",\"value\":\"test資源與轉介\"},{\"name\":\"customFile1\",\"value\":\"test.jpeg\"}]\"', '../upload/test.jpeg', '');
+(1, '1', '471', 1, 'settlement', 'TESTAB12', 'HG12314341', '2023-08-29 23:45:24', 'jia', '2023-08-30 00:16:22', '園主任', '\"[{\"name\":\"fillin_date\",\"value\":\"2023-08-29\"},{\"name\":\"assign_name\",\"value\":\"jia\"},{\"name\":\"name\",\"value\":\"TESTAB12\"},{\"name\":\"birth\",\"value\":\"1945-02-05\"},{\"name\":\"pid\",\"value\":\"HG12314341\"},{\"name\":\"sex\",\"value\":\"男生\"},{\"name\":\"phone\",\"value\":\"052342342\"},{\"name\":\"address\",\"value\":\"tesadada\"},{\"name\":\"residence\",\"value\":\"tesadada\"},{\"name\":\"same_address\",\"value\":\"same_address\"},{\"name\":\"education\",\"value\":\"高中職\"},{\"name\":\"education_graduate\",\"value\":\"是\"},{\"name\":\"marital\",\"value\":\"未婚\"},{\"name\":\"cohabitant\",\"value\":\"與其他人同住\"},{\"name\":\"cohabitant_other\",\"value\":\"aaa同住\"},{\"name\":\"current_job\",\"value\":\"其他\"},{\"name\":\"current_job_other\",\"value\":\"aaaa其他職業\"},{\"name\":\"economic_status\",\"value\":\"0\"},{\"name\":\"economic_status_0\",\"value\":\"24221\"},{\"name\":\"economic_status_1\",\"value\":\"\"},{\"name\":\"economic_status_2\",\"value\":\"\"},{\"name\":\"economic_status_3\",\"value\":\"\"},{\"name\":\"religion\",\"value\":\"佛教\"},{\"name\":\"religion\",\"value\":\"天主教\"},{\"name\":\"religion\",\"value\":\"其他\"},{\"name\":\"religion_other\",\"value\":\"test其他宗教信仰\"},{\"name\":\"drug_record_0\",\"value\":\"\"},{\"name\":\"drug_record_1\",\"value\":\"\"},{\"name\":\"drug_record\",\"value\":\"2\"},{\"name\":\"drug_record_2\",\"value\":\"2\"},{\"name\":\"drug_record_3\",\"value\":\"\"},{\"name\":\"correctional_question_count\",\"value\":\"1\"},{\"name\":\"correctional_question_start\",\"value\":\"2019-02\"},{\"name\":\"correctional_question_end\",\"value\":\"2020-01\"},{\"name\":\"correctional_year\",\"value\":\"0\"},{\"name\":\"correctional_month\",\"value\":\"11\"},{\"name\":\"family_description\",\"value\":\"test個案家庭概況描述\"},{\"name\":\"assessment\",\"value\":\"test\\r\\n需求評估\"},{\"name\":\"treatment_time_year\",\"value\":\"\"},{\"name\":\"treatment_time_month\",\"value\":\"\"},{\"name\":\"treatment_status\",\"value\":\"尚未接受治療\"},{\"name\":\"medical_name\",\"value\":\"\"},{\"name\":\"medical_info\",\"value\":\"\"},{\"name\":\"medical_phone\",\"value\":\"\"},{\"name\":\"health_clinic_name\",\"value\":\"\"},{\"name\":\"health_clinic_phone\",\"value\":\"\"},{\"name\":\"CD4_index_0\",\"value\":\"\"},{\"name\":\"CD4_index_1\",\"value\":\"\"},{\"name\":\"CD4_index_2\",\"value\":\"\"},{\"name\":\"viral_0\",\"value\":\"\"},{\"name\":\"viral_1\",\"value\":\"\"},{\"name\":\"viral_2\",\"value\":\"\"},{\"name\":\"medicine\",\"value\":\"吉他韋Biktarvy\"},{\"name\":\"medicine\",\"value\":\"信澤力Symtuza\"},{\"name\":\"medicine\",\"value\":\"3TC速汰滋\"},{\"name\":\"medicine\",\"value\":\"Duovir倍歐減\"},{\"name\":\"medicine\",\"value\":\"Kivexa克為滋\"},{\"name\":\"symptoms\",\"value\":\"無\"},{\"name\":\"symptoms_other\",\"value\":\"\"},{\"name\":\"statement\",\"value\":\"dasda個案問題陳述\"},{\"name\":\"personal_system\",\"value\":\"sadssa個人系統\"},{\"name\":\"family_system\",\"value\":\"dsadas家庭系統\"},{\"name\":\"social_system\",\"value\":\"dsadsd社會系統\"},{\"name\":\"resource_system\",\"value\":\"ssadsada資源層面\"},{\"name\":\"diagnose_main\",\"value\":\"assdads主要問題\"},{\"name\":\"diagnose_minor\",\"value\":\"asdadsdsaa次要問題\"},{\"name\":\"basic_indicator\",\"value\":\"本身同意於安置中心入住並有意願重新開始者\"},{\"name\":\"basic_indicator\",\"value\":\"願意配合本聯盟社工處遇與安置中心/自立宿舍相關規定\"},{\"name\":\"basic_indicator\",\"value\":\"願意配合入住時藥癮檢測與每周、不定時藥癮檢測\"},{\"name\":\"end_indicator\",\"value\":\"入住當日與入住後都願意接受藥癮檢測 結果都呈陰性者，沒有在使用非法藥物者，但可以接受使用美沙酮或舌下錠者(丁基原啡因)\"},{\"name\":\"end_indicator\",\"value\":\"生活可自理者且行動能力正常\"},{\"name\":\"end_indicator\",\"value\":\"個案需要至感染科就診，並附上病歷摘要表，以利審核\"},{\"name\":\"end_indicator\",\"value\":\"個案家屬需負擔個案就醫、生活用品等費用\"},{\"name\":\"resource_w_referrals\",\"value\":\"test資源與轉介\"},{\"name\":\"customFile1\",\"value\":\"test.jpeg\"}]\"', '../upload/test.jpeg', '');
 
 -- --------------------------------------------------------
 
@@ -1769,14 +1779,14 @@ CREATE TABLE `placement_form_all_info` (
   `Supervise2_signature` longtext NOT NULL,
   `Supervise2_sign_msg` longtext NOT NULL,
   `Supervise2_sign_time` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `placement_form_all_info`
 --
 
 INSERT INTO `placement_form_all_info` (`Id`, `Pcase_id`, `Case_id`, `Case_name`, `Case_pid`, `Is_upload`, `Url`, `Upload_path`, `Number`, `Form_name`, `Fillin_date`, `Remark`, `Other_info`, `Case_storage`, `Upload_info`, `Create_date`, `Create_name`, `Update_date`, `Update_name`, `Supervise1`, `Supervise1_signature`, `Supervise1_sign_msg`, `Supervise1_sign_time`, `Supervise2`, `Supervise2_signature`, `Supervise2_sign_msg`, `Supervise2_sign_time`) VALUES
-(1, '1', 'SC001', 'TESTAB12', 'HG12314341', 0, 'placement_case_detail.php?name=TESTAB12&gender=男&pid=HG12314341&date=2020-11-10&property=自立宿舍&type=愛滋感染者&grade=B&id=1&open_id=SC001&referral=民間社福機構&case_Create_date=2020-11-11&unopen_type=placement_case&birth=1945-02-05', '', 0, 'settlement', '2023-08-29', 'TEST22', '\"[{\"name\":\"settlement\",\"value\":\"符合基本條件指標條件共3項，符合收案指標條件共4項。\"}]\"', 'storage', '', '2023-08-29 00:00:00', 'jia', '2023-08-30 00:16:22', '園主任', '園主任', '../signature/1693326048.png', '園主任\ntesat', '2023-08-30 00:20:48', '執行長', '', '', '');
+(1, '1', '471', 'TESTAB12', 'HG12314341', 0, 'placement_case_detail.php?name=TESTAB12&gender=男&pid=HG12314341&date=2020-11-10&property=自立宿舍&type=愛滋感染者&grade=B&id=1&open_id=471&referral=民間社福機構&case_Create_date=2020-11-11&unopen_type=placement_case&birth=1945-02-05', '', 0, 'settlement', '2023-08-29', 'TEST22', '\"[{\"name\":\"settlement\",\"value\":\"符合基本條件指標條件共3項，符合收案指標條件共4項。\"}]\"', 'storage', '', '2023-08-29 00:00:00', 'jia', '2023-08-30 00:16:22', '園主任', '園主任', '../signature/1693326048.png', '園主任\ntesat', '2023-08-30 00:20:48', '執行長', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -1799,7 +1809,7 @@ CREATE TABLE `program_act` (
   `Create_name` varchar(300) NOT NULL,
   `Update_date` datetime NOT NULL,
   `Update_name` varchar(300) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `program_act`
@@ -1832,7 +1842,7 @@ CREATE TABLE `program_plan` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime NOT NULL,
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `program_plan`
@@ -1840,7 +1850,8 @@ CREATE TABLE `program_plan` (
 
 INSERT INTO `program_plan` (`Id`, `Date`, `Plan_name`, `Plan_from`, `Fund`, `Proposal_date`, `Interim_date`, `Achieve_date`, `Other_date`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
 (1, '112.07.27', '哈哈ssss999ds', 'undefined', 'undefined', '2023-05-24', '0000-00-00', '0000-00-00', '0000-00-00', '2023-05-24 12:04:34', '社工員1', '2023-08-31 10:11:04', '社工員1'),
-(2, '112.07.27', '哈哈ssss999www', 'undefined', 'undefined', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '2023-07-20 15:35:11', '花花', '2023-08-31 21:33:03', '園主任');
+(2, '112.07.27', '哈哈ssss999www', 'undefined', 'undefined', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '2023-07-20 15:35:11', '花花', '2023-08-31 22:33:21', '園主任'),
+(3, '112.09.08', 'test名稱', 'test來源', '專管', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '2023-09-01 09:23:43', '園主任', '0000-00-00 00:00:00', '');
 
 -- --------------------------------------------------------
 
@@ -1859,7 +1870,7 @@ CREATE TABLE `program_plan_form` (
   `Upload_name` varchar(30) NOT NULL,
   `Update_date` datetime NOT NULL,
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `program_plan_form`
@@ -1905,7 +1916,7 @@ CREATE TABLE `program_result` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` date NOT NULL,
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -1924,7 +1935,7 @@ CREATE TABLE `program_result_form` (
   `Upload_name` varchar(30) NOT NULL,
   `Update_date` datetime NOT NULL,
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -1953,7 +1964,7 @@ CREATE TABLE `published` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` date NOT NULL,
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `published`
@@ -1981,7 +1992,7 @@ CREATE TABLE `published_form` (
   `Upload_name` varchar(30) NOT NULL,
   `Update_date` datetime NOT NULL,
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -1991,39 +2002,39 @@ CREATE TABLE `published_form` (
 
 CREATE TABLE `received` (
   `Id` int(255) NOT NULL,
-  `Year` varchar(300) CHARACTER SET utf8mb4 NOT NULL,
-  `Title_name` varchar(300) CHARACTER SET utf8mb4 NOT NULL,
+  `Year` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Title_name` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `Received_date` varchar(30) NOT NULL,
-  `Subject` varchar(300) CHARACTER SET utf8mb4 NOT NULL,
-  `Unit` varchar(300) CHARACTER SET utf8mb4 NOT NULL,
+  `Subject` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Unit` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `Num_receive` varchar(1000) NOT NULL,
   `Upload_name` varchar(500) NOT NULL,
   `Upload_path` varchar(2000) NOT NULL,
   `Create_date` date NOT NULL,
-  `Create_name` varchar(30) CHARACTER SET utf8mb4 NOT NULL,
+  `Create_name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `Update_date` date NOT NULL,
-  `Update_name` varchar(30) CHARACTER SET utf8mb4 NOT NULL,
-  `Executive` varchar(30) CHARACTER SET utf8mb4 NOT NULL,
-  `Executive_signature` varchar(500) CHARACTER SET utf8mb4 NOT NULL,
-  `Executive_sign_msg` varchar(2000) CHARACTER SET utf8mb4 NOT NULL,
-  `Executive_sign_time` varchar(54) CHARACTER SET utf8mb4 NOT NULL,
-  `Supervise` varchar(30) CHARACTER SET utf8mb4 NOT NULL,
-  `Supervise_signature` varchar(500) CHARACTER SET utf8mb4 NOT NULL,
-  `Supervise_sign_msg` varchar(2000) CHARACTER SET utf8mb4 NOT NULL,
-  `Supervise_sign_time` varchar(54) CHARACTER SET utf8mb4 NOT NULL,
-  `Leader` varchar(30) CHARACTER SET utf8mb4 NOT NULL,
-  `Leader_signature` varchar(500) CHARACTER SET utf8mb4 NOT NULL,
-  `Leader_sign_msg` varchar(2000) CHARACTER SET utf8mb4 NOT NULL,
-  `Leader_sign_time` varchar(54) CHARACTER SET utf8mb4 NOT NULL,
-  `Director` varchar(30) CHARACTER SET utf8mb4 NOT NULL,
-  `Director_signature` varchar(500) CHARACTER SET utf8mb4 NOT NULL,
-  `Director_sign_msg` varchar(2000) CHARACTER SET utf8mb4 NOT NULL,
-  `Director_sign_time` varchar(54) CHARACTER SET utf8mb4 NOT NULL,
-  `Distribution` varchar(30) CHARACTER SET utf8mb4 NOT NULL,
-  `Distribution_signature` varchar(500) CHARACTER SET utf8mb4 NOT NULL,
-  `Distribution_sign_msg` varchar(500) CHARACTER SET utf8mb4 NOT NULL,
-  `Distribution_sign_time` varchar(54) CHARACTER SET utf8mb4 NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `Update_name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Executive` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Executive_signature` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Executive_sign_msg` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Executive_sign_time` varchar(54) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Supervise` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Supervise_signature` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Supervise_sign_msg` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Supervise_sign_time` varchar(54) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Leader` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Leader_signature` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Leader_sign_msg` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Leader_sign_time` varchar(54) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Director` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Director_signature` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Director_sign_msg` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Director_sign_time` varchar(54) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Distribution` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Distribution_signature` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Distribution_sign_msg` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Distribution_sign_time` varchar(54) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- 傾印資料表的資料 `received`
@@ -2060,7 +2071,7 @@ CREATE TABLE `received_forms` (
   `Upload_name` varchar(30) NOT NULL,
   `Update_date` datetime NOT NULL,
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -2091,7 +2102,7 @@ CREATE TABLE `resume` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime DEFAULT current_timestamp(),
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `resume`
@@ -2124,7 +2135,7 @@ CREATE TABLE `resume_forms` (
   `Upload_name` varchar(30) NOT NULL,
   `Update_date` datetime DEFAULT current_timestamp(),
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `resume_forms`
@@ -2180,7 +2191,7 @@ CREATE TABLE `resume_seniority` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime DEFAULT current_timestamp(),
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `resume_seniority`
@@ -2226,7 +2237,7 @@ CREATE TABLE `screening` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime NOT NULL,
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `screening`
@@ -2252,7 +2263,7 @@ INSERT INTO `screening` (`Id`, `Screening_id`, `Reservation_date`, `Reservation_
 CREATE TABLE `screening_result_keywords` (
   `Id` int(100) NOT NULL,
   `screening_result` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `screening_result_keywords`
@@ -2277,7 +2288,7 @@ INSERT INTO `screening_result_keywords` (`Id`, `screening_result`) VALUES
 CREATE TABLE `screening_type_keywords` (
   `Id` int(100) NOT NULL,
   `screening_type` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `screening_type_keywords`
@@ -2312,7 +2323,7 @@ CREATE TABLE `signature_notice` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime DEFAULT current_timestamp(),
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `signature_notice`
@@ -2400,7 +2411,7 @@ CREATE TABLE `sign_notice` (
   `person` varchar(10) NOT NULL,
   `datetime` varchar(16) NOT NULL,
   `authority_name` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `sign_notice`
@@ -2508,7 +2519,7 @@ CREATE TABLE `supervisor_record` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime NOT NULL,
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `supervisor_record`
@@ -2567,7 +2578,7 @@ CREATE TABLE `supervisor_record_v2` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime NOT NULL,
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `supervisor_record_v2`
@@ -2606,7 +2617,7 @@ CREATE TABLE `training` (
   `Location_detail` varchar(100) NOT NULL,
   `New_remark` varchar(100) NOT NULL,
   `First_insert` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `training`
@@ -2633,7 +2644,7 @@ CREATE TABLE `tw_counties` (
   `Id` int(20) NOT NULL,
   `Area` varchar(30) NOT NULL,
   `Counties_Cities` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `tw_counties`
@@ -2671,7 +2682,7 @@ INSERT INTO `tw_counties` (`Id`, `Area`, `Counties_Cities`) VALUES
 
 CREATE TABLE `user_info` (
   `Id` int(244) NOT NULL,
-  `Resume_id` int(244) NOT NULL,
+  `Resume_id` int(244) DEFAULT NULL,
   `Account` varchar(50) NOT NULL,
   `Password` varchar(50) NOT NULL,
   `Name` varchar(100) NOT NULL,
@@ -2683,37 +2694,37 @@ CREATE TABLE `user_info` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime DEFAULT current_timestamp(),
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `user_info`
 --
 
 INSERT INTO `user_info` (`Id`, `Resume_id`, `Account`, `Password`, `Name`, `Authority`, `Date`, `Department`, `Job`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
-(1, 0, 'text1', '123', '社工員1', 1, '2021-03-06 17:04:49', '行政中心', '社工', NULL, '', '2023-01-16 11:14:52', '社工員1'),
-(2, 0, 'text2', '456', '社工員2', 1, '2020-10-05 21:12:04', '行政中心', '社工', NULL, '', '2022-09-22 19:36:25', ''),
-(3, 0, 'test3', '789', '社工組長', 3, '2020-10-05 21:12:04', '行政中心', '組長', NULL, '', '2022-09-22 19:36:25', ''),
-(5, 0, 'test5', '258', '園主任', 3, '2020-10-05 21:12:04', '伯特利家園', '主任', NULL, '', '2022-12-06 16:03:34', '花花'),
-(6, 0, 'test6', '369', '執行長', 4, '2020-10-05 21:12:04', '行政中心', '執行長', NULL, '', '2022-09-22 19:36:25', ''),
-(10, 0, 'grace12', '0000', '歐陽美悌', 1, '2021-02-05 11:47:28', '行政中心', '行政人員', NULL, '', '2022-09-22 19:36:25', ''),
-(11, 0, 'grace75', '0000', '林鈺舒', 1, '2021-02-05 11:49:26', '行政中心', '社工助理', NULL, '', '2022-09-22 19:36:25', ''),
-(12, 0, 'grace66', '0000', '丘培民', 1, '2021-02-05 11:49:47', '行政中心', '社工', NULL, '', '2022-09-22 19:36:25', ''),
-(13, 0, 'grace69', '0000', '邱怡玲', 1, '2021-02-05 11:52:06', '行政中心', '社工', NULL, '', '2022-09-22 19:36:25', ''),
-(14, 0, 'grace78', '0000', '許文瀞', 1, '2021-02-05 11:52:49', '行政中心', '組長', NULL, '', '2022-09-22 19:36:25', ''),
-(15, 0, 'grace39', '0000', '張簡卉筑', 2, '2021-02-05 11:53:21', '行政中心', '社工組長', NULL, '', '2022-09-22 19:36:25', ''),
-(16, 0, 'grace01', '0000', '李國揚', 4, '2021-03-18 13:21:20', '行政中心', '執行長', NULL, '', '2022-09-22 19:36:25', ''),
-(17, 0, 'grace02', '0000', '苗長青', 4, '2021-03-18 13:23:31', '行政中心', '執行長秘書', NULL, '', '2022-09-22 19:36:25', ''),
-(18, 0, 'grace03', '0000', '吳智文', 3, '2021-03-18 13:24:33', '伯特利家園', '主任', NULL, '', '2022-09-22 19:36:25', ''),
-(19, 0, 'grace04', '0000', '李萬榮', 1, '2021-03-18 13:25:50', '伯特利家園', '生活輔導員', NULL, '', '2022-09-22 19:36:25', ''),
-(20, 0, 'grace05', '0000', '晏傳恕', 1, '2021-03-18 13:27:08', '伯特利家園', '生活輔導員', NULL, '', '2022-09-22 19:36:25', ''),
-(21, 0, 'grace06', '0000', '施朝根', 3, '2021-03-18 13:27:42', '毘努伊勒家園', '主任', NULL, '', '2022-09-22 19:36:25', ''),
-(22, 0, 'grace07', '0000', '洪勝霖', 1, '2021-03-18 13:28:18', '毘努伊勒家園', '生活輔導組長', NULL, '', '2022-09-22 19:36:25', ''),
-(23, 0, 'grace08', '0000', '力聖臨', 1, '2021-03-18 13:29:11', '毘努伊勒家園', '生活輔導員', NULL, '', '2022-09-22 19:36:25', ''),
-(24, 0, 'test', 'test', '花花', 1, '2021-03-06 17:04:49', '行政中心', '組長', NULL, '', '2022-09-22 19:36:25', ''),
+(1, NULL, 'text1', '123', '社工員1', 1, '2021-03-06 17:04:49', '行政中心', '社工', NULL, '', '2023-01-16 11:14:52', '社工員1'),
+(2, NULL, 'text2', '456', '社工員2', 1, '2020-10-05 21:12:04', '行政中心', '社工', NULL, '', '2022-09-22 19:36:25', ''),
+(3, NULL, 'test3', '789', '社工組長', 3, '2020-10-05 21:12:04', '行政中心', '組長', NULL, '', '2022-09-22 19:36:25', ''),
+(5, NULL, 'test5', '258', '園主任', 3, '2020-10-05 21:12:04', '伯特利家園', '主任', NULL, '', '2022-12-06 16:03:34', '花花'),
+(6, NULL, 'test6', '369', '執行長', 4, '2020-10-05 21:12:04', '行政中心', '執行長', NULL, '', '2022-09-22 19:36:25', ''),
+(10, NULL, 'grace12', '0000', '歐陽美悌', 1, '2021-02-05 11:47:28', '行政中心', '行政人員', NULL, '', '2022-09-22 19:36:25', ''),
+(11, NULL, 'grace75', '0000', '林鈺舒', 1, '2021-02-05 11:49:26', '行政中心', '社工助理', NULL, '', '2022-09-22 19:36:25', ''),
+(12, NULL, 'grace66', '0000', '丘培民', 1, '2021-02-05 11:49:47', '行政中心', '社工', NULL, '', '2022-09-22 19:36:25', ''),
+(13, NULL, 'grace69', '0000', '邱怡玲', 1, '2021-02-05 11:52:06', '行政中心', '社工', NULL, '', '2022-09-22 19:36:25', ''),
+(14, NULL, 'grace78', '0000', '許文瀞', 1, '2021-02-05 11:52:49', '行政中心', '組長', NULL, '', '2022-09-22 19:36:25', ''),
+(15, NULL, 'grace39', '0000', '張簡卉筑', 2, '2021-02-05 11:53:21', '行政中心', '社工組長', NULL, '', '2022-09-22 19:36:25', ''),
+(16, NULL, 'grace01', '0000', '李國揚', 4, '2021-03-18 13:21:20', '行政中心', '執行長', NULL, '', '2022-09-22 19:36:25', ''),
+(17, NULL, 'grace02', '0000', '苗長青', 4, '2021-03-18 13:23:31', '行政中心', '執行長秘書', NULL, '', '2022-09-22 19:36:25', ''),
+(18, NULL, 'grace03', '0000', '吳智文', 3, '2021-03-18 13:24:33', '伯特利家園', '主任', NULL, '', '2022-09-22 19:36:25', ''),
+(19, NULL, 'grace04', '0000', '李萬榮', 1, '2021-03-18 13:25:50', '伯特利家園', '生活輔導員', NULL, '', '2022-09-22 19:36:25', ''),
+(20, NULL, 'grace05', '0000', '晏傳恕', 1, '2021-03-18 13:27:08', '伯特利家園', '生活輔導員', NULL, '', '2022-09-22 19:36:25', ''),
+(21, NULL, 'grace06', '0000', '施朝根', 3, '2021-03-18 13:27:42', '毘努伊勒家園', '主任', NULL, '', '2022-09-22 19:36:25', ''),
+(22, NULL, 'grace07', '0000', '洪勝霖', 1, '2021-03-18 13:28:18', '毘努伊勒家園', '生活輔導組長', NULL, '', '2022-09-22 19:36:25', ''),
+(23, NULL, 'grace08', '0000', '力聖臨', 1, '2021-03-18 13:29:11', '毘努伊勒家園', '生活輔導員', NULL, '', '2022-09-22 19:36:25', ''),
+(24, NULL, 'test', 'test', '花花', 1, '2021-03-06 17:04:49', '行政中心', '組長', NULL, '', '2022-09-22 19:36:25', ''),
 (25, 1, 'testuser', 'testjia123456', 'jia', 1, '2022-09-29 17:47:27', '', '', '2022-09-29 17:47:27', '園主任', '2023-07-14 12:09:04', '執行長'),
 (26, 2, 'test01', 'test01', 'test001', 1, '2022-10-12 14:17:44', '', '', '2022-10-12 14:17:44', '花花', '2023-03-30 18:17:28', 'jia'),
 (27, 3, 'twha202212061557', 'twha20221206', 'ㄓㄜㄒㄧㄢ', 1, '2022-12-06 15:59:24', '', '', '2022-12-06 15:59:24', '花花', '2023-03-30 18:17:41', 'jia'),
-(28, 4, 'twha202212061600', '20221206z', 'ㄓㄒ', 1, '2022-12-06 16:00:44', '', '', '2022-12-06 16:00:44', '花花', '2022-12-06 16:00:44', ''),
+(28, 4, 'twha202212061600', '20221206z', 'ㄓㄒ', 3, '2022-12-06 16:00:44', '', '', '2022-12-06 16:00:44', '花花', '2022-12-06 16:00:44', ''),
 (29, 5, 'twha202212061601', 'w20221206', '叫http好了', 1, '2022-12-06 16:03:07', '', '', '2022-12-06 16:03:07', '花花', '2022-12-06 16:03:07', ''),
 (30, 6, 'ffff', 'timo789', 'fffff', 1, '2022-12-26 15:41:10', '', '', '2022-12-26 15:41:10', '社工員1', '2023-07-14 12:09:24', '執行長'),
 (31, 7, 'test714', 'test714', 'a714', 1, '2023-07-14 12:07:28', '', '', '2023-07-14 12:07:28', '執行長', '2023-07-14 12:07:48', '執行長');
@@ -2739,7 +2750,7 @@ CREATE TABLE `volunteer` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime NOT NULL,
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `volunteer`
@@ -2781,7 +2792,7 @@ CREATE TABLE `volunteer_hours_record` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime NOT NULL,
   `Update_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `volunteer_hours_record`
@@ -2854,7 +2865,7 @@ CREATE TABLE `volunteer_meeting` (
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime DEFAULT current_timestamp(),
   `Update_name` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `volunteer_meeting`
@@ -2906,7 +2917,7 @@ CREATE TABLE `volunteer_v2` (
   `Create_name` varchar(100) NOT NULL,
   `Update_date` datetime DEFAULT current_timestamp(),
   `Update_name` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `volunteer_v2`
@@ -3335,7 +3346,7 @@ ALTER TABLE `leave_rule_table`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `login_record`
 --
 ALTER TABLE `login_record`
-  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=212;
+  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=222;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `members_assemble`

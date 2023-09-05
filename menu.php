@@ -1,3 +1,8 @@
+<?php 
+    $menu_login_authority = $_SESSION['authority'];
+    $menu_login_resume_id = $_SESSION['resume_id'];
+    
+?>
 <div class="fixed-sidebar-left">
     <ul class="nav navbar-nav side-nav nicescroll-bar" id="menu_tab_nav">
         <li>
@@ -28,8 +33,16 @@
                     </a>
                     <ul style="font-size:15px" id="staff_non_open" class="collapse">
                         <li>
-                            <a href="resume.php">履歷表檔案
-                            </a>
+                            <?php
+                                if ($menu_login_authority > 2) {
+
+                                    echo '<a href="resume.php">履歷表檔案</a>';
+                                }
+                                else
+                                {
+                                    echo '<a href="resume_detail_v2.php?id='.$menu_login_resume_id.'">履歷表檔案</a>';
+                                }
+                            ?>
                         </li>
                         <li>
                             <a href="training.php">在職訓練

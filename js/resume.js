@@ -226,8 +226,55 @@ $.ajax({
             file_showing_format_trans(value.PA_file_date, 0) +
           '</td>' +
         '</tr>';
+
+        $("#name").append(
+          '<option value="' + value.Name + '">' + value.Name + "</option>"
+        );
     });
 
+    //找出所有查詢表格下拉式選單，將內容排序、加上"所有查詢"、去除重複值
+    var filter_select = $("select.filter");
+
+    $.each(filter_select, function (i, v) {
+      var this_id = $(this).attr("id");
+
+      if (this_id != undefined) {
+        //option小到大排序
+        $("#" + this_id + " option")
+          .sort(function (a, b) {
+            var aText = $(a).text().toUpperCase();
+            var bText = $(b).text().toUpperCase();
+            // if(aText>bText) return 1;
+            // if(aText<bText) return -1;
+            // return 0;
+
+            return aText - bText;
+          })
+          .appendTo("#" + this_id + "");
+
+        //最前面新增"所有"選像
+        $("#" + this_id + "").prepend(
+          "<option value='' selected='selected'>所有</option>"
+        );
+
+        $("#" + this_id + "")
+          .children()
+          .each(function () {
+            //text = $(this).text();
+            //if (
+            //  $("select#" + this_id + " option:contains(" + text + ")").length >
+            //  1
+            //) {
+            //  $(
+            //    "select#" + this_id + " option:contains(" + text + "):gt(0)"
+            //  ).remove();
+            //}
+             $(this).siblings('[value="' + this.value + '"]').remove();
+            //    console.log(text)
+          });
+      }
+    });
+    
     //印出表格
     $("#call_view").html(cssString);
 
