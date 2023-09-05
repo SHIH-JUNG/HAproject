@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2023-09-05 15:14:18
+-- 產生時間： 2023-09-05 17:08:37
 -- 伺服器版本： 10.4.27-MariaDB
 -- PHP 版本： 7.4.33
 
@@ -1077,8 +1077,8 @@ INSERT INTO `form_all_info` (`Id`, `Case_seqid`, `Case_id`, `Case_name`, `Case_p
 (20, '4', 'RE113', '黃QQ', 'B123555515', 0, 'case_detail.php?name=黃QQ&gender=男&pid=B123555515&date=2022-08-03&property=社區&type=一般藥癮者&grade=A&id=4&open_id=RE113&referral=社區&case_Create_date=2022-08-03&unopen_type=case&birth=1993-10-15', '', 0, 'employment_satif', '2022-09-06', 'TT', '\"[{\"name\":\"employment_satif\",\"value\":\"0\"}]\"', '', '', '2022-09-06 00:00:00', '社工員1', '2022-10-05 20:37:05', '社工員1', '', '', '', '', '', '', '', ''),
 (21, '5', 'RE114', 'test611', 'C248491122', 0, 'case_detail.php?name=test611&gender=跨性別&pid=C248491122&date=2021-06-11&property=安置家園&type=一般藥癮者&grade=B&id=5&open_id=RE114&referral=自行求助&case_Create_date=2021-06-11&unopen_type=case&birth=1995-12-12', '', 0, 'case', '2022-10-06', '720', '\"[{\"name\":\"case\",\"value\":\"\"}]\"', '', '', '2022-10-06 00:00:00', '園主任', '2022-10-15 21:42:18', 'jia', '', '', '', '', '', '', '', ''),
 (22, '6', 'RE111', 'test', 'T1334356112', 0, 'case_detail.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03', '', 0, 'health', '2021-11-18', 'aa', '', '', '', '2022-10-13 00:00:00', '社工組長', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', ''),
-(23, '6', 'RE111', 'test', 'T1334356112', 1, '', '../upload/case_all/憂鬱量表.docx', 0, 'sullen', '0000-00-00', '', '', '', '\"[{\"name\":\"upload_date_sullen0\",\"value\":\"2022-10-15\"},{\"name\":\"scoresullen0\",\"value\":\"89\"},{\"name\":\"filesullen0\",\"value\":\"憂鬱量表.docx\"},{\"name\":\"test_typesullen0\",\"value\":\"中測\"},{\"name\":\"remarksullen0\",\"value\":\"tttt憂鬱量表89\"}]\"', '2022-10-15 21:08:45', 'jia', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', ''),
-(24, '6', 'RE111', 'test', 'T1334356112', 1, '', '../upload/case_all/bsrs5.docx', 0, 'BSRS5', '0000-00-00', '', '', '', '\"[{\"name\":\"create_date_BSRS50\",\"value\":\"2022-10-15\"},{\"name\":\"add_new_typeBSRS50\",\"value\":\"上傳檔案\"},{\"name\":\"scoreBSRS50\",\"value\":\"12\"},{\"name\":\"disposeBSRS50\",\"value\":\"teee86處置情形\"},{\"name\":\"fileBSRS50\",\"value\":\"bsrs5.docx\"},{\"name\":\"remarkBSRS50\",\"value\":\"BSRS-5量表teee86\"}]\"', '2022-10-15 21:09:19', 'jia', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', ''),
+(23, '6', 'RE111', 'test', 'T1334356112', 1, '', '../upload/case_all/testsullen_ttt.docx', 0, 'sullen', '0000-00-00', '', '', '', '\"[{\"name\":\"upload_date_sullen0\",\"value\":\"2022-10-07\"},{\"name\":\"scoresullen0\",\"value\":\"91\"},{\"name\":\"filesullen0\",\"value\":\"testsullen_ttt.docx\"},{\"name\":\"test_typesullen0\",\"value\":\"前測\"},{\"name\":\"remarksullen0\",\"value\":\"tttt憂鬱量表89_0905\"}]\"', '2022-10-15 21:08:45', 'jia', '2023-09-05 22:51:05', 'ㄓㄒ', '', '', '', '', '', '', '', ''),
+(24, '6', 'RE111', 'test', 'T1334356112', 1, '', '../upload/case_all/testbsrs50905ss.docx', 0, 'BSRS5', '0000-00-00', '', '', '', '\"[{\"name\":\"create_date_BSRS50\",\"value\":\"2022-10-06\"},{\"name\":\"add_new_typeBSRS50\",\"value\":\"上傳檔案\"},{\"name\":\"scoreBSRS50\",\"value\":\"45\"},{\"name\":\"disposeBSRS50\",\"value\":\"teee86處置情形test0905\"},{\"name\":\"fileBSRS50\",\"value\":\"testbsrs50905ss.docx\"},{\"name\":\"remarkBSRS50\",\"value\":\"BSRS-5量表teee86_0905\"}]\"', '2022-10-15 21:09:19', 'jia', '2023-09-05 22:51:32', 'ㄓㄒ', '', '', '', '', '', '', '', ''),
 (25, '6', 'RE111', 'test', 'T1334356112', 0, 'case_detail.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03', '', 1, 'BSRS5', '0000-00-00', 'ttt1015', '\"[{\"name\":\"BSRS5\",\"value\":\"16\"},{\"name\":\"BSRS5\",\"value\":\"tttt處置情形第6題單獨得分\"}]\"', '', '', '2022-10-15 00:00:00', 'jia', '2022-10-15 21:10:40', 'jia', '', '', '', '', '', '', '', ''),
 (26, '1', 'RE111', 'test', 'T1334356112', 1, '', '../upload/case_all/test18.txt', 0, 'sullen', '0000-00-00', '', '', '', '\"[{\"name\":\"upload_date_sullen0\",\"value\":\"2022-10-18\"},{\"name\":\"scoresullen0\",\"value\":\"88\"},{\"name\":\"filesullen0\",\"value\":\"test18.txt\"},{\"name\":\"test_typesullen0\",\"value\":\"中測\"},{\"name\":\"remarksullen0\",\"value\":\"test18\"}]\"', '2022-10-18 16:37:58', '社工員1', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', ''),
 (27, '7', '123', '瓜', 'M2224786629', 0, 'case_detail.php?name=瓜&gender=女&pid=M2224786629&date=2022-10-24&property=安置家園&type=愛滋感染者&grade=A&id=7&open_id=123&referral=教會&case_Create_date=2022-10-14&unopen_type=case&birth=2022-10-20', '', 0, 'case', '2022-10-24', '', '\"[{\"name\":\"case\",\"value\":\"\"}]\"', '', '', '2022-10-24 00:00:00', 'jia', '2022-10-24 11:41:54', '園主任', '', '', '', '', '', '', '', ''),
@@ -3322,7 +3322,7 @@ ALTER TABLE `forms`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `form_all_info`
 --
 ALTER TABLE `form_all_info`
-  MODIFY `Id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+  MODIFY `Id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `form_case_report`

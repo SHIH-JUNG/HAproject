@@ -45,7 +45,7 @@ else
 {
     if($row_nums > 0 || $row_nums2 > 0 || $row_nums3 > 0)
     {
-        $sqlDelete = "DELETE from day_off_v2 WHERE `Id` = '$Day_off_id'";
+        $sqlDelete = "DELETE from day_off_v2 WHERE `Id` = '$Day_off_id';";
     
         if(mysqli_multi_query($conn, $sqlDelete)){
             echo true;

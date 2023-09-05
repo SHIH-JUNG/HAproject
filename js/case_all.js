@@ -294,8 +294,8 @@ function load_each_form()
                         '<tr name="'+form_name+'_num[]" id="'+value.Id+"_"+value.Case_seqid+"_"+value.Case_id+'">'+
                         td_str+
                         '<td>'+ '<button data-toggle="modal" sql_data="'+ form_name+"_"+value.Id+'" onclick="load_update_upload_data(this);">修改</button>' +
-                        '<br/><br/>' +
-                        '<button data-toggle="modal" data-target="#delete_upload_data_modal">刪除</button>' +
+                        '<br/>' +
+                        '<button style="margin-top:.5em;" sql_data="'+ form_name+"_"+value.Id+'" onclick="load_delete_upload_data(this);">刪除</button>' +
                         '</td>'+
                         '<td style="background-color:'+bg_color+';">'+sign_str+'</td>'+
                         '<td>'+sign_btn_str+'</td>'+
@@ -371,6 +371,16 @@ function load_forms_other_row(form_type,index)
 //endregion
 
 
+//點擊刪除按鈕時，載入表單的sql id region
+load_delete_upload_data = function(this_btn) {
+    var form_name_sql_id = $(this_btn).attr("sql_data");
+    var sql_id_str = form_name_sql_id.split("_")[1];
+
+    $("#delete_upload_data_modal").modal('show');
+    $("#delete_upload_data_btn").attr("sql_id", sql_id_str);
+}
+//endregion
+
 //點擊確認刪除上傳的檔案（憂鬱量表、BSRS5量表） region
 $("#delete_upload_data_btn").on('click',function(){
     if($("#input_user_password").val() == login_user_pwd)
@@ -390,10 +400,48 @@ $("#delete_upload_data_btn").on('click',function(){
 // 刪除上傳的檔案（憂鬱量表、BSRS5量表） region
 delete_upload_data = function() {
     
-    
+    var attr_sql_id = $("#delete_upload_data_btn").attr("sql_id");
+
+    $.ajax({
+        url: "database/delete_case_all_upload.php",
+        type: "POST",
+        data: {
+            Id:attr_sql_id,
+          },
+        // dataType: "JSON", // 若要傳回字串 如：noallow，不可設定為json格式
+        success: function (data) {
+            console.log(data)
+            //console.log(typeof data)
+            if(data == 1){
+                swal({
+                    title:'上傳成功！',
+                    type:'success',                        
+                }).then(function(){
+                    location.reload();
+                }) 
+            }
+        else
+        {
+                swal({
+                    title:'上傳失敗！請聯絡負責單位',
+                    type:'error',
+                })
+            }
+        },
+        error: function (e) {
+            console.log(e);
+            swal({
+                title:'上傳失敗！請聯絡負責單位',
+                type:'error',
+            })
+        }
+    });
 
 }
 //endregion
+
+window.type_sql_orignal_name = [];
+// window.type2_sql_orignal_name = [];
 
 // 點擊修改按鈕時，載入原本的內容 region
 load_update_upload_data = function(this_btn) {
@@ -404,7 +452,7 @@ load_update_upload_data = function(this_btn) {
 
     if(form_name_str == "sullen")
     {
-        load_update_type1_data();
+        load_update_type_data(sql_id_str, 1);
 
         $("#update_upload_data_modal_type1").modal('show');
 
@@ -413,7 +461,7 @@ load_update_upload_data = function(this_btn) {
     }
     else if(form_name_str == "BSRS5")
     {
-        load_update_type2_data();
+        load_update_type_data(sql_id_str, 2);
 
         $("#update_upload_data_modal_type2").modal('show');
 
@@ -426,26 +474,95 @@ load_update_upload_data = function(this_btn) {
 //endregion
 
 // 資料庫查詢量表，載入原本的內容 region
-load_update_type1_data = function() {
+load_update_type_data = function(sql_id_str, type_num) {
     
-    var attr_sql_id = $("#modal_type1_btn").attr("sql_id");
-
     $.ajax({
         url: "database/find_case_all_upload.php",
         data: {
-            Id:attr_sql_id
+            Id:sql_id_str
             },
         type: "POST",
         dataType: "JSON",
         success: function (data) {
             // console.log(data)
             $.each(data,function(index,value){
+                switch (type_num) {
+                    case 1:
+                        var upload_info_json = JSON.parse("[" +value.Upload_info.replace('\"\[', '\[').replace('\]\"', '\]') + "]");
+                        
+                        type_sql_orignal_name = [];
+
+                        $.each(upload_info_json[0], function (i, datan) {
+                            type_sql_orignal_name.push(datan.name);
+
+                            if(datan.name.includes("upload_date"))
+                            {
+                                $('[name="modal_type1_answer1"]').val(datan.value);
+                            }
+                            if(datan.name.includes("score"))
+                            {
+                                $('[name="modal_type1_answer2"]').val(datan.value);
+                            }
+                            if(datan.name.includes("test_type"))
+                            {
+                                $('[name="modal_type1_answer3"]').val(datan.value);
+                            }
+                            if(datan.name.includes("remark"))
+                            {
+                                $('[name="modal_type1_answer4"]').val(datan.value);
+                            }
+                            if(datan.name.includes("file"))
+                            {
+
+                                var file_str = '<td><a href="upload/case_all/'+datan.value+'" style="text-decoration:none;color:blue;" target="_blank">'+
+                                '<img style="vertical-align:middle;" width="20px" src="image/file-pdf.svg">'+datan.value+'</a></td>';
+                            
+                                $('#modal_type1_answer_file').html(file_str);
+                                $('[name="modal_type1_answer_file"]').attr("value",datan.value);
+                            }
+                        });
+                        // console.log(type1_sql_orignal_name)
+                        break;
                 
+                    case 2:
+                        var upload_info_json = JSON.parse("[" +value.Upload_info.replace('\"\[', '\[').replace('\]\"', '\]') + "]");
+                        
+                        type_sql_orignal_name = [];
+
+                        $.each(upload_info_json[0], function (i, datan) {
+                            type_sql_orignal_name.push(datan.name);
+
+                            if(datan.name.includes("create_date"))
+                            {
+                                $('[name="modal_type2_answer1"]').val(datan.value);
+                            }
+                            if(datan.name.includes("score"))
+                            {
+                                $('[name="modal_type2_answer2"]').val(datan.value);
+                            }
+                            if(datan.name.includes("dispose"))
+                            {
+                                $('[name="modal_type2_answer3"]').val(datan.value);
+                            }
+                            if(datan.name.includes("file"))
+                            {
+                                var file_str = '<td><a href="upload/case_all/'+datan.value+'" style="text-decoration:none;color:blue;" target="_blank">'+
+                                '<img style="vertical-align:middle;" width="20px" src="image/file-pdf.svg">'+datan.value+'</a></td>';
+                            
+                                $('#modal_type2_answer_file').html(file_str);
+                                $('[name="modal_type2_answer_file"]').attr("value",datan.value);
+                            }
+                            if(datan.name.includes("remark"))
+                            {
+                                $('[name="modal_type2_answer4"]').val(datan.value);
+                            }
+                            
+                        });
+                        // console.log(type2_sql_orignal_name)
+                        break;
+                }
                 
             })
-            
-            //顯示所有量表資料摘要
-            load_each_form();
         },
         error: function (e) {
             notyf.alert('伺服器錯誤,無法載入');
@@ -466,14 +583,39 @@ update_upload_data = function(this_btn) {
 
     if(update_file > 0)
     {
-        var submit_data  = new FormData();
+        window.submit_data  = new FormData();
 
-        var form = $("#form_modal_type"+attr_upload_form_type+"").serializeArray();
-        var upload_info_arr = new Array(); 
+        // var form = $("#form_modal_type"+attr_upload_form_type+"").serializeArray();
+        // var upload_info_arr = new Array(); 
 
-        upload_info_arr.push({name:"modal_type"+attr_upload_form_type+"_answer_file",value:$("[name='modal_type"+attr_upload_form_type+"_answer_file']").val().replace("C\:\\fakepath\\", "")});
+        // upload_info_arr.push({name:"modal_type"+attr_upload_form_type+"_answer_file",value:$("[name='modal_type"+attr_upload_form_type+"_answer_file']").val().replace("C\:\\fakepath\\", "")});
 
-        form = form.concat(upload_info_arr);
+        // form = form.concat(upload_info_arr);
+        var form_data_json = [];
+
+        switch (attr_upload_form_type) {
+            case '1':
+                form_data_json.push({ name: type_sql_orignal_name[0], value:  $('[name="modal_type1_answer1"]').val()});
+                form_data_json.push({ name: type_sql_orignal_name[1], value:  $('[name="modal_type1_answer2"]').val()});
+                form_data_json.push({ name: type_sql_orignal_name[2], value:  $('[name="modal_type1_answer_file"]').val().replace("C\:\\fakepath\\", "")});
+                form_data_json.push({ name: type_sql_orignal_name[3], value:  $('[name="modal_type1_answer3"]').val()});
+                form_data_json.push({ name: type_sql_orignal_name[4], value:  $('[name="modal_type1_answer4"]').val()});
+
+                break;
+        
+            case '2':
+                form_data_json.push({ name: type_sql_orignal_name[0], value:  $('[name="modal_type2_answer1"]').val()});
+                form_data_json.push({ name: type_sql_orignal_name[1], value:  "上傳檔案"});
+                form_data_json.push({ name: type_sql_orignal_name[2], value:  $('[name="modal_type2_answer2"]').val()});
+                form_data_json.push({ name: type_sql_orignal_name[3], value:  $('[name="modal_type2_answer3"]').val()});
+                form_data_json.push({ name: type_sql_orignal_name[4], value:  $('[name="modal_type2_answer_file"]').val().replace("C\:\\fakepath\\", "")});
+                form_data_json.push({ name: type_sql_orignal_name[5], value:  $('[name="modal_type2_answer4"]').val()});
+
+
+                break;
+        }
+
+        
 
         $("[name='modal_type"+attr_upload_form_type+"_answer_file']").each(function(index, element) {
             var update_files = $(this).prop("files");
@@ -491,17 +633,17 @@ update_upload_data = function(this_btn) {
         });
 
         submit_data.append("Id", attr_sql_id);
-        submit_data.append("upload_content", JSON.stringify(form));
+        submit_data.append("upload_content", JSON.stringify(form_data_json));
         
-        for (var pair of submit_data.entries()) {
-            console.log(pair[0]+ ', ' + pair[1]); 
-        }
+        // for (var pair of submit_data.entries()) {
+        //     console.log(pair[0]+ ', ' + pair[1]); 
+        // }
 
         
         $.ajax({
             url: "database/update_case_all_upload.php",
             type: "POST",
-            data:form_data,
+            data:submit_data,
             contentType:false,
             cache:false,
             processData:false,

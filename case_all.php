@@ -698,7 +698,7 @@
                         <tr style="text-align:left">
                             <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">使用者密碼</td>
                             <td style="border-bottom: solid 1px;">
-                                <input style="width:15em;" id="input_user_password" type="datetime">
+                                <input style="width:15em;" id="input_user_password" type="password">
                                 <br/>
                                 <span style="color:red;">
                                     ※請輸入您的使用者登入密碼，以確認繼續當前操作
@@ -731,7 +731,7 @@
                                 <td style="border-bottom: solid 1px;">
                                     <div class="col-sm-12">
                                         <div class="text-left">
-                                            <input name="modal_type1_answer1" type="date" class="form-control"/>
+                                            <input name="modal_type1_answer1" type="date"/>
                                         </div>
                                     </div>
                                 </td>
@@ -741,7 +741,7 @@
                                     <td style="border-bottom: solid 1px;">
                                         <div class="col-sm-12">
                                             <div class="text-left">
-                                                <input name="modal_type1_answer2" type="number" class="form-control"/>
+                                                <input name="modal_type1_answer2" type="number"/>
                                             </div>
                                         </div>
                                     </td>
@@ -751,7 +751,7 @@
                                 <td style="border-bottom: solid 1px;">
                                     <div class="col-sm-12">
                                         <div class="text-left">
-                                            <input name="modal_type1_answer_file" type="file" class="form-control"/>
+                                            <input name="modal_type1_answer_file" type="file"/>
                                             <br>
                                             <div id="modal_type1_answer_file"></div>
                                             <img src="" id="modal_type1_answer_file_img" style="display:none;" />
@@ -768,7 +768,7 @@
                                 <td style="border-bottom: solid 1px;">
                                     <div class="col-sm-12">
                                         <div class="text-left">
-                                            <select name="modal_type1_answer3" class="form-control">
+                                            <select name="modal_type1_answer3">
                                                 <option value="">請選擇</option>
                                                 <option value="前測">前測</option>
                                                 <option value="中測">中測</option>
@@ -783,7 +783,7 @@
                                 <td style="border-bottom: solid 1px;">
                                     <div class="col-sm-12">
                                         <div class="text-left">
-                                            <textarea name="modal_type1_answer4" placeholder="請輸入內容" class="form-control"></textarea>
+                                            <textarea style="height: 4em;width: 20em;" name="modal_type1_answer4" placeholder="請輸入內容"></textarea>
                                         </div>
                                     </div>
                                 </td>
@@ -818,7 +818,7 @@
                                 <td style="border-bottom: solid 1px;">
                                     <div class="col-sm-12">
                                         <div class="text-left">
-                                            <input name="modal_type2_answer1" type="date" class="form-control"/>
+                                            <input name="modal_type2_answer1" type="date"/>
                                         </div>
                                     </div>
                                 </td>
@@ -828,7 +828,7 @@
                                 <td style="border-bottom: solid 1px;">
                                     <div class="col-sm-12">
                                         <div class="text-left">
-                                            <input name="modal_type2_answer2" type="number" class="form-control"/>
+                                            <input name="modal_type2_answer2" type="number"/>
                                         </div>
                                     </div>
                                 </td>
@@ -838,7 +838,7 @@
                                 <td style="border-bottom: solid 1px;">
                                     <div class="col-sm-12">
                                         <div class="text-left">
-                                            <textarea name="modal_type2_answer3" placeholder="請輸入內容" class="form-control"></textarea>
+                                            <textarea style="height: 4em;width: 20em;" name="modal_type2_answer3" placeholder="請輸入內容"></textarea>
                                         </div>
                                     </div>
                                 </td>
@@ -848,7 +848,7 @@
                                 <td style="border-bottom: solid 1px;">
                                     <div class="col-sm-12">
                                         <div class="text-left">
-                                            <input name="modal_type2_answer_file" type="file" class="form-control"/>
+                                            <input name="modal_type2_answer_file" type="file"/>
                                             <br>
                                             <div id="modal_type2_answer_file"></div>
                                             <img src="" id="modal_type2_answer_file_img" style="display:none;" />
@@ -865,7 +865,7 @@
                                 <td style="border-bottom: solid 1px;">
                                     <div class="col-sm-12">
                                         <div class="text-left">
-                                            <textarea name="modal_type2_answer4" placeholder="請輸入內容" class="form-control"></textarea>
+                                            <textarea style="height: 4em;width: 20em;" name="modal_type2_answer4" placeholder="請輸入內容"></textarea>
                                         </div>
                                     </div>
                                 </td>
