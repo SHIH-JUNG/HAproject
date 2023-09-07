@@ -123,7 +123,7 @@
                                                     <div class="table-wrap">
                                                         <div class="table-responsive col-sm-12 text-center">
                                                             <form id="resume_form" data-toggle="validator" role="form" autocomplete="new-password">
-                                                                <table style="width:55%;" class="table table-bordered">
+                                                                <table style="width:70%;" class="table table-bordered">
                                                                     <tr>
                                                                         <td colspan="2">
                                                                             <h3>建立員工檔案</h3>
