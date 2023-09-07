@@ -122,7 +122,7 @@
                                                             <th data-width="15" data-width-unit="%">承辦人員</th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody id="sign_info"></tbody>
+                                                    <tbody id="event_info"></tbody>
                                                 </table>
                                                 <br>
                                                 <button style="font-size:15px" id="event_add" class="btn btn-default"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -148,19 +148,23 @@
                                                 <table style="font-size:15px;font-family:新細明體;" class="text-center table-hover table-striped table-sm" data-toggle="table" data- data-page-size=5 data-search="false" data-pagination="true" data-pagination-parts="[pageList]">
                                                     <thead>
                                                         <tr>
-                                                            <th data-width="65" data-width-unit="%">標題</th>
-                                                            <th data-width="20" data-width-unit="%">日期</th>
-                                                            <th data-width="15" data-width-unit="%">承辦人員</th>
+                                                            <th data-width="40" data-width-unit="%">標題</th>
+                                                            <th data-width="15" data-width-unit="%">訪視日期</th>
+                                                            <th data-width="10" data-width-unit="%">承辦人員1</th>
+                                                            <th data-width="10" data-width-unit="%">承辦人員2</th>
+                                                            <th data-width="15" data-width-unit="%">結束時間</th>
+                                                            <th data-width="10" data-width-unit="%"></th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody id="sign_check"></tbody>
+                                                    <tbody id="visit_info"></tbody>
                                                 </table>
                                                 <br>
                                                 <button style="font-size:15px" id="visit_add" class="btn btn-default"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                         <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
                                                         <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z" />
                                                         <path fill-rule="evenodd" d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5z" />
-                                                    </svg>新增</button>
+                                                    </svg>新增
+                                                </button>                                                
                                             </div>
                                         </div>
                                     </div>
@@ -179,19 +183,24 @@
                                                 <table style="font-size:15px;font-family:新細明體;" class="text-center table-hover table-striped table-sm" data-toggle="table" data- data-page-size=5 data-search="false" data-pagination="true" data-pagination-parts="[pageList]">
                                                     <thead>
                                                         <tr>
-                                                            <th data-width="65" data-width-unit="%">標題</th>
-                                                            <th data-width="20" data-width-unit="%">日期</th>
-                                                            <!-- <th data-width="15" data-width-unit="%">承辦人員</th> -->
+                                                            <th data-width="20" data-width-unit="%">請假人員</th>
+                                                            <th data-width="15" data-width-unit="%">假別</th>
+                                                            <th data-width="20" data-width-unit="%">請假日期</th>
+                                                            <th data-width="10" data-width-unit="%">時數</th>
+                                                            <th data-width="20" data-width-unit="%">職務代理人</th>
+                                                            <th data-width="10" data-width-unit="%">審核狀態</th>
+                                                            <th data-width="5" data-width-unit="%"></th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody id="sign_check"></tbody>
+                                                    <tbody id="dayoff_info"></tbody>
                                                 </table>
                                                 <br>
-                                                <button style="font-size:15px" id="dayoff_add" class="btn btn-default"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                
+                                                <!-- <button style="font-size:15px" id="dayoff_add" class="btn btn-default"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                         <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
                                                         <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z" />
                                                         <path fill-rule="evenodd" d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5z" />
-                                                    </svg>新增</button>
+                                                    </svg>新增</button> -->
                                             </div>
                                         </div>
                                     </div>
@@ -391,18 +400,175 @@
         </div>
     </div>
 
-    <!-- <div id="pop" style="display:block;"> 
-        <div id="popHead"> 
-            <h2>簽核提醒</h2> 
-        </div> 
-        <div id="popContent"> 
-            <button style="font-size:15px" onclick="go_to_signature_notice();" class="btn btn-danger"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
-                <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z" />
-                <path fill-rule="evenodd" d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5z" />
-            </svg>查看簽核詳細資料</button>
-        </div> 
-    </div>  -->
+    <!--浮動視窗(add_visit)-->
+    <div class="modal fade" id="add_visit_m" data-backdrop="static" tabindex="-1" aria-labelledby="add_visit_ModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="add_visit_ModalLabel">新增社工訪視</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12 text-center">
+                            <label>標題</label>
+                        </div>
+                        <div class="col-sm-12 text-center">
+                            <input class="col-sm-12" id="visit_title" placeholder="請輸入標題" type="text">
+                        </div>
+                        <div class="col-sm-12 text-center">
+                            <div class="col-sm-12">
+                                <label>訪視時間</label>
+                            </div>
+                            <div class="col-sm-12">
+                                <div id="test" class="input-group date form_datetime" data-date-format="yyyy-mm-dd hh:ii" data-link-field="dtp_input1">
+                                    <input id="visit_time" class="form-control" type="text" value="" readonly>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 text-center">
+                            <label>承辦人員1</label>
+                        </div>
+                        <div class="col-sm-12 text-center">
+                            <select class="col-sm-12" id="visit_assign1">
+                                <option value="">請選擇</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-12 text-center">
+                            <label>承辦人員2</label>
+                        </div>
+                        <div class="col-sm-12 text-center">
+                            <select class="col-sm-12" id="visit_assign2">
+                                <option value="">請選擇</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="text-center col-sm-12">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button id="add_new_visit" type="button" class="btn btn-primary">新增</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/浮動視窗(add_visit)-->
+
+    <!--浮動視窗(update_visit)-->
+    <div class="modal fade" id="update_visit_m" data-backdrop="static" tabindex="-1" aria-labelledby="update_visit_ModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="update_visit_ModalLabel">社工訪視</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12 text-center">
+                            <div class="col-sm-12">
+                                <label>訪視結束時間</label>
+                            </div>
+                            <div class="col-sm-12">
+                                <div id="test" class="input-group date form_datetime" data-date-format="yyyy-mm-dd hh:ii" data-link-field="dtp_input1">
+                                    <input id="visit_end_time" class="form-control" type="text" value="" readonly>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 text-center">
+                                <label>備註</label>
+                            </div>
+                            <div class="col-sm-12 text-center">
+                                <textarea class="col-sm-12" id="remark" placeholder="請輸入備註"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="text-center col-sm-12">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button id="update_visit_btn" onclick="update_visit(this)" type="button" class="btn btn-primary">送出</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/浮動視窗(update_visit)-->
+
+    <!--浮動視窗(show_visit)-->
+    <div class="modal fade" id="show_visit_m" data-backdrop="static" tabindex="-1" aria-labelledby="show_visit_ModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="show_visit_ModalLabel">社工訪視-詳細資料</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12 text-center">
+                            <label>標題</label>
+                        </div>
+                        <div class="col-sm-12 text-center">
+                            <input class="col-sm-12" id="s_visit_title" placeholder="請輸入標題" type="text" disabled="disabled">
+                        </div>
+                        <div class="col-sm-12 text-center">
+                            <div class="col-sm-12">
+                                <label>訪視時間</label>
+                            </div>
+                            <div class="col-sm-12">
+                                <div id="test" class="input-group date" data-date-format="yyyy-mm-dd hh:ii" data-link-field="dtp_input1">
+                                    <input id="s_visit_time" class="form-control" type="text" value="" disabled="disabled">
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 text-center">
+                            <label>承辦人員1</label>
+                        </div>
+                        <div class="col-sm-12 text-center">
+                            <select class="col-sm-12" id="s_visit_assign1" disabled="disabled">
+                                <option value="">請選擇</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-12 text-center">
+                            <label>承辦人員2</label>
+                        </div>
+                        <div class="col-sm-12 text-center">
+                            <select class="col-sm-12" id="s_visit_assign2" disabled="disabled">
+                                <option value="">請選擇</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-12 text-center">
+                            <div class="col-sm-12">
+                                <label>訪視結束時間</label>
+                            </div>
+                            <div class="col-sm-12">
+                                <div id="test" class="input-group date" data-date-format="yyyy-mm-dd hh:ii" data-link-field="dtp_input1">
+                                    <input id="s_visit_end_time" class="form-control" type="text" value="" disabled="disabled">
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 text-center">
+                                <label>備註</label>
+                            </div>
+                            <div class="col-sm-12 text-center">
+                                <textarea class="col-sm-12" id="s_visit_remark" placeholder="請輸入備註" disabled="disabled"></textarea>
+                            </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="text-center col-sm-12">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <!-- <button onclick="update_visit()" type="button" class="btn btn-primary">新增</button> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/浮動視窗(show_visit)-->
+
     <!-- /#wrapper -->
     <!-- JavaScript -->
     <!-- Bootstrap and jQuery -->
@@ -436,11 +602,18 @@
     <!-- ================== table ================== -->
     <script src="javascript/bootstrap-table.min.js"></script>
     <script src="javascript/bootstrap-table-zh-TW.min.js"></script>
-    <!-- ================== announcement ================== -->
-    <script src="js/index.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
+    
     <!--     ==================  時間24小時 ================== -->
     <script type="text/javascript" src="js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
     <script type="text/javascript" src="js/bootstrap-datetimepicker.zh-TW.js" charset="UTF-8"></script>
+
+    <script>
+        //設定js變數抓取使用者名稱
+        var assign_name = '<?php echo $_SESSION["name"]; ?>';
+    </script>
+
+    <!-- ================== announcement ================== -->
+    <script src="js/index.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
 </body>
 
 </html>

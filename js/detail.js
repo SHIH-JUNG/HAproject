@@ -902,190 +902,209 @@ function reservation_rec_new(){
         //    console.log($("#relationship").val())
         //按下face_add新增預約按鈕後 region
         $("#face_add").on('click',function(){
-            var stau = false;
-
-            if (check_open_reservation_note_value_str() != "") 
-            {
-                    
-                stau = false;
-            }
-            else {
-                stau = true;
-            }
-            console.log(stau);
-
-            if(!stau)
-            {
-                // alert(check_open_reservation_note_value_str());
-                swal({
-                    title:check_open_reservation_note_value_str(),
-                    type:'error'
-                  })
-            }
-            else
-            { 
-                //抓取網址傳入行事曆
-                get_url = location.href;
-                //check radio
-                check_creat_radio_value();
-                check_radio_value();
-                check_main_checkbox();
-                check_main_type_radio(); //判斷 毒品施用方式
-
-                var title = $("#name").val()+'('+main_val+')面訪';
-                var start_time = $("#start_time_h").val()+":"+$("#start_time_m").val();
-                var end_time = $("#end_time_h").val()+":"+$("#end_time_m").val();
-                //    console.log(title)
-                //    var name =document.getElementsByName('join[]');
-                //分割年月region
-                var Arr=[];
-                var date = $("#start_date").val();
-                Arr = date.split("-"); // 根据“-”分割
-
-                y = Arr[0];
-                m = Arr[1];
-                //endregion
-
-                //將年月日時間組合region
-                var start_date = $("#start_date").val()+" "+$("#start_time_h").val()+":"+$("#start_time_m").val();
-                var end_date = $("#start_date").val()+" "+$("#end_time_h").val()+":"+$("#end_time_m").val();
-                //endregion
-
-                //傳送至行事曆和通知region
-                    
-                    
-                    $.ajax({
-                            url: "database/add_new_note.php",
-                            data:{
-                                Title:title,
-                                Url:get_url,
-                                Start_date:start_date,
-                                End_date:end_date,
-                                One_user:$("#one_user").val(),
-                                Two_user:$("#two_user").val(),
-                                Other_user:join_val,
-
-                            },
-                            type: "POST",
-                            dataType: "JSON",
-                            success: function (data) {
-                                if(data == 1){
-                                    swal({
-                                        title:'新增成功！',
-                                        type:'success',                        
-                                    }).then(function(){
-                                        location.reload();
-                                    }) 
-                                }else{
-                                    swal({
-                                    title:'新增失敗！',
-                                    type:'error',
-                                    })
-                                } 
-                            },
-                        error:function(e){
-                            swal({
-                                title:'新增失敗！',
-                                type:'error',
-                                })
-                        }
-                        });
-                //    //endregion
-
-                //判斷是否勾選傳入陣列region
-                // var checkbox =document.getElementsByName('addition[]');
-                // var len = checkbox.length;
-                // var addition = new Array();
-                // for (i = 0; i < len; i++)
-                // {
-                //     if (checkbox[i].checked == true)
-                //     {
-                //         addition.push(checkbox[i].value);
-                //     }    
-                // }
-                // if($("#other").val() != ""){
-                //     addition.push($("#other").val());
-                // }
-                //endregion
-
-                //新增至面訪總表region
-                    var phone_id = getUrlVars()["phone_id"];
-                    $.ajax({
-                            url: "database/add_new_face.php",
-                            data:{
-                                Phone_id:phone_id,
-                                Way: '面訪',
-                                Way_detail:location_val,
-                                Name:$("#name").val(),
-                                Gender:$("#gender").val(),
-                                Object_type:$("#object_type").val(),
-                                // Addiction:addition,
-                                m_type:m_type_val,
-                                M_addiction:main_val,
-
-                                Age:$("#age").val(),
-                                a_val:a_val,
-                                Address:$("#address").val(),
-                                l_val:l_val,
-                                Info_Name:$("#info_name").val(),
-                                Relationship_detail:$("#relationship").val(),
-                                r_val:r_val,
-                                R_phone:phone_val,
-
-                                Referral:$("#referral").val(),
-                                ref_val:ref_val,
-                                // Know_from:$("#k_place").val(),
-                                // Know_from_detail:k_val,
-
-                                Eligible:e_val,
-                                Assign:$("#user").val(),
-
-                                Location:$("#location_detail").val(),
-                                Location_detail:location_val,
-
-                                Add_date:$("#start_date").val(),
-                                End_date:$("#start_date").val(),
-                                Start_time:start_time,
-                                End_time:end_time,
-                                One_user:$("#one_user").val(),
-                                Two_user:$("#two_user").val(),
-                                Remark:$("#remark").val(),
-                                Date_y:y,
-                                Date_m:m,
-                            },
-                            type: "POST",
-                            dataType: "JSON",
-                            success: function (data) {
-                                if(data == 1){
-                                    swal({
-                                        title:'新增成功！',
-                                        type:'success',                        
-                                    }).then(function(){
-                                        location.reload();
-                                    }) 
-                                }else{
-                                    swal({
-                                    title:'新增失敗！',
-                                    type:'error',
-                                    })
-                                } 
-                            },
-                        error:function(e){
-                            swal({
-                                title:'新增失敗！',
-                                type:'error',
-                            })
-                        }
-                        });
-                //endregion
-
-            }
+            
+            face_add_submit_data();
+            
+            // swal({
+            //     title: "是否要將此次面訪新增至『首頁-社工訪視』提醒？",
+            //     type: "warning",
+            //     showCancelButton: true,
+            //     confirmButtonColor: "#DD6B55",
+            //     confirmButtonText: "是",
+            //     cancelButtonText: "否",
+            //     showConfirmButton: true,
+            //     showCancelButton: true
+            //   }).then(function (result) {
+            //     if (result) {    
+            //         face_add_submit_data();
+            //     }}, function (dismiss) {
+            //     if (dismiss == 'cancel') {
+            //         face_add_submit_data();
+            //     }}).catch(swal.noop);
         });
         //endregion
     // });
     //endregion
 }
 //endregion
+
+face_add_submit_data = function() {
+    var stau = false;
+    
+    if (check_open_reservation_note_value_str() != "") 
+    {
+            
+        stau = false;
+    }
+    else {
+        stau = true;
+    }
+    console.log(stau);
+
+    if(!stau)
+    {
+        // alert(check_open_reservation_note_value_str());
+        swal({
+            title:check_open_reservation_note_value_str(),
+            type:'error'
+            })
+    }
+    else
+    { 
+        //抓取網址傳入行事曆
+        get_url = location.href;
+        //check radio
+        check_creat_radio_value();
+        check_radio_value();
+        check_main_checkbox();
+        check_main_type_radio(); //判斷 毒品施用方式
+
+        var title = $("#name").val()+'('+main_val+')面訪';
+        var start_time = $("#start_time_h").val()+":"+$("#start_time_m").val();
+        var end_time = $("#end_time_h").val()+":"+$("#end_time_m").val();
+        //    console.log(title)
+        //    var name =document.getElementsByName('join[]');
+        //分割年月region
+        var Arr=[];
+        var date = $("#start_date").val();
+        Arr = date.split("-"); // 根据“-”分割
+
+        y = Arr[0];
+        m = Arr[1];
+        //endregion
+
+        //將年月日時間組合region
+        var start_date = $("#start_date").val()+" "+$("#start_time_h").val()+":"+$("#start_time_m").val();
+        var end_date = $("#start_date").val()+" "+$("#end_time_h").val()+":"+$("#end_time_m").val();
+        //endregion
+
+        //傳送至行事曆和通知region
+        $.ajax({
+            url: "database/add_new_note.php",
+            data:{
+                Title:title,
+                Url:get_url,
+                Start_date:start_date,
+                End_date:end_date,
+                One_user:$("#one_user").val(),
+                Two_user:$("#two_user").val(),
+                Other_user:join_val,
+
+            },
+            type: "POST",
+            dataType: "JSON",
+            success: function (data) {
+                if(data == 1){
+                    swal({
+                        title:'新增成功！',
+                        type:'success',                        
+                    }).then(function(){
+                        location.reload();
+                    }) 
+                }else{
+                    swal({
+                    title:'新增失敗！',
+                    type:'error',
+                    })
+                } 
+            },
+            error:function(e){
+            swal({
+                title:'新增失敗！',
+                type:'error',
+                })
+            }
+        });
+        //endregion
+
+        //判斷是否勾選傳入陣列region
+        // var checkbox =document.getElementsByName('addition[]');
+        // var len = checkbox.length;
+        // var addition = new Array();
+        // for (i = 0; i < len; i++)
+        // {
+        //     if (checkbox[i].checked == true)
+        //     {
+        //         addition.push(checkbox[i].value);
+        //     }    
+        // }
+        // if($("#other").val() != ""){
+        //     addition.push($("#other").val());
+        // }
+        //endregion
+
+        //新增至面訪總表region
+        var phone_id = getUrlVars()["phone_id"];
+        $.ajax({
+            url: "database/add_new_face.php",
+            data:{
+                Phone_id:phone_id,
+                Way: '面訪',
+                Way_detail:location_val,
+                Name:$("#name").val(),
+                Gender:$("#gender").val(),
+                Object_type:$("#object_type").val(),
+                // Addiction:addition,
+                m_type:m_type_val,
+                M_addiction:main_val,
+
+                Age:$("#age").val(),
+                a_val:a_val,
+                Address:$("#address").val(),
+                l_val:l_val,
+                Info_Name:$("#info_name").val(),
+                Relationship_detail:$("#relationship").val(),
+                r_val:r_val,
+                R_phone:phone_val,
+
+                Referral:$("#referral").val(),
+                ref_val:ref_val,
+                // Know_from:$("#k_place").val(),
+                // Know_from_detail:k_val,
+
+                Eligible:e_val,
+                Assign:$("#user").val(),
+
+                Location:$("#location_detail").val(),
+                Location_detail:location_val,
+
+                Add_date:$("#start_date").val(),
+                End_date:$("#start_date").val(),
+                Start_time:start_time,
+                End_time:end_time,
+                One_user:$("#one_user").val(),
+                Two_user:$("#two_user").val(),
+                Remark:$("#remark").val(),
+                Date_y:y,
+                Date_m:m,
+            },
+            type: "POST",
+            dataType: "JSON",
+            success: function (data) {
+                if(data == 1){
+                    swal({
+                        title:'新增成功！',
+                        type:'success',                        
+                    }).then(function(){
+                        location.reload();
+                    }) 
+                }else{
+                    swal({
+                    title:'新增失敗！',
+                    type:'error',
+                    })
+                } 
+            },
+            error:function(e){
+                swal({
+                    title:'新增失敗！',
+                    type:'error',
+                })
+            }
+        });
+        //endregion
+    }
+}
 
 
 //呼叫user方法region

@@ -11,7 +11,7 @@ if(isset($_POST['authority_num']))
     $find_resume_id = mysqli_query($conn, $select_resume_id);
     $resume_id = mysqli_fetch_row($find_resume_id);
 
-    $note = "SELECT * FROM `day_off_v2` WHERE `Resume_id` = '$resume_id[0]' ORDER BY `day_off_v2`.`Fillin_date` ASC;";
+    $note = "SELECT * FROM `day_off_v2` WHERE `Resume_id` = '$resume_id[0]' ORDER BY `day_off_v2`.`Fillin_date` DESC;";
 }
 else if(isset($_POST['find_allow_status']))
 {
@@ -20,11 +20,11 @@ else if(isset($_POST['find_allow_status']))
     $find_resume_id = mysqli_query($conn, $select_resume_id);
     $resume_id = mysqli_fetch_row($find_resume_id);
 
-    $note = "SELECT * FROM `day_off_v2` WHERE `Resume_id` = '$resume_id[0]' AND `Allow_status` <> '核准' ORDER BY `day_off_v2`.`Fillin_date` ASC;";
+    $note = "SELECT * FROM `day_off_v2` WHERE `Resume_id` = '$resume_id[0]' AND `Allow_status` <> '核准' ORDER BY `day_off_v2`.`Fillin_date` DESC;";
 }
 else
 {
-    $note = "SELECT * FROM `day_off_v2` ORDER BY `day_off_v2`.`Fillin_date` ASC;";
+    $note = "SELECT * FROM `day_off_v2` WHERE `Resume_name` = '$user' OR `Supervise` = '$user' OR `Director` = '$user' OR `Job_agent` = '$user' ORDER BY `day_off_v2`.`Fillin_date` DESC;";
 }
 
 //宣告空的陣列

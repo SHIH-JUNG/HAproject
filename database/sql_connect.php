@@ -1,7 +1,8 @@
 <?php
 //資料庫設定
 //資料庫位置
-$servername = "127.0.0.1";
+$servername = "localhost";
+// $servername = "jiarong.ddns.net";
 // $username = "test";
 // $password = "1105";
 $username = "root";

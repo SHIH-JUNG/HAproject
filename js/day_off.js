@@ -132,7 +132,7 @@ $.ajax({
   async: false, //啟用同步請求
   success: function (data) {
     var cssString = "";
-    // console.log(data);
+    console.log(data);
     $.each(data, function (index, value) {
       var supervise_sign_arr = datatable_sign_show('supervise', value.Supervise, value.Supervise_signature, value.Supervise_sign_time, value.Supervise_sign_msg);
 

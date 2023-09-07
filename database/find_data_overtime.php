@@ -11,7 +11,7 @@ if(isset($_POST['authority_num']))
     $find_resume_id = mysqli_query($conn, $select_resume_id);
     $resume_id = mysqli_fetch_row($find_resume_id);
 
-    $note = "SELECT * FROM `overtime` WHERE `Resume_id` = '$resume_id[0]' ORDER BY `overtime`.`Fillin_date` ASC;";
+    $note = "SELECT * FROM `overtime` WHERE `Resume_id` = '$resume_id[0]' ORDER BY `overtime`.`Fillin_date` DESC;";
 }
 else if(isset($_POST['find_allow_status']))
 {
@@ -20,11 +20,11 @@ else if(isset($_POST['find_allow_status']))
     $find_resume_id = mysqli_query($conn, $select_resume_id);
     $resume_id = mysqli_fetch_row($find_resume_id);
 
-    $note = "SELECT * FROM `overtime` WHERE `Resume_id` = '$resume_id[0]' AND `Allow_status` <> '核准' ORDER BY `overtime`.`Fillin_date` ASC;";
+    $note = "SELECT * FROM `overtime` WHERE `Resume_id` = '$resume_id[0]' AND `Allow_status` <> '核准' ORDER BY `overtime`.`Fillin_date` DESC;";
 }
 else
 {
-    $note = "SELECT * FROM `overtime` ORDER BY `overtime`.`Fillin_date` ASC;";
+    $note = "SELECT * FROM `overtime` WHERE `Resume_name` = '$user' OR `Supervise` = '$user' OR `Director` = '$user' OR `Checker` = '$user' ORDER BY `overtime`.`Fillin_date` DESC;";
 }
 
 //宣告空的陣列
