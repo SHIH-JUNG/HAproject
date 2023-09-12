@@ -380,7 +380,7 @@
                                                                             <div class="text-center col-sm-4" style="padding-left:0;">
                                                                             </div>
                                                                             <div class="text-center col-sm-4">
-                                                                                <button style="font-size:20px;" id="preview_word2" class="btn btn-default">預覽匯出</button>
+                                                                                <!-- <button style="font-size:20px;" id="preview_word2" class="btn btn-default">預覽匯出</button> -->
                                                                             </div>
                                                                             <div class="text-right col-sm-4" style="padding-right:0;">
                                                                                 <button type="button" id="trans_to_opencase" class="btn btn-default trans_btn" style="font-size:20px" data-toggle="modal" data-target="#myModal">

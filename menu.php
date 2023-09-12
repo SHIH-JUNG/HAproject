@@ -245,7 +245,7 @@
                     <a href="#" data-toggle="collapse" data-target="#track">項目7</a>
                 </li> -->
     <li>
-        <a href="Authority.html" data-toggle="collapse" data-target="#track">權限管理</a>
+        <a href="Authority.php" data-toggle="collapse" data-target="#track">權限管理</a>
     </li>
     </ul>
 </div>

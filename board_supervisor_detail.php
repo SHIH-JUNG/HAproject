@@ -186,13 +186,13 @@
                                                                                 </td>
                                                                             </tr>
                                                                         </table>
-                                                                        <div class="col-sm-12" style="padding-left:0;padding-right:0;margin-top:3em;">
+                                                                        <!-- <div class="col-sm-12" style="padding-left:0;padding-right:0;margin-top:3em;">
                                                                             <div class="text-center col-sm-4" style="padding-left:0;">
                                                                             </div>
                                                                             <div class="text-center col-sm-4">
                                                                                 <button style="font-size:20px;" id="preview_word2" class="btn btn-default">預覽匯出</button>
                                                                             </div>
-                                                                        </div>
+                                                                        </div> -->
                                                                     </div>
 
                                                                 </div>

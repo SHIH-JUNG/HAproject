@@ -443,7 +443,7 @@
                                                         <div class="text-center col-sm-4" style="padding-left:0;">
                                                         </div>
                                                         <div class="text-center col-sm-4">
-                                                            <button style="font-size:20px;" id="preview_word2" class="btn btn-default">預覽匯出</button>
+                                                            <!-- <button style="font-size:20px;" id="preview_word2" class="btn btn-default">預覽匯出</button> -->
                                                         </div>
                                                     </div>
 
