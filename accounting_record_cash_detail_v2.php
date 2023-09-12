@@ -1,5 +1,6 @@
 <?php session_start(); ?>
 <?php include("database/check_authority.php"); ?><?php include("no_cache.php"); ?>
+<?php $href_name =  'page_j1'; ?>
 <?php @$rec_year =  $_GET['year']; ?>
 <?php @$rec_month =  $_GET['month']; ?>
 

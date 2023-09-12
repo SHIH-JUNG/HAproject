@@ -1,5 +1,6 @@
 <?php session_start(); ?>
 <?php include("database/check_authority.php"); ?><?php include("no_cache.php"); ?>
+<?php $href_name =  'page_h2'; ?>
 <?php @$vom_year =  $_GET['year']; ?>
 <!DOCTYPE html>
 <html>
