@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： localhost
--- 產生時間： 2023-09-13 11:22:37
+-- 產生時間： 2023-09-13 14:44:08
 -- 伺服器版本： 10.4.28-MariaDB
 -- PHP 版本： 8.2.4
 
@@ -1512,7 +1512,8 @@ INSERT INTO `login_record` (`Id`, `Login_timestamp`, `Login_account`, `Login_aut
 (235, '2023-09-12 23:27:51', 'test3', '3', '社工組長', '24.1769764,120.6424333', 0),
 (236, '2023-09-12 23:28:00', 'test3', '3', '社工組長', '24.1769764,120.6424333', 0),
 (237, '2023-09-12 23:36:49', 'test3', '3', '社工組長', '24.1769764,120.6424333', 0),
-(238, '2023-09-13 16:12:21', 'test3', '3', '社工組長', '22.593877,120.48887', 1);
+(238, '2023-09-13 16:12:21', 'test3', '3', '社工組長', '22.593877,120.48887', 1),
+(239, '2023-09-13 19:21:30', 'test3', '3', '社工組長', '22.6478587,120.6119873', 0);
 
 -- --------------------------------------------------------
 
@@ -1826,9 +1827,9 @@ CREATE TABLE `program_act` (
 --
 
 INSERT INTO `program_act` (`Id`, `Date`, `Activity_name`, `Activity_category`, `Person`, `Location`, `Service`, `Cost`, `Number`, `Lecturer`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
-(10, '112.03.08', '222', '針具', '一般藥癮者', 'eee', 'eeee', 1111, 12345, 'fef', '2023-03-31 15:31:49', 'ㄓㄜㄒㄧㄢ', '0000-00-00 00:00:00', ''),
-(11, '112.04.12', 'lkkk', 'kkk', '愛滋感染者', 'kkk', 'kkkk', 222, 22, 'ggg', '2023-04-10 09:12:48', 'ㄓㄜㄒㄧㄢ', '0000-00-00 00:00:00', ''),
-(12, '112.05.03', 'ddd', 'ddd', '愛滋感染者', 'ddd', 'ddd', 111, 1111, 'ddd', '2023-05-24 10:57:09', '社工員1', '0000-00-00 00:00:00', ''),
+(10, '112.03.08', '222', '針具', '一般藥癮者', 'eee', 'eeeeww', 1111, 12345, 'fef', '2023-03-31 15:31:49', 'ㄓㄜㄒㄧㄢ', '2023-09-11 22:10:36', '社工員1'),
+(11, '112.04.12', 'lkkk', 'kkk', '愛滋感染者', 'kkk', 'kkkk', 222, 22, 'ggg', '2023-04-10 09:12:48', 'ㄓㄜㄒㄧㄢ', '2023-09-13 19:24:37', '社工組長'),
+(12, '112.05.03', 'ddd', 'ddd', '藥癮家庭', 'ddd', 'ddd', 111, 1111, 'ddd', '2023-05-24 10:57:09', '社工員1', '2023-09-11 22:10:58', '社工員1'),
 (13, '112.06.08', 'ddd', 'ddd', '愛滋感染者', 'ddd', 'ddd', 2222, 22, 'ddd', '2023-06-06 10:25:18', '社工員1', '0000-00-00 00:00:00', ''),
 (14, '112.07.27', '哈哈', '公益', '愛滋感染者', '潮好玩', '擺攤', 10800, 3, '張麗玉', '2023-07-20 15:39:16', '花花', '0000-00-00 00:00:00', '');
 
@@ -1859,9 +1860,7 @@ CREATE TABLE `program_plan` (
 --
 
 INSERT INTO `program_plan` (`Id`, `Date`, `Plan_name`, `Plan_from`, `Fund`, `Proposal_date`, `Interim_date`, `Achieve_date`, `Other_date`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
-(1, '112.07.27', '哈哈ssss999ds', 'undefined', 'undefined', '2023-05-24', '0000-00-00', '0000-00-00', '0000-00-00', '2023-05-24 12:04:34', '社工員1', '2023-08-31 10:11:04', '社工員1'),
-(2, '112.07.27', '哈哈ssss999www', 'undefined', 'undefined', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '2023-07-20 15:35:11', '花花', '2023-08-31 22:33:21', '園主任'),
-(3, '112.09.08', 'test名稱', 'test來源', '專管', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '2023-09-01 09:23:43', '園主任', '0000-00-00 00:00:00', '');
+(1, '112.09.12', 'QQQQ', 'QQQQ', '事務', '2023-09-12', '2023-09-12', '2023-09-12', '2023-09-13', '2023-09-12 07:58:51', '社工員1', '2023-09-13 19:23:56', '社工組長');
 
 -- --------------------------------------------------------
 
@@ -1871,8 +1870,8 @@ INSERT INTO `program_plan` (`Id`, `Date`, `Plan_name`, `Plan_from`, `Fund`, `Pro
 
 CREATE TABLE `program_plan_form` (
   `Id` int(244) NOT NULL,
-  `Program_plan_id` int(244) NOT NULL,
-  `Program_plan_name` varchar(100) NOT NULL,
+  `Program_id` int(244) NOT NULL,
+  `Name` varchar(100) NOT NULL,
   `File_type` varchar(100) NOT NULL,
   `File_year` varchar(100) NOT NULL,
   `File_path` varchar(2000) NOT NULL,
@@ -1886,26 +1885,10 @@ CREATE TABLE `program_plan_form` (
 -- 傾印資料表的資料 `program_plan_form`
 --
 
-INSERT INTO `program_plan_form` (`Id`, `Program_plan_id`, `Program_plan_name`, `File_type`, `File_year`, `File_path`, `Upload_date`, `Upload_name`, `Update_date`, `Update_name`) VALUES
-(1, 1, 'test26', 'file_A', '111', '../program_plan/program_plan_user1_test26/program_plan_datas/plan_doc1.docx', '2022-12-26 00:00:00', '社工員1', '0000-00-00 00:00:00', ''),
-(2, 1, 'test26', 'file_D', '111', '../program_plan/program_plan_user1_test26/program_plan_datas/plan_doc4.docx', '2022-12-26 00:00:00', '社工員1', '0000-00-00 00:00:00', ''),
-(3, 2, 'fffff', 'file_A', '111', '../program_plan/program_plan_user2_fffff/program_plan_datas/plan_doc2.docx', '2022-12-27 00:00:00', '社工員1', '0000-00-00 00:00:00', ''),
-(4, 2, 'fffff', 'file_B', '111', '../program_plan/program_plan_user2_fffff/program_plan_datas/JHSE_2020_15-4_13.pdf', '2022-12-27 00:00:00', '社工員1', '0000-00-00 00:00:00', ''),
-(5, 2, 'fffff', 'file_C', '111', '../program_plan/program_plan_user2_fffff/program_plan_datas/plan_doc4.docx', '2022-12-27 00:00:00', '社工員1', '0000-00-00 00:00:00', ''),
-(6, 2, 'fffff', 'file_D', '111', '../program_plan/program_plan_user2_fffff/program_plan_datas/plan_doc3.docx', '2022-12-27 00:00:00', '社工員1', '0000-00-00 00:00:00', ''),
-(7, 3, '5555', 'file_A', '112', '../program_plan/program_plan_user3_5555/program_plan_datas/行政武功祕笈.docx', '2023-01-12 00:00:00', '社工員1', '0000-00-00 00:00:00', ''),
-(8, 4, '2222', 'file_A', '112', '../program_plan/program_plan_user4_2222/program_plan_datas/Att-UNet_論文實驗.xlsx', '2023-03-30 00:00:00', 'jia', '0000-00-00 00:00:00', ''),
-(9, 4, '2222', 'file_B', '112', '../program_plan/program_plan_user4_2222/program_plan_datas/論文圖像.pptx', '2023-03-30 00:00:00', 'jia', '0000-00-00 00:00:00', ''),
-(10, 4, '2222', 'file_C', '112', '../program_plan/program_plan_user4_2222/program_plan_datas/Att-ResUNet_論文實驗.xlsx', '2023-03-30 00:00:00', 'jia', '0000-00-00 00:00:00', ''),
-(11, 4, '2222', 'file_D', '112', '../program_plan/program_plan_user4_2222/program_plan_datas/U-Net_論文實驗.xlsx', '2023-03-30 00:00:00', 'jia', '0000-00-00 00:00:00', ''),
-(12, 5, 'wwwwwwwwww', 'file_B', '112', '../program_plan/program_plan_user5_wwwwwwwwww/program_plan_datas/U-Net_論文實驗.xlsx', '2023-03-30 00:00:00', 'jia', '0000-00-00 00:00:00', ''),
-(13, 6, 'wwww', 'file_A', 'R.03.10', '../program_plan/program_plan_user6_wwww/program_plan_datas/Att-UNet_論文實驗.xlsx', '2023-03-30 00:00:00', 'jia', '0000-00-00 00:00:00', ''),
-(14, 1, '111', 'file_A', '112.03.09', '../program_plan/program_plan_user1_111/program_plan_datas/s1234.docx', '2023-03-31 00:00:00', 'ㄓㄜㄒㄧㄢ', '0000-00-00 00:00:00', ''),
-(15, 2, 'eeeee', 'file_A', '112.03.14', '../program_plan/program_plan_user2_eeeee/program_plan_datas/s1234.docx', '2023-03-31 00:00:00', 'ㄓㄜㄒㄧㄢ', '0000-00-00 00:00:00', ''),
-(16, 3, 'weww', 'file_A', '112.03.14', '../program_plan/program_plan_user3_weww/program_plan_datas/s4321.bmp', '2023-03-31 00:00:00', 'ㄓㄜㄒㄧㄢ', '0000-00-00 00:00:00', ''),
-(17, 3, 'weww', 'file_B', '112.03.14', '../program_plan/program_plan_user3_weww/program_plan_datas/s1234.docx', '2023-03-31 00:00:00', 'ㄓㄜㄒㄧㄢ', '0000-00-00 00:00:00', ''),
-(18, 4, 'ddd', 'file_A', '112.03.13', '../program_plan/program_plan_user4_ddd/program_plan_datas/s1234.docx', '2023-03-31 00:00:00', 'ㄓㄜㄒㄧㄢ', '0000-00-00 00:00:00', ''),
-(19, 1, 'eeee', 'file_A', '112.05.04', '../program_plan/program_plan_user1_eeee/program_plan_datas/426714548 (3).odt', '2023-05-24 00:00:00', '社工員1', '0000-00-00 00:00:00', '');
+INSERT INTO `program_plan_form` (`Id`, `Program_id`, `Name`, `File_type`, `File_year`, `File_path`, `Upload_date`, `Upload_name`, `Update_date`, `Update_name`) VALUES
+(22, 1, '', 'file_A', '112', '../program_plan/program_plan_user_QQQQ/program_plan_datas/ASDA.docx', '2023-09-12 00:00:00', '社工員1', '0000-00-00 00:00:00', ''),
+(23, 1, '', 'file_C', '112', '../program_plan/program_plan_user_QQQQ/program_plan_datas/AAAAAAAAAAAAA.docx', '2023-09-12 00:00:00', '社工員1', '0000-00-00 00:00:00', ''),
+(24, 1, '', 'file_D', '112', '../program_plan/program_plan_user1_QQQQ/program_plan_datas/adasdadas.docx', '2023-09-13 00:00:00', '社工組長', '0000-00-00 00:00:00', '');
 
 -- --------------------------------------------------------
 
@@ -2737,7 +2720,7 @@ INSERT INTO `user_info` (`Id`, `Resume_id`, `Account`, `Password`, `Name`, `Auth
 (25, 1, 'testuser', 'testjia123456', 'jia', 5, '2022-09-29 17:47:27', '專案社工', '', '', '已通過', '', '2022-09-29 17:47:27', '園主任', '2023-07-14 12:09:04', '執行長'),
 (26, 2, 'test01', '', 'test001', 5, '2022-10-12 14:17:44', '專案社工', '', '', '已通過', '', '2022-10-12 14:17:44', '花花', '2023-09-13 16:31:48', '社工組長'),
 (27, 3, 'twha202212061557', 'twha20221206', 'ㄓㄜㄒㄧㄢ', 6, '2022-12-06 15:59:24', '行政人員', '', '', '已通過', '', '2022-12-06 15:59:24', '花花', '2023-03-30 18:17:41', 'jia'),
-(28, 4, 'twha202212061600', '20221206z', 'ㄓㄒ', 7, '2022-12-06 16:00:44', '社工員', '', '', '已通過', '', '2022-12-06 16:00:44', '花花', '2022-12-06 16:00:44', ''),
+(28, 4, 'twha202212061600', '', 'ㄓㄒ', 7, '2022-12-06 16:00:44', '社工員', '', '', '已通過', '', '2022-12-06 16:00:44', '花花', '2023-09-13 19:22:07', '社工組長'),
 (29, 5, 'twha202212061601', '', '叫http好了', 8, '2022-12-06 16:03:07', '生輔員', '', '', '已通過', '', '2022-12-06 16:03:07', '花花', '2023-09-13 16:31:19', '社工組長'),
 (30, 6, 'ffff', 'timo789', 'fffff', 5, '2022-12-26 15:41:10', '專案社工', '', '', '已通過', '', '2022-12-26 15:41:10', '社工員1', '2023-07-14 12:09:24', '執行長'),
 (31, 7, 'test714', 'test714', 'a714', 3, '2023-07-14 12:07:28', '方案組長', '', '', '已通過', '', '2023-07-14 12:07:28', '執行長', '2023-07-14 12:07:48', '執行長'),
@@ -3048,6 +3031,12 @@ ALTER TABLE `board_supervisor`
   ADD PRIMARY KEY (`Id`);
 
 --
+-- 資料表索引 `board_supervisor_v2`
+--
+ALTER TABLE `board_supervisor_v2`
+  ADD PRIMARY KEY (`Id`);
+
+--
 -- 資料表索引 `calendar`
 --
 ALTER TABLE `calendar`
@@ -3141,6 +3130,12 @@ ALTER TABLE `login_record`
 -- 資料表索引 `members_assemble`
 --
 ALTER TABLE `members_assemble`
+  ADD PRIMARY KEY (`Id`);
+
+--
+-- 資料表索引 `members_assemble_v2`
+--
+ALTER TABLE `members_assemble_v2`
   ADD PRIMARY KEY (`Id`);
 
 --
@@ -3451,7 +3446,7 @@ ALTER TABLE `leave_rule_table`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `login_record`
 --
 ALTER TABLE `login_record`
-  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=239;
+  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=240;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `members_assemble`
@@ -3493,7 +3488,7 @@ ALTER TABLE `program_plan`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `program_plan_form`
 --
 ALTER TABLE `program_plan_form`
-  MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `program_result`

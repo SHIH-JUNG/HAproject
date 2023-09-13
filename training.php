@@ -1,4 +1,5 @@
 <?php session_start(); ?>
+<?php include("database/check_authority.php"); ?> <?php include("no_cache.php"); ?>
 <?php $href_name =  'page_d'; ?>
 <!DOCTYPE html>
 <html>
@@ -109,7 +110,12 @@
                                                         <tr>
 
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">員工姓名：</td>
-                                                            <td class="text-left"><input id="name" rel="0" class="filter search" type="text" placeholder="姓名搜尋"></td>
+                                                            <td class="text-left">
+                                                                <!-- <input id="name" rel="0" class="filter search" type="text" placeholder="姓名搜尋"> -->
+                                                                <select id="name" rel="0" class="filter search">
+                                                                    
+                                                                </select>
+                                                            </td>
 
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">在職訓練日期：</td>
                                                             <td class="text-left">
@@ -129,9 +135,10 @@
                                                             
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">時數：</td>
                                                             <td class="text-left">
-                                                                <select id="hours" rel="4" class="filter search">
+                                                                <!-- <select id="hours" rel="4" class="filter search">
                                                                     <option value="">所有</option>
-                                                                </select>
+                                                                </select> -->
+                                                                <input id="hours" rel="4" class="filter search" type="number" placeholder="時數搜尋">
                                                             </td>
 
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">在職訓練地點：</td>
@@ -143,7 +150,7 @@
 
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">檔案是否上傳：</td>
                                                             <td class="text-left">
-                                                                <select id="file_upload" rel="9" class="filter search">
+                                                                <select id="file_upload" rel="5" class="filter search">
                                                                     <option value="">所有</option>
                                                                     <option value="已上傳">已上傳</option>
                                                                     <option value="未上傳">未上傳</option>

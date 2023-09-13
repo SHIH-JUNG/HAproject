@@ -1,91 +1,58 @@
 const notyf = new Notyf();
 
 //datepicker創建 region
-datepicker_create = function(selector_id) {
+datepicker_create = function (selector_id) {
+  $("#" + selector_id).datepicker({
+    changeYear: true,
+    changeMonth: true,
+    currentText: "今天",
+    dateFormat: "R年mm月dd日",
+    showButtonPanel: true,
+    // minDate: new Date(
+    //   new Date().getFullYear() - 2,
+    //   new Date().getMonth() - 3,
+    //   1
+    // ),
+    // maxDate: new Date(new Date().getFullYear() + 3, 11, 31),
+    yearRange: "-15:+5",
+    onClose: function (dateText) {
+      // console.log($('#'+selector_id).val());
+      // console.log(trans_to_EN(dateText));
+    },
+    beforeShow: function (input, inst) {
+      var $this = $(this);
+      var cal = inst.dpDiv;
+      var outerh = $this.outerHeight();
+      var left_off = 10;
+      if ($this.offset().top > 1200) {
+        outerh = outerh * 4;
+      } else {
+        outerh = outerh * 3;
+      }
 
-    if(selector_id.includes("birth"))
-    {
-        $('#'+selector_id).datepicker({
-            changeYear: true,
-            changeMonth: true,
-            currentText: "今天",
-            dateFormat:"R.mm.dd",
-            showButtonPanel: true,
-            yearRange: "-109:+0",
-            onClose: function(dateText) {
-                // console.log($('#'+selector_id).val());
-                // console.log(trans_to_EN(dateText));
-            }
-            ,beforeShow: function(input, inst) {
-                var $this = $(this);
-                var cal = inst.dpDiv;
-                var outerh = $this.outerHeight();
-                if($this.offset().top>1200)
-                {
-                    outerh = outerh*4;
-                }
-                else
-                {
-                    outerh = outerh*3;
-                }
-                // console.log($this.offset().top)
-                // console.log(outerh)
-    
-    
-                var top = $this.offset().top - outerh;
-                var left = $this.offset().left*0.9;
-                setTimeout(function() {
-                    cal.css({
-                        'top': top,
-                        'left': left
-                    });
-                }, 10);
-            }
+      if ($this.offset().left > 1500) {
+        left_off = 700;
+      } else {
+        left_off = 10;
+      }
+      // console.log($this.offset().top)
+      // console.log(outerh)
+
+      // console.log($this.offset().left)
+
+
+      var top = $this.offset().top - outerh;
+      var left = $this.offset().left - left_off;
+      setTimeout(function () {
+        cal.css({
+          top: top,
+          left: left,
         });
-    }
-    else
-    {
-        $('#'+selector_id).datepicker({
-            changeYear: true,
-            changeMonth: true,
-            currentText: "今天",
-            dateFormat:"R.mm.dd",
-            showButtonPanel: true,
-            // minDate:new Date(new Date().getFullYear() - 10, 0, 1),
-            // maxDate:new Date(new Date().getFullYear() + 10, 11, 31),
-            yearRange: "-80:+5",
-            onClose: function(dateText) {
-                // console.log($('#'+selector_id).val());
-                // console.log(trans_to_EN(dateText));
-            }
-            ,beforeShow: function(input, inst) {
-                var $this = $(this);
-                var cal = inst.dpDiv;
-                var outerh = $this.outerHeight();
-                if($this.offset().top>1200)
-                {
-                    outerh = outerh*4;
-                }
-                else
-                {
-                    outerh = outerh*3;
-                }
-                // console.log($this.offset().top)
-                // console.log(outerh)
-    
-    
-                var top = $this.offset().top - outerh;
-                var left = $this.offset().left*0.86;
-                setTimeout(function() {
-                    cal.css({
-                        'top': top,
-                        'left': left
-                    });
-                }, 10);
-            }
-        });
-    }
-}
+      }, 10);
+    },
+  });
+  // $("#leave_date").datepicker("setDate", "today");
+};
 //endregion
 
 $(document).ready(function () {
@@ -174,31 +141,62 @@ $.ajax({
         "</tr>";
 
         $("#training_id").append('<option value="'+value.Training_id+'">'+value.Training_id+'</option>');
+        
+        $("#name").append(
+          '<option value="' + value.Name + '">' + value.Name + "</option>"
+        );
+
+        $("#place").append(
+          '<option value="' + value.Place + '">' + value.Place + "</option>"
+        );
+
+        $("#training_name").append(
+          '<option value="' + value.Training_name + '">' + value.Training_name + "</option>"
+        );
+      });
+
+     //找出所有查詢表格下拉式選單，將內容排序、加上"所有查詢"、去除重複值
+    var filter_select = $("select.filter");
+
+    $.each(filter_select, function (i, v) {
+      var this_id = $(this).attr("id");
+
+      if (this_id != undefined) {
+        //option小到大排序
+        $("#" + this_id + " option")
+          .sort(function (a, b) {
+            var aText = $(a).text().toUpperCase();
+            var bText = $(b).text().toUpperCase();
+            // if(aText>bText) return 1;
+            // if(aText<bText) return -1;
+            // return 0;
+
+            return aText - bText;
+          })
+          .appendTo("#" + this_id + "");
+
+        //最前面新增"所有"選像
+        $("#" + this_id + "").prepend(
+          "<option value='' selected='selected'>所有</option>"
+        );
+
+        $("#" + this_id + "")
+          .children()
+          .each(function () {
+            //text = $(this).text();
+            //if (
+            //  $("select#" + this_id + " option:contains(" + text + ")").length >
+            //  1
+            //) {
+            //  $(
+            //    "select#" + this_id + " option:contains(" + text + "):gt(0)"
+            //  ).remove();
+            //}
+             $(this).siblings('[value="' + this.value + '"]').remove();
+            //    console.log(text)
+          });
+      }
     });
-
-     //option小到大排序
-     $('#training_id option').sort(function(a,b){
-      var aText = $(a).text().toUpperCase();
-      var bText = $(b).text().toUpperCase();
-      // if(aText>bText) return 1;
-      // if(aText<bText) return -1;
-      // return 0;
-
-      return aText - bText;
-  }).appendTo('#training_id')
-
-  //最前面新增"所有"選像
-  $('#training_id').prepend("<option value='' selected='selected'>所有</option>");
-
-  $("#training_id").children().each(function() {
-      text = $(this).text();
-      //if($("select#training_id option:contains("+text+")").length > 1){
-      //    $("select#training_id option:contains("+text+"):gt(0)").remove();
-      //}
-      $(this).siblings('[value="' + this.value + '"]').remove();
-      //    console.log(text)
-  });
-
 
     //印出表格
     $("#call_view").html(cssString);
@@ -263,6 +261,23 @@ this.imagePreview = function () {
         .css("left", e.pageX + xOffset + "px");
     });
 };
+//endregion
+
+// 民國年轉換日期格式yyyy-dd-mm region
+function split_date(date) {
+  var transed_date ="";
+  
+  if(date=="")
+  {
+    transed_date = formatDate(new Date());
+  }
+  else
+  {
+    transed_date = parseInt(date.split("年")[0])+1911+"-"+date.split("年")[1].split("月")[0]+"-"+date.split("年")[1].split("月")[1].split("日")[0];
+  }
+
+  return transed_date; 
+}
 //endregion
 
 //table設定region

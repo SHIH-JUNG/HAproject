@@ -241,7 +241,7 @@ $("#program_update").on("click", function () {
         Activity_name: $("#activity_name").val(),
         Activity_category: $("#activity_category").val(),
         Person: $("#person").val(),
-        location: $("#location").val(),
+        Location: $("#location").val(),
         Service: $("#service").val(),
         Cost: $("#cost").val(),
         Number: $("#number").val(),

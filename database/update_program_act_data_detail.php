@@ -11,7 +11,7 @@ $Date = $_POST['Date'];
 $Activity_name = $_POST['Activity_name'];
 $Activity_category = $_POST['Activity_category'];
 $Person = $_POST['Person'];
-$Loaction = $_POST['Loaction'];
+$Location = $_POST['Location'];
 $Service = $_POST['Service'];
 $Cost = $_POST['Cost'];
 
@@ -24,7 +24,7 @@ $Is_update_hours_sql = "";
 $diff = 0;
 
 
-$sqlUpdate = "UPDATE `program_act` SET `Year` = '$Year', `Date` = '$Date', `Activity_name` = '$Activity_name',`Activity_category` = '$Activity_category',
+$sqlUpdate = "UPDATE `program_act` SET `Date` = '$Date', `Activity_name` = '$Activity_name',`Activity_category` = '$Activity_category',
  `Person` = '$Person', `Location` = '$Location', `Service` = '$Service',
   `Cost` = '$Cost',`Number` = '$Number',`Lecturer` = '$Lecturer',
   `Update_name` = '$user', `Update_date` = NOW() WHERE `Id` = '$program_id' ORDER BY `program_act`.`Create_date` ASC LIMIT 1;";

@@ -28,10 +28,13 @@ $file_1 = "";
 $file_1_date = NULL;
 $file_2 = "";
 $file_2_date = NULL;
+$file_3 = "";
+$file_3_date = NULL;
 
 $file_sql_0 = "";
 $file_sql_1 = "";
 $file_sql_2 = "";
+$file_sql_3 = "";
 
 $file_sqls_date_update = "";
 
@@ -41,27 +44,57 @@ if (!is_dir($file_dir)) {
     mkdir($file_dir, 0777, true);
 }
 
-// 判斷保密契約上傳 類型 file_C
+// 判斷履歷表檔案上傳 類型 file_A
 if (isset($_FILES["program_plan_files0"]))
 {
-    @$file_0 = $file_dir . $_FILES["program_plan_files0"]["name"];
-    
     @$file_0_date = date("Y-m-d");
     @$file_0_year = date("Y") - 1911;
 
-    if ($_FILES["program_plan_files0"]["error"] > 0) {
+    $file_0_arr = array();
 
-        echo false;
-    } else {
-        //設定檔案上傳路徑，選擇指定資料夾
-        move_uploaded_file(
-            $_FILES["program_plan_files0"]["tmp_name"],
-            $file_0
-        );
+    for ($a = 0; $a < count($_FILES["program_plan_files0"]["name"]); $a++)
+    {
+        @$file_0 = $file_dir . $_FILES["program_plan_files0"]["name"][$a];
+    
+        if ($_FILES["program_plan_files0"]["error"][$a] > 0) {
+            echo false;
+        } else {
+            //設定檔案上傳路徑，選擇指定資料夾
+            move_uploaded_file(
+                $_FILES["program_plan_files0"]["tmp_name"][$a],
+                $file_0
+            );
+        }
+        array_push($file_0_arr, $file_dir . $_FILES["program_plan_files0"]["name"][$a]);
+    }
+
+    // 查詢 原本的`File_path`
+    $select_user_data_num = "SELECT `File_path` FROM `program_plan_form` WHERE `Program_id` = '$Program_id' AND `File_type` = 'file_A' AND  `File_year` = '$File_year' ORDER BY `program_plan_form`.`Upload_date` ASC;";
+
+    $find_user_data_num = mysqli_query($conn,$select_user_data_num);
+    $row_nums = mysqli_num_rows($find_user_data_num);
+    $user_data_num = mysqli_fetch_row($find_user_data_num);
+
+
+    // $file_0_arr = json_encode($file_0_arr,JSON_UNESCAPED_UNICODE);
+
+    if($row_nums > 0)
+    {
+        $file_0_arr = json_encode(array_merge(json_decode($user_data_num[0], true),$file_0_arr),JSON_UNESCAPED_UNICODE);
+
+        $file_0_arr = json_decode($file_0_arr, true);
+
+        $file_0_arr = array_values(array_unique($file_0_arr,SORT_REGULAR));
+
+        $file_0_arr = json_encode($file_0_arr,JSON_UNESCAPED_UNICODE);
+    }
+    else
+    {
+        $file_0_arr = json_encode($file_0_arr,JSON_UNESCAPED_UNICODE);
     }
 
     // 查詢
-    $select_id_num = "SELECT count(`Id`) FROM `program_plan_form` WHERE `Program_id` = '$Program_id' AND `File_type` = 'file_C' AND  `File_year` = '$File_year' ORDER BY `program_plan_form`.`Upload_date` ASC;";
+    $select_id_num = "SELECT count(`Id`) FROM `program_plan_form` WHERE `Program_id` = '$Program_id' AND `File_type` = 'file_A' AND  `File_year` = '$File_year' ORDER BY `program_plan_form`.`Upload_date` ASC;";
 
     $find_id_num = mysqli_query($conn,$select_id_num);
     $id_num = mysqli_fetch_row($find_id_num);
@@ -69,23 +102,25 @@ if (isset($_FILES["program_plan_files0"]))
     if($id_num[0]>0)
     {
         @$file_sql_0 = "UPDATE `program_plan_form` SET `File_year` = '$file_0_year',
-        `File_path` = '$file_0', `Update_date` = '$file_0_date', `Update_name` = '$user'
-        WHERE `Program_id` = '$Program_id' AND `File_type` = 'file_C';";
+        `File_path` = '$file_0_arr',
+        `Update_date` = '$file_0_date', `Update_name` = '$user'
+        WHERE `Program_id` = '$Program_id' AND `File_type` = 'file_A';";
     }
     else
     {
-        @$file_sql_0 = "INSERT INTO `program_plan_form` (`Program_id`, `Program_name`
+        @$file_sql_0 = "INSERT INTO `program_plan_form` (`Program_id`, `Name`
             , `File_type`, `File_year`
-            , `File_path`, `Upload_date`, `Upload_name`) VALUES 
-            ($Program_id, '$Name', 'file_C', '$file_0_year'
-            , '$file_0', '$Remark', '$file_0_date' , '$user');";
+            , `File_path`
+            , `Upload_date`, `Upload_name`) VALUES 
+            ($Program_id, '$Name', 'file_A', '$file_0_year'
+            , '$file_0_arr', '$file_0_date' , '$user');";
     }
 
-    $file_sqls_date_update .= "`NDA_file_date` = '$file_0_date',";
+    $file_sqls_date_update .= "`Proposal_date` = '$file_0_date',";
 
 }
 
-// 判斷保密契約上傳 類型 file_C
+// 判斷保密契約上傳 類型 file_B
 if (isset($_FILES["program_plan_files1"]))
 {
     @$file_1 = $file_dir . $_FILES["program_plan_files1"]["name"];
@@ -105,7 +140,7 @@ if (isset($_FILES["program_plan_files1"]))
     }
 
     // 查詢
-    $select_id_num = "SELECT count(`Id`) FROM `program_plan_form` WHERE `Program_id` = '$Program_id' AND `File_type` = 'file_C' AND  `File_year` = '$File_year' ORDER BY `program_plan_form`.`Upload_date` ASC;";
+    $select_id_num = "SELECT count(`Id`) FROM `program_plan_form` WHERE `Program_id` = '$Program_id' AND `File_type` = 'file_B' AND  `File_year` = '$File_year' ORDER BY `program_plan_form`.`Upload_date` ASC;";
 
     $find_id_num = mysqli_query($conn,$select_id_num);
     $id_num = mysqli_fetch_row($find_id_num);
@@ -113,23 +148,25 @@ if (isset($_FILES["program_plan_files1"]))
     if($id_num[0]>0)
     {
         @$file_sql_1 = "UPDATE `program_plan_form` SET `File_year` = '$file_1_year',
-        `File_path` = '$file_1', `Update_date` = '$file_1_date', `Update_name` = '$user'
-        WHERE `Program_id` = '$Program_id' AND `File_type` = 'file_C';";
+        `File_path` = '$file_1',
+        `Update_date` = '$file_1_date', `Update_name` = '$user'
+        WHERE `Program_id` = '$Program_id' AND `File_type` = 'file_B';";
     }
     else
     {
-        @$file_sql_1 = "INSERT INTO `program_plan_form` (`Program_id`, `Program_name`
+        @$file_sql_1 = "INSERT INTO `program_plan_form` (`Program_id`, `Name`
             , `File_type`, `File_year`
             , `File_path`
             , `Upload_date`, `Upload_name`) VALUES 
-            ($Program_id, '$Name', 'file_C', '$file_1_year'
-            , '$file_1', '$Remark', '$file_1_date' , '$user');";
+            ($Program_id, '$Name', 'file_B', '$file_1_year'
+            , '$file_1', '$file_1_date' , '$user');";
     }
 
-    $file_sqls_date_update .= "`NDA_file_date` = '$file_1_date',";
+    $file_sqls_date_update .= "`Interim_date` = '$file_1_date',";
 
 }
-// 判斷畢業證書上傳 類型 file_D
+
+// 判斷畢業證書上傳 類型 file_C
 if (isset($_FILES["program_plan_files2"]))
 {
     @$file_2 = $file_dir . $_FILES["program_plan_files2"]["name"];
@@ -149,7 +186,7 @@ if (isset($_FILES["program_plan_files2"]))
     }
 
     // 查詢
-    $select_id_num = "SELECT count(`Id`) FROM `program_plan_form` WHERE `Program_id` = '$Program_id' AND `File_type` = 'file_D' AND  `File_year` = '$File_year' ORDER BY `program_plan_form`.`Upload_date` ASC;";
+    $select_id_num = "SELECT count(`Id`) FROM `program_plan_form` WHERE `Program_id` = '$Program_id' AND `File_type` = 'file_C' AND  `File_year` = '$File_year' ORDER BY `program_plan_form`.`Upload_date` ASC;";
 
     $find_id_num = mysqli_query($conn,$select_id_num);
     $id_num = mysqli_fetch_row($find_id_num);
@@ -157,27 +194,80 @@ if (isset($_FILES["program_plan_files2"]))
     if($id_num[0]>0)
     {
         @$file_sql_2 = "UPDATE `program_plan_form` SET `File_year` = '$file_2_year',
-        `File_path` = '$file_2', `Update_date` = '$file_2_date', `Update_name` = '$user'
+        `File_path` = '$file_2',
+        `Update_date` = '$file_2_date', `Update_name` = '$user'
+        WHERE `Program_id` = '$Program_id' AND `File_type` = 'file_C';";
+    }
+    else
+    {
+        @$file_sql_2 = "INSERT INTO `program_plan_form` (`Program_id`, `Name`
+            , `File_type`, `File_year`
+            , `File_path`
+            , `Upload_date`, `Upload_name`) VALUES 
+            ($Program_id, '$Name', 'file_C', '$file_2_year'
+            , '$file_2', '$file_2_date' , '$user');";
+    }
+
+    $file_sqls_date_update .= "`Achieve_date` = '$file_2_date',";
+}
+
+// 判斷畢業證書上傳 類型 file_D
+if (isset($_FILES["program_plan_files3"]))
+{
+    @$file_3 = $file_dir . $_FILES["program_plan_files3"]["name"];
+    
+    @$file_3_date = date("Y-m-d");
+    @$file_3_year = date("Y") - 1911;
+    
+    if ($_FILES["program_plan_files3"]["error"] > 0) {
+
+        echo false;
+    } else {
+        //設定檔案上傳路徑，選擇指定資料夾
+        move_uploaded_file(
+            $_FILES["program_plan_files3"]["tmp_name"],
+            $file_3
+        );
+    }
+
+    // 查詢
+    $select_id_num = "SELECT count(`Id`) FROM `program_plan_form` WHERE `Program_id` = '$Program_id' AND `File_type` = 'file_D' AND  `File_year` = '$File_year' ORDER BY `program_plan_form`.`Upload_date` ASC;";
+
+    $find_id_num = mysqli_query($conn,$select_id_num);
+    $id_num = mysqli_fetch_row($find_id_num);
+
+    if($id_num[0]>0)
+    {
+        @$file_sql_3 = "UPDATE `program_plan_form` SET `File_year` = '$file_3_year',
+        `File_path` = '$file_3',
+        `Update_date` = '$file_3_date', `Update_name` = '$user'
         WHERE `Program_id` = '$Program_id' AND `File_type` = 'file_D';";
     }
     else
     {
-        @$file_sql_2 = "INSERT INTO `program_plan_form` (`Program_id`, `Program_name`
+        @$file_sql_3 = "INSERT INTO `program_plan_form` (`Program_id`, `Name`
             , `File_type`, `File_year`
-            , `File_path`, `Upload_date`, `Upload_name`) VALUES 
-            ($Program_id, '$Name', 'file_D', '$file_2_year'
-            , '$file_2', '$Remark', '$file_2_date' , '$user');";
+            , `File_path`
+            , `Upload_date`, `Upload_name`) VALUES 
+            ($Program_id, '$Name', 'file_D', '$file_3_year'
+            , '$file_3', '$file_3_date' , '$user');";
     }
 
-    $file_sqls_date_update .= "`Diploma_date` = '$file_2_date',";
+    $file_sqls_date_update .= "`Other_date` = '$file_3_date',";
 }
 
-$file_sqls = $file_sql_0.$file_sql_1.$file_sql_2;
+$file_sqls = $file_sql_0.$file_sql_1.$file_sql_2.$file_sql_3;
+
+// $Remark_seniority = "員工建檔修改預設補修時數：".$Annual_hours."小時。";
 
 
 
 $sql = "UPDATE `program_plan` SET `Date`='$Date', `Plan_name`='$Plan_name', 
 `Plan_from` = '$Plan_from', `Fund`= '$Fund', `Update_date` = NOW(), `Update_name` = '$user' WHERE `Id` = '$program_id';";
+
+// $sql .= "UPDATE `user_info` SET `Name` = '$Name', `Update_date` = NOW(), `Update_name` = '$user' WHERE `Program_id` = '$Program_id';";
+
+// $sql .= "UPDATE `resume_seniority` SET `Seniority_num`= '$Seniority', `Rec_year`= '$File_year', `Annual_default`= '$Annual_hours', `Remark`= '$Remark_seniority', `Update_date` = NOW(), `Update_name` = '$user' WHERE `Program_id` = '$Program_id' AND `Type` = 'Annual_default';";
 
 $sql.=$file_sqls;
 

@@ -573,7 +573,7 @@ var date_range = function (settings, data, dataIndex) {
 var fillin_date_range = (function( settings, data, dataIndex ) {
   var min_date = parseInt(Date.parse( split_date($('#fillin_date_start').val())), 10 );
   var max_date = parseInt(Date.parse( split_date($('#fillin_date_end').val())), 10 );
-  console.log( split_date($('#fillin_date_end').val()))
+  // console.log( split_date($('#fillin_date_end').val()))
   var date = parseInt(Date.parse( split_date(data[3]) )) || 0; // use data for the date column
   if ( ( isNaN( min_date ) && isNaN( max_date ) ) ||
        ( isNaN( min_date ) && date <= max_date ) ||

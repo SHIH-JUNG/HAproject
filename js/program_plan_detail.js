@@ -144,7 +144,7 @@ $(document).ready(function () {
   //endregion
 
 
-  load_files();
+  // load_files();
 
   load_program_datas();
 
@@ -153,39 +153,39 @@ $(document).ready(function () {
 program_id = getUrlVars()["program_id"];
 
 function load_files() {
-  // $.ajax({
-  //     url: "database/find_program_Plan_froms_data_detail.php",
-  //     data:{
-  //         program_id:program_id,
-  //     },
-  //     type: "POST",
-  //     dataType: "JSON",
-  //     async: false,//啟用同步請求
-  //     success: function (data) {
-  //         // console.log(data)
+  $.ajax({
+      url: "database/find_program_plan_froms_data_detail.php",
+      data:{
+          program_id:program_id,
+      },
+      type: "POST",
+      dataType: "JSON",
+      async: false,//啟用同步請求
+      success: function (data) {
+          // console.log(data)
 
-  //         if(data.length == 0)
-  //         {
-  //             file_year_arr.push(this_year);
-  //         }
-  //         else
-  //         {
-  //             $.each(data,function(index,value){
-  //                 file_year_arr.push(value.File_year);
-  //                 // file_year_arr.push(value.Year);
-  //             });
-  //         }
+          if(data.length == 0)
+          {
+              file_year_arr.push(this_year);
+          }
+          else
+          {
+              $.each(data,function(index,value){
+                  file_year_arr.push(value.File_year);
+                  // file_year_arr.push(value.Year);
+              });
+          }
 
-  //         // 從小到大排序
-  //         // file_year_arr.sort((a, b) => a - b)
-  //         // 從大到小排序
-  //         file_year_arr.sort((a, b) => b - a)
-  //     },
-  //     error:function(e){
-  //         notyf.alert('伺服器錯誤,無法載入');
-  //         console.log(e)
-  //     }
-  // });
+          // 從小到大排序
+          // file_year_arr.sort((a, b) => a - b)
+          // 從大到小排序
+          file_year_arr.sort((a, b) => b - a)
+      },
+      error:function(e){
+          notyf.alert('伺服器錯誤,無法載入');
+          console.log(e)
+      }
+  });
 
 
   // console.log(file_year_arr)
@@ -248,7 +248,7 @@ function load_files() {
 
 function load_program_datas() {
   $.ajax({
-      url: "database/find_program_plan_data_detail.php",
+      url: "database/find_program_plan_user_data_detail.php",
       data:{
           program_id:program_id,
       },
@@ -385,7 +385,7 @@ program_update = function() {
       });
       var form_data = new FormData();
 
-      // var entry_date_year_split = $("#entry_date").val().split("年");
+      var year_split = $("#date").val().split(".")[0];
 
       // console.log(file_name)
 
@@ -402,7 +402,7 @@ program_update = function() {
           if (program_files != undefined) {
             if (program_files.length != 0) {
               for (var i = 0; i < program_files.length; i++) {
-                form_data.append("program_files"+index, program_files[i]);
+                form_data.append("program_plan_files"+index, program_files[i]);
                 // console.log(program_files[i])
               }
             } 
@@ -419,59 +419,59 @@ program_update = function() {
 
       form_data.append("Program_id", program_id);
       form_data.append("Date", $("#date").val());
-      form_data.append("Year", $("#year").val());
       form_data.append("Plan_name", $("#plan_name").val());
-      form_data.append("Plan_from", $("#Plan_from").val());
+      form_data.append("Plan_from", $("#plan_from").val());
       form_data.append("Fund", $("#fund").val());
+      form_data.append("File_year", year_split);
 
       // 預覽傳到後端的資料詳細內容
-      for (var pair of form_data.entries()) {
-        console.log(pair[0] + ", " + pair[1]);
-      }
+      // for (var pair of form_data.entries()) {
+      //   console.log(pair[0] + ", " + pair[1]);
+      // }
 
 
-      // $.ajax({
-      //     url: "database/update_program_plan_data_detail.php",
-      //     type: "POST",
-      //     //   data: {
-      //     //     Program_id:program_id,
-      //     //   },
-      //     data: form_data,
-      //     contentType: false,
-      //     cache: false,
-      //     processData: false,
-      //     async: true,
-      //   success: function (data) {
-      //     console.log(data);
-      //     if (data == 1) {
-      //       swal({
-      //         type: "success",
-      //         title: "更新成功!",
-      //         allowOutsideClick: false, //不可點背景關閉
-      //       }).then(function () {
-      //         window.location.href =
-      //           "program_plan_detail.php?"+
-      //           "&program_id=" +
-      //           program_id +
-      //           "";
-      //       });
-      //     } else {
-      //       swal({
-      //         type: "error",
-      //         title: "更新失敗!請聯絡負責人",
-      //         allowOutsideClick: false, //不可點背景關閉
-      //       });
-      //     }
-      //   },
-      //   error: function (e) {
-      //     console.log(e)
-      //     swal({
-      //         type: "error",
-      //         title: "更新失敗!請聯絡負責人",
-      //         allowOutsideClick: false, //不可點背景關閉
-      //     });
-      //   },
-      // });
+      $.ajax({
+          url: "database/update_program_plan_user_data_detail.php",
+          type: "POST",
+          //   data: {
+          //     Program_id:program_id,
+          //   },
+          data: form_data,
+          contentType: false,
+          cache: false,
+          processData: false,
+          async: true,
+        success: function (data) {
+          // console.log(data);
+          if (data == 1) {
+            swal({
+              type: "success",
+              title: "更新成功!",
+              allowOutsideClick: false, //不可點背景關閉
+            }).then(function () {
+              window.location.href =
+                "program_plan_detail.php?"+
+                "&program_id=" +
+                program_id +
+                "";
+            });
+          } else {
+            swal({
+              type: "error",
+              title: "更新失敗!請聯絡負責人",
+              allowOutsideClick: false, //不可點背景關閉
+            });
+          }
+        },
+        error: function (e) {
+          console.log(e)
+          swal({
+              type: "error",
+              title: "更新失敗!請聯絡負責人",
+              allowOutsideClick: false, //不可點背景關閉
+          });
+        },
+      });
     }
 }
 
@@ -479,7 +479,7 @@ function check_updat_program_user_data() {
   var date = $("#date").val();
   var plan_name = $("#plan_name").val();
   var plan_from = $("#plan_from").val();
-  // var fund = $("#fund").val();
+  var fund = $("#fund").val();
 
   var errorstr = "";
 
@@ -495,10 +495,10 @@ function check_updat_program_user_data() {
   {
       errorstr += "未填寫計畫來源!\r\n";
   }
-  // if(fund == null)
-  // {
-  //     errorstr += "未填寫經費來源!\r\n";
-  // }
+  if(fund == null)
+  {
+      errorstr += "未填寫經費來源!\r\n";
+  }
   if (errorstr == "") {
       if (date.replace(/\s*/g, "") == "") {
         errorstr += "未填寫日期!\r\n";
@@ -649,3 +649,173 @@ function program_cancel(){
   $('#save_div').attr('hidden', true);
 };
 //endregion
+
+// 刪除履歷表檔案內容 多檔案上傳 region
+selectFiles_delete = function () {
+
+
+  if ($("[name='file_a_check']:checked").length > 0) {
+    console.log($("#val_arr" + $("[name='file_a_check']:checked").attr("value")))
+    swal({
+      title: "是否刪除該檔案？\n" + "檔名："+ $("#val_arr" + $("[name='file_a_check']:checked").attr("value")).text(),
+      text: "確認刪除後將無法復原操作",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#DD6B55",
+      confirmButtonText: "確認",
+      cancelButtonText: "取消",
+      showConfirmButton: true,
+      showCancelButton: true
+    }).then(function (result) {
+      if (result) {
+        var file_a_sql_id = $("[name='file_a_check']:checked").attr("forms_sql_id");
+        var file_a_val = $("[name='file_a_check']:checked").attr("value");
+
+        // console.log(file_a_input_val_arr)
+
+        var r_file_a = file_a_input_val_arr.splice(parseInt(file_a_val), 1);
+
+        console.log(file_a_input_val_arr)
+        console.log(r_file_a)
+
+        $.ajax({
+          url: "database/delete_resume_file_a.php",
+          type: "POST",
+          data: {
+            Form_sql_id: file_a_sql_id,
+            Resume_id: resume_id,
+            File_a_arr: file_a_input_val_arr,
+            File_a_delete_index: file_a_val,
+            Remove_file_a: r_file_a[0],
+          },
+          // dataType: "JSON",
+          success: function (data) {
+            console.log(data);
+            if (data == 1) {
+              swal({
+                type: "success",
+                title: "刪除檔案成功!",
+                allowOutsideClick: false, //不可點背景關閉
+              }).then(function () {
+                location.reload();
+              });
+            }
+
+          },
+          error: function (e) {
+            console.log(e)
+            swal({
+              type: "error",
+              title: "刪除檔案失敗!請聯絡負責人",
+              allowOutsideClick: false, //不可點背景關閉
+            });
+          },
+        });
+
+      }
+    }, function (dismiss) {
+      if (dismiss == 'cancel') {
+        swal({
+          title: '已取消',
+          type: 'success',
+        })
+      }
+    }).catch(swal.noop)
+  }
+  else {
+    swal({
+      type: 'warning',
+      title: '請選取要刪除的檔案!',
+      allowOutsideClick: false //不可點背景關閉
+    })
+  }
+
+
+}
+//endregion
+
+window.selectedFiles = [];
+window.selectedFiles_str = "";
+
+selectFiles_insert = function () {
+
+
+  if(selectedFiles.length==0)
+  {
+    selected_files();
+  }
+  else
+  {
+      swal({
+        title: "已經有選擇檔案，是否清空當前檔案清單，重新選取？",
+        text: "目前檔案清單："+selectedFiles_str,
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "確認",
+        cancelButtonText: "取消",
+        showConfirmButton: true,
+        showCancelButton: true
+      }).then(function (result) {
+        if (result) {
+          selected_files();
+        }
+      }, function (dismiss) {
+        if (dismiss == 'cancel') {
+          swal({
+            title: '已取消',
+            type: 'success',
+          })
+        }
+      }).catch(swal.noop)
+  }
+    
+}
+
+
+selected_files = function() {
+  selectedFiles = [];
+  selectedFiles_str = "";
+  var html = '<span style="color:red;">上傳檔案清單預覽：</span><br/>';
+
+  $("#selected-files").html(html);
+
+  $.FileDialog({
+    "accept": "*",
+    "drag_message": "將檔案拖曳至此處新增",
+    "title": "載入檔案",
+  }).on("files.bs.filedialog", function (event) {
+    for (var a = 0; a < event.files.length; a++) {
+      selectedFiles.push(event.files[a]);
+
+      // console.log(event.files[a])
+
+      if(a == 0)
+      {
+        selectedFiles_str += event.files[a].name;
+      }
+      else
+      {
+        selectedFiles_str += "," + event.files[a].name;
+      }
+
+      html += '<span style="color:red;" value="' + event.files[a].name + '">' + event.files[a].name + '</span><br/>';
+    }
+    $("#selected-files").html(html);
+  });
+}
+
+// page reload時保持上次的頁籤狀態 region
+function tab_toggle() {
+  $('a[data-toggle="pill"]').on('show.bs.tab', function(e) {
+      localStorage.setItem('activeTab', $(e.target).attr('href'));
+  });
+  var activeTab = localStorage.getItem('activeTab');
+  if(activeTab){
+      $('#myTab a[href="' + activeTab + '"]').tab('show');
+  }
+}
+
+$('#menu_tab_nav li a, .breadcrumb li, .brand-img').on('click',function() {
+  localStorage.removeItem('activeTab');
+});
