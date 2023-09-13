@@ -1,96 +1,120 @@
 //新增帳號region
 $(document).ready(function () {
-    $("#authority_insert").submit(function (e) {
-        e.preventDefault();
-        if ($("#authority_classification").val() != '' && $("#authority_department").val() != '' && $("#authority_job").val() != '') {
-            swal({
-                title: '確認新增使用者？',
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                allowOutsideClick: false ,//不可點背景關閉
-                confirmButtonText: '確認',
-                cancelButtonText: '取消'
-            }).then(function (isConfirm) {
-                if (isConfirm) {
+    load_auth_num();
+    load_auth_job();
+});
+//endregion   
+
+//帳戶修改填入、刪除region
+/**bootstrap modal 載入資料**/
+$(".user_info_table").on('click', 'tr', function() {
+
+    $("#modify_name").val($(this).find('td').eq(1).text());
+    $("#modify_acc").val($.trim($(this).find("td:eq(3)").text()));
+    $("#modify_pass").val($.trim($(this).find("td:eq(4)").text()));
+    $('select[name=modify_job]').val($.trim($(this).find("td:eq(2)").text()));//selected 項目  
+    $('select[name=modify_classification]').val($.trim($(this).find("td:eq(6)").text()));//selected 項目  
+    $('.bootstrap-select .filter-option').text($("#modify_classification").val());//顯示 selected
+    var id = $.trim($(this).find("td:eq(0)").text());
+
+    //修改用戶region
+    $("#modify_val").click(function (e) {
+        swal({
+            title: "確定修改該名使用者資料？",
+            text: "點擊確認後，將會修改使用者『"+$("#modify_name").val()+"』的資料",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "確認",
+            cancelButtonText: "取消",
+            showConfirmButton: true,
+            showCancelButton: true,
+        })
+        .then(
+            function (result) {
+                if (result) 
+                {
+                    e.preventDefault();
                     $.ajax({
-                        type: 'POST',
-                        url: 'database/add_new_user.php',
-                        async: false,
-                        data: {                            
-                            account: $("#authority_acc").val(),
-                            password: $("#authority_pass").val(),
-                            name: $("#authority_name").val(),
-                            authority: $("#authority_classification").val(),
-                            department: $("#authority_department").val(),
-                            job: $("#authority_job").val(),
+                        url: 'database/update_user_info.php',
+                        type: 'post',
+                        data: {
+                            // modify_name:$("#modify_name").val(),
+                            // modify_acc: $("#modify_acc").val(),
+                            modify_password: $("#modify_password").val(),
+                            modify_auth_num: $("#modify_classification").val(),
+                            job: $("#modify_job").val(),
+                            id: id
                         },
+                        async: false,//啟用同步請求
                         success: function (data) {
-//                            console.log(data)
                             if (data == 1) {
                                 swal({
                                     type: 'success',
-                                    title: '新增使用者成功!',
+                                    title: '修改成功!',
                                     allowOutsideClick: false //不可點背景關閉
                                 }).then(function () {
                                     location.reload();
                                 })
                             } else {
                                 swal({
-                                    type:'error',
-                                    title:'新增失敗',
+                                    type: 'error',
+                                    title: '修改失敗!',
+                                    allowOutsideClick: false //不可點背景關閉
                                 })
                             }
                         },
                         error: function (e) {
-                            notyf.alert('伺服器錯誤,無法載入' + e);
+                            swal({
+                                type: 'error',
+                                title: '伺服器錯誤!無法載入!!',
+                                allowOutsideClick: false //不可點背景關閉
+                            })
                         }
                     });
                 }
-            })
-        } else {
-            swal({
-                type:'error',
-                title:'請填寫完整!',
-            })
-        }
+            },
+            function (dismiss) {
+                if (dismiss == "cancel") 
+                {
+                    swal({
+                        title: "已取消",
+                        type: "success",
+                    });
+                }
+            }
+        )
+        .catch(swal.noop);
     });
-});
-//endregion   
-
-//帳戶修改填入、刪除region
-/**bootstrap modal 載入資料**/
-$(".table-striped").on('click', 'tr', function() {
-$("#modify_name").val($(this).find('td').eq(2).text());
-$("#modify_acc").val($.trim($(this).find("td:eq(4)").text()));
-$("#modify_pass").val($.trim($(this).find("td:eq(5)").text()));
-$('select[name=modify_department]').val($.trim($(this).find("td:eq(1)").text()));//selected 項目  
-$('select[name=modify_job]').val($.trim($(this).find("td:eq(3)").text()));//selected 項目  
-$('select[name=modify_classification]').val($.trim($(this).find("td:eq(6)").text()));//selected 項目  
-$('.bootstrap-select .filter-option').text($("#modify_classification").val());//顯示 selected
-var id = $.trim($(this).find("td:eq(0)").text());
-//修改用戶region
-            $("#modify_val").click(function (e) {
-                e.preventDefault();
+    //endregion
+                
+    //刪除用戶region
+    $("#delete_acc").click(function (e) {
+        e.preventDefault();
+        swal({
+            title: '確認刪除此使用者資料？',
+            text: "點擊確認後，將會刪除使用者『"+$("#modify_name").val()+"』的資料，並且無法復原",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            allowOutsideClick: false,//不可點背景關閉
+            confirmButtonText: '確認！',
+            cancelButtonText: '取消'
+        }).then(function (isConfirm) {
+            if (isConfirm) {
                 $.ajax({
-                    url: 'database/update_user_info.php',
                     type: 'post',
+                    url: 'database/delete_user_info.php',
+                    async: false,
                     data: {
-                        modify_name:$("#modify_name").val(),
-                        modify_acc: $("#modify_acc").val(),
-                        modify_pass: $("#modify_pass").val(),
-                        modify_classification: $("#modify_classification").val(),
-                        department: $("#modify_department").val(),
-                        job: $("#modify_job").val(),
                         id: id
                     },
-                    async: false,//啟用同步請求
                     success: function (data) {
                         if (data == 1) {
                             swal({
                                 type: 'success',
-                                title: '修改成功!',
+                                title: '刪除成功!',
                                 allowOutsideClick: false //不可點背景關閉
                             }).then(function () {
                                 location.reload();
@@ -98,7 +122,7 @@ var id = $.trim($(this).find("td:eq(0)").text());
                         } else {
                             swal({
                                 type: 'error',
-                                title: '修改失敗!',
+                                title: '刪除失敗!',
                                 allowOutsideClick: false //不可點背景關閉
                             })
                         }
@@ -106,69 +130,19 @@ var id = $.trim($(this).find("td:eq(0)").text());
                     error: function (e) {
                             swal({
                                 type: 'error',
-                                title: '伺服器錯誤!無法載入!!',
+                                title: '伺服器錯誤，無法載入!',
                                 allowOutsideClick: false //不可點背景關閉
                             })
                     }
                 });
-            });
-            //endregion
-            
-//刪除用戶region
-            $("#delete_acc").click(function (e) {
-                e.preventDefault();
-                swal({
-                    title: '確認刪除此使用者？',
-                    text: "刪除無法復原",
-                    type: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    allowOutsideClick: false,//不可點背景關閉
-                    confirmButtonText: '確認！',
-                    cancelButtonText: '取消'
-                }).then(function (isConfirm) {
-                    if (isConfirm) {
-                        $.ajax({
-                            type: 'post',
-                            url: 'database/delete_user_info.php',
-                            async: false,
-                            data: {
-                                id: id
-                            },
-                            success: function (data) {
-                                if (data == 1) {
-                                    swal({
-                                        type: 'success',
-                                        title: '刪除成功!',
-                                        allowOutsideClick: false //不可點背景關閉
-                                    }).then(function () {
-                                        location.reload();
-                                    })
-                                } else {
-                                    swal({
-                                        type: 'error',
-                                        title: '刪除失敗!',
-                                        allowOutsideClick: false //不可點背景關閉
-                                    })
-                                }
-                            },
-                            error: function (e) {
-                                    swal({
-                                        type: 'error',
-                                        title: '伺服器錯誤，無法載入!',
-                                        allowOutsideClick: false //不可點背景關閉
-                                    })
-                            }
-                        });
-                    }
-                })
-            });
-        //endregion
+            }
+        })
+    });
+    //endregion
 });
 //endregion
 
-//帳號表格region
+//全部使用者權限帳號載入 region
         $.ajax({
             url: "database/find_user_info.php",
             type: "POST",
@@ -176,18 +150,19 @@ var id = $.trim($(this).find("td:eq(0)").text());
             async: false,//啟用同步請求
             success: function (data) {
                 var cssString = "";
-                for (var index in data.id) {
+                $.each(data,function(index,value){
                     cssString += 
                             '<tr data-toggle="modal" data-target="#jump-authority">' +
-                            '<td style="LINE-HEIGHT:1px">' + data.id[index] + '</td>' +
-                            '<td style="LINE-HEIGHT:1px">' + data.department[index] + '</td>' +
-                            '<td style="LINE-HEIGHT:1px">' + data.name[index] + '</td>' +
-                            '<td style="LINE-HEIGHT:1px">' + data.job[index] + '</td>' +
-                            '<td style="LINE-HEIGHT:1px">' + data.account[index] + '</td>' +
+                            '<td style="LINE-HEIGHT:1px">' + value.Id + '</td>' +
+                            '<td style="LINE-HEIGHT:1px">' + value.Name + '</td>' +
+                            '<td style="LINE-HEIGHT:1px">' + value.Job + '</td>' +
+                            '<td style="LINE-HEIGHT:1px">' + value.Account + '</td>' +
                             '<td style="LINE-HEIGHT:1px">*****</td>' +
-                            '<td style="LINE-HEIGHT:1px">' + data.authority[index] + '</td>' +
+                            '<td style="LINE-HEIGHT:1px">' + value.Email + '</td>' +
+                            '<td style="LINE-HEIGHT:1px">' + value.Authority + '</td>' +
+                            '<td style="LINE-HEIGHT:1px">' + '<a href="Authority_user_info_detail.php?id='+value.Id+'" style="text-decoration: underline;color:black;">查看</a>' + '</td>' +
                             '</tr>'
-                }
+                });
                 $("#user_info").html(cssString);
             },
             error: function (e) {
@@ -196,22 +171,23 @@ var id = $.trim($(this).find("td:eq(0)").text());
         });
 //endregion   
 
-//查詢部門放入下拉選單region
-        $.ajax({
-            url: "database/find_house_info.php",
-            type: "POST",
-            dataType: "JSON",
-            async: false,//啟用同步請求
-            success: function (data) {
-                for (var index in data.id) {
-                    $("#modify_department").append('<option value="'+data.name[index]+'">'+data.name[index]+'</option>');
-                    $("#authority_department").append('<option value="'+data.name[index]+'">'+data.name[index]+'</option>');
-                    
-                }
+//載入權限等級至前端選項 region
+function load_auth_num() {
+    var auth_num_min = 1;
+    var auth_num_max = 9;
 
-            },
-            error: function (e) {
-                notyf.alert('伺服器錯誤,無法載入' + e);
-            }
-        });
+    for (var i = auth_num_min; i <= auth_num_max; i++) {
+        $("#modify_classification").append('<option value="' + i + '">' + i + '</option>');
+    }
+}
+//endregion
+
+//載入職位至前端選項 region
+function load_auth_job() {
+    var auth_job_arr = ['理事長', '執行長', '方案組長', '公關組長', '專案社工', '行政人員', '社工員', '生輔員', '工讀生', '志工'];
+
+    for (var i = 0; i < auth_job_arr.length; i++) {
+        $("#modify_job").append('<option value="' + auth_job_arr[i] + '">' + auth_job_arr[i] + '</option>');
+    }
+}
 //endregion

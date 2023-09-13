@@ -34,7 +34,7 @@
                     <ul style="font-size:15px" id="staff_non_open" class="collapse">
                         <li>
                             <?php
-                                if ($menu_login_authority > 2) {
+                                if ($menu_login_authority <= 4 || $menu_login_authority == 6) {
 
                                     echo '<a href="resume.php">履歷表檔案</a>';
                                 }
@@ -245,7 +245,23 @@
                     <a href="#" data-toggle="collapse" data-target="#track">項目7</a>
                 </li> -->
     <li>
-        <a href="Authority.php" data-toggle="collapse" data-target="#track">權限管理</a>
+        <a href="javascript:void(0);" data-toggle="collapse" data-target="#auth">權限管理
+            <span class="pull-right">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-down-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                </svg>
+            </span>
+        </a>
+        <ul style="font-size:18px" id="auth" class="collapse">
+            <li>
+                <a href="Authority.php">使用者權限
+                </a>
+            </li>
+            <li>
+                <a href="Authority_default_rule_set.php">預設權限
+                </a>
+            </li>
+        </ul>
     </li>
     </ul>
 </div>

@@ -110,7 +110,7 @@
                                     <div class="table-wrap">
                                         <div class="table-responsive">
                                             <?php
-                                                if ($authority > 2) {
+                                                if ($authority <= 4 || $authority == 6) {
 
                                                     include("day_off_supervise_content.php");
 

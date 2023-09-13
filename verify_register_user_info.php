@@ -1,16 +1,12 @@
 <?php session_start(); ?>
 <?php include("database/check_authority.php"); ?> <?php include("no_cache.php"); ?>
-<?php $href_name =  'page_f'; ?>
-<?php 
-    $user = $_SESSION['name'];
-    $authority = $_SESSION['authority'];
-?>
+<?php $href_name =  'page_Auth'; ?>
 <!DOCTYPE html>
 <html>
 
 <head>
     <!--網頁icon-->
-    <link rel="icon" href="image/HA.png" type="image/x-icon">
+    <link rel="icon" href="image/LOGO.png" type="image/x-icon">
     <!-- CSS-->
     <link href="css/style.css" rel="stylesheet" />
     <!--  notify  -->
@@ -19,32 +15,25 @@
     <link href="css/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
     <!-- ================== CSS bootstrap-select ================== -->
     <link href="css/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
-    <!-- ================== CSS font-awesome ================== -->
-    <link href="font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     <!--  table  -->
-    <!--    <link rel="stylesheet" href="css/bootstrap-table.min.css">-->
-    <!-- ================== 匯出EXCEL ================== -->
-    <link href="css/jquery.dataTables1.10.16.min.css" rel="stylesheet" />
-    <link href="css/buttons.dataTables1.5.1.min.css" rel="stylesheet" />
-    <!--  日期民國  -->
-    <link data-require="jqueryui@*" rel="stylesheet" href="css/jquery-ui.css" />
-    <link href="css/dtsel.css" rel="stylesheet" />
-    
+    <link rel="stylesheet" href="css/bootstrap-table.min.css">
+
     <meta charset="UTF-8" />
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!--        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="description" content="快樂聯盟資管系統">
     <meta name="author" content="HANG">
+    <meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+    <meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+    <meta HTTP-EQUIV="expires" CONTENT="0">
     <title>個案管理系統</title>
-</head>
-<style>
-    .NOline {
-        word-break: keep-all;
-        /*必須*/
-    }
 
-    .preview {position:absolute;background:#fff;padding:10px;display:none;}  
-</style>
+    <style>
+        .auth_href_name_area input
+        {
+            margin-left: .5em;
+        }
+    </style>
+</head>
 <!--<SVG>引入bootstrap icon-->
 
 <body>
@@ -71,19 +60,15 @@
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span><a href="">行政管理</a></span></li>
+                        <li><span><a href="Authority.php">權限管理</a></span></li>
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span><a href="">員工管理</a></span></li>
+                        <li><span><a href="Authority.php">使用者權限</a></span></li>
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span><a href="overtime.php">加班系統</a></span></li>
-                        <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
-                        </svg>
-                        <li><span>員工加班系統</span></li>
+                        <li><span>審核註冊帳號</span></li>
                     </ol>
                     <!--/麵包屑-->
                 </div>
@@ -93,29 +78,39 @@
                     <div class="row">
                         <div class="col-sm-12 text-center">
                             <p>Copyright &copy; 2020國立屏東科技大學資訊管理系</p>
-                            <span style="display:none" id="counter"></span>
                         </div>
                     </div>
                 </footer>
                 <!-- /Footer -->
                 <!-- /Title -->
-                <!---Table--->
-                <div style="zoom:75%" class="row text-center">
-                    <div class="col-md-12">
+                <!-- /Title -->
+
+                <!-- Row -->
+                <div style="zoom:75%" class="row">
+                    <div class="col-sm-12">
                         <div class="panel panel-default card-view">
                             <div class="panel-wrapper collapse in">
                                 <div class="panel-body">
                                     <div class="table-wrap">
                                         <div class="table-responsive">
-                                            <?php
-                                                if ($authority <= 4 || $authority == 6) {
-
-                                                    include("overtime_supervise_content.php");
-
-                                                } else {
-                                                    include("overtime_content.php");
-                                                }
-                                            ?>
+                                            <div class="text-center">
+                                                    <h3>審核註冊帳號</h3>
+                                            </div><br/><br/>
+                                            <table class="text-center table table-striped">
+                                                <thead class="bg-warning">
+                                                    <tr>
+                                                        <th>審核狀態</th>
+                                                        <th>帳號</th>
+                                                        <th>名稱</th>
+                                                        <th>Email</th>
+                                                        <th>權限</th>
+                                                        <th>職位</th>
+                                                        <th>註冊日期</th>
+                                                        <th>審核人員</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="user_info"></tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
@@ -123,9 +118,12 @@
                         </div>
                     </div>
                 </div>
-                <!---/Table--->
+                <!-- /Row -->
+
+                
             </div>
             <!--/網頁內容-->
+
         </div>
     </div>
     <!-- /#wrapper -->
@@ -133,16 +131,9 @@
     <!-- Bootstrap and jQuery -->
     <script src="javascript/jquery.min.js"></script>
     <script src="javascript/bootstrap.min.js"></script>
-    <!-- ================== 匯出EXCEL ================== -->
-    <script src="javascript/jquery.dataTables1.10.16.min.js"></script>
-    <script src="javascript/dataTables1.2.2.buttons.min.js"></script>
-    <script src="javascript/jszip2.5.0.min.js"></script>
-    <script src="javascript/buttons1.2.2.html5.min.js"></script>
     <!-- 表格 JavaScript -->
-    <!--
     <script src="javascript/jquery.dataTables.min.js"></script>
     <script src="javascript/dataTables-data.js"></script>
--->
     <!-- 滾動條 JavaScript -->
     <script src="javascript/jquery.slimscroll.js"></script>
     <!-- Fancy Dropdown JS -->
@@ -157,35 +148,12 @@
     <script src="javascript/sweetalert2/core-js.js"></script>
     <!-- ================== 登出設定 ================== -->
     <script src='js/logout.js'></script>
-    <!-- ================== moment ================== -->
-    <script src='javascript/moment2.29.0.min.js'></script>
     <!-- ================== table ================== -->
     <script src="javascript/bootstrap1.18.0-table.min.js"></script>
     <script src="javascript/bootstrap-table1.11.1-zh-TW.min.js"></script>
-    <!-- 日期民國-->
-    <script src="javascript/jquery-ui.min.js"></script>
-    <script src="javascript/datepickerTw.js"></script>
-    <!-- ================== phone ================== -->
-    <?php
-        if ($authority > 2) {
-            echo '<script type="text/javascript" src="js/overtime_supervise.js'.'?'.date('Y-m-d h:i:sa').'"></script>';
-        } else {
-            echo '<script type="text/javascript" src="js/overtime.js'.'?'.date('Y-m-d h:i:sa').'"></script>';
-        }
-    ?>
-    <!-- ================== 地區選擇下拉 ================== -->
-    <!--
-    <script src="js/jQuery-TWzipcode-master/twzipcode.js"></script>
-    <script src="js/jQuery-TWzipcode-master/jquery.twzipcode.js"></script>
-    <script src="js/jQuery-TWzipcode-master/jquery.twzipcode.min.js"></script>
--->
+    <!-- ================== verify_register_user_info ================== -->
+    <script type="text/javascript" src="js/verify_register_user_info.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
 </body>
-<script>
-    //$("#twzipcode").twzipcode({
-    //    css: ['col-sm-12',],
-    //});
-    //$.fn.dataTable.ext.classes.sPageButton = 'btn btn-primary'; // Change Pagination Button Class
-</script>
 
 </html>
 <?php include("database/timeout_logout.php"); ?>

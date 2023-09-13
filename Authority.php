@@ -1,5 +1,6 @@
 <?php session_start(); ?>
 <?php include("database/check_authority.php"); ?> <?php include("no_cache.php"); ?>
+<?php $href_name =  'page_Auth'; ?>
 <!DOCTYPE html>
 <html>
 
@@ -52,7 +53,11 @@
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span>權限管理</span></li>
+                        <li><span><a href="Authority.php">權限管理</a></span></li>
+                        <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+                        </svg>
+                        <li><span>使用者權限</span></li>
                     </ol>
                     <!--/麵包屑-->
                 </div>
@@ -68,134 +73,7 @@
                 <!-- /Footer -->
                 <!-- /Title -->
                 <!-- /Title -->
-                <!-- Row -->
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="panel panel-default card-view">
-                            <div class="panel-wrapper collapse in">
-                                <div class="panel-body">
-                                    <div class="row">
-                                        <div class="col-sm-12 col-xs-12">
-                                            <div class="form-wrap">
-                                                <form class="form-horizontal" id="authority_insert">
-                                                    <div class="row">
-                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                                            <div class="panel panel-default card-view" style="display: none;">
-                                                            </div>
-                                                        </div>
-<!--
-                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                            <div class="panel panel-default card-view" style="background:gainsboro">
-                                                                <div class="panel-wrapper collapse in">
-                                                                    <div class="panel-body">
-                                                                        <h4 class="mb-15">權限設定規則</h4>
-                                                                        <p>權限等級1：社工</p>
-                                                                        <p>權限等級2：組長</p>
-                                                                        <p>權限等級3：主任</p>
-                                                                        <p>權限等級4：執行長、執行長秘書(僅能觀看無法審核)</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
--->
-                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                                            <div class="panel panel-default card-view" style="display: none;">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="supplier_name" class="col-sm-3 control-label">姓名：</label>
-                                                        <div class="col-sm-6">
-                                                            <div class="input-group">
-                                                                <div class="input-group-addon"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                                        <path fill-rule="evenodd" d="M10 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm6 5c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
-                                                                    </svg>
-                                                                </div>
-                                                                <input type="text" class="form-control" id="authority_name" placeholder="新增姓名" required>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="supplier_name" class="col-sm-3 control-label">帳號：</label>
-                                                        <div class="col-sm-6">
-                                                            <div class="input-group">
-                                                                <div class="input-group-addon"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                                        <path fill-rule="evenodd" d="M10 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm6 5c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
-                                                                    </svg>
-                                                                </div>
-                                                                <input type="text" class="form-control" id="authority_acc" placeholder="新增帳號" required>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="supplier_sname" class="col-sm-3 control-label">密碼：</label>
-                                                        <div class="col-sm-6">
-                                                            <div class="input-group">
-                                                                <div class="input-group-addon">
-                                                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                                        <path fill-rule="evenodd" d="M10 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm6 5c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
-                                                                    </svg>
-                                                                </div>
-                                                                <input type="password" class="form-control" id="authority_pass" placeholder="新增密碼" required>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="supplier_department" class="col-sm-3 control-label">單位：</label>
-                                                        <div class="col-sm-6">
-                                                            <select style="margin-top:6px" class="col-sm-12" id="authority_department">
-                                                                <option value="" selected>請選擇單位</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="supplier_job" class="col-sm-3 control-label">職稱：</label>
-                                                        <div class="col-sm-6">
-                                                            <select style="margin-top:6px" class="col-sm-12" id="authority_job">
-                                                                <option value="" selected>請選擇職稱</option>
-                                                                <option value="社工">社工</option>
-                                                                <option value="社工組長">社工組長</option>
-                                                                <option value="社工助理">社工助理</option>
-                                                                <option value="行政人員">行政人員</option>
-                                                                <option value="生活輔導員">生活輔導員</option>
-                                                                <option value="生活輔導組長">生活輔導組長</option>
-                                                                <option value="主任">主任</option>
-                                                                <option value="執行長">執行長</option>
-                                                                <option value="執行長秘書">執行長秘書</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="supplier_classification" class="col-sm-3 control-label">權限等級：</label>
-                                                        <div class="col-sm-6">
-                                                            <select style="margin-top:6px" class="col-sm-12" id="authority_classification">
-                                                                <option value="" selected>請選擇權限</option>
-                                                                <option value="1">1</option>
-                                                                <option value="2">2</option>
-                                                                <option value="3">3</option>
-                                                                <option value="4">4</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group mb-0">
-                                                        <div class="text-center col-sm-12">
-                                                            <button type="submit" class="btn btn-default"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                                    <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
-                                                                    <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z" />
-                                                                    <path fill-rule="evenodd" d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5z" />
-                                                                </svg>新增</button>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- /Row -->
+
                 <!-- Row -->
                 <div style="zoom:75%" class="row">
                     <div class="col-sm-12">
@@ -204,16 +82,24 @@
                                 <div class="panel-body">
                                     <div class="table-wrap">
                                         <div class="table-responsive">
-                                            <table class="text-center table-striped" data-toggle="table" data- data-page-size=5 data-search="true" data-pagination="true" data-pagination-parts="[pageList,pageInfo]">
+                                            <div class="text-right">
+                                                <a href="verify_register_user_info.php"><button style="font-size:20px" type="button" class="btn btn-danger"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill-check" viewBox="0 0 16 16">
+                                                <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm1.679-4.493-1.335 2.226a.75.75 0 0 1-1.174.144l-.774-.773a.5.5 0 0 1 .708-.708l.547.548 1.17-1.951a.5.5 0 1 1 .858.514ZM11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+                                                <path d="M2 13c0 1 1 1 1 1h5.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.544-3.393C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4Z"/>
+                                                </svg>
+                                                審核註冊帳號</button></a><br/><br/>
+                                            </div>
+                                            <table class="text-center table-striped user_info_table" data-toggle="table" data- data-page-size=15 data-search="true" data-pagination="true" data-pagination-parts="[pageList,pageInfo]">
                                                 <thead>
                                                     <tr>
                                                         <th>編號</th>
-                                                        <th>單位</th>
                                                         <th>姓名</th>
                                                         <th>職稱</th>
                                                         <th>帳號</th>
                                                         <th>密碼</th>
+                                                        <th>Email</th>
                                                         <th>權限</th>
+                                                        <th>權限設定</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="user_info"></tbody>
@@ -250,7 +136,7 @@
                                                         <path fill-rule="evenodd" d="M10 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm6 5c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
                                                     </svg>
                                                 </div>
-                                                <input type="text" class="form-control" id="modify_name" placeholder="姓名" required>
+                                                <input type="text" class="form-control" id="modify_name" placeholder="姓名" disabled="disabled" required>
                                             </div>
                                         </div>
                                     </div>
@@ -263,7 +149,7 @@
                                                         <path fill-rule="evenodd" d="M10 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm6 5c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
                                                     </svg>
                                                 </div>
-                                                <input type="text" class="form-control" id="modify_acc" placeholder="帳號" required>
+                                                <input type="text" class="form-control" id="modify_acc" placeholder="帳號" disabled="disabled" required>
                                             </div>
                                         </div>
                                     </div>
@@ -276,32 +162,15 @@
                                                         <path fill-rule="evenodd" d="M10 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm6 5c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
                                                     </svg>
                                                 </div>
-                                                <input type="password" class="form-control" id="modify_pass" placeholder="密碼" required>
+                                                <input type="password" class="form-control" id="modify_password" placeholder="密碼" required>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="modify_department" class="col-sm-3 control-label">單位：</label>
-                                        <div class="col-sm-9">
-                                            <select style="margin-top:6px" class="col-sm-12" data-style="btn-primary btn-outline" name="modify_department" id="modify_department">
-<!--                                                <option value="" selected>請選擇單位</option>-->
-                                            </select>
-                                        </div>
-                                    </div>
-                                   <div class="form-group">
                                         <label for="modify_job" class="col-sm-3 control-label">職稱：</label>
                                         <div class="col-sm-9">
                                             <select style="margin-top:6px" class="col-sm-12" data-style="btn-primary btn-outline" name="modify_job" id="modify_job">
-<!--                                                <option value="" selected>請選擇職稱</option>-->
-                                                <option value="社工">社工</option>
-                                                <option value="社工組長">社工組長</option>
-                                                <option value="社工助理">社工助理</option>
-                                                <option value="行政人員">行政人員</option>
-                                                <option value="生活輔導員">生活輔導員</option>
-                                                <option value="生活輔導組長">生活輔導組長</option>
-                                                <option value="主任">主任</option>
-                                                <option value="執行長">執行長</option>
-                                                <option value="執行長秘書">執行長秘書</option>
+                                                <option value="" selected>請選擇職稱</option>
                                             </select>
                                         </div>
                                     </div>
@@ -309,11 +178,7 @@
                                         <label for="modify_classification" class="col-sm-3 control-label">權限等級：</label>
                                         <div class="col-sm-9">
                                             <select style="margin-top:6px" class="col-sm-12" data-style="btn-primary btn-outline" name="modify_classification" id="modify_classification">
-<!--                                                <option value="" selected>請選擇權限</option>-->
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
+                                                <option value="" selected>請選擇權限</option>
                                             </select>
                                         </div>
                                     </div>

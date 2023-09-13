@@ -78,7 +78,18 @@ $(function () {
                             window.location.replace("save_login.php"); 
                         })
                     
-               }else{
+                }
+                else if(data.includes("noallowlogin"))
+                {
+                    swal({
+                        type: 'error',
+                        title: '您的帳號還在審核中，請通知管理員進行審核通過!',
+                        text: '當前登入的帳號還在審核階段，審核通過方可登入',
+                        allowOutsideClick: false //不可點背景關閉
+                    });
+                }
+                else
+                {
                     swal({
                         type: 'error',
                         title: '登入失敗,請重新登入!',
@@ -87,8 +98,8 @@ $(function () {
                             $("#id").val("");
                             $("#pw").val("");
                         })
-               }       
-           },
+                }       
+            },
             error:function(){
                 alert("404!");
            }

@@ -25,7 +25,7 @@ $a = session_id();
       function ReCalculate()
       {
         clearTimeout(oTimerId);
-        oTimerId = setTimeout('Timeout()', 10000 * 60 * 1000);
+        oTimerId = setTimeout('Timeout()', 5 * 60 * 60 * 1000);
       }
 
       document.onmousedown = ReCalculate;

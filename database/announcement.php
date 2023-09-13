@@ -3,7 +3,7 @@
 include("sql_connect.php"); 
 $authority =$_SESSION['authority'];
 //region 抓資料
-$note = "SELECT * FROM `announcement` WHERE `authority` = $authority ORDER BY `datetime` DESC";
+$note = "SELECT * FROM `announcement` WHERE `authority` >= $authority ORDER BY `datetime` DESC";
 $select_note = mysqli_query($conn,$note);
 $data = array();
 $data['title'] = array();

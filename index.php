@@ -379,10 +379,14 @@
                                 </div>
                                 <div class="col-sm-12 text-center">
                                     <select class="col-sm-12" id="ann_authority">
-                                        <option value="1">1-社工</option>
-                                        <option value="2">2-組長</option>
-                                        <option value="3">3-主任</option>
-                                        <option value="4">4-執行長</option>
+                                        <option value="1">1-理事長</option>
+                                        <option value="2">2-執行長</option>
+                                        <option value="3">3-方案組長</option>
+                                        <option value="4">4-公關組長</option>
+                                        <option value="5">5-專案社工</option>
+                                        <option value="6">6-行政人員</option>
+                                        <option value="7">7-社工員</option>
+                                        <option value="8">8-生輔員</option>
                                     </select>
                                 </div>
                             </div>

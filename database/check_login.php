@@ -15,21 +15,29 @@ if($id != null && $pw !=null){
 //搜尋資料庫資料	
 	if($row[2] == $id && $row[3] == $pw)
 	{
-        //將帳號寫入session，方便驗證使用者身份
-		$_SESSION['Account'] = $id; 
-        $_SESSION['acc_id'] = $row[0];
-        $_SESSION['resume_id'] = $row[1];
-        $_SESSION['authority'] = $row[5];
-        $_SESSION['name'] = $row[4];
-        $_SESSION['department'] = $row[7];
-        $_SESSION['job'] = $row[8];
+        if ($row[10] == "已通過") {
 
-        $_SESSION['login']= 10;
-        $_SESSION['pwd'] = $pw;
+            //將帳號寫入session，方便驗證使用者身份
+            $_SESSION['Account'] = $id; 
+            $_SESSION['acc_id'] = $row[0];
+            $_SESSION['resume_id'] = $row[1];
+            $_SESSION['authority'] = $row[5];
+            $_SESSION['name'] = $row[4];
+            // $_SESSION['department'] = $row[7];
+            $_SESSION['job'] = $row[7];
+            $_SESSION['authority_pages'] = $row[8];
+            $_SESSION['login']= 10;
+            $_SESSION['pwd'] = $pw;
 
-        $a = session_id();
+            $a = session_id();
 
-        echo true;
+            echo true;
+        } else {
+            echo "noallowlogin";
+            echo false;
+        }
+        
+        
 	}
     else
     {
