@@ -313,7 +313,7 @@ var $table = $('#tab_all').DataTable({
       "sInfoEmpty": "目前共有 0 筆紀錄",
       "sInfoFiltered": "(由 _MAX_ 筆資料结果過濾)",
       "fnInfoCallback": function (oSettings, iStart, iEnd, iMax, iTotal, sPre) {
-          $("#count_people").text("人次："+iTotal);
+          // $("#count_people").text("人次："+iTotal);
           return sPre
       },
       paginate: {
@@ -330,7 +330,7 @@ var $table = $('#tab_all').DataTable({
   buttons: [
       {
           extend: 'excelHtml5',
-          title: '快樂聯盟員工履歷一覽表',
+          title: "快樂聯盟-"+$(".breadcrumb li").last().text()+"",
           text:'匯出Excel'
       },
   ]
@@ -403,8 +403,8 @@ var date_range = (
 //endregion
 
 //預設總人數人次region
-$("#count_people").text("人次："+$table.column(0).data().count());
-$("#count_people2").text("，人數："+$table.column(0).data().unique().count());
+// $("#count_people").text("人次："+$table.column(0).data().count());
+// $("#count_people2").text("，人數："+$table.column(0).data().unique().count());
 //endregion
 
 $('select.filter').on('change', function () {

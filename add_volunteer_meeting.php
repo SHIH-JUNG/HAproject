@@ -77,23 +77,23 @@
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span><a href="">行政管理</a></span></li>
+                        <li><span><a href="volunteer_meeting.php">行政管理</a></span></li>
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span><a href="">志工管理</a></span></li>
+                        <li><span><a href="volunteer_meeting.php">志工管理</a></span></li>
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span><a href="volunteer_meeting.php">志工會議記錄</a></span></li>
+                        <li><span><a href="volunteer_meeting.php">志工會議記錄及活動</a></span></li>
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span><a href="volunteer_meeting.php">志工會議記錄一覽表</a></span></li>
+                        <li><span><a href="volunteer_meeting.php">志工會議記錄及活動一覽表</a></span></li>
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span>新增志工會議記錄</span></li>
+                        <li><span>新增志工會議記錄及活動</span></li>
                     </ol>
                     <!--/麵包屑-->
                 </div>
@@ -117,7 +117,7 @@
                                     <div class="row">
                                         <div class="col-sm-12 col-xs-12">
                                             <div class="text-center">
-                                                <h4 id="form_type">新增志工會議記錄</h4>
+                                                <h4 id="form_type">新增志工會議記錄及活動</h4>
                                             </div>
                                             <br>
                                             <ul style="font-size:17px" class="nav nav-tabs" id="myTab" role="tablist">
@@ -144,7 +144,7 @@
                                                 </li>
                                                 <li class="nav-item" role="presentation">
                                                     <a class="nav-link" id="profile-tab" data-toggle="pill" href="#five" role="tab" aria-selected="false">
-                                                        <b>上傳會議活動照片</b>
+                                                        <b>上傳會議活動資料及照片</b>
                                                     </a>
                                                 </li>
                                             </ul>
@@ -359,11 +359,11 @@
                                                             <table style="width:80%;" class="table table-bordered">
                                                                 <tr>
                                                                     <td colspan="2">
-                                                                        <h3>上傳會議活動照片</h3>
+                                                                        <h3>上傳會議活動資料及照片</h3>
                                                                     </td>
                                                                 </tr>
                                                                 <tr style="text-align:left">
-                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;">上傳會議活動照片</td>
+                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;">上傳會議活動資料及照片</td>
                                                                     <td style="border-bottom: solid 1px;">
                                                                         <div class="col-sm-12">
                                                                             <input name="meeting_file" type="file" class="form-control" multiple/>

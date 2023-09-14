@@ -660,7 +660,7 @@ $table_1 = $("[name='tab_all_1']").DataTable({
             "sInfoEmpty": "目前共有 0 筆紀錄",
             "sInfoFiltered": "(由 _MAX_ 筆資料结果過濾)",
             "fnInfoCallback": function (oSettings, iStart, iEnd, iMax, iTotal, sPre) {
-                $("#count_people").text("人次："+iTotal);
+                // $("#count_people").text("人次："+iTotal);
                 return sPre
             },
             paginate: {
@@ -677,11 +677,17 @@ $table_1 = $("[name='tab_all_1']").DataTable({
         buttons: [
             {
                 extend: 'excelHtml5',
-                title: '快樂聯盟個案服務表1',
+                title: '快樂聯盟-個案服務報表',
                 text:'匯出Excel'
             },
         ]
     });
+
+    //匯出EXCEL按鈕CSS設定 region
+    $('.buttons-excel').each(function() { 
+        $(this).removeClass('dt-button').addClass('btn btn-default') ;
+    }) 
+    //endregion
 }
 
 
@@ -704,7 +710,7 @@ var $table = $("[name='tab_all_2']").DataTable({
         "sInfoEmpty": "目前共有 0 筆紀錄",
         "sInfoFiltered": "(由 _MAX_ 筆資料结果過濾)",
         "fnInfoCallback": function (oSettings, iStart, iEnd, iMax, iTotal, sPre) {
-            $("#count_people").text("人次："+iTotal);
+            // $("#count_people").text("人次："+iTotal);
             return sPre
         },
         paginate: {
@@ -721,7 +727,7 @@ var $table = $("[name='tab_all_2']").DataTable({
     buttons: [
         {
             extend: 'excelHtml5',
-            title: '快樂聯盟個案服務表2',
+            title: '快樂聯盟-個案服務分析報表',
             text:'匯出Excel'
         },
     ]
@@ -755,8 +761,8 @@ var ages_range = (function( settings, data, dataIndex ) {
 });
 
 //預設總人數人次region
-$(".count_people").text("人次："+$table.column(0).data().count());
-$(".count_people2").text("，人數："+$table.column(0).data().unique().count());
+// $(".count_people").text("人次："+$table.column(0).data().count());
+// $(".count_people2").text("，人數："+$table.column(0).data().unique().count());
 //endregion
 
 //額外設定select

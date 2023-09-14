@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： localhost
--- 產生時間： 2023-09-13 14:44:08
+-- 產生時間： 2023-09-14 12:08:12
 -- 伺服器版本： 10.4.28-MariaDB
 -- PHP 版本： 8.2.4
 
@@ -1127,7 +1127,13 @@ INSERT INTO `form_all_info` (`Id`, `Case_seqid`, `Case_id`, `Case_name`, `Case_p
 (77, '12', '442', 'wu小姐', 'E225488729', 0, 'case_detail.php?name=wu小姐&gender=其他&pid=E225488729&date=2023-07-20&property=自立宿舍&type=愛滋感染者&grade=B&id=12&open_id=442&referral=醫院&case_Create_date=2023-07-20&unopen_type=phone&birth=2004-06-22', '', 0, 'employment_satif', '2023-07-20', '', '\"[{\"name\":\"employment_satif\",\"value\":\"40\"}]\"', 'storage', '', '2023-07-20 00:00:00', '花花', '2023-07-20 11:46:41', '花花', '社工員1', '', '', '', '社工員2', '', '', ''),
 (78, '12', '442', 'wu小姐', 'E225488729', 0, 'case_detail.php?name=wu小姐&gender=其他&pid=E225488729&date=2023-07-20&property=自立宿舍&type=愛滋感染者&grade=B&id=12&open_id=442&referral=醫院&case_Create_date=2023-07-20&unopen_type=phone&birth=2004-06-22', '', 0, 'satif', '2023-07-20', '', '\"[{\"name\":\"satif\",\"value\":\"60\"}]\"', 'storage', '', '2023-07-20 00:00:00', '花花', '2023-07-20 11:48:19', '花花', '社工員1', '', '', '', '社工員2', '', '', ''),
 (79, '12', '442', 'wu小姐', 'E225488729', 0, 'case_detail.php?name=wu小姐&gender=其他&pid=E225488729&date=2023-07-20&property=自立宿舍&type=愛滋感染者&grade=B&id=12&open_id=442&referral=醫院&case_Create_date=2023-07-20&unopen_type=phone&birth=2004-06-22', '', 0, 'familyship', '2023-07-20', '', '\"[{\"name\":\"familyship\",\"value\":\"40\"},{\"name\":\"familyship\",\"value\":\"\"}]\"', 'storage', '', '2023-07-20 00:00:00', '花花', '2023-07-20 11:53:02', '花花', '社工員1', '', '', '', '社工員2', '', '', ''),
-(80, '12', '442', 'wu小姐', 'E225488729', 0, 'case_detail.php?name=wu小姐&gender=其他&pid=E225488729&date=2023-07-20&property=自立宿舍&type=愛滋感染者&grade=B&id=12&open_id=442&referral=醫院&case_Create_date=2023-07-20&unopen_type=phone&birth=2004-06-22', '', 0, 'settlement', '2023-07-20', '', '\"[{\"name\":\"settlement\",\"value\":\"符合基本條件指標條件共4項，符合收案指標條件共4項。\"}]\"', 'storage', '', '2023-07-20 00:00:00', '花花', '2023-07-20 11:57:26', '花花', '社工員1', '', '', '', '社工員2', '', '', '');
+(80, '12', '442', 'wu小姐', 'E225488729', 0, 'case_detail.php?name=wu小姐&gender=其他&pid=E225488729&date=2023-07-20&property=自立宿舍&type=愛滋感染者&grade=B&id=12&open_id=442&referral=醫院&case_Create_date=2023-07-20&unopen_type=phone&birth=2004-06-22', '', 0, 'settlement', '2023-07-20', '', '\"[{\"name\":\"settlement\",\"value\":\"符合基本條件指標條件共4項，符合收案指標條件共4項。\"}]\"', 'storage', '', '2023-07-20 00:00:00', '花花', '2023-07-20 11:57:26', '花花', '社工員1', '', '', '', '社工員2', '', '', ''),
+(83, '1', 'RE111', 'test', 'T1334356112', 0, 'case_detail.php?name=test&gender=男&pid=T1334356112&date=2021-08-08&property=安置家園&type=藥癮家庭&grade=B&id=1&open_id=RE111&referral=其他&case_Create_date=2021-08-08&unopen_type=phone&birth=1991-02-03', '', 0, 'resource', '0000-00-00', '888', '', '', '', '2023-09-14 00:00:00', 'jia', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', ''),
+(84, '1', 'RE111', 'test', 'T1334356112', 0, 'case_detail.php?name=test&gender=男&pid=T1334356112&date=2021-08-08&property=安置家園&type=藥癮家庭&grade=B&id=1&open_id=RE111&referral=其他&case_Create_date=2021-08-08&unopen_type=phone&birth=1991-02-03', '', 0, 'life', '2023-09-12', '', '', '', '', '2023-09-14 00:00:00', 'jia', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', ''),
+(85, '1', 'RE111', 'test', 'T1334356112', 0, 'case_detail.php?name=test&gender=男&pid=T1334356112&date=2021-08-08&property=安置家園&type=藥癮家庭&grade=B&id=1&open_id=RE111&referral=其他&case_Create_date=2021-08-08&unopen_type=phone&birth=1991-02-03', '', 0, 'health', '2023-09-06', '', '', '', '', '2023-09-14 00:00:00', 'jia', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', ''),
+(86, '1', 'RE111', 'test', 'T1334356112', 0, 'case_detail.php?name=test&gender=男&pid=T1334356112&date=2021-08-08&property=安置家園&type=藥癮家庭&grade=B&id=1&open_id=RE111&referral=其他&case_Create_date=2021-08-08&unopen_type=phone&birth=1991-02-03', '', 0, 'employment_satif', '2023-09-05', '', '', '', '', '2023-09-14 00:00:00', 'jia', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', ''),
+(87, '1', 'RE111', 'test', 'T1334356112', 0, 'case_detail.php?name=test&gender=男&pid=T1334356112&date=2021-08-08&property=安置家園&type=藥癮家庭&grade=B&id=1&open_id=RE111&referral=其他&case_Create_date=2021-08-08&unopen_type=phone&birth=1991-02-03', '', 0, 'familyship', '2023-09-04', '', '', '', '', '2023-09-14 00:00:00', 'jia', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', ''),
+(88, '1', 'RE111', 'test', 'T1334356112', 0, 'case_detail.php?name=test&gender=男&pid=T1334356112&date=2021-08-08&property=安置家園&type=藥癮家庭&grade=B&id=1&open_id=RE111&referral=其他&case_Create_date=2021-08-08&unopen_type=phone&birth=1991-02-03', '', 0, 'settlement', '2023-09-07', '', '', '', '', '2023-09-14 00:00:00', 'jia', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -1513,7 +1519,12 @@ INSERT INTO `login_record` (`Id`, `Login_timestamp`, `Login_account`, `Login_aut
 (236, '2023-09-12 23:28:00', 'test3', '3', '社工組長', '24.1769764,120.6424333', 0),
 (237, '2023-09-12 23:36:49', 'test3', '3', '社工組長', '24.1769764,120.6424333', 0),
 (238, '2023-09-13 16:12:21', 'test3', '3', '社工組長', '22.593877,120.48887', 1),
-(239, '2023-09-13 19:21:30', 'test3', '3', '社工組長', '22.6478587,120.6119873', 0);
+(239, '2023-09-13 19:21:30', 'test3', '3', '社工組長', '22.6478587,120.6119873', 0),
+(240, '2023-09-14 13:12:17', 'test3', '3', '社工組長', '22.599065814476354,120.55944537278793', 1),
+(241, '2023-09-14 13:38:47', 'testuser', '5', 'jia', '22.599066871725896,120.55944512459295', 1),
+(242, '2023-09-14 13:40:22', 'test3', '3', '社工組長', '22.599066871725896,120.55944512459295', 0),
+(243, '2023-09-14 13:50:19', 'test3', '3', '社工組長', '22.6483444,120.3262535', 0),
+(244, '2023-09-14 13:50:34', 'testuser', '5', 'jia', '22.599067,120.559445', 0);
 
 -- --------------------------------------------------------
 
@@ -3422,7 +3433,7 @@ ALTER TABLE `forms`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `form_all_info`
 --
 ALTER TABLE `form_all_info`
-  MODIFY `Id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+  MODIFY `Id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `form_case_report`
@@ -3446,7 +3457,7 @@ ALTER TABLE `leave_rule_table`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `login_record`
 --
 ALTER TABLE `login_record`
-  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=240;
+  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=245;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `members_assemble`

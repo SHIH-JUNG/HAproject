@@ -552,7 +552,7 @@ signature_btn_click = function(sign_board_name) {
       break;
 
     case "social_worker":
-      type_name = "社工員";
+      type_name = "志工督導";
       
       break;
   }
@@ -736,7 +736,7 @@ function check_updat_volunteer_data() {
     errorstr += "服務時間未填寫完整!\r\n";
   }
   if (social_worker == null) {
-    errorstr += "未填寫社工員!\r\n";
+    errorstr += "未填寫志工督導!\r\n";
   }
   if (director == null) {
     errorstr += "未填寫主管!\r\n";
@@ -757,7 +757,7 @@ function check_updat_volunteer_data() {
       errorstr += "服務時間未填寫完整!\r\n";
     }
     if (social_worker.replace(/\s*/g, "") == "") {
-      errorstr += "未填寫社工員!\r\n";
+      errorstr += "未填寫志工督導!\r\n";
     }
     if (director.replace(/\s*/g, "") == "") {
       errorstr += "未填寫主管!\r\n";

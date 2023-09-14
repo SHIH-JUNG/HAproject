@@ -149,7 +149,7 @@ var $table_1 = $("[name='tab_all_1']").DataTable({
         "sInfoEmpty": "目前共有 0 筆紀錄",
         "sInfoFiltered": "(由 _MAX_ 筆資料结果過濾)",
         "fnInfoCallback": function (oSettings, iStart, iEnd, iMax, iTotal, sPre) {
-            $("#count_people").text("人次："+iTotal);
+            // $("#count_people").text("人次："+iTotal);
             return sPre
         },
         paginate: {
@@ -166,7 +166,7 @@ var $table_1 = $("[name='tab_all_1']").DataTable({
     buttons: [
         {
             extend: 'excelHtml5',
-            title: '快樂聯盟員工打卡紀錄表',
+            title: '快樂聯盟-員工打卡紀錄表',
             text:'匯出Excel'
         },
     ]
@@ -193,7 +193,7 @@ var $table = $("[name='tab_all_2']").DataTable({
         "sInfoEmpty": "目前共有 0 筆紀錄",
         "sInfoFiltered": "(由 _MAX_ 筆資料结果過濾)",
         "fnInfoCallback": function (oSettings, iStart, iEnd, iMax, iTotal, sPre) {
-            $("#count_people").text("人次："+iTotal);
+            // $("#count_people").text("人次："+iTotal);
             return sPre
         },
         paginate: {
@@ -210,7 +210,7 @@ var $table = $("[name='tab_all_2']").DataTable({
     buttons: [
         {
             extend: 'excelHtml5',
-            title: '快樂聯盟員工出勤紀錄表',
+            title: '快樂聯盟-員工出勤紀錄表',
             text:'匯出Excel'
         },
     ]
@@ -227,8 +227,8 @@ function parseTime( t ) {
 
 
 //預設總人數人次region
-$(".count_people").text("人次："+$table.column(0).data().count());
-$(".count_people2").text("，人數："+$table.column(0).data().unique().count());
+// $(".count_people").text("人次："+$table.column(0).data().count());
+// $(".count_people2").text("，人數："+$table.column(0).data().unique().count());
 //endregion
 
 //額外設定select

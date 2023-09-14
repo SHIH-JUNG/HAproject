@@ -77,7 +77,7 @@
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span><a href="index.php">行政管理</a></span></li>
+                        <li><span><a href="day_off.php">行政管理</a></span></li>
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
@@ -142,7 +142,7 @@
                                                                     <input name="day_off_type" style="zoom: 1.5" value="婚假" type="radio"><span>婚假</span>
                                                                     <input name="day_off_type" style="zoom: 1.5" value="生理假" type="radio"><span>生理假</span>
                                                                     <input name="day_off_type" style="zoom: 1.5" value="喪假" type="radio"><span>喪假</span>
-                                                                    <input name="day_off_type" style="zoom: 1.5" value="慰假假" type="radio"><span>慰假假</span><br/>
+                                                                    <input name="day_off_type" style="zoom: 1.5" value="慰問假" type="radio"><span>慰問假</span><br/>
                                                                     <input name="day_off_type" style="zoom: 1.5" value="其它" type="radio"><span>其它：</span>
                                                                     <input name="day_off_type_other" type="text" style="width:35%;">
                                                                 </td>

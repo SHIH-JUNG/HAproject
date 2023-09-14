@@ -161,7 +161,7 @@ var $table = $("[name='tab_all']").DataTable({
       sInfoEmpty: "目前共有 0 筆紀錄",
       sInfoFiltered: "(由 _MAX_ 筆資料结果過濾)",
       fnInfoCallback: function (oSettings, iStart, iEnd, iMax, iTotal, sPre) {
-        $("#count_people").text("人次：" + iTotal);
+        // $("#count_people").text("人次：" + iTotal);
         return sPre;
       },
       paginate: {
@@ -186,8 +186,8 @@ var $table = $("[name='tab_all']").DataTable({
 
   
   //預設總人數人次region
-  $(".count_people").text("人次：" + $table.column(0).data().count());
-  $(".count_people2").text("，人數：" + $table.column(0).data().unique().count());
+  // $(".count_people").text("人次：" + $table.column(0).data().count());
+  // $(".count_people2").text("，人數：" + $table.column(0).data().unique().count());
   //endregion
   
   

@@ -1,5 +1,3 @@
-<h4>員工請假紀錄</h4>
-    <br>
     <h4>查詢</h4>
     <div　class="col-sm-12" id="toolbar">
         <div class="col-sm-12">
@@ -41,7 +39,7 @@
         </div>
     </div>
     <br>
-    <h4>請假紀錄</h4>
+    <h4>請假紀錄一覽表</h4>
     <br>
     <div id="day_off_remain_hit_area" style="color:blue;">
         今年度特休時數：--小時，今年度加班時數：--小時，今年度請假時數：--小時

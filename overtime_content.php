@@ -1,5 +1,3 @@
-<h4>員工加班紀錄</h4>
-<br>
 <h4>查詢</h4>
 <div　class="col-sm-12" id="toolbar">
     <div class="col-sm-12">
@@ -29,7 +27,7 @@
     </div>
 </div>
 <br>
-<h4>加班紀錄</h4>
+<h4>加班紀錄一覽表</h4>
 <br>
 <div id="day_off_remain_hit_area" style="color:blue;">
     員工姓名：<?php echo $_SESSION["name"]; ?>

@@ -1,5 +1,3 @@
-<h4>員工加班紀錄</h4>
-<br>
 <h4>查詢</h4>
 <div　class="col-sm-12" id="toolbar">
     <div class="col-sm-12">
@@ -38,7 +36,7 @@
     </div>
 </div>
 <br>
-<h4>加班紀錄</h4>
+<h4>加班紀錄一覽表</h4>
 <div class="table-wrap">
     <div class="table-responsive">
         <table class="table display table-hover dataTable no-footer" style="font-size:15px;font-family:微軟正黑體;width:100%" id="tab_all" data-toolbar="#toolbar">

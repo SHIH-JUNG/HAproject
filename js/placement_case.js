@@ -120,7 +120,7 @@ var $table = $('#tab_placement_case').DataTable({
     buttons: [
         {
             extend: 'excelHtml5',
-            title: '快樂聯盟安置評估總表',
+            title: "快樂聯盟-"+$(".breadcrumb li").last().text()+"",
             text:'匯出Excel'
         },
     ]
@@ -176,7 +176,7 @@ $('select.filter').on('change', function () {
 
 //預設總人數人次region
 //$("#count_people").text("人次："+$table.column(0).data().count());
-$("#count_people2").text("人數："+$table.column(0).data().unique().count());
+// $("#count_people2").text("人數："+$table.column(0).data().unique().count());
 //endregion
 
 $('#min, #max').keyup( function() {        

@@ -331,7 +331,7 @@ function check_add_volunteer_data() {
     errorstr += "服務時間未填寫完整!\r\n";
   }
   if (social_worker == null) {
-    errorstr += "未填寫社工員!\r\n";
+    errorstr += "未填寫志工督導!\r\n";
   }
   if (director == null) {
     errorstr += "未填寫主管!\r\n";
@@ -352,7 +352,7 @@ function check_add_volunteer_data() {
       errorstr += "服務時間未填寫完整!\r\n";
     }
     if (social_worker.replace(/\s*/g, "") == "") {
-      errorstr += "未填寫社工員!\r\n";
+      errorstr += "未填寫志工督導!\r\n";
     }
     if (director.replace(/\s*/g, "") == "") {
       errorstr += "未填寫主管!\r\n";
