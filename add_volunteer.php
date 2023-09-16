@@ -115,7 +115,7 @@
                                             <div class="col-sm-12 text-center">
                                                 <div class="table-wrap">
                                                     <div class="table-responsive">
-                                                        <table style="width:55%;" class="table table-bordered">
+                                                        <table style="width:75%;" class="table table-bordered">
                                                             <tr>
                                                                 <td colspan="2">
                                                                     <h3>新增志工資料</h3>

@@ -162,7 +162,7 @@
                                                                 </div>
                                                                 <div id="collapseTwo" class="collapse in" aria-labelledby="headingTwo" data-parent="#accordionExample">
                                                                     <div class="panel-body scr_container">
-                                                                        <table id="all_data" style="width:55%;display:table !important;" class="table table-bordered">
+                                                                        <table id="all_data" style="width:75%;display:table !important;" class="table table-bordered">
                                                                             
                                                                             <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;width:15em;"><i class="fillin_need" style="color:red;">※</i>年度</td>

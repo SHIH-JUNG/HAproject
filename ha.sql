@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： localhost
--- 產生時間： 2023-09-14 12:08:12
+-- 產生時間： 2023-09-16 06:37:08
 -- 伺服器版本： 10.4.28-MariaDB
 -- PHP 版本： 8.2.4
 
@@ -216,7 +216,6 @@ INSERT INTO `accounting_record_report` (`Id`, `Report_year`, `Report_type`, `Rep
 (9, '111', '年報表', '../accounting_record_report/個案管理系統行政管理1012.docx', '個案管理系統行政管理1012.docx', '年年有餘', '111/12/08', '555', '2022-12-08 11:56:06', '花花', '2022-12-08 11:56:06', ''),
 (10, '111', '現金報表', '../accounting_record_report/個案管理系統測試20221011(05).docx', '個案管理系統測試20221011(05).docx', '現金ㄟ報表', '111/12/08', '讚', '2022-12-08 11:56:37', '花花', '2022-12-08 11:56:37', ''),
 (11, '111', '記帳士報表', '../accounting_record_report/個案管理系統行政管理1012.docx', '個案管理系統行政管理1012.docx', '1208', '111/12/08', '1208', '2022-12-08 11:56:53', '花花', '2022-12-08 11:56:53', ''),
-(12, 'R', '月報表', '../accounting_record_report/plan_doc1.docx', 'plan_doc1.docx', 'plan', 'R/12/20', '', '2022-12-29 12:50:39', '社工員1', '2022-12-29 14:11:19', '社工員1'),
 (13, '111', '年報表', '../accounting_record_report/plan_doc1.docx', 'plan_doc1.docx', 'plan', '111/12/16', '', '2022-12-29 12:51:02', '社工員1', '2022-12-29 12:51:02', '');
 
 -- --------------------------------------------------------
@@ -239,7 +238,8 @@ CREATE TABLE `announcement` (
 
 INSERT INTO `announcement` (`Id`, `title`, `authority`, `publisher`, `datetime`) VALUES
 (1, 'testaaaaaa', 7, '社工組長', '2023-09-12'),
-(2, 'asdadasd', 3, '社工組長', '2023-09-12');
+(2, 'asdadasd', 3, '社工組長', '2023-09-12'),
+(3, '9月22日-團督會議', 3, '社工組長', '2023-09-16');
 
 -- --------------------------------------------------------
 
@@ -413,7 +413,10 @@ INSERT INTO `calendar` (`id`, `title`, `description`, `start`, `end`, `publisher
 (115, 'fffg(2023-07-04)在職訓練', 'https://140.127.22.2/HappyAlliance/HAproject/training_detail.php?id=55&training_id=0', '2023-07-04 12:30', '2023-07-04 13:30', '執行長', '', '2023-07-14 13:01:33'),
 (116, 'fffg(2023-07-11)在職訓練', 'https://140.127.22.2/HappyAlliance/HAproject/training_detail.php?id=55&training_id=0', '2023-07-11 12:30', '2023-07-11 13:30', '執行長', '', '2023-07-14 13:01:44'),
 (117, 'wu先生(2023-07-20)監所服務-訪談', 'https://140.127.22.2/HappyAlliance/HAproject/counsel_detail.php?id=7&counsel_id=9527', '2023-07-20 12:00', '2023-07-20 13:00', '花花', '', '2023-07-20 10:19:28'),
-(118, 'cccc(2023-08-10)在職訓練', 'https://140.127.22.2/HappyAlliance/HAproject/training_detail.php?id=67&training_id=3', '2023-08-10 12:00', '2023-08-10 13:00', '社工員1', '', '2023-08-09 13:15:29');
+(118, 'cccc(2023-08-10)在職訓練', 'https://140.127.22.2/HappyAlliance/HAproject/training_detail.php?id=67&training_id=3', '2023-08-10 12:00', '2023-08-10 13:00', '社工員1', '', '2023-08-09 13:15:29'),
+(119, '內部開會', '內部開會\n時間：1400', '2023-09-12 14:00', '2023-09-12 16:00', '社工組長', '', '2023-09-16 12:29:27'),
+(120, '出訪', '8:00', '2023-09-12 08:00', '2023-09-12 12:00', '社工組長', '', '2023-09-16 12:29:50'),
+(121, '團督會議', 'test', '2023-09-22 13:00', '2023-09-22 16:00', '社工組長', '', '2023-09-16 12:30:19');
 
 -- --------------------------------------------------------
 
@@ -1524,7 +1527,13 @@ INSERT INTO `login_record` (`Id`, `Login_timestamp`, `Login_account`, `Login_aut
 (241, '2023-09-14 13:38:47', 'testuser', '5', 'jia', '22.599066871725896,120.55944512459295', 1),
 (242, '2023-09-14 13:40:22', 'test3', '3', '社工組長', '22.599066871725896,120.55944512459295', 0),
 (243, '2023-09-14 13:50:19', 'test3', '3', '社工組長', '22.6483444,120.3262535', 0),
-(244, '2023-09-14 13:50:34', 'testuser', '5', 'jia', '22.599067,120.559445', 0);
+(244, '2023-09-14 13:50:34', 'testuser', '5', 'jia', '22.599067,120.559445', 0),
+(245, '2023-09-14 18:21:13', 'test3', '3', '社工組長', '22.59396,120.488805', 0),
+(246, '2023-09-15 13:52:00', 'test3', '3', '社工組長', '22.593817,120.48880199999999', 1),
+(247, '2023-09-15 13:52:47', 'testuser', '5', 'jia', '22.593817,120.48880199999999', 1),
+(248, '2023-09-15 14:28:23', 'test3', '3', '社工組長', '22.593877,120.48887', 0),
+(249, '2023-09-16 12:18:43', 'testuser', '5', 'jia', '22.593919,120.488807', 1),
+(250, '2023-09-16 12:28:32', 'test3', '3', '社工組長', '22.593919,120.488807', 1);
 
 -- --------------------------------------------------------
 
@@ -2502,7 +2511,10 @@ INSERT INTO `sign_notice` (`Id`, `file_name`, `authority`, `date`, `person`, `da
 (78, 'fffg(2023-07-04)在職訓練', 1, '0000-00-00', '執行長', '2023-07-04 12:30', '、、'),
 (79, 'fffg(2023-07-11)在職訓練', 1, '0000-00-00', '執行長', '2023-07-11 12:30', '、、'),
 (80, 'wu先生(2023-07-20)監所服務-訪談', 1, '0000-00-00', '花花', '2023-07-20 12:00', 'ㄓㄜㄒㄧㄢ、、'),
-(81, 'cccc(2023-08-10)在職訓練', 1, '0000-00-00', '社工員1', '2023-08-10 12:00', '、、');
+(81, 'cccc(2023-08-10)在職訓練', 1, '0000-00-00', '社工員1', '2023-08-10 12:00', '、、'),
+(82, '內部開會', 1, '0000-00-00', '社工組長', '2023-09-12 14:00', '、'),
+(83, '出訪', 1, '0000-00-00', '社工組長', '2023-09-12 08:00', '、'),
+(84, '團督會議', 1, '0000-00-00', '社工組長', '2023-09-22 13:00', '、');
 
 -- --------------------------------------------------------
 
@@ -2795,8 +2807,9 @@ CREATE TABLE `visit_index` (
 --
 
 INSERT INTO `visit_index` (`Id`, `Visit_title`, `Visit_time`, `Visit_assign1`, `Visit_assign2`, `Visit_end_time`, `Remark`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
-(1, 'test社工訪視', '2023-09-07 09:30:00', '社工員1', '社工員2', NULL, '', '2023-09-07 19:09:01', '園主任', '2023-09-07 19:09:01', ''),
-(2, 'testaaaaaaaaa', '2023-09-06 08:20:00', '社工員2', '丘培民', '2023-09-07 15:30:00', 'test\n訪視結束15:30', '2023-09-07 20:01:44', '園主任', '2023-09-07 20:26:24', '園主任');
+(1, 'test社工訪視', '2023-09-07 09:30:00', '社工員1', '社工員2', '2023-09-07 12:00:00', '', '2023-09-07 19:09:01', '園主任', '2023-09-16 12:31:45', '社工組長'),
+(2, 'testaaaaaaaaa', '2023-09-06 08:20:00', '社工員2', '丘培民', '2023-09-07 15:30:00', 'test\n訪視結束15:30', '2023-09-07 20:01:44', '園主任', '2023-09-07 20:26:24', '園主任'),
+(3, '社工訪視1', '2023-09-15 14:30:00', '社工組長', '社工員2', NULL, '', '2023-09-16 12:31:16', '社工組長', '2023-09-16 12:31:16', '');
 
 -- --------------------------------------------------------
 
@@ -3373,7 +3386,7 @@ ALTER TABLE `accounting_record_report`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `announcement`
 --
 ALTER TABLE `announcement`
-  MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `board_supervisor`
@@ -3385,7 +3398,7 @@ ALTER TABLE `board_supervisor`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `calendar`
 --
 ALTER TABLE `calendar`
-  MODIFY `id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
+  MODIFY `id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `case_report`
@@ -3457,7 +3470,7 @@ ALTER TABLE `leave_rule_table`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `login_record`
 --
 ALTER TABLE `login_record`
-  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=245;
+  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=251;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `members_assemble`
@@ -3577,7 +3590,7 @@ ALTER TABLE `signature_notice`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `sign_notice`
 --
 ALTER TABLE `sign_notice`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `supervisor_record`
@@ -3613,7 +3626,7 @@ ALTER TABLE `user_info_default_auth`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `visit_index`
 --
 ALTER TABLE `visit_index`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `volunteer`

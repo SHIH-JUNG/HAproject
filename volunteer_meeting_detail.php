@@ -184,7 +184,7 @@
                                                                 </div>
                                                                 <div id="collapseOne" class="collapse in" aria-labelledby="headingOne" data-parent="#accordionExample">
                                                                     <div class="panel-body scr_container">
-                                                                        <table id="all_data" style="width:55%;display:table !important;" class="table table-bordered">
+                                                                        <table id="all_data" style="width:65%;display:table !important;" class="table table-bordered">
                                                                             <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;width:12em;"><i class="fillin_need" style="color:red;">※</i>會議名稱</td>
                                                                                 <td style="border-bottom: solid 1px;"><div class="col-sm-10"><input class="vom_question" id="title_name" name="title_name" type="text" style="width:100%;"></div></td>
@@ -385,7 +385,7 @@
                                                                 </div>
                                                                 <div id="collapseFour" class="collapse in" aria-labelledby="headingFour" data-parent="#accordionExample">
                                                                     <div class="panel-body scr_container">
-                                                                        <table id="all_data" style="width:55%;display:table !important;" class="table table-bordered">
+                                                                        <table id="all_data" style="width:65%;display:table !important;" class="table table-bordered">
                                                                             <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;">閱後簽名檔案上傳</td>
                                                                                 <td style="border-bottom: solid 1px;">
@@ -409,14 +409,14 @@
                                                         </div>
                                                         <div class="table-wrap">
                                                             <div class="table-responsive col-sm-12 text-center">
-                                                                <table style="width:80%;" class="table table-bordered">
+                                                                <table style="width:75%;" class="table table-bordered">
                                                                     <tr>
                                                                         <td colspan="2">
                                                                             <h3>上傳會議活動資料及照片</h3>
                                                                         </td>
                                                                     </tr>
                                                                     <tr style="text-align:left">
-                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;width:12em;">上傳會議活動資料及照片</td>
+                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;width:12em;">上傳會議活動<br/>資料及照片</td>
                                                                         <td style="border-bottom: solid 1px;">
                                                                             <div class="col-sm-12">
                                                                                 <!-- <input name="meeting_file" type="file" class="form-control" multiple/>
