@@ -187,9 +187,11 @@
                                                                 <table id="case_all" style="width:auto;" class="table table-bordered">
                                                                     <th>建立日期</th>
                                                                     <th>填表日期</th>
+                                                                    <th>類型</th>
                                                                     <th>評估結果</th>
-                                                                    <th>評估表內容</th>
+                                                                    <th>檔案名稱/<br/>評估表內容</th>
                                                                     <th>備註</th>
+                                                                    <th>修改/刪除</th>
                                                                     <th>簽核狀態</th>
                                                                     <th></th>
                                                                     <tbody id="case_full_add"></tbody>
@@ -226,11 +228,13 @@
                                                                 </div>
                                                                 <table id="interlocution_all" style="width:auto;" class="table table-bordered">
                                                                     <th>建立日期</th>
+                                                                    <th>類型</th>
                                                                     <th>會談日期</th>
                                                                     <th>問題陳述</th>
                                                                     <th>社工/關懷員</th>
-                                                                    <th>會談紀錄內容</th>
+                                                                    <th>檔案名稱/<br/>會談紀錄內容</th>
                                                                     <th>備註</th>
+                                                                    <th>修改/刪除</th>
                                                                     <th>簽核狀態</th>
                                                                     <th></th>
                                                                     <tbody id="interlocution_full_add"></tbody>
@@ -265,8 +269,10 @@
                                                                 </div>
                                                                 <table id="resource_all" style="width:auto;" class="table table-bordered">
                                                                     <th>建立日期</th>
-                                                                    <th>表格內容</th>
+                                                                    <th>類型</th>
+                                                                    <th>檔案名稱/<br/>表格內容</th>
                                                                     <th>備註</th>
+                                                                    <th>修改/刪除</th>
                                                                     <th>簽核狀態</th>
                                                                     <th></th>
                                                                     <tbody id="resource_full_add"></tbody>
@@ -302,12 +308,14 @@
                                                                 <table id="life_all" style="width:auto;" class="table table-bordered">
                                                                     <th>建立日期</th>
                                                                     <th>填表日期</th>
+                                                                    <th>類型</th>
                                                                     <th>得分/結果</th>
                                                                     <th>前/中/後測</th>
-                                                                    <th>量表內容</th>
+                                                                    <th>檔案名稱/<br/>量表內容</th>
                                                                     <th>備註</th>
+                                                                    <th>修改/刪除</th>
                                                                     <th>簽核狀態</th>
-                                                                    <th></th>
+                                                                    <th style="width:5em;"></th>
                                                                     <tbody id="life_full_add"></tbody>
                                                                 </table>
                                                                 <div class="text-right" style="font-size:16px;color:red;">※點擊簽核狀態已簽章藍字查看留言內容</div>
@@ -343,8 +351,10 @@
                                                                 <table id="health_all" style="width:auto;" class="table table-bordered">
                                                                     <th>建立日期</th>
                                                                     <th>填表日期</th>
-                                                                    <th>量表內容</th>
+                                                                    <th>類型</th>
+                                                                    <th>檔案名稱/<br/>量表內容</th>
                                                                     <th>備註</th>
+                                                                    <th>修改/刪除</th>
                                                                     <th>簽核狀態</th>
                                                                     <th></th>
                                                                     <tbody id="health_full_add"></tbody>
@@ -414,9 +424,11 @@
                                                                 <table id="employment_satif_all" style="width:auto;" class="table table-bordered">
                                                                         <th>建立日期</th>
                                                                         <th>填表日期</th>
+                                                                        <th>類型</th>
                                                                         <th>總分</th>
-                                                                        <th>量表內容</th>
+                                                                        <th>檔案名稱/<br/>量表內容</th>
                                                                         <th>備註</th>
+                                                                        <th>修改/刪除</th>
                                                                         <th>簽核狀態</th>
                                                                     <th></th>
                                                                         <tbody id="employment_satif_full_add"></tbody>
@@ -454,9 +466,11 @@
                                                                 <table id="satif_all" style="width:auto;" class="table table-bordered">
                                                                         <th>建立日期</th>
                                                                         <th>填表日期</th>
+                                                                        <th>類型</th>
                                                                         <th>總分</th>
-                                                                        <th>量表內容</th>
+                                                                        <th>檔案名稱/<br/>量表內容</th>
                                                                         <th>備註</th>
+                                                                        <th>修改/刪除</th>
                                                                         <th>簽核狀態</th>
                                                                     <th></th>
                                                                         <tbody id="satif_full_add"></tbody>
@@ -494,10 +508,12 @@
                                                                 <table id="familyship_all" style="width:auto;" class="table table-bordered">
                                                                         <th>建立日期</th>
                                                                         <th>填表日期</th>
+                                                                        <th>類型</th>
                                                                         <th>總分</th>
                                                                         <th>前/中/後測</th>
-                                                                        <th>量表內容</th>
+                                                                        <th>檔案名稱/<br/>量表內容</th>
                                                                         <th>備註</th>
+                                                                        <th>修改/刪除</th>
                                                                         <th>簽核狀態</th>
                                                                     <th></th>
                                                                         <tbody id="familyship_full_add"></tbody>
@@ -530,7 +546,7 @@
                                                                         <th>類型</th>
                                                                         <th>總分</th>
                                                                         <th>處置情形</th>
-                                                                        <th>檔案名稱/量表內容</th>
+                                                                        <th>檔案名稱/<br/>量表內容</th>
                                                                         <th>備註</th>
                                                                         <th>修改/刪除</th>
                                                                         <th>簽核狀態</th>
@@ -541,7 +557,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <button id="BSRS5_add_new" class="btn btn-default" onclick="form_BSRS5_add_new(this)">新增</button>
+                                                        <button id="BSRS5_add_new" class="btn btn-default" onclick="form_add_new(this)">新增</button>
                                                         <button onclick="back_case_all_all();" class="btn btn-default"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-skip-backward-fill" viewBox="0 0 16 16">
                                                             <path d="M.5 3.5A.5.5 0 0 0 0 4v8a.5.5 0 0 0 1 0V8.753l6.267 3.636c.54.313 1.233-.066 1.233-.697v-2.94l6.267 3.636c.54.314 1.233-.065 1.233-.696V4.308c0-.63-.693-1.01-1.233-.696L8.5 7.248v-2.94c0-.63-.692-1.01-1.233-.696L1 7.248V4a.5.5 0 0 0-.5-.5z"/>
                                                             </svg>返回</button>
@@ -564,9 +580,11 @@
                                                                 <table id="settlement_all" style="width:auto;" class="table table-bordered">
                                                                     <th>建立日期</th>
                                                                     <th>填表日期</th>
+                                                                    <th>類型</th>
                                                                     <th>評估結果</th>
-                                                                    <th>評估表內容</th>
+                                                                    <th>檔案名稱/<br/>評估表內容</th>
                                                                     <th>備註</th>
+                                                                    <th>修改/刪除</th>
                                                                     <th>簽核狀態</th>
                                                                     <th></th>
                                                                     <tbody id="settlement_full_add"></tbody>

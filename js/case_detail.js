@@ -1715,7 +1715,6 @@ function get_case_report_datas(form_type) {
                         break;
                 }
             }
-           
             break;
         case "employment_satif":
             if(listen_form_change.length>0)

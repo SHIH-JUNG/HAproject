@@ -179,7 +179,7 @@ function load_each_form()
                     {
                         if(supervise1_sign_arr[0] != "")
                         {
-                            sign_str += supervise1_sign_arr[0] + supervise1_sign_arr[1] + "\r\n";
+                            sign_str += supervise1_sign_arr[0] + supervise1_sign_arr[1] + "<br/>";
                         }
 
                         if(supervise2_sign_arr[0] != "")
@@ -220,7 +220,7 @@ function load_each_form()
                         //獲取相對應td字串格式
                         var othercssstring = load_forms_other_row(form_name,index);
 
-                        if(form_name=="BSRS5")
+                        if(form_name=="interlocution")
                         {
                             cssstring += 
                             '<tr name="'+form_name+'_num[]" id="'+value.Id+"_"+value.Case_seqid+"_"+value.Case_id+'">'+
@@ -238,17 +238,19 @@ function load_each_form()
                             cssstring += 
                             '<tr name="'+form_name+'_num[]" id="'+value.Id+"_"+value.Case_seqid+"_"+value.Case_id+'">'+
                                 '<td>'+value.Form_Create_date+'</td>'+
+                                '<td>線上建檔</td>'+
                                 '<td><a href="'+case_url+'&form_id='+value.Id+'&form_type='+value.Form_name+'">點擊進入</a></td>'+
                                 '<td>'+value.Remark+'</td>'+
                                 '<td style="background-color:'+bg_color+';">'+sign_str+'</td>'+
                                 '<td>'+sign_btn_str+'</td>'+
                             '</tr>';
                         }
-                        else if(form_name=="interlocution")
+                        else if(form_name=="BSRS5")
                         {
                             cssstring += 
                             '<tr name="'+form_name+'_num[]" id="'+value.Id+"_"+value.Case_seqid+"_"+value.Case_id+'">'+
                                 '<td>'+value.Form_Create_date+'</td>'+
+                                '<td>線上建檔</td>'+
                                 othercssstring+
                                 '<td><a href="'+case_url+'&form_id='+value.Id+'&form_type='+value.Form_name+'">點擊進入</a></td>'+
                                 '<td>'+value.Remark+'</td>'+
@@ -256,13 +258,13 @@ function load_each_form()
                                 '<td>'+sign_btn_str+'</td>'+
                             '</tr>';
                         }
-                        
                         else
                         {
                             cssstring += 
                             '<tr name="'+form_name+'_num[]" id="'+value.Id+"_"+value.Case_seqid+"_"+value.Case_id+'">'+
                                 '<td>'+value.Form_Create_date+'</td>'+
                                 '<td>'+value.Fillin_date+'</td>'+
+                                '<td>線上建檔</td>'+
                                 othercssstring+
                                 '<td><a href="'+case_url+'&form_id='+value.Id+'&form_type='+value.Form_name+'">點擊進入</a></td>'+
                                 '<td>'+value.Remark+'</td>'+
@@ -270,7 +272,6 @@ function load_each_form()
                                 '<td>'+sign_btn_str+'</td>'+
                             '</tr>';
                         }
-                        
                     }
                     else
                     {
@@ -279,17 +280,22 @@ function load_each_form()
                         var upload_info_json = JSON.parse("[" +value.Upload_info.replace('\"\[', '\[').replace('\]\"', '\]') + "]");
                         
                         var td_str = "";
-                            $.each(upload_info_json[0], function (i, datan) {
-                            if(datan.name.includes("file"))
-                            {
-                                td_str+='<td><a href="upload/case_all/'+datan.value+'" style="text-decoration:none;color:blue;" target="_blank">'+
-                                '<img style="vertical-align:middle;" width="20px" src="image/file-pdf.svg">'+datan.value+'</a></td>';
-                            } 
-                            else
-                            {
-                                td_str+='<td>'+datan.value+'</td>';
-                            }
-                            });
+                        console.log(upload_info_json[0])
+                        $.each(upload_info_json[0], function (i, datan) {
+                        if(datan.name.includes("file"))
+                        {
+                            td_str+='<td><a href="upload/case_all/'+datan.value+'" style="text-decoration:none;color:blue;" target="_blank">'+
+                            '<img style="vertical-align:middle;" width="20px" src="image/file-pdf.svg">'+datan.value+'</a></td>';
+                        } 
+                        else if(!datan.name.includes("supervise"))
+                        {
+                            td_str+='<td>'+datan.value+'</td>';
+                        }
+                        // else
+                        // {
+                        //     td_str+='<td>'+datan.value+'</td>';
+                        // }
+                        });
                         cssstring += 
                         '<tr name="'+form_name+'_num[]" id="'+value.Id+"_"+value.Case_seqid+"_"+value.Case_id+'">'+
                         td_str+
@@ -301,7 +307,6 @@ function load_each_form()
                         '<td>'+sign_btn_str+'</td>'+
                         '</tr>';
                     }
-                    
                 })
 
 
@@ -309,7 +314,6 @@ function load_each_form()
 
                 $.each(data,function(index,value){
                     
-
                     var data_json = JSON.parse("[" +value.Other_info.replace('\"\[', '\[').replace('\]\"', '\]') + "]");
 
                     if(data_json.length>0)
@@ -318,7 +322,6 @@ function load_each_form()
                             $("[name='"+datan.name+index+"']").eq(i).html(datan.value);
                         });
                     }
-                   
                 })
             },
             error: function (e) {
@@ -326,7 +329,6 @@ function load_each_form()
             }
         });
     });
-   
 }
 //endregion
 
@@ -360,9 +362,6 @@ function load_forms_other_row(form_type,index)
         case 'health':
         case 'resource':
             str +='';
-            break;
-
-        default:
             break;
     }
 
@@ -407,7 +406,7 @@ delete_upload_data = function() {
         type: "POST",
         data: {
             Id:attr_sql_id,
-          },
+        },
         // dataType: "JSON", // 若要傳回字串 如：noallow，不可設定為json格式
         success: function (data) {
             console.log(data)
@@ -513,7 +512,6 @@ load_update_type_data = function(sql_id_str, type_num) {
                             }
                             if(datan.name.includes("file"))
                             {
-
                                 var file_str = '<td><a href="upload/case_all/'+datan.value+'" style="text-decoration:none;color:blue;" target="_blank">'+
                                 '<img style="vertical-align:middle;" width="20px" src="image/file-pdf.svg">'+datan.value+'</a></td>';
                             
@@ -686,7 +684,7 @@ update_upload_data = function(this_btn) {
 }  
 //endregion
 
-//點擊新增各表(個案評估表、會談紀錄、生活品質量表、健康量表、就業量表、就業滿意度、滿意度量表、家庭關係)region
+//點擊新增各表(個案評估表、會談紀錄、社會資源應用表格、生活品質量表、健康量表、就業滿意度、滿意度量表、家庭關係、BSRS-5量表、安置自立宿舍評估表)region
 form_add_new = function(obj){
     //Time Now
     var timenow = moment().format('YYYY/MM/DD');
@@ -708,54 +706,192 @@ form_add_new = function(obj){
     //空的td標籤
     var empty_td = '<td></td>';
     //除了 建立日期、填表日期、最末端的量表內容，三位置之外都生成 空的td標籤
-    empty_td = empty_td.repeat(th_len-5);
+    // empty_td = empty_td.repeat(th_len-8);
 
-    if(obj_name=="resource")
+    if(obj_name=="case" || obj_name=="settlement")
     {
         var cssstring = 
         '<tr name="'+num_name+'">'+
             '<td><span id="create_date_'+obj_name+num+'">'+timenow+'</span></td>'+
-            '<td></td>'+
+            '<td><input id="fillin_date_'+obj_name+num+'" type="date"></td>'+
+            '<td>'+
+            '<select id="add_new_type'+obj_name+num+'" num="'+num+'" obj_name="'+obj_name+'" onchange="add_new_type_onchange(this)">'+
+                '<option value="上傳檔案">上傳檔案</option>'+
+                '<option value="線上建檔" selected>線上建檔</option>'+
+            '</select>'+
+            '</td>'+
+            '<td id="result_td'+obj_name+num+'"></td>'+
+            '<td id="content_type_td'+obj_name+num+'"></td>'+
             '<td><input id="remark'+obj_name+num+'" type="text"></td>'+
             '<td></td>'+
+            '<td id="signer_set_td'+obj_name+num+'"></td>'+
             '<td></td>'+
         '</tr>'+
         '<tr>'+
         '<td colspan="'+th_len+'"><button onClick="store('+num+',&quot;'+obj_name+'&quot;);">儲存</button> <button onClick="location.reload();">取消</button></td>'+
         '</tr>';
-
     }
     else if(obj_name=="interlocution")
     {
         var cssstring = 
         '<tr name="'+num_name+'">'+
             '<td><span id="create_date_'+obj_name+num+'">'+timenow+'</span></td>'+
-            '<td></td>'+
-            empty_td+
+            '<td>'+
+            '<select id="add_new_type'+obj_name+num+'" num="'+num+'" obj_name="'+obj_name+'" onchange="add_new_type_onchange(this)">'+
+                '<option value="上傳檔案">上傳檔案</option>'+
+                '<option value="線上建檔" selected>線上建檔</option>'+
+            '</select>'+
+            '</td>'+
+            '<td id="interlocution_date_td'+obj_name+num+'"></td>'+
+            '<td id="interlocution_ques_td'+obj_name+num+'"></td>'+
+            '<td id="assign_name_td'+obj_name+num+'"></td>'+
+            '<td id="content_type'+obj_name+num+'"></td>'+
             '<td><input id="remark'+obj_name+num+'" type="text"></td>'+
             '<td></td>'+
+            '<td id="signer_set_td'+obj_name+num+'"></td>'+
             '<td></td>'+
         '</tr>'+
         '<tr>'+
         '<td colspan="'+th_len+'"><button onClick="store('+num+',&quot;'+obj_name+'&quot;);">儲存</button> <button onClick="location.reload();">取消</button></td>'+
         '</tr>';
     }
-    else
+    else if(obj_name=="resource")
     {
         var cssstring = 
         '<tr name="'+num_name+'">'+
             '<td><span id="create_date_'+obj_name+num+'">'+timenow+'</span></td>'+
-            '<td><input id="fillin_date_'+obj_name+num+'" type="date"></td>'+
-            empty_td+
+            '<td>'+
+            '<select id="add_new_type'+obj_name+num+'" num="'+num+'" obj_name="'+obj_name+'" onchange="add_new_type_onchange(this)">'+
+                '<option value="上傳檔案">上傳檔案</option>'+
+                '<option value="線上建檔" selected>線上建檔</option>'+
+            '</select>'+
+            '</td>'+
+            '<td id="content_type'+obj_name+num+'"></td>'+
             '<td><input id="remark'+obj_name+num+'" type="text"></td>'+
             '<td></td>'+
+            '<td id="signer_set_td'+obj_name+num+'"></td>'+
             '<td></td>'+
         '</tr>'+
         '<tr>'+
         '<td colspan="'+th_len+'"><button onClick="store('+num+',&quot;'+obj_name+'&quot;);">儲存</button> <button onClick="location.reload();">取消</button></td>'+
         '</tr>';
     }
-
+    else if(obj_name=="life")
+    {
+        var cssstring = 
+            '<tr name="'+num_name+'">'+
+                '<td><span id="create_date_'+obj_name+num+'">'+timenow+'</span></td>'+
+                '<td><input id="fillin_date_'+obj_name+num+'" type="date"></td>'+
+                '<td>'+
+                '<select id="add_new_type'+obj_name+num+'" num="'+num+'" obj_name="'+obj_name+'" onchange="add_new_type_onchange(this)">'+
+                    '<option value="上傳檔案">上傳檔案</option>'+
+                    '<option value="線上建檔" selected>線上建檔</option>'+
+                '</select>'+
+                '</td>'+
+                '<td id="result_score_td'+obj_name+num+'"></td>'+
+                '<td id="test_type_td'+obj_name+num+'"></td>'+
+                '<td id="content_type'+obj_name+num+'"></td>'+
+                '<td><input id="remark'+obj_name+num+'" type="text"></td>'+
+                '<td></td>'+
+                '<td id="signer_set_td'+obj_name+num+'"></td>'+
+                '<td></td>'+
+            '</tr>'+
+            '<tr>'+
+            '<td id="store_btn'+obj_name+num+'" colspan="'+th_len+'"><button onClick="store('+num+',&quot;'+obj_name+'&quot;);">儲存</button> <button onClick="location.reload();">取消</button></td>'+
+            '</tr>';
+    }
+    else if(obj_name=="health")
+    {
+        var cssstring = 
+            '<tr name="'+num_name+'">'+
+                '<td><span id="create_date_'+obj_name+num+'">'+timenow+'</span></td>'+
+                '<td><input id="fillin_date_'+obj_name+num+'" type="date"></td>'+
+                '<td>'+
+                '<select id="add_new_type'+obj_name+num+'" num="'+num+'" obj_name="'+obj_name+'" onchange="add_new_type_onchange(this)">'+
+                    '<option value="上傳檔案">上傳檔案</option>'+
+                    '<option value="線上建檔" selected>線上建檔</option>'+
+                '</select>'+
+                '</td>'+
+                '<td id="content_type'+obj_name+num+'"></td>'+
+                '<td><input id="remark'+obj_name+num+'" type="text"></td>'+
+                '<td></td>'+
+                '<td id="signer_set_td'+obj_name+num+'"></td>'+
+                '<td></td>'+
+            '</tr>'+
+            '<tr>'+
+            '<td id="store_btn'+obj_name+num+'" colspan="'+th_len+'"><button onClick="store('+num+',&quot;'+obj_name+'&quot;);">儲存</button> <button onClick="location.reload();">取消</button></td>'+
+            '</tr>';
+    }
+    else if(obj_name=="employment_satif" || obj_name=="satif")
+    {
+        var cssstring = 
+            '<tr name="'+num_name+'">'+
+                '<td><span id="create_date_'+obj_name+num+'">'+timenow+'</span></td>'+
+                '<td><input id="fillin_date_'+obj_name+num+'" type="date"></td>'+
+                '<td>'+
+                '<select id="add_new_type'+obj_name+num+'" num="'+num+'" obj_name="'+obj_name+'" onchange="add_new_type_onchange(this)">'+
+                    '<option value="上傳檔案">上傳檔案</option>'+
+                    '<option value="線上建檔" selected>線上建檔</option>'+
+                '</select>'+
+                '</td>'+
+                '<td id="score_td'+obj_name+num+'"></td>'+
+                '<td id="content_type'+obj_name+num+'"></td>'+
+                '<td><input id="remark'+obj_name+num+'" type="text"></td>'+
+                '<td></td>'+
+                '<td id="signer_set_td'+obj_name+num+'"></td>'+
+                '<td></td>'+
+            '</tr>'+
+            '<tr>'+
+            '<td id="store_btn'+obj_name+num+'" colspan="'+th_len+'"><button onClick="store('+num+',&quot;'+obj_name+'&quot;);">儲存</button> <button onClick="location.reload();">取消</button></td>'+
+            '</tr>';
+    }
+    else if(obj_name=="familyship")
+    {
+        var cssstring = 
+            '<tr name="'+num_name+'">'+
+                '<td><span id="create_date_'+obj_name+num+'">'+timenow+'</span></td>'+
+                '<td><input id="fillin_date_'+obj_name+num+'" type="date"></td>'+
+                '<td>'+
+                '<select id="add_new_type'+obj_name+num+'" num="'+num+'" obj_name="'+obj_name+'" onchange="add_new_type_onchange(this)">'+
+                    '<option value="上傳檔案">上傳檔案</option>'+
+                    '<option value="線上建檔" selected>線上建檔</option>'+
+                '</select>'+
+                '</td>'+
+                '<td id="score_td'+obj_name+num+'"></td>'+
+                '<td id="test_type_td'+obj_name+num+'"></td>'+
+                '<td id="content_type'+obj_name+num+'"></td>'+
+                '<td><input id="remark'+obj_name+num+'" type="text"></td>'+
+                '<td></td>'+
+                '<td id="signer_set_td'+obj_name+num+'"></td>'+
+                '<td></td>'+
+            '</tr>'+
+            '<tr>'+
+            '<td id="store_btn'+obj_name+num+'" colspan="'+th_len+'"><button onClick="store('+num+',&quot;'+obj_name+'&quot;);">儲存</button> <button onClick="location.reload();">取消</button></td>'+
+            '</tr>';
+    }
+    else if(obj_name=="BSRS5")
+    {
+        var cssstring = 
+            '<tr name="'+num_name+'">'+
+                '<td><span id="create_date_'+obj_name+num+'">'+timenow+'</span></td>'+
+                '<td>'+
+                '<select id="add_new_type'+obj_name+num+'" num="'+num+'" obj_name="'+obj_name+'" onchange="add_new_type_onchange(this)">'+
+                    '<option value="上傳檔案">上傳檔案</option>'+
+                    '<option value="線上建檔" selected>線上建檔</option>'+
+                '</select>'+
+                '</td>'+
+                '<td id="score_td'+obj_name+num+'"></td>'+
+                '<td id="dispose_td'+obj_name+num+'"></td>'+
+                '<td id="content_type'+obj_name+num+'"></td>'+
+                '<td><input id="remark'+obj_name+num+'" type="text"></td>'+
+                '<td></td>'+
+                '<td id="signer_set_td'+obj_name+num+'"></td>'+
+                '<td></td>'+
+            '</tr>'+
+            '<tr>'+
+            '<td id="store_btn'+obj_name+num+'" colspan="'+th_len+'"><button onClick="store('+num+',&quot;'+obj_name+'&quot;);">儲存</button> <button onClick="location.reload();">取消</button></td>'+
+            '</tr>';
+    }
 
         //對應的tobody內寫入cssstring
         $("#"+obj_tbody).append(cssstring);
@@ -770,6 +906,32 @@ form_add_new = function(obj){
 //點擊儲存到case_all資料庫region
 function store(num, form_name){
     
+    swal({
+        title: "確認建立量表？",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "確認送出",
+        cancelButtonText: "取消",
+        showConfirmButton: true,
+        showCancelButton: true
+    }).then(function(result) {
+        if (result) {
+            store_submit_datas(num, form_name);
+        }
+    }, function(dismiss){
+        if(dismiss == 'cancel'){
+            swal({
+                title:'已取消',
+                type:'success',                        
+            })
+        }
+    }).catch(swal.noop)
+
+}
+
+
+store_submit_datas = function(num, form_name) {
     var name = decodeURIComponent(getUrlVars()["name"]);
     var pid =getUrlVars()["pid"];
     var date = getUrlVars()["date"];
@@ -837,7 +999,7 @@ function store(num, form_name){
 }
 //endregion
 
-//上傳各檔案 region
+//上傳各檔案（憂鬱量表） region
 form_upload_new = function(obj) {
     //Time Now
     var timenow = moment().format('YYYY/MM/DD');
@@ -896,59 +1058,7 @@ form_upload_new = function(obj) {
 }
 //endregion
 
-
-//上傳各檔案 region
-form_BSRS5_add_new = function(obj) {
-    //Time Now
-    var timenow = moment().format('YYYY/MM/DD');
-    //獲取該物件id
-    var obj_id = obj.id;
-    //獲取該物件名稱(固定格式命名規則)
-    var obj_name = obj_id.replace("_add_new", "");
-    //獲取物件table內tbody標籤id名
-    var obj_tbody = obj_id.replace("_add_new", "_full_add");
-    //獲取tbody內tr的name名
-    var num_name = obj_id.replace("_add_new", "_num[]");
-    //獲取該tr name名的長度
-    var num = document.getElementsByName(num_name).length;
-    //獲取該table的id名
-    var obj_table = obj_id.replace("_add_new", "_all");
-    //獲取該table的th之長度
-    var th_len = $("#"+obj_table+" th").length;
-
-    var cssstring = 
-                    '<tr name="'+num_name+'">'+
-                        '<td><span id="create_date_'+obj_name+num+'">'+timenow+'</span></td>'+
-                        '<td>'+
-                        '<select id="add_new_type'+obj_name+num+'" num="'+num+'" obj_name="'+obj_name+'" onchange="add_new_type_onchange(this)">'+
-                            '<option value="上傳檔案">上傳檔案</option>'+
-                            '<option value="線上建檔" selected>線上建檔</option>'+
-                        '</select>'+
-                        '</td>'+
-                        // '<td><input id="score'+obj_name+num+'" type="text" style="width:5em;"></td>'+
-                        // '<td><input id="dispose'+obj_name+num+'" type="text"></td>'+
-                        '<td id="score_td'+obj_name+num+'"></td>'+
-                        '<td id="dispose_td'+obj_name+num+'"></td>'+
-                        '<td id="content_type'+obj_name+num+'"></td>'+
-                        '<td><input id="remark'+obj_name+num+'" type="text"></td>'+
-                        '<td></td>'+
-                        '<td></td>'+
-                        '<td></td>'+
-                    '</tr>'+
-                    '<tr>'+
-                    '<td id="store_btn'+obj_name+num+'" colspan="'+th_len+'"><button onClick="store('+num+',&quot;'+obj_name+'&quot;);">儲存</button> <button onClick="location.reload();">取消</button></td>'+
-                    '</tr>';
-
-        //對應的tobody內寫入cssstring
-        $("#"+obj_tbody).append(cssstring);
-        
-        //只能按一次
-        var btn = $(obj); 
-        btn.prop('disabled',true); 
-}
-//endregion
-
-//綁定 量表建檔類型select標籤切換 region
+//綁定 量表建檔類型（線上建檔/檔案上傳）select標籤切換 region
 add_new_type_onchange = function(obj){
     //獲取該物件id (select的id)
     var obj_id = obj.id;
@@ -966,40 +1076,450 @@ add_new_type_onchange = function(obj){
 }
 //endregion
 
-//根據 類型 select option值切換 檔案名稱/量表內容 region
+//根據 類型 select option值切換 檔案名稱/量表內容 及其他欄位設定 region
 function select_change(option, obj_name_num, num, obj_name)
-{
-    
-    // console.log(option);
-    switch(option)
+{    
+    if(obj_name=="case" || obj_name=="settlement")
     {
-        case '上傳檔案':
-            $("#content_type"+obj_name_num).empty();
-            
-            var content_str = '<input type="file" id="file'+obj_name_num+'" name="file">';
-            var store_btn_str = '<button onClick="i_store('+num+',&quot;'+obj_name+'&quot;);">儲存</button> <button onClick="location.reload();">取消</button>';
+        // console.log(option);
+        switch(option)
+        {
+            case '上傳檔案':
+                $("#result_td"+obj_name_num).empty();
+                $("#content_type"+obj_name_num).empty();
+                $("#signer_set_td"+obj_name_num).empty();
+                
+                var content_str = '<input type="file" id="file'+obj_name_num+'" name="file">';
+                var store_btn_str = '<button onClick="i_store('+num+',&quot;'+obj_name+'&quot;);">儲存</button> <button onClick="location.reload();">取消</button>';
 
-            $("#score_td"+obj_name_num).html('<input id="score'+obj_name+num+'" type="text" style="width:5em;">');
-            $("#dispose_td"+obj_name_num).html('<input id="dispose'+obj_name+num+'" type="text" style="width:5em;">');
-            $("#content_type"+obj_name_num).html(content_str);
-            $("#store_btn"+obj_name_num).html(store_btn_str);
-            break;
+                $("#result_td"+obj_name_num).html('<textarea style="width:7em;resize: none;font-size: 20px;min-height:8em;" id="result'+obj_name+num+'" placeholder="評估結果"></textarea>');
+                $("#content_type"+obj_name_num).html(content_str);
 
-        case '線上建檔':
-        default:
-            $("#content_type"+obj_name_num).empty();
+                $("#signer_set_td"+obj_name_num).html(
+                '<span>督導：</span><br/>'+
+                '<select id="supervise1_set'+obj_name+num+'">'+
+                '</select>'+
+                '<br/><br/><span>執行長：</span><br/>'+
+                '<select id="supervise2_set'+obj_name+num+'">'+
+                '</select>');
 
-            var store_btn_str = '<button onClick="store('+num+',&quot;'+obj_name+'&quot;);">儲存</button> <button onClick="location.reload();">取消</button>';
+                $("#store_btn"+obj_name_num).html(store_btn_str);
 
-            $("#store_btn"+obj_name_num).html(store_btn_str);
-            break;  
+                append_user(obj_name_num);
+
+                break;
+
+            case '線上建檔':
+            default:
+                $("#result_td"+obj_name_num).empty();
+                $("#content_type"+obj_name_num).empty();
+                $("#signer_set_td"+obj_name_num).empty();
+
+                var store_btn_str = '<button onClick="store('+num+',&quot;'+obj_name+'&quot;);">儲存</button> <button onClick="location.reload();">取消</button>';
+
+                $("#store_btn"+obj_name_num).html(store_btn_str);
+                break;  
+        }
+    }
+    else if(obj_name =="interlocution")
+    {
+        // console.log(option);
+        switch(option)
+        {
+            case '上傳檔案':
+                $("#interlocution_date_td"+obj_name_num).empty();
+                $("#interlocution_ques_td"+obj_name_num).empty();
+                $("#assign_name_td"+obj_name_num).empty();
+                $("#content_type"+obj_name_num).empty();
+                $("#signer_set_td"+obj_name_num).empty();
+                
+                var content_str = '<input type="file" id="file'+obj_name_num+'" name="file">';
+                var store_btn_str = '<button onClick="i_store('+num+',&quot;'+obj_name+'&quot;);">儲存</button> <button onClick="location.reload();">取消</button>';
+                
+                $("#interlocution_date_td"+obj_name_num).html('<input id="interlocution_date'+obj_name+num+'" type="date" style="width:8em;">');
+                $("#interlocution_ques_td"+obj_name_num).html('<textarea style="width:7em;resize: none;font-size: 20px;min-height:8em;" id="interlocution_ques'+obj_name+num+'" placeholder="問題陳述"></textarea>');
+                $("#assign_name_td"+obj_name_num).html('<input id="assign_name'+obj_name+num+'" type="text" style="width:5em;">');
+                $("#content_type"+obj_name_num).html(content_str);
+
+                $("#signer_set_td"+obj_name_num).html(
+                '<span>督導：</span><br/>'+
+                '<select id="supervise1_set'+obj_name+num+'">'+
+                '</select>'+
+                '<br/><br/><span>執行長：</span><br/>'+
+                '<select id="supervise2_set'+obj_name+num+'">'+
+                '</select>');
+    
+                $("#store_btn"+obj_name_num).html(store_btn_str);
+
+                append_user(obj_name_num);
+
+                break;
+
+            case '線上建檔':
+            default:
+                $("#interlocution_date_td"+obj_name_num).empty();
+                $("#interlocution_ques_td"+obj_name_num).empty();
+                $("#assign_name_td"+obj_name_num).empty();
+                $("#content_type"+obj_name_num).empty();
+                $("#signer_set_td"+obj_name_num).empty();
+
+                var store_btn_str = '<button onClick="store('+num+',&quot;'+obj_name+'&quot;);">儲存</button> <button onClick="location.reload();">取消</button>';
+
+                $("#store_btn"+obj_name_num).html(store_btn_str);
+                break;  
+        }
+    }
+    else if(obj_name =="resource")
+    {
+        // console.log(option);
+        switch(option)
+        {
+            case '上傳檔案':
+                $("#content_type"+obj_name_num).empty();
+                $("#signer_set_td"+obj_name_num).empty();
+                
+                var content_str = '<input type="file" id="file'+obj_name_num+'" name="file">';
+                var store_btn_str = '<button onClick="i_store('+num+',&quot;'+obj_name+'&quot;);">儲存</button> <button onClick="location.reload();">取消</button>';
+
+                $("#content_type"+obj_name_num).html(content_str);
+
+                $("#signer_set_td"+obj_name_num).html(
+                '<span>督導：</span><br/>'+
+                '<select id="supervise1_set'+obj_name+num+'">'+
+                '</select>'+
+                '<br/><br/><span>執行長：</span><br/>'+
+                '<select id="supervise2_set'+obj_name+num+'">'+
+                '</select>');
+
+                $("#store_btn"+obj_name_num).html(store_btn_str);
+    
+                append_user(obj_name_num);
+
+                break;
+
+            case '線上建檔':
+            default:
+                $("#content_type"+obj_name_num).empty();
+                $("#signer_set_td"+obj_name_num).empty();
+
+                var store_btn_str = '<button onClick="store('+num+',&quot;'+obj_name+'&quot;);">儲存</button> <button onClick="location.reload();">取消</button>';
+
+                $("#store_btn"+obj_name_num).html(store_btn_str);
+                break;  
+        }
+    }
+    else if(obj_name=="life")
+    {
+        // console.log(option);
+        switch(option)
+        {
+            case '上傳檔案':
+                $("#test_type_td"+obj_name_num).empty();
+                $("#result_score_td"+obj_name_num).empty();
+                $("#content_type"+obj_name_num).empty();
+                $("#signer_set_td"+obj_name_num).empty();
+
+                var content_str = '<input type="file" id="file'+obj_name_num+'" name="file">';
+                var store_btn_str = '<button onClick="i_store('+num+',&quot;'+obj_name+'&quot;);">儲存</button> <button onClick="location.reload();">取消</button>';
+
+                $("#test_type_td"+obj_name_num).html('<select id="test_type'+obj_name+num+'">'+
+                '<option value="">請選擇</option>'+
+                '<option value="前測">前測</option>'+
+                '<option value="中測">中測</option>'+
+                '<option value="後測">後測</option>'+
+            '</select>');
+                $("#result_score_td"+obj_name_num).html('<textarea style="width:7em;resize: none;font-size: 20px;min-height:8em;" id="result_score'+obj_name+num+'" placeholder="得分/結果"></textarea>');
+                $("#content_type"+obj_name_num).html(content_str);
+
+                $("#signer_set_td"+obj_name_num).html(
+                '<span>督導：</span><br/>'+
+                '<select id="supervise1_set'+obj_name+num+'">'+
+                '</select>'+
+                '<br/><br/><span>執行長：</span><br/>'+
+                '<select id="supervise2_set'+obj_name+num+'">'+
+                '</select>');
+
+                $("#store_btn"+obj_name_num).html(store_btn_str);
+
+                append_user(obj_name_num);
+
+                break;
+
+            case '線上建檔':
+            default:
+                $("#test_type_td"+obj_name_num).empty();
+                $("#result_score_td"+obj_name_num).empty();
+                $("#content_type"+obj_name_num).empty();
+                $("#signer_set_td"+obj_name_num).empty();
+
+                var store_btn_str = '<button onClick="store('+num+',&quot;'+obj_name+'&quot;);">儲存</button> <button onClick="location.reload();">取消</button>';
+
+                $("#store_btn"+obj_name_num).html(store_btn_str);
+                break;  
+        }
+    }
+    else if(obj_name=="health")
+    {
+        // console.log(option);
+        switch(option)
+        {
+            case '上傳檔案':
+                $("#content_type"+obj_name_num).empty();
+                $("#signer_set_td"+obj_name_num).empty();
+                
+                var content_str = '<input type="file" id="file'+obj_name_num+'" name="file">';
+                var store_btn_str = '<button onClick="i_store('+num+',&quot;'+obj_name+'&quot;);">儲存</button> <button onClick="location.reload();">取消</button>';
+
+                $("#content_type"+obj_name_num).html(content_str);
+
+                $("#signer_set_td"+obj_name_num).html(
+                '<span>督導：</span><br/>'+
+                '<select id="supervise1_set'+obj_name+num+'">'+
+                '</select>'+
+                '<br/><br/><span>執行長：</span><br/>'+
+                '<select id="supervise2_set'+obj_name+num+'">'+
+                '</select>');
+
+                $("#store_btn"+obj_name_num).html(store_btn_str);
+
+                append_user(obj_name_num);
+
+                break;
+
+            case '線上建檔':
+            default:
+                $("#content_type"+obj_name_num).empty();
+                $("#signer_set_td"+obj_name_num).empty();
+
+                var store_btn_str = '<button onClick="store('+num+',&quot;'+obj_name+'&quot;);">儲存</button> <button onClick="location.reload();">取消</button>';
+
+                $("#store_btn"+obj_name_num).html(store_btn_str);
+                break;  
+        }
+    }
+    else if(obj_name =="employment_satif" || obj_name=="satif")
+    {
+        // console.log(option);
+        switch(option)
+        {
+            case '上傳檔案':
+                $("#score_td"+obj_name_num).empty();
+                $("#content_type"+obj_name_num).empty();
+                $("#signer_set_td"+obj_name_num).empty();
+                
+                var content_str = '<input type="file" id="file'+obj_name_num+'" name="file">';
+                var store_btn_str = '<button onClick="i_store('+num+',&quot;'+obj_name+'&quot;);">儲存</button> <button onClick="location.reload();">取消</button>';
+
+                $("#score_td"+obj_name_num).html('<input id="score'+obj_name+num+'" type="text" style="width:5em;">');
+                $("#content_type"+obj_name_num).html(content_str);
+
+                $("#signer_set_td"+obj_name_num).html(
+                '<span>督導：</span><br/>'+
+                '<select id="supervise1_set'+obj_name+num+'">'+
+                '</select>'+
+                '<br/><br/><span>執行長：</span><br/>'+
+                '<select id="supervise2_set'+obj_name+num+'">'+
+                '</select>');
+
+                $("#store_btn"+obj_name_num).html(store_btn_str);
+
+                append_user(obj_name_num);
+
+                break;
+
+            case '線上建檔':
+            default:
+                $("#score_td"+obj_name_num).empty();
+                $("#content_type"+obj_name_num).empty();
+                $("#signer_set_td"+obj_name_num).empty();
+
+                var store_btn_str = '<button onClick="store('+num+',&quot;'+obj_name+'&quot;);">儲存</button> <button onClick="location.reload();">取消</button>';
+                $("#store_btn"+obj_name_num).html(store_btn_str);
+                break;  
+        }
+    }
+    else if(obj_name =="familyship")
+    {
+        // console.log(option);
+        switch(option)
+        {
+            case '上傳檔案':
+                $("#test_type_td"+obj_name_num).empty();
+                $("#score_td"+obj_name_num).empty();
+                $("#content_type"+obj_name_num).empty();
+                $("#signer_set_td"+obj_name_num).empty();
+                
+                var content_str = '<input type="file" id="file'+obj_name_num+'" name="file">';
+                var store_btn_str = '<button onClick="i_store('+num+',&quot;'+obj_name+'&quot;);">儲存</button> <button onClick="location.reload();">取消</button>';
+
+                $("#test_type_td"+obj_name_num).html('<select id="test_type'+obj_name+num+'">'+
+                '<option value="">請選擇</option>'+
+                '<option value="前測">前測</option>'+
+                '<option value="中測">中測</option>'+
+                '<option value="後測">後測</option>'+
+                '</select>');
+                $("#score_td"+obj_name_num).html('<input id="score'+obj_name+num+'" type="text" style="width:5em;">');
+                $("#content_type"+obj_name_num).html(content_str);
+
+                $("#signer_set_td"+obj_name_num).html(
+                '<span>督導：</span><br/>'+
+                '<select id="supervise1_set'+obj_name+num+'">'+
+                '</select>'+
+                '<br/><br/><span>執行長：</span><br/>'+
+                '<select id="supervise2_set'+obj_name+num+'">'+
+                '</select>');
+
+                $("#store_btn"+obj_name_num).html(store_btn_str);
+
+                append_user(obj_name_num);
+    
+                break;
+
+            case '線上建檔':
+            default:
+                $("#test_type_td"+obj_name_num).empty();
+                $("#score_td"+obj_name_num).empty();
+                $("#content_type"+obj_name_num).empty();
+                $("#signer_set_td"+obj_name_num).empty();
+
+                var store_btn_str = '<button onClick="store('+num+',&quot;'+obj_name+'&quot;);">儲存</button> <button onClick="location.reload();">取消</button>';
+
+                $("#store_btn"+obj_name_num).html(store_btn_str);
+                break;  
+        }
+    }
+    else if(obj_name =="BSRS5")
+    {
+        // console.log(option);
+        switch(option)
+        {
+            case '上傳檔案':
+                $("#score_td"+obj_name_num).empty();
+                $("#dispose_td"+obj_name_num).empty();
+                $("#content_type"+obj_name_num).empty();
+                $("#signer_set_td"+obj_name_num).empty();
+                
+                var content_str = '<input type="file" id="file'+obj_name_num+'" name="file">';
+                var store_btn_str = '<button onClick="i_store('+num+',&quot;'+obj_name+'&quot;);">儲存</button> <button onClick="location.reload();">取消</button>';
+
+                $("#score_td"+obj_name_num).html('<input id="score'+obj_name+num+'" type="text" style="width:5em;">');
+                $("#dispose_td"+obj_name_num).html('<textarea style="width:7em;resize: none;font-size: 20px;min-height:8em;" id="dispose'+obj_name+num+'" placeholder="處置情形"></textarea>');
+                $("#content_type"+obj_name_num).html(content_str);
+                
+                $("#signer_set_td"+obj_name_num).html(
+                '<span>督導：</span><br/>'+
+                '<select id="supervise1_set'+obj_name+num+'">'+
+                '</select>'+
+                '<br/><br/><span>執行長：</span><br/>'+
+                '<select id="supervise2_set'+obj_name+num+'">'+
+                '</select>');
+
+                $("#store_btn"+obj_name_num).html(store_btn_str);
+
+                append_user(obj_name_num);
+    
+                break;
+
+            case '線上建檔':
+            default:
+                $("#score_td"+obj_name_num).empty();
+                $("#dispose_td"+obj_name_num).empty();
+                $("#content_type"+obj_name_num).empty();
+                $("#signer_set_td"+obj_name_num).empty();
+
+                var store_btn_str = '<button onClick="store('+num+',&quot;'+obj_name+'&quot;);">儲存</button> <button onClick="location.reload();">取消</button>';
+
+                $("#store_btn"+obj_name_num).html(store_btn_str);
+                break;  
+        }
     }
 }
 //endregion
 
 //點擊儲存到case_all資料庫region
 function i_store(num, form_name){
+    swal({
+        title: "確認上傳量表？",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "確認送出",
+        cancelButtonText: "取消",
+        showConfirmButton: true,
+        showCancelButton: true
+    }).then(function(result) {
+        if (result) {
+            var check_error_str = "以下欄位未填寫：\n";
+
+            // 將未選擇/未填寫的欄位抓出來寫進去check_error_str
+            $("#"+form_name+"_full_add [name*='"+form_name+"_num[]'] td").children().each(function(i,n){
+        
+                var td_id = $(this).attr("id");
+                var td_val = $("#"+td_id).val();
+                // var td_val = document.getElementById(td_id).value;
+                var th_name = $(this).parent().parent().parent("tbody").siblings("tbody").children().children().eq(i).text();
+                
+                if(td_id!==undefined && td_id != "create_date_"+form_name+num && td_id != "remark"+form_name+num  && td_id !="supervise1_set"+form_name+num && td_id !="supervise2_set"+form_name+num)
+                {   
+                    if(td_val =="")
+                    {
+                        check_error_str+= th_name+"\n";
+                    }
+                }
+            });
+
+            // 檢查有無選擇督導
+            if($("#supervise1_set"+form_name+num).val() == "")
+            {
+                check_error_str+= "督導\n";
+            }
+            // 檢查有無選擇執行長
+            if($("#supervise2_set"+form_name+num).val() == "")
+            {
+                check_error_str+= "執行長\n";
+            }
+
+            var stau = false;
+
+            if (check_error_str != "以下欄位未填寫：\n") 
+            {
+                stau = false;
+            }
+            else {
+                stau = true;
+            }
+
+            //檢查欄位是否皆已填寫，並提醒有尚未填寫完整的資料
+            if(!stau)
+            {
+                swal({
+                    title:check_error_str,
+                    type:'error'
+                })
+            }
+            else
+            {
+                //確認送出資料至後端
+                i_store_submit_datas(num, form_name);
+            }
+        }
+    }, function(dismiss){
+        if(dismiss == 'cancel'){
+            swal({
+                title:'已取消',
+                type:'success',                        
+            })
+        }
+    }).catch(swal.noop)
+
     
+    
+}
+// endregion
+
+//確定執行 儲存到case_all資料庫 region
+i_store_submit_datas = function(num, form_name)
+{
     var name = decodeURIComponent(getUrlVars()["name"]);
     var pid =getUrlVars()["pid"];
     var date = getUrlVars()["date"];
@@ -1021,36 +1541,46 @@ function i_store(num, form_name){
 
     var upload_info_arr = new Array();
 
+    // 抓取上傳的欄位內容
     // console.log($("#"+form_name+"_full_add [name*='"+form_name+"_num[]'] td").children())
     $("#"+form_name+"_full_add [name*='"+form_name+"_num[]'] td").children().each(function(i,n){
-        
+        console.log("qdw")
         var td_id = $(this).attr("id");
         var td_val = $("#"+td_id).val();
         var create_date = timenow;
 
-        // console.log(td_val)
         // console.log($(this).attr("id"))
+        // console.log(td_val)
 
-       if(td_id.includes("create_date") ||td_id.includes("upload_date"))
-       {
-            upload_info_arr.push({name:$(this).attr("id"),value:create_date})
-       }
-       else if(td_id.includes("file"))
-       {
-                                                                        // C:\fakepath\abc123.PNG -> abc123.PNG 
-        upload_info_arr.push({name:$(this).attr("id"),value:td_val.replace("C\:\\fakepath\\", "")})
-       }
-       else
-       {
-        upload_info_arr.push({name:$(this).attr("id"),value:td_val})
-       }
+        // 若為create_date_開頭、包含supervise（簽核主管名稱）或是 undefined類型跳過
+        if(td_id!==undefined && td_id != "create_date_"+form_name+num && td_id !="supervise1_set"+form_name+num && td_id !="supervise2_set"+form_name+num)
+        {  
+            if(td_id.includes("create_date") ||td_id.includes("upload_date"))
+            {
+                upload_info_arr.push({name:td_id,value:create_date})
+            }
+            else if(td_id.includes("file"))
+            {
+                                                                            // C:\fakepath\abc123.PNG -> abc123.PNG 
+            upload_info_arr.push({name:td_id,value:td_val.replace("C\:\\fakepath\\", "")})
+            }
+            else
+            {
+            upload_info_arr.push({name:td_id,value:td_val})
+            }
+        }
+        else if(td_id == "create_date_"+form_name+num)
+        {
+            upload_info_arr.push({name:td_id,value:create_date})
+        }
     });
 
-    // console.log(upload_info_arr)
+    console.log(upload_info_arr)
 
     //創立FormData Oject
     //傳輸 input type="file"類型檔案需用FormData Oject格式傳送ajax
     var form_data = new FormData();
+
 
     //獲取File Object
     var customfile = $('[type="file"]').prop('files');
@@ -1074,6 +1604,7 @@ function i_store(num, form_name){
         }
     }
 
+
     form_data.append("upload_info", JSON.stringify(upload_info_arr));
 
     form_data.append("Number", num);
@@ -1083,6 +1614,70 @@ function i_store(num, form_name){
     form_data.append("Name", name);
     form_data.append("Case_pid", pid);
 
+    form_data.append("Supervise1",$("#supervise1_set"+form_name+num).val());
+    form_data.append("Supervise2",$("#supervise2_set"+form_name+num).val());
+
+    var form_type_ch_name = "";
+
+    // 將表格的英文名稱轉換成中文名稱
+    switch (form_name) {
+        case "case":
+            form_type_ch_name = "個案評估表";
+            
+            break;
+    
+        case "interlocution":
+            form_type_ch_name = "個案會談紀錄";
+            break;
+
+        case "resource":
+            form_type_ch_name = "社會資源應用表格";
+            break;
+
+        case "life":
+            form_type_ch_name = "生活品質問卷";
+            break;
+            
+        case "health":
+            form_type_ch_name = "健康管理評估表";
+            break;
+            
+        case "sullen":
+            form_type_ch_name = "憂鬱量表";
+            break;
+            
+        case "employment_satif":
+            form_type_ch_name = "就業需求評估表&就業服務滿意度調查表";
+            break;
+        
+        case "satif":
+            form_type_ch_name = "服務滿意度量表";
+            break;
+        
+        case "familyship":
+            form_type_ch_name = "家庭關係";
+            break;
+        
+        case "BSRS5":
+            form_type_ch_name = "BSRS-5量表";
+            break;
+        
+        case "settlement":
+            form_type_ch_name = "安置、自立宿舍評估量表";
+            break;
+    }
+
+    // 設定簽核提醒的連結位址
+    var history_url = 'case_all.php?name='+name+'&gender='+gender+'&pid='+pid+'&date='+date+'&property='+property+'&type='+type+'&grade='+ grade+'&id='+id+'&open_id='+open_id+'&referral='+referral+'&case_Create_date='+case_Create_date+'&unopen_type='+unopen_type+'&birth='+birth;
+
+    form_data.append("history_url", history_url + "&form_type=" + form_name);
+    form_data.append("case_user", $(".case_user").first().text()); 
+
+    // 簽核提醒相關欄位
+    form_data.append("title", '開案個案-(' + form_type_ch_name + ')簽核：' + '案號：' + open_id);
+    form_data.append("signer", $("#supervise1_set"+form_name+num).val() + "、" + $("#supervise2_set"+form_name+num).val());
+    form_data.append("rec_date_time", timenow +" 00:00");
+
     // for (var pair of form_data.entries()) {
     //     console.log(pair[0]+ ', ' + pair[1]); 
     // }
@@ -1090,16 +1685,6 @@ function i_store(num, form_name){
 
     $.ajax({
         url: "database/add_case_all_upload.php",
-        // data: {
-        //     Number:num,
-        //     Form_name:form_name,
-        //     Id:id,
-        //     Case_id:open_id,
-        //     Name:name,
-        //     Case_pid:pid,
-        //     Upload_path:,
-        //     Upload_info:,
-        // },
         type: "POST",
         data:form_data,
         contentType:false,
@@ -1117,8 +1702,8 @@ function i_store(num, form_name){
                     location.reload();
                 }) 
             }
-           else
-           {
+            else
+            {
                 swal({
                     title:'上傳失敗！請聯絡負責單位',
                     type:'error',
@@ -1135,6 +1720,7 @@ function i_store(num, form_name){
     });
 }
 //endregion
+
 
 // page reload時保持上次的頁籤狀態 region
 function tab_toggle() {
@@ -1447,3 +2033,24 @@ $("#collapseTwo").show();
 };
 //endregions
 
+//呼叫user方法region
+function append_user(obj_name_num){             
+    $.ajax({
+        type:'POST',
+        url:'database/find_check_user.php',
+        dataType: "JSON",
+        async: false,//啟用同步請求
+        success: function (data) {
+            // console.log('test',data)
+            $("#supervise1_set"+obj_name_num).empty();
+            $("#supervise2_set"+obj_name_num).empty();
+            $("#supervise1_set"+obj_name_num).append('<option value="">請選擇</option>');
+            $("#supervise2_set"+obj_name_num).append('<option value="">請選擇</option>');
+            for (var index in data.Id) {
+                $("#supervise1_set"+obj_name_num).append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+                $("#supervise2_set"+obj_name_num).append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+            }
+        },
+    });
+}
+//endregion
