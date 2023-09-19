@@ -900,6 +900,30 @@
     </div>
     <!-- Modal /-->
 
+        <!--\ Modal -->
+        <div class="modal fade" id="update_upload_data_modal" tabindex="-1" role="dialog" aria-labelledby="update_upload_data_modal_label" data-backdrop="static">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="update_upload_data_modal_label">修改</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="form_modal">
+                        <table id="update_upload_all_data" style="width:auto;margin:0 auto;" class="table table-bordered">
+                            
+                        </table>
+                    </from>
+                </div>
+
+                <div class="modal-footer text-center">
+                    <button id="modal_btn" onclick="update_upload_data(this);" type="button" class="btn btn-default">送出</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal /-->
+
     <!-- /#wrapper -->
     <!-- JavaScript -->
     <!-- Bootstrap and jQuery -->

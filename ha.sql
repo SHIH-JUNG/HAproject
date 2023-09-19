@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： localhost
--- 產生時間： 2023-09-18 18:47:06
+-- 產生時間： 2023-09-19 17:21:38
 -- 伺服器版本： 10.4.28-MariaDB
 -- PHP 版本： 8.2.4
 
@@ -986,7 +986,7 @@ CREATE TABLE `form_all_info` (
 --
 
 INSERT INTO `form_all_info` (`Id`, `Case_seqid`, `Case_id`, `Case_name`, `Case_pid`, `Is_upload`, `Url`, `Upload_path`, `Number`, `Form_name`, `Fillin_date`, `Remark`, `Other_info`, `Case_storage`, `Upload_info`, `Create_date`, `Create_name`, `Update_date`, `Update_name`, `Supervise1`, `Supervise1_signature`, `Supervise1_sign_msg`, `Supervise1_sign_time`, `Supervise2`, `Supervise2_signature`, `Supervise2_sign_msg`, `Supervise2_sign_time`) VALUES
-(1, '6', 'RE111', 'test', 'T1334356112', 1, '', '../upload/case_all/testasda (1).docx', 0, 'life', '0000-00-00', '', '', 'storage', '\"[{\"name\":\"create_date_life0\",\"value\":\"2023-09-19\"},{\"name\":\"fillin_date_life0\",\"value\":\"2023-09-13\"},{\"name\":\"add_new_typelife0\",\"value\":\"上傳檔案\"},{\"name\":\"result_scorelife0\",\"value\":\"test88/test結果\"},{\"name\":\"test_typelife0\",\"value\":\"中測\"},{\"name\":\"filelife0\",\"value\":\"testasda (1).docx\"},{\"name\":\"remarklife0\",\"value\":\"111remark\"}]\"', '2023-09-19 00:44:30', '社工組長', '0000-00-00 00:00:00', '', '園主任', '../signature/1695055559.png', 'tesaraasas', '2023-09-19 00:45:59', '執行長', '', '', '');
+(1, '6', 'RE111', 'test', 'T1334356112', 1, '', '../upload/case_all/aaaaaaa.docx', 0, 'life', '0000-00-00', '', '', 'storage', '\"[{\"name\":\"create_date_life0\",\"value\":\"2023-09-19\"},{\"name\":\"fillin_date_life0\",\"value\":\"2023-09-18\"},{\"name\":\"add_new_typelife0\",\"value\":\"上傳檔案\"},{\"name\":\"result_scorelife0\",\"value\":\"test88/test結果\\n919\"},{\"name\":\"test_typelife0\",\"value\":\"前測\"},{\"name\":\"filelife0\",\"value\":\"aaaaaaa.docx\"},{\"name\":\"remarklife0\",\"value\":\"111remark\\n919\"}]\"', '2023-09-19 00:44:30', '社工組長', '2023-09-19 23:18:20', '社工組長', '園主任', '../signature/1695055559.png', 'tesaraasas', '2023-09-19 00:45:59', '執行長', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -1386,7 +1386,8 @@ INSERT INTO `login_record` (`Id`, `Login_timestamp`, `Login_account`, `Login_aut
 (250, '2023-09-16 12:28:32', 'test3', '3', '社工組長', '22.593919,120.488807', 1),
 (251, '2023-09-17 19:00:54', 'testuser', '5', 'jia', '22.5939065,120.4888475', 1),
 (252, '2023-09-18 14:05:52', 'test3', '3', '社工組長', '22.720364,120.306796', 1),
-(253, '2023-09-19 00:45:46', 'test5', '2', '園主任', '22.593877,120.48887', 0);
+(253, '2023-09-19 00:45:46', 'test5', '2', '園主任', '22.593877,120.48887', 0),
+(254, '2023-09-19 19:39:10', 'test3', '3', '社工組長', '24.1418,120.6806', 1);
 
 -- --------------------------------------------------------
 
@@ -3315,7 +3316,7 @@ ALTER TABLE `leave_rule_table`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `login_record`
 --
 ALTER TABLE `login_record`
-  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=254;
+  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=255;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `members_assemble`

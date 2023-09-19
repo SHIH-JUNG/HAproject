@@ -280,7 +280,7 @@ function load_each_form()
                         var upload_info_json = JSON.parse("[" +value.Upload_info.replace('\"\[', '\[').replace('\]\"', '\]') + "]");
                         
                         var td_str = "";
-                        console.log(upload_info_json[0])
+                        // console.log(upload_info_json[0])
                         $.each(upload_info_json[0], function (i, datan) {
                         if(datan.name.includes("file"))
                         {
@@ -409,7 +409,7 @@ delete_upload_data = function() {
         },
         // dataType: "JSON", // 若要傳回字串 如：noallow，不可設定為json格式
         success: function (data) {
-            console.log(data)
+            // console.log(data)
             //console.log(typeof data)
             if(data == 1){
                 swal({
@@ -449,31 +449,18 @@ load_update_upload_data = function(this_btn) {
     var form_name_str = form_name_sql_id.split("_")[0];
     var sql_id_str = form_name_sql_id.split("_")[1];
 
-    if(form_name_str == "sullen")
-    {
-        load_update_type_data(sql_id_str, 1);
 
-        $("#update_upload_data_modal_type1").modal('show');
+        load_update_type_data(sql_id_str, form_name_str);
 
-        $("#modal_type1_btn").attr("sql_id", sql_id_str);
-        $("#modal_type1_btn").attr("upload_form_type", "1");
-    }
-    else if(form_name_str == "BSRS5")
-    {
-        load_update_type_data(sql_id_str, 2);
+        $("#update_upload_data_modal").modal('show');
 
-        $("#update_upload_data_modal_type2").modal('show');
-
-        $("#modal_type2_btn").attr("sql_id", sql_id_str);
-        $("#modal_type2_btn").attr("upload_form_type", "2");
-    }
-    
-
+        $("#modal_btn").attr("sql_id", sql_id_str);
+        $("#modal_btn").attr("upload_form_type", form_name_str);
 }
 //endregion
 
 // 資料庫查詢量表，載入原本的內容 region
-load_update_type_data = function(sql_id_str, type_num) {
+load_update_type_data = function(sql_id_str, form_type_str) {
     
     $.ajax({
         url: "database/find_case_all_upload.php",
@@ -485,88 +472,196 @@ load_update_type_data = function(sql_id_str, type_num) {
         success: function (data) {
             // console.log(data)
             $.each(data,function(index,value){
-                switch (type_num) {
-                    case 1:
-                        var upload_info_json = JSON.parse("[" +value.Upload_info.replace('\"\[', '\[').replace('\]\"', '\]') + "]");
+                var upload_info_json = JSON.parse("[" +value.Upload_info.replace('\"\[', '\[').replace('\]\"', '\]') + "]");
                         
-                        type_sql_orignal_name = [];
+                type_sql_orignal_name = [];
 
-                        $.each(upload_info_json[0], function (i, datan) {
-                            type_sql_orignal_name.push(datan.name);
+                var table_html_str = "";
 
-                            if(datan.name.includes("upload_date"))
-                            {
-                                $('[name="modal_type1_answer1"]').val(datan.value);
-                            }
-                            if(datan.name.includes("score"))
-                            {
-                                $('[name="modal_type1_answer2"]').val(datan.value);
-                            }
-                            if(datan.name.includes("test_type"))
-                            {
-                                $('[name="modal_type1_answer3"]').val(datan.value);
-                            }
-                            if(datan.name.includes("remark"))
-                            {
-                                $('[name="modal_type1_answer4"]').val(datan.value);
-                            }
-                            if(datan.name.includes("file"))
-                            {
-                                var file_str = '<td><a href="upload/case_all/'+datan.value+'" style="text-decoration:none;color:blue;" target="_blank">'+
-                                '<img style="vertical-align:middle;" width="20px" src="image/file-pdf.svg">'+datan.value+'</a></td>';
-                            
-                                $('#modal_type1_answer_file').html(file_str);
-                                $('[name="modal_type1_answer_file"]').attr("value",datan.value);
-                            }
-                        });
-                        // console.log(type1_sql_orignal_name)
-                        break;
-                
-                    case 2:
-                        var upload_info_json = JSON.parse("[" +value.Upload_info.replace('\"\[', '\[').replace('\]\"', '\]') + "]");
+                // 根據name名稱產生html內容，輸入框、下拉式選單、日期填寫等
+                $.each(upload_info_json[0], function (i, datan) {
+                    type_sql_orignal_name.push(datan.name);
+
+                    var data_name_input_str ="";
+                    var th_ch_name = get_case_all_th_ch_name(datan.name);
+
+                    if(datan.name.includes("create_date_"))
+                    {
+                        data_name_input_str ='<input name="'+datan.name+'" type="date" disabled="disabled"/>';
+                    }
+                    else if(datan.name.includes("fillin_date_"))
+                    {
+                        data_name_input_str ='<input name="'+datan.name+'" type="date"/>';
+                    }
+                    else if(datan.name.includes("add_new_type"))
+                    {
+                        data_name_input_str ='<input name="'+datan.name+'" type="text" disabled="disabled"/>';
+                    }
+                    else if(datan.name.includes("upload_date"))
+                    {
+                        data_name_input_str ='<input name="'+datan.name+'" type="date" disabled="disabled"/>';
+                    }
+                    else if(datan.name.includes("result_score"))
+                    {
+                        data_name_input_str = '<textarea style="width:12em;resize: none;font-size: 20px;min-height:8em;" name="'+datan.name+'" placeholder="'+th_ch_name+'"></textarea>';
+                    }
+                    else if(datan.name.includes("score"))
+                    {
+                        data_name_input_str ='<input name="'+datan.name+'" type="text"/>';
+                    }
+                    else if(datan.name.includes("test_type"))
+                    {
+                        data_name_input_str ='<select name="'+datan.name+'">'+
+                        '<option value="">請選擇</option>'+
+                        '<option value="前測">前測</option>'+
+                        '<option value="中測">中測</option>'+
+                        '<option value="後測">後測</option>'+
+                        '</select>';
+                    }
+                    else if(datan.name.includes("remark"))
+                    {
+                        data_name_input_str = '<textarea style="width:12em;resize: none;font-size: 20px;min-height:8em;" name="'+datan.name+'" placeholder="'+th_ch_name+'"></textarea>';
+                    }
+                    else if(datan.name.includes("interlocution_date"))
+                    {
+                        data_name_input_str ='<input name="'+datan.name+'" type="date"/>';
+                    }
+                    else if(datan.name.includes("interlocution_ques"))
+                    {
+                        data_name_input_str = '<textarea style="width:12em;resize: none;font-size: 20px;min-height:8em;" name="'+datan.name+'" placeholder="'+th_ch_name+'"></textarea>';
+                    }
+                    else if(datan.name.includes("assign_name"))
+                    {
+                        data_name_input_str ='<input name="'+datan.name+'" type="text"/>';
+                    }
+                    else if(datan.name.includes("dispose"))
+                    {
+                        data_name_input_str = '<textarea style="width:12em;resize: none;font-size: 20px;min-height:8em;" name="'+datan.name+'" placeholder="'+th_ch_name+'"></textarea>';
+                    }
+                    else if(datan.name.includes("file"))
+                    {
+                        var file_str = '<a href="upload/case_all/'+datan.value+'" style="text-decoration:none;color:blue;" target="_blank">'+
+                        '<img style="vertical-align:middle;" width="20px" src="image/file-pdf.svg">'+datan.value+'</a>';
+                    
+                        table_html_str +=
+                        '<tr style="text-align:left">' +
+                            '<td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">上傳檔案</td>' +
+                            '<td style="border-bottom: solid 1px;">' +
+                                '<div class="col-sm-12">' +
+                                    '<div class="text-left">' +
+                                        '<input name="'+datan.name+'" type="file" value="'+datan.value+'"/>' +
+                                        '<br>' +
+                                        '<div id="'+datan.name+'">'+file_str+'</div>' +
+                                    '</div>' +
+                                '</div>' +
+                                '<br/>' +
+                                '<span style="color:blue;">' +                   
+                                    '※原先的檔案將會被刪除或覆蓋' +
+                                '</span>' +
+                            '</td>' +
+                        '</tr>';
                         
-                        type_sql_orignal_name = [];
+                        // $("#"+datan.name).html(file_str);
+                        // $('[name="'+datan.name+'"]').attr("value",datan.value);
+                    }
 
-                        $.each(upload_info_json[0], function (i, datan) {
-                            type_sql_orignal_name.push(datan.name);
+                    if(datan.name.indexOf("file") == -1)
+                    {
+                        table_html_str +=
+                        '<tr style="text-align:left">' +
+                            '<td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">'+ th_ch_name +'</td>' +
+                            '<td style="border-bottom: solid 1px;">' +
+                                '<div class="col-sm-12">' +
+                                    '<div class="text-left">' +
+                                        data_name_input_str +
+                                    '</div>' +
+                                '</div>' +
+                            '</td>' +
+                        '</tr>';
+                    }
+                    
+                });
 
-                            if(datan.name.includes("create_date"))
-                            {
-                                $('[name="modal_type2_answer1"]').val(datan.value);
-                            }
-                            if(datan.name.includes("score"))
-                            {
-                                $('[name="modal_type2_answer2"]').val(datan.value);
-                            }
-                            if(datan.name.includes("dispose"))
-                            {
-                                $('[name="modal_type2_answer3"]').val(datan.value);
-                            }
-                            if(datan.name.includes("file"))
-                            {
-                                var file_str = '<td><a href="upload/case_all/'+datan.value+'" style="text-decoration:none;color:blue;" target="_blank">'+
-                                '<img style="vertical-align:middle;" width="20px" src="image/file-pdf.svg">'+datan.value+'</a></td>';
-                            
-                                $('#modal_type2_answer_file').html(file_str);
-                                $('[name="modal_type2_answer_file"]').attr("value",datan.value);
-                            }
-                            if(datan.name.includes("remark"))
-                            {
-                                $('[name="modal_type2_answer4"]').val(datan.value);
-                            }
-                            
-                        });
-                        // console.log(type2_sql_orignal_name)
-                        break;
-                }
-                
-            })
+                $("#update_upload_all_data").html(table_html_str);
+
+                // 將值填入上面產生好的表格內的輸入框、下拉式選單、日期欄位等元素中
+                $.each(upload_info_json[0], function (i, datan) {
+                    if(datan.name.indexOf("file") == -1)
+                    {
+                        $('[name="' + datan.name + '"]').val(datan.value);
+                    }
+                });
+
+                // console.log(type_sql_orignal_name)
+            });
         },
         error: function (e) {
             notyf.alert('伺服器錯誤,無法載入');
         }
     });
+}
+//endregion
 
+
+// 依據從資料庫獲取的欄位英文變數找到對應的中文欄位名稱 region
+function get_case_all_th_ch_name(upload_data_name) 
+{
+    var ch_name = "";
+
+    if(upload_data_name.includes("create_date_"))
+    {
+        ch_name = "建立日期";
+    }
+    else if(upload_data_name.includes("fillin_date_"))
+    {
+        ch_name = "填表日期";
+    }
+    else if(upload_data_name.includes("add_new_type"))
+    {
+        ch_name = "類型";
+    }
+    else if(upload_data_name.includes("upload_date"))
+    {
+        ch_name = "上傳日期";
+    }
+    else if(upload_data_name.includes("result_score"))
+    {
+        ch_name = "得分/結果";
+    }
+    else if(upload_data_name.includes("score"))
+    {
+        ch_name = "總分";
+    }
+    else if(upload_data_name.includes("test_type"))
+    {
+        ch_name = "前/中/後測";
+    }
+    else if(upload_data_name.includes("file"))
+    {
+        ch_name = "上傳檔案";
+    }
+    else if(upload_data_name.includes("remark"))
+    {
+        ch_name = "備註";
+    }
+    else if(upload_data_name.includes("interlocution_date"))
+    {
+        ch_name = "會談日期";
+    }
+    else if(upload_data_name.includes("interlocution_ques"))
+    {
+        ch_name = "問題陳述";
+    }
+    else if(upload_data_name.includes("assign_name"))
+    {
+        ch_name = "社工/關懷員";
+    }
+    else if(upload_data_name.includes("dispose"))
+    {
+        ch_name = "處置情形";
+    }
+
+    return ch_name;
 }
 //endregion
 
@@ -577,110 +672,94 @@ update_upload_data = function(this_btn) {
     var attr_upload_form_type = $(this_btn).attr("upload_form_type");
 
 
-    var update_file = $("[name=modal_type"+attr_upload_form_type+"_answer_file]").prop("files").length;
+    var update_file = $("[name*=file]").prop("files").length;
 
-    if(update_file > 0)
-    {
-        window.submit_data  = new FormData();
+    window.submit_data  = new FormData();
 
-        // var form = $("#form_modal_type"+attr_upload_form_type+"").serializeArray();
-        // var upload_info_arr = new Array(); 
+    var form_data_json = [];
 
-        // upload_info_arr.push({name:"modal_type"+attr_upload_form_type+"_answer_file",value:$("[name='modal_type"+attr_upload_form_type+"_answer_file']").val().replace("C\:\\fakepath\\", "")});
-
-        // form = form.concat(upload_info_arr);
-        var form_data_json = [];
-
-        switch (attr_upload_form_type) {
-            case '1':
-                form_data_json.push({ name: type_sql_orignal_name[0], value:  $('[name="modal_type1_answer1"]').val()});
-                form_data_json.push({ name: type_sql_orignal_name[1], value:  $('[name="modal_type1_answer2"]').val()});
-                form_data_json.push({ name: type_sql_orignal_name[2], value:  $('[name="modal_type1_answer_file"]').val().replace("C\:\\fakepath\\", "")});
-                form_data_json.push({ name: type_sql_orignal_name[3], value:  $('[name="modal_type1_answer3"]').val()});
-                form_data_json.push({ name: type_sql_orignal_name[4], value:  $('[name="modal_type1_answer4"]').val()});
-
-                break;
-        
-            case '2':
-                form_data_json.push({ name: type_sql_orignal_name[0], value:  $('[name="modal_type2_answer1"]').val()});
-                form_data_json.push({ name: type_sql_orignal_name[1], value:  "上傳檔案"});
-                form_data_json.push({ name: type_sql_orignal_name[2], value:  $('[name="modal_type2_answer2"]').val()});
-                form_data_json.push({ name: type_sql_orignal_name[3], value:  $('[name="modal_type2_answer3"]').val()});
-                form_data_json.push({ name: type_sql_orignal_name[4], value:  $('[name="modal_type2_answer_file"]').val().replace("C\:\\fakepath\\", "")});
-                form_data_json.push({ name: type_sql_orignal_name[5], value:  $('[name="modal_type2_answer4"]').val()});
-
-
-                break;
+    $.each(type_sql_orignal_name, function (id, val) {
+        if(val.indexOf("file") != -1)
+        {
+            form_data_json.push({name: val,value:$("[name='"+val+"']").val().replace("C:\\fakepath\\", "")});
         }
+        else
+        {
+            form_data_json.push({ name: val, value:  $("[name='"+val+"']").val()});
+        }
+    });
 
+    $("[name*=file]").each(function(index, element) {
+        var update_files = $(this).prop("files");
+        // console.log(update_files.length)
         
-
-        $("[name='modal_type"+attr_upload_form_type+"_answer_file']").each(function(index, element) {
-            var update_files = $(this).prop("files");
-            // console.log(update_files.length)
-            
-            if (update_files != undefined) {
-                if (update_files.length != 0) 
-                {
-                for (var i = 0; i < update_files.length; i++) {
-                    // console.log(update_files[i])
-                    submit_data.append("files", update_files[i]);
-                }
-                }
-            }
-        });
-
-        submit_data.append("Id", attr_sql_id);
-        submit_data.append("upload_content", JSON.stringify(form_data_json));
-        
-        // for (var pair of submit_data.entries()) {
-        //     console.log(pair[0]+ ', ' + pair[1]); 
-        // }
-
-        
-        $.ajax({
-            url: "database/update_case_all_upload.php",
-            type: "POST",
-            data:submit_data,
-            contentType:false,
-            cache:false,
-            processData:false,
-            async:true,
-            success: function (data) {
-                console.log(data)
-                //console.log(typeof data)
-                if(data == 1){
-                    swal({
-                        title:'上傳成功！',
-                        type:'success',                        
-                    }).then(function(){
-                        location.reload();
-                    }) 
-                }
-            else
+        if (update_files != undefined) {
+            if (update_files.length != 0) 
             {
-                    swal({
-                        title:'上傳失敗！請聯絡負責單位',
-                        type:'error',
-                    })
-                }
-            },
-            error: function (e) {
-                console.log(e);
+            for (var i = 0; i < update_files.length; i++) {
+                // console.log(update_files[i])
+                submit_data.append("files", update_files[i]);
+            }
+            }
+        }
+    });
+
+    submit_data.append("Id", attr_sql_id);
+    submit_data.append("upload_content", JSON.stringify(form_data_json));
+    
+    // for (var pair of submit_data.entries()) {
+    //     console.log(pair[0]+ ', ' + pair[1]); 
+    // }
+
+    
+    $.ajax({
+        url: "database/update_case_all_upload.php",
+        type: "POST",
+        data:submit_data,
+        contentType:false,
+        cache:false,
+        processData:false,
+        async:true,
+        success: function (data) {
+            // console.log(data)
+            //console.log(typeof data)
+            if(data == 1){
+                swal({
+                    title:'上傳成功！',
+                    type:'success',                        
+                }).then(function(){
+                    location.reload();
+                }) 
+            }
+        else
+        {
                 swal({
                     title:'上傳失敗！請聯絡負責單位',
                     type:'error',
                 })
             }
-        });
-    }
-    else
-    {
-        swal({
-            title:'請選擇要上傳的檔案',
-            type:'error',                        
-        })
-    }
+        },
+        error: function (e) {
+            console.log(e);
+            swal({
+                title:'上傳失敗！請聯絡負責單位',
+                type:'error',
+            })
+        }
+    });
+
+    // //判斷檔案是否上傳
+    // if(update_file > 0)
+    // {
+        
+    // }
+    // else
+    // {
+    //     swal({
+    //         title:'請選擇要上傳的檔案',
+    //         type:'error',                        
+    //     })
+    // }
 }  
 //endregion
 
@@ -1544,7 +1623,6 @@ i_store_submit_datas = function(num, form_name)
     // 抓取上傳的欄位內容
     // console.log($("#"+form_name+"_full_add [name*='"+form_name+"_num[]'] td").children())
     $("#"+form_name+"_full_add [name*='"+form_name+"_num[]'] td").children().each(function(i,n){
-        console.log("qdw")
         var td_id = $(this).attr("id");
         var td_val = $("#"+td_id).val();
         var create_date = timenow;
@@ -1575,7 +1653,7 @@ i_store_submit_datas = function(num, form_name)
         }
     });
 
-    console.log(upload_info_arr)
+    // console.log(upload_info_arr)
 
     //創立FormData Oject
     //傳輸 input type="file"類型檔案需用FormData Oject格式傳送ajax
@@ -1692,7 +1770,7 @@ i_store_submit_datas = function(num, form_name)
         processData:false,
         async:true,
         success: function (data) {
-            console.log(data)
+            // console.log(data)
             //console.log(typeof data)
             if(data == 1){
                 swal({
