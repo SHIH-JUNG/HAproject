@@ -783,7 +783,7 @@ form_add_new = function(obj){
     var th_len = $("#"+obj_table+" th").length;
     
     //空的td標籤
-    var empty_td = '<td></td>';
+    // var empty_td = '<td></td>';
     //除了 建立日期、填表日期、最末端的量表內容，三位置之外都生成 空的td標籤
     // empty_td = empty_td.repeat(th_len-8);
 
@@ -800,14 +800,14 @@ form_add_new = function(obj){
             '</select>'+
             '</td>'+
             '<td id="result_td'+obj_name+num+'"></td>'+
-            '<td id="content_type_td'+obj_name+num+'"></td>'+
+            '<td id="content_type'+obj_name+num+'"></td>'+
             '<td><input id="remark'+obj_name+num+'" type="text"></td>'+
             '<td></td>'+
             '<td id="signer_set_td'+obj_name+num+'"></td>'+
             '<td></td>'+
         '</tr>'+
         '<tr>'+
-        '<td colspan="'+th_len+'"><button onClick="store('+num+',&quot;'+obj_name+'&quot;);">儲存</button> <button onClick="location.reload();">取消</button></td>'+
+        '<td id="store_btn'+obj_name+num+'" colspan="'+th_len+'"><button onClick="store('+num+',&quot;'+obj_name+'&quot;);">儲存</button> <button onClick="location.reload();">取消</button></td>'+
         '</tr>';
     }
     else if(obj_name=="interlocution")
@@ -831,7 +831,7 @@ form_add_new = function(obj){
             '<td></td>'+
         '</tr>'+
         '<tr>'+
-        '<td colspan="'+th_len+'"><button onClick="store('+num+',&quot;'+obj_name+'&quot;);">儲存</button> <button onClick="location.reload();">取消</button></td>'+
+        '<td id="store_btn'+obj_name+num+'" colspan="'+th_len+'"><button onClick="store('+num+',&quot;'+obj_name+'&quot;);">儲存</button> <button onClick="location.reload();">取消</button></td>'+
         '</tr>';
     }
     else if(obj_name=="resource")
@@ -852,7 +852,7 @@ form_add_new = function(obj){
             '<td></td>'+
         '</tr>'+
         '<tr>'+
-        '<td colspan="'+th_len+'"><button onClick="store('+num+',&quot;'+obj_name+'&quot;);">儲存</button> <button onClick="location.reload();">取消</button></td>'+
+        '<td id="store_btn'+obj_name+num+'" colspan="'+th_len+'"><button onClick="store('+num+',&quot;'+obj_name+'&quot;);">儲存</button> <button onClick="location.reload();">取消</button></td>'+
         '</tr>';
     }
     else if(obj_name=="life")
@@ -1115,7 +1115,14 @@ form_upload_new = function(obj) {
                     '</td>'+
                     '<td><input id="remark'+obj_name+num+'" type="text"></td>'+
                     '<td></td>'+
-                    '<td></td>'+
+                    '<td id="signer_set_td'+obj_name+num+'">' +
+                    '<span>督導：</span><br/>'+
+                    '<select id="supervise1_set'+obj_name+num+'">'+
+                    '</select>'+
+                    '<br/><br/><span>執行長：</span><br/>'+
+                    '<select id="supervise2_set'+obj_name+num+'">'+
+                    '</select>'+
+                    '</td>'+
                     '<td></td>'+
                 '</tr>'+
                 '<tr>'+
@@ -1130,7 +1137,8 @@ form_upload_new = function(obj) {
     
         //對應的tobody內寫入cssstring
         $("#"+obj_tbody).append(cssstring);
-        
+
+        append_user(obj_name+num);
         //只能按一次
         var btn = $(obj); 
         btn.prop('disabled',true); 
@@ -1538,7 +1546,7 @@ function i_store(num, form_name){
                 // var td_val = document.getElementById(td_id).value;
                 var th_name = $(this).parent().parent().parent("tbody").siblings("tbody").children().children().eq(i).text();
                 
-                if(td_id!==undefined && td_id != "create_date_"+form_name+num && td_id != "remark"+form_name+num  && td_id !="supervise1_set"+form_name+num && td_id !="supervise2_set"+form_name+num)
+                if(td_id!==undefined && td_id != "create_date_"+form_name+num && td_id != "upload_date_"+form_name+num && td_id != "remark"+form_name+num  && td_id !="supervise1_set"+form_name+num && td_id !="supervise2_set"+form_name+num)
                 {   
                     if(td_val =="")
                     {

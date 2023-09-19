@@ -289,7 +289,7 @@
                                                                     <span>曾出入那些矯正機關？共<input style="width:3em;" name="correctional_question_count" id="correctional_question_count" type="text">次,</span>
                                                                     <span>時間<input name="correctional_question_start" id="correctional_question_start" type="month">至<input name="correctional_question_end" id="correctional_question_end" type="month"></span>
                                                                     <span style="color:blue;"><span>&emsp;&emsp;約共<input style="width:3em;" name="correctional_year" id="correctional_year" type="text">年<input style="width:3em;" name="correctional_month" id="correctional_month" type="text">月</span></span>
-                                                                    <button style="font-size:20px;color:blue;" id="correctional_question_count" onclick="calculation_date(); return false;">計算</button>
+                                                                    <button style="font-size:20px;color:blue;" onclick="calculation_date(); return false;">計算</button>
                                                                 </div>
                                                             </div>
                                                         </td>
@@ -687,6 +687,7 @@
                                                                         <input name="pretest_depression_radio" style="zoom: 1.5" value="輕度" type="radio"><span>輕度</span>
                                                                         <input name="pretest_depression_radio" style="zoom: 1.5" value="中度" type="radio"><span>中度</span>
                                                                         <input name="pretest_depression_radio" style="zoom: 1.5" value="重度憂鬱" type="radio"><span>重度憂鬱；</span>
+                                                                        <input name="pretest_depression_radio_text" type="text">
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
@@ -705,6 +706,7 @@
                                                                         <input name="midtest_depression_radio" style="zoom: 1.5" value="輕度" type="radio"><span>輕度</span>
                                                                         <input name="midtest_depression_radio" style="zoom: 1.5" value="中度" type="radio"><span>中度</span>
                                                                         <input name="midtest_depression_radio" style="zoom: 1.5" value="重度憂鬱" type="radio"><span>重度憂鬱；</span>
+                                                                        <input name="midtest_depression_radio_text" type="text">
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
@@ -723,6 +725,7 @@
                                                                         <input name="posttest_depression_radio" style="zoom: 1.5" value="輕度" type="radio"><span>輕度</span>
                                                                         <input name="posttest_depression_radio" style="zoom: 1.5" value="中度" type="radio"><span>中度</span>
                                                                         <input name="posttest_depression_radio" style="zoom: 1.5" value="重度憂鬱" type="radio"><span>重度憂鬱；</span>
+                                                                        <input name="posttest_depression_radio_text" type="text">
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
@@ -735,6 +738,7 @@
                                                                         </span>
                                                                         <span>&emsp;身心障礙狀況良好，</span>
                                                                         <input name="BSRS5_checkbox" style="zoom: 1.5" value="無" type="checkbox"><span>無&emsp;自殺想法</span>
+                                                                        <input name="BSRS5_checkbox_text" type="text">
                                                                     </td>
                                                                 </tr>
                                                             </table>
@@ -758,6 +762,8 @@
                                                                         <span id="pretest_life_area">
 
                                                                         </span>
+                                                                        &emsp;
+                                                                        <input name="pretest_life_text" type="text">
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
@@ -773,6 +779,8 @@
                                                                         <span id="midtest_life_area">
 
                                                                         </span>
+                                                                        &emsp;
+                                                                        <input name="midtest_life_text" type="text">
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
@@ -788,6 +796,8 @@
                                                                         <span id="posttest_life_area">
 
                                                                         </span>
+                                                                        &emsp;
+                                                                        <input name="posttest_life_text" type="text">
                                                                     </td>
                                                                 </tr>
                                                             </table>
@@ -809,6 +819,8 @@
                                                                         <span id="pretest_familyship_area">
 
                                                                         </span>
+                                                                        &emsp;
+                                                                        <input name="pretest_familyship_text" type="text">
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
@@ -822,6 +834,8 @@
                                                                         <span id="midtest_familyship_area">
 
                                                                         </span>
+                                                                        &emsp;
+                                                                        <input name="midtest_familyship_text" type="text">
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
@@ -835,6 +849,8 @@
                                                                         <span id="posttest_familyship_area">
 
                                                                         </span>
+                                                                        &emsp;
+                                                                        <input name="posttest_familyship_text" type="text">
                                                                     </td>
                                                                 </tr>
                                                             </table>

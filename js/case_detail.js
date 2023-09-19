@@ -391,19 +391,19 @@ function load_life_data() {
                         switch (test_type) {
                             case '前測':
                                 sp_str0 = '<span>'+
-                                '（' + fillin_date + ' ' + test_type + '）' + '得分/結果：' + '<span style="color:red;">' + test_score_result + '</span>' + 
+                                '（' + fillin_date + ' ' + test_type + '）' + '得分/結果：' + '<span style="color:red;">' + test_score_result.replace("<div>", "").replace("<br/>", "").replace("</div>", "") + '</span>' + 
                                 '</span>';
                                 break;
                         
                             case '中測':
                                 sp_str1 = '<span>'+
-                                '（' + fillin_date + ' ' + test_type + '）' + '得分/結果：' + '<span style="color:red;">' + test_score_result + '</span>' +
+                                '（' + fillin_date + ' ' + test_type + '）' + '得分/結果：' + '<span style="color:red;">' + test_score_result.replace("<div>", "").replace("<br/>", "").replace("</div>", "") + '</span>' +
                                 '</span>';
                                 break;
                                 
                             case '後測':
                                 sp_str2 = '<span>'+
-                                '（' + fillin_date + ' ' + test_type + '）' + '得分/結果：' + '<span style="color:red;">' + test_score_result + '</span>' +
+                                '（' + fillin_date + ' ' + test_type + '）' + '得分/結果：' + '<span style="color:red;">' + test_score_result.replace("<div>", "").replace("<br/>", "").replace("</div>", "") + '</span>' +
                                 '</span>';
                                 break;
                         }
@@ -456,7 +456,7 @@ function load_familyship_data() {
             $.each(data,function(index,value){
                         
                 var other_info_json = JSON.parse("[" +value.Other_info.replace('\"\[', '\[').replace('\]\"', '\]') + "]");
-                console.log(other_info_json)
+                // console.log(other_info_json)
                                 
                 if(other_info_json.length > 0)
                 {
@@ -487,9 +487,6 @@ function load_familyship_data() {
                         }
                     }
                 }
-                
-               
-               
             });
             $("#pretest_familyship_area").append(sp_str0);
             $("#midtest_familyship_area").append(sp_str1);
@@ -521,7 +518,7 @@ function load_BSRS5_data() {
         success: function (data) {
     
             var sp_str = '<span>'+
-            'BSRS-5得' + '&emsp;' + '分'
+            'BSRS-5得' + '&emsp;' + '--' + '分'
             '</span>';
 
     
@@ -566,6 +563,11 @@ function load_BSRS5_data() {
                                     '</span>';
                         }
                     }
+                }
+
+                if(parseInt(test_score)<=5)
+                {
+                    $('[name="BSRS5_checkbox"]').attr('checked',true);
                 }
                 
             });
@@ -1196,6 +1198,8 @@ $(document).ready(function () {
 
     //載入憂鬱量表內容 個案評估表->成效評估
     load_sullen_data();
+    //載入BSRS-5結果 個案評估表->成效評估
+    load_BSRS5_data();
     //載入生活品質量表內容 個案評估表->成效評估
     load_life_data();
     //載入家庭關係量表內容 個案評估表->成效評估
@@ -1387,24 +1391,26 @@ function load_all_forms_data(type_name,url_str)
                     { 
                         //從資料庫抓取的格式為 "../upload/檔案.檔名"
                         //replace()更改為 "檔案.檔名"
-
                         if (typeof data[0].file_path !== 'undefined')
                         {
                             var file_val = data[0].file_path.replace("\.\.\/upload\/", "");
 
-                            //該input value寫入"檔案.檔名"
-                            $("input[name*='customFile']").eq(i).attr("value",file_val)
-    
-                            //檔案連結與圖片string
-                            var file_html='<a name="customFile'+(i+1)+'_a" href="./upload/'+file_val+'" style="text-decoration:none;color:blue;" target="_blank">'+file_val+'<br/></a><img style="vertical-align:middle;" width="auto" onerror="hideContainer(this)" src="./upload/'+file_val+'">';
-    
-                            // if()
-                            // {
-                            //     file_html += '<img style="vertical-align:middle;" width="auto" src="./upload/'+file_val+'">';
-                            // }
-                            
-                            //寫入該input相對應的div元素 (id="customFile^") 中顯示
-                            $("#customFile"+(i+1)).html(file_html);
+                            if(file_val !="undefined")
+                            {
+                                //該input value寫入"檔案.檔名"
+                                $("input[name*='customFile']").eq(i).attr("value",file_val)
+                                    
+                                //檔案連結與圖片string
+                                var file_html='<a name="customFile'+(i+1)+'_a" href="./upload/'+file_val+'" style="text-decoration:none;color:blue;" target="_blank">'+file_val+'<br/></a><img style="vertical-align:middle;" width="auto" onerror="hideContainer(this)" src="./upload/'+file_val+'">';
+
+                                // if()
+                                // {
+                                //     file_html += '<img style="vertical-align:middle;" width="auto" src="./upload/'+file_val+'">';
+                                // }
+
+                                //寫入該input相對應的div元素 (id="customFile^") 中顯示
+                                $("#customFile"+(i+1)).html(file_html);
+                            }
                         } 
                         
                     }

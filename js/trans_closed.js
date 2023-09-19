@@ -286,7 +286,7 @@ function load_familyship_data() {
 }
 //endregion
 
-// 載入生活品質量表的測驗內容 region
+// 載入BSRS-5量表的測驗內容 region
 function load_BSRS5_data() {
     $.ajax({
         url: "database/find_case_all.php",
