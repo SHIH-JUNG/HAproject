@@ -207,7 +207,7 @@
                                                             <tr>
                                                                 <th class="text-right" colspan="15">
                                                                     <?php
-                                                                    echo '<a href="resume_detail_v2.php?id='.$menu_login_resume_id.'">';
+                                                                    echo '<a href="resume_detail_v2.php?id='.$_SESSION['resume_id'].'">';
                                                                     ?>
                                                                     
                                                                         <button style="font-size:15px" type="button" class="btn btn-danger">

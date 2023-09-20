@@ -63,109 +63,6 @@ let DateDifference = function (date1, date2) { // date1 和 date2 是 2016-06-18
 };
 //endregion
 
-test = function() {
-  //去掉資料內前後端多餘的空白，file類型須排除，否則報錯
-  $("input, textarea").each(function () {
-    if ($(this).attr("type") != "file") {
-      $(this).val(jQuery.trim($(this).val()));
-    }
-  });
-  var form_data = new FormData();
-
-  // var entry_date_year_split = $("#entry_date").val().split("年");
-
-  var file_year = parseInt(new Date().getFullYear()) - 1911;
-  
-  var get_resume_files = get_files_name_value();
-
-  // console.log(get_resume_files)
-
-  var seniority_num =  parseFloat(DateDifference(moment().format('YYYY-MM-DD'), split_date($("#entry_date").val())));
-
-  var annual_default_hours = 0;
-
-  // console.log( typeof seniority_num)
-  // console.log(seniority_num)
-
-  // 依據年資算出特休天數 region
-  $.ajax({
-    url: "database/find_leave_rule_table.php",
-    type: "POST",
-    dataType: "JSON",
-    async: false,
-    success: function (data) {
-        // console.log(data);
-
-        var leave_rule_arr = data[0].Rule_table_json.replace("\[","").replace("\]","").split(",");
-
-        $.each(leave_rule_arr, function (index, value) {
-
-          // 預設未滿六個月特休為0天
-          if(seniority_num < 0.5)
-          {
-            annual_default_hours = 0.0;
-          }
-          else if(parseInt(seniority_num) == index)
-          {
-            num = value.replace("\"", "").replace("\"", "");
-
-            annual_default_hours = parseFloat(num).toFixed(1);
-          }
-            
-        });
-    },
-    error: function (e) {
-        swal({
-        type: "error",
-        title: "系統錯誤!請聯絡負責人",
-        allowOutsideClick: false, //不可點背景關閉
-        }).then(function () {
-        history.back();
-        });
-    },
-  });
-  //endregion
-
-  // 將特休天數轉為時數單位
-  annual_default_hours = parseFloat(annual_default_hours * 8).toFixed(1);
-
-  // console.log(annual_default_hours);
-
-  $("input[type='file']").each(function(index, element) {
-    var resume_files = $(this).prop("files");
-    // console.log(resume_files.length)
-    if (resume_files != undefined) {
-      if (resume_files.length != 0) {
-        for (var i = 0; i < resume_files.length; i++) {
-          form_data.append("resume_files"+index, resume_files[i]);
-          // console.log(resume_files[i])
-        }
-      } else {
-        //載入量表『無重新上傳檔案』情況下按儲存，則加入File_name供後端程式判斷
-        form_data.append("File_name", JSON.stringify(get_resume_files));
-      }
-    }
-  });
-
-  form_data.append("Account", $("#account").val());
-  form_data.append("Name", $("#user_name").val());
-  form_data.append("Password", $("#user_password").val());
-  form_data.append("Email", $("#email").val());
-  form_data.append("Seniority", seniority_num);
-  form_data.append("Annual_hours", annual_default_hours);
-  form_data.append("Entry_date", $("#entry_date").val());
-  form_data.append("On_or_off",$("#on_or_off").val());
-  form_data.append("Remark",$("#remark").val());
-  // form_data.append("File_year",entry_date_year_split[0]);
-  form_data.append("File_year",file_year);
-
-
-  for (var pair of form_data.entries()) {
-    console.log(pair[0] + ", " + pair[1]);
-  }
-
-}
-
 $(document).ready(function () {
   //將input name名稱為ch_datepicker創建datepicker初始化 region
   $("input[name='ch_datepicker']").each(function () {
@@ -280,10 +177,11 @@ function submit_form() {
     }
   });
 
-  form_data.append("Account", $("#account").val());
-  form_data.append("Name", $("#user_name").val());
-  form_data.append("Password", $("#user_password").val());
-  form_data.append("Email", $("#email").val());
+  // form_data.append("Account", $("#account").val());
+  // form_data.append("Name", $("#user_name").val());
+  // form_data.append("Password", $("#user_password").val());
+  // form_data.append("Email", $("#email").val());
+
   form_data.append("Seniority", seniority_num);
   form_data.append("Annual_hours", annual_default_hours);
   form_data.append("Entry_date", $("#entry_date").val());

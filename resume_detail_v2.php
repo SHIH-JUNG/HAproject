@@ -183,7 +183,16 @@
                                                                         <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>員工姓名</td>
                                                                         <td style="border-bottom: solid 1px;">
                                                                             <div class="form-group col-sm-4">
-                                                                                <input id="user_name" class="resume_question" type="text">
+                                                                                <!-- <input id="user_name" class="resume_question" type="text"> -->
+                                                                                <span id="user_name"></span>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr style="text-align:left">
+                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>信箱</td>
+                                                                        <td style="border-bottom: solid 1px;">
+                                                                            <div class="form-group col-sm-4">
+                                                                                <input id="email" class="resume_question" type="email" placeholder="輸入信箱" data-error="Email格式無效">
                                                                             </div>
                                                                         </td>
                                                                     </tr>

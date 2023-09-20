@@ -132,56 +132,6 @@
                                                                     </tr>
 
                                                                     <tr style="text-align:left">
-                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>帳號</td>
-                                                                        <td style="border-bottom: solid 1px;">
-                                                                            <div class="form-group  col-sm-6">
-                                                                                <input class="form-control" id="account" placeholder="設定網站帳號" type="text" pattern="^[A-Za-z0-9]+$" maxlength="50" required data-pattern-error="帳號只接受英文字母、數字">
-                                                                                <div class="help-block with-errors"></div>
-                                                                            </div>
-                                                                        </td>
-                                                                    </tr>
-
-                                                                    <tr style="text-align:left">
-                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>密碼</td>
-                                                                        <td style="border-bottom: solid 1px;">
-                                                                            <div class="form-group  col-sm-6">
-                                                                                <input class="form-control" id="user_password" placeholder="設定網站密碼" autocomplete="new-password" type="password" pattern="^(?=.*\d)(?=.*[a-zA-Z]).{6,}$" maxlength="50" required data-pattern-error="密碼請輸入含有英文字母及數字的密碼，至少六個字元。">
-                                                                                <div class="help-block with-errors"></div>
-                                                                            </div>
-                                                                        </td>
-                                                                    </tr>
-
-                                                                    <tr style="text-align:left">
-                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>再一次輸入密碼</td>
-                                                                        <td style="border-bottom: solid 1px;">
-                                                                            <div class="form-group  col-sm-6">
-                                                                                <input class="form-control" id="user_password_again" placeholder="確認密碼" type="password" required data-error="密碼未吻合" data-match="#user_password">
-                                                                                <div class="help-block with-errors"></div>
-                                                                            </div>
-                                                                        </td>
-                                                                    </tr>
-
-                                                                    <tr style="text-align:left">
-                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>信箱</td>
-                                                                        <td style="border-bottom: solid 1px;">
-                                                                            <div class="form-group col-sm-8">
-                                                                                <input type="email" class="form-control" id="email" placeholder="輸入信箱" data-error="Email格式無效" required>
-                                                                                <div class="help-block with-errors"></div>
-                                                                            </div>
-                                                                        </td>
-                                                                    </tr>
-
-                                                                    <tr style="text-align:left">
-                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>員工姓名</td>
-                                                                        <td style="border-bottom: solid 1px;">
-                                                                            <div class="form-group col-sm-4">
-                                                                                <input type="text" class="form-control" id="user_name" placeholder="請輸入員工姓名" data-error="請輸入姓名" required>
-                                                                                <div class="help-block with-errors"></div>
-                                                                            </div>
-                                                                        </td>
-                                                                    </tr>
-
-                                                                    <tr style="text-align:left">
                                                                         <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>入職日</td>
                                                                         <td style="border-bottom: solid 1px;">
                                                                             <div class="form-group col-sm-4">

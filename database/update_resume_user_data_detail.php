@@ -7,6 +7,7 @@ include("sql_connect.php");
 $Resume_id = $_REQUEST['Resume_id'];
 @$Account = $_REQUEST['Account'];
 @$Name = $_REQUEST['Name'];
+@$Email = $_REQUEST['Email'];
 @$Entry_date = $_REQUEST['Entry_date'];
 @$Resigned_date = $_REQUEST['Resigned_date'];
 @$On_or_off = $_REQUEST['On_or_off'];
@@ -218,9 +219,9 @@ $Remark_seniority = "員工建檔修改預設補修時數：".$Annual_hours."小
 
 
 
-$sql = "UPDATE `resume` SET `Name` = '$Name', `Entry_date`='$Entry_date', `On_or_off`='$On_or_off', `Resigned_date` = '$Resigned_date', `Seniority`= '$Seniority', `Annual_hours`= '$Annual_hours',".$file_sqls_date_update." `Remark` = '$Remark', `Update_date` = NOW(), `Update_name` = '$user' WHERE `Id` = '$Resume_id';";
+$sql = "UPDATE `resume` SET `Name` = '$Name', `Email` = '$Email', `Entry_date`='$Entry_date', `On_or_off`='$On_or_off', `Resigned_date` = '$Resigned_date', `Seniority`= '$Seniority', `Annual_hours`= '$Annual_hours',".$file_sqls_date_update." `Remark` = '$Remark', `Update_date` = NOW(), `Update_name` = '$user' WHERE `Id` = '$Resume_id';";
 
-$sql .= "UPDATE `user_info` SET `Name` = '$Name', `Update_date` = NOW(), `Update_name` = '$user' WHERE `Resume_id` = '$Resume_id';";
+$sql .= "UPDATE `user_info` SET `Email` = '$Email', `Update_date` = NOW(), `Update_name` = '$user' WHERE `Resume_id` = '$Resume_id';";
 
 $sql .= "UPDATE `resume_seniority` SET `Seniority_num`= '$Seniority', `Rec_year`= '$File_year', `Annual_default`= '$Annual_hours', `Remark`= '$Remark_seniority', `Update_date` = NOW(), `Update_name` = '$user' WHERE `Resume_id` = '$Resume_id' AND `Type` = 'Annual_default';";
 

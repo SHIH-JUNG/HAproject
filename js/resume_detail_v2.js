@@ -111,7 +111,8 @@ $(document).ready(function () {
       text: "請先創建您的履歷表檔案資料",
       allowOutsideClick: false, //不可點背景關閉
     }).then(function () {
-      window.history.go(-1);
+      // window.history.go(-1);
+      window.location.href = 'add_resume.php';
     });
   }
 
@@ -260,7 +261,9 @@ function load_resume_datas() {
 
       $.each(data, function (index, value) {
         $("#account").text(value.Account);
-        $("#user_name").val(value.Name);
+        // $("#user_name").val(value.Name);
+        $("#user_name").text(value.Name);
+        $("#email").val(value.Email);
         $("#entry_date").val(value.Entry_date);
 
         $("#seniority_num").val(value.Seniority);
@@ -607,7 +610,8 @@ resume_update = function () {
 
     form_data.append("Resume_id", resume_id);
     form_data.append("Account", $("#account").text());
-    form_data.append("Name", $("#user_name").val());
+    form_data.append("Name", $("#user_name").text());
+    form_data.append("Email", $("#email").val());
     form_data.append("Entry_date", $("#entry_date").val());
     form_data.append("Resigned_date", $("#resigned_date").val());
     form_data.append("On_or_off", $("#on_or_off").val());
@@ -668,7 +672,7 @@ resume_update = function () {
 }
 
 function check_updat_resume_user_data() {
-  var user_name = $("#user_name").val();
+  // var user_name = $("#user_name").val();
   var entry_date = $("#entry_date").val();
   var on_or_off = $("#on_or_off").val();
   var resigned_date = $("#resigned_date").val();
@@ -676,9 +680,9 @@ function check_updat_resume_user_data() {
   var errorstr = "";
 
 
-  if (user_name == null) {
-    errorstr += "未填寫員工姓名!\r\n";
-  }
+  // if (user_name == null) {
+  //   errorstr += "未填寫員工姓名!\r\n";
+  // }
   if (entry_date == null) {
     errorstr += "未填寫入職日!\r\n";
   }
@@ -688,9 +692,9 @@ function check_updat_resume_user_data() {
     }
   }
   if (errorstr == "") {
-    if (user_name.replace(/\s*/g, "") == "") {
-      errorstr += "未填寫員工姓名!\r\n";
-    }
+    // if (user_name.replace(/\s*/g, "") == "") {
+    //   errorstr += "未填寫員工姓名!\r\n";
+    // }
     if (entry_date.replace(/\s*/g, "") == "") {
       errorstr += "未填寫入職日!\r\n";
     }
@@ -723,7 +727,7 @@ update_row = function (row_year) {
 
   form_data.append("Resume_id", resume_id);
   form_data.append("Account", $("#account").text());
-  form_data.append("Name", $("#user_name").val());
+  form_data.append("Name", $("#user_name").text());
 
   form_data.append("Remark", $("[name='remark_" + row_year + "']").val());
   form_data.append("File_year", row_year);

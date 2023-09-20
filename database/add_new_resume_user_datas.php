@@ -4,10 +4,12 @@
 //只要此頁面上有用到連接MySQL就要include它
 include("sql_connect.php");
 
-@$Account = $_REQUEST['Account'];
-@$Name = $_REQUEST['Name'];
-@$Password = $_REQUEST['Password'];
-@$Email = $_REQUEST['Email'];
+@$Account = $_SESSION['Account'];
+@$user_info_id = $_SESSION['acc_id'];
+@$Name = $_SESSION["name"];
+// @$Password = $_REQUEST['Password'];
+// @$Email = $_REQUEST['Email'];
+
 @$Seniority = $_REQUEST['Seniority'];
 @$Annual_hours = $_REQUEST['Annual_hours'];
 @$Entry_date = $_REQUEST['Entry_date'];
@@ -33,19 +35,33 @@ else
     $resume_seq_id = 1;
 }
 
-$select_id_num2 = "SELECT MAX(Id) FROM `user_info` ORDER BY `user_info`.`Create_date` ASC LIMIT 1;";
+$_SESSION['resume_id'] = $resume_seq_id;
 
-$find_id_num2 = mysqli_query($conn,$select_id_num2);
-$id_num2 = mysqli_fetch_row($find_id_num2);
+$select_email_num2 = "SELECT `Email` FROM `user_info` WHERE `Id` = '$user_info_id';";
 
-if($id_num2[0]>0)
+$find_email_num2 = mysqli_query($conn,$select_email_num2);
+$row_nums_2 = mysqli_num_rows($find_email_num2);
+$email_num2 = mysqli_fetch_row($find_email_num2);
+
+if($row_nums_2>0)
 {
-    $user_info_id = (int)$id_num2[0] + 1;
+    $Email = $email_num2[0];
 }
-else
-{
-    $user_info_id = 1;
-}
+
+
+// $select_id_num2 = "SELECT MAX(Id) FROM `user_info` ORDER BY `user_info`.`Create_date` ASC LIMIT 1;";
+
+// $find_id_num2 = mysqli_query($conn,$select_id_num2);
+// $id_num2 = mysqli_fetch_row($find_id_num2);
+
+// if($id_num2[0]>0)
+// {
+//     $user_info_id = (int)$id_num2[0] + 1;
+// }
+// else
+// {
+//     $user_info_id = 1;
+// }
 
 
 // 員工建立檔案路徑
@@ -158,22 +174,25 @@ $file_sqls = $file_sql_0.$file_sql_1.$file_sql_2;
 $Remark_seniority = "員工建檔新增預設補修時數：".$Annual_hours."小時。";
 
 
-$sql = "INSERT INTO `resume` (`Id`, `Account_id`, `Account`, `Name`, `Entry_date`
+$sql = "INSERT INTO `resume` (`Id`, `Account_id`, `Account`, `Name`, `Email`, `Entry_date`
 , `On_or_off`
 , `Seniority`, `Annual_hours`
 , `Resume_datas_date`
 , `NDA_file_date`, `Diploma_date`
 , `Remark`, `Create_date`, `Create_name`) VALUES 
-    ($resume_seq_id, $user_info_id, '$Account', '$Name', '$Entry_date', '$On_or_off'
+    ($resume_seq_id, $user_info_id, '$Account', '$Name', '$Email', '$Entry_date', '$On_or_off'
     , '$Seniority', '$Annual_hours'
     , '$file_0_date', '$file_1_date', '$file_2_date', '$Remark', NOW(), '$user');";
 
 $sql.=$file_sqls;
 
-$sql .= "INSERT INTO `user_info` (`Id`, `Resume_id`, `Account`, `Password`, `Name`
-, `Authority`, `Create_date`, `Create_name`) VALUES 
-    ($user_info_id, $resume_seq_id, '$Account', '$Password', '$Name'
-    , 1, NOW(), '$user');";
+// $sql .= "INSERT INTO `user_info` (`Id`, `Resume_id`, `Account`, `Password`, `Name`
+// , `Authority`, `Create_date`, `Create_name`) VALUES 
+//     ($user_info_id, $resume_seq_id, '$Account', '$Password', '$Name'
+//     , 1, NOW(), '$user');";
+
+$sql .= "UPDATE `user_info` SET `Resume_id` = '$resume_seq_id', `Update_date` = NOW(), `Update_name` = '$user' WHERE `Id`='$user_info_id';";
+
 
 $sql .= "INSERT INTO `resume_seniority` (`Resume_id`, `Seniority_num`, `Rec_year`
 , `Type`, `Annual_default`, `Remark`, `Create_date`, `Create_name`) VALUES 

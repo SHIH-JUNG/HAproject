@@ -1,6 +1,6 @@
 <?php 
     $menu_login_authority = $_SESSION['authority'];
-    $menu_login_resume_id = $_SESSION['resume_id'];
+    // $menu_login_resume_id = $_SESSION['resume_id'];
     
 ?>
 <div class="fixed-sidebar-left">
@@ -40,7 +40,7 @@
                                 }
                                 else
                                 {
-                                    echo '<a href="resume_detail_v2.php?id='.$menu_login_resume_id.'">履歷表檔案</a>';
+                                    echo '<a href="resume_detail_v2.php?id='.$_SESSION['resume_id'].'">履歷表檔案</a>';
                                 }
                             ?>
                         </li>
