@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： localhost
--- 產生時間： 2023-09-19 18:14:05
+-- 產生時間： 2023-09-20 16:39:37
 -- 伺服器版本： 10.4.28-MariaDB
 -- PHP 版本： 8.2.4
 
@@ -815,9 +815,11 @@ INSERT INTO `current_case` (`Id`, `Case_id`, `Phone_id`, `Unopen_type`, `Case_Cr
 (8, '440', '', 'case', '2022-10-25', '愛滋感染者', 'B', '自立宿舍', '社會賦歸期', '2022-10-01', '測O試', '女', '異性', '0900-666-777', '1974-04-21', 'V123456788', '警政', '已結案', '', '2023-07-20', 'test001', '2022-10-25 11:27:22', '花花', '2023-07-20 14:40:12', '花花'),
 (9, 'RE115', '13', 'phone', '2022-12-09', '一般藥癮者', 'A', '自立宿舍', '0', '2022-12-09', '十二月零九日', '男', '雙性', '0900-000-000', '1980-02-12', 'Z652123745', '教會', '已結案', '', '2022-12-09', 'ㄓㄜㄒㄧㄢ', '2022-12-09 09:16:23', '花花', '2022-12-09 10:11:21', '花花'),
 (10, 'RE877', '', 'case', '2022-12-09', '藥癮家庭', 'A', '社區', '223', '2022-12-09', '何竹田', '男', '同性', '0977985162', '1999-03-23', 'y997501623', '藥癮家庭', '未結案', '', '0000-00-00', 'ㄓㄜㄒㄧㄢ', '2022-12-09 09:54:24', '花花', '0000-00-00 00:00:00', ''),
-(11, '441', '', 'case', '2022-12-09', '親職兒少', 'C', '社區', 'b', '2022-12-09', '立可貸', '其他', '異性', '0977412563', '1997-10-19', 'j744510096', '民間社福機構', '未結案', '', '0000-00-00', 'ㄓㄜㄒㄧㄢ', '2022-12-09 10:00:35', '花花', '0000-00-00 00:00:00', ''),
+(11, 'A441', '', 'case', '2022-12-09', '親職兒少', 'C', '社區', 'b', '2022-12-09', '立可貸', '其他', '異性', '0977412563', '1997-10-19', 'j744510096', '民間社福機構', '未結案', '', '0000-00-00', 'ㄓㄜㄒㄧㄢ', '2022-12-09 10:00:35', '花花', '0000-00-00 00:00:00', ''),
 (12, '442', '16', 'phone', '2023-07-20', '愛滋感染者', 'B', '自立宿舍', '3', '2023-07-20', 'wu小姐', '其他', '異性', '配偶', '2004-06-22', 'E225488729', '醫院', '未結案', 'case70、interlocution71、life73、health74、employment_satif77、satif78、familyship79、settlement80', '0000-00-00', '花花', '2023-07-20 10:36:00', '花花', '0000-00-00 00:00:00', ''),
-(13, '443', '', 'reopencase', '2023-07-20', '愛滋感染者', 'B', '自立宿舍', '社會賦歸期', '2023-07-20', '測ｏ試', '男', '', '0973-771-113', '2023-07-20', 'I121326167', '矯正機關', '未結案', '', '0000-00-00', '社工員1', '2023-07-20 14:44:30', '花花', '0000-00-00 00:00:00', '');
+(13, '443', '', 'reopencase', '2023-07-20', '愛滋感染者', 'B', '自立宿舍', '社會賦歸期', '2023-07-20', '測ｏ試', '男', '', '0973-771-113', '2023-07-20', 'I121326167', '矯正機關', '未結案', '', '0000-00-00', '社工員1', '2023-07-20 14:44:30', '花花', '0000-00-00 00:00:00', ''),
+(14, 'A442', '', 'case', '2023-09-20', '親職兒少', 'A', '自立宿舍', '2', '2023-09-20', 'ag1', '女', '異性', '5512134', '1972-06-05', 'H2431123311', '醫院', '未結案', '', '0000-00-00', '社工員2', '2023-09-20 22:31:42', '社工組長', '0000-00-00 00:00:00', ''),
+(15, 'B101', '998', 'counsel', '2023-09-20', '親職兒少', 'B', '自立宿舍', '2', '2023-09-20', '快O樂', '男', '異性', '22223123', '1991-10-10', 'V2456123789', '醫院', '未結案', '', '0000-00-00', '社工組長', '2023-09-20 22:34:02', '社工組長', '0000-00-00 00:00:00', '');
 
 -- --------------------------------------------------------
 
@@ -955,7 +957,7 @@ CREATE TABLE `forms` (
 
 INSERT INTO `forms` (`Id`, `Case_seqid`, `Case_id`, `Form_id`, `Form_type`, `Case_name`, `Case_pid`, `Create_date`, `Create_name`, `Update_date`, `Update_name`, `answer`, `file_path`, `Health_rec`) VALUES
 (1, '6', 'RE111', 2, 'case', 'test', 'T1334356112', '2023-09-19 23:23:12', '社工組長', '2023-09-20 00:09:43', '社工組長', '\"[{\"name\":\"assign_name\",\"value\":\"社工組長\"},{\"name\":\"fillin_date\",\"value\":\"2023-09-19\"},{\"name\":\"name\",\"value\":\"test\"},{\"name\":\"birth\",\"value\":\"1991-02-03\"},{\"name\":\"pid\",\"value\":\"T1334356112\"},{\"name\":\"sex\",\"value\":\"男\"},{\"name\":\"phone_home\",\"value\":\"062223331\"},{\"name\":\"phone_mobile\",\"value\":\"\"},{\"name\":\"address\",\"value\":\"\"},{\"name\":\"residence\",\"value\":\"\"},{\"name\":\"cohabitant_other\",\"value\":\"\"},{\"name\":\"current_job_other\",\"value\":\"\"},{\"name\":\"economic_status_0\",\"value\":\"\"},{\"name\":\"economic_status_1\",\"value\":\"\"},{\"name\":\"economic_status_2\",\"value\":\"\"},{\"name\":\"economic_status_3\",\"value\":\"\"},{\"name\":\"religion_other\",\"value\":\"\"},{\"name\":\"drug_record_0\",\"value\":\"\"},{\"name\":\"drug_record_1\",\"value\":\"\"},{\"name\":\"drug_record_2\",\"value\":\"\"},{\"name\":\"drug_record_3\",\"value\":\"\"},{\"name\":\"correctional_question_count\",\"value\":\"\"},{\"name\":\"correctional_question_start\",\"value\":\"2023-06\"},{\"name\":\"correctional_question_end\",\"value\":\"2023-11\"},{\"name\":\"correctional_year\",\"value\":\"0\"},{\"name\":\"correctional_month\",\"value\":\"5\"},{\"name\":\"family_description\",\"value\":\"\"},{\"name\":\"assessment\",\"value\":\"aaa\"},{\"name\":\"treatment_time_year\",\"value\":\"\"},{\"name\":\"treatment_time_month\",\"value\":\"\"},{\"name\":\"treatment_time_1\",\"value\":\"\"},{\"name\":\"medical_name\",\"value\":\"\"},{\"name\":\"medical_info\",\"value\":\"\"},{\"name\":\"medical_phone\",\"value\":\"\"},{\"name\":\"health_clinic_name\",\"value\":\"\"},{\"name\":\"health_clinic_phone\",\"value\":\"\"},{\"name\":\"CD4_index_0\",\"value\":\"\"},{\"name\":\"CD4_index_1\",\"value\":\"\"},{\"name\":\"CD4_index_2\",\"value\":\"\"},{\"name\":\"viral_0\",\"value\":\"\"},{\"name\":\"viral_1\",\"value\":\"\"},{\"name\":\"viral_2\",\"value\":\"\"},{\"name\":\"medical_other\",\"value\":\"\"},{\"name\":\"symptoms_other\",\"value\":\"\"},{\"name\":\"statement\",\"value\":\"\"},{\"name\":\"personal_system\",\"value\":\"\"},{\"name\":\"family_system\",\"value\":\"\"},{\"name\":\"social_system\",\"value\":\"\"},{\"name\":\"resource_system\",\"value\":\"\"},{\"name\":\"diagnose_main\",\"value\":\"\"},{\"name\":\"diagnose_minor\",\"value\":\"\"},{\"name\":\"dealwith_target\",\"value\":\"\"},{\"name\":\"dealwith_strategy\",\"value\":\"\"},{\"name\":\"resource_w_referrals\",\"value\":\"\"},{\"name\":\"pretest_depression_radio_text\",\"value\":\"\"},{\"name\":\"midtest_depression_radio_text\",\"value\":\"\"},{\"name\":\"posttest_depression_radio_text\",\"value\":\"\"},{\"name\":\"BSRS5_checkbox_text\",\"value\":\"\"},{\"name\":\"pretest_life_text\",\"value\":\"\"},{\"name\":\"midtest_life_text\",\"value\":\"\"},{\"name\":\"posttest_life_text\",\"value\":\"\"},{\"name\":\"pretest_familyship_text\",\"value\":\"\"},{\"name\":\"midtest_familyship_text\",\"value\":\"\"},{\"name\":\"posttest_familyship_text\",\"value\":\"\"},{\"name\":\"other_assessments\",\"value\":\"\"},{\"name\":\"case_closed_yes\",\"value\":\"\"},{\"name\":\"case_closed_radio\",\"value\":\"暫不結案\"},{\"name\":\"case_closed_year\",\"value\":\"\"},{\"name\":\"case_closed_month\",\"value\":\"\"},{\"name\":\"case_closed_day\",\"value\":\"\"},{\"name\":\"case_closed_totalmonth\",\"value\":\"\"},{\"name\":\"case_closed_remark\",\"value\":\"\"}]\"', '../upload/undefined', ''),
-(2, '6', 'RE111', 3, 'interlocution', 'test', 'T1334356112', '2023-09-19 23:23:59', '社工組長', '0000-00-00 00:00:00', '', '\"[{\"name\":\"interlocution_date\",\"value\":\"\"},{\"name\":\"interlocution_place\",\"value\":\"\"},{\"name\":\"interlocution_ques_type\",\"value\":\"就醫\"},{\"name\":\"interlocution_ques\",\"value\":\"aaaaaa\"},{\"name\":\"interlocution_time\",\"value\":\"\"},{\"name\":\"interlocution_content\",\"value\":\"\"},{\"name\":\"interlocution_next_target\",\"value\":\"\"},{\"name\":\"assign_name\",\"value\":\"社工組長\"},{\"name\":\"supervise_name\",\"value\":\"\"}]\"', '', ''),
+(2, '6', 'RE111', 3, 'interlocution', 'test', 'T1334356112', '2023-09-19 23:23:59', '社工組長', '2023-09-20 21:19:12', '社工組長', '\"[{\"name\":\"interlocution_date\",\"value\":\"\"},{\"name\":\"interlocution_place\",\"value\":\"\"},{\"name\":\"interlocution_ques_types\",\"value\":\"就醫、就業媒合、法律、家庭關係、就業職訓\"},{\"name\":\"interlocution_ques\",\"value\":\"aaaaaa\"},{\"name\":\"interlocution_time\",\"value\":\"\"},{\"name\":\"interlocution_content\",\"value\":\"\"},{\"name\":\"interlocution_next_target\",\"value\":\"dwqdwad\"},{\"name\":\"assign_name\",\"value\":\"社工組長\"},{\"name\":\"supervise_name\",\"value\":\"\"}]\"', '', ''),
 (3, '6', 'RE111', 4, 'resource', 'test', 'T1334356112', '2023-09-19 23:24:21', '社工組長', '2023-09-19 23:24:26', '社工組長', '\"[{\"name\":\"rtable1&resource_rec_1[]\",\"value\":[\"dddddddd\",\"\",\"\",\"\",\"\",\"社工組長\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"]}]\"', '', ''),
 (4, '6', 'RE111', 5, 'life', 'test', 'T1334356112', '2023-09-19 23:24:56', '社工組長', '0000-00-00 00:00:00', '', '\"[{\"name\":\"w_test\",\"value\":\"中測\"},{\"name\":\"fillin_date\",\"value\":\"2023-09-19\"},{\"name\":\"life_answer_score1\",\"value\":\"\"},{\"name\":\"customRange1\",\"value\":\"50\"},{\"name\":\"customRange2\",\"value\":\"50\"},{\"name\":\"customRange3\",\"value\":\"50\"},{\"name\":\"customRange4\",\"value\":\"50\"},{\"name\":\"customRange5\",\"value\":\"50\"},{\"name\":\"customRange6\",\"value\":\"50\"},{\"name\":\"customRange7\",\"value\":\"50\"},{\"name\":\"n0\",\"value\":\"\"},{\"name\":\"n1\",\"value\":\"\"},{\"name\":\"n2\",\"value\":\"\"},{\"name\":\"n3\",\"value\":\"\"},{\"name\":\"n4\",\"value\":\"\"},{\"name\":\"n5\",\"value\":\"\"},{\"name\":\"life_answer_score2\",\"value\":\"\"}]\"', '', ''),
 (5, '6', 'RE111', 8, 'employment_satif', 'test', 'T1334356112', '2023-09-19 23:30:45', '社工組長', '0000-00-00 00:00:00', '', '\"[{\"name\":\"fillin_date_0\",\"value\":\"2023-09-19\"},{\"name\":\"name\",\"value\":\"test\"},{\"name\":\"sex\",\"value\":\"男\"},{\"name\":\"birth\",\"value\":\"1991-02-03\"},{\"name\":\"phone\",\"value\":\"062223331\"},{\"name\":\"address\",\"value\":\"\"},{\"name\":\"work_experience\",\"value\":\"\"},{\"name\":\"contact_name\",\"value\":\"\"},{\"name\":\"relation\",\"value\":\"\"},{\"name\":\"contact_phone\",\"value\":\"\"},{\"name\":\"physical_mental_t_1\",\"value\":\"\"},{\"name\":\"physical_mental_t_2\",\"value\":\"\"},{\"name\":\"correction_rec_t_1\",\"value\":\"\"},{\"name\":\"correction_rec_t_2\",\"value\":\"\"},{\"name\":\"correction_rec_t_3\",\"value\":\"\"},{\"name\":\"correction_rec_t_4\",\"value\":\"\"},{\"name\":\"correction_rec_t_5\",\"value\":\"\"},{\"name\":\"correction_rec_date_start\",\"value\":\"\"},{\"name\":\"correction_rec_date_end\",\"value\":\"\"},{\"name\":\"capability_t_0\",\"value\":\"\"},{\"name\":\"capability_t_1\",\"value\":\"\"},{\"name\":\"capability_t_2\",\"value\":\"\"},{\"name\":\"capability_t_3\",\"value\":\"\"},{\"name\":\"capability_t_4\",\"value\":\"\"},{\"name\":\"other_skills_t_0\",\"value\":\"\"},{\"name\":\"traffic_capacity_t_0\",\"value\":\"\"},{\"name\":\"traffic_capacity_t_1\",\"value\":\"\"},{\"name\":\"traffic_capacity_t_2\",\"value\":\"\"},{\"name\":\"employment_status_t_date\",\"value\":\"\"},{\"name\":\"employment_status_t_1\",\"value\":\"\"},{\"name\":\"employment_status_t_2\",\"value\":\"\"},{\"name\":\"employment_status_t_3\",\"value\":\"\"},{\"name\":\"employment_status_t_4\",\"value\":\"\"},{\"name\":\"employment_status_t_5\",\"value\":\"\"},{\"name\":\"employment_status_t_6\",\"value\":\"\"},{\"name\":\"tsn_case_id\",\"value\":\"RE111\"},{\"name\":\"fillin_date_1\",\"value\":\"2023-09-19\"},{\"name\":\"answer1\",\"value\":\"4\"},{\"name\":\"answer2\",\"value\":\"3\"},{\"name\":\"answer4\",\"value\":\"1\"},{\"name\":\"answer5\",\"value\":\"1\"},{\"name\":\"answer6\",\"value\":\"2\"},{\"name\":\"answer7\",\"value\":\"3\"},{\"name\":\"answer8\",\"value\":\"4\"},{\"name\":\"answer9\",\"value\":\"4\"},{\"name\":\"answer10\",\"value\":\"4\"},{\"name\":\"answer_score\",\"value\":\"26\"}]\"', '', ''),
@@ -1007,7 +1009,7 @@ CREATE TABLE `form_all_info` (
 INSERT INTO `form_all_info` (`Id`, `Case_seqid`, `Case_id`, `Case_name`, `Case_pid`, `Is_upload`, `Url`, `Upload_path`, `Number`, `Form_name`, `Fillin_date`, `Remark`, `Other_info`, `Case_storage`, `Upload_info`, `Create_date`, `Create_name`, `Update_date`, `Update_name`, `Supervise1`, `Supervise1_signature`, `Supervise1_sign_msg`, `Supervise1_sign_time`, `Supervise2`, `Supervise2_signature`, `Supervise2_sign_msg`, `Supervise2_sign_time`) VALUES
 (1, '6', 'RE111', 'test', 'T1334356112', 1, '', '../upload/case_all/aaaaaaa.docx', 0, 'life', '0000-00-00', '', '', 'storage', '\"[{\"name\":\"create_date_life0\",\"value\":\"2023-09-19\"},{\"name\":\"fillin_date_life0\",\"value\":\"2023-09-18\"},{\"name\":\"add_new_typelife0\",\"value\":\"上傳檔案\"},{\"name\":\"result_scorelife0\",\"value\":\"test88/test結果\\n919\"},{\"name\":\"test_typelife0\",\"value\":\"前測\"},{\"name\":\"filelife0\",\"value\":\"aaaaaaa.docx\"},{\"name\":\"remarklife0\",\"value\":\"111remark\\n919\"}]\"', '2023-09-19 00:44:30', '社工組長', '2023-09-19 23:18:20', '社工組長', '園主任', '../signature/1695055559.png', 'tesaraasas', '2023-09-19 00:45:59', '執行長', '', '', ''),
 (2, '6', 'RE111', 'test', 'T1334356112', 0, 'case_detail.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03', '', 0, 'case', '2023-09-19', 'test個案評估表', '\"[{\"name\":\"case\",\"value\":\"暫不結案，持續服務至民國年月日\"}]\"', 'cache', '', '2023-09-19 00:00:00', '社工組長', '2023-09-20 00:09:43', '社工組長', '', '', '', '', '', '', '', ''),
-(3, '6', 'RE111', 'test', 'T1334356112', 0, 'case_detail.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03', '', 0, 'interlocution', '0000-00-00', 'test會談紀錄', '\"[{\"name\":\"interlocution\",\"value\":\"\"},{\"name\":\"interlocution\",\"value\":\"aaaaaa\"},{\"name\":\"interlocution\",\"value\":\"社工組長\"}]\"', 'cache', '', '2023-09-19 00:00:00', '社工組長', '2023-09-19 23:23:59', '社工組長', '', '', '', '', '', '', '', ''),
+(3, '6', 'RE111', 'test', 'T1334356112', 0, 'case_detail.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03', '', 0, 'interlocution', '0000-00-00', 'test會談紀錄', '\"[{\"name\":\"interlocution\",\"value\":\"\"},{\"name\":\"interlocution\",\"value\":\"aaaaaa\"},{\"name\":\"interlocution\",\"value\":\"社工組長\"}]\"', 'cache', '', '2023-09-19 00:00:00', '社工組長', '2023-09-20 21:19:12', '社工組長', '', '', '', '', '', '', '', ''),
 (4, '6', 'RE111', 'test', 'T1334356112', 0, 'case_detail.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03', '', 0, 'resource', '0000-00-00', '', '', '', '', '2023-09-19 00:00:00', '社工組長', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', ''),
 (5, '6', 'RE111', 'test', 'T1334356112', 0, 'case_detail.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03', '', 1, 'life', '2023-09-19', '', '\"[{\"name\":\"life\",\"value\":\"<div>第一部分得分：-分，結果：。<br/>第二部分得分：-分。</div>\"},{\"name\":\"life\",\"value\":\"中測\"}]\"', 'cache', '', '2023-09-19 00:00:00', '社工組長', '2023-09-19 23:24:56', '社工組長', '', '', '', '', '', '', '', ''),
 (6, '6', 'RE111', 'test', 'T1334356112', 0, 'case_detail.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03', '', 0, 'health', '2023-09-19', '', '', '', '', '2023-09-19 00:00:00', '社工組長', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', ''),
@@ -1110,7 +1112,7 @@ INSERT INTO `form_case_report` (`Id`, `Case_seqid`, `Case_id`, `Form_id`, `Form_
 (48, '12', '442', 69, 'BSRS5', '2023-07-20', 'wu小姐', '0000-00-00', '', '', '', '', '', '', '花花', '2023-07-20 11:54:29', '花花', '2023-07-20 11:54:29', ''),
 (49, '12', '442', 80, 'settlement', '2023-07-20', 'wu小姐', '0000-00-00', '', '', '', '', '', '', '花花', '2023-07-20 11:57:26', '花花', '2023-07-20 11:57:26', ''),
 (50, '6', 'RE111', 2, 'case', '2022-08-08', 'test', '1991-02-03', '男', '', '', '', '其他', '', '社工員1', '2023-09-19 23:23:12', '社工組長', '2023-09-20 00:09:43', '社工組長'),
-(51, '6', 'RE111', 3, 'interlocution', '2022-08-08', 'test', '0000-00-00', '', '', '', '', '', '就醫', '社工員1', '2023-09-19 23:23:59', '社工組長', '2023-09-19 23:23:59', ''),
+(51, '6', 'RE111', 3, 'interlocution', '2022-08-08', 'test', '0000-00-00', '', '', '', '', '', '就醫、就業媒合、法律、家庭關係、就業職訓', '社工員1', '2023-09-19 23:23:59', '社工組長', '2023-09-20 21:19:12', '社工組長'),
 (52, '6', 'RE111', 4, 'resource', '2022-08-08', 'test', '0000-00-00', '', '', '', '', '', '', '社工員1', '2023-09-19 23:24:21', '社工組長', '2023-09-19 23:24:26', '社工組長'),
 (53, '6', 'RE111', 5, 'life', '2022-08-08', 'test', '0000-00-00', '', '', '', '', '', '', '社工員1', '2023-09-19 23:24:56', '社工組長', '2023-09-19 23:24:56', ''),
 (54, '6', 'RE111', 8, 'employment_satif', '2022-08-08', 'test', '0000-00-00', '', '', '', '', '', '', '社工員1', '2023-09-19 23:30:45', '社工組長', '2023-09-19 23:30:45', ''),
@@ -1150,7 +1152,8 @@ INSERT INTO `form_interlocution_queskeywords` (`Id`, `Ques_type`) VALUES
 (14, '藥癮問題'),
 (15, '行為問題'),
 (16, '入住規範入住規範'),
-(17, '如何就醫');
+(17, '如何就醫'),
+(18, 'test');
 
 -- --------------------------------------------------------
 
@@ -1434,7 +1437,8 @@ INSERT INTO `login_record` (`Id`, `Login_timestamp`, `Login_account`, `Login_aut
 (251, '2023-09-17 19:00:54', 'testuser', '5', 'jia', '22.5939065,120.4888475', 1),
 (252, '2023-09-18 14:05:52', 'test3', '3', '社工組長', '22.720364,120.306796', 1),
 (253, '2023-09-19 00:45:46', 'test5', '2', '園主任', '22.593877,120.48887', 0),
-(254, '2023-09-19 19:39:10', 'test3', '3', '社工組長', '24.1418,120.6806', 1);
+(254, '2023-09-19 19:39:10', 'test3', '3', '社工組長', '24.1418,120.6806', 1),
+(255, '2023-09-20 20:24:13', 'test3', '3', '社工組長', '22.593919322429123,120.48880667757085', 1);
 
 -- --------------------------------------------------------
 
@@ -1645,7 +1649,8 @@ CREATE TABLE `placement_case` (
 --
 
 INSERT INTO `placement_case` (`Id`, `Case_id`, `Unopen_type`, `Case_Create_date`, `Object_type`, `Case_grade`, `Case_property`, `Case_stage`, `Open_case_date`, `Name`, `Gender`, `Sexual_orientation`, `Phone`, `Birth`, `Case_pid`, `Referral`, `Case_state`, `Case_storage`, `Close_case_date`, `Case_assign`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
-(1, '471', 'placement_case', '2020-11-11', '愛滋感染者', 'A', '自立宿舍', '3', '2020-11-10', 'TESTAB12', '男', '異性', '052342342', '1945-02-05', 'HG12314341', '民間社福機構', '未結案', 'settlement1', '0000-00-00', '社工員2', '2023-08-29 22:53:28', 'jia', '2023-08-29 23:47:44', 'jia');
+(1, '471', 'placement_case', '2020-11-11', '愛滋感染者', 'A', '自立宿舍', '3', '2020-11-10', 'TESTAB12', '男', '異性', '052342342', '1945-02-05', 'HG12314341', '民間社福機構', '未結案', 'settlement1', '0000-00-00', '社工員2', '2023-08-29 22:53:28', 'jia', '2023-08-29 23:47:44', 'jia'),
+(2, 'B122', 'placement_case', '2023-09-20', '親職兒少', 'A', '安置家園', '2', '2023-09-20', 'tesa', '男', '異性', '2222221', '1733-05-01', 'P1111322323', '其他', '未結案', '', '0000-00-00', '社工員2', '2023-09-20 22:39:18', '社工組長', '0000-00-00 00:00:00', '');
 
 -- --------------------------------------------------------
 
@@ -3331,7 +3336,7 @@ ALTER TABLE `counsel_visit`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `current_case`
 --
 ALTER TABLE `current_case`
-  MODIFY `Id` int(254) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `Id` int(254) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `day_off_v2`
@@ -3361,7 +3366,7 @@ ALTER TABLE `form_case_report`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `form_interlocution_queskeywords`
 --
 ALTER TABLE `form_interlocution_queskeywords`
-  MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `leave_rule_table`
@@ -3373,7 +3378,7 @@ ALTER TABLE `leave_rule_table`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `login_record`
 --
 ALTER TABLE `login_record`
-  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=255;
+  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=256;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `members_assemble`
@@ -3385,7 +3390,7 @@ ALTER TABLE `members_assemble`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `placement_case`
 --
 ALTER TABLE `placement_case`
-  MODIFY `Id` int(254) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `Id` int(254) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `placement_forms`

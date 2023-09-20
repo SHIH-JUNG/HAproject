@@ -393,7 +393,16 @@
                         </tr>
                         <tr style="text-align:left">
                             <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline"><i style="color:red;">※</i>開案編號</td>
-                            <td style=""><input class="trans_to_opencase_question" id="open_case_t_sn" type="text"></td>
+                            <td style="">
+                                <select id="case_id_prestr" style="width:auto;">
+                                    <option value="">請選擇</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                </select>
+                                <!-- <input id="case_id" type="text"> -->
+                                <input class="trans_to_opencase_question" id="open_case_t_sn" type="text">
+                                <br/><span style="font-size:16px;color:red;">※若『個案類別』已選擇『親職兒少』，<br/>則請選擇編號的前綴字</span>
+                            </td>
                         </tr>
                         <tr style="text-align:left">
                             <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>類別屬性</td>

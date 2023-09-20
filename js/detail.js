@@ -5,6 +5,8 @@ $( document ).ready(function() {
     $('#myModal').on('shown.bs.modal', function () {
         $('#trans_to_opencase').trigger('focus');
     });
+
+    $("#case_id_prestr").hide();
 });
 
 //取得url id值region
@@ -1956,6 +1958,15 @@ $("#trans_to_opencase_submit").on('click',function(){
     var tran_case_birth = '';
     var tran_case_referral = '';
 
+    if($("#open_object_type").val() == "親職兒少")
+    {
+        var open_case_t_sn = $("#case_id_prestr").val() + $("#open_case_t_sn").val();
+    }
+    else
+    {
+        var open_case_t_sn = $('#open_case_t_sn').val()
+    }
+
     var stau = false;
 
     if (check_trans_to_opencase_value() != "") 
@@ -2002,45 +2013,69 @@ $("#trans_to_opencase_submit").on('click',function(){
 
         // console.log(tran_case_gender)
 
-        window.location.href = 'phone_trans_to_opencase.php?unopen_type=phone&id='+phone_id.replace(/^\s+|\s+$/gm,'')+'&case_id='+$('#open_case_t_sn').val().replace(/^\s+|\s+$/gm,'')+'&case_property='+$('#open_case_type').val()+'&object_type='+$('#open_object_type').val()+'&tran_case_name='+tran_case_name+'&tran_case_gender='+tran_case_gender+'&tran_case_phone='+tran_case_phone+'&tran_case_pid=&tran_case_birth=&tran_case_referral='+tran_case_referral+'&tran_case_sex_o=';
+        window.location.href = 'phone_trans_to_opencase.php?unopen_type=phone&id='+phone_id.replace(/^\s+|\s+$/gm,'')+'&case_id='+open_case_t_sn.replace(/^\s+|\s+$/gm,'')+'&case_property='+$('#open_case_type').val()+'&object_type='+$('#open_object_type').val()+'&tran_case_name='+tran_case_name+'&tran_case_gender='+tran_case_gender+'&tran_case_phone='+tran_case_phone+'&tran_case_pid=&tran_case_birth=&tran_case_referral='+tran_case_referral+'&tran_case_sex_o=';
     }
 });
 //endregion
 
+window.submit_ab_id_str = "";
+$('#case_id_prestr').on('change', function() {
+    
+    var this_val = this.value;
 
+    submit_ab_id_str = this_val;
+
+    find_case_auto_id("親職兒少");
+}); 
 
 // 根據服務對象類型 自動填入 開案編號 region
 $('#open_object_type').on('change', function() {
 
     $("#open_case_t_sn").val('');
     var object_type_val = this.value;
+
     
+
+    if(object_type_val == "親職兒少")
+    {
+        $("#case_id_prestr").show();
+
+    }
+    else
+    {
+        $("#case_id_prestr").hide();
+    }
+
+    find_case_auto_id(object_type_val);
+});
+//endregion
+
+find_case_auto_id = function(object_type_val) {
     // 自動查詢沒使用過的編號
     $.ajax({
         url: "database/find_trans_automatic_id.php",
         data:{
             keyword:object_type_val,
+            ab_id_str:submit_ab_id_str,
         },
         type: "POST",
         dataType: "JSON",
         async :false,
         success: function (data) {
-        //    console.log(data)
-        var case_id = 0;
+            var case_id = 0;
 
-        // console.log(data[0]?.Case_id)
-        if(typeof(data[0]?.Case_id) != 'undefined')
-        {
-            case_id = data[0]?.Case_id;
-        }
-        else
-        {
-            case_id = 0;
-        }
-
-        
-        var str_id = (parseInt(case_id)+1).toString();
-
+            // console.log(data[0]?.Case_id)
+            if(typeof(data[0]?.Case_id) != 'undefined')
+            {
+                case_id = data[0]?.Case_id;
+            }
+            else
+            {
+                case_id = 0;
+            }
+    
+            
+            var str_id = (parseInt(case_id)+1).toString();
            
            switch (object_type_val) {
             case '一般藥癮者':
@@ -2048,21 +2083,32 @@ $('#open_object_type').on('change', function() {
                     $("#open_case_t_sn").val("RE"+str_id);
                 break;
             case '愛滋感染者':
-            case '親職兒少':
                     $("#open_case_t_sn").val(str_id);
                 break;
+
+            case '親職兒少':
+                    if(str_id == "NaN")
+                    {
+                        $("#open_case_t_sn").val("");
+                    }
+                    else
+                    {
+                        $("#open_case_t_sn").val(str_id);
+                    }
+                    
+                break;
+
             default:
                     $("#open_case_t_sn").val("");
                 break;
            }
         },
         error:function(e){
+            console.log(e);
             notyf.alert('伺服器錯誤,無法載入開案所需資料!');
         }
     });
-    
-});
-//endregion
+}
 
 //檢查欄位 轉案欄位 region
 function check_trans_to_opencase_value()
@@ -2118,7 +2164,15 @@ function check_case_isrepeat() {
     
     var isrepeat = false;
 
-    var r_case_id = $("#open_case_t_sn").val().replace(/^\s*|\s*$/g,"");
+    if($("#open_object_type").val() == "親職兒少")
+    {
+        var r_case_id = $("#case_id_prestr").val() + $("#open_case_t_sn").val();
+    }
+    else
+    {
+        var r_case_id = $("#open_case_t_sn").val();
+    }
+
 
     // console.log(r_case_id)
 

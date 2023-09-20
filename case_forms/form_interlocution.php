@@ -71,17 +71,20 @@
                                                         <th>督導</th>
                                                     </tr>
                                                     <tr>
-                                                       <td><input name="interlocution_date" id="interlocution_date" type="date"></td>
-                                                       <td>
+                                                        <td><input name="interlocution_date" id="interlocution_date" type="date"></td>
+                                                        <td>
                                                             <select name="interlocution_place" id="interlocution_place">
                                                                 <option value=""></option>
                                                                 <option value="電訪">電訪</option>
                                                                 <option value="面訪">面訪</option>
                                                                 <option value="家訪">家訪</option>
                                                             </select>     
-                                                       </td>
-                                                       <td>
-                                                            <select name="interlocution_ques_type" id="interlocution_ques_type"></select>
+                                                        </td>
+                                                        <td>
+                                                            <span>選擇個案問題分類，並按+號添加至下方</span>
+                                                            <!-- <select name="interlocution_ques_type" id="interlocution_ques_type" style="width:80%;"></select> -->
+                                                            <select id="interlocution_ques_type" style="width:80%;"></select>
+                                                            <button onclick="add_ques_types();return false;">+添加</button>
                                                             <br/>
                                                             <br/>
                                                             <div>
@@ -90,28 +93,31 @@
                                                             </div>
                                                             <br/>
                                                             <br/>
-                                                            <textarea style="min-height:26em;height:auto;width:100%;resize: none;font-size: 20px;" name="interlocution_ques" id="interlocution_ques" placeholder="請輸入個案問題"></textarea>
-                                                       </td>
-                                                       <td>
-                                                           <table style="width:100%;">
-                                                               <tr><td>訪談時間</td></tr>
-                                                               <tr><td><input name="interlocution_time" id="interlocution_time" type="time"></td></tr>
-                                                               <tr><td>處遇</td></tr>
-                                                               <tr><td><textarea style="min-height:14em;height:auto;width:100%;resize: none;font-size: 20px;" name="interlocution_content" id="interlocution_content" placeholder="請輸入處遇"></textarea></td></tr>
-                                                               <tr><td>下次服務目標</td></tr>
-                                                               <tr><td><textarea style="min-height:14em;height:auto;width:100%;resize: none;font-size: 20px;" name="interlocution_next_target" id="interlocution_next_target" placeholder="請輸入下次服務目標"></textarea></td></tr>
-                                                           </table>
-                                                       </td>
-                                                       <td><input name="assign_name" id="assign_name" type="text"></td>
-                                                       <td><input name="supervise_name" id="supervise_name" type="text"></td>
+                                                            <span>個案問題分類：</span>
+                                                            <textarea style="min-height:6em;height:auto;width:100%;resize: none;font-size: 20px;" name="interlocution_ques_types" id="interlocution_ques_types" readonly></textarea>
+                                                            <button onclick="return_ques_types();return false;">刪掉最後的分類</button><button style="margin-left:1em;" onclick="clear_ques_types();return false;">清空問題分類</button>
+                                                            <div class="text-left" style="font-size:16px;color:red;">※有誤刪或清空操作請別存檔並重新整理網頁</div>
+                                                            <textarea style="min-height:26em;height:auto;width:100%;resize: none;font-size: 20px;margin-top:1.5em;" name="interlocution_ques" id="interlocution_ques" placeholder="請輸入個案問題"></textarea>
+                                                        </td>
+                                                        <td>
+                                                            <table style="width:100%;">
+                                                                <tr><td>訪談時間</td></tr>
+                                                                <tr><td><input name="interlocution_time" id="interlocution_time" type="time"></td></tr>
+                                                                <tr><td>處遇</td></tr>
+                                                                <tr><td><textarea style="min-height:14em;height:auto;width:100%;resize: none;font-size: 20px;" name="interlocution_content" id="interlocution_content" placeholder="請輸入處遇"></textarea></td></tr>
+                                                                <tr><td>下次服務目標</td></tr>
+                                                                <tr><td><textarea style="min-height:14em;height:auto;width:100%;resize: none;font-size: 20px;" name="interlocution_next_target" id="interlocution_next_target" placeholder="請輸入下次服務目標"></textarea></td></tr>
+                                                            </table>
+                                                        </td>
+                                                        <td><input name="assign_name" id="assign_name" type="text"></td>
+                                                        <td><input name="supervise_name" id="supervise_name" type="text"></td>
                                                     </tr>
                                                 </table>
-                                               
                                             </form>
                                         </div>
                                     </div>
                                 </div>
-                               
+                                
                                 <div class="panel-footer" style="text-align:center;">
                                     <button style="font-size:20px" id="add_interlocution_detail" class="btn btn-default" data-toggle="modal"data-target="#case_storage_model">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-save2" viewBox="0 0 16 16">

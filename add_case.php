@@ -130,7 +130,16 @@ input[type=number] {
                                                             </tr>
                                                             <tr style="text-align:left">
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>開案編號</td>
-                                                                <td style="border-bottom: solid 1px;"><input id="case_id" type="text"></td>
+                                                                <td style="border-bottom: solid 1px;">
+                                                                
+                                                                <select id="case_id_prestr" style="width:auto;">
+                                                                    <option value="">請選擇</option>
+                                                                    <option value="A">A</option>
+                                                                    <option value="B">B</option>
+                                                                </select>
+                                                                <input id="case_id" type="text">
+                                                                <br/><span style="font-size:16px;color:red;">※若『個案類別』已選擇『親職兒少』，<br/>則請選擇編號的前綴字</span>
+                                                                </td>
                                                             </tr>
                                                             <tr class="text-align:left">
                                                             <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>登入日期</td>

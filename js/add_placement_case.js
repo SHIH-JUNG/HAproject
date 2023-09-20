@@ -1,5 +1,9 @@
 const notyf = new Notyf();
 
+$(document).ready(function () {
+    $("#case_id_prestr").hide();
+});
+
 $.ajax({
     type:'POST',
     url:'database/find_check_user.php',
@@ -282,11 +286,20 @@ function check_current_case_value()
 //新增至開案個案資料庫 region
 function add_new_current_case_database()
 {
+    if($("#object_type").val() == "親職兒少")
+    {
+        var open_case_id = $("#case_id_prestr").val() + $("#case_id").val();
+    }
+    else
+    {
+        var open_case_id = $('#open_case_t_sn').val()
+    }
+
     $.ajax({
         url: "database/add_new_placement_case.php",
         type: "POST",
         data:{
-            Case_id:$("#case_id").val(),
+            Case_id:open_case_id,
             Case_create_date:$("#create_date").val(),
             Object_type:$("#object_type").val(),
             Case_grade:$('#case_grade').val(),
@@ -336,17 +349,46 @@ function add_new_current_case_database()
 }
 //endregion
 
+window.submit_ab_id_str = "";
+$('#case_id_prestr').on('change', function() {
+    
+    var this_val = this.value;
+
+    submit_ab_id_str = this_val;
+
+    find_case_auto_id("親職兒少");
+});    
+
+
 // 根據服務對象類型 自動填入 開案編號 region
 $('#object_type').on('change', function() {
 
     $("#case_id").val('');
     var object_type_val = this.value;
+
     
+
+    if(object_type_val == "親職兒少")
+    {
+        $("#case_id_prestr").show();
+
+    }
+    else
+    {
+        $("#case_id_prestr").hide();
+    }
+
+    find_case_auto_id(object_type_val);
+});
+//endregion
+
+find_case_auto_id = function(object_type_val) {
     // 自動查詢沒使用過的編號
     $.ajax({
         url: "database/find_placement_automatic_id.php",
         data:{
             keyword:object_type_val,
+            ab_id_str:submit_ab_id_str,
         },
         type: "POST",
         dataType: "JSON",
@@ -373,9 +415,21 @@ $('#object_type').on('change', function() {
                     $("#case_id").val("RE"+str_id);
                 break;
             case '愛滋感染者':
-            case '親職兒少':
                     $("#case_id").val(str_id);
                 break;
+
+            case '親職兒少':
+                    if(str_id == "NaN")
+                    {
+                        $("#case_id").val("");
+                    }
+                    else
+                    {
+                        $("#case_id").val(str_id);
+                    }
+                    
+                break;
+
             default:
                     $("#case_id").val("");
                 break;
@@ -383,17 +437,26 @@ $('#object_type').on('change', function() {
         },
         error:function(e){
             console.log(e);
+            notyf.alert('伺服器錯誤,無法載入開案所需資料!');
         }
     });
-});
-//endregion
+}
 
 //檢查開案編號是否重複 region
 function check_case_isrepeat() {
     
     var isrepeat = false;
 
-    var r_case_id = $("#case_id").val().replace(/^\s*|\s*$/g,"");
+    // var r_case_id = $("#case_id").val().replace(/^\s*|\s*$/g,"");
+
+    if($("#open_object_type").val() == "親職兒少")
+    {
+        var r_case_id = $("#case_id_prestr").val() + $("#case_id").val();
+    }
+    else
+    {
+        var r_case_id = $("#open_case_t_sn").val();
+    }
 
     // console.log(r_case_id)
 

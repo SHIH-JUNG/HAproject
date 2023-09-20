@@ -178,7 +178,7 @@ function check_update_trans_opencase_data()
         if(case_property.replace(/\s*/g, "") == '自立宿舍' || case_property.replace(/\s*/g, "") == '安置家園')
         {
             if (case_stage == null || case_stage.replace(/\s*/g, "") == '') {
-                errorstr += "未填寫類別屬性階段!\r\n";
+                warningstr += "未填寫類別屬性階段!\r\n";
             }
         }
         if (open_case_date == null || open_case_date.replace(/\s*/g, "") == '') {

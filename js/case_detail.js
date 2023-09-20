@@ -270,6 +270,100 @@ insert_ques_type_keywords = function() {
 }
 //endregion
 
+// 會談紀錄 載入全部的問題分類 region
+load_ques_types_html = function(){
+
+    var ques_types_html = "";
+
+    for(var i=0; i < origin_types_arr.length; i++)
+    {
+        if(i == origin_types_arr.length - 1)
+        {
+            ques_types_html+= origin_types_arr[i];
+        }
+        else
+        {
+            ques_types_html+= origin_types_arr[i] + "、";
+        }
+    }
+
+    $("[name='interlocution_ques_types']").val(ques_types_html);
+}
+//endregion
+
+// 添加 會談紀錄 問題分類 region
+add_ques_types = function() {
+    var get_curadd_ques_type = $("#interlocution_ques_type").val();
+
+    // 檢查有無選擇任一問題分類
+    if(get_curadd_ques_type != "")
+    {
+        // 檢查有無重複添加問題分類
+        if(origin_types_arr.indexOf(get_curadd_ques_type) == -1)
+        {
+            origin_types_arr.push(get_curadd_ques_type);
+        }
+        else
+        {
+            swal({
+                type: 'error',
+                title: '該問題分類已存在，不可重複選擇',
+                })
+        }
+        
+        //載入分類到個案問題分類textarea中
+        load_ques_types_html();
+    }
+    else
+    {
+        swal({
+            type: 'error',
+            title: '請選擇一個問題分類',
+            })
+    }
+}
+//endregion
+
+// 會談紀錄 刪掉最後一個問題分類 region
+return_ques_types = function() {
+
+    origin_types_arr.pop();
+
+    //載入分類到個案問題分類textarea中
+    load_ques_types_html();
+}
+//endregion
+
+// 會談紀錄 清空已添加的全部問題分類 region
+clear_ques_types = function() {
+    swal({
+        title: "確認清空當前全部的問題分類？",
+        text: "若操作失誤請勿存檔，請重新整理網頁恢復內容，存檔後將無法復原操作",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "確認送出",
+        cancelButtonText: "取消",
+        showConfirmButton: true,
+        showCancelButton: true
+    }).then(function(result) {
+        if (result) {
+            origin_types_arr = [];
+
+            //載入分類到個案問題分類textarea中
+            load_ques_types_html();
+        }
+    }, function(dismiss){
+        if(dismiss == 'cancel'){
+            swal({
+                title:'已取消',
+                type:'success',                        
+            })
+        }
+    }).catch(swal.noop)
+}
+//endregion
+
 
 // 載入憂鬱量表的測驗內容 region
 function load_sullen_data() {
@@ -1193,6 +1287,9 @@ $(document).ready(function () {
     //載入各量表 資料
     load_all_forms_data(form_type,url);
 
+    // 載入會談紀錄的所有個案問題分類，添加至陣列
+    load_ques_types_html();
+
     //計算各量表 分數
     answer_score_counting();
 
@@ -1325,7 +1422,7 @@ function load_all_forms_data(type_name,url_str)
             Case_pid:pid,
         },
         dataType: "JSON",
-        // async: false, //啟用同步請求
+        async: false, //啟用同步請求
         success: function (data) {
             // console.log(data)
 
@@ -1372,6 +1469,21 @@ function load_all_forms_data(type_name,url_str)
                     else //若不是input標籤
                     {
                         //其他 select、textarea
+
+                        // 如果名稱是會談紀錄 的個案問題分類 則新增至陣列裡保存
+                        if(datan.name == "interlocution_ques_types")
+                        {
+                            //若為空值則不進行split分割陣列，直接定義空陣列
+                            if(datan.value != "")
+                            {
+                                window.origin_types_arr = datan.value.split("、");
+                            }
+                            else
+                            {
+                                window.origin_types_arr = [];
+                            }
+                        }
+
                         $("[name='"+datan.name+"']").val(datan.value); 
                     }
                 
@@ -1788,8 +1900,8 @@ function get_case_report2_datas() {
             break;
     
         case "interlocution":
-            var interlocution_ques_type = $('[name="interlocution_ques_type"]').val();
-            report_datas2.push({ques_type:interlocution_ques_type});
+            var interlocution_ques_types = $('[name="interlocution_ques_types"]').val();
+            report_datas2.push({ques_type:interlocution_ques_types});
             break;
     }
 
