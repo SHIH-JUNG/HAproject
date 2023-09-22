@@ -37,20 +37,23 @@ if($row_nums > 0 || $row_nums2 > 0)
 
     if($Allow_status == "核准")
     {
-        $select_day_off_data = "SELECT `Resume_id`, `Rec_year`, `Hours`, `Remain_comp_hours`, `Remain_annual_hours`, `Used_comp_hours`, `Used_annual_hours` FROM `day_off_v2` WHERE `Id` = '$Day_off_id';";
+        $select_day_off_data = "SELECT `Resume_id`, `Rec_year`, `Hours`, `Disposal_type`, `Remain_comp_hours`, `Remain_annual_hours`, `Used_comp_hours`, `Used_annual_hours` FROM `day_off_v2` WHERE `Id` = '$Day_off_id';";
 
         $find_day_off_data = mysqli_query($conn, $select_day_off_data);
         $row_nums_2 = mysqli_num_rows($find_day_off_data);
         $day_off_data = mysqli_fetch_row($find_day_off_data);
 
-        $Remark = "使用的補休時數：" . number_format(floatval($day_off_data[5]), 1) . "小時，使用的特休時數：" . number_format(floatval($day_off_data[6]), 1) . "小時。";
-        $day_off_data_2f = number_format(floatval($day_off_data[2]), 1);
-
-        $sqlUpdate .= "INSERT INTO `resume_seniority` (`Resume_id`, `Day_off_id`, `Rec_year`
-        , `Type`, `Change_num`, `Remark`, `Create_date`, `Create_name`) VALUES 
-            ($day_off_data[0], '$Day_off_id', '$day_off_data[1]'
-            , 'Leave' , '$day_off_data_2f', '$Remark'
-            , NOW(), '$user');";
+        if($day_off_data[3] == "扣時數")
+        {
+            $Remark = "使用的補休時數：" . number_format(floatval($day_off_data[6]), 1) . "小時，使用的特休時數：" . number_format(floatval($day_off_data[7]), 1) . "小時。";
+            $day_off_data_2f = number_format(floatval($day_off_data[2]), 1);
+    
+            $sqlUpdate .= "INSERT INTO `resume_seniority` (`Resume_id`, `Day_off_id`, `Rec_year`
+            , `Type`, `Change_num`, `Remark`, `Create_date`, `Create_name`) VALUES 
+                ($day_off_data[0], '$Day_off_id', '$day_off_data[1]'
+                , 'Leave' , '$day_off_data_2f', '$Remark'
+                , NOW(), '$user');";
+        }
     }
     else
     {

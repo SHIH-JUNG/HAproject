@@ -12,7 +12,7 @@
 
                     <td class="text-right" style="background-color:rgb(255 201 54); width:7em;">審核狀態：</td>
                     <td class="text-left">
-                        <select id="allow_status" rel="6" class="filter search">
+                        <select id="allow_status" rel="7" class="filter search">
                             <!-- <option value="">所有</option> -->
                         </select>
                     </td>
@@ -22,10 +22,17 @@
                    
 
                     <td class="text-right" style="background-color:rgb(255 201 54)">填表日期：</td>
-                    <td colspan="3" class="text-left">
+                    <td class="text-left">
                         <input id="fillin_date_start" name="fillin_date" datepicker="ch_datepicker" type="text" placeholder="填表日期搜尋">
                         <label>～</label>
                         <input id="fillin_date_end" name="fillin_date" datepicker="ch_datepicker" type="text" placeholder="填表日期搜尋">
+                    </td>
+
+                    <td class="text-right" style="background-color:rgb(255 201 54); width:7em;">處理方式：</td>
+                    <td class="text-left">
+                        <select id="disposal_type" rel="6" class="filter search">
+                            <!-- <option value="">所有</option> -->
+                        </select>
                     </td>
 
                 </tr>
@@ -69,6 +76,7 @@
                         <th>請假日期(結束)</th>
                         <th>請假時數</th>
                         <th>請假事由</th>
+                        <th>處理方式</th>
                         <th>審核狀態</th>
                         <th>主管簽章</th>
                         <th>執行長簽章</th>

@@ -129,7 +129,7 @@ $.ajax({
   async: false, //啟用同步請求
   success: function (data) {
     var cssString = "";
-    // console.log(data)
+    console.log(data)
     $.each(data, function (index, value) {
       // var update_date = value.Update_date != "0000-00-00" ? value.Update_date : "";
 
@@ -144,7 +144,7 @@ $.ajax({
 
       c_allow_status_arr.push(c_allow_status);
 
-      cssString +=
+      cssString =
         '<tr id="' +
         value.Id +
         '" resume_id="'+value.Resume_id+'">' +
@@ -206,7 +206,7 @@ $.ajax({
         $("[id='c_allow_status"+value.Id+"']").val(c_allow_status);
 
     });
-
+    console.log(cssString)
     //找出所有查詢表格下拉式選單，將內容排序、加上"所有查詢"、去除重複值
     var filter_select = $("select.filter");
 

@@ -9,6 +9,8 @@ $Fillin_date = $_REQUEST['Fillin_date'];
 
 $Day_off_type = $_REQUEST['Day_off_type'];
 $Reason = $_REQUEST['Reason'];
+$Disposal_type = $_REQUEST['Disposal_type'];
+$Hours_type = $_REQUEST['Hours_type'];
 
 
 @$Overtime_date_start = $_REQUEST['Overtime_date_start'];
@@ -103,6 +105,7 @@ $sql = "INSERT INTO `day_off_v2` (`Id`, `Resume_id`, `Resume_name`,
 `Rec_year`, `Fillin_date`, 
 `Day_off_type`, 
 `Reason`, 
+`Disposal_type`, `Hours_type`, 
 `Other_files`, 
 `Overtime_date_start`, `Overtime_date_end`, 
 `Hours`, 
@@ -110,17 +113,18 @@ $sql = "INSERT INTO `day_off_v2` (`Id`, `Resume_id`, `Resume_name`,
 `Allow_status`, 
 `Create_date`, `Create_name`, 
 `Supervise`, `Job_agent`, `Director`) VALUES
- ('$day_off_id', '$user_data_num[0]', '$user_data_num[1]',
- '$Rec_year', '$Fillin_date', 
- '$Day_off_type', 
- '$Reason', 
- '$file_0', 
- '$Overtime_date_start', '$Overtime_date_end', 
- '$Overtime_hours', 
- '$Remain_comp_hours', '$Remain_annual_hours', '$Used_comp_hours', '$Used_annual_hours', 
- '審核中', 
- NOW(), '$user',  
- '$Supervise', '$Job_agent', '$Director');";
+('$day_off_id', '$user_data_num[0]', '$user_data_num[1]',
+'$Rec_year', '$Fillin_date', 
+'$Day_off_type', 
+'$Reason', 
+'$Disposal_type', '$Hours_type', 
+'$file_0', 
+'$Overtime_date_start', '$Overtime_date_end', 
+'$Overtime_hours', 
+'$Remain_comp_hours', '$Remain_annual_hours', '$Used_comp_hours', '$Used_annual_hours', 
+'審核中', 
+NOW(), '$user',  
+'$Supervise', '$Job_agent', '$Director');";
 
 
 $sql .= "INSERT INTO `signature_notice` (`Sign_id`, `Title`,`Url`,`Timestamp`, `Assign`, `Signer`, `Sign_state`, `Type`, `Create_date`, `Create_name`) 

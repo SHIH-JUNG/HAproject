@@ -203,23 +203,64 @@
                                                                             </tr>
 
                                                                             <tr style="text-align:left">
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;width: 5em;"><i class="fillin_need" style="color:red;">※</i>處理方式</td>
+                                                                                <td style="border-bottom: solid 1px;">
+                                                                                    <input class="day_question" name="disposal_type" style="zoom: 1.5" value="扣時數" type="radio"><span>扣時數</span>
+                                                                                    <input class="day_question" name="disposal_type" style="zoom: 1.5" value="扣薪" type="radio"><span>扣薪</span>
+                                                                                    <input class="day_question" name="disposal_type" style="zoom: 1.5" value="不做處理" type="radio"><span>不做處理</span>
+                                                                                    <div>
+                                                                                        <table style="width:100%;margin-top:3em;color:red;">
+                                                                                            <tr>
+                                                                                                <td><span style="color:#000;">選項說明：</span></td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td>扣時數：<span style="color:#000;">將會扣除剩餘補/特休時數</span></td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td>扣薪：<span style="color:#000;">不扣除剩餘補/特休時數，依據請假時數扣除薪資</span></td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td>不做處理：<span style="color:#000;">依勞基法規定正常給薪、其他另外處置的假別，無須扣除時數/薪資，正常給薪</span></td>
+                                                                                            </tr>
+                                                                                        </table>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+
+                                                                            <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>請假日期</td>
                                                                                 <td style="border-bottom: solid 1px;">
-                                                                                    自&emsp;<input class="day_question" id="overtime_date_start" name="ch_datepicker" type="text" overtime="overtime"><input class="day_question" style="margin-left: 1em;" id="overtime_time_start"  type="time" overtime="overtime"><br/><br/>至&emsp;
-                                                                                    <input class="day_question" id="overtime_date_end" name="ch_datepicker" type="text" overtime="overtime"><input class="day_question" style="margin-left: 1em;" id="overtime_time_end"  type="time" overtime="overtime">&emsp;止<br/><br/>
-                                                                                    <div id="overtime_hours_count" style="color:red;">
-                                                                                        請假時數：共0日0時
+                                                                                    <div style="margin-bottom:3em;">
+                                                                                        <span>一天以內：</span>
+                                                                                        <input class="day_question" name="hours_type" style="zoom: 1.5" value="半天假" type="radio"><span>半天假</span>
+                                                                                        <input class="day_question" name="hours_type" style="zoom: 1.5" value="整天假" type="radio"><span>整天假</span><br/>
+                                                                                        <span>一天以上：</span>
+                                                                                        <input class="day_question" name="hours_type" style="zoom: 1.5" value="多天假" type="radio"><span>多天假</span>
                                                                                     </div>
-                                                                                    <div id="overtime_hours_hit" style="color:blue;">
-                                                                                        <!-- 剩餘補休時數：
-                                                                                        剩餘特休時數：
-                                                                                        已使用的補休時數：
-                                                                                        已使用的特休時數： -->
-                                                                                    </div>
-                                                                                    <!-- <div id="makeup_date_detail">
-                                                                                        已使用的日期及時數：
+                                                                                    <div>
+                                                                                        <div id="horus_type_count_area">
+                                                                                            <!-- 自&emsp;<input id="overtime_date_start" name="ch_datepicker" type="text" overtime="overtime">
+                                                                                            <input style="margin-left: 1em;" id="overtime_time_start"  type="time" overtime="overtime"><br/><br/>至&emsp;
+                                                                                            <input id="overtime_date_end" name="ch_datepicker" type="text" overtime="overtime">
+                                                                                            <input style="margin-left: 1em;" id="overtime_time_end"  type="time" overtime="overtime">&emsp;止 
+                                                                                            <button style="margin:.5em;margin-left:1em;color:blue;" type="button" onclick="reset_count_hours();">重製</button>
+                                                                                            <br/><br/> -->
+                                                                                        </div>
+                                                                                        
+                                                                                        <div id="overtime_hours_count" style="color:red;">
+                                                                                            請假時數：共0日0時
+                                                                                        </div>
+                                                                                        <div id="overtime_hours_hit" style="color:blue;">
+                                                                                            <!-- 剩餘補休時數： ----
+                                                                                            剩餘特休時數： ----
+                                                                                            已使用的補休時數： ----
+                                                                                            已使用的特休時數： ---- -->
+                                                                                        </div>
+                                                                                        <!-- <div id="makeup_date_detail">
+                                                                                            已使用的日期及時數：
 
-                                                                                    </div> -->
+                                                                                        </div> -->
+                                                                                    </div>
                                                                                 </td>
                                                                             </tr>
 

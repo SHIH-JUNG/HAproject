@@ -60,18 +60,25 @@ datepicker_create = function (selector_id) {
 
 // 民國年轉換日期格式yyyy-dd-mm region
 function split_date(date) {
-  console.log(date)
+  // console.log(date)
   return parseInt(date.split("年")[0])+1911+"-"+date.split("年")[1].split("月")[0]+"-"+date.split("年")[1].split("月")[1].split("日")[0]; 
 }
 //endregion
 
-$(document).ready(function () {
+// 載入時間選擇器 region
+load_datepicker = function() {
   //將input name名稱為ch_datepicker創建datepicker初始化 region
   $("input[name='ch_datepicker']").each(function () {
     var this_id = $(this).attr("id");
     datepicker_create(this_id);
   });
   //endregion
+}
+//endregion
+
+$(document).ready(function () {
+  
+  load_datepicker();
 
   // 載入全部user至下拉式選單
   append_user();
@@ -88,8 +95,10 @@ reset_count_hours = function() {
 
   $("#overtime_date_start").val('');
   $("#overtime_date_end").val('');
-  $("#overtime_time_start").val('');
-  $("#overtime_time_end").val('');
+  $("#overtime_time_start_h").val('8');
+  $("#overtime_time_start_m").val('00');
+  $("#overtime_time_end_h").val('8');
+  $("#overtime_time_end_m").val('00');
 
   load_remain_hours();
 
@@ -121,7 +130,7 @@ load_remain_hours = function() {
       async: false,//啟用同步請求
       success: function (data) {
         
-        console.log(data)
+        // console.log(data)
 
         $.each(data, function (index, value) {
 
@@ -264,97 +273,105 @@ function Overtime_GetDateDiff(startTime, endTime, diffType) {
 //endregion
 
 // 根據請假日期計算已使用及剩餘時數 region
-update_remain_hours = function() {
+update_remain_hours = function(get_overtime_hours) {
 
-  //獲取 請假日期 四個時間欄位的值
-  var overtime_date_start = $("#overtime_date_start").val();
-  var overtime_date_end = $("#overtime_date_end").val();
-  var overtime_time_start = $("#overtime_time_start").val();
-  var overtime_time_end = $("#overtime_time_end").val();
-
-  var overtime_start_format = split_date(overtime_date_start) + " " + overtime_time_start;
-  var overtime_end_format = split_date(overtime_date_end) + " " + overtime_time_end;
-
-  // 根據請假欄位計算總請假時數
-  window.get_overtime_hours = Overtime_GetDateDiff(overtime_start_format, overtime_end_format, "hour");
+  var get_disposal_type = $("[name='disposal_type']:checked").val();
 
   var total_remain_hours = parseFloat(parseFloat(r_annual_hours) + parseFloat(r_comp_hours)).toFixed(1);
 
-  console.log(parseFloat(get_overtime_hours).toFixed(1))
-  console.log(total_remain_hours)
+  // console.log(parseFloat(get_overtime_hours).toFixed(1))
+  // console.log(total_remain_hours)
   // console.log(get_overtime_hours)
 
   // console.log(overtime_start_format);
   // console.log(overtime_end_format);
-
-  if(get_overtime_hours > 0 && get_overtime_hours <= 8)
+  if(get_disposal_type == "扣時數") //扣薪處理，顯示特休/補休時數，請假時數
   {
-    // 判斷請假時數是否大於當前剩餘的特/補休時數，大於則無法請假跳出提示
-    if(parseFloat(total_remain_hours - get_overtime_hours).toFixed(1) >= 0)
+    if(get_overtime_hours > 0)
     {
-
-      var update_remain_hours_str = "";
-
-      // 獲取扣完請假時數後的 剩餘/已用 特/補休時數
-      window.use_remain_hours_arr = count_use_remain_hours(parseFloat(get_overtime_hours).toFixed(1), false);
-
-      // console.log(use_remain_hours_arr[0])
-      // console.log(use_remain_hours_arr[1])
-      // console.log(use_remain_hours_arr[2])
-      // console.log(use_remain_hours_arr[3])
-
-      update_remain_hours_str = '<br/><br/>剩餘補休時數： ' + use_remain_hours_arr[0] + '<br/>' + 
-      '剩餘特休時數： '+ use_remain_hours_arr[1] + '<br/><br/>' + 
-      '已使用的補休時數： ' + use_remain_hours_arr[2] + '<br/>' + 
-       '已使用的特休時數： ' + use_remain_hours_arr[3] + '<br/><br/>';
-
-      $("#overtime_hours_hit").html(update_remain_hours_str);
-
-      var overtime_hours_show = parseFloat(get_overtime_hours).toFixed(1);
-
-      if(overtime_hours_show - 24.0 >= 0)
+      // 判斷請假時數是否大於當前剩餘的特/補休時數，大於則無法請假跳出提示
+      if(parseFloat(total_remain_hours - get_overtime_hours).toFixed(1) >= 0)
       {
-        var days_num = parseInt(overtime_hours_show / 24);
-        var hours_num = parseInt(overtime_hours_show % 24);
-        $("#overtime_hours_count").html("請假時數：共" + days_num + "日" + hours_num + "時");
+  
+        var update_remain_hours_str = "";
+  
+        // 獲取扣完請假時數後的 剩餘/已用 特/補休時數
+        window.use_remain_hours_arr = count_use_remain_hours(parseFloat(get_overtime_hours).toFixed(1), false);
+  
+        // console.log(use_remain_hours_arr[0])
+        // console.log(use_remain_hours_arr[1])
+        // console.log(use_remain_hours_arr[2])
+        // console.log(use_remain_hours_arr[3])
+  
+        update_remain_hours_str = '<br/><br/>剩餘補休時數： ' + use_remain_hours_arr[0] + '<br/>' + 
+        '剩餘特休時數： '+ use_remain_hours_arr[1] + '<br/><br/>' + 
+        '已使用的補休時數： ' + use_remain_hours_arr[2] + '<br/>' + 
+        '已使用的特休時數： ' + use_remain_hours_arr[3] + '<br/><br/>';
+  
+        $("#overtime_hours_hit").html(update_remain_hours_str);
+  
+        var overtime_hours_show = parseFloat(get_overtime_hours).toFixed(1);
+  
+        if(overtime_hours_show - 24.0 >= 0)
+        {
+          var days_num = parseInt(overtime_hours_show / 24);
+          var hours_num = parseInt(overtime_hours_show % 24);
+          $("#overtime_hours_count").html("請假時數：共" + days_num + "日" + hours_num + "時");
+        }
+        else
+        {
+          $("#overtime_hours_count").html("請假時數：共0日" + overtime_hours_show + "時");
+        }
       }
       else
       {
-        $("#overtime_hours_count").html("請假時數：共0日" + overtime_hours_show + "時");
+        swal({
+          title: "使用的請假時數不可超過剩餘的補/特休時數",
+          text: "請假時數請小於" + total_remain_hours + "小時",
+          type: "warning",
+          confirmButtonColor: "#DD6B55",
+          confirmButtonText: "確認",
+          showConfirmButton: true,
+        })
       }
+    }
+  }
+  else //除了扣薪的其他處理，只顯示請假時數
+  {
+    var overtime_hours_show = parseFloat(get_overtime_hours).toFixed(1);
+  
+    if(overtime_hours_show - 24.0 >= 0)
+    {
+      var days_num = parseInt(overtime_hours_show / 24);
+      var hours_num = parseInt(overtime_hours_show % 24);
+      $("#overtime_hours_count").html("請假時數：共" + days_num + "日" + hours_num + "時");
     }
     else
     {
-      swal({
-        title: "使用的請假時數不可超過剩餘的補/特休時數",
-        text: "請假時數請小於" + total_remain_hours + "小時",
-        type: "warning",
-        confirmButtonColor: "#DD6B55",
-        confirmButtonText: "確認",
-        showConfirmButton: true,
-      })
+      $("#overtime_hours_count").html("請假時數：共0日" + overtime_hours_show + "時");
     }
   }
-  else if(get_overtime_hours > 8)
-  {
-    swal({
-      title: "使用的請假時數不可超過一天的時數",
-      type: "warning",
-      confirmButtonColor: "#DD6B55",
-      confirmButtonText: "確認",
-      showConfirmButton: true,
-    })
-  }
-  else
-  {
-    // swal({
-    //   title: "請假結束日期不可小於開始日期",
-    //   type: "warning",
-    //   confirmButtonColor: "#DD6B55",
-    //   confirmButtonText: "確認",
-    //   showConfirmButton: true,
-    // })
-  }
+
+  // else if(get_overtime_hours > 8)
+  // {
+  //   swal({
+  //     title: "使用的請假時數不可超過一天的時數",
+  //     type: "warning",
+  //     confirmButtonColor: "#DD6B55",
+  //     confirmButtonText: "確認",
+  //     showConfirmButton: true,
+  //   })
+  // }
+  // else
+  // {
+  //   swal({
+  //     title: "請假結束日期不可小於開始日期",
+  //     type: "warning",
+  //     confirmButtonColor: "#DD6B55",
+  //     confirmButtonText: "確認",
+  //     showConfirmButton: true,
+  //   })
+  // }
   
 }
 // endregion
@@ -371,15 +388,146 @@ check_sql_date_format = function (date) {
 };
 // endregion
 
-test1 = function () {
-  
-};
-
-//監聽 請假日期欄位值變化，計算請假時數 region
-$("input[overtime*='overtime']").change( function(event) {
-    update_remain_hours();
+//監聽 根據選擇 扣時數、扣薪、不做處理，顯示前端輸入框內容和時數計算設定 region
+$("[name='disposal_type']").on('change',function(){
+  reset_count_hours();
 });
 // endregion
+
+
+//監聽 根據選擇 半天、整天、多天假，顯示前端輸入框內容 region
+$("[name='hours_type']").on('change',function(){
+  var this_val = this.value;
+
+  var horus_type_count_html_str = '';
+
+  switch (this_val) {
+    case "半天假":
+      horus_type_count_html_str = 
+      '<input id="overtime_date_start" name="ch_datepicker" type="text" overtime="overtime">&emsp;&emsp;' +
+      // '<input style="margin-left: 1em;" id="overtime_time_start"  type="time" overtime="overtime">&emsp;至&emsp;' +
+      // '<input style="margin-left: 1em;" id="overtime_time_end"  type="time" overtime="overtime">&emsp;止' +
+      '<select id="overtime_time_start_h" overtime="overtime"></select>：' +
+      '<select id="overtime_time_start_m" overtime="overtime">' +
+      '<option value="00">00</option>' +
+      '<option value="30">30</option>' +
+      '</select>&emsp;至&emsp;' +
+      '<select id="overtime_time_end_h" overtime="overtime"></select>：' +
+      '<select id="overtime_time_end_m" overtime="overtime">' +
+      '<option value="00">00</option>' +
+      '<option value="30">30</option>' +
+      '</select>&emsp;止' +
+      '<button style="margin:.5em;margin-left:1em;color:blue;" type="button" onclick="reset_count_hours();">重製</button>' +
+      '<br/><br/>';
+      break;
+  
+    case "整天假":
+      horus_type_count_html_str = 
+      '<input id="overtime_date_start" name="ch_datepicker" type="text" overtime="overtime">' +
+      '<br/><br/>';
+      break;
+
+    case "多天假":
+      horus_type_count_html_str = 
+      '自&emsp;<input id="overtime_date_start" name="ch_datepicker" type="text" overtime="overtime">&emsp;&emsp;' +
+      // '<input style="margin-left: 1em;" id="overtime_time_start"  type="time" overtime="overtime"><br/><br/>至&emsp;' +
+      '<select id="overtime_time_start_h" overtime="overtime"></select>：' +
+      '<select id="overtime_time_start_m" overtime="overtime">' +
+      '<option value="00">00</option>' +
+      '<option value="30">30</option>' +
+      '</select><br/>至&emsp;' +
+      
+      '<input id="overtime_date_end" name="ch_datepicker" type="text" overtime="overtime">&emsp;&emsp;' +
+      // '<input style="margin-left: 1em;" id="overtime_time_end"  type="time" overtime="overtime">&emsp;止' +
+      '<select id="overtime_time_end_h" overtime="overtime"></select>：' +
+      '<select id="overtime_time_end_m" overtime="overtime">' +
+      '<option value="00">00</option>' +
+      '<option value="30">30</option>' +
+      '</select>&emsp;止' +
+
+      '<button style="margin:.5em;margin-left:1em;color:blue;" type="button" onclick="reset_count_hours();">重製</button>' +
+      '<br/><br/>';
+      break;
+  }
+
+  $("#horus_type_count_area").html(horus_type_count_html_str);
+  
+  // 重新載入日期、時間選擇器
+  load_datepicker();
+  load_time_picker();
+});
+// endregion
+
+//監聽 請假日期欄位值變化，計算請假時數 region
+$(document).on('change', "[overtime*='overtime']",function(){
+// $("[overtime*='overtime']").change( function() {
+
+  var get_hours_type = $("[name='hours_type']:checked").val();
+
+  window.overtime_date_arr = [];
+
+  //獲取 請假日期 四個時間欄位的值
+  var overtime_date_start = '';
+  var overtime_date_end = '';
+  var overtime_time_start = '';
+  var overtime_time_end = '';
+
+  switch (get_hours_type) {
+    case "半天假":
+      overtime_date_start = $("#overtime_date_start").val();
+      overtime_date_end = overtime_date_start;
+      overtime_time_start = $("#overtime_time_start_h").val() + ":" + $("#overtime_time_start_m").val();
+      overtime_time_end = $("#overtime_time_end_h").val() + ":" + $("#overtime_time_end_m").val();
+      
+      break;
+  
+    case "整天假":
+      overtime_date_start = $("#overtime_date_start").val();
+      overtime_date_end = overtime_date_start;
+      overtime_time_start = '8:30';
+      overtime_time_end = '17:30';
+      break;
+
+    case "多天假":
+        overtime_date_start = $("#overtime_date_start").val();
+        overtime_date_end = $("#overtime_date_end").val();
+        overtime_time_start = $("#overtime_time_start_h").val() + ":" + $("#overtime_time_start_m").val();
+        overtime_time_end = $("#overtime_time_end_h").val() + ":" + $("#overtime_time_end_m").val();
+      
+      break;
+  }
+
+  overtime_date_arr.push(overtime_date_start)
+  overtime_date_arr.push(overtime_date_end)
+  overtime_date_arr.push(overtime_time_start)
+  overtime_date_arr.push(overtime_time_end)
+
+    
+  var overtime_start_format = split_date(overtime_date_start) + " " + overtime_time_start;
+  var overtime_end_format = split_date(overtime_date_end) + " " + overtime_time_end;
+
+  // console.log(overtime_start_format)
+  // console.log(overtime_end_format)
+
+  // 根據請假欄位計算總請假時數
+  // window.get_overtime_hours = Overtime_GetDateDiff(overtime_start_format, overtime_end_format, "hour");
+  window.get_overtime_hours = getHour(overtime_start_format, overtime_end_format);
+
+  update_remain_hours(get_overtime_hours);
+  // console.log(get_overtime_hours);
+});
+// endregion
+
+load_time_picker = function() {
+  var work_hs = 8;
+  var work_he = 17;
+
+  for (var i = work_hs; i <= work_he; i++)
+  {
+    $("#overtime_time_start_h").append('<option value="'+i+'">'+i+'</option>');
+    $("#overtime_time_end_h").append('<option value="'+i+'">'+i+'</option>');
+  }
+}
 
 //新增請假紀錄 region
 $("#day_off_add_new").on("click", function () {
@@ -460,7 +608,7 @@ check_day_off_status = function() {
     async: false,//啟用同步請求
     success: function (data) {
         
-      console.log(data)
+      // console.log(data)
 
       if(data.length == 0)
       {
@@ -491,13 +639,15 @@ function submit_form() {
   }
   });
 
+  var get_disposal_type = $("[name='disposal_type']:checked").val();
+
   //Time Now
   var timenow = moment().format('YYYY-MM-DD');
 
   var rec_year = $("#overtime_date_start").val().split("年")[0];
 
-  console.log(timenow);
-  console.log(rec_year);
+  // console.log(timenow);
+  // console.log(rec_year);
 
   var form_data = new FormData();
 
@@ -521,18 +671,30 @@ function submit_form() {
 
   form_data.append("Day_off_type", deal_type($("[name='day_off_type']:checked").val()));
   form_data.append("Reason", $("#reason").val());
+  form_data.append("Disposal_type", deal_type($("[name='disposal_type']:checked").val()));
+  form_data.append("Hours_type", deal_type($("[name='hours_type']:checked").val()));
 
-  form_data.append("Overtime_date_start",$("#overtime_date_start").val() + "_" + $("#overtime_time_start").val());
-  form_data.append("Overtime_date_end",$("#overtime_date_end").val() + "_" + $("#overtime_time_end").val());
+  // form_data.append("Overtime_date_start",$("#overtime_date_start").val() + "_" + $("#overtime_time_start").val());
+  // form_data.append("Overtime_date_end",$("#overtime_date_end").val() + "_" + $("#overtime_time_end").val());
+  form_data.append("Overtime_date_start", overtime_date_arr[0] + "_" + overtime_date_arr[2]);
+  form_data.append("Overtime_date_end", overtime_date_arr[1] + "_" + overtime_date_arr[3]);
   form_data.append("Overtime_hours", get_overtime_hours);
   // form_data.append("Makeup_date_desc", );
 
-
-  form_data.append("Remain_comp_hours", use_remain_hours_arr[0]);
-  form_data.append("Remain_annual_hours", use_remain_hours_arr[1]);
-  form_data.append("Used_comp_hours", use_remain_hours_arr[2]);
-  form_data.append("Used_annual_hours", use_remain_hours_arr[3]);
-
+  if(get_disposal_type == "扣時數")
+  {
+    form_data.append("Remain_comp_hours", use_remain_hours_arr[0]);
+    form_data.append("Remain_annual_hours", use_remain_hours_arr[1]);
+    form_data.append("Used_comp_hours", use_remain_hours_arr[2]);
+    form_data.append("Used_annual_hours", use_remain_hours_arr[3]);
+  }
+  else
+  {
+    form_data.append("Remain_comp_hours", o_use_remain_hours_arr[0]);
+    form_data.append("Remain_annual_hours", o_use_remain_hours_arr[1]);
+    form_data.append("Used_comp_hours", parseFloat(0).toFixed(1));
+    form_data.append("Used_annual_hours", parseFloat(0).toFixed(1));
+  }
 
   form_data.append("Job_agent",$("#job_agent").val());
   form_data.append("Director",$("#director").val());
@@ -558,7 +720,7 @@ function submit_form() {
       processData: false,
       async: true,
       success: function (data) {
-        console.log(data);
+        // console.log(data);
         if (data == 1) {
           swal({
             type: "success",
@@ -597,8 +759,8 @@ function check_day_off_data() {
     var check_element = $(this).parent("td").siblings("td").children()[0];
     var check_element_name = $(this).parent("td").text();
 
-    console.log($(check_element))
-    console.log($(check_element).val())
+    // console.log($(check_element))
+    // console.log($(check_element).val())
 
     var check_element_tagname = $(check_element).prop("tagName");
     var check_element_type = $(check_element).attr("type");

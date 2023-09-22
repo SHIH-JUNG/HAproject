@@ -128,12 +128,10 @@ $(document).ready(function () {
 
        
         $("#reason").val(value.Reason);
+        $("[name='disposal_type'][value='"+value.Disposal_type+"']").attr('checked',true);
+        $("[name='hours_type'][value='"+value.Hours_type+"']").attr('checked',true);
 
-
-        $("#overtime_date_start").val(value.Overtime_date_start.split("_")[0]);
-        $("#overtime_time_start").val(value.Overtime_date_start.split("_")[1]);
-        $("#overtime_date_end").val(value.Overtime_date_end.split("_")[0]);
-        $("#overtime_time_end").val(value.Overtime_date_end.split("_")[1]);
+        load_hours_content(value.Overtime_date_start, value.Overtime_date_end, value.Hours_type);
 
         $("#allow_status").val(value.Allow_status);
         window.o_allow_status = value.Allow_status;
@@ -628,6 +626,87 @@ $("input[overtime*='overtime']").change( function(event) {
   update_remain_hours();
 });
 // endregion
+
+//載入資料庫中的請假日期和時間 region
+load_hours_content = function(o_start, o_end, hours_type)
+{
+  var horus_type_count_html_str = '';
+
+  switch (hours_type) {
+    case "半天假":
+      horus_type_count_html_str = 
+      '<input class="day_question" id="overtime_date_start" name="ch_datepicker" type="text" overtime="overtime">&emsp;&emsp;' +
+      // '<input style="margin-left: 1em;" id="overtime_time_start"  type="time" overtime="overtime">&emsp;至&emsp;' +
+      // '<input style="margin-left: 1em;" id="overtime_time_end"  type="time" overtime="overtime">&emsp;止' +
+      '<select class="day_question" id="overtime_time_start_h" overtime="overtime"></select>：' +
+      '<select class="day_question" id="overtime_time_start_m" overtime="overtime">' +
+      '<option value="00">00</option>' +
+      '<option value="30">30</option>' +
+      '</select>&emsp;至&emsp;' +
+      '<select class="day_question" id="overtime_time_end_h" overtime="overtime"></select>：' +
+      '<select class="day_question" id="overtime_time_end_m" overtime="overtime">' +
+      '<option value="00">00</option>' +
+      '<option value="30">30</option>' +
+      '</select>&emsp;止' +
+      '<button class="day_question" style="margin:.5em;margin-left:1em;color:blue;" type="button" onclick="reset_count_hours();">重製</button>' +
+      '<br/><br/>';
+      break;
+  
+    case "整天假":
+      horus_type_count_html_str = 
+      '<input class="day_question" id="overtime_date_start" name="ch_datepicker" type="text" overtime="overtime">' +
+      '<br/><br/>';
+      break;
+
+    case "多天假":
+      horus_type_count_html_str = 
+      '自&emsp;<input class="day_question" id="overtime_date_start" name="ch_datepicker" type="text" overtime="overtime">&emsp;&emsp;' +
+      // '<input style="margin-left: 1em;" id="overtime_time_start"  type="time" overtime="overtime"><br/><br/>至&emsp;' +
+      '<select class="day_question" id="overtime_time_start_h" overtime="overtime"></select>：' +
+      '<select class="day_question" id="overtime_time_start_m" overtime="overtime">' +
+      '<option value="00">00</option>' +
+      '<option value="30">30</option>' +
+      '</select><br/>至&emsp;' +
+      
+      '<input class="day_question" id="overtime_date_end" name="ch_datepicker" type="text" overtime="overtime">&emsp;&emsp;' +
+      // '<input style="margin-left: 1em;" id="overtime_time_end"  type="time" overtime="overtime">&emsp;止' +
+      '<select class="day_question" id="overtime_time_end_h" overtime="overtime"></select>：' +
+      '<select class="day_question" id="overtime_time_end_m" overtime="overtime">' +
+      '<option value="00">00</option>' +
+      '<option value="30">30</option>' +
+      '</select>&emsp;止' +
+
+      '<button class="day_question" style="margin:.5em;margin-left:1em;color:blue;" type="button" onclick="reset_count_hours();">重製</button>' +
+      '<br/><br/>';
+      break;
+  }
+
+  $("#horus_type_count_area").html(horus_type_count_html_str);
+
+  load_time_picker();
+
+  var overtime_date_start = o_start.split("_");
+  var overtime_date_end = o_end.split("_");
+
+  $("#overtime_date_start").val(overtime_date_start[0]);
+  $("#overtime_time_start_h").val(overtime_date_start[1].split(":")[0]);
+  $("#overtime_time_start_m").val(overtime_date_start[1].split(":")[1]);
+  $("#overtime_date_end").val(overtime_date_end[0]);
+  $("#overtime_time_end_h").val(overtime_date_end[1].split(":")[0]);
+  $("#overtime_time_end_m").val(overtime_date_end[1].split(":")[1]);
+}
+// endregion
+
+load_time_picker = function() {
+  var work_hs = 8;
+  var work_he = 17;
+
+  for (var i = work_hs; i <= work_he; i++)
+  {
+    $("#overtime_time_start_h").append('<option value="'+i+'">'+i+'</option>');
+    $("#overtime_time_end_h").append('<option value="'+i+'">'+i+'</option>');
+  }
+}
 
 //修改請假紀錄 region
 $("#day_update").on("click", function () {

@@ -178,6 +178,9 @@ $.ajax({
         value.Reason +
         "</td>" +
         '<td style="text-align:center">' +
+        value.Disposal_type +
+        "</td>" +
+        '<td style="text-align:center">' +
         value.Allow_status +
         "</td>" +
         '<td style="text-align:center">' +
@@ -206,6 +209,10 @@ $.ajax({
         );
         $("#allow_status").append(
           '<option value="' + value.Allow_status + '">' + value.Allow_status + "</option>"
+        );
+
+        $("#disposal_type").append(
+          '<option value="' + value.Disposal_type + '">' + value.Disposal_type + "</option>"
         );
 
     });
