@@ -105,7 +105,7 @@ $(document).ready(function () {
   });
   //endregion
 
-  append_user();
+  // append_user();
 });
 
 // 存放檔案名稱
@@ -158,6 +158,7 @@ function submit_form() {
   form_data.append("Plan_name", $("#plan_name").val());
   form_data.append("Plan_from", $("#plan_from").val());
   form_data.append("Fund", $("#fund").val());
+  form_data.append("Remark", $("#remark").val());
   form_data.append("File_year", date_year_split[0]);
 
 

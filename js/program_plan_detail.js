@@ -263,6 +263,7 @@ function load_program_datas() {
               $("#plan_name").val(value.Plan_name);
               $("#plan_from").val(value.Plan_from);
               $("#fund").val(value.Fund);
+              $("#remark").val(value.Remark);
           });
           
         
@@ -422,6 +423,7 @@ program_update = function() {
       form_data.append("Plan_name", $("#plan_name").val());
       form_data.append("Plan_from", $("#plan_from").val());
       form_data.append("Fund", $("#fund").val());
+      form_data.append("Remark", $("#remark").val());
       form_data.append("File_year", year_split);
 
       // 預覽傳到後端的資料詳細內容
@@ -544,6 +546,7 @@ form_data.append("Date", $("#date").val());
 form_data.append("Plan_name", $("#plan_name").val());
 form_data.append("Plan_from", $("#plan_from").val());
 form_data.append("Fund", $("#fund").val());
+form_data.append("Remark", $("#remark").val());
 
 $.ajax({
     url: "database/update_program_plan_forms_data_detail.php",
