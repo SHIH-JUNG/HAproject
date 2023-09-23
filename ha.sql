@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： localhost
--- 產生時間： 2023-09-22 17:07:19
+-- 產生時間： 2023 年 09 月 23 日 11:09
 -- 伺服器版本： 10.4.28-MariaDB
--- PHP 版本： 8.2.4
+-- PHP 版本： 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -835,9 +835,6 @@ CREATE TABLE `day_off_v2` (
   `Fillin_date` date NOT NULL,
   `Day_off_type` varchar(50) NOT NULL,
   `Reason` longtext NOT NULL,
-  `Disposal_type` varchar(50) NOT NULL,
-  `Hours_type` varchar(50) NOT NULL,
-  `Disposal_detail` varchar(500) NOT NULL,
   `Other_files` longtext NOT NULL,
   `Overtime_date_start` varchar(1000) NOT NULL,
   `Overtime_date_end` varchar(1000) NOT NULL,
@@ -869,11 +866,9 @@ CREATE TABLE `day_off_v2` (
 -- 傾印資料表的資料 `day_off_v2`
 --
 
-INSERT INTO `day_off_v2` (`Id`, `Resume_id`, `Resume_name`, `Rec_year`, `Fillin_date`, `Day_off_type`, `Reason`, `Disposal_type`, `Hours_type`, `Disposal_detail`, `Other_files`, `Overtime_date_start`, `Overtime_date_end`, `Hours`, `Remain_comp_hours`, `Remain_annual_hours`, `Used_comp_hours`, `Used_annual_hours`, `Allow_status`, `Create_date`, `Create_name`, `Update_date`, `Update_name`, `Supervise`, `Supervise_signature`, `Supervise_sign_msg`, `Supervise_sign_time`, `Job_agent`, `Job_agent_signature`, `Job_agent_sign_msg`, `Job_agent_sign_time`, `Director`, `Director_signature`, `Director_sign_msg`, `Director_sign_time`) VALUES
-(1, 1, 'jia', 112, '2023-06-03', '病假', 'teradads請假\r\n事由', '', '', '', '../resume/resume_user1_testuser/day_off_datas/dayoftest111.docx', '112年05月09日_08:00', '112年05月09日_14:00', 6, 0, 16.4, 0, 6, '核准', '2023-06-03 20:06:43', 'jia', '2023-06-03 21:22:21', '社工組長', '執行長', '../signature/1685965557.png', 'ddd65', '2023-06-05 19:45:57', '社工員2', '', '', '', '社工組長', '../signature/1685965325.png', 'test65', '2023-06-05 19:42:05'),
-(2, 6, 'fffff', 112, '2023-09-07', '事假', 'testatsdasd\r\nreww\r\n請假\r\n事由', '', '', '', '../resume/resume_user6_ffff/day_off_datas/testasdadsa_day_off09.docx', '112年09月01日_10:00', '112年09月01日_14:00', 4, 0, 20, 0, 4, '審核中', '2023-09-07 21:19:31', 'fffff', '2023-09-07 21:19:31', '', '執行長', '', '', '', '社工員2', '', '', '', '社工組長', '', '', ''),
-(3, 1, 'jia', 112, '2023-09-22', '其它::test假別', 'test請假\r\n事由', '扣薪', '半天假', '', '../resume/resume_user1_testuser/day_off_datas/請假單test.docx', '112年09月08日_8:30', '112年09月08日_14:00', 4.5, 0, 16.9, 0, 0, '核准', '2023-09-22 22:02:41', 'jia', '2023-09-22 22:27:46', '社工組長', '執行長', '', '', '', '社工員2', '', '', '', '社工組長', '', '', ''),
-(4, 1, 'jia', 112, '2023-09-22', '事假', 'test\r\n請假\r\n事由\r\n事假', '扣時數', '多天假', '', '../resume/resume_user1_testuser/day_off_datas/tesaaaa事假.docx', '112年09月13日_8:30', '112年09月15日_14:00', 20.5, 0, -3.6, 0, 20.5, '核准', '2023-09-22 22:29:13', 'jia', '2023-09-22 22:31:04', '社工組長', '執行長', '', '', '', '社工員2', '', '', '', '社工組長', '', '', '');
+INSERT INTO `day_off_v2` (`Id`, `Resume_id`, `Resume_name`, `Rec_year`, `Fillin_date`, `Day_off_type`, `Reason`, `Other_files`, `Overtime_date_start`, `Overtime_date_end`, `Hours`, `Remain_comp_hours`, `Remain_annual_hours`, `Used_comp_hours`, `Used_annual_hours`, `Allow_status`, `Create_date`, `Create_name`, `Update_date`, `Update_name`, `Supervise`, `Supervise_signature`, `Supervise_sign_msg`, `Supervise_sign_time`, `Job_agent`, `Job_agent_signature`, `Job_agent_sign_msg`, `Job_agent_sign_time`, `Director`, `Director_signature`, `Director_sign_msg`, `Director_sign_time`) VALUES
+(1, 1, 'jia', 112, '2023-06-03', '病假', 'teradads請假\r\n事由', '../resume/resume_user1_testuser/day_off_datas/dayoftest111.docx', '112年05月09日_08:00', '112年05月09日_14:00', 6, 0, 16.4, 0, 6, '核准', '2023-06-03 20:06:43', 'jia', '2023-06-03 21:22:21', '社工組長', '執行長', '../signature/1685965557.png', 'ddd65', '2023-06-05 19:45:57', '社工員2', '', '', '', '社工組長', '../signature/1685965325.png', 'test65', '2023-06-05 19:42:05'),
+(2, 6, 'fffff', 112, '2023-09-07', '事假', 'testatsdasd\r\nreww\r\n請假\r\n事由', '../resume/resume_user6_ffff/day_off_datas/testasdadsa_day_off09.docx', '112年09月01日_10:00', '112年09月01日_14:00', 4, 0, 20, 0, 4, '審核中', '2023-09-07 21:19:31', 'fffff', '2023-09-07 21:19:31', '', '執行長', '', '', '', '社工員2', '', '', '', '社工組長', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -914,6 +909,8 @@ CREATE TABLE `dlgrec` (
   `supervise2_sign` longtext NOT NULL,
   `supervise2_sign_msg` longtext NOT NULL,
   `supervise2_sign_time` datetime NOT NULL,
+  `Upload_name` varchar(500) NOT NULL,
+  `Upload_path` varchar(2000) NOT NULL,
   `Create_date` datetime NOT NULL,
   `Create_name` varchar(30) NOT NULL,
   `Update_date` datetime DEFAULT current_timestamp(),
@@ -924,14 +921,14 @@ CREATE TABLE `dlgrec` (
 -- 傾印資料表的資料 `dlgrec`
 --
 
-INSERT INTO `dlgrec` (`Id`, `bf_num`, `al_num`, `em_num`, `lp_num`, `leave_num`, `dlgrec_date`, `dlgrec_0`, `dlgrec_1`, `dlgrec_2`, `dlgrec_3`, `dlgrec_4`, `dlgrec_5`, `dlgrec_6`, `dlgrec_7`, `dlgrec_8`, `dlgrec_9`, `dlgrec_10`, `dlgrec_11`, `dlg_manager`, `social_worker`, `social_worker_sign`, `social_worker_sign_msg`, `social_worker_sign_time`, `supervise1`, `supervise1_sign`, `supervise1_sign_msg`, `supervise1_sign_time`, `supervise2`, `supervise2_sign`, `supervise2_sign_msg`, `supervise2_sign_time`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
-(1, 20, 30, 29, 33, 3, '2021-12-22', 'test1', '', '', '', '', 'test2', 't', '', '', '', 'test5', 'test6\n', 'testw', '社工員1', '../signature/1651571061.png', 'test社工員留言45', '2022-05-03 17:44:21', '園主任', '../signature/1651571093.png', 'test督導留言', '2022-05-03 17:44:53', '', '', '', '0000-00-00 00:00:00', '2022-04-07 20:46:39', '社工員1', '2022-10-13 19:00:30', '社工組長'),
-(2, 17, 28, 28, 30, 2, '2021-11-10', 'test1', 'test2', 'test2', '', '', '', 'test3', 'test4', 'test特殊個案反應情形輔導處理', 'test輔導諮詢執行實況	', 'test問題處遇概況	', 'test備註	', 'test管理員/生活輔導員', '社工員1', '', '', '0000-00-00 00:00:00', '執行長', '', '', '0000-00-00 00:00:00', '', '', '', '0000-00-00 00:00:00', '2022-04-07 20:47:56', '園主任', '2023-05-17 18:43:27', '叫http好了'),
-(3, 10, 8, 9, 10, 3, '2022-10-25', 'NAH BAD', 'TOO HOT', 'TOO HOT', 'SLEEPING...', 'GREAT!', 'GET OFF WORK~~', 'DINNER', 'NIGHT!', '諮商', '讚', '很好', '沒有備註~~!', '工讀生', '社工員1', '../signature/1666679062.png', '', '2022-10-25 14:24:22', '社工組長', '../signature/1666679094.png', '', '2022-10-25 14:24:54', '', '', '', '0000-00-00 00:00:00', '2022-10-25 14:23:54', '花花', '2023-05-17 18:41:45', '叫http好了'),
-(4, 7, 7, 6, 8, 0, '2022-12-01', '讚，太早了', '讚', '讚', '讚', '讚', '讚', '讚', '讚，很早睡', '家庭會議', '順利', '因為...所以...', '無', 'ㄓㄜㄒㄧㄢ生輔', 'jia', '../signature/1682943115.png', '', '2023-05-01 20:11:55', '社工組長', '../signature/1670553179.png', '', '2022-12-09 10:32:59', '', '', '', '0000-00-00 00:00:00', '2022-12-09 10:31:56', '花花', '2023-05-17 18:40:44', '叫http好了'),
-(5, 21, 17, 27, 28, 2, '2022-11-25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '如', 'ㄓㄒ', '../signature/1670553351.png', '', '2022-12-09 10:35:51', '花花', '', '', '0000-00-00 00:00:00', '', '', '', '0000-00-00 00:00:00', '2022-12-09 10:35:40', '花花', '2023-05-17 18:41:23', '叫http好了'),
-(6, 3, 5, 6, 14, 0, '2023-03-04', 'test6', 'test9', 'test9', 'test12', 'test14', 'test17', 'tez18', 'tadsa21', 'test特殊個案反應情形輔導處理', 'test\n輔導諮詢執行實況', 'test\n問題處遇概況', 'test備註', 'test生活輔導員', '社工員1', '', '', '0000-00-00 00:00:00', '園主任', '', '', '0000-00-00 00:00:00', '執行長', '../signature/1685971065.png', 'test65', '2023-06-05 21:17:45', '2023-06-05 21:11:44', '執行長', '2023-06-05 21:16:17', '執行長'),
-(7, 3, 3, 3, 3, 1, '2023-07-20', 'ㄏㄏ', 'ㄏㄏ', 'ㄏㄏ', 'ㄏㄏ\n', 'ㄏㄏ', 'ㄏㄏ', 'ㄏㄏ', 'ㄏㄏ', 'ㄏㄏ', 'ㄏㄏ', 'ㄏㄏ', 'ㄏㄏ', '張11', '花花', '', '', '0000-00-00 00:00:00', '社工員1', '', '', '0000-00-00 00:00:00', '社工員2', '', '', '0000-00-00 00:00:00', '2023-07-20 14:58:13', '花花', '2023-07-20 14:58:13', '');
+INSERT INTO `dlgrec` (`Id`, `bf_num`, `al_num`, `em_num`, `lp_num`, `leave_num`, `dlgrec_date`, `dlgrec_0`, `dlgrec_1`, `dlgrec_2`, `dlgrec_3`, `dlgrec_4`, `dlgrec_5`, `dlgrec_6`, `dlgrec_7`, `dlgrec_8`, `dlgrec_9`, `dlgrec_10`, `dlgrec_11`, `dlg_manager`, `social_worker`, `social_worker_sign`, `social_worker_sign_msg`, `social_worker_sign_time`, `supervise1`, `supervise1_sign`, `supervise1_sign_msg`, `supervise1_sign_time`, `supervise2`, `supervise2_sign`, `supervise2_sign_msg`, `supervise2_sign_time`, `Upload_name`, `Upload_path`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
+(1, 20, 30, 29, 33, 3, '2021-12-22', 'test1', '', '', '', '', 'test2', 't', '', '', '', 'test5', 'test6\n', 'testw', '社工員1', '../signature/1651571061.png', 'test社工員留言45', '2022-05-03 17:44:21', '園主任', '../signature/1651571093.png', 'test督導留言', '2022-05-03 17:44:53', '', '', '', '0000-00-00 00:00:00', '', '', '2022-04-07 20:46:39', '社工員1', '2022-10-13 19:00:30', '社工組長'),
+(2, 17, 280, 28, 30, 2, '2021-11-10', 'test1', 'test2', 'test2', '', '', '', 'test3', 'test4', 'test特殊個案反應情形輔導處理', 'test輔導諮詢執行實況', 'test問題處遇概況', 'test備註', 'test管理員/生活輔導員', '社工員1', '', '', '0000-00-00 00:00:00', '執行長', '', '', '0000-00-00 00:00:00', '', '', '', '0000-00-00 00:00:00', '', '', '2022-04-07 20:47:56', '園主任', '2023-09-23 13:17:59', '社工員1'),
+(3, 10, 8, 9, 10, 3, '2022-10-25', 'NAH BAD', 'TOO HOT', 'TOO HOT', 'SLEEPING...', 'GREAT!', 'GET OFF WORK~~', 'DINNER', 'NIGHT!', '諮商', '讚', '很好', '沒有備註~~!', '工讀生', '社工員1', '../signature/1666679062.png', '', '2022-10-25 14:24:22', '社工組長', '../signature/1666679094.png', '', '2022-10-25 14:24:54', '', '', '', '0000-00-00 00:00:00', '', '', '2022-10-25 14:23:54', '花花', '2023-05-17 18:41:45', '叫http好了'),
+(4, 7, 7, 6, 8, 0, '2022-12-01', '讚，太早了', '讚', '讚', '讚', '讚', '讚', '讚', '讚，很早睡', '家庭會議', '順利', '因為...所以...', '無', 'ㄓㄜㄒㄧㄢ生輔', 'jia', '../signature/1682943115.png', '', '2023-05-01 20:11:55', '社工組長', '../signature/1670553179.png', '', '2022-12-09 10:32:59', '', '', '', '0000-00-00 00:00:00', '', '', '2022-12-09 10:31:56', '花花', '2023-05-17 18:40:44', '叫http好了'),
+(5, 21, 17, 27, 28, 2, '2022-11-25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '如', 'ㄓㄒ', '../signature/1670553351.png', '', '2022-12-09 10:35:51', '花花', '', '', '0000-00-00 00:00:00', '', '', '', '0000-00-00 00:00:00', '', '', '2022-12-09 10:35:40', '花花', '2023-05-17 18:41:23', '叫http好了'),
+(6, 3, 5, 6, 14, 0, '2023-03-04', 'test6', 'test9', 'test9', 'test12', 'test14', 'test17', 'tez18', 'tadsa21', 'test特殊個案反應情形輔導處理', 'test\n輔導諮詢執行實況', 'test\n問題處遇概況', 'test備註', 'test生活輔導員', '社工員1', '', '', '0000-00-00 00:00:00', '園主任', '', '', '0000-00-00 00:00:00', '執行長', '../signature/1685971065.png', 'test65', '2023-06-05 21:17:45', '', '', '2023-06-05 21:11:44', '執行長', '2023-09-23 12:43:17', '社工員1'),
+(7, 3, 3, 3, 3, 1, '2023-07-20', 'ㄏㄏ', 'ㄏㄏ', 'ㄏㄏ', 'ㄏㄏ\n', 'ㄏㄏ', 'ㄏㄏ', 'ㄏㄏ', 'ㄏㄏ', 'ㄏㄏ', 'ㄏㄏ', 'ㄏㄏ', 'ㄏㄏ', '張11', '花花', '', '', '0000-00-00 00:00:00', '社工員1', '', '', '0000-00-00 00:00:00', '社工員2', '', '', '0000-00-00 00:00:00', '', '', '2023-07-20 14:58:13', '花花', '2023-07-20 14:58:13', '');
 
 -- --------------------------------------------------------
 
@@ -1445,17 +1442,8 @@ INSERT INTO `login_record` (`Id`, `Login_timestamp`, `Login_account`, `Login_aut
 (254, '2023-09-19 19:39:10', 'test3', '3', '社工組長', '24.1418,120.6806', 1),
 (255, '2023-09-20 20:24:13', 'test3', '3', '社工組長', '22.593919322429123,120.48880667757085', 1),
 (256, '2023-09-20 23:34:47', 'test3', '3', '社工組長', '22.593919299897994,120.48880670010202', 0),
-(257, '2023-09-22 11:35:00', 'test3', '3', '社工組長', '22.593915770075856,120.48880999921529', 1),
-(258, '2023-09-22 11:48:21', 'test3', '3', '社工組長', '22.593916135139327,120.48880971567179', 0),
-(259, '2023-09-22 11:48:21', 'test3', '3', '社工組長', '22.593916135139327,120.48880971567179', 0),
-(260, '2023-09-22 18:13:47', 'testuser', '5', 'jia', '22.59391698656317,120.48880890858621', 1),
-(261, '2023-09-22 22:05:08', 'test3', '3', '社工組長', '22.593916135139327,120.48880971567179', 0),
-(262, '2023-09-22 22:28:07', 'testuser', '5', 'jia', '22.593916135139327,120.48880971567179', 0),
-(263, '2023-09-22 22:29:30', 'test3', '3', '社工組長', '22.59391698656317,120.48880890858621', 0),
-(264, '2023-09-22 22:31:19', 'test3', '3', '社工組長', '22.59391698656317,120.48880890858621', 0),
-(265, '2023-09-22 22:31:31', 'testuser', '5', 'jia', '22.59391698656317,120.48880890858621', 0),
-(266, '2023-09-22 22:35:27', 'test3', '3', '社工組長', '22.59391508811354,120.48881065109403', 0),
-(267, '2023-09-22 22:40:57', 'testuser', '5', 'jia', '22.593909666666665,120.48881566666667', 0);
+(257, '2023-09-22 12:23:49', 'text1', '7', '社工員1', '22.683296919004484,120.48382589803803', 1),
+(258, '2023-09-23 09:39:36', 'text1', '7', '社工員1', '22.7802165,120.4937671', 1);
 
 -- --------------------------------------------------------
 
@@ -1566,8 +1554,7 @@ CREATE TABLE `overtime` (
 --
 
 INSERT INTO `overtime` (`Id`, `Resume_id`, `Resume_name`, `Rec_year`, `Fillin_date`, `Overtime_date`, `Reason`, `Overtime_hours`, `Free_date`, `Free_hours`, `Allow_status`, `Create_date`, `Create_name`, `Update_date`, `Update_name`, `Supervise`, `Supervise_signature`, `Supervise_sign_msg`, `Supervise_sign_time`, `Checker`, `Checker_signature`, `Checker_sign_msg`, `Checkert_sign_time`, `Director`, `Director_signature`, `Director_sign_msg`, `Director_sign_time`) VALUES
-(1, 1, 'jia', 112, '2023-06-03', '112.04.05', 'TEST加班事由0405', 1.5, '112.05.22', 1, '核准', '2023-06-03 21:13:21', 'jia', '2023-06-03 21:22:11', '社工組長', '執行長', '../signature/1685965617.png', '5512341', '2023-06-05 19:46:57', '社工員2', '', '', '', '社工組長', '../signature/1685965476.png', '', '2023-06-05 19:44:36'),
-(2, 1, 'jia', 112, '2023-09-22', '112.09.15', 'test加班', 5.4, '', 0, '核准', '2023-09-22 22:35:10', 'jia', '2023-09-22 22:40:34', '社工組長', '執行長', '', '', '', '園主任', '', '', '', '社工組長', '', '', '');
+(0, 1, 'jia', 112, '2023-06-03', '112.04.05', 'TEST加班事由0405', 1.5, '112.05.22', 1, '核准', '2023-06-03 21:13:21', 'jia', '2023-06-03 21:22:11', '社工組長', '執行長', '../signature/1685965617.png', '5512341', '2023-06-05 19:46:57', '社工員2', '', '', '', '社工組長', '../signature/1685965476.png', '', '2023-06-05 19:44:36');
 
 -- --------------------------------------------------------
 
@@ -1789,6 +1776,7 @@ CREATE TABLE `program_plan` (
   `Plan_name` varchar(300) NOT NULL,
   `Plan_from` varchar(300) NOT NULL,
   `Fund` varchar(200) NOT NULL,
+  `Remark` varchar(500) NOT NULL,
   `Proposal_date` date DEFAULT NULL,
   `Interim_date` date DEFAULT NULL,
   `Achieve_date` date DEFAULT NULL,
@@ -1803,8 +1791,8 @@ CREATE TABLE `program_plan` (
 -- 傾印資料表的資料 `program_plan`
 --
 
-INSERT INTO `program_plan` (`Id`, `Date`, `Plan_name`, `Plan_from`, `Fund`, `Proposal_date`, `Interim_date`, `Achieve_date`, `Other_date`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
-(1, '112.09.12', 'QQQQ', 'QQQQ', '事務', '2023-09-12', '2023-09-12', '2023-09-12', '2023-09-13', '2023-09-12 07:58:51', '社工員1', '2023-09-13 19:23:56', '社工組長');
+INSERT INTO `program_plan` (`Id`, `Date`, `Plan_name`, `Plan_from`, `Fund`, `Remark`, `Proposal_date`, `Interim_date`, `Achieve_date`, `Other_date`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
+(1, '112.09.12', 'QQQQ', 'QQQQhgh', '事務', '', '2023-09-22', '2023-09-12', '2023-09-22', '2023-09-13', '2023-09-12 07:58:51', '社工員1', '2023-09-23 10:03:13', '社工員1');
 
 -- --------------------------------------------------------
 
@@ -1830,8 +1818,8 @@ CREATE TABLE `program_plan_form` (
 --
 
 INSERT INTO `program_plan_form` (`Id`, `Program_id`, `Name`, `File_type`, `File_year`, `File_path`, `Upload_date`, `Upload_name`, `Update_date`, `Update_name`) VALUES
-(22, 1, '', 'file_A', '112', '../program_plan/program_plan_user_QQQQ/program_plan_datas/ASDA.docx', '2023-09-12 00:00:00', '社工員1', '0000-00-00 00:00:00', ''),
-(23, 1, '', 'file_C', '112', '../program_plan/program_plan_user_QQQQ/program_plan_datas/AAAAAAAAAAAAA.docx', '2023-09-12 00:00:00', '社工員1', '0000-00-00 00:00:00', ''),
+(22, 1, '', 'file_A', '112', '../program_plan/program_plan_user1_QQQQ/program_plan_datas/accounting_record_cash_v2.php', '2023-09-12 00:00:00', '社工員1', '2023-09-22 00:00:00', '社工員1'),
+(23, 1, '', 'file_C', '112', '../program_plan/program_plan_user1_QQQQ/program_plan_datas/accounting_record_cash_detail_v2.php', '2023-09-12 00:00:00', '社工員1', '2023-09-22 00:00:00', '社工員1'),
 (24, 1, '', 'file_D', '112', '../program_plan/program_plan_user1_QQQQ/program_plan_datas/adasdadas.docx', '2023-09-13 00:00:00', '社工組長', '0000-00-00 00:00:00', '');
 
 -- --------------------------------------------------------
@@ -2145,12 +2133,11 @@ INSERT INTO `resume_seniority` (`Id`, `Resume_id`, `Seniority_num`, `Rec_year`, 
 (5, 5, 0, 112, 'Annual_default', 0, 0, 0, 0, '員工建檔修改預設補修時數：0.0小時。', '0000-00-00 00:00:00', '2023-01-09 21:33:38', '叫http好了', '2023-01-09 21:34:51', '叫http好了'),
 (6, 6, 0.55, 112, 'Annual_default', 24, 0, 0, 0, '員工建檔修改預設補修時數：24.0小時。', '0000-00-00 00:00:00', '2023-01-09 21:33:38', 'fffff', '2023-07-14 12:09:24', '執行長'),
 (15, 1, 0, 112, 'Leave', 0, 5, 1, 0, '使用的補休時數：0.0小時，使用的特休時數：5.0小時。', '0000-00-00 00:00:00', '2023-05-25 23:04:30', '社工組長', '2023-05-25 23:04:30', ''),
+(16, 1, 0, 112, 'Comp_hours', 0, 3.4, 0, 2, '新增的補休時數：4.6小時，加班日期：112.04.01。使用的補休時數：1.2小時，補休日期：112.04.07。', '0000-00-00 00:00:00', '2023-05-25 23:04:52', '社工組長', '2023-05-25 23:04:52', ''),
 (17, 1, 0, 112, 'Comp_hours', 0, 0.5, 0, 0, '新增的補休時數：1.5小時，加班日期：112.04.05。使用的補休時數：1.0小時，補休日期：112.05.22。', '0000-00-00 00:00:00', '2023-06-03 21:22:11', '社工組長', '2023-06-03 21:22:11', ''),
 (18, 1, 0, 112, 'Leave', 0, 6, 0, 0, '使用的補休時數：0.0小時，使用的特休時數：6.0小時。', '0000-00-00 00:00:00', '2023-06-03 21:22:21', '社工組長', '2023-06-03 21:22:21', ''),
 (19, 7, 0.01, 112, 'Annual_default', 0, 0, 0, 0, '員工建檔修改預設補修時數：0.0小時。', '0000-00-00 00:00:00', '2023-07-14 12:07:28', '執行長', '2023-07-14 12:07:48', '執行長'),
-(20, 8, 10.26, 112, 'Annual_default', 128, 0, 0, 0, '員工建檔修改預設補修時數：128.0小時。', '0000-00-00 00:00:00', '2023-09-20 23:35:47', '社工組長', '2023-09-20 23:36:01', '社工組長'),
-(21, 1, 0, 112, 'Leave', 0, 20.5, 4, 0, '使用的補休時數：0.0小時，使用的特休時數：20.5小時。', '0000-00-00 00:00:00', '2023-09-22 22:31:04', '社工組長', '2023-09-22 22:31:04', ''),
-(22, 1, 0, 112, 'Comp_hours', 0, 5.4, 0, 2, '新增的補休時數：5.4小時，加班日期：112.09.15。使用的補休時數：0.0小時，補休日期：。', '0000-00-00 00:00:00', '2023-09-22 22:40:34', '社工組長', '2023-09-22 22:40:34', '');
+(20, 8, 10.26, 112, 'Annual_default', 128, 0, 0, 0, '員工建檔修改預設補修時數：128.0小時。', '0000-00-00 00:00:00', '2023-09-20 23:35:47', '社工組長', '2023-09-20 23:36:01', '社工組長');
 
 -- --------------------------------------------------------
 
@@ -2340,10 +2327,7 @@ INSERT INTO `signature_notice` (`Id`, `Sign_id`, `Title`, `Url`, `Timestamp`, `A
 (85, '18_6_RE111', '開案個案-(服務滿意度量表)簽核：案號：RE111', 'case_all.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03&form_type=satif', '2023-09-19 00:00', '社工員1', '社工組長、歐陽美悌', '社工組長未簽核、歐陽美悌未簽核', 'current_case', '2023-09-19 23:41:01', '社工組長', '2023-09-19 23:41:01', ''),
 (86, '19_6_RE111', '開案個案-(家庭關係)簽核：案號：RE111', 'case_all.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03&form_type=familyship', '2023-09-19 00:00', '社工員1', '社工組長、執行長', '社工組長未簽核、執行長未簽核', 'current_case', '2023-09-19 23:41:54', '社工組長', '2023-09-19 23:41:54', ''),
 (87, '20_6_RE111', '開案個案-(BSRS-5量表)簽核：案號：RE111', 'case_all.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03&form_type=BSRS5', '2023-09-19 00:00', '社工員1', '園主任、執行長', '園主任未簽核、執行長未簽核', 'current_case', '2023-09-19 23:42:37', '社工組長', '2023-09-19 23:42:37', ''),
-(88, '21_6_RE111', '開案個案-(安置、自立宿舍評估量表)簽核：案號：RE111', 'case_all.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03&form_type=settlement', '2023-09-19 00:00', '社工員1', '社工組長、園主任', '社工組長未簽核、園主任未簽核', 'current_case', '2023-09-19 23:43:22', '社工組長', '2023-09-19 23:43:22', ''),
-(89, '3', '請假單簽核：jia 其它::test假別', 'day_off_detail.php?day_off_id=3&resume_id=1', '2023-09-22 00:00', 'jia', '社工員2、社工組長、執行長', '社工組長未簽核、執行長未簽核、社工員2未簽核', 'day_off', '2023-09-22 22:02:41', 'jia', '2023-09-22 22:02:41', ''),
-(90, '4', '請假單簽核：jia 事假', 'day_off_detail.php?day_off_id=4&resume_id=1', '2023-09-22 00:00', 'jia', '社工員2、社工組長、執行長', '社工組長未簽核、執行長未簽核、社工員2未簽核', 'day_off', '2023-09-22 22:29:13', 'jia', '2023-09-22 22:29:13', ''),
-(91, '2', '加班紀錄簽核：jia 加班日期112.09.15', 'overtime_detail.php?overtime_id=2&resume_id=1', '2023-09-22 00:00', 'jia', '園主任、社工組長、執行長', '社工組長未簽核、執行長未簽核、園主任未簽核', 'overtime', '2023-09-22 22:35:10', 'jia', '2023-09-22 22:35:10', '');
+(88, '21_6_RE111', '開案個案-(安置、自立宿舍評估量表)簽核：案號：RE111', 'case_all.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03&form_type=settlement', '2023-09-19 00:00', '社工員1', '社工組長、園主任', '社工組長未簽核、園主任未簽核', 'current_case', '2023-09-19 23:43:22', '社工組長', '2023-09-19 23:43:22', '');
 
 -- --------------------------------------------------------
 
@@ -2940,7 +2924,7 @@ CREATE TABLE `volunteer_v2` (
 --
 
 INSERT INTO `volunteer_v2` (`Id`, `Year`, `Name`, `Birth`, `Gender`, `Home_phone`, `Cellphone`, `E_mail`, `Training_detail`, `Brochure_num`, `V_files`, `Serv_time_1`, `Serv_time_2`, `Serv_award`, `Remark`, `Expertise`, `Vgroup`, `Serv_status`, `Time_all`, `Social_worker`, `Social_worker_signature`, `Social_worker_sign_msg`, `Social_worker_sign_time`, `Supervise`, `Supervise_signature`, `Supervise_sign_msg`, `Supervise_sign_time`, `Director`, `Director_signature`, `Director_sign_msg`, `Director_sign_time`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
-(1, 111, 'TEST111_Vuser54', '54.11.22', '男', '05-7733-7675', '096325632', 'ea123@HMNN.COM', '二者皆沒有', 'F123445', '[\"../volunteer/volunteer_user1_TEST111_Vuser54/TESTVDATA1.odt\",\"../volunteer/volunteer_user1_TEST111_Vuser54/TESTVDATA2.odt\",\"../volunteer/volunteer_user1_TEST111_Vuser54/TESTVDATA3.odt\"]', '星期三', '11:00至16:30', '是', 'TESTVuser54REMARK', '活動', '行政服務志工組', '持續', 19, '社工員1', '', '', '', '執行長', '../signature/1687771163.png', 'test626', '2023-06-26 17:19:23', '園主任', '', '', '', '2023-06-21 19:17:57', '執行長', '2023-06-26 18:22:33', '執行長');
+(1, 111, 'TEST111_Vuser54', '54.11.22', '男', '05-7733-7675', '096325632', 'ea123@HMNN.COM', '二者皆沒有', 'F123445', '[\"../volunteer/volunteer_user1_TEST111_Vuser54/TESTVDATA1.odt\",\"../volunteer/volunteer_user1_TEST111_Vuser54/TESTVDATA2.odt\",\"../volunteer/volunteer_user1_TEST111_Vuser54/TESTVDATA3.odt\"]', '星期日', '11:00至16:30', '是', 'TESTVuser54REMARK', '活動', '行政服務志工組', '持續', 19, '社工員1', '', '', '', '執行長', '../signature/1687771163.png', 'test626', '2023-06-26 17:19:23', '園主任', '', '', '', '2023-06-21 19:17:57', '執行長', '2023-09-23 10:59:42', '社工員1');
 
 --
 -- 已傾印資料表的索引
@@ -3368,7 +3352,7 @@ ALTER TABLE `current_case`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `day_off_v2`
 --
 ALTER TABLE `day_off_v2`
-  MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `forms`
@@ -3404,19 +3388,13 @@ ALTER TABLE `leave_rule_table`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `login_record`
 --
 ALTER TABLE `login_record`
-  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=268;
+  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=259;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `members_assemble`
 --
 ALTER TABLE `members_assemble`
   MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- 使用資料表自動遞增(AUTO_INCREMENT) `overtime`
---
-ALTER TABLE `overtime`
-  MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `placement_case`
@@ -3500,7 +3478,7 @@ ALTER TABLE `resume_forms`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `resume_seniority`
 --
 ALTER TABLE `resume_seniority`
-  MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `screening`
@@ -3524,7 +3502,7 @@ ALTER TABLE `screening_type_keywords`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `signature_notice`
 --
 ALTER TABLE `signature_notice`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `sign_notice`
