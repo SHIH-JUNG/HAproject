@@ -22,6 +22,13 @@ $.ajax({
 
             var supervise2_sign_arr = datatable_sign_show('supervise2', value.supervise2, value.supervise2_sign, value.supervise2_sign_time, value.supervise2_sign_msg);
 
+            var isUpload = '未上傳';
+            // var cert_isUpload = '未上傳';
+
+            if(value.Upload_name != ""){
+                isUpload = '已上傳';
+            }
+
 
             cssString += 
                     '<tr id="'+value.Id+'">' +
@@ -39,6 +46,9 @@ $.ajax({
                         supervise2_sign_arr[0] +
                         supervise2_sign_arr[1] +
                         '</td>' +
+                        '<td style="text-align:center">' +
+                        isUpload +
+                        "</td>" +
                     '</tr>';
 
             $("#dlg_manager").append('<option value="'+value.dlg_manager+'">'+value.dlg_manager+'</option>');
