@@ -202,6 +202,13 @@
                                                                         </div>
                                                                     </td>
                                                                 </tr>
+
+                                                                <tr style="text-align:left">
+                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">備註</td>
+                                                                    <td>
+                                                                    <textarea style="height:10em;width:700px;resize: none;font-size: 20px;" id="remark" placeholder="請輸入備註"></textarea>
+                                                                </td>
+                                                            </tr>
                                                                 
                                                             </table>
                                                             <br>

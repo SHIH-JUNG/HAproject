@@ -237,6 +237,13 @@
                                                                             </tr>
 
                                                                             <tr style="text-align:left">
+                                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white">備註</td>
+                                                                                    <td>
+                                                                                        <textarea style="height:10em;width:700px;resize: none;font-size: 20px;" class="program_question" id="remark" placeholder="請輸入備註"></textarea>
+                                                                                    </td>
+                                                                            </tr>
+
+                                                                            <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">創建日期</td>
                                                                                 <td style="border-bottom: solid 1px;"><input id="create_date" name="ch_datepicker" type="text" disabled="disabled"></td>
                                                                             </tr>
