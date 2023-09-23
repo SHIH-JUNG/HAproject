@@ -9,6 +9,7 @@ $program_id = $_REQUEST['Program_id'];
 @$Plan_name = $_REQUEST['Plan_name'];
 @$Plan_from = $_REQUEST['Plan_from'];
 @$Fund = $_REQUEST['Fund'];
+@$Remark = $_REQUEST['Remark'];
 @$Is_update_hours_sql = "";
 
 
@@ -263,7 +264,7 @@ $file_sqls = $file_sql_0.$file_sql_1.$file_sql_2.$file_sql_3;
 
 
 $sql = "UPDATE `program_plan` SET `Date`='$Date', `Plan_name`='$Plan_name', 
-`Plan_from` = '$Plan_from', `Fund`= '$Fund', `Update_date` = NOW(), `Update_name` = '$user' WHERE `Id` = '$program_id';";
+`Plan_from` = '$Plan_from', `Fund`= '$Fund', `Remark`= '$Remark', `Update_date` = NOW(), `Update_name` = '$user' WHERE `Id` = '$program_id';";
 
 // $sql .= "UPDATE `user_info` SET `Name` = '$Name', `Update_date` = NOW(), `Update_name` = '$user' WHERE `Program_id` = '$Program_id';";
 
