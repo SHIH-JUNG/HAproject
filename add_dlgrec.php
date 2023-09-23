@@ -134,6 +134,19 @@ input[type=number] {
                                                                     <label for="dlgrec_date">日期：</label><input style="width:9em;" id="dlgrec_date" type="date">
                                                                 </td>
                                                             </tr>
+
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:center;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">檔案上傳</td>
+                                                                <td style="border-bottom: solid 1px;">
+                                                                    <div class="col-sm-8">
+                                                                        <div class="text-left">
+                                                                            <input name="dlgrec_file" type="file" class="form-control" />
+                                                                            <br>
+                                                                            <div id="dlgrec_file"></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
                                                             
                                                             <tr style="text-align:left">
                                                                 <td style="text-align:center;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;width: 10em;">時間</td>
@@ -291,7 +304,7 @@ input[type=number] {
         assign_name = '<?php echo $_SESSION["name"]; ?>';
     </script>
     <!-- ================== add_dlgrec.js ================== -->
-    <script src="js/add_dlgrec.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
+    <script src="js/add_dlgrec_2.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
 </body>
 
 </html>

@@ -221,6 +221,18 @@
                                                                             </td>
                                                                         </tr>
                                                                         <tr style="text-align:left">
+                                                                                <td style="text-align:center;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;width: 10em;">檔案上傳</td>
+                                                                                <td style="text-align:center;background-color:rgb(255 201 54);">
+                                                                                    <div class="col-sm-9">
+                                                                                        <div class="text-left">
+                                                                                            <input name="upload" type="file" class="dlgrec_question form-control">
+                                                                                            <br>
+                                                                                            <div id="upload"></div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                        <tr style="text-align:left">
                                                                             <td style="text-align:center;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;width: 10em;">時間</td>
                                                                             <td style="text-align:center;background-color:rgb(255 201 54);">輔導內容:生活、輔導、職訓及相關事宜</td>
                                                                         </tr>
