@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： localhost
--- 產生時間： 2023 年 09 月 23 日 11:09
+-- 產生時間： 2023-09-25 09:05:12
 -- 伺服器版本： 10.4.28-MariaDB
--- PHP 版本： 8.0.28
+-- PHP 版本： 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -1443,7 +1443,9 @@ INSERT INTO `login_record` (`Id`, `Login_timestamp`, `Login_account`, `Login_aut
 (255, '2023-09-20 20:24:13', 'test3', '3', '社工組長', '22.593919322429123,120.48880667757085', 1),
 (256, '2023-09-20 23:34:47', 'test3', '3', '社工組長', '22.593919299897994,120.48880670010202', 0),
 (257, '2023-09-22 12:23:49', 'text1', '7', '社工員1', '22.683296919004484,120.48382589803803', 1),
-(258, '2023-09-23 09:39:36', 'text1', '7', '社工員1', '22.7802165,120.4937671', 1);
+(258, '2023-09-23 09:39:36', 'text1', '7', '社工員1', '22.7802165,120.4937671', 1),
+(259, '2023-09-25 13:15:01', 'testuser', '5', 'jia', '22.5939125,120.488813', 1),
+(260, '2023-09-25 15:02:15', 'testuser', '5', 'jia', '22.593917186487676,120.48880871388471', 0);
 
 -- --------------------------------------------------------
 
@@ -1792,7 +1794,8 @@ CREATE TABLE `program_plan` (
 --
 
 INSERT INTO `program_plan` (`Id`, `Date`, `Plan_name`, `Plan_from`, `Fund`, `Remark`, `Proposal_date`, `Interim_date`, `Achieve_date`, `Other_date`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
-(1, '112.09.12', 'QQQQ', 'QQQQhgh', '事務', '', '2023-09-22', '2023-09-12', '2023-09-22', '2023-09-13', '2023-09-12 07:58:51', '社工員1', '2023-09-23 10:03:13', '社工員1');
+(1, '112.09.12', 'QQQQ', 'QQQQhgh', '事務', '', '2023-09-22', '2023-09-12', '2023-09-22', '2023-09-13', '2023-09-12 07:58:51', '社工員1', '2023-09-23 10:03:13', '社工員1'),
+(2, '112.09.15', 'test計畫名稱914d', 'test計畫來源914d', '人事', 'bga', '0000-00-00', '2023-09-23', '0000-00-00', '0000-00-00', '2023-09-23 17:18:37', 'jia', '2023-09-23 17:19:47', 'jia');
 
 -- --------------------------------------------------------
 
@@ -2327,7 +2330,8 @@ INSERT INTO `signature_notice` (`Id`, `Sign_id`, `Title`, `Url`, `Timestamp`, `A
 (85, '18_6_RE111', '開案個案-(服務滿意度量表)簽核：案號：RE111', 'case_all.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03&form_type=satif', '2023-09-19 00:00', '社工員1', '社工組長、歐陽美悌', '社工組長未簽核、歐陽美悌未簽核', 'current_case', '2023-09-19 23:41:01', '社工組長', '2023-09-19 23:41:01', ''),
 (86, '19_6_RE111', '開案個案-(家庭關係)簽核：案號：RE111', 'case_all.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03&form_type=familyship', '2023-09-19 00:00', '社工員1', '社工組長、執行長', '社工組長未簽核、執行長未簽核', 'current_case', '2023-09-19 23:41:54', '社工組長', '2023-09-19 23:41:54', ''),
 (87, '20_6_RE111', '開案個案-(BSRS-5量表)簽核：案號：RE111', 'case_all.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03&form_type=BSRS5', '2023-09-19 00:00', '社工員1', '園主任、執行長', '園主任未簽核、執行長未簽核', 'current_case', '2023-09-19 23:42:37', '社工組長', '2023-09-19 23:42:37', ''),
-(88, '21_6_RE111', '開案個案-(安置、自立宿舍評估量表)簽核：案號：RE111', 'case_all.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03&form_type=settlement', '2023-09-19 00:00', '社工員1', '社工組長、園主任', '社工組長未簽核、園主任未簽核', 'current_case', '2023-09-19 23:43:22', '社工組長', '2023-09-19 23:43:22', '');
+(88, '21_6_RE111', '開案個案-(安置、自立宿舍評估量表)簽核：案號：RE111', 'case_all.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03&form_type=settlement', '2023-09-19 00:00', '社工員1', '社工組長、園主任', '社工組長未簽核、園主任未簽核', 'current_case', '2023-09-19 23:43:22', '社工組長', '2023-09-19 23:43:22', ''),
+(89, '8', '生輔紀錄簽核：日期2023-09-08生活輔導員test生活輔導員', 'dlgrec_detail.php?dlgrec_id=8', '2023-09-23 11:53', '社工員2', '社工員2、園主任、執行長', '社工員2未簽核、園主任未簽核、執行長未簽核', 'dlgrec', '2023-09-23 17:12:53', 'jia', '2023-09-23 17:12:53', '');
 
 -- --------------------------------------------------------
 
@@ -3355,6 +3359,12 @@ ALTER TABLE `day_off_v2`
   MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- 使用資料表自動遞增(AUTO_INCREMENT) `dlgrec`
+--
+ALTER TABLE `dlgrec`
+  MODIFY `Id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- 使用資料表自動遞增(AUTO_INCREMENT) `forms`
 --
 ALTER TABLE `forms`
@@ -3388,7 +3398,7 @@ ALTER TABLE `leave_rule_table`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `login_record`
 --
 ALTER TABLE `login_record`
-  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=259;
+  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=261;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `members_assemble`
@@ -3502,7 +3512,7 @@ ALTER TABLE `screening_type_keywords`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `signature_notice`
 --
 ALTER TABLE `signature_notice`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `sign_notice`
