@@ -15,13 +15,13 @@ function submit_form() {
     var form_data = new FormData();
   
     $("input[type='file']").each(function(index, element) {
-        var dlgrec_file = $(this).prop("files");
+        var dlgrec_files = $(this).prop("files");
   
-        if (dlgrec_file != undefined) {
-          if (dlgrec_file.length != 0) {
-            for (var i = 0; i < dlgrec_file.length; i++) {
-              form_data.append("dlgrec_file"+index, dlgrec_file[i]);
-              // console.log(dlgrec_file[i])
+        if (dlgrec_files != undefined) {
+          if (dlgrec_files.length != 0) {
+            for (var i = 0; i < dlgrec_files.length; i++) {
+              form_data.append("dlgrec_files"+index, dlgrec_files[i]);
+              // console.log(dlgrec_files[i])
             }
           } 
         }
