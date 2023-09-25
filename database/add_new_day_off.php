@@ -47,7 +47,7 @@ if($id_num[0]>0)
 }
 else
 {
-    $day_off_id = 0;
+    $day_off_id = 1;
 }
 
 

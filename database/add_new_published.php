@@ -32,7 +32,7 @@ if($id_num[0]>0)
 }
 else
 {
-    $published_id = 0;
+    $published_id = 1;
 }
 
 $url = 'published_detail.php?pu_id='.$published_id.'&year='.$Year;

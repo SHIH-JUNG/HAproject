@@ -17,6 +17,14 @@ let DateDiff = function (date1, date2) { // date1 和 date2 是 2016-06-18 格�
     return result;
 };
 
+function  getDaysBetween(dateString1,dateString2){
+    var  startDate = Date.parse(dateString1);
+    var  endDate = Date.parse(dateString2);
+    var days=(endDate - startDate)/(1*24*60*60*1000);
+    // alert(days);
+    return  days;
+}
+
 $(document).ready(function () {
     // 載入全部user至下拉式選單
     append_user();
@@ -211,6 +219,59 @@ $(document).ready(function () {
             
             if(cssString != '') {
                 $("#dayoff_info").html(cssString);
+            }
+        },
+        error: function (e) {
+            notyf.alert('伺服器錯誤,無法載入' + e);
+        }
+    });
+    //endregion
+
+
+    //show 會議記錄提醒 region
+    $.ajax({
+        url: "database/record_warn_show.php",
+        type: "POST",
+        dataType: "JSON",
+        async: false,//啟用同步請求
+        success: function (data) {
+            console.log(data);
+
+            var cssString = "";
+            $.each(data, function (index, value) {
+
+                var timenow = moment().format('YYYY-MM-DD HH:mm');
+
+                let date_diff = getDaysBetween(timenow.split(" ")[0], value.Warn_timestap.split(" ")[0]);
+
+                if(date_diff <= 0) // date_diff小於等於0，表示到了提醒日期
+                {                    
+                    var rtype = "";
+
+                    if(value.R_or_G == "R")
+                    {
+                        rtype = "會議記錄";
+                    }
+                    else if(value.R_or_G == "G")
+                    {
+                        rtype = "會議議程";
+                    }
+                                        
+                    cssString +=
+                            '<tr id="'+value.Id+'">' +
+                            '<td row_name="n_row" style="LINE-HEIGHT:1px">' + value.Create_date + '</td>' +
+                            '<td row_name="n_row" style="LINE-HEIGHT:1px">' + value.Title + '</td>' +
+                            '<td row_name="n_row" style="LINE-HEIGHT:1px">' + rtype + '</td>' +
+                            '<td row_name="n_row" style="LINE-HEIGHT:1px">' + value.State + '</td>' +
+                            '<td row_name="n_row" style="LINE-HEIGHT:1px">' + value.Create_name + '</td>';
+                    
+                    cssString += '<td row_name="last_row" style="LINE-HEIGHT:1px">' + '<a style="text-decoration: underline;" href="'+value.Url+'">查看</a>' + '</td>' +
+                    '</tr>';
+                }
+            });
+            
+            if(cssString != '') {
+                $("#record_warn_info").html(cssString);
             }
         },
         error: function (e) {

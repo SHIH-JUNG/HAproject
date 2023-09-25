@@ -10,6 +10,12 @@ $(document).ready(function () {
       var cssstring = "";
       //            console.log(data)
 
+      cssstring +=
+        '<tr name="num1[]">' +
+        "<td>全部年度</td>" +
+        '<td><a href="board_supervisor_v2.php?year=all">點擊進入</a></td>' +
+        "</tr>";
+
       $.each(data, function (index, value) {
         cssstring +=
           '<tr name="num1[]">' +

@@ -101,6 +101,18 @@ if (isset($_FILES["agenda_files"]))
     {
         $file_0_sql = ", `Agenda_file_path`= '$file_0_arr'";
     }
+
+    // 查詢 會議上傳提醒
+    $select_RW_num = "SELECT `Id`, `Record_id`, `R_or_G`, `State` FROM `record_warn` WHERE `Record_id` = '$bs_id' AND `Rtype_name` = 'board_supervisor' AND `R_or_G` = 'G';";
+
+    $find_RW_num = mysqli_query($conn, $select_RW_num);
+    $row_nums_RW = mysqli_num_rows($find_RW_num);
+    $RW_num = mysqli_fetch_row($find_RW_num);
+
+    if($row_nums_RW > 0)
+    {
+        $RW_sql = "UPDATE `record_warn` SET `State` = '已上傳', `Update_date` = NOW(), `Update_name`= '$user' WHERE `Id` = '$RW_num[0]' LIMIT 1;";
+    }
 }
 
 if(empty($file_0_arr))
@@ -165,6 +177,18 @@ if (isset($_FILES["rec_files"]))
     }
 
     $file_1_arr = json_encode($file_1_arr,JSON_UNESCAPED_UNICODE);
+
+    // 查詢 會議上傳提醒
+    $select_RW_num = "SELECT `Id`, `Record_id`, `R_or_G`, `State` FROM `record_warn` WHERE `Record_id` = '$bs_id' AND `Rtype_name` = 'board_supervisor' AND `R_or_G` = 'R';";
+
+    $find_RW_num = mysqli_query($conn, $select_RW_num);
+    $row_nums_RW = mysqli_num_rows($find_RW_num);
+    $RW_num = mysqli_fetch_row($find_RW_num);
+
+    if($row_nums_RW > 0)
+    {
+        $RW_sql = "UPDATE `record_warn` SET `State` = '已上傳', `Update_date` = NOW(), `Update_name`= '$user' WHERE `Id` = '$RW_num[0]' LIMIT 1;";
+    }
 }
 
 if(empty($file_1_arr))
@@ -178,6 +202,8 @@ $file_sql = $file_0_sql . $file_1_sql;
 $sqlUpdate = "UPDATE `board_supervisor_v2` SET `upload_content` = '$upload_content' ". $file_sql  ."
 , `Update_date` = NOW(), `Update_name`= '$user'
         WHERE `Id` = '$bs_id' LIMIT 1;";
+
+@$sqlUpdate .= $RW_sql;
 
 // @$sqlUpdate .= "UPDATE `signature_notice` SET `Title` = '$title', `Url` = '$url', `Timestamp` = '$rec_date_time', `Assign` = '$assign', `Signer`='$signer', `Update_name` = '$user', `Update_date` = NOW() WHERE `Sign_id` = '$bs_id' AND `Type` = 'board_supervisor' ORDER BY `signature_notice`.`Create_date` ASC LIMIT 1;";
 

@@ -39,7 +39,7 @@ if($id_num[0]>0)
 }
 else
 {
-    $overtime_id = 0;
+    $overtime_id = 1;
 }
 
 // 查詢 帳號的Resume_id

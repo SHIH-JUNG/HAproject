@@ -16,6 +16,14 @@ include("sql_connect.php");
 @$Director = $_REQUEST['Director'];
 @$Supervise = $_REQUEST['Supervise'];
 
+@$RW_title = $_REQUEST['RW_title'];
+@$RW_G_date = $_REQUEST['RW_G_date'];
+@$RW_R_date = $_REQUEST['RW_R_date'];
+
+@$week_after_G_date = date("Y-m-d H:s" ,strtotime($RW_G_date."+1 week"));
+@$week_after_R_date = date("Y-m-d H:s" ,strtotime($RW_R_date."+1 week"));
+
+
 $user = $_SESSION['name'];
 
 $select_id_num = "SELECT MAX(Id) FROM `supervisor_record_v2` ORDER BY `supervisor_record_v2`.`Create_date` ASC LIMIT 1;";
@@ -29,7 +37,7 @@ if($id_num[0]>0)
 }
 else
 {
-    $sr_id = 0;
+    $sr_id = 1;
 }
 
 $sign_state = $Director . "未簽核" . "、" . $Supervise . "未簽核";
@@ -79,6 +87,17 @@ if (isset($_FILES["agenda_files"]))
 
     $file_0_arr = json_encode($file_0_arr,JSON_UNESCAPED_UNICODE);
 }
+else //未上傳則提醒
+{
+    @$rw_sql_0 = "INSERT INTO `Record_warn` (`Record_id`, `Rtype_name`, `R_or_G`, 
+    `Title`, `Warn_timestap`, 
+    `Url`, `State`, 
+    `Create_date`, `Create_name`) VALUES 
+    ('$sr_id', 'supervisor_record', 'G', 
+    '$RW_title','$week_after_G_date', 
+    '$url','議程未完成上傳', 
+    NOW(), '$user');";
+}
 
 if(empty($file_0_arr))
 {
@@ -109,18 +128,33 @@ if (isset($_FILES["rec_files"]))
 
     $file_1_arr = json_encode($file_1_arr,JSON_UNESCAPED_UNICODE);
 }
+else //未上傳則提醒
+{
+    @$rw_sql_1 = "INSERT INTO `Record_warn` (`Record_id`, `Rtype_name`, `R_or_G`, 
+    `Title`, `Warn_timestap`, 
+    `Url`, `State`, 
+    `Create_date`, `Create_name`) VALUES 
+    ('$sr_id', 'supervisor_record', 'R', 
+    '$RW_title','$week_after_R_date', 
+    '$url','記錄未完成上傳', 
+    NOW(), '$user');";
+}
 
 if(empty($file_1_arr))
 {
     $file_1_arr = implode($file_1_arr);
 }
 
+@$rw_sql = $rw_sql_0 . $rw_sql_1;
+
 $sql = "INSERT INTO `supervisor_record_v2` (`Id`, `Year`, `upload_content`, `Agenda_file_path`, `Rec_file_path`, `Create_date`, `Create_name`, `Director`, `Supervise`) VALUES 
 ($sr_id, '$year', '$upload_content', '$file_0_arr','$file_1_arr', NOW(), '$user', '$Director', '$Supervise');";
 
 // $sql .= "INSERT INTO `calendar` (`title`,`description`,`start`, `end`, `publisher`) VALUES ('$title','$url','$start_datetime', '$end_datetime', '$user')";
 $sql .= "INSERT INTO `signature_notice` (`Sign_id`, `Title`,`Url`,`Timestamp`, `Assign`, `Signer`, `Sign_state`, `Type`, `Create_date`, `Create_name`) 
-VALUES ('$sr_id', '$title','$url','$rec_date_time', '$user', '$signer', '$sign_state', 'supervisor_record', Now(), '$user')";
+VALUES ('$sr_id', '$title','$url','$rec_date_time', '$user', '$signer', '$sign_state', 'supervisor_record', Now(), '$user');";
+
+$sql .= $rw_sql;
 
 if(mysqli_multi_query($conn,$sql)){
     echo true;

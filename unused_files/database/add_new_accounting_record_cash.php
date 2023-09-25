@@ -38,7 +38,7 @@ if($id_num[0]>0)
 }
 else
 {
-    $arc_id = 0;
+    $arc_id = 1;
 }
 
     if($Form_class=="兒少單據")

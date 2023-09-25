@@ -34,7 +34,7 @@ if($id_num[0]>0)
 }
 else
 {
-    $received_id = 0;
+    $received_id = 1;
 }
 
 $url = 'received_detail.php?re_id='.$received_id.'&year='.$Year;

@@ -74,7 +74,7 @@ if (isset($_FILES["file4"]) || isset($_REQUEST['File_name']))
     }
     else
     {
-        $ma_id = 0;
+        $ma_id = 1;
     }
 
     $url = 'members_assemble_detail.php?year='.$year.'&id='.$ma_id.'&ma_id='.$ma_id.'&rec_type='.$rec_type .'';

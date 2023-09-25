@@ -40,7 +40,7 @@ if($id_num[0]>0)
 }
 else
 {
-    $peers_dlgrec_id = 0;
+    $peers_dlgrec_id = 1;
 }
 
 $url = 'peers_dlgrec_detail.php?peers_dlgrec_id='.$peers_dlgrec_id;

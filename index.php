@@ -215,6 +215,41 @@
                                     <div class="panel-body">
                                         <div class="table-wrap">
                                             <div class="table-responsive">
+                                                <div class="text-center">會議記錄上傳提醒</div>
+                                                <table style="font-size:15px;font-family:新細明體;" class="text-center table-hover table-striped table-sm" data-toggle="table" data- data-page-size=5 data-search="false" data-pagination="true" data-pagination-parts="[pageList]">
+                                                    <thead>
+                                                        <tr>
+                                                            <th data-width="20" data-width-unit="%">建檔日期</th>
+                                                            <th data-width="25" data-width-unit="%">標題</th>
+                                                            <th data-width="15" data-width-unit="%">議程/記錄</th>
+                                                            <th data-width="20" data-width-unit="%">狀態</th>
+                                                            <th data-width="15" data-width-unit="%">創建人員</th>
+                                                            <th data-width="5" data-width-unit="%"></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="record_warn_info"></tbody>
+                                                </table>
+                                                <br>
+                                                
+                                                <!-- <button style="font-size:15px" id="dayoff_add" class="btn btn-default"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
+                                                        <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z" />
+                                                        <path fill-rule="evenodd" d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5z" />
+                                                    </svg>新增</button> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="zoom:80%" class="row text-center">
+                        <div class="col-sm-12">
+                            <div class="panel panel-default card-view">
+                                <div class="panel-wrapper collapse in">
+                                    <div class="panel-body">
+                                        <div class="table-wrap">
+                                            <div class="table-responsive">
                                                 <div class="text-center">簽核</div>
                                                 <button style="font-size:15px" onclick="go_to_signature_notice();" class="btn btn-warning"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
                                                 <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>

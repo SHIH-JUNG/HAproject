@@ -80,7 +80,19 @@
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span><?php echo trim($rec_year); ?>年度個案研討與團督記錄</span></li>
+                        <?php 
+
+                            if(trim($rec_year) != 'all')
+                            {
+                                echo '<li><span>'.trim($rec_year).'年度個案研討與團督記錄</span></li>';
+                            }
+                            else
+                            {
+                                echo '<li><span>全部年度個案研討與團督記錄</span></li>';
+                            }
+
+                        ?>
+                        
                     </ol>
                     <!--/麵包屑-->
                 </div>
@@ -107,7 +119,46 @@
                                             <!-- <h4>團督記錄</h4> -->
                                             <div class="table-wrap">
                                                 <div class="table-responsive">
-                                                    <h4><?php echo trim($rec_year); ?>年度個案研討與團督記錄</h4>
+                                                    <h4 class="all_year_datas">查詢</h4>
+                                                    <div　class="all_year_datas col-sm-12" id="toolbar">
+                                                        <div class="col-sm-12">
+                                                            <table style="font-size:20px;font-family:微軟正黑體;width:100%" class="all_year_datas table table-bordered NOline">
+                                                                <tr>
+                                                                    <td class="text-right" style="background-color:rgb(255 201 54); width:7em;">年度：</td>
+                                                                    <td class="text-left">
+                                                                        <select id="record_year_num" rel="1" class="filter search">
+                                                                            <!-- <option value="">所有</option> -->
+                                                                        </select>
+                                                                    </td>
+
+                                                                    <td class="text-right" style="background-color:rgb(255 201 54); width:7em;">月份：</td>
+                                                                    <td class="text-left">
+                                                                        <select id="record_month_num" rel="2" class="filter search">
+                                                                            <!-- <option value="">所有</option> -->
+                                                                        </select>
+                                                                    </td>
+
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td colspan="4" class="text-right">
+                                                                        <button onclick="location.reload();">重置搜尋</button><span> </span>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <?php 
+                                                        if(trim($rec_year) != 'all')
+                                                        {
+                                                            echo '<h4>'.trim($rec_year).'年度個案研討與團督記錄</h4>';
+                                                        }
+                                                        else
+                                                        {
+                                                            echo '<h4>全部年度個案研討與團督記錄</h4>';
+                                                        }
+                                                    ?>
                                                     <table class="table display table-hover dataTable no-footer" style="font-size:15px;font-family:微軟正黑體;width:100%" id="tab_all" data-toolbar="#toolbar">
                                                         <thead>
                                                             <tr>
@@ -122,6 +173,8 @@
                                                             </tr>
                                                             <tr style="background-color:rgb(255 201 54);">
                                                                 <th>標題</th>
+                                                                <th class="all_year_datas">年度</th>
+                                                                <th class="all_year_datas">月份</th>
                                                                 <th>日期</th>
                                                                 <th>主管簽章</th>
                                                                 <th>執行長簽章</th>

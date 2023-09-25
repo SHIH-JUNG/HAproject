@@ -318,9 +318,12 @@ function submit_form_data_upload()
   form_data.append("signer", $("#upload_rec_director").val() + "、" + $("#upload_rec_supervise").val());
   form_data.append("rec_date_time", split_date($("#upload_rec_date").val())+" 00:00");
 
-  for (var pair of form_data.entries()) {
-    console.log(pair[0] + ", " + pair[1]);
-  }
+  form_data.append("RW_title", '上傳提醒：'+ $("#upload_title_name").val());
+  form_data.append("RW_G_date", split_date($("#upload_agenda_date").val()));
+  form_data.append("RW_R_date", split_date($("#upload_rec_date").val()));
+  // for (var pair of form_data.entries()) {
+  //   console.log(pair[0] + ", " + pair[1]);
+  // }
 
   $.ajax({
     url: "database/add_new_upload_board_supervisor_v2.php",
@@ -365,8 +368,8 @@ function submit_form_data_upload()
 function check_add_rec_data_upload() {
   var upload_title_name = $("#upload_title_name").val();
   var upload_agenda_title_name = $("#upload_agenda_title_name").val();
-  var customFile1 = $("[name*=customFile1]").prop("files").length;
-  var customFile2 = $("[name*=customFile2]").prop("files").length;
+  // var customFile1 = $("[name*=customFile1]").prop("files").length;
+  // var customFile2 = $("[name*=customFile2]").prop("files").length;
 
   var upload_rec_director = $("#upload_rec_director").val();
   var upload_rec_supervise = $("#upload_rec_supervise").val();
@@ -379,12 +382,12 @@ function check_add_rec_data_upload() {
   if(upload_agenda_title_name == null) {
     errorstr += "未填寫會議章程標題!\r\n";
   }
-  if(customFile1 == 0) {
-    errorstr += "未上傳會議章程檔案!\r\n";
-  }
-  if(customFile2 == 0) {
-    errorstr += "未上傳會議記錄檔案!\r\n";
-  }
+  // if(customFile1 == 0) {
+  //   errorstr += "未上傳會議章程檔案!\r\n";
+  // }
+  // if(customFile2 == 0) {
+  //   errorstr += "未上傳會議記錄檔案!\r\n";
+  // }
   if (upload_rec_director == null) {
     errorstr += "未選擇主管!\r\n";
   }

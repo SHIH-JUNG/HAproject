@@ -40,7 +40,7 @@ if($id_num[0]>0)
 }
 else
 {
-    $closed_id = 0;
+    $closed_id = 1;
 }
 
 

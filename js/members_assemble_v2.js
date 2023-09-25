@@ -2,6 +2,14 @@ const notyf = new Notyf();
 
 $(function() {
   imagePreview();  
+  
+  if(ma_year == "all") {
+    $(".all_year_datas").show();
+  }
+  else
+  {
+    $(".all_year_datas").hide();
+  }
 });
 
 //datepicker創建 region
@@ -146,6 +154,8 @@ $.ajax({
           value.Id +
           '" ma_id="' +
           value.Id +
+          '" ma_year_num="' +
+          value.Year +
           '" rec_type="upload">';
 
         var upload_content_json = JSON.parse(
@@ -154,6 +164,18 @@ $.ajax({
         // console.log(upload_content_json)
         $.each(upload_content_json[0], function (i, datan) {
           if (datan.name == "upload_rec_date") {
+            if(ma_year == "all") {
+              cssString += '<td style="text-align:center">' + datan.value.split("年")[0] + "</td>";
+              cssString += '<td style="text-align:center">' + datan.value.split("年")[1].split("月")[0] + "</td>";
+
+              $("#record_year_num").append(
+                '<option value="' + datan.value.split("年")[0] + '">' + datan.value.split("年")[0] + "</option>"
+              );
+
+              $("#record_month_num").append(
+                '<option value="' + datan.value.split("年")[1].split("月")[0] + '">' + datan.value.split("年")[1].split("月")[0] + "</option>"
+              );
+            }
             cssString +=
               '<td style="text-align:center">' + datan.value + "</td>";
           } else if (datan.name == "upload_title_name") {
@@ -175,7 +197,50 @@ $.ajax({
       cssString += '<td style="text-align:center">' + supervise_sign_arr[0]+supervise_sign_arr[1] + '</td>';
       cssString += '</tr>';
     });
-    
+
+    //找出所有查詢表格下拉式選單，將內容排序、加上"所有查詢"、去除重複值
+    var filter_select = $("select.filter");
+
+    $.each(filter_select, function (i, v) {
+      var this_id = $(this).attr("id");
+
+      if (this_id != undefined) {
+        //option小到大排序
+        $("#" + this_id + " option")
+          .sort(function (a, b) {
+            var aText = $(a).text().toUpperCase();
+            var bText = $(b).text().toUpperCase();
+            // if (aText > bText) return 1;
+            // if (aText < bText) return -1;
+            // return 0;
+
+            return aText - bText;
+          })
+          .appendTo("#" + this_id + "");
+
+        //最前面新增"所有"選像
+        $("#" + this_id + "").prepend(
+          "<option value='' selected='selected'>所有</option>"
+        );
+
+        $("#" + this_id + "")
+          .children()
+          .each(function () {
+            // text = $(this).text();
+            // if (
+            //   $("select#" + this_id + " option:contains(" + text + ")").length >
+            //   1
+            // ) {
+            //   $(
+            //     "select#" + this_id + " option:contains(" + text + "):gt(0)"
+            //   ).remove();
+            // }
+
+            $(this).siblings('[value="' + this.value + '"]').remove();
+            //    console.log(text)
+          });
+      }
+    });
 
     //印出表格
     $("#call_view").html(cssString);
@@ -184,7 +249,7 @@ $.ajax({
     $(".table-hover tbody").on("click", "tr", function () {
       window.location.href =
         "members_assemble_detail_v2.php?year=" +
-        ma_year +
+        $(this).attr("ma_year_num") +
         "&id=" +
         $(this).attr("id") +
         "&ma_id=" +

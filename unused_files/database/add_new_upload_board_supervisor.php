@@ -74,7 +74,7 @@ if (isset($_FILES["file4"]) || isset($_REQUEST['File_name']))
     }
     else
     {
-        $bs_id = 0;
+        $bs_id = 1;
     }
 
     $url = 'board_supervisor_detail.php?year='.$year.'&id='.$bs_id.'&bs_id='.$bs_id.'&rec_type='.$rec_type .'';

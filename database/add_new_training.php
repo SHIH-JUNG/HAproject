@@ -25,7 +25,7 @@ if($id_num[0]>0)
 }
 else
 {
-    $training_id = 0;
+    $training_id = 1;
 }
 
 // 上傳報表路徑

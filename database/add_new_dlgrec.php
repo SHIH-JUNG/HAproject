@@ -40,7 +40,7 @@ if($id_num[0]>0)
 }
 else
 {
-    $dlgrec_id = 0;
+    $dlgrec_id = 1;
 }
 
 $url = 'dlgrec_detail.php?dlgrec_id='.$dlgrec_id;

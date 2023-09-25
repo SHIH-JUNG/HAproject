@@ -42,7 +42,7 @@ if($id_num[0]>0)
 }
 else
 {
-    $vom_id = 0;
+    $vom_id = 1;
 }
 
 $url = 'volunteer_meeting_detail.php?vom_id='.$vom_id;

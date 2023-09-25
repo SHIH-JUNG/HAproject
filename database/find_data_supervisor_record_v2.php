@@ -3,7 +3,16 @@ include("sql_connect.php");
 //region 抓資料
 $year = $_POST['year'];
 
-$note = "SELECT * FROM `supervisor_record_v2` Where `Year` = '$year' ORDER BY `supervisor_record_v2`.`Id` DESC;";
+if($year == 'all')
+{
+  $note = "SELECT * FROM `supervisor_record_v2` ORDER BY `supervisor_record_v2`.`Year` DESC, `supervisor_record_v2`.`Id` DESC;";
+}
+else
+{
+  $note = "SELECT * FROM `supervisor_record_v2` Where `Year` = '$year' ORDER BY `supervisor_record_v2`.`Id` DESC;";
+}
+
+
 
 //宣告空的陣列
 $datas = array();

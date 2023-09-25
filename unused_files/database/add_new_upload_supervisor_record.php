@@ -79,7 +79,7 @@ if(isset($_FILES["file4"]))
         }
         else
         {
-            $sr_id = 0;
+            $sr_id = 1;
         }
 
         $url = 'supervisor_record_detail.php?year='.$year.'&id='.$sr_id.'&sr_id='.$sr_id.'&rec_type='.$rec_type .'';
