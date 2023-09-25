@@ -122,6 +122,15 @@ word-break: keep-all;/*必須*/
                                                                     <!-- <option value="">所有</option> -->
                                                                 </select>
                                                             </td>
+
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">檔案是否上傳：</td>
+                                                            <td class="text-left">
+                                                                <select rel="5" class="filter search">
+                                                                    <option value="">所有</option>
+                                                                    <option value="已上傳">已上傳</option>
+                                                                    <option value="未上傳">未上傳</option>
+                                                                </select>
+                                                            </td>
                                                         </tr>
                                                        
                                                         <tr>
@@ -153,6 +162,7 @@ word-break: keep-all;/*必須*/
                                                                 <th>社工員簽章</th>
                                                                 <th>督導簽章</th>
                                                                 <th>執行長簽章</th>
+                                                                <th>檔案是否上傳</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody id="call_view"></tbody>

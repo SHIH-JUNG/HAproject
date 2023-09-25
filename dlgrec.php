@@ -127,7 +127,7 @@ word-break: keep-all;/*必須*/
 
                                                             <td class="text-right" style="background-color:rgb(255 201 54)">檔案是否上傳：</td>
                                                             <td class="text-left">
-                                                                <select rel="4" class="filter search">
+                                                                <select rel="5" class="filter search">
                                                                     <option value="">所有</option>
                                                                     <option value="已上傳">已上傳</option>
                                                                     <option value="未上傳">未上傳</option>

@@ -220,6 +220,20 @@
                                                                                 </div>
                                                                             </td>
                                                                         </tr>
+
+                                                                        <tr style="text-align:left">
+                                                                                <td style="text-align:center;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;width: 10em;">檔案上傳</td>
+                                                                                <td style="border-bottom: solid 1px;">
+                                                                                    <div class="col-sm-8">
+                                                                                        <div class="text-left">
+                                                                                            <input name="upload" type="file" class="peers_dlgrec_textarea form-control">
+                                                                                            <br>
+                                                                                            <div id="upload"></div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                            </td>
+                                                                        </tr>
+
                                                                         <tr style="text-align:left">
                                                                             <td style="text-align:center;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;width: 10em;">時間</td>
                                                                             <td style="text-align:center;background-color:rgb(255 201 54);">輔導內容:生活、輔導、職訓及相關事宜</td>
