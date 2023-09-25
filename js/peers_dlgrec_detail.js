@@ -57,6 +57,13 @@ $(document).ready(function(){
                 $("#supervise1").val(value.supervise1)
                 $("#supervise2").val(value.supervise2)
 
+                var peers_dlgrec_file_path = value.Upload_path.replace("../", "./");
+                peers_dlgrec_file_name = value.Upload_name;
+
+                var a_element_content = '<a href="'+peers_dlgrec_file_path+'" style="text-decoration:none;color:blue;" target="_blank">'
+                +peers_dlgrec_file_name
+                +'</a><br/><br/>';
+
 
                 var social_worker_sign_file_val = value.social_worker_sign.replace("\.\.\/signature\/", "");
 
@@ -300,88 +307,233 @@ sign_msg_model = function (sign_type_name) {
 
 
 //更新結案表基本資料region
-$("#peers_dlgrec_update").on('click',function(){
+// $("#peers_dlgrec_update").on('click',function(){
 
-var peers_dlgrec_id = getUrlVars()["peers_dlgrec_id"];
+// var peers_dlgrec_id = getUrlVars()["peers_dlgrec_id"];
 
-var stau = false;
+// var stau = false;
 
-    if (check_updat_peers_dlgrec_data() != "") 
-    {
+//     if (check_updat_peers_dlgrec_data() != "") 
+//     {
             
-        stau = false;
-    }
-    else {
-        stau = true;
-    }
-    // console.log(stau);
+//         stau = false;
+//     }
+//     else {
+//         stau = true;
+//     }
+//     // console.log(stau);
 
-    if(!stau)
-    {
-        swal({
-            title:check_updat_peers_dlgrec_data(),
-            type:'error'
+//     if(!stau)
+//     {
+//         swal({
+//             title:check_updat_peers_dlgrec_data(),
+//             type:'error'
+//           })
+//     }
+//     else
+//     { 
+//         $.ajax({                                                                                    
+//             url: "database/update_peers_dlgrec_data_detail.php",
+//             data:{
+//                 peers_dlgrec_id:peers_dlgrec_id,
+//                 bf_num:$("#bf_num").val(),
+//                 al_num:$("#al_num").val(),
+//                 em_num:$("#em_num").val(),
+//                 lp_num:$("#lp_num").val(),
+//                 leave_num:$("#leave_num").val(),
+//                 peers_dlgrec_date:$("#peers_dlgrec_date").val(),
+
+//                 peers_dlgrec_0:$("#peers_dlgrec_0").val(),
+//                 peers_dlgrec_1:$("#peers_dlgrec_1").val(),
+//                 peers_dlgrec_2:$("#peers_dlgrec_2").val(),
+//                 peers_dlgrec_3:$("#peers_dlgrec_3").val(),
+//                 peers_dlgrec_4:$("#peers_dlgrec_4").val(),
+//                 peers_dlgrec_5:$("#peers_dlgrec_5").val(),
+//                 peers_dlgrec_6:$("#peers_dlgrec_6").val(),
+//                 peers_dlgrec_7:$("#peers_dlgrec_7").val(),
+//                 peers_dlgrec_8:$("#peers_dlgrec_8").val(),
+//                 peers_dlgrec_9:$("#peers_dlgrec_9").val(),
+//                 peers_dlgrec_10:$("#peers_dlgrec_10").val(),
+//                 peers_dlgrec_11:$("#peers_dlgrec_11").val(),
+
+//                 dlg_manager:$("#dlg_manager").val(),
+//                 // social_worker:$("#social_worker").val(),
+//                 // supervise1:$("#supervise1").val(),
+//                 // supervise2:$("#supervise2").val()
+//             },
+//             type: "POST",
+//             dataType: "JSON",
+//             success: function (data) {
+//                 if(data == 1){
+//                     swal({
+//                         title:'更新成功！',
+//                         type:'success',                        
+//                     }).then(function(){
+//                         location.reload();
+//                     }) 
+//                 }else{
+//                     swal({
+//                         title:'更新失敗！請聯絡負責單位',
+//                         type:'error',
+//                     })
+//                 }  
+//             },
+//             error:function(e){
+//                 // console.log(e);
+//                 swal({
+//                     title:'更新失敗！請聯絡負責單位',
+//                     type:'error',
+//                 })
+//             }
+//         });
+//     }
+
+// });
+
+//更新結案表基本資料region
+$("#peers_dlgrec_update").on("click", function () {
+    var peers_dlgrec_id = getUrlVars()["peers_dlgrec_id"];
+  
+    var stau = false;
+  
+    if (check_updat_peers_dlgrec_data() != "") {
+      stau = false;
+    } else {
+      stau = true;
+    }
+    console.log(stau);
+  
+    if (!stau) {
+      swal({
+        title: check_updat_peers_dlgrec_data(),
+        type: "error",
+      });
+    } else {
+      var exist_arr = check_file_exist();
+        if(exist_arr.length != 0)
+        {
+          swal({
+            title: exist_arr[0][1],
+            text: "選擇『確認送出』覆蓋現有檔案，或是按『取消』更改檔名",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "確認送出",
+            cancelButtonText: "取消",
+            showConfirmButton: true,
+            showCancelButton: true,
           })
+            .then(
+              function (result) {
+                if (result) {
+                  submit_form();
+                }
+              },
+              function (dismiss) {
+                if (dismiss == "cancel") {
+                  swal({
+                    title: "已取消，建議請更改檔名",
+                    type: "success",
+                  });
+                }
+              }
+            )
+            .catch(swal.noop);
+        }
+        else
+        {
+          submit_form();
+        }
     }
-    else
-    { 
-        $.ajax({                                                                                    
-            url: "database/update_peers_dlgrec_data_detail.php",
-            data:{
-                peers_dlgrec_id:peers_dlgrec_id,
-                bf_num:$("#bf_num").val(),
-                al_num:$("#al_num").val(),
-                em_num:$("#em_num").val(),
-                lp_num:$("#lp_num").val(),
-                leave_num:$("#leave_num").val(),
-                peers_dlgrec_date:$("#peers_dlgrec_date").val(),
+  });
+  
+  function submit_form() {
+  
+    //去掉資料內前後端多餘的空白，file類型須排除，否則報錯
+    $("input, textarea").each(function () {
+      if ($(this).attr("type") != "file") {
+          $(this).val(jQuery.trim($(this).val()));
+      }
+      });
+    
+      var form_data = new FormData();
+  
+  
+      $("input[type='file']").each(function(index, element) {
+          var peers_dlgrec_files = $(this).prop("files");
+  
+          if (peers_dlgrec_files != undefined) {
+            if (peers_dlgrec_files.length != 0) {
+              for (var i = 0; i < peers_dlgrec_files.length; i++) {
+                form_data.append("peers_dlgrec_files"+index, peers_dlgrec_files[i]);
+                // console.log(peers_dlgrec_files[i])
+              }
+            } 
+          }
+      });
+  
+      form_data.append("peers_dlgrec_id", peers_dlgrec_id);
+      form_data.append("bf_num", $("#bf_num").val());
+      form_data.append("al_num", $("#al_num").val());
+      form_data.append("em_num", $("#em_num").val());
+      form_data.append("lp_num",$("#lp_num").val());
+      form_data.append("leave_num",$("#leave_num").val());
+      form_data.append("peers_dlgrec_date", $("#peers_dlgrec_date").val());
 
-                peers_dlgrec_0:$("#peers_dlgrec_0").val(),
-                peers_dlgrec_1:$("#peers_dlgrec_1").val(),
-                peers_dlgrec_2:$("#peers_dlgrec_2").val(),
-                peers_dlgrec_3:$("#peers_dlgrec_3").val(),
-                peers_dlgrec_4:$("#peers_dlgrec_4").val(),
-                peers_dlgrec_5:$("#peers_dlgrec_5").val(),
-                peers_dlgrec_6:$("#peers_dlgrec_6").val(),
-                peers_dlgrec_7:$("#peers_dlgrec_7").val(),
-                peers_dlgrec_8:$("#peers_dlgrec_8").val(),
-                peers_dlgrec_9:$("#peers_dlgrec_9").val(),
-                peers_dlgrec_10:$("#peers_dlgrec_10").val(),
-                peers_dlgrec_11:$("#peers_dlgrec_11").val(),
+      form_data.append("peers_dlgrec_0",$("#peers_dlgrec_0").val());
+      form_data.append("peers_dlgrec_1",$("#peers_dlgrec_1").val());
+      form_data.append("peers_dlgrec_2",$("#peers_dlgrec_2").val());
+      form_data.append("peers_dlgrec_3",$("#peers_dlgrec_3").val());
+      form_data.append("peers_dlgrec_4",$("#peers_dlgrec_4").val());
+      form_data.append("peers_dlgrec_5",$("#peers_dlgrec_5").val());
+      form_data.append("peers_dlgrec_6",$("#peers_dlgrec_6").val());
+      form_data.append("peers_dlgrec_7",$("#peers_dlgrec_7").val());
+      form_data.append("peers_dlgrec_8",$("#peers_dlgrec_8").val());
+      form_data.append("peers_dlgrec_9",$("#peers_dlgrec_9").val());
+      form_data.append("peers_dlgrec_10",$("#peers_dlgrec_10").val());
+      form_data.append("peers_dlgrec_11",$("#peers_dlgrec_11").val());
 
-                dlg_manager:$("#dlg_manager").val(),
-                // social_worker:$("#social_worker").val(),
-                // supervise1:$("#supervise1").val(),
-                // supervise2:$("#supervise2").val()
-            },
-            type: "POST",
-            dataType: "JSON",
-            success: function (data) {
-                if(data == 1){
-                    swal({
-                        title:'更新成功！',
-                        type:'success',                        
-                    }).then(function(){
-                        location.reload();
-                    }) 
-                }else{
-                    swal({
-                        title:'更新失敗！請聯絡負責單位',
-                        type:'error',
-                    })
-                }  
-            },
-            error:function(e){
-                // console.log(e);
-                swal({
-                    title:'更新失敗！請聯絡負責單位',
-                    type:'error',
-                })
-            }
-        });
-    }
+      form_data.append("dlg_manager",$("#dlg_manager").val());
+      form_data.append("social_worker",$("#social_worker").val());
+      form_data.append("supervise1",$("#supervise1").val());
+      form_data.append("supervise2",$("#supervise2").val());
+  
+      // 預覽傳到後端的資料詳細內容
+      for (var pair of form_data.entries()) {
+        console.log(pair[0] + ", " + pair[1]);
+      }
+  
+  
+    $.ajax({
+      url: "database/update_peers_dlgrec_data_detail.php",
+      type: "POST",
+      data: form_data,
+      contentType: false,
+      cache: false,
+      processData: false,
+      async: true,
+      success: function (data) {
+        console.log(data);
+        if (data == 1) {
+          swal({
+            title: "修改成功！",
+            type: "success",
+          }).then(function () {
+            location.reload();
+          });
+        } else {
+          swal({
+            title: "修改失敗！請聯絡負責單位",
+            type: "error",
+          });
+        }
+      },
+      error: function (e) {
+        console.log(e);
+      },
+    });
+}
 
-});
 
 //結案表(update)的必填欄位 region
 function check_updat_peers_dlgrec_data()
