@@ -671,8 +671,8 @@ function submit_form() {
 
   form_data.append("Day_off_type", deal_type($("[name='day_off_type']:checked").val()));
   form_data.append("Reason", $("#reason").val());
-  form_data.append("Disposal_type", deal_type($("[name='disposal_type']:checked").val()));
-  form_data.append("Hours_type", deal_type($("[name='hours_type']:checked").val()));
+  form_data.append("Disposal_type", $("[name='disposal_type']:checked").val());
+  form_data.append("Hours_type", $("[name='hours_type']:checked").val());
 
   // form_data.append("Overtime_date_start",$("#overtime_date_start").val() + "_" + $("#overtime_time_start").val());
   // form_data.append("Overtime_date_end",$("#overtime_date_end").val() + "_" + $("#overtime_time_end").val());

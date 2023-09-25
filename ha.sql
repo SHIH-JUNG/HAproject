@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： localhost
--- 產生時間： 2023-09-25 09:05:12
+-- 產生時間： 2023-09-25 10:03:45
 -- 伺服器版本： 10.4.28-MariaDB
 -- PHP 版本： 8.2.4
 
@@ -1445,7 +1445,9 @@ INSERT INTO `login_record` (`Id`, `Login_timestamp`, `Login_account`, `Login_aut
 (257, '2023-09-22 12:23:49', 'text1', '7', '社工員1', '22.683296919004484,120.48382589803803', 1),
 (258, '2023-09-23 09:39:36', 'text1', '7', '社工員1', '22.7802165,120.4937671', 1),
 (259, '2023-09-25 13:15:01', 'testuser', '5', 'jia', '22.5939125,120.488813', 1),
-(260, '2023-09-25 15:02:15', 'testuser', '5', 'jia', '22.593917186487676,120.48880871388471', 0);
+(260, '2023-09-25 15:02:15', 'testuser', '5', 'jia', '22.593917186487676,120.48880871388471', 0),
+(261, '2023-09-25 15:50:35', 'test5', '2', '園主任', '22.5939125,120.488813', 1),
+(262, '2023-09-25 16:02:31', 'testuser', '5', 'jia', '22.593916472840217,120.48880938832706', 0);
 
 -- --------------------------------------------------------
 
@@ -1530,6 +1532,7 @@ CREATE TABLE `overtime` (
   `Overtime_date` varchar(500) NOT NULL,
   `Reason` longtext NOT NULL,
   `Overtime_hours` float NOT NULL,
+  `Subsidy_type` varchar(100) NOT NULL,
   `Free_date` varchar(500) NOT NULL,
   `Free_hours` float NOT NULL,
   `Allow_status` varchar(100) NOT NULL,
@@ -1555,8 +1558,9 @@ CREATE TABLE `overtime` (
 -- 傾印資料表的資料 `overtime`
 --
 
-INSERT INTO `overtime` (`Id`, `Resume_id`, `Resume_name`, `Rec_year`, `Fillin_date`, `Overtime_date`, `Reason`, `Overtime_hours`, `Free_date`, `Free_hours`, `Allow_status`, `Create_date`, `Create_name`, `Update_date`, `Update_name`, `Supervise`, `Supervise_signature`, `Supervise_sign_msg`, `Supervise_sign_time`, `Checker`, `Checker_signature`, `Checker_sign_msg`, `Checkert_sign_time`, `Director`, `Director_signature`, `Director_sign_msg`, `Director_sign_time`) VALUES
-(0, 1, 'jia', 112, '2023-06-03', '112.04.05', 'TEST加班事由0405', 1.5, '112.05.22', 1, '核准', '2023-06-03 21:13:21', 'jia', '2023-06-03 21:22:11', '社工組長', '執行長', '../signature/1685965617.png', '5512341', '2023-06-05 19:46:57', '社工員2', '', '', '', '社工組長', '../signature/1685965476.png', '', '2023-06-05 19:44:36');
+INSERT INTO `overtime` (`Id`, `Resume_id`, `Resume_name`, `Rec_year`, `Fillin_date`, `Overtime_date`, `Reason`, `Overtime_hours`, `Subsidy_type`, `Free_date`, `Free_hours`, `Allow_status`, `Create_date`, `Create_name`, `Update_date`, `Update_name`, `Supervise`, `Supervise_signature`, `Supervise_sign_msg`, `Supervise_sign_time`, `Checker`, `Checker_signature`, `Checker_sign_msg`, `Checkert_sign_time`, `Director`, `Director_signature`, `Director_sign_msg`, `Director_sign_time`) VALUES
+(1, 1, 'jia', 112, '2023-06-03', '112.04.05', 'TEST加班事由0405', 1.5, '補休時數', '112.05.22', 1, '核准', '2023-06-03 21:13:21', 'jia', '2023-06-03 21:22:11', '社工組長', '執行長', '../signature/1685965617.png', '5512341', '2023-06-05 19:46:57', '社工員2', '', '', '', '社工組長', '../signature/1685965476.png', '', '2023-06-05 19:44:36'),
+(2, 1, 'jia', 112, '2023-09-25', '112.09.08', 'test\r\n加班事由', 2.2, '加班津貼', '', 0, '核准', '2023-09-25 15:50:08', 'jia', '2023-09-25 16:01:57', '園主任', '執行長', '', '', '', '歐陽美悌', '', '', '', '園主任', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -2305,7 +2309,7 @@ INSERT INTO `signature_notice` (`Id`, `Sign_id`, `Title`, `Url`, `Timestamp`, `A
 (48, '40', '收文簽核：主旨wdw,來文單位wadaw', 'received_detail.php?re_id=40&year=112', '2023-06-07 00:00', '社工員1', '執行長、洪勝霖、施朝根', '未簽核', 'received', '2023-06-06 21:59:11', '社工員1', '2023-06-06 21:59:11', ''),
 (49, '41', '收文簽核：主旨sfsdfdsf,來文單位sfsdfsf', 'received_detail.php?re_id=41&year=112', '2023-06-02 00:00', '社工員1', '社工組長、力聖臨、洪勝霖', '未簽核', 'received', '2023-06-06 22:00:24', '社工員1', '2023-06-06 22:00:24', ''),
 (50, '1', '請假單簽核：undefined', 'day_off_detail.php?day_off_id=1&resume_id=1', '2023-06-03 00:00', 'jia', '社工員2、社工組長、執行長', '社工員2未簽核、社工組長已簽核、執行長已簽核', 'day_off', '2023-06-03 20:06:43', 'jia', '2023-06-03 20:06:43', ''),
-(51, '0', '加班紀錄簽核：jia 加班日期112.04.05', 'overtime_detail.php?overtime_id=0&resume_id=1', '2023-06-03 00:00', 'jia', '社工員2、社工組長、執行長', '社工員2未簽核、社工組長已簽核、執行長已簽核', 'overtime', '2023-06-03 21:13:21', 'jia', '2023-06-03 21:13:21', ''),
+(51, '1', '加班紀錄簽核：jia 加班日期112.04.05', 'overtime_detail.php?overtime_id=1&resume_id=1', '2023-06-03 00:00', 'jia', '社工員2、社工組長、執行長', '社工員2未簽核、社工組長已簽核、執行長已簽核', 'overtime', '2023-06-03 21:13:21', 'jia', '2023-06-03 21:13:21', ''),
 (52, '17', '結案簽核：案號RE111姓名test', 'closed_detail.php?closed_id=17', '2023-06-05 00:00', 'jia', '園主任、執行長', '園主任未簽核、執行長已簽核', 'closed', '2023-06-05 19:30:22', 'jia', '2023-06-05 19:30:22', ''),
 (53, '6', '生輔紀錄簽核：日期2023-03-04生活輔導員test生活輔導員', 'dlgrec_detail.php?dlgrec_id=6', '2023-06-05 15:44', '社工員1', '社工員1、園主任、執行長', '社工員1未簽核、園主任未簽核、執行長已簽核', 'dlgrec', '2023-06-05 21:11:44', '執行長', '2023-06-05 21:11:44', ''),
 (54, '43', '收文簽核：主旨ttas,來文單位units', 'received_detail.php?re_id=43&year=112', '2023-06-07 00:00', '社工組長', '歐陽美悌、園主任、執行長、社工組長、洪勝霖', '歐陽美悌未簽核、園主任未簽核、執行長未簽核、社工組長未簽核、洪勝霖未簽核', 'received', '2023-06-08 15:48:41', '社工組長', '2023-06-08 15:48:41', ''),
@@ -2331,7 +2335,8 @@ INSERT INTO `signature_notice` (`Id`, `Sign_id`, `Title`, `Url`, `Timestamp`, `A
 (86, '19_6_RE111', '開案個案-(家庭關係)簽核：案號：RE111', 'case_all.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03&form_type=familyship', '2023-09-19 00:00', '社工員1', '社工組長、執行長', '社工組長未簽核、執行長未簽核', 'current_case', '2023-09-19 23:41:54', '社工組長', '2023-09-19 23:41:54', ''),
 (87, '20_6_RE111', '開案個案-(BSRS-5量表)簽核：案號：RE111', 'case_all.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03&form_type=BSRS5', '2023-09-19 00:00', '社工員1', '園主任、執行長', '園主任未簽核、執行長未簽核', 'current_case', '2023-09-19 23:42:37', '社工組長', '2023-09-19 23:42:37', ''),
 (88, '21_6_RE111', '開案個案-(安置、自立宿舍評估量表)簽核：案號：RE111', 'case_all.php?name=test&gender=男&pid=T1334356112&date=2022-08-08&property=安置家園&type=藥癮家庭&grade=B&id=6&open_id=RE111&referral=其他&case_Create_date=2022-08-08&unopen_type=reopencase&birth=1991-02-03&form_type=settlement', '2023-09-19 00:00', '社工員1', '社工組長、園主任', '社工組長未簽核、園主任未簽核', 'current_case', '2023-09-19 23:43:22', '社工組長', '2023-09-19 23:43:22', ''),
-(89, '8', '生輔紀錄簽核：日期2023-09-08生活輔導員test生活輔導員', 'dlgrec_detail.php?dlgrec_id=8', '2023-09-23 11:53', '社工員2', '社工員2、園主任、執行長', '社工員2未簽核、園主任未簽核、執行長未簽核', 'dlgrec', '2023-09-23 17:12:53', 'jia', '2023-09-23 17:12:53', '');
+(89, '8', '生輔紀錄簽核：日期2023-09-08生活輔導員test生活輔導員', 'dlgrec_detail.php?dlgrec_id=8', '2023-09-23 11:53', '社工員2', '社工員2、園主任、執行長', '社工員2未簽核、園主任未簽核、執行長未簽核', 'dlgrec', '2023-09-23 17:12:53', 'jia', '2023-09-23 17:12:53', ''),
+(90, '2', '加班紀錄簽核：jia 加班日期112.09.08', 'overtime_detail.php?overtime_id=2&resume_id=1', '2023-09-25 00:00', 'jia', '歐陽美悌、園主任、執行長', '園主任未簽核、執行長未簽核、歐陽美悌未簽核', 'overtime', '2023-09-25 15:50:08', 'jia', '2023-09-25 15:50:08', '');
 
 -- --------------------------------------------------------
 
@@ -3398,13 +3403,19 @@ ALTER TABLE `leave_rule_table`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `login_record`
 --
 ALTER TABLE `login_record`
-  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=261;
+  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=263;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `members_assemble`
 --
 ALTER TABLE `members_assemble`
   MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `overtime`
+--
+ALTER TABLE `overtime`
+  MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `placement_case`
@@ -3512,7 +3523,7 @@ ALTER TABLE `screening_type_keywords`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `signature_notice`
 --
 ALTER TABLE `signature_notice`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `sign_notice`

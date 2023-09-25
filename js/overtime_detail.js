@@ -92,6 +92,9 @@ $(document).ready(function () {
         $("#reason").val(value.Reason);
         $("#overtime_hours").val(value.Overtime_hours);
 
+        $("input[name='subsidy_type'][value='"+value.Subsidy_type+"']").attr('checked',true);
+        // window.set_subsidy_type = value.Subsidy_type;
+
         $("#free_date").val(value.Free_date);
         $("#free_hours").val(value.Free_hours);
 
@@ -577,6 +580,7 @@ update_allow_status = function(overtime_id_str, allow_status_str) {
       data: {
         Overtime_id:overtime_id_str,
         Allow_status:allow_status_str,
+        // Subsidy_type:set_subsidy_type,
       },
     // dataType: "JSON", // 若要傳回字串 如：noallow，不可設定為json格式
     success: function (data) {

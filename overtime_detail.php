@@ -181,6 +181,26 @@
                                                                                 </td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>補貼方式</td>
+                                                                                <td style="border-bottom: solid 1px;">
+                                                                                    <input class="ot_question" name="subsidy_type" style="zoom: 1.5" value="補休時數" type="radio" checked><span>補休時數</span>
+                                                                                    <input class="ot_question" name="subsidy_type" style="zoom: 1.5" value="加班津貼" type="radio"><span>加班津貼</span>
+                                                                                    <div>
+                                                                                        <table style="width:100%;margin-top:3em;color:red;">
+                                                                                            <tr>
+                                                                                                <td><span style="color:#000;">選項說明：</span></td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td>補休時數：<span style="color:#000;">加班時數轉為可補休時數</span></td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td>加班津貼：<span style="color:#000;">依據勞基法補貼加班費，免填寫下面『補休日期』、『補休時數』欄位</span></td>
+                                                                                            </tr>
+                                                                                        </table>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">補休日期</td>
                                                                                 <td style="border-bottom: solid 1px;">
                                                                                     <input style="margin-left: 1em;" class="ot_question" id="free_date"  type="text" overtime_date="overtime_date" name="ch_datepicker">
@@ -260,7 +280,6 @@
                                                                                     </div>
                                                                                 </td>
                                                                             </tr>
-                                                                           
                                                                             <tr>
                                                                                 <td colspan="2">
                                                                                     <div id="submit_area">

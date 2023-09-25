@@ -109,6 +109,27 @@ compute_hours = function() {
 }
 // endregion
 
+//監聽 根據選擇 補休時數、加班津貼，設置補休日期、補休時數輸入框的狀態 region
+$("[name='subsidy_type']").on('change',function(){
+  var this_val = this.value;
+
+  switch (this_val) {
+    case "補休時數":
+      $("#free_date").attr("disabled",false);
+      $("#free_hours").attr("disabled",false);
+      break;
+  
+    case "加班津貼":
+      $("#free_date").val('');
+      $("#free_hours").val('');
+      $("#free_date").attr("disabled",true);
+      $("#free_hours").attr("disabled",true);
+      break;
+  }
+
+});
+// endregion
+
 //監聽 加班/補休日期欄位值變化，計算加班/補休時數 region
 $("input[overtime_date*='overtime_date']").change( function(event) {
   compute_hours();
@@ -242,6 +263,8 @@ function submit_form() {
   }
   });
 
+  var get_subsidy_type = $("[name='subsidy_type']:checked").val();
+
   //Time Now
   var timenow = moment().format('YYYY-MM-DD');
 
@@ -274,6 +297,9 @@ function submit_form() {
   form_data.append("Reason", $("#reason").val());
 
   form_data.append("Overtime_hours", n_overtime_hours);
+
+  form_data.append("Subsidy_type", $("[name='subsidy_type']:checked").val());
+
   form_data.append("Free_date", $("#free_date").val());
   form_data.append("Free_hours", n_free_hours);
 

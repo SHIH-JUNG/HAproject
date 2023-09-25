@@ -11,6 +11,7 @@ $Overtime_date = $_REQUEST['Overtime_date'];
 $Reason = $_REQUEST['Reason'];
 $Overtime_hours = $_REQUEST['Overtime_hours'];
 
+$Subsidy_type = $_REQUEST['Subsidy_type'];
 
 @$Free_date = $_REQUEST['Free_date'];
 @$Free_hours = $_REQUEST['Free_hours'];
@@ -63,6 +64,7 @@ $sql = "INSERT INTO `overtime` (`Id`, `Resume_id`, `Resume_name`,
 `Overtime_date`, 
 `Reason`, 
 `Overtime_hours`, 
+`Subsidy_type`, 
 `Free_date`, `Free_hours`, 
 `Allow_status`, 
 `Create_date`, `Create_name`, 
@@ -72,6 +74,7 @@ $sql = "INSERT INTO `overtime` (`Id`, `Resume_id`, `Resume_name`,
  '$Overtime_date', 
  '$Reason', 
  '$Overtime_hours', 
+ '$Subsidy_type',
  '$Free_date', '$Free_hours', 
  '審核中', 
  NOW(), '$user',  
