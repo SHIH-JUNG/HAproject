@@ -145,9 +145,15 @@
                                                         </a>
                                                     </li>
                                                     
-                                                    <li id="open_rec">
-                                                        <a href="javascript:addNewTag()">
-                                                            <b>+</b>
+                                                    <li class="nav-item" role="presentation">
+                                                        <a class="nav-link" id="profile-tab" data-toggle="pill" href="#two" role="tab" aria-selected="false">
+                                                            <b>訪談記錄</b>
+                                                        </a>
+                                                    </li>
+
+                                                    <li class="nav-item" role="presentation">
+                                                        <a class="nav-link" id="profile-tab" data-toggle="pill" href="#three" role="tab" aria-selected="false">
+                                                            <b>新增+</b>
                                                         </a>
                                                     </li>
 
@@ -303,34 +309,46 @@
                                                                                     <input id="cocktail_therapy_name" class="counsel_question" type="text">
                                                                                 </td>
                                                                             </tr>
+                                                                            <tr style="text-align:left">
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;">檔案上傳</td>
+                                                                                <td style="border-bottom: solid 1px;">
+                                                                                    <div class="col-sm-12">
+                                                                                        <div class="text-left">
+                                                                                            <input name="upload_file" type="file" class="counsel_question form-control" />
+                                                                                            <br>
+                                                                                            <div id="upload_file"></div>
+                                                                                        </div>
+                                                                                    </div>    
+                                                                                </td>
+                                                                            </tr>
 
                                                                             <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">第一次訪談時間</td>
-                                                                                <td style="border-bottom: solid 1px;"><input class="interview_date" name="interview_date_1st" type="text" disabled="disabled"></td>
+                                                                                <td style="border-bottom: solid 1px;"><input class="interview_date" id="interview_date_1st" name="ch_datepicker" type="text" disabled="disabled"></td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">第二次訪談時間</td>
-                                                                                <td style="border-bottom: solid 1px;"><input class="interview_date" name="interview_date_2nd" type="text" disabled="disabled"></td>
+                                                                                <td style="border-bottom: solid 1px;"><input class="interview_date" id="interview_date_2nd" name="ch_datepicker" type="text" disabled="disabled"></td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">第三次訪談時間</td>
-                                                                                <td style="border-bottom: solid 1px;"><input class="interview_date" name="interview_date_3rd" type="text" disabled="disabled"></td>
+                                                                                <td style="border-bottom: solid 1px;"><input class="interview_date" id="interview_date_3rd" name="ch_datepicker" type="text" disabled="disabled"></td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">第四次訪談時間</td>
-                                                                                <td style="border-bottom: solid 1px;"><input class="interview_date" name="interview_date_4th" type="text" disabled="disabled"></td>
+                                                                                <td style="border-bottom: solid 1px;"><input class="interview_date" id="interview_date_4th" name="ch_datepicker" type="text" disabled="disabled"></td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">第五次訪談時間</td>
-                                                                                <td style="border-bottom: solid 1px;"><input class="interview_date" name="interview_date_5th" type="text" disabled="disabled"></td>
+                                                                                <td style="border-bottom: solid 1px;"><input class="interview_date" id="interview_date_5th" name="ch_datepicker" type="text" disabled="disabled"></td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">第六次訪談時間</td>
-                                                                                <td style="border-bottom: solid 1px;"><input class="interview_date" name="interview_date_6th" type="text" disabled="disabled"></td>
+                                                                                <td style="border-bottom: solid 1px;"><input class="interview_date" id="interview_date_6th" name="ch_datepicker" type="text" disabled="disabled"></td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">第七次訪談時間</td>
-                                                                                <td style="border-bottom: solid 1px;"><input class="interview_date" name="interview_date_7th" type="text" disabled="disabled"></td>
+                                                                                <td style="border-bottom: solid 1px;"><input class="interview_date" id="interview_date_7th" name="ch_datepicker" type="text" disabled="disabled"></td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline">
@@ -390,11 +408,125 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    
+                                                    <div class="tab-pane fade" id="two" role="tabpanel" aria-labelledby="profile-tab">
+                                                        <div class="accordion" id="accordionExample2">
+                                                            <div class="panel panel-default">
+                                                                <div class="panel-heading" id="headingThree">
+                                                                    <h2 class="mb-0">
+                                                                        <button class="btn btn-link btn-block collapsed" type="button" data-toggle="collapse" data-parent="#myTabContent" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                                            <span style="color:black;font-size:17px">訪談記錄</span>
+                                                                        </button>
+                                                                    </h2>
+                                                                </div>
+                                                                <div id="collapseThree" class="collapse in" aria-labelledby="headingThree" data-parent="#accordionExample2">
+                                                                    <div class="panel-body scr_container">
+                                                                        <table id="face_rec_all_data" style="width:95%;display:table !important;" class="table table-bordered">
+                                                                            <thead>
+                                                                                <tr style="background-color:rgb(255 201 54);">
+                                                                                    <th>預約訪談時間</th>
+                                                                                    <th>指派工作人員</th>
+                                                                                    <th>方式</th>
+                                                                                    <th>備註</th>
+                                                                                    <th>登錄人員</th>
+                                                                                    <th>登錄日期</th>
+                                                                                    <th></th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody id="call_face_rec_view"></tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="tab-pane fade" id="three" role="tabpanel" aria-labelledby="profile-tab">
+                                                        <div class="accordion" id="accordionExample3">
+                                                            <div class="panel panel-default">
+                                                                <div class="panel-heading" id="headingFour">
+                                                                    <h2 class="mb-0">
+                                                                        <button class="btn btn-link btn-block collapsed" type="button" data-toggle="collapse" data-parent="#myTabContent" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                                                            <span style="color:black;font-size:17px">新增訪談記錄</span>
+                                                                        </button>
+                                                                    </h2>
+                                                                </div>
+                                                                <div id="collapseFour" class="collapse in" aria-labelledby="headingFour" data-parent="#accordionExample3">
+                                                                    <div class="panel-body scr_container">
+                                                                        <table style="width:auto;" class="table table-bordered" id="add_face_rec_table">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td colspan="2">個人預約訪談記錄</td>
+                                                                                </tr>
+                                                                                <tr style="text-align:left">
+                                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>預約面訪時間</td>
+                                                                                    <td style="">
+                                                                                        <input id="start_date" type="date"> 
+                                                                                        <select id="start_time_h"></select>
+                                                                                        <label>：</label>
+                                                                                        <select id="start_time_m">
+                                                                                            <option>00</option>
+                                                                                            <option>30</option>
+                                                                                        </select>
+                                                                                        <label>至</label>
+                                                                                        <select id="end_time_h"></select>
+                                                                                        <label>：</label>
+                                                                                        <select id="end_time_m">
+                                                                                            <option>00</option>
+                                                                                            <option>30</option>
+                                                                                        </select>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr style="text-align:left">
+                                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">指派工作人員</td>
+                                                                                    <td style="">
+                                                                                        主：<select id="one_user">
+                                                                                                <option value="">請選擇工作人員</option>
+                                                                                            </select>
+                                                                                            <br><br>
+                                                                                        副：<select id="two_user">
+                                                                                            <option value="">請選擇工作人員</option>
+                                                                                            </select>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr style="text-align:left">
+                                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>方式</td>
+                                                                                    <td style="">
+                                                                                        <input id="location" type="text"><br>
+                                                                                        <input style="zoom:1.5" name="location_detail[]" type="radio" value="社區">社區
+                                                                                        <input style="zoom:1.5" name="location_detail[]" type="radio" value="家訪">家訪
+                                                                                        <input style="zoom:1.5" name="location_detail[]" type="radio" value="監所">監所
+                                                                                        <input style="zoom:1.5" name="location_detail[]" type="radio" value="快樂聯盟">快樂聯盟
+                                                                                        <input style="zoom:1.5" name="location_detail[]" type="radio" value="其他">其他：
+                                                                                        <input id="other_location" type="text" placeholder="請輸入其他面訪方式">
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr style="text-align:left">
+                                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;">備註</td>
+                                                                                    <td>
+                                                                                        <textarea style="height:150px;width:700px;resize: none;font-size: 20px;" name="remark" id="remark" placeholder="請輸入備註內容"></textarea>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td colspan="2">
+                                                                                        <div>
+                                                                                            <button style="font-size:20px" class="btn btn-default" onclick="add_counsel_face();">新增</button>
+                                                                                            <button style="font-size:20px" class="btn btn-default" onclick="cancel()">取消</button>
+                                                                                        </div>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -470,6 +602,30 @@
     </div>
     <!-- Modal /-->
 
+    <!--\ Modal -->
+    <div class="modal fade" id="update_rec_modal" tabindex="-1" role="dialog" aria-labelledby="update_rec_modal_label" data-backdrop="static">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="update_rec_modal_label">訪談記錄</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="form_modal">
+                        <table id="update_all_data" style="font-size: 18px;width:100%;margin:0 auto;" class="table table-bordered">
+                            
+                        </table>
+                    </from>
+                </div>
+
+                <div class="modal-footer text-center">
+                    <button id="modal_btn" onclick="update_rec_data(this);" type="button" class="btn btn-default">修改</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal /-->
+
     <!-- /#wrapper -->
     <!-- JavaScript -->
     <!-- Bootstrap and jQuery -->
@@ -499,11 +655,11 @@
     <script src="js/jQuery-TWzipcode-master/twzipcode.js"></script>
     <script src="js/jQuery-TWzipcode-master/jquery.twzipcode.js"></script>
     <script src="js/jQuery-TWzipcode-master/jquery.twzipcode.min.js"></script>
-     <!-- 日期民國-->
-     <script src="javascript/jquery-ui.min.js"></script>
+    <!-- 日期民國-->
+    <script src="javascript/jquery-ui.min.js"></script>
     <script src="javascript/datepickerTw.js"></script>
     <!-- ================== detail ================== -->
-    <script type="text/javascript" src="js/counsel_detail.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
+    <script type="text/javascript" src="js/counsel_detail_v2.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
 
 </body>
 

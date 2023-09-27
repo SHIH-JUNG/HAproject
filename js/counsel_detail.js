@@ -136,15 +136,47 @@ check_sql_date_format = function(date) {
     return date;
 }
 
-
+var id = getUrlVars()["id"];
+var counsel_id = getUrlVars()["counsel_id"];
 
 //抓個別特定監所服務紀錄表region
 $(document).ready(function(){
 
     $("#case_id_prestr").hide();
 
-    var id = getUrlVars()["id"];
-    var counsel_id = getUrlVars()["counsel_id"];
+    load_counsel_addfirst_datas();
+
+    $(".counsel_question").attr("disabled",true);
+
+    //將name名稱為ch_datepicker創建datepicker初始化 region
+    $("[name='ch_datepicker']").each(function(){
+
+        var this_id = $(this).attr("id");
+        datepicker_create(this_id);
+    });
+    //endregion
+
+
+    $('a[data-toggle="pill"]').on('shown.bs.tab', function (e) {
+        if($(e.target).attr("id")=="home-tab")
+        {
+            $("#all_data").show();
+        }
+    })
+
+    counsel_visit_show();
+
+       //手動新增按鈕點擊跳出模態框
+    $('#myModal').on('shown.bs.modal', function () {
+        $('#trans_to_opencase').trigger('focus');
+    });
+
+});
+
+//endregion 
+
+// 載入監所服務紀錄表基本資料 region
+load_counsel_addfirst_datas = function() {
     $.ajax({
         url: "database/find_counsel_data_detail.php",
         data:{
@@ -185,13 +217,23 @@ $(document).ready(function(){
                 $("#cocktail_therapy_status").val(value.Cocktail_therapy_status);
                 $("#cocktail_therapy_name").val(value.Cocktail_therapy_name);
 
-                $("#interview_date_1st").text(check_sql_date_format(value.Interview_date_1st));
-                $("#interview_date_1st").text(check_sql_date_format(value.Interview_date_2nd));
-                $("#interview_date_1st").text(check_sql_date_format(value.Interview_date_3rd));
-                $("#interview_date_1st").text(check_sql_date_format(value.Interview_date_4th));
-                $("#interview_date_1st").text(check_sql_date_format(value.Interview_date_5th));
-                $("#interview_date_1st").text(check_sql_date_format(value.Interview_date_6th));
-                $("#interview_date_1st").text(check_sql_date_format(value.Interview_date_7th));
+                $("#interview_date_1st").val(check_sql_date_format(value.Interview_date_1st));
+                $("#interview_date_2nd").val(check_sql_date_format(value.Interview_date_2nd));
+                $("#interview_date_3rd").val(check_sql_date_format(value.Interview_date_3rd));
+                $("#interview_date_4th").val(check_sql_date_format(value.Interview_date_4th));
+                $("#interview_date_5th").val(check_sql_date_format(value.Interview_date_5th));
+                $("#interview_date_6th").val(check_sql_date_format(value.Interview_date_6th));
+                $("#interview_date_7th").val(check_sql_date_format(value.Interview_date_7th));
+
+
+                var file_val_sp_arr = value.Upload_path.split("\/");
+                var file_val = file_val_sp_arr[file_val_sp_arr.length - 1];
+                var file_val_a = value.Upload_path.replace("\.\.", "");
+                //該input value寫入"檔案.檔名"
+                $("input[name='upload_file']").attr("value",file_val)
+                //檔案連結與圖片string
+                var file_html = '<a name="upload_file_a" href=".'+file_val_a+'" style="text-decoration:none;color:blue;" target="_blank">'+file_val+'<br/></a>';
+                $("#upload_file").html(file_html);
 
                 $("#create_date").text((value.Create_date!="0000-00-00 00:00:00")?value.Create_date:"");
                 $("#create_name").text(value.Create_name);
@@ -205,42 +247,12 @@ $(document).ready(function(){
             notyf.alert('伺服器錯誤,無法載入');
         }
     });
-    $(".counsel_question").attr("disabled",true);
-
-    //將name名稱為ch_datepicker創建datepicker初始化 region
-    $("[name='ch_datepicker']").each(function(){
-
-        var this_id = $(this).attr("id");
-        datepicker_create(this_id);
-    });
-    //endregion
-
-
-    $('a[data-toggle="pill"]').on('shown.bs.tab', function (e) {
-        if($(e.target).attr("id")=="home-tab")
-        {
-            $("#all_data").show();
-        }
-      })
-
-      counsel_visit_show();
-
-       //手動新增按鈕點擊跳出模態框
-    $('#myModal').on('shown.bs.modal', function () {
-        $('#trans_to_opencase').trigger('focus');
-    });
-
-});
-
+}
 //endregion 
 
 
-//更新監所服務紀錄表基本資料region
+// 更新監所服務紀錄表基本資料 region
 $("#counsel_update").on('click',function(){
-
-var id = getUrlVars()["id"];
-var counsel_id = getUrlVars()["counsel_id"];
-
 
 var stau = false;
 
@@ -260,64 +272,96 @@ var stau = false;
         swal({
             title:check_updat_counsel_data(),
             type:'error'
-          })
+        })
     }
     else
     { 
-        $.ajax({                                                                                    
-            url: "database/update_counsel_data_detail.php",
-            data:{
-                Refferal:$("#refferal").val(),
-                Counsel_id:counsel_id,
-                Id:id,
-                Name:$("#name").val(),
-                Gender:$("#gender").val(),
-                Sexual_orientation:$("#sexual_orientation").val(),
-                Birth:trans_to_EN($("#birth").val()),
-                Pid:$("#pid").val(),
-                Info_name:$("#info_name").val(),
-                Info_phone:$("#info_phone").val(),
-                Address:$("#address").val(),
-                In_prison_date: trans_to_EN($("#in_prison_date").val()),
-                Out_prison_date:trans_to_EN($("#out_prison_date").val()),
-                In_prison_date_2nd:trans_to_EN($("#in_prison_date_2nd").val()),
-                Out_prison_date_2nd:trans_to_EN($("#out_prison_date_2nd").val()),
-                In_prison_date_3rd:trans_to_EN($("#in_prison_date_3rd").val()),
-                Out_prison_date_3rd:trans_to_EN($("#out_prison_date_3rd").val()),
-                Is_parole:$("#is_parole").val(),
-                HIV_diagnosis_date:trans_to_EN($("#HIV_diagnosis_date").val()),
-                Family_know:$("#family_know").val(),
-                Cocktail_therapy_status:$("#cocktail_therapy_status").val(),
-                Cocktail_therapy_name:$("#cocktail_therapy_name").val(),
-            },
-            type: "POST",
-            dataType: "JSON",
-            success: function (data) {
-                if(data == 1){
-                    swal({
-                        title:'更新成功！',
-                        type:'success',                        
-                    }).then(function(){
-                        location.reload();
-                    }) 
-                }else{
-                    swal({
-                        title:'更新失敗！請聯絡負責單位',
-                        type:'error',
-                    })
-                }  
-            },
-            error:function(e){
-                console.log(e);
+        submit_data();
+    }
+
+});
+//endregion 
+
+// 更新監所服務紀錄表基本資料 region
+submit_data = function() {
+    //去掉資料內前後端多餘的空白，file類型須排除，否則報錯
+    $("input, textarea").each(function () {
+        if ($(this).attr("type") != "file") {
+            $(this).val(jQuery.trim($(this).val()));
+        }
+    });
+
+    var form_data = new FormData();
+
+    $("input[type='file']").each(function(index, element) {
+        var counsel_file = $(this).prop("files");
+        if (counsel_file != undefined) {
+            if (counsel_file.length != 0) {
+                for (var i = 0; i < counsel_file.length; i++) {
+                form_data.append("counsel_file"+index, counsel_file[i]);
+                // console.log(counsel_file[i])
+                }
+            } 
+        }
+    });
+
+    form_data.append("Refferal", $("#refferal").val());
+    form_data.append("Counsel_id", counsel_id);
+    form_data.append("Id", id);
+    form_data.append("Name", $("#name").val());
+    form_data.append("Gender", $("#gender").val());
+    form_data.append("Sexual_orientation", $("#sexual_orientation").val());
+    form_data.append("Birth", trans_to_EN($("#birth").val()));
+    form_data.append("Pid", $("#pid").val());
+    form_data.append("Info_name", $("#info_name").val());
+    form_data.append("Info_phone", $("#info_phone").val());
+    form_data.append("Address", $("#address").val());
+    form_data.append("In_prison_date", trans_to_EN($("#in_prison_date").val()));
+    form_data.append("Out_prison_date", trans_to_EN($("#out_prison_date").val()));
+    form_data.append("In_prison_date_2nd", trans_to_EN($("#in_prison_date_2nd").val()));
+    form_data.append("Out_prison_date_2nd", trans_to_EN($("#out_prison_date_2nd").val()));
+    form_data.append("In_prison_date_3rd", trans_to_EN($("#in_prison_date_3rd").val()));
+    form_data.append("Out_prison_date_3rd", trans_to_EN($("#out_prison_date_3rd").val()));
+    form_data.append("Is_parole", $("#is_parole").val());
+    form_data.append("HIV_diagnosis_date", trans_to_EN($("#HIV_diagnosis_date").val()));
+    form_data.append("Family_know", $("#family_know").val());
+    form_data.append("Cocktail_therapy_status", $("#cocktail_therapy_status").val());
+    form_data.append("Cocktail_therapy_name", $("#cocktail_therapy_name").val());
+
+
+    $.ajax({                                                                                    
+        url: "database/update_upload_counsel_data_detail.php",
+        type: "POST",
+        data: form_data,
+        contentType: false,
+        cache: false,
+        processData: false,
+        async: true,
+        success: function (data) {
+            if(data == 1){
+                swal({
+                    title:'更新成功！',
+                    type:'success',                        
+                }).then(function(){
+                    location.reload();
+                }) 
+            }else{
                 swal({
                     title:'更新失敗！請聯絡負責單位',
                     type:'error',
                 })
-            }
-        });
-    }
-
-});
+            }  
+        },
+        error:function(e){
+            console.log(e);
+            swal({
+                title:'更新失敗！請聯絡負責單位',
+                type:'error',
+            })
+        }
+    });
+}
+//endregion
 
 // 字母匹配
 function dislodgeLetter(str) {
@@ -333,13 +377,13 @@ function dislodgeLetter(str) {
 function check_updat_counsel_data()
 {
     var refferal = $("#refferal").val();
-   var name = $("#name").val();
-   var birth = $("#birth").val();
-   var pid = $("#pid").val();
-   var cocktail_therapy_status = $("#cocktail_therapy_status").val();
-   var cocktail_therapy_name = $("#cocktail_therapy_name").val();
+    var name = $("#name").val();
+    var birth = $("#birth").val();
+    var pid = $("#pid").val();
+    var cocktail_therapy_status = $("#cocktail_therapy_status").val();
+    var cocktail_therapy_name = $("#cocktail_therapy_name").val();
 
-   
+
     var errorstr = "";
 
     if (refferal == null) {

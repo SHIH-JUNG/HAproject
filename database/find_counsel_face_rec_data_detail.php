@@ -1,17 +1,20 @@
 <?php 
 include("sql_connect.php"); 
-@$Phone_id = $_POST['Phone_id']; 
+@$Counsel_id = $_POST['Counsel_id'];
 @$Id = $_POST['Id']; 
-
 //region 抓資料
-if(!empty($_POST['Id']))
-{
-  $note = "SELECT * FROM `consult` WHERE `Id` = '$Id' AND `Way`='電訪';";
+if(!empty($_POST['Counsel_id'])){
+    $note = "SELECT * FROM `counsel_visit` WHERE `Counsel_id` = '$Counsel_id' ORDER BY `counsel_visit`.`Start_date` DESC ,`counsel_visit`.`Id` DESC";
 }
-elseif(!empty($_POST['Phone_id']))
+elseif(!empty($_POST['Id']))
 {
-  $note = "SELECT * FROM `consult` WHERE `Phone_id` = '$Phone_id' AND `Way`='電訪' ORDER BY `Call_datetime` DESC";
+  $note = "SELECT * FROM `counsel_visit` WHERE `Id` = '$Id'";
 }
+else
+{
+    $note = "SELECT * FROM `counsel_visit` ORDER BY `counsel_visit`.`Start_date` ASC ,`counsel_visit`.`Id` ASC";
+}
+
 //宣告空的陣列
 $datas = array();
 
@@ -40,7 +43,7 @@ else
   echo "{$note} 語法執行失敗，錯誤訊息：" . mysqli_error($conn);
 }
 
-mysqli_close($conn);
-echo json_encode($datas);
+  mysqli_close($conn);
+    echo json_encode($datas);
 //endregion
 ?>

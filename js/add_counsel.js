@@ -152,72 +152,100 @@ $("#counsel_add_new").on('click',function(){
     }
     else
     { 
-        $.ajax({
-            url: "database/add_new_counsel.php",
-            type: "POST",
-            data:{
-                Refferal:$("#refferal").val(),
-                Counsel_id:$("#t_sn").val(),
-                Name:$("#name").val(),
-                Gender:$("#gender").val(),
-                Sexual_orientation:$("#sexual_orientation").val(),
-                Birth:trans_to_EN($("#birth").val()),
-                Pid:$("#pid").val(),
-                Info_name:$("#info_name").val(),
-                Info_phone:$("#info_phone").val(),
-                Address:$("#address").val(),
-                In_prison_date: trans_to_EN($("#in_prison_date").val()),
-                Out_prison_date:trans_to_EN($("#out_prison_date").val()),
-                In_prison_date_2nd:trans_to_EN($("#in_prison_date_2nd").val()),
-                Out_prison_date_2nd:trans_to_EN($("#out_prison_date_2nd").val()),
-                In_prison_date_3rd:trans_to_EN($("#in_prison_date_3rd").val()),
-                Out_prison_date_3rd:trans_to_EN($("#out_prison_date_3rd").val()),
-                Is_parole:$("#is_parole").val(),
-                HIV_diagnosis_date:trans_to_EN($("#HIV_diagnosis_date").val()),
-                Family_know:$("#family_know").val(),
-                Cocktail_therapy_status:$("#cocktail_therapy_status").val(),
-                Cocktail_therapy_name:$("#cocktail_therapy_name").val(),
-                Interview_date_1st:trans_to_EN($("#interview_date_1st").val()),
-            },
-//            dataType: "JSON",
-            success: function (data) {
-                // console.log(data);
-                if(data == 1){
-                    swal({
-                        type: 'success',
-                        title: '新增成功!',
-                        allowOutsideClick: false //不可點背景關閉
-                        }).then(function () {
-                            window.location.replace("counsel.php"); 
-                        })
-                }else if(data.includes("isfind")){
-                    swal({
-                        type: 'error',
-                        title: '新增失敗!呼號重複!',
-                        allowOutsideClick: false //不可點背景關閉
-                        })
+        submit_data();
+    }
+});
+//endregion
+
+submit_data = function() {
+
+    //去掉資料內前後端多餘的空白，file類型須排除，否則報錯
+    $("input, textarea").each(function () {
+        if ($(this).attr("type") != "file") {
+            $(this).val(jQuery.trim($(this).val()));
+        }
+    });
+    
+    var form_data = new FormData();
+
+    $("input[type='file']").each(function(index, element) {
+        var counsel_file = $(this).prop("files");
+        if (counsel_file != undefined) {
+            if (counsel_file.length != 0) {
+                for (var i = 0; i < counsel_file.length; i++) {
+                form_data.append("counsel_file"+index, counsel_file[i]);
+                // console.log(counsel_file[i])
                 }
-                else{
+            } 
+        }
+    });
+
+    form_data.append("Refferal", $("#refferal").val());
+    form_data.append("Counsel_id", $("#t_sn").val());
+    form_data.append("Name", $("#name").val());
+    form_data.append("Gender", $("#gender").val());
+    form_data.append("Sexual_orientation", $("#sexual_orientation").val());
+    form_data.append("Birth", trans_to_EN($("#birth").val()));
+    form_data.append("Pid", $("#pid").val());
+    form_data.append("Info_name", $("#info_name").val());
+    form_data.append("Info_phone", $("#info_phone").val());
+    form_data.append("Address", $("#address").val());
+    form_data.append("In_prison_date", trans_to_EN($("#in_prison_date").val()));
+    form_data.append("Out_prison_date", trans_to_EN($("#out_prison_date").val()));
+    form_data.append("In_prison_date_2nd", trans_to_EN($("#in_prison_date_2nd").val()));
+    form_data.append("Out_prison_date_2nd", trans_to_EN($("#out_prison_date_2nd").val()));
+    form_data.append("In_prison_date_3rd", trans_to_EN($("#in_prison_date_3rd").val()));
+    form_data.append("Out_prison_date_3rd", trans_to_EN($("#out_prison_date_3rd").val()));
+    form_data.append("Is_parole", $("#is_parole").val());
+    form_data.append("HIV_diagnosis_date", trans_to_EN($("#HIV_diagnosis_date").val()));
+    form_data.append("Family_know", $("#family_know").val());
+    form_data.append("Cocktail_therapy_status", $("#cocktail_therapy_status").val());
+    form_data.append("Cocktail_therapy_name", $("#cocktail_therapy_name").val());
+    form_data.append("Interview_date_1st", trans_to_EN($("#interview_date_1st").val()));
+
+
+    $.ajax({
+        url: "database/add_new_upload_counsel.php",
+        type: "POST",
+        data: form_data,
+        contentType: false,
+        cache: false,
+        processData: false,
+        async: true,
+        success: function (data) {
+            // console.log(data);
+            if(data == 1){
+                swal({
+                    type: 'success',
+                    title: '新增成功!',
+                    allowOutsideClick: false //不可點背景關閉
+                    }).then(function () {
+                        window.location.replace("counsel.php"); 
+                    })
+            }else if(data.includes("isfind")){
+                swal({
+                    type: 'error',
+                    title: '新增失敗!呼號重複!',
+                    allowOutsideClick: false //不可點背景關閉
+                    })
+            }
+            else{
+            swal({
+                type: 'error',
+                title: '新增失敗!請聯絡負責人',
+                allowOutsideClick: false //不可點背景關閉
+                })
+        }  
+        },
+            error: function () {
                 swal({
                     type: 'error',
                     title: '新增失敗!請聯絡負責人',
                     allowOutsideClick: false //不可點背景關閉
-                    })
-            }  
-            },
-                error: function () {
-                    swal({
-                        type: 'error',
-                        title: '新增失敗!請聯絡負責人',
-                        allowOutsideClick: false //不可點背景關閉
-                    })
-                }
-        });
-    }
-
-        
-});
-//endregion
+                })
+            }
+    });
+}
 
 // 字母匹配
 function dislodgeLetter(str) {

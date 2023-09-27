@@ -257,7 +257,18 @@ input[type=number] {
                                                                     <input id="cocktail_therapy_name" type="text">
                                                                 </td>
                                                             </tr>
-
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;">檔案上傳</td>
+                                                                <td style="border-bottom: solid 1px;">
+                                                                    <div class="col-sm-12">
+                                                                        <div class="text-left">
+                                                                            <input name="upload_file" type="file" class="form-control" />
+                                                                            <br>
+                                                                            <div id="upload_file"></div>
+                                                                        </div>
+                                                                    </div>    
+                                                                </td>
+                                                            </tr>
                                                             <tr style="text-align:left">
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-right-color: white;">第一次訪談時間</td>
                                                                 <td style="border-bottom: solid 1px;"><input id="interview_date_1st" name="ch_datepicker" type="text"></td>

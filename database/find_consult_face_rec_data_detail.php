@@ -3,13 +3,13 @@ include("sql_connect.php");
 @$Phone_id = $_POST['Phone_id']; 
 @$Id = $_POST['Id']; 
 //region 抓資料
-if(!empty($Id))
+if(!empty($_POST['Id']))
 {
   $note = "SELECT * FROM `consult` WHERE `Id` = '$Id' AND `Way`='面訪';";
 }
-elseif(!empty($Phone_id))
+elseif(!empty($_POST['Phone_id']))
 {
-  $note = "SELECT * FROM `consult` WHERE `Phone_id` = '$Phone_id' AND `Way`='面訪' ORDER BY `Id` DESC";
+  $note = "SELECT * FROM `consult` WHERE `Phone_id` = '$Phone_id' AND `Way`='面訪' ORDER BY `Start_date` DESC";
 }
 //宣告空的陣列
 $datas = array();
