@@ -34,7 +34,8 @@ $user = $_SESSION['name'];
 $date_y = $_POST['date_y'];
 $date_m = $_POST['date_m'];
 
-
+$Count = 0;
+// var_dump($_POST);
 // if(!empty($Addition)){
 // @$Addiction_A = implode("、",$Addition);
 // }else{
@@ -58,7 +59,7 @@ if(!empty($Referral_phone)){
         $Referral_Phone = $Referral_phone;
     }
 
-$select_phone_num = "select count(`Phone_id`),Phone_id,Name,Gender,A_detail,L_detail from `consult` WHERE Name='$Name' AND Gender='$Gender' AND A_detail='$a_val' AND L_detail='$l_val';";
+$select_phone_num = "select count(`Phone_id`),Phone_id,Name,Gender,A_detail,L_detail from `consult` WHERE Name='$Name' AND Gender='$Gender';";
 
 $find_phone_num = mysqli_query($conn,$select_phone_num);
 $phone_num = mysqli_fetch_row($find_phone_num);
@@ -66,6 +67,12 @@ $phone_num = mysqli_fetch_row($find_phone_num);
 if($phone_num[0]>0)
 {
     $Phone_id = $phone_num[1];
+
+    @$Count = "SELECT COUNT(`Phone_id`) FROM `consult` WHERE `Phone_id`='$Phone_id'";
+
+    @$select_count = mysqli_query($conn,$count);
+    @$count_text = mysqli_fetch_row($select_count);
+    @$Count = ($count_text[0]+1);
 }
 else
 {
@@ -78,11 +85,6 @@ else
 }
 
 
-$Count = "SELECT COUNT(`Phone_id`) FROM `consult` WHERE `Phone_id`='$Phone_id'";
-
-@$select_count = mysqli_query($conn,$count);
-@$count_text = mysqli_fetch_row($select_count);
-@$Count = ($count_text[0]+1);
 
 $sql = "INSERT INTO `consult` (`Phone_id`,`Call_datetime`,`Way`,`Way_detail`,`Name`,`Gender`,`Object_type`, `M_type`, `M_addiction`,`Age`,`A_detail`,`Address`,`L_detail`,`Info_Name`,`Relationship_detail`,`R_detail`,`R_phone`,`Referral`,`Referral_detail`,`Referral_phone`,`Referral_name`,`Eligible`,`Assign`,`Phone_note`,`Count`,`Is_firstadd`,`Create_date`,`Create_name`) VALUES
  ('$Phone_id','$Call_datetime','$Way','$Way_detail','$Name','$Gender','$Object_type',

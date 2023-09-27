@@ -64,6 +64,7 @@ $(document).ready(function(){
                 +peers_dlgrec_file_name
                 +'</a><br/><br/>';
 
+                $("#upload").html(a_element_content);
 
                 var social_worker_sign_file_val = value.social_worker_sign.replace("\.\.\/signature\/", "");
 
@@ -304,7 +305,52 @@ sign_msg_model = function (sign_type_name) {
   };
   //endregions
 
+//檢查檔名是否重複，提示使用者region
+function check_file_exist() {
+  var check_file_value = $('input[type="file"]').prop("files");
+  var warning_str = "";
+  var file_arr = [];
+  var file_n = "";
+  var exist_info = [];
 
+  for (var i = 0; i < check_file_value.length; i++) {
+    file_arr.push(check_file_value[i]["name"]);
+  }
+  $.each(file_arr, function (index, value) {
+    $.ajax({
+      url: "database/peers_dlgrec_file_check.php",
+      data: {
+        file_name: value,
+      },
+      type: "POST",
+      dataType: "JSON",
+      async: false,
+      success: function (data) {
+        //  console.log(data)
+        if (data != "") {
+          $.each(data, function (index, value) {
+            file_n = data[index].file_path.replace(
+              "../dlgrec/",
+              ""
+            );
+
+            warning_str += "已有重複檔案名稱：\n" + file_n;
+
+            exist_info.push([file_n, warning_str]);
+          });
+        } else {
+          warning_str = "";
+        }
+      },
+      error: function (e) {
+        console.log(e);
+        notyf.alert('伺服器錯誤,無法載入');
+      },
+    });
+  });
+  return exist_info;
+}
+//endregion
 
 //更新結案表基本資料region
 // $("#peers_dlgrec_update").on('click',function(){

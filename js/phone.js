@@ -17,19 +17,7 @@ var new_address_arr=[];
             var consult_date = "";
             for (var index in data.Call_datetime) {
                 //判斷癮別取第一個字
-//                if(data.Addiction[index] =="鴉片"|| data.Addiction[index] =="嗎啡"|| data.Addiction[index] =="海洛因"|| data.Addiction[index] =="古柯鹼"|| data.Addiction[index] =="安非他命"|| data.Addiction[index] =="搖頭丸"|| data.Addiction[index] =="K他命"|| data.Addiction[index] =="酒精"){
-//                    main_val_all = data.Addiction[index];
-//                    main_val = data.Addiction[index].substr(0,1);
-//                }else if(data.Addiction[index] =="大麻"){
-//                    main_val_all = data.Addiction[index];
-//                    main_val = data.Addiction[index].substr(1,1);
-//                }else if(data.Addiction[index] == "FM2藥丸"){
-//                    main_val_all = data.Addiction[index];
-//                    main_val = data.Addiction[index].substr(0,3);
-//                }else{
-//                    main_val_all = data.Addiction[index];
-//                    main_val = data.Addiction[index].substr(0,1);
-//                }
+
                 if(data.Call_datetime[index] == '' || data.Call_datetime[index] == null)
                 {
                     consult_date = data.Start_date[index]
@@ -41,25 +29,20 @@ var new_address_arr=[];
                 phone = data.R_phone[index].split("、");
 //                console.log(phone);
                 cssString += 
-//                        '<a href="phone_detail(原版).php?id='+ data.id[index] + '><tr>' +
                         '<tr id="'+data.Phone_id[index]+'">' +
                             '<td style="text-align:center">' +data.Phone_id[index]+ '</td>' +
                             '<td style="text-align:center">' + data.Name[index] + '</td>' +
                             '<td style="text-align:center">' + consult_date + '</td>' +
                             '<td style="text-align:center">' + data.Way[index] + '</td>' +
                             '<td style="text-align:center">' + data.Way_detail[index] + '</td>' +
-                            // '<td style="text-align:center">' + data.Count[index] + '</td>' +
                             '<td style="text-align:center">' + data.phone_count[index] + '</td>' +
                             '<td style="text-align:center"></td>' +
                             '<td style="text-align:center">' + data.Gender[index] + '</td>' +
                             '<td style="text-align:center">' + data.Object_type[index] + '</td>' +
-                            '<td style="text-align:center">' + data.M_addiction[index] + '</td>' +
+                            '<td style="text-align:center">' + data.M_addiction[index].replace("其他::", "") + '</td>' +
                             '<td style="text-align:center">' + data.A_detail[index] + '</td>' +
                             '<td style="text-align:center">' + data.Address[index].substring(0,3) + '</td>' +
-                            // '<td style="text-align:center">' + data.Referral_detail[index] + '</td>' +
                             '<td style="text-align:center">' + data.R_detail[index] + '</td>' +
-                            // '<td style="text-align:center">' + data.Relationship_detail[index] + '</td>' +
-                            // '<td style="text-align:center">' + data.Know_from_detail[index] + '</td>' +
                             '<td style="text-align:center">' + data.Eligible[index] + '</td>' +    
                             '<td style="text-align:center">' + data.Assign[index] + '</td>' +   
                         '</tr>'
@@ -127,7 +110,8 @@ var new_address_arr=[];
             
             //點擊table tr 進入詳細頁面
             $(".table-hover tbody").on("click","tr",function () {
-                window.location.href = 'phone_detail_v2.php?phone_id='+$(this).attr("id")+'';
+                // window.location.href = 'phone_detail_v2.php?phone_id='+$(this).attr("id")+'';
+                window.location.href = 'consult_detail.php?phone_id='+$(this).attr("id")+'';
             });
             // console.log(index);
         },
@@ -160,19 +144,19 @@ $.each(get_tr_phoneid, function(index,val) {
         async: false,//啟用同步請求
         success: function (data) {
             //  console.log(data)
-             //若該Phone_id未在face資料建檔會Face_counter顯示undefined，需轉為"0"
-             if(data.Face_counter[0]==undefined || data.Face_counter[0]=="" || data.Face_counter[0]==null)
-             {
+            //若該Phone_id未在face資料建檔會Face_counter顯示undefined，需轉為"0"
+            if(data.Face_counter[0]==undefined || data.Face_counter[0]=="" || data.Face_counter[0]==null)
+            {
                 data.Face_counter[0] = '0';
-             }
-             //將得到的面訪次數存入get_face_counts陣列
-             get_face_counts.push(data.Face_counter[0]);
+            }
+            //將得到的面訪次數存入get_face_counts陣列
+            get_face_counts.push(data.Face_counter[0]);
 
              //將面訪次數的數值加到 #face_count 的option值中
-             $("#face_count").append('<option value="'+data.Face_counter[0]+'">'+data.Face_counter[0]+'</option>');
+            $("#face_count").append('<option value="'+data.Face_counter[0]+'">'+data.Face_counter[0]+'</option>');
 
              //option小到大排序
-             $('#face_count option').sort(function(a,b){
+            $('#face_count option').sort(function(a,b){
                 var aText = $(a).text().toUpperCase();
                 var bText = $(b).text().toUpperCase();
                 // if(aText>bText) return 1;
@@ -186,7 +170,7 @@ $.each(get_tr_phoneid, function(index,val) {
             $('#face_count').prepend("<option value='' selected='selected'>所有</option>");
 
              //去除重複
-             $("#face_count").children().each(function() {
+            $("#face_count").children().each(function() {
                 //text = $(this).text();
                 //if($("select#face_count option:contains("+text+")").length > 1){
                 //    $("select#face_count option:contains("+text+"):gt(0)").remove();
@@ -196,7 +180,7 @@ $.each(get_tr_phoneid, function(index,val) {
         },
         error: function (e) {
             notyf.alert('伺服器錯誤,無法載入');
-         }
+        }
     });
 }); 
 
@@ -261,170 +245,6 @@ $.ajax({
         notyf.alert('伺服器錯誤,無法載入');
     }
 });
-//endregion
-
-
-//選擇月份talbe(未完成) region
-//$(".chose").change(function() {    
-////    console.log(Today.getFullYear()+"-"+$("#month").val());
-//    if($("#month").val() == 0){ 
-//        $("#tab_month").css("display","none");
-//        $("#tab_all").css("display","");
-//        //抓所有電話詢戒表
-//        $.ajax({
-//            url: "database/find_data.php",
-//            type: "POST",
-//            dataType: "JSON",
-//            async: false,//啟用同步請求
-//            success: function (data) {
-//                var cssString = "";
-//                for (var index in data.Name) {
-//                    cssString += 
-//                            '<tr>' +
-//                            '<td>' + data.date[index] + '</td>' +
-//                            '<td>' + data.Name[index] + '</td>' +
-//                            '<td>' + data.Gender[index] + '</td>' +
-//                            '<td>' + data.Addiction[index] + '</td>' +
-//                            '<td>' + data.Age[index] + '</td>' +
-//                            '<td>' + data.Address[index] + '</td>' +
-//                            '<td><a href="page2.php?'+ data.id[index] +'"><input id="edit" type="button" class="btn btn-default" value="詳細資料"></a></td>' +
-//                            '</tr>'
-//                }
-//                $("#member_view_month").html(cssString);
-//            },
-//            error: function (e) {
-//                 notyf.alert('伺服器錯誤,無法載入' + e);
-//            }
-//        });
-//    }else{
-//        $("#tab_all").css("display","none");
-//        $("#tab_month").css("display","");
-//        var Today=new Date();    
-//        //抓月份電話詢戒表
-//        $.ajax({
-//            url: "database/find_data_month.php",
-//            data:{
-//                year:Today.getFullYear(),
-//                month:$("#month").val(),
-//            },
-//            type: "POST",
-//            dataType: "JSON",
-//            async: false,//啟用同步請求
-//            success: function (data) {
-//                var cssString = "";
-//                for (var index in data.Name) {
-//                    cssString += 
-//                            '<tr>' +
-//                            '<td>' + data.date[index] + '</td>' +
-//                            '<td>' + data.Name[index] + '</td>' +
-//                            '<td>' + data.Gender[index] + '</td>' +
-//                            '<td>' + data.Addiction[index] + '</td>' +
-//                            '<td>' + data.Age[index] + '</td>' +
-//                            '<td>' + data.Address[index] + '</td>' +
-//                            '<td><a href="page2.php?'+ data.id[index] +'"><input id="edit" type="button" class="btn btn-default" value="詳細資料"></a></td>' +
-//                            '</tr>'
-//                }
-//                $("#member_view_month").html(cssString);
-//            },
-//            error: function (e) {
-//                 notyf.alert('伺服器錯誤,無法載入' + e);
-//            }
-//        });
-//    }   
-//});
-//endregion
-
-//文字框顯示隱藏&取消勾選變回預設值region
-$("#relationship").change(function(){
-    if($("#relationship").val() != '本人'){
-        $("#other_text").css("display","");
-    }else{
-        $("#other_text").css("display","none");
-    }
-});
-$("#checkbox1").change(function(){
-    if($("#checkbox1").prop('checked')){
-        $("#other_Addiction_text1").css("display","");
-    }else{
-        $("#other_Addiction_text1").css("display","none");
-        $("#other_Addiction_text1").val("0");
-    }
-});
-$("#checkbox2").change(function(){
-    if($("#checkbox2").prop('checked')){
-        $("#other_Addiction_text2").css("display","");
-    }else{
-        $("#other_Addiction_text2").css("display","none");
-        $("#other_Addiction_text2").val("0");
-    }
-});
-$("#checkbox3").change(function(){
-    if($("#checkbox3").prop('checked')){
-        $("#other_Addiction_text3").css("display","");
-    }else{
-        $("#other_Addiction_text3").css("display","none");
-        $("#other_Addiction_text3").val("0");
-    }
-});
-$("#checkbox5").change(function(){
-    if($("#checkbox5").prop('checked')){
-        $("#other_Addiction_text5").css("display","");
-    }else{
-        $("#other_Addiction_text5").css("display","none");
-        $("#other_Addiction_text5").val("");
-    }
-});
-//endregion
-
-//取消後清除文字框region
-function phone_cancel(){
-    $("#call_datetime").val("");
-    $("#name").val("");
-    $("#age").val("");
-    $("#info_name").val("");
-    $("#address").val("");
-};
-//endregion  
-
-//判斷是否勾選賦予input值region
-//酒精
-$('#checkbox4').on('change', function () {
-    if ($('#checkbox4').prop('checked')) {
-        $('#other_Addiction_text4').val("酒精");
-    }else{
-        $('#other_Addiction_text4').val("");
-    }
-});
-//關係
-$('#relationship').change(function (){
-    if ($('#relationship').val() == '本人') {
-        $('#other_text').val("本人");
-    }else{
-        $('#other_text').val("");
-    }
-});
-//endregion
-
-//設定table搜尋框重整後自動填入文字region
-
-//按按鈕儲存table搜尋框文字
-//$(document).on('click',"#edit", function(){
-//    var inputValue = $(".search").find("input").val();
-//    console.log(inputValue);
-//    sessionStorage.setItem("inputValue", inputValue);
-//});
-////自動填入
-//$(document).ready(function() {
-//    var sessionStorageVal = sessionStorage.getItem("inputValue")
-////    console.log(sessionStorageVal);
-//    if (sessionStorageVal != null) {
-//        //setTimeout(function(){
-//        // $(".search").find("input").focus()
-//        // $(".search").find("input").val(localStorageVal);
-//        //},1000)
-//        $('#tab_all').bootstrapTable('resetSearch', sessionStorageVal);
-//    }
-//});
 //endregion
 
 //table設定region
@@ -494,9 +314,9 @@ var date_range = (
         var date = parseInt(Date.parse( data[2] )) || 0; // use data for the date column
         // console.log($('#min_date').val())
         if ( ( isNaN( min_date ) && isNaN( max_date ) ) ||
-             ( isNaN( min_date ) && date <= max_date ) ||
-             ( min_date <= date   && isNaN( max_date ) ) ||
-             ( min_date <= date   && date <= max_date ) )
+            ( isNaN( min_date ) && date <= max_date ) ||
+            ( min_date <= date   && isNaN( max_date ) ) ||
+            ( min_date <= date   && date <= max_date ) )
         {
             return true;
         }

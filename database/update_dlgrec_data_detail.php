@@ -60,14 +60,14 @@ if (isset($_FILES["dlgrec_files0"]))
         );
     }
 
-    $sql_file_upload = ",`Upload_path`= '$file', `Upload_name` = '$file_name'";
+    $sql_file_upload = " `Upload_path`= '$file', `Upload_name` = '$file_name', ";
 }
 
 
 $sqlUpdate ="UPDATE `dlgrec` SET `bf_num` = '$bf_num', `al_num` = '$al_num', `em_num` = '$em_num', `lp_num` = '$lp_num', `leave_num` = '$leave_num', `dlgrec_date` = '$dlgrec_date',
  `dlgrec_0` = '$dlgrec_0', `dlgrec_1` = '$dlgrec_2', `dlgrec_3` = '$dlgrec_3', `dlgrec_4` = '$dlgrec_4', `dlgrec_5` = '$dlgrec_5', `dlgrec_6` = '$dlgrec_6',
  `dlgrec_7` = '$dlgrec_7', `dlgrec_8` = '$dlgrec_8', `dlgrec_9` = '$dlgrec_9', `dlgrec_10` = '$dlgrec_10', `dlgrec_11` = '$dlgrec_11',
-  `dlg_manager` = '$dlg_manager',
+  `dlg_manager` = '$dlg_manager',".$sql_file_upload."
   `Update_name` = '$user', `Update_date` = NOW() WHERE `Id` = '$dlgrec_id' ORDER BY `dlgrec`.`Create_date` ASC LIMIT 1;";
 
 // `social_worker` = '$social_worker', `supervise1` = '$supervise1', `supervise2` = '$supervise2',

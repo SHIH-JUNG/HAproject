@@ -60,14 +60,14 @@ if (isset($_FILES["peers_dlgrec_files0"]))
         );
     }
 
-    $sql_file_upload = ",`Upload_path`= '$file', `Upload_name` = '$file_name'";
+    $sql_file_upload = " `Upload_path`= '$file', `Upload_name` = '$file_name', ";
 }
 
 
 $sqlUpdate ="UPDATE `peers_dlgrec` SET `bf_num` = '$bf_num', `al_num` = '$al_num', `em_num` = '$em_num', `lp_num` = '$lp_num', `leave_num` = '$leave_num', `peers_dlgrec_date` = '$peers_dlgrec_date',
  `peers_dlgrec_0` = '$peers_dlgrec_0', `peers_dlgrec_1` = '$peers_dlgrec_2', `peers_dlgrec_3` = '$peers_dlgrec_3', `peers_dlgrec_4` = '$peers_dlgrec_4', `peers_dlgrec_5` = '$peers_dlgrec_5', `peers_dlgrec_6` = '$peers_dlgrec_6',
  `peers_dlgrec_7` = '$peers_dlgrec_7', `peers_dlgrec_8` = '$peers_dlgrec_8', `peers_dlgrec_9` = '$peers_dlgrec_9', `peers_dlgrec_10` = '$peers_dlgrec_10', `peers_dlgrec_11` = '$peers_dlgrec_11',
-  `dlg_manager` = '$dlg_manager',
+  `dlg_manager` = '$dlg_manager',".$sql_file_upload."
   `Update_name` = '$user', `Update_date` = NOW() WHERE `Id` = '$peers_dlgrec_id' ORDER BY `peers_dlgrec`.`Create_date` ASC LIMIT 1;";
 
 // `social_worker` = '$social_worker', `supervise1` = '$supervise1', `supervise2` = '$supervise2',

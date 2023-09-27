@@ -226,7 +226,7 @@
                                                                                 <td style="border-bottom: solid 1px;">
                                                                                     <div class="col-sm-8">
                                                                                         <div class="text-left">
-                                                                                            <input name="upload" type="file" class="peers_dlgrec_textarea form-control">
+                                                                                            <input  name="upload" type="file" class="peers_dlgrec_question form-control">
                                                                                             <br>
                                                                                             <div id="upload"></div>
                                                                                         </div>

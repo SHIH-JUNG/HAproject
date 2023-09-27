@@ -123,7 +123,7 @@ function check_main_checkbox(){
         if (checkbox2[i].checked == true)
         {
             if(checkbox2[i].value == "其他"){
-                main_val.push($("#other_main").val());
+                main_val.push("其他::" + $("#other_main").val());
             }else{
                 main_val.push(checkbox2[i].value);
             }
@@ -144,7 +144,7 @@ function check_main_type_radio() {
         if (m_type_radio[i].checked == true)
         {
             if(m_type_radio[i].value == "其他"){
-                m_type_val = "其他：" + $("#m_type_other").val();
+                m_type_val = "其他::" + $("#m_type_other").val();
             }else{
                 m_type_val = m_type_radio[i].value;
             }
