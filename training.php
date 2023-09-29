@@ -1,6 +1,13 @@
 <?php session_start(); ?>
 <?php include("database/check_authority.php"); ?> <?php include("no_cache.php"); ?>
 <?php $href_name =  'page_d'; ?>
+<?php 
+    $user = $_SESSION['name'];
+    $authority = $_SESSION['authority'];
+?>
+
+<?php @$training_id =  $_GET['training_id']; ?>
+<?php @$acc_id =  $_GET['acc_id']; ?>
 <!DOCTYPE html>
 <html>
 
@@ -22,6 +29,8 @@
     <!-- ================== 匯出EXCEL ================== -->
     <link href="css/jquery.dataTables1.10.16.min.css" rel="stylesheet" />
     <link href="css/buttons.dataTables1.5.1.min.css" rel="stylesheet" />
+    <!--  table  -->
+    <link rel="stylesheet" href="css/bootstrap-table.min.css">
     <!--  日期民國  -->
     <link data-require="jqueryui@*" rel="stylesheet" href="css/jquery-ui.css" />
     <link href="css/dtsel.css" rel="stylesheet" />
@@ -93,128 +102,111 @@
                 </footer>
                 <!-- /Footer -->
                 <!-- /Title -->
-                <!---Table--->
-                <div style="zoom:75%" class="row text-center">
-                    <div class="col-md-12">
-                        <div class="panel panel-default card-view">
-                            <div class="panel-wrapper collapse in">
-                                <div class="panel-body">
-                                    <div class="table-wrap">
-                                        <div class="table-responsive">
-                                            <div>
-                                                <h4>查詢</h4>
-                                            </div>
-                                            <div　class="col-sm-12" id="toolbar">
-                                                <div class="col-sm-12">
-                                                    <table style="font-size:20px;font-family:微軟正黑體;width:100%" class="table table-bordered NOline">
-                                                        <tr>
-
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">員工姓名：</td>
-                                                            <td class="text-left">
-                                                                <!-- <input id="name" rel="0" class="filter search" type="text" placeholder="姓名搜尋"> -->
-                                                                <select id="name" rel="0" class="filter search">
-                                                                    
-                                                                </select>
-                                                            </td>
-
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">在職訓練日期：</td>
-                                                            <td class="text-left">
-                                                                <input id="upload_min_date" type="text" name="ch_datepicker" style="width: 10em;" placeholder="在職訓練日期搜尋"><label>～</label>
-                                                                <input id="upload_max_date" type="text" name="ch_datepicker" style="width: 10em;" placeholder="在職訓練日期搜尋">
-                                                            </td>
-                                                            
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">課程名稱：</td>
-                                                            <td class="text-left">
-                                                                <select id="training_name" rel="3" class="filter search">
-                                                                    <option value="">所有</option>
-                                                                </select>
-                                                            </td>
-
-                                                        </tr>
-                                                        <tr>
-                                                            
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">時數：</td>
-                                                            <td class="text-left">
-                                                                <!-- <select id="hours" rel="4" class="filter search">
-                                                                    <option value="">所有</option>
-                                                                </select> -->
-                                                                <input id="hours" rel="4" class="filter search" type="number" placeholder="時數搜尋">
-                                                            </td>
-
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">在職訓練地點：</td>
-                                                            <td class="text-left">
-                                                                <select id="place" rel="5" class="filter search">
-                                                                    <option value="">所有</option>
-                                                                </select>
-                                                            </td>
-
-                                                            <td class="text-right" style="background-color:rgb(255 201 54)">檔案是否上傳：</td>
-                                                            <td class="text-left">
-                                                                <select id="file_upload" rel="5" class="filter search">
-                                                                    <option value="">所有</option>
-                                                                    <option value="已上傳">已上傳</option>
-                                                                    <option value="未上傳">未上傳</option>
-                                                                </select>
-                                                            </td>
-
-                                                            <td colspan="8" class="text-right">
-                                                                <button onclick="location.reload();">重置搜尋</button><span> </span>
-                                                            </td>
-
-                                                        </tr>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                            <p>
-                                            <h4>員工在職訓練一覽表</h4>
-                                            <div class="table-wrap">
-                                                <div class="table-responsive">
-                                                    <table class="table display table-hover dataTable no-footer" style="font-size:15px;font-family:微軟正黑體;width:100%" id="tab_all" data-toolbar="#toolbar">
-                                                        <thead>
-                                                            <tr>
-                                                                <th class="text-right" colspan="15">
-                                                                    <a href="add_training.php"><button style="font-size:15px" type="button" class="btn btn-default"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                                                <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
-                                                                                <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z" />
-                                                                                <path fill-rule="evenodd" d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5z" />
-                                                                            </svg>新增</button></a>
-                                                                </th>
-                                                            </tr>
-                                                            <tr style="background-color:rgb(255 201 54);">
-                                                                <th>姓名</th>
-                                                                <th>在職訓練日期</th>
-                                                                <th>課程名稱</th>
-                                                                <th>時數</th>
-                                                                <th>在職訓練地點</th>
-                                                                <th>檔案是否上傳</th>
-                                                                <th>創建日期</th>
-                                                                <th>創建者</th>
-                                                                <th>更新日期</th>
-                                                                <th>更新者</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody id="call_view"></tbody>
-                                                    </table>
-                                                    <div class="text-center">
-                                                        <span id="count_people"></span>
-                                                        <span id="count_people2"></span>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!---/Table--->
+                <?php
+                    if(!empty($_GET['training_id']) && !empty($_GET['acc_id']))
+                    {
+                        include("training_content.php");
+                    }
+                    elseif($authority <= 4 || $authority == 6) 
+                    {
+                        include("training_supervise_content.php");
+                    } 
+                    else 
+                    {
+                        include("training_content.php");
+                    }
+                ?>
             </div>
             <!--/網頁內容-->
         </div>
     </div>
     <!-- /#wrapper -->
+
+    <!--\ Modal -->
+    <div class="modal fade" id="update_rec_modal" tabindex="-1" role="dialog" aria-labelledby="update_rec_modal_label" data-backdrop="static">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="update_rec_modal_label">在職訓練記錄</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="form_modal">
+                        <table id="update_all_data" style="font-size: 18px;width:100%;margin:0 auto;" class="table table-bordered">
+                            <tr style="text-align:left">
+                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>日期</td>
+                                <td style="border-bottom: solid 1px;">
+                                    <input picker="u_tr_datetime" id="u_training_date" name="ch_datepicker" type="text">
+                                    <select picker="u_tr_datetime" id="u_tr_start_time_h"></select>
+                                    <label>：</label>
+                                    <select picker="u_tr_datetime" id="u_tr_start_time_m">
+                                        <option>00</option>
+                                        <option>10</option>
+                                        <option>20</option>
+                                        <option>30</option>
+                                        <option>40</option>
+                                        <option>50</option>
+                                    </select>
+                                    <label>至</label>
+                                    <select picker="u_tr_datetime" id="u_tr_end_time_h"></select>
+                                    <label>：</label>
+                                    <select picker="u_tr_datetime" id="u_tr_end_time_m">
+                                        <option>00</option>
+                                        <option>10</option>
+                                        <option>20</option>
+                                        <option>30</option>
+                                        <option>40</option>
+                                        <option>50</option>
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr style="text-align:left">
+                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>課程內容</td>
+                                <td style="border-bottom: solid 1px;"><input id="u_training_name" type="text"></td>
+                            </tr>
+
+                            <tr style="text-align:left">
+                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>時數</td>
+                                <td style="border-bottom: solid 1px;"><input id="u_hours" type="number"></td>
+                            </tr>
+
+                            <tr style="text-align:left">
+                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>地點</td>
+                                <td style="border-bottom: solid 1px;">
+                                    <input id="u_place" type="text">
+                                </td>
+                            </tr>
+                            <tr style="text-align:left">
+                                    <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">檔案上傳</td>
+                                    <td style="border-bottom: solid 1px;">
+                                        <div class="col-sm-8">
+                                            <div class="text-left">
+                                                <input name="u_training_file" type="file" class="form-control" />
+                                                <br>
+                                                <div id="u_training_file"></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <tr style="text-align:left">
+                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">備註</td>
+                                <td>
+                                    <textarea style="height:10em;width:700px;resize: none;font-size: 20px;" id="u_remark" placeholder="請輸入備註"></textarea>
+                                </td>
+                            </tr>
+                        </table>
+                    </from>
+                </div>
+
+                <div class="modal-footer text-center">
+                    <button id="modal_btn" onclick="update_rec_data(this);" type="button" class="btn btn-default">修改</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal /-->
+
     <!-- JavaScript -->
     <!-- Bootstrap and jQuery -->
     <script src="javascript/jquery.min.js"></script>
@@ -225,10 +217,9 @@
     <script src="javascript/jszip2.5.0.min.js"></script>
     <script src="javascript/buttons1.2.2.html5.min.js"></script>
     <!-- 表格 JavaScript -->
-    <!--
-    <script src="javascript/jquery.dataTables.min.js"></script>
-    <script src="javascript/dataTables-data.js"></script>
--->
+    <!-- <script src="javascript/jquery.dataTables.min.js"></script>
+    <script src="javascript/dataTables-data.js"></script> -->
+
     <!-- 滾動條 JavaScript -->
     <script src="javascript/jquery.slimscroll.js"></script>
     <!-- Fancy Dropdown JS -->
@@ -252,7 +243,20 @@
     <script src="javascript/jquery-ui.min.js"></script>
     <script src="javascript/datepickerTw2.js"></script>
     <!-- ================== counsel ================== -->
-    <script type="text/javascript" src="js/training.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
+    <!-- <script type="text/javascript" src="js/training.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script> -->
+    <?php
+        if(!empty($_GET['training_id']) && !empty($_GET['acc_id']))
+        {
+            echo '<script type="text/javascript" src="js/training.js'.'?'.date('Y-m-d h:i:sa').'"></script>';
+        }
+        elseif ($authority <= 4 || $authority == 6) {
+            echo '<script type="text/javascript" src="js/training_supervise.js'.'?'.date('Y-m-d h:i:sa').'"></script>';
+        } 
+        else 
+        {
+            echo '<script type="text/javascript" src="js/training.js'.'?'.date('Y-m-d h:i:sa').'"></script>';
+        }
+    ?>
     <!-- ================== 地區選擇下拉 ================== -->
     <!--
     <script src="js/jQuery-TWzipcode-master/twzipcode.js"></script>

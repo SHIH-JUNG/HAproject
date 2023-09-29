@@ -1,5 +1,44 @@
 const notyf = new Notyf();
 
+//取得url id值region
+function getUrlVars() {
+  var vars = {};
+  var parts = window.location.href.replace(
+    /[?&]+([^=&]+)=([^&]*)/gi,
+    function (m, key, value) {
+      vars[key] = value;
+    }
+  );
+  return vars;
+}
+//endregion
+
+
+// 獲取網址參數
+let params = new URL(document.location).searchParams;
+let url_training_id = params.get("training_id"); 
+let url_acc_id = params.get("acc_id");
+// console.log(url_training_id, url_acc_id)
+
+//若抓得到url_training_id、url_acc_id 則送出 查詢格式1，反之 查詢格式2
+if(url_training_id != null && url_acc_id != null)
+{
+  // 查詢格式1
+  window.tr_datas = {
+    url_training_id:url_training_id,
+    url_acc_id:url_acc_id,
+  };
+}
+else
+{
+  // 查詢格式2
+  window.tr_datas = {
+    url_training_id:1,
+    url_acc_id:25,
+  };
+}
+
+
 //datepicker創建 region
 datepicker_create = function (selector_id) {
   $("#" + selector_id).datepicker({
@@ -17,7 +56,6 @@ datepicker_create = function (selector_id) {
     yearRange: "-15:+5",
     onClose: function (dateText) {
       // console.log($('#'+selector_id).val());
-      // console.log(trans_to_EN(dateText));
     },
     beforeShow: function (input, inst) {
       var $this = $(this);
@@ -64,60 +102,28 @@ $(document).ready(function () {
         datepicker_create(this_id);
     });
     //endregion
+
+    load_face_time_picker('u_tr_start_time_h');
+    load_face_time_picker('u_tr_end_time_h');
 }); 
 
+window.cumulation_hours = 0;
 
-
-//將日期轉為民國年格式111.03.07 region
-trans_to_Tw =  function(endate) {
-    var strAry = endate.split('-');
-
-    if(parseInt(strAry[0]) > 1911){
-        strAry[0] = parseInt(strAry[0]) - 1911;
-    }
-
-    return strAry.join(".");
-}
-//endregion
-
-//將日期轉為西元年格式2022-03-07(mysql date格式) region
-trans_to_EN =  function(endate) {
-    var strAry = endate.split('.');
-
-    if(parseInt(strAry[0]) < 1911){
-        strAry[0] = parseInt(strAry[0]) + 1911;
-    }
-
-    return strAry.join("-");
-}
-//endregion
-
-//檢查SQL撈出來的日期格式region
-check_sql_date_format = function(date) {
-    if(date=="0000-00-00")
-    {
-        date = "";
-    }
-    else
-    {
-        date  = trans_to_Tw(date);
-    }
-
-    return date;
-}
-
-//endregion
-
-//抓所有電話詢戒表region
+//載入在職訓練紀錄 region
 $.ajax({
   url: "database/find_data_training.php",
   type: "POST",
+  // 根據網址後面的參數收到的查詢格式
+  data:tr_datas,
   dataType: "JSON",
-  data: {},
   async: false, //啟用同步請求
   success: function (data) {
     var cssString = "";
     console.log(data);
+
+    cumulation_hours = 0;
+
+
     $.each(data, function (index, value) {
       var isUpload = '未上傳';
       // var cert_isUpload = '未上傳';
@@ -126,21 +132,30 @@ $.ajax({
         isUpload = '已上傳';
       }
 
+
+      cumulation_hours += parseFloat(value.Hours);
+
+      window.training_user_n = value.Name;
+
       cssString +=
-      '<tr id="'+value.Id+'" training_id ="'+value.Training_id+'">' +
-        '<td style="text-align:center">'+ value.Name + "</td>" +
-        '<td style="text-align:center">' + check_sql_date_format(value.Training_date) + "</td>" +
+      '<tr training_id="'+value.Id+'" acc_id="'+value.Account_id+'">' +
+        // '<td style="text-align:center">'+ value.Name + "</td>" +
+        '<td style="text-align:center">' + value.Training_date.split("年")[0] + "</td>" +
+        '<td style="text-align:center">' + value.Training_date + "</td>" +
+        '<td style="text-align:center">' + value.Training_start_time.split(":")[0] + ":" + value.Training_start_time.split(":")[1] + 
+        "至" + value.Training_end_time.split(":")[0] + ":" + value.Training_end_time.split(":")[1] + "</td>" +
         '<td style="text-align:center">' + value.Training_name + "</td>" +
-        '<td style="text-align:center">' + value.Hours + "</td>" +
+        '<td style="text-align:center">' + parseFloat(value.Hours).toFixed(1) + "</td>" +
         '<td style="text-align:center">' + value.Place + "</td>" +
         '<td style="text-align:center">' + isUpload + "</td>" +
-        '<td style="text-align:center">' + value.Create_date + "</td>" +
-        '<td style="text-align:center">' + value.Create_name + "</td>" +
-        '<td style="text-align:center">' + value.Update_date + "</td>" +
-        '<td style="text-align:center">' + value.Update_name + "</td>" +
+        '<td style="text-align:center">' + 
+          '<a class="update_btn" data-toggle="modal" training_id="'+value.Id+'" acc_id="'+value.Account_id+'" style="text-decoration: underline;color:black;">查看/修改</a>' + 
+        '</td>'
         "</tr>";
-
-        $("#training_id").append('<option value="'+value.Training_id+'">'+value.Training_id+'</option>');
+        
+        $("#training_year").append('<option value="'+value.Training_date.split("年")[0]+'">'+value.Training_date.split("年")[0]+'</option>');
+        
+        $("#training_id").append('<option value="'+value.Id+'">'+value.Id+'</option>');
         
         $("#name").append(
           '<option value="' + value.Name + '">' + value.Name + "</option>"
@@ -153,9 +168,11 @@ $.ajax({
         $("#training_name").append(
           '<option value="' + value.Training_name + '">' + value.Training_name + "</option>"
         );
+        
       });
 
-     //找出所有查詢表格下拉式選單，將內容排序、加上"所有查詢"、去除重複值
+
+    //找出所有查詢表格下拉式選單，將內容排序、加上"所有查詢"、去除重複值
     var filter_select = $("select.filter");
 
     $.each(filter_select, function (i, v) {
@@ -192,7 +209,7 @@ $.ajax({
             //    "select#" + this_id + " option:contains(" + text + "):gt(0)"
             //  ).remove();
             //}
-             $(this).siblings('[value="' + this.value + '"]').remove();
+            $(this).siblings('[value="' + this.value + '"]').remove();
             //    console.log(text)
           });
       }
@@ -201,10 +218,16 @@ $.ajax({
     //印出表格
     $("#call_view").html(cssString);
 
+    // 顯示員工姓名、總在職訓練時數
+    $("#show_user_info_tr").html("員工姓名：" + training_user_n + "，總在職訓練時數：" + cumulation_hours.toFixed(1) + "小時");
+
+    //綁定onclick事件
+    $(".update_btn").attr("onclick","show_modal(this);");
+
     //點擊table tr 進入詳細頁面
-    $(".table-hover tbody").on("click", "tr", function () {
-      window.location.href = 'training_detail.php?id='+$(this).attr("id")+'&training_id='+$(this).attr("training_id")+'';
-    });
+    // $(".table-hover tbody").on("click", "tr", function () {
+    //   window.location.href = 'training_detail.php?training_id='+$(this).attr("training_id")+'&acc_id='+$(this).attr("acc_id")+'';
+    // });
   },
 
   error: function (e) {
@@ -213,55 +236,306 @@ $.ajax({
 });
 //endregion
 
-// 簽章圖片、留言、時間懸浮顯示region
-// 設定移到該img元素的parent元素，觸發懸浮框圖片效果
-// 要觸發該事件的圖片需 設定title、src、width，class設為apreview
-this.imagePreview = function () {
-  // 圖片距離鼠標的位置
-  this.xOffset = -800;
-  this.yOffset = -10;
 
-  //hover([over,]out)
-  //over:鼠標移到元素上所觸發的函數
-  //out:鼠標移出元素所觸發的函數
 
-  //鼠標圖片內容懸浮的事件
-  $(".apreview")
-    .parent()
-    .hover(
-      function (e) {
-        this.t = $(this).children().attr("title"); //顯示在圖片下的標題
-        $(this).children().attr("title", ""); //將title設定為空值，不讓文字懸浮提示
-        this.imgSr = $(this).children().attr("src"); //圖片的連結
-        this.c = this.t != "" ? "<br/>" + this.t : "";
-        $("body").append(
-          "<p class='preview'><img src='" +
-            this.imgSr +
-            "' alt='Image preview' width='800' height='200' />" +
-            this.c +
-            "</p>"
-        );
-        $(".preview")
-          .css("top", e.pageY + yOffset + "px")
-          .css("left", e.pageX + xOffset + "px")
-          .fadeIn("fast");
-      },
-      function () {
-        $(this).children().attr("title", this.t); //恢復title
-        $(".preview").remove();
-      }
-    );
+// 給#update_btn綁定onclick事件 region
+$(document).on("click", ".update_btn", function() {
+  var $parent = $(this).parent();
 
-  //鼠標移動的事件，讓圖片隨著移動
-  $(".apreview")
-    .parent()
-    .mousemove(function (e) {
-      $(".preview")
-        .css("top", e.pageY - yOffset + "px")
-        .css("left", e.pageX + xOffset + "px");
-    });
-};
+  $("#update_rec_modal").on("shown.bs.modal", function () {
+      $parent.children().trigger("focus");
+  });
+});
 //endregion
+
+// 顯示在職訓練記錄詳細資料modal region
+show_modal = function(this_btn) {
+
+  var get_training_id = $(this_btn).attr("training_id");
+  var get_acc_id = $(this_btn).attr("acc_id");
+
+  load_update_training_data(get_training_id, get_acc_id);
+
+  $("#update_rec_modal").modal('show');
+
+  $("#modal_btn").attr("sql_id", get_training_id);
+  $("#modal_btn").attr("acc_id", get_acc_id);
+}
+//endregion 
+
+// 載入面訪記錄內容 region
+load_update_training_data = function(training_id, acc_id)
+{
+    $.ajax({
+        url: "database/find_training_data_detail.php",
+        data:{
+            Training_id:training_id,
+            Acc_id:acc_id,
+        },
+        type: "POST",
+        dataType: "JSON",
+        async: false,
+        success: function (data) {
+            console.log(data)
+
+            $.each(data,function(index,value){
+
+                $('#u_training_date').val(value.Training_date);
+
+                var tr_start_time_h = value.Training_start_time.split(':')[0];
+                var tr_start_time_m = value.Training_start_time.split(':')[1];
+                var tr_end_time_h = value.Training_end_time.split(':')[0];
+                var tr_end_time_m = value.Training_end_time.split(':')[1];
+
+                $('#u_tr_start_time_h').val(tr_start_time_h);
+                $('#u_tr_start_time_m').val(tr_start_time_m);
+                $('#u_tr_end_time_h').val(tr_end_time_h);
+                $('#u_tr_end_time_m').val(tr_end_time_m);
+                
+                $('#u_training_name').val(value.Training_name);
+                $('#u_hours').val(value.Hours);
+                $('#u_place').val(value.Place);
+                $('#u_remark').val(value.Remark);
+
+                var tr_file_path = value.Upload_path.replace("../", "./");
+                var tr_file_name = value.Upload_path.split("/");
+
+                if(value.Upload_path == "")
+                {
+                  var tr_file_val = "";
+
+                  var tr_file_htmlstr =
+                  '目前無檔案上傳';
+                }
+                else
+                {
+                  var tr_file_val = tr_file_name[tr_file_name.length - 1];
+
+                  var tr_file_htmlstr =
+                  '<a id="u_tr_file_a" href="' + tr_file_path + '" style="text-decoration:none;color:blue;" target="_blank">'
+                  + tr_file_val
+                  + '</a>';
+                }
+                
+
+                $("#u_training_file").html(tr_file_htmlstr);
+            });            
+
+            //監聽 當日期欄位有變化時，重新計算時數 region
+            $("[picker='u_tr_datetime']").on('change',function(){
+              var start_time = $('#u_tr_start_time_h').val() + ":" + $('#u_tr_start_time_m').val() + ":00";
+              var end_time = $('#u_tr_end_time_h').val() + ":" + $('#u_tr_end_time_m').val() + ":00";
+              var time_diff = hours_diff(start_time, end_time);
+
+              $("#u_hours").val(time_diff);
+            });
+            // endregion
+        },
+        error:function(e){
+            notyf.alert('伺服器錯誤,無法載入');
+            console.log(e)
+        }
+    });
+}
+//endregion
+
+//計算訓練時數 region
+hours_diff = function(start, end) 
+{
+
+  var diff_str = "";
+  var diff_num = 0;
+
+  start = start.split(":");
+  end = end.split(":");
+  
+  var startDate = new Date(0, 0, 0, start[0], start[1], 0);
+  var endDate = new Date(0, 0, 0, end[0], end[1], 0);
+  var diff = endDate.getTime() - startDate.getTime();
+  if(endDate.getTime() > startDate.getTime())
+  {
+    var hours = Math.floor(diff / 1000 / 60 / 60);
+    diff -= hours * 1000 * 60 * 60;
+    var minutes = Math.floor(diff / 1000 / 60);
+  
+    // If using time pickers with 24 hours format, add the below line get exact hours
+    if (hours < 0)
+    {
+      hours = hours + 24;
+    }
+
+    diff_str = (hours <= 9 ? "0" : "") + hours + ":" + (minutes <= 9 ? "0" : "") + minutes;
+
+    diff_num = parseInt(diff_str.split(":")[0]) + parseFloat((parseInt(diff_str.split(":")[1]) / 60).toFixed(1));
+  }
+
+  
+
+  return diff_num;
+}
+// endregion
+
+// update 電訪/面訪記錄 region
+update_rec_data = function(this_btn)
+{
+
+    swal({
+      title: "確認修改在職訓練記錄？",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#DD6B55",
+      confirmButtonText: "確認送出",
+      cancelButtonText: "取消",
+      showConfirmButton: true,
+      showCancelButton: true
+    }).then(function(result) {
+      if (result) {
+        var attr_sql_id = $(this_btn).attr("sql_id");
+
+        var stau = false;
+    
+        if (check_updat_training_data() != "") {
+          stau = false;
+        } else {
+          stau = true;
+        }
+      
+        if (!stau) 
+        {
+          swal({
+            title: check_updat_training_data(),
+            type: "error",
+          });
+        } 
+        else 
+        {
+            submit_data(attr_sql_id);
+        }
+      }
+    }, function(dismiss){
+      if(dismiss == 'cancel'){
+        swal({
+            title:'已取消',
+            type:'success',                        
+        })
+      }
+    }).catch(swal.noop)
+}
+//endregion
+
+
+function submit_data(tr_id) {
+
+  //去掉資料內前後端多餘的空白，file類型須排除，否則報錯
+  $("input, textarea").each(function () {
+    if ($(this).attr("type") != "file") {
+        $(this).val(jQuery.trim($(this).val()));
+    }
+    });
+  
+    var form_data = new FormData();
+
+
+    $("input[type='file']").each(function(index, element) {
+      var training_file = $(this).prop("files");
+
+      if (training_file != undefined) {
+        if (training_file.length != 0) {
+          for (var i = 0; i < training_file.length; i++) {
+            form_data.append("training_file"+index, training_file[i]);
+            // console.log(training_file[i])
+          }
+        } 
+      }
+    });
+
+    form_data.append("Training_id", tr_id);
+    form_data.append("Training_date", $("#u_training_date").val());
+    form_data.append("Training_start_time", $('#u_tr_start_time_h').val() + ":" + $('#u_tr_start_time_m').val() + ":00");
+    form_data.append("Training_end_time", $('#u_tr_end_time_h').val() + ":" + $('#u_tr_end_time_m').val() + ":00");
+    form_data.append("Training_name", $("#u_training_name").val());
+    form_data.append("Hours",$("#u_hours").val());
+    form_data.append("Place",$("#u_place").val());
+    form_data.append("Remark",$("#u_remark").val());
+
+    // 預覽傳到後端的資料詳細內容
+    for (var pair of form_data.entries()) {
+      console.log(pair[0] + ", " + pair[1]);
+    }
+
+
+  $.ajax({
+    url: "database/update_training_data_detail.php",
+    type: "POST",
+    data: form_data,
+    contentType: false,
+    cache: false,
+    processData: false,
+    async: true,
+    success: function (data) {
+      console.log(data);
+      if (data == 1) {
+        swal({
+          title: "修改成功！",
+          type: "success",
+        }).then(function () {
+          location.reload();
+        });
+      } else {
+        swal({
+          title: "修改失敗！請聯絡負責單位",
+          type: "error",
+        });
+      }
+    },
+    error: function (e) {
+      console.log(e);
+    },
+  });
+}
+
+//結案個案表(update)的必填欄位 region
+function check_updat_training_data() 
+{
+  var training_date = $("#u_training_date").val();
+  var training_name = $("#u_training_name").val();
+  var hours = $("#u_hours").val();
+  var place = $("#u_place").val();
+
+  var errorstr = "";
+
+  if (training_date == null) {
+    errorstr += "未填寫在職訓練日期!\r\n";
+  }
+  if (training_name == null) {
+    errorstr += "未填寫在職訓練標題!\r\n";
+  }
+  if (hours == null) {
+    errorstr += "未填寫時數!\r\n";
+  }
+  if (place == null) {
+    errorstr += "未填寫在職訓練地點!\r\n";
+  }
+
+  if (errorstr == "") {
+    if (training_date.replace(/\s*/g, "") == "") {
+      errorstr += "未填寫在職訓練日期!\r\n";
+    }
+    if (training_name.replace(/\s*/g, "") == "") {
+      errorstr += "未填寫在職訓練標題!\r\n";
+    }
+    if (training_name.replace(/\s*/g, "") == "") {
+      errorstr += "未填寫時數!\r\n";
+    }
+    if (place.replace(/\s*/g, "") == "") {
+      errorstr += "未填寫在職訓練地點!\r\n";
+    }
+  }
+
+  return errorstr;
+}
+//endregion
+
 
 // 民國年轉換日期格式yyyy-dd-mm region
 function split_date(date) {
@@ -277,6 +551,21 @@ function split_date(date) {
   }
 
   return transed_date; 
+}
+//endregion
+
+// 載入時間選項 region
+load_face_time_picker = function(element_id) {
+  for (let index = 8; index <= 20; index++) {
+      $("#" + element_id).append('<option value="'+LeadingZero(index, 2)+'">'+LeadingZero(index, 2)+'</option>');
+  }
+}
+//endregion
+
+// 字串補零 region
+function LeadingZero( code, dataLength){
+  var str = Array(10).join('0') + code;
+  return str.slice(0 - dataLength)
 }
 //endregion
 
@@ -331,9 +620,9 @@ function parseTime(t) {
   return d;
 }
 
-var upload_date_range = (function( settings, data, dataIndex ) {
-  var min_date = parseInt(Date.parse( split_date($('#upload_min_date').val())), 10 );
-  var max_date = parseInt(Date.parse( split_date($('#upload_max_date').val())), 10 );
+var tr_date_range = (function( settings, data, dataIndex ) {
+  var min_date = parseInt(Date.parse( split_date($('#tr_min_date').val())), 10 );
+  var max_date = parseInt(Date.parse( split_date($('#tr_max_date').val())), 10 );
   var date = parseInt(Date.parse( split_date(data[1]) )) || 0; // use data for the date column
   if ( ( isNaN( min_date ) && isNaN( max_date ) ) ||
        ( isNaN( min_date ) && date <= max_date ) ||
@@ -416,22 +705,12 @@ $("select.filter").on("change", function () {
     $table.columns(rel).search(this.value).draw();
   }
 });
-$("#min, #max").keyup(function () {
-  $.fn.dataTable.ext.search.push(age_range);
+
+$("#tr_min_date, #tr_max_date").on("change", function () {
+  $.fn.dataTable.ext.search.push(tr_date_range);
   $table.draw();
 });
 
-$("#upload_min_date, #upload_max_date").on("change", function () {
-  //    console.log($('#min_date').val())
-  $.fn.dataTable.ext.search.push(upload_date_range);
-  $table.draw();
-});
-
-$("#min_time, #max_time").on("change", function () {
-  //    console.log($('#min_date').val())
-  $.fn.dataTable.ext.search.push(time_range);
-  $table.draw();
-});
 
 $table.on("draw", function () {
   $("#count_people2").text(

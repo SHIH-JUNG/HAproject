@@ -122,13 +122,36 @@
                                                                 </td>
                                                             </tr>
 
-                                                            <tr style="text-align:left">
+                                                            <!-- <tr style="text-align:left">
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>員工姓名</td>
                                                                 <td style="border-bottom: solid 1px;"><input id="name" type="text"></td>
-                                                            </tr>
+                                                            </tr> -->
                                                             <tr style="text-align:left">
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>日期</td>
-                                                                <td style="border-bottom: solid 1px;"><input id="training_date" name="ch_datepicker" type="text"></td>
+                                                                <td style="border-bottom: solid 1px;">
+                                                                    <input picker="tr_datetime" id="training_date" name="ch_datepicker" type="text">
+                                                                    <select picker="tr_datetime" id="tr_start_time_h"></select>
+                                                                    <label>：</label>
+                                                                    <select picker="tr_datetime" id="tr_start_time_m">
+                                                                        <option>00</option>
+                                                                        <option>10</option>
+                                                                        <option>20</option>
+                                                                        <option>30</option>
+                                                                        <option>40</option>
+                                                                        <option>50</option>
+                                                                    </select>
+                                                                    <label>至</label>
+                                                                    <select picker="tr_datetime" id="tr_end_time_h"></select>
+                                                                    <label>：</label>
+                                                                    <select picker="tr_datetime" id="tr_end_time_m">
+                                                                        <option>00</option>
+                                                                        <option>10</option>
+                                                                        <option>20</option>
+                                                                        <option>30</option>
+                                                                        <option>40</option>
+                                                                        <option>50</option>
+                                                                    </select>
+                                                                </td>
                                                             </tr>
 
                                                             <tr style="text-align:left">
@@ -138,12 +161,14 @@
 
                                                             <tr style="text-align:left">
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>時數</td>
-                                                                <td style="border-bottom: solid 1px;"><input id="hours" type="text"></td>
+                                                                <td style="border-bottom: solid 1px;"><input id="hours" type="number"></td>
                                                             </tr>
 
                                                             <tr style="text-align:left">
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>地點</td>
-                                                                <td style="border-bottom: solid 1px;"><input id="place" type="text"></td>
+                                                                <td style="border-bottom: solid 1px;">
+                                                                    <input id="place" type="text">
+                                                                </td>
                                                             </tr>
                                                             <tr style="text-align:left">
                                                                     <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">檔案上傳</td>

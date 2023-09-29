@@ -1,9 +1,28 @@
 <?php
+session_start();
+//連接資料庫
+//只要此頁面上有用到連接MySQL就要include它
 include("sql_connect.php");
-//region 抓資料
 
-// $note = "SELECT * FROM `training` ORDER BY `training`.`Id` ASC;";
-$note = "SELECT * FROM `training` GROUP BY `training`.`Training_id`;";
+//region 抓資料
+$acc_id = $_SESSION['acc_id'];
+
+if(isset($_POST['authority_num']))
+{
+// $note = "SELECT * FROM `training` GROUP BY `training`.`Id`;";
+$note = "SELECT * FROM (SELECT * FROM `training` ORDER BY `training`.`Id` DESC) AS tr  GROUP BY tr.Id;";
+}
+elseif(isset($_POST['url_training_id']) && isset($_POST['url_acc_id']))
+{
+    $url_acc_id = $_POST['url_acc_id'];
+    // $url_training_id = $_POST['url_training_id'];
+
+    $note = "SELECT * FROM `training` WHERE `Account_id`='$url_acc_id' ORDER BY `training`.`Id` DESC;";
+}
+else
+{
+    $note = "SELECT * FROM `training` WHERE `Account_id`='$acc_id' ORDER BY `training`.`Id` DESC;";
+}
 
 //宣告空的陣列
 $datas = array();

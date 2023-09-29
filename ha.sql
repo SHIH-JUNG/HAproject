@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： localhost
--- 產生時間： 2023-09-27 16:52:51
+-- 產生時間： 2023-09-29 14:59:45
 -- 伺服器版本： 10.4.28-MariaDB
 -- PHP 版本： 8.2.4
 
@@ -1461,7 +1461,13 @@ INSERT INTO `login_record` (`Id`, `Login_timestamp`, `Login_account`, `Login_aut
 (262, '2023-09-25 16:02:31', 'testuser', '5', 'jia', '22.593916472840217,120.48880938832706', 0),
 (263, '2023-09-25 16:56:04', 'testuser', '5', 'jia', '22.593909666666665,120.48881566666667', 0),
 (264, '2023-09-26 19:31:41', 'test5', '2', '園主任', '22.593916310975608,120.48880948217636', 1),
-(265, '2023-09-27 19:40:07', 'test5', '2', '園主任', '22.593917186487676,120.48880871388471', 1);
+(265, '2023-09-27 19:40:07', 'test5', '2', '園主任', '22.593917186487676,120.48880871388471', 1),
+(266, '2023-09-27 22:56:17', 'test5', '2', '園主任', '22.593916472840217,120.48880938832706', 0),
+(267, '2023-09-29 15:05:58', 'test5', '2', '園主任', '22.5939125,120.488813', 1),
+(268, '2023-09-29 18:35:23', 'testuser', '5', 'jia', '22.593916310975608,120.48880948217636', 1),
+(269, '2023-09-29 20:42:58', 'test5', '2', '園主任', '22.593916310975608,120.48880948217636', 0),
+(270, '2023-09-29 20:49:06', 'testuser', '5', 'jia', '22.593916310975608,120.48880948217636', 0),
+(271, '2023-09-29 20:55:26', 'test5', '2', '園主任', '22.593909666666665,120.48881566666667', 0);
 
 -- --------------------------------------------------------
 
@@ -2606,45 +2612,38 @@ INSERT INTO `supervisor_record_v2` (`Id`, `Year`, `record_content`, `upload_cont
 --
 
 CREATE TABLE `training` (
-  `Id` int(255) NOT NULL,
-  `Name` varchar(30) NOT NULL,
-  `Training_id` int(30) NOT NULL,
+  `Id` int(11) NOT NULL,
+  `Account_id` int(11) NOT NULL,
+  `Resume_id` int(11) NOT NULL,
+  `Name` varchar(200) NOT NULL,
   `Training_date` varchar(1000) NOT NULL,
-  `Training_name` varchar(300) NOT NULL,
-  `Hours` int(200) NOT NULL,
-  `Place` varchar(300) NOT NULL,
-  `Remark` varchar(300) NOT NULL,
-  `Upload_name` varchar(500) NOT NULL,
-  `Upload_path` varchar(2000) NOT NULL,
-  `Create_date` date NOT NULL,
-  `Create_name` varchar(30) NOT NULL,
-  `Update_date` date NOT NULL,
-  `Update_name` varchar(30) NOT NULL,
-  `Start_date` date NOT NULL,
-  `Start_time_h` varchar(100) NOT NULL,
-  `Start_time_m` varchar(100) NOT NULL,
-  `End_time_h` varchar(100) NOT NULL,
-  `End_time_m` varchar(100) NOT NULL,
-  `Content_detail` varchar(100) NOT NULL,
-  `Location_detail` varchar(100) NOT NULL,
-  `New_remark` varchar(100) NOT NULL,
-  `First_insert` varchar(10) NOT NULL
+  `Training_start_time` time DEFAULT NULL,
+  `Training_end_time` time DEFAULT NULL,
+  `Training_name` varchar(500) NOT NULL,
+  `Hours` float NOT NULL,
+  `Place` varchar(500) NOT NULL,
+  `Remark` varchar(2000) NOT NULL,
+  `Upload_name` varchar(200) NOT NULL,
+  `Upload_path` text NOT NULL,
+  `First_insert` tinyint(4) NOT NULL,
+  `Create_date` datetime NOT NULL,
+  `Create_name` varchar(200) NOT NULL,
+  `Update_date` datetime DEFAULT current_timestamp(),
+  `Update_name` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `training`
 --
 
-INSERT INTO `training` (`Id`, `Name`, `Training_id`, `Training_date`, `Training_name`, `Hours`, `Place`, `Remark`, `Upload_name`, `Upload_path`, `Create_date`, `Create_name`, `Update_date`, `Update_name`, `Start_date`, `Start_time_h`, `Start_time_m`, `End_time_h`, `End_time_m`, `Content_detail`, `Location_detail`, `New_remark`, `First_insert`) VALUES
-(55, 'fffg', 0, '112年07月04日', 'fgfgf', 122, 'fdsdf', '', '', '', '2023-07-14', '社工員1', '0000-00-00', '', '0000-00-00', '00', '00', '00', '00', '', '', '', '1'),
-(57, 'qqqq', 1, '112年07月13日', 'qqq', 2, 'wqq', '', '', '', '2023-07-14', '社工員1', '0000-00-00', '', '0000-00-00', '00', '00', '00', '00', '', '', '', '1'),
-(58, 'test11', 2, '112年07月04日', 'aaa', 3, 'fd', 'a', '', '', '2023-07-14', '執行長', '0000-00-00', '', '0000-00-00', '00', '00', '00', '00', '', '', '', '1'),
-(64, '', 2, '', '', 0, '', '', '', '', '0000-00-00', '', '0000-00-00', '', '2023-07-14', '12', '00', '13', '00', 'a', 'b', 'c', ''),
-(65, '', 0, '', '', 0, '', '', '', '', '0000-00-00', '', '0000-00-00', '', '2023-07-04', '12', '30', '13', '30', 'dsfs', 'fsfd', '', ''),
-(66, '', 0, '', '', 0, '', '', '', '', '0000-00-00', '', '0000-00-00', '', '2023-07-11', '12', '30', '13', '30', 'eeee', 'eeee', '', ''),
-(67, 'cccc', 3, '112年08月08日', 'cccc', 333, '3dewd', '', '', '', '2023-08-09', '社工員1', '0000-00-00', '', '0000-00-00', '', '', '', '', '', '', '', '1'),
-(68, '', 3, '', '', 0, '', '', '', '', '0000-00-00', '', '0000-00-00', '', '2023-08-10', '12', '00', '13', '00', 'vcxvx', 'vdsvd', '', ''),
-(69, 'timo test', 4, '112年08月15日', 'ttttt', 31, 'rrrrr', '', '', '', '2023-08-09', '社工員1', '0000-00-00', '', '0000-00-00', '', '', '', '', '', '', '', '1');
+INSERT INTO `training` (`Id`, `Account_id`, `Resume_id`, `Name`, `Training_date`, `Training_start_time`, `Training_end_time`, `Training_name`, `Hours`, `Place`, `Remark`, `Upload_name`, `Upload_path`, `First_insert`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
+(1, 5, 0, '園主任', '112年09月08日', '09:40:00', '11:20:00', 'test課程內容', 1.7, '快樂聯盟', 'dasda', 'course_test1.docx', '../training/course_test1.docx', 1, '2023-09-29 18:04:21', '園主任', '2023-09-29 20:48:49', '園主任'),
+(2, 25, 1, 'jia', '112年09月01日', '09:40:00', '11:00:00', 'test課程內容1', 1.3, '快樂聯盟', 'testad', 'jia_course_test1.docx', '../training/jia_course_test1.docx', 1, '2023-09-29 18:38:35', 'jia', '2023-09-29 20:48:27', '園主任'),
+(3, 25, 1, 'jia', '111年05月13日', '13:10:00', '14:10:00', 'test課程內容2', 1, '家裡', 'adsd', '', '', 0, '2023-09-29 18:42:14', 'jia', '2023-09-29 18:42:14', ''),
+(4, 25, 1, 'jia', '110年06月15日', '08:10:00', '10:10:00', 'test課程內容4', 2, '培訓中心1', 'dasdas\r\nga4', 'jia_course_test4.docx', '../training/jia_course_test4.docx', 0, '2023-09-29 18:42:55', 'jia', '2023-09-29 20:03:47', 'jia'),
+(5, 25, 1, 'jia', '112年09月22日', '08:50:00', '11:00:00', 'test課程內容xx', 2.2, 'test', 'aasdd', '', '', 0, '2023-09-29 20:04:33', 'jia', '2023-09-29 20:04:33', ''),
+(6, 25, 1, 'jia', '112年09月18日', '08:50:00', '11:00:00', 'test課程內容5', 2.2, 'test', 'aasdd5', '', '', 0, '2023-09-29 20:04:34', 'jia', '2023-09-29 20:05:50', 'jia'),
+(7, 25, 1, 'jia', '112年09月23日', '15:20:00', '16:00:00', '課程內容dwq', 0.7, '家裡', 'sads', '', '', 0, '2023-09-29 20:05:29', 'jia', '2023-09-29 20:05:29', '');
 
 -- --------------------------------------------------------
 
@@ -3495,7 +3494,7 @@ ALTER TABLE `leave_rule_table`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `login_record`
 --
 ALTER TABLE `login_record`
-  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=266;
+  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=272;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `members_assemble`
@@ -3657,7 +3656,7 @@ ALTER TABLE `supervisor_record_v2`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `training`
 --
 ALTER TABLE `training`
-  MODIFY `Id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `tw_counties`

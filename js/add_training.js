@@ -1,100 +1,39 @@
 //datepicker創建 region
 datepicker_create = function (selector_id) {
-  if (selector_id == "birth") {
-    $("#" + selector_id).datepicker({
-      changeYear: true,
-      changeMonth: true,
-      currentText: "今天",
-      dateFormat: "R年mm月dd日",
-      showButtonPanel: true,
-      yearRange: "-109:+0",
-      onClose: function (dateText) {
-        console.log($("#" + selector_id).val());
-        console.log(trans_to_EN(dateText));
-      },
-      beforeShow: function (input, inst) {
-        var $this = $(this);
-        var cal = inst.dpDiv;
-        var outerh = $this.outerHeight();
-        if ($this.offset().top > 1200) {
-          outerh = outerh * 4;
-        } else {
-          outerh = outerh * 3;
-        }
-        // console.log($this.offset().top)
-        // console.log(outerh)
+  $("#" + selector_id).datepicker({
+    changeYear: true,
+    changeMonth: true,
+    currentText: "今天",
+    dateFormat: "R年mm月dd日",
+    showButtonPanel: true,
+    // minDate: new Date(new Date().getFullYear(), new Date().getMonth() - 3, 1),
+    // maxDate: new Date(new Date().getFullYear() + 3, 11, 31),
+    yearRange: "-6:+5",
+    onClose: function (dateText) {
+      // console.log($('#'+selector_id).val());
+    },
+    beforeShow: function (input, inst) {
+      var $this = $(this);
+      var cal = inst.dpDiv;
+      var outerh = $this.outerHeight();
+      if ($this.offset().top > 1200) {
+        outerh = outerh * 4;
+      } else {
+        outerh = outerh * 3;
+      }
+      // console.log($this.offset().top)
+      // console.log(outerh)
 
-        var top = $this.offset().top - outerh;
-        var left = $this.offset().left - 10;
-        setTimeout(function () {
-          cal.css({
-            top: top,
-            left: left,
-          });
-        }, 10);
-      },
-    });
-  } else {
-    $("#" + selector_id).datepicker({
-      changeYear: true,
-      changeMonth: true,
-      currentText: "今天",
-      dateFormat: "R年mm月dd日",
-      showButtonPanel: true,
-      // minDate: new Date(new Date().getFullYear(), new Date().getMonth() - 3, 1),
-      // maxDate: new Date(new Date().getFullYear() + 3, 11, 31),
-      yearRange: "-6:+5",
-      onClose: function (dateText) {
-        // console.log($('#'+selector_id).val());
-        // console.log(trans_to_EN(dateText));
-      },
-      beforeShow: function (input, inst) {
-        var $this = $(this);
-        var cal = inst.dpDiv;
-        var outerh = $this.outerHeight();
-        if ($this.offset().top > 1200) {
-          outerh = outerh * 4;
-        } else {
-          outerh = outerh * 3;
-        }
-        // console.log($this.offset().top)
-        // console.log(outerh)
-
-        var top = $this.offset().top - outerh;
-        var left = $this.offset().left - 10;
-        setTimeout(function () {
-          cal.css({
-            top: top,
-            left: left,
-          });
-        }, 10);
-      },
-    });
-  }
-};
-//endregion
-
-//將日期轉為民國年格式111.03.07 region
-trans_to_Tw = function (endate) {
-  var strAry = endate.split(".");
-
-  if (parseInt(strAry[0]) > 1911) {
-    strAry[0] = parseInt(strAry[0]) - 1911;
-  }
-
-  return strAry.join(".");
-};
-//endregion
-
-//將日期轉為西元年格式2022-03-07(mysql date格式) region
-trans_to_EN = function (endate) {
-  var strAry = endate.split(".");
-
-  if (parseInt(strAry[0]) < 1911) {
-    strAry[0] = parseInt(strAry[0]) + 1911;
-  }
-
-  return strAry.join("-");
+      var top = $this.offset().top - outerh;
+      var left = $this.offset().left - 10;
+      setTimeout(function () {
+        cal.css({
+          top: top,
+          left: left,
+        });
+      }, 10);
+    },
+  });
 };
 //endregion
 
@@ -105,6 +44,11 @@ $(document).ready(function () {
     datepicker_create(this_id);
   });
   //endregion
+
+    load_face_time_picker('tr_start_time_h');
+    load_face_time_picker('tr_end_time_h');
+
+    $("#hours").val(0);
 });
 
 function submit_form() {
@@ -116,8 +60,8 @@ function submit_form() {
   });
 
   var form_data = new FormData();
-  var training_date_year_split = $("#training_date").val().split(".");
-  var year = training_date_year_split[0];
+  // var training_date_year_split = $("#training_date").val().split(".");
+  // var year = training_date_year_split[0];
 
   $("input[type='file']").each(function(index, element) {
       var training_file = $(this).prop("files");
@@ -132,8 +76,10 @@ function submit_form() {
       }
   });
 
-  form_data.append("Name", $("#name").val());
+  // form_data.append("Name", $("#name").val());
   form_data.append("Training_date", $("#training_date").val());
+  form_data.append("Training_start_time", $('#tr_start_time_h').val() + ":" + $('#tr_start_time_m').val() + ":00");
+  form_data.append("Training_end_time", $('#tr_end_time_h').val() + ":" + $('#tr_end_time_m').val() + ":00");
   form_data.append("Training_name", $("#training_name").val());
   form_data.append("Hours",$("#hours").val());
   form_data.append("Place",$("#place").val());
@@ -156,7 +102,7 @@ function submit_form() {
             allowOutsideClick: false, //不可點背景關閉
           }).then(function () {
             window.location.href =
-              "training.php?year=" + year;
+              "training.php";
           });
         } else {
           swal({
@@ -224,51 +170,51 @@ function check_file_exist() {
 }
 //endregion
 
-//檢查必填欄位 region
-function check_null_data() {
-  var errorstr = "以下為必填欄位，不能為空值!\r\n";
+//計算訓練時數 region
+hours_diff = function(start, end) 
+{
 
-  $(".fillin_need").each(function(index,element){
+  var diff_str = "";
+  var diff_num = 0;
 
-    var check_element = $(this).parent("td").siblings("td").children()[0];
-    var check_element_name = $(this).parent("td").text();
-
-    console.log($(check_element))
-    console.log($(check_element).val())
-
-    var check_element_tagname = $(check_element).prop("tagName");
-    var check_element_type = $(check_element).attr("type");
-
-    if(check_element_tagname == "INPUT" && check_element_type=="file")
+  start = start.split(":");
+  end = end.split(":");
+  
+  var startDate = new Date(0, 0, 0, start[0], start[1], 0);
+  var endDate = new Date(0, 0, 0, end[0], end[1], 0);
+  var diff = endDate.getTime() - startDate.getTime();
+  if(endDate.getTime() > startDate.getTime())
+  {
+    var hours = Math.floor(diff / 1000 / 60 / 60);
+    diff -= hours * 1000 * 60 * 60;
+    var minutes = Math.floor(diff / 1000 / 60);
+  
+    // If using time pickers with 24 hours format, add the below line get exact hours
+    if (hours < 0)
     {
-      var file_len = $(check_element).prop("files").length;
-
-      if(file_len == 0)
-      {
-        errorstr += check_element_name.replace("※", "") + "\r\n";
-      }
+      hours = hours + 24;
     }
-    else if(check_element_tagname == "INPUT" && check_element_type=="radio")
-    {
-      var check_element_children_name = $(this).parent("td").siblings("td").children().attr("name");
 
-      if($('[name="'+check_element_children_name+'"]:checked').length==0)
-      {
-        errorstr += check_element_name.replace("※", "") + "\r\n";
-      }
-    }
-    else
-    {
-      if($(check_element).val() == null || $(check_element).val().replace(/\s*/g, "") == "")
-      {
-        errorstr += check_element_name.replace("※", "") + "\r\n";
-      }
-    }    
-  });
+    diff_str = (hours <= 9 ? "0" : "") + hours + ":" + (minutes <= 9 ? "0" : "") + minutes;
 
-  return errorstr;
+    diff_num = parseInt(diff_str.split(":")[0]) + parseFloat((parseInt(diff_str.split(":")[1]) / 60).toFixed(1));
+  }
+
+  
+
+  return diff_num;
 }
-//endregion
+// endregion
+
+//監聽 當日期欄位有變化時，重新計算時數 region
+$("[picker='tr_datetime']").on('change',function(){
+    var start_time = $('#tr_start_time_h').val() + ":" + $('#tr_start_time_m').val() + ":00";
+    var end_time = $('#tr_end_time_h').val() + ":" + $('#tr_end_time_m').val() + ":00";
+    var time_diff = hours_diff(start_time, end_time);
+
+    $("#hours").val(time_diff);
+  });
+// endregion
 
 // //新增在職訓練紀錄region
 $("#tra_add_new").on("click", function () {
@@ -311,7 +257,7 @@ $("#tra_add_new").on("click", function () {
     } else {
       var stau = false;
 
-      if (check_null_data() != "以下為必填欄位，不能為空值!\r\n") {
+      if (check_add_training_data() != "") {
         stau = false;
       } else {
         stau = true;
@@ -319,7 +265,7 @@ $("#tra_add_new").on("click", function () {
 
       if (!stau) {
         swal({
-          title: check_null_data(),
+          title: check_add_training_data(),
           type: "error",
         });
       } else {
@@ -334,7 +280,7 @@ $("#tra_add_new").on("click", function () {
 
 //檢查在職訓練紀錄的必填欄位region
 function check_add_training_data() {
-  var name = $("#name").val();
+  // var name = $("#name").val();
   var training_date = $("#training_date").val();
   var training_name = $("#training_name").val();
   var hours = $("#hours").val();
@@ -342,9 +288,9 @@ function check_add_training_data() {
 
   var errorstr = "";
 
-  if (name == null) {
-    errorstr += "未填寫員工姓名	!\r\n";
-  }
+  // if (name == null) {
+  //   errorstr += "未填寫員工姓名	!\r\n";
+  // }
   if (training_date == null) {
     errorstr += "未填寫在職訓練日期!\r\n";
   }
@@ -359,9 +305,9 @@ function check_add_training_data() {
   }
 
   if (errorstr == "") {
-    if (name.replace(/\s*/g, "") == "") {
-      errorstr += "未填寫員工姓名!\r\n";
-    }
+    // if (name.replace(/\s*/g, "") == "") {
+    //   errorstr += "未填寫員工姓名!\r\n";
+    // }
     if (training_date.replace(/\s*/g, "") == "") {
       errorstr += "未填寫在職訓練日期!\r\n";
     }
@@ -380,26 +326,17 @@ function check_add_training_data() {
 }
 //endregion
 
-// 呼叫user方法region
-$.ajax({
-  type: "POST",
-  url: "database/find_check_user.php",
-  dataType: "JSON",
-  async: false, //啟用同步請求
-  success: function (data) {
-    for (var index in data.Id) {
-      $(".user").append(
-        '<option value="' +
-          data.Name[index] +
-          '">' +
-          data.Name[index] +
-          "</option>"
-      );
-    }
-  },
-  error: function (e) {
-    console.log(e);
-  },
-});
+// 載入時間選項 region
+load_face_time_picker = function(element_id) {
+  for (let index = 8; index <= 18; index++) {
+      $("#" + element_id).append('<option value="'+LeadingZero(index, 2)+'">'+LeadingZero(index, 2)+'</option>');
+  }
+}
+//endregion
 
+// 字串補零 region
+function LeadingZero( code, dataLength){
+  var str = Array(10).join('0') + code;
+  return str.slice(0 - dataLength)
+}
 //endregion
