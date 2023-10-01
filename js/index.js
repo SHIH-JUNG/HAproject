@@ -26,9 +26,36 @@ function  getDaysBetween(dateString1,dateString2){
 }
 
 $(document).ready(function () {
-    // 載入全部user至下拉式選單
-    append_user();
 
+    $('.form_date').datetimepicker({
+        format: 'yyyy-mm-dd', //日期的顯示格式
+        language:  'zh-TW',
+        // locale: moment.locale('zh-tw'), //國別
+        // daysOfWeekDisabled: [0, 6], //隱藏的天數0為周日6為星期六
+        // minDate: moment().add(1,'days'), //顯示最小天數
+        // maxDate: moment().add(30,'days'), //顯示最大天數，30為最大的顯示範圍為一個月為限
+        minView:2,
+        autoclose: 1,
+    });
+
+    $('.form_time').datetimepicker({
+        language:  'zh-TW',
+        format: 'hh:ii',
+		autoclose: 1,
+		startView: 1,
+    });
+
+
+    // 載入全部user至下拉式選單
+    // append_user();
+    user_element_arr = ['#vr_booker', '#add_vr_booker', '#u_vr_booker', 
+    '#visit_assign1', '#visit_assign2', '#s_visit_assign1', '#s_visit_assign2', '#visit_assign1'];
+    
+    $.each(user_element_arr, function (index, user_element) {
+        add_user_option(user_element);
+    });
+    
+    $("#add_vr_booker").val(assign_name);
     
     //show 訊息公告 region
     $.ajax({
@@ -58,6 +85,92 @@ $(document).ready(function () {
     });
     //endregion
 
+    //show 車輛保留 region
+    $.ajax({
+        url: "database/vehicle_retain_show.php",
+        type: "POST",
+        dataType: "JSON",
+        async: false,//啟用同步請求
+        success: function (data) {
+            console.log(data);
+
+            var cssString = "";
+            $.each(data, function (index, value) {
+
+                var timenow = moment().format('YYYY-MM-DD HH:mm');
+
+                let date_diff = DateDiff(timenow.split(" ")[0], value.Borrow_date);
+
+                //只顯示當天的資料
+                if(date_diff == 0)
+                {
+                    var tr_color = "";
+                    var back_timestap = "";
+    
+                    // 判斷是否結束，結束的話Back_timestap不為null值
+                    if(value.Back_timestap == '00:00:00')
+                    {
+                        tr_color = "#FF9797";
+                        back_timestap = "";
+                    }
+                    else
+                    {
+                        tr_color = "#90ee90";
+                        back_timestap = value.Back_timestap.split(":")[0] + ":" + value.Back_timestap.split(":")[1];
+                    }
+                    
+                    cssString +=
+                                '<tr style="background-color:'+tr_color+';" id="'+value.Id+'">' +
+                                '<td row_name="n_row" style="LINE-HEIGHT:1px">' + value.Borrow_date + '</td>' +
+                                '<td row_name="n_row" style="LINE-HEIGHT:1px">' + value.Out_timestap.split(":")[0] + ":" + value.Out_timestap.split(":")[1] + '</td>' +
+                                '<td row_name="n_row" style="LINE-HEIGHT:1px">' + value.Reason + '</td>' +
+                                '<td row_name="n_row" style="LINE-HEIGHT:1px">' + value.Place + '</td>' +
+                                '<td row_name="n_row" style="LINE-HEIGHT:1px">' + value.Vehicle + '</td>' +
+                                '<td row_name="n_row" style="LINE-HEIGHT:1px">' + back_timestap + '</td>' +
+                                '<td row_name="n_row" style="LINE-HEIGHT:1px">' + value.Booker + '</td>';
+    
+                    if(value.Back_timestap == '00:00:00')
+                    {
+                        cssString += '<td row_name="last_row" style="LINE-HEIGHT:1px">' + '<a style="text-decoration: underline;" href="javascript: void(0)" onclick="end_vehicle_retain('+value.Id+')">歸還車輛</a>' + '</td>' +
+                        '</tr>';
+                    }
+                    else
+                    {
+                        cssString += '<td row_name="last_row" style="LINE-HEIGHT:1px"><span style="color:blue;">已結束</span></td></tr>';
+                    }
+                }
+            });
+            
+            if(cssString != '') {
+                $("#vehicle_retain_info").html(cssString);
+            }
+
+            //綁定表格欄onclick事件，點擊顯示模態框，車輛保留-詳細資料
+            $("#vehicle_retain_info>tr td").each(function(i,v)
+            {
+                var currentEle_class = $(this).attr("row_name");
+
+                if(currentEle_class != "last_row")
+                {
+                    var currentEle = $(this);
+                    
+                    currentEle.on("click",function () {
+                    
+                        var attr_id = $(this).parent("tr").attr("id");
+
+                        $('#show_vehicle_retain_m').modal('show');
+                    
+                        show_vehicle_retain_modal(attr_id);
+                    });
+                }
+            });
+
+        },
+        error: function (e) {
+            notyf.alert('伺服器錯誤,無法載入' + e);
+        }
+    });
+    //endregion
 
     //show 社工訪視 region
     $.ajax({
@@ -283,10 +396,233 @@ $(document).ready(function () {
 
 
 
+//insert 車輛保留 region
+$("#vehicle_retain_add").click(function(){
+    $('#add_vehicle_retain_m').modal('show'); 
+});
+
+$("#add_new_vehicle_retain").click(function(){
+
+    var stau = false;
+
+    if (check_vehicle_retain_data() != "") 
+    {
+            
+        stau = false;
+    }
+    else {
+        stau = true;
+    }
+    // console.log(stau);
+
+    if(!stau)
+    {
+        swal({
+            title:check_vehicle_retain_data(),
+            type:'error'
+        })
+    }
+    else
+    {
+        $.ajax({
+            url: "database/add_vehicle_retain.php",
+            data:{
+                Borrow_date:$("#add_borrow_date").val(),
+                Out_timestap:$("#add_out_timestap").val(),
+                Reason:$("#add_vr_reason").val(),
+                Place:$("#add_vr_place").val(),
+                Vehicle:$("#add_vr_vehicle").val(),
+                Booker:$("#add_vr_booker").val(),
+            },
+            type: "POST",
+            dataType: "JSON",
+            success: function (data) {
+                if(data == 1){
+                    swal({
+                        title:'新增成功！',
+                        type:'success',                        
+                    }).then(function(){
+                        location.reload();
+                    }) 
+                }else{
+                    swal({
+                        title:'新增失敗！',
+                        type:'error',
+                    })
+                } 
+            },
+            error: function (e) {
+                swal({
+                    type: 'error',
+                    title: '新增失敗!請聯絡負責人',
+                    allowOutsideClick: false //不可點背景關閉
+                })
+                console.log(e)
+            }
+        });
+    }
+});
+//endregion
+
+//檢查車輛保留欄位是否為空 region
+check_vehicle_retain_data = function() {
+    var borrow_date = $('#add_borrow_date').val();
+    var out_timestap = $('#add_out_timestap').val();
+    var vr_place = $('#add_vr_place').val();
+    var vr_vehicle = $('#add_vr_vehicle').val();
+    
+    var errorstr = "";
 
 
+    if (borrow_date == null) {
+        errorstr += "未填寫日期!\r\n";
+    }
+    if (out_timestap == null) {
+        errorstr += "未填寫外出時間!\r\n";
+    }
+    if (vr_place == null) {
+        errorstr += "未填寫地點!\r\n";
+    }
+    if (vr_vehicle == null) {
+        errorstr += "未填寫交通工具!\r\n";
+    }
+    if (errorstr == "") {
+        if (borrow_date.replace(/\s*/g, "") == '') {
+            errorstr += "未填寫日期!\r\n";
+        }
+        if (out_timestap.replace(/\s*/g, "") == '') {
+            errorstr += "未填寫外出時間!\r\n";
+        }
+        if (vr_place.replace(/\s*/g, "") == '') {
+            errorstr += "未填寫地點!\r\n";
+        }
+        if (vr_vehicle.replace(/\s*/g, "") == '') {
+            errorstr += "未填寫交通工具!\r\n";
+        }
+    }
 
+    return errorstr;
+}
+//endregion
 
+//show 車輛保留 detail show modal region
+function show_vehicle_retain_modal(modal_id) {
+    $.ajax({
+        url: "database/vehicle_retain_show.php",
+        data:{
+            Id:modal_id,
+        },
+        type: "POST",
+        dataType: "JSON",
+        async: false,//啟用同步請求
+        success: function (data) {
+            console.log(data);
+    
+            $.each(data, function (index, value) {
+                $("#back_timestap").val(value.Back_timestap.split(":")[0] + ":" + value.Back_timestap.split(":")[1]);
+                $("#borrow_date").val(value.Borrow_date);
+                $("#out_timestap").val(value.Out_timestap.split(":")[0] + ":" + value.Out_timestap.split(":")[1]);
+                $("#vr_reason").val(value.Reason);
+                $("#vr_place").val(value.Place);
+                $("#vr_vehicle").val(value.Vehicle);
+                $("#vr_booker").val(value.Booker);
+            });
+                
+        },
+        error: function (e) {
+            notyf.alert('伺服器錯誤,無法載入' + e);
+        }
+    });
+}
+//endregion
+
+//點擊 修改車輛保留狀態 返回的時間 region
+end_vehicle_retain = function(attr_id){
+    $('#update_vehicle_retain_m').modal('show'); 
+
+    load_update_vehicle_retain_data(attr_id);
+
+    var timenow = moment().format('HH:mm');
+    $("#u_back_timestap").val(timenow);
+
+    $("#update_vehicle_retain_btn").attr("btn_id",attr_id);
+}
+//endregion
+
+// modal顯示要修改的車輛保留資料 region
+load_update_vehicle_retain_data = function(vr_id) {
+    $.ajax({
+        url: "database/vehicle_retain_show.php",
+        data:{
+            Id:vr_id,
+        },
+        type: "POST",
+        dataType: "JSON",
+        async: false,//啟用同步請求
+        success: function (data) {
+            console.log(data);
+
+            $.each(data, function (index, value) {
+                // $("#u_back_timestap").val();
+                $("#u_borrow_date").val(value.Borrow_date);
+                $("#u_out_timestap").val(value.Out_timestap.split(":")[0] + ":" + value.Out_timestap.split(":")[1]);
+                $("#u_vr_reason").val(value.Reason);
+                $("#u_vr_place").val(value.Place);
+                $("#u_vr_vehicle").val(value.Vehicle);
+                $("#u_vr_booker").val(value.Booker);
+                
+            });
+        },
+        error: function (e) {
+            notyf.alert('伺服器錯誤,無法載入' + e);
+        }
+    });
+}
+//endregion
+
+// modal修改車輛保留及修改返回的時間 region
+update_vehicle_retain = function(this_btn) {
+    var attr_id = $(this_btn).attr("btn_id");
+
+    $.ajax({                                                                                    
+        url: "database/update_vehicle_retain.php",
+        data:{
+            Id:attr_id,
+            Back_timestap:$("#u_back_timestap").val(),
+            Borrow_date:$("#u_borrow_date").val(),
+            Out_timestap:$("#u_out_timestap").val(),
+            Reason:$("#u_vr_reason").val(),
+            Place:$("#u_vr_place").val(),
+            Vehicle:$("#u_vr_vehicle").val(),
+            Booker:$("#u_vr_booker").val(),
+        },
+        type: "POST",
+        dataType: "JSON",
+        success: function (data) {
+            if(data == 1){
+                swal({
+                    title:'更新成功！',
+                    type:'success',                        
+                }).then(function(){
+                    location.reload();
+                }) 
+            }else{
+                swal({
+                    title:'更新失敗！請聯絡負責單位',
+                    type:'error',
+                })
+            }  
+        },
+        error:function(e){
+            console.log(e);
+            swal({
+                title:'更新失敗！請聯絡負責單位',
+                type:'error',
+            })
+        }
+    });
+}
+//endregion
 
 //show 社工訪視 detail show modal region
 function show_visit_modal(modal_id) {
@@ -334,7 +670,6 @@ go_to_signature_notice = function() {
 }
 //endregion
 
-
 //insert 社工訪視 region
 $("#visit_add").click(function(){
     $('#add_visit_m').modal('show'); 
@@ -342,41 +677,99 @@ $("#visit_add").click(function(){
 
 
 $("#add_new_visit").click(function(){
-    $.ajax({
-        url: "database/add_visit.php",
-        data:{
-            Visit_title:$("#visit_title").val(),
-            Visit_time:$("#visit_time").val(),
-            Visit_assign1:$("#visit_assign1").val(),
-            Visit_assign2:$("#visit_assign2").val(),
-        },
-        type: "POST",
-        dataType: "JSON",
-        success: function (data) {
-            if(data == 1){
+    var stau = false;
+
+    if (check_visit_data() != "") 
+    {
+            
+        stau = false;
+    }
+    else {
+        stau = true;
+    }
+    // console.log(stau);
+
+    if(!stau)
+    {
+        swal({
+            title:check_visit_data(),
+            type:'error'
+        })
+    }
+    else
+    {
+        $.ajax({
+            url: "database/add_visit.php",
+            data:{
+                Visit_title:$("#visit_title").val(),
+                Visit_time:$("#visit_time").val(),
+                Visit_assign1:$("#visit_assign1").val(),
+                Visit_assign2:$("#visit_assign2").val(),
+            },
+            type: "POST",
+            dataType: "JSON",
+            success: function (data) {
+                if(data == 1){
+                    swal({
+                        title:'新增成功！',
+                        type:'success',                        
+                    }).then(function(){
+                        location.reload();
+                    }) 
+                }else{
+                    swal({
+                        title:'新增失敗！',
+                        type:'error',
+                    })
+                } 
+            },
+            error: function (e) {
                 swal({
-                    title:'新增成功！',
-                    type:'success',                        
-                }).then(function(){
-                    location.reload();
-                }) 
-            }else{
-                swal({
-                    title:'新增失敗！',
-                    type:'error',
+                    type: 'error',
+                    title: '新增失敗!請聯絡負責人',
+                    allowOutsideClick: false //不可點背景關閉
                 })
-            } 
-        },
-        error: function (e) {
-            swal({
-                type: 'error',
-                title: '新增失敗!請聯絡負責人',
-                allowOutsideClick: false //不可點背景關閉
-            })
-            console.log(e)
-        }
-    });
+                console.log(e)
+            }
+        });
+    }
+
+    
 });
+//endregion
+
+//檢查社工訪視 欄位是否為空 region
+check_visit_data = function() {
+    var visit_title = $('#visit_title').val();
+    var visit_time = $('#visit_time').val();
+    var visit_assign1 = $('#visit_assign1').val();
+    
+    var errorstr = "";
+
+
+    if (visit_title == null) {
+        errorstr += "未填寫標題!\r\n";
+    }
+    if (visit_time == null) {
+        errorstr += "未填寫訪視時間!\r\n";
+    }
+    if (visit_assign1 == null) {
+        errorstr += "未選擇訪承辦人員1!\r\n";
+    }
+    if (errorstr == "") {
+        if (visit_title.replace(/\s*/g, "") == '') {
+            errorstr += "未填寫標題!\r\n";
+        }
+        if (visit_time.replace(/\s*/g, "") == '') {
+            errorstr += "未填寫訪視時間!\r\n";
+        }
+        if (visit_assign1.replace(/\s*/g, "") == '') {
+            errorstr += "未選擇訪承辦人員1!\r\n";
+        }
+    }
+
+    return errorstr;
+}
 //endregion
 
 //update end 社工訪視 region
@@ -438,38 +831,50 @@ $("#ann_add").click(function(){
 });
     
 $("#add_new_ann").click(function(){
-    $.ajax({
-        url: "database/add_ann.php",
-        data:{
-            ann_title:$("#ann_title").val(),
-            authority:$("#ann_authority").val(),
-        },
-        type: "POST",
-        dataType: "JSON",
-        success: function (data) {
-            if(data == 1){
+
+    if($("#ann_title").val() == '')
+    {
+        swal({
+            title:"未填寫訊息公告標題!",
+            type:'error'
+        })
+    }
+    else
+    {
+        $.ajax({
+            url: "database/add_ann.php",
+            data:{
+                ann_title:$("#ann_title").val(),
+                authority:$("#ann_authority").val(),
+            },
+            type: "POST",
+            dataType: "JSON",
+            success: function (data) {
+                if(data == 1){
+                    swal({
+                        title:'新增成功！',
+                        type:'success',                        
+                    }).then(function(){
+                        location.reload();
+                    }) 
+                }else{
+                    swal({
+                        title:'新增失敗！',
+                        type:'error',
+                    })
+                } 
+            },
+            error: function (e) {
                 swal({
-                    title:'新增成功！',
-                    type:'success',                        
-                }).then(function(){
-                    location.reload();
-                }) 
-            }else{
-                swal({
-                    title:'新增失敗！',
-                    type:'error',
+                    type: 'error',
+                    title: '新增失敗!請聯絡負責人',
+                    allowOutsideClick: false //不可點背景關閉
                 })
-            } 
-        },
-        error: function (e) {
-            swal({
-                type: 'error',
-                title: '新增失敗!請聯絡負責人',
-                allowOutsideClick: false //不可點背景關閉
-            })
-            console.log(e)
-        }
-    });
+                console.log(e)
+            }
+        });
+    }
+   
 });
 //endregion
 
@@ -480,8 +885,32 @@ function ann_cancel(){
 }
 //endregion
 
-//呼叫user方法region
-function append_user(){             
+// //呼叫user方法region
+// function append_user(){             
+//     $.ajax({
+//         type:'POST',
+//         url:'database/find_check_user.php',
+//         dataType: "JSON",
+//         async: false,//啟用同步請求
+//         success: function (data) {
+//             // console.log('test',data)
+//             for (var index in data.Id) 
+//             {
+//                 $("#visit_assign1").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+//                 $("#visit_assign2").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+//                 $("#s_visit_assign1").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+//                 $("#s_visit_assign2").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+//                 $("#visit_assign1").val(assign_name);
+//                 // $("#visit_assign2").val(assign_name);
+//             }
+//         },
+//     });
+// }
+// //endregion
+
+// 依據id名稱，載入新增訪談記錄的社工人員選項 region
+add_user_option = function(element_id)
+{
     $.ajax({
         type:'POST',
         url:'database/find_check_user.php',
@@ -489,14 +918,8 @@ function append_user(){
         async: false,//啟用同步請求
         success: function (data) {
             // console.log('test',data)
-            for (var index in data.Id) 
-            {
-                $("#visit_assign1").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
-                $("#visit_assign2").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
-                $("#s_visit_assign1").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
-                $("#s_visit_assign2").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
-                $("#visit_assign1").val(assign_name);
-                // $("#visit_assign2").val(assign_name);
+            for (var index in data.Id) {
+                $(element_id).append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
             }
         },
     });

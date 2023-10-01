@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： localhost
--- 產生時間： 2023-09-29 14:59:45
+-- 產生時間： 2023-10-01 09:36:47
 -- 伺服器版本： 10.4.28-MariaDB
 -- PHP 版本： 8.2.4
 
@@ -1467,7 +1467,8 @@ INSERT INTO `login_record` (`Id`, `Login_timestamp`, `Login_account`, `Login_aut
 (268, '2023-09-29 18:35:23', 'testuser', '5', 'jia', '22.593916310975608,120.48880948217636', 1),
 (269, '2023-09-29 20:42:58', 'test5', '2', '園主任', '22.593916310975608,120.48880948217636', 0),
 (270, '2023-09-29 20:49:06', 'testuser', '5', 'jia', '22.593916310975608,120.48880948217636', 0),
-(271, '2023-09-29 20:55:26', 'test5', '2', '園主任', '22.593909666666665,120.48881566666667', 0);
+(271, '2023-09-29 20:55:26', 'test5', '2', '園主任', '22.593909666666665,120.48881566666667', 0),
+(272, '2023-10-01 12:41:00', 'testuser', '5', 'jia', '22.593916472840217,120.48880938832706', 1);
 
 -- --------------------------------------------------------
 
@@ -2779,6 +2780,38 @@ INSERT INTO `user_info_default_auth` (`Id`, `Authority_num`, `Job`, `Authority_p
 -- --------------------------------------------------------
 
 --
+-- 資料表結構 `vehicle_retain`
+--
+
+CREATE TABLE `vehicle_retain` (
+  `Id` int(11) NOT NULL,
+  `Borrow_date` date NOT NULL,
+  `Out_timestap` time NOT NULL,
+  `Back_timestap` time NOT NULL,
+  `Reason` varchar(2000) NOT NULL,
+  `Place` varchar(500) NOT NULL,
+  `Vehicle` varchar(500) NOT NULL,
+  `Booker` varchar(50) NOT NULL,
+  `Create_date` datetime NOT NULL,
+  `Create_name` varchar(50) NOT NULL,
+  `Update_date` datetime DEFAULT current_timestamp(),
+  `Update_name` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- 傾印資料表的資料 `vehicle_retain`
+--
+
+INSERT INTO `vehicle_retain` (`Id`, `Borrow_date`, `Out_timestap`, `Back_timestap`, `Reason`, `Place`, `Vehicle`, `Booker`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
+(1, '2023-10-01', '14:10:00', '15:06:00', 'test外出1', '高雄1', 'RT-4521', '社工員2', '2023-10-01 14:42:02', 'jia', '2023-10-01 15:06:08', 'jia'),
+(2, '2023-10-02', '09:25:00', '00:00:00', 'test1002', '屏東市區1002', 'VAR-1242', '社工員2', '2023-10-01 15:23:08', 'jia', '2023-10-01 15:23:08', ''),
+(3, '2023-10-01', '16:00:00', '00:00:00', 'TEST事由', '屏東市區445', 'DRE-0982', '社工組長', '2023-10-01 15:23:41', 'jia', '2023-10-01 15:23:41', ''),
+(4, '2023-10-01', '13:05:00', '00:00:00', 'TEST事由', '高雄231', 'DDA-1233', '社工員1', '2023-10-01 15:24:49', 'jia', '2023-10-01 15:24:49', ''),
+(7, '2023-10-01', '10:30:00', '00:00:00', 'adasd', 'dasd', 'ttt', 'jia', '2023-10-01 15:31:44', 'jia', '2023-10-01 15:31:44', '');
+
+-- --------------------------------------------------------
+
+--
 -- 資料表結構 `visit_index`
 --
 
@@ -3325,6 +3358,12 @@ ALTER TABLE `user_info_default_auth`
   ADD PRIMARY KEY (`Id`);
 
 --
+-- 資料表索引 `vehicle_retain`
+--
+ALTER TABLE `vehicle_retain`
+  ADD PRIMARY KEY (`Id`);
+
+--
 -- 資料表索引 `visit_index`
 --
 ALTER TABLE `visit_index`
@@ -3494,7 +3533,7 @@ ALTER TABLE `leave_rule_table`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `login_record`
 --
 ALTER TABLE `login_record`
-  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=272;
+  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=273;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `members_assemble`
@@ -3675,6 +3714,12 @@ ALTER TABLE `user_info`
 --
 ALTER TABLE `user_info_default_auth`
   MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `vehicle_retain`
+--
+ALTER TABLE `vehicle_retain`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `visit_index`

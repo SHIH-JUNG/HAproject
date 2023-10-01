@@ -113,6 +113,42 @@
                                     <div class="panel-body">
                                         <div class="table-wrap">
                                             <div class="table-responsive">
+                                                <div class="text-center">車輛保留</div>
+                                                <table style="font-size:15px;font-family:新細明體;" class="text-center table-striped table-sm" data-toggle="table" data- data-page-size=5 data-search="false" data-pagination="true" data-pagination-parts="[pageList]">
+                                                    <thead>
+                                                        <tr>
+                                                            <th data-width="15" data-width-unit="%">日期</th>
+                                                            <th data-width="10" data-width-unit="%">外出時間</th>
+                                                            <th data-width="10" data-width-unit="%">事由</th>
+                                                            <th data-width="15" data-width-unit="%">地點</th>
+                                                            <th data-width="15" data-width-unit="%">使用的交通工具</th>
+                                                            <th data-width="10" data-width-unit="%">返回的時間</th>
+                                                            <th data-width="15" data-width-unit="%">外出登記者</th>
+                                                            <th data-width="10" data-width-unit="%"></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="vehicle_retain_info"></tbody>
+                                                </table>
+                                                <br>
+                                                <button style="font-size:15px" id="vehicle_retain_add" class="btn btn-default"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
+                                                        <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z" />
+                                                        <path fill-rule="evenodd" d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5z" />
+                                                    </svg>新增</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="zoom:80%" class="row text-center">
+                        <div class="col-sm-12">
+                            <div class="panel panel-default card-view">
+                                <div class="panel-wrapper collapse in">
+                                    <div class="panel-body">
+                                        <div class="table-wrap">
+                                            <div class="table-responsive">
                                                 <div class="text-center">活動</div>
                                                 <table style="font-size:15px;font-family:新細明體;" class="text-center table-striped table-sm" data-toggle="table" data- data-page-size=5 data-search="false" data-pagination="true" data-pagination-parts="[pageList]">
                                                     <thead>
@@ -438,6 +474,250 @@
             <!--/浮動視窗(add_ann)-->
         </div>
     </div>
+
+    <!--浮動視窗(add_vehicle_retain)-->
+    <div class="modal fade" id="add_vehicle_retain_m" data-backdrop="static" tabindex="-1" aria-labelledby="add_vehicle_retain_ModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="add_vehicle_retain_ModalLabel">新增外出登記</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12 text-center">
+                            <div class="col-sm-12">
+                                <label>日期</label>
+                            </div>
+                            <div class="col-sm-12">
+                                <div id="add_borrow_date_picker" class="input-group date form_date" data-date-format="yyyy-mm-dd" data-link-field="dtp_input1">
+                                    <input id="add_borrow_date" class="form-control" type="text" value="" readonly>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 text-center">
+                            <div class="col-sm-12">
+                                <label>外出時間</label>
+                            </div>
+                            <div class="col-sm-12">
+                                <div id="add_out_timestap_picker" class="input-group date form_time" data-date-format="hh:ii" data-link-field="dtp_input1">
+                                    <input id="add_out_timestap" class="form-control" type="text" value="" readonly>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 text-center">
+                            <label>事由</label>
+                        </div>
+                        <div class="col-sm-12 text-center">
+                            <input class="col-sm-12" id="add_vr_reason" placeholder="請輸入事由" type="text">
+                        </div>
+
+                        <div class="col-sm-12 text-center">
+                            <label>地點</label>
+                        </div>
+                        <div class="col-sm-12 text-center">
+                            <input class="col-sm-12" id="add_vr_place" placeholder="請輸入地點" type="text">
+                        </div>
+                        
+                        <div class="col-sm-12 text-center">
+                            <label>交通工具</label>
+                        </div>
+                        <div class="col-sm-12 text-center">
+                            <input class="col-sm-12" id="add_vr_vehicle" placeholder="請輸入交通工具" type="text">
+                        </div>
+
+                        <!-- <div class="col-sm-12 text-center">
+                            <div class="col-sm-12">
+                                <label>返回時間</label>
+                            </div>
+                            <div class="col-sm-12">
+                                <div id="add_back_timestap_picker" class="input-group date form_datetime" data-date-format="hh:ii" data-link-field="dtp_input1">
+                                    <input id="add_back_timestap" class="form-control" type="text" value="" readonly>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                                </div>
+                            </div>
+                        </div> -->
+
+                        <div class="col-sm-12 text-center">
+                            <label>外出者</label>
+                        </div>
+                        <div class="col-sm-12 text-center">
+                            <select class="col-sm-12" id="add_vr_booker">
+                                <option value="">請選擇</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="text-center col-sm-12">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button id="add_new_vehicle_retain" type="button" class="btn btn-primary">新增</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/浮動視窗(add_vehicle_retain)-->
+
+    <!--浮動視窗(update_vehicle_retain)-->
+    <div class="modal fade" id="update_vehicle_retain_m" data-backdrop="static" tabindex="-1" aria-labelledby="update_vehicle_retain_ModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="update_vehicle_retain_ModalLabel">修改外出登記</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12 text-center">
+                            <div class="col-sm-12">
+                                <label>返回時間</label>
+                            </div>
+                            <div class="col-sm-12">
+                                <div id="u_back_timestap_picker" class="input-group date form_time" data-date-format="hh:ii" data-link-field="dtp_input1">
+                                    <input id="u_back_timestap" class="form-control" type="text" value="" readonly>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 text-center">
+                            <div class="col-sm-12">
+                                <label>日期</label>
+                            </div>
+                            <div class="col-sm-12">
+                                <div id="u_borrow_date_picker" class="input-group date form_date" data-date-format="yyyy-mm-dd" data-link-field="dtp_input1">
+                                    <input id="u_borrow_date" class="form-control" type="text" value="" readonly>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 text-center">
+                            <div class="col-sm-12">
+                                <label>外出時間</label>
+                            </div>
+                            <div class="col-sm-12">
+                                <div id="u_out_timestap_picker" class="input-group date form_time" data-date-format="hh:ii" data-link-field="dtp_input1">
+                                    <input id="u_out_timestap" class="form-control" type="text" value="" readonly>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 text-center">
+                            <label>事由</label>
+                        </div>
+                        <div class="col-sm-12 text-center">
+                            <input class="col-sm-12" id="u_vr_reason" placeholder="請輸入事由" type="text">
+                        </div>
+
+                        <div class="col-sm-12 text-center">
+                            <label>地點</label>
+                        </div>
+                        <div class="col-sm-12 text-center">
+                            <input class="col-sm-12" id="u_vr_place" placeholder="請輸入地點" type="text">
+                        </div>
+                        
+                        <div class="col-sm-12 text-center">
+                            <label>交通工具</label>
+                        </div>
+                        <div class="col-sm-12 text-center">
+                            <input class="col-sm-12" id="u_vr_vehicle" placeholder="請輸入交通工具" type="text">
+                        </div>
+                        
+                        <div class="col-sm-12 text-center">
+                            <label>外出者</label>
+                        </div>
+                        <div class="col-sm-12 text-center">
+                            <select class="col-sm-12" id="u_vr_booker">
+                                <option value="">請選擇</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="text-center col-sm-12">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button id="update_vehicle_retain_btn" onclick="update_vehicle_retain(this)" type="button" class="btn btn-primary">送出</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/浮動視窗(update_vehicle_retain)-->
+
+    <!--浮動視窗(show_vehicle_retain)-->
+    <div class="modal fade" id="show_vehicle_retain_m" data-backdrop="static" tabindex="-1" aria-labelledby="show_vehicle_retain_ModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="show_vehicle_retain_ModalLabel">車輛保留-詳細資料</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12 text-center">
+                            <label>日期</label>
+                        </div>
+                        <div class="col-sm-12 text-center">
+                            <input class="col-sm-12" id="borrow_date" placeholder="請輸入日期" type="text" readonly>
+                        </div>
+                        <div class="col-sm-12 text-center">
+                            <label>外出時間</label>
+                        </div>
+                        <div class="col-sm-12 text-center">
+                            <input class="col-sm-12" id="out_timestap" placeholder="請輸入外出時間" type="text" readonly>
+                        </div>
+                        <div class="col-sm-12 text-center">
+                            <label>事由</label>
+                        </div>
+                        <div class="col-sm-12 text-center">
+                            <input class="col-sm-12" id="vr_reason" placeholder="請輸入事由" type="text" readonly>
+                        </div>
+
+                        <div class="col-sm-12 text-center">
+                            <label>地點</label>
+                        </div>
+                        <div class="col-sm-12 text-center">
+                            <input class="col-sm-12" id="vr_place" placeholder="請輸入地點" type="text" readonly>
+                        </div>
+                        
+                        <div class="col-sm-12 text-center">
+                            <label>交通工具</label>
+                        </div>
+                        <div class="col-sm-12 text-center">
+                            <input class="col-sm-12" id="vr_vehicle" placeholder="請輸入交通工具" type="text" readonly>
+                        </div>
+                        <div class="col-sm-12 text-center">
+                            <label>返回時間</label>
+                        </div>
+                        <div class="col-sm-12 text-center">
+                            <input class="col-sm-12" id="back_timestap" placeholder="請輸入返回時間" type="text" readonly>
+                        </div>
+
+                        <div class="col-sm-12 text-center">
+                            <label>外出者</label>
+                        </div>
+                        <div class="col-sm-12 text-center">
+                            <input class="col-sm-12" id="vr_booker" placeholder="請輸入外出者" type="text" readonly>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="text-center col-sm-12">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <!-- <button onclick="update_visit()" type="button" class="btn btn-primary">新增</button> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/浮動視窗(show_vehicle_retain)-->
 
     <!--浮動視窗(add_visit)-->
     <div class="modal fade" id="add_visit_m" data-backdrop="static" tabindex="-1" aria-labelledby="add_visit_ModalLabel" aria-hidden="true">
