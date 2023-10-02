@@ -92,28 +92,42 @@ document.addEventListener('DOMContentLoaded', function() {
                     confirmButtonText: '確定', 
                     cancelButtonText: '取消',
                 }).then(function() {
-                    $.ajax({
-                        url: "database/delete_note.php",
-                        data: {
-                            id:info.event.id,
-                        },
-                        type: "POST",
-                        success: function (data) {
-                            if(data == 1){
-                                swal({
-                                    title:'刪除成功！',
-                                    type:'success',                        
-                                }).then(function(){
-                                    formreload();
-                                }) 
-                            }else{
-                                swal({
-                                  title:'刪除失敗！請聯絡負責單位',
-                                  type:'error',
-                                 })
-                            }                            
-                        }
-                    });  
+                    if(db_name == "")
+                    {
+                        $.ajax({
+                            url: "database/delete_note.php",
+                            data: {
+                                id:info.event.id,
+                                db_name:db_name,
+                                db_id:db_id,
+                            },
+                            type: "POST",
+                            success: function (data) {
+                                console.log(data);
+                                if(data == 1){
+                                    swal({
+                                        title:'刪除成功！',
+                                        type:'success',                        
+                                    }).then(function(){
+                                        formreload();
+                                    }) 
+                                }else{
+                                    swal({
+                                      title:'刪除失敗！請聯絡負責單位',
+                                      type:'error',
+                                     })
+                                }                            
+                            }
+                        });  
+                    }
+                    else
+                    {
+                        swal({
+                            title:'此行事曆事件不可刪除',
+                            type:'warning',
+                        })
+                    }
+                    
                     }, function(dismiss) {
                       // dismiss的值可以是'cancel', 'overlay',
                       // 'close', 'timer'

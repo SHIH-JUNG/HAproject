@@ -30,7 +30,7 @@ $sql = "UPDATE `vehicle_retain` SET
 `Update_name` = '$user', 
 `Update_date` = NOW() WHERE `Id` = '$Id';";
 
-$sql .= 
+@$sql .= 
 "UPDATE `calendar` SET 
 `title` = '$Title',  
 `description` = '$Description', `start` = '$Start_t', 

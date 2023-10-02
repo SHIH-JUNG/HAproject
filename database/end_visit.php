@@ -15,7 +15,7 @@ $user = $_SESSION['name'];
 $sql = "UPDATE `visit_index` SET `Visit_end_time` = '$Visit_end_time' ,`Remark` = '$Visit_remark' ,`Update_name` = '$user', `Update_date` = NOW() WHERE `Id` = '$Id';";
 
 
-$sql .= 
+@$sql .= 
 "UPDATE `calendar` SET 
 `end` = '$End_t'
 WHERE `database_name` = 'visit_index' AND `db_id` = '$Id';";
