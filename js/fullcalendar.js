@@ -31,20 +31,25 @@ document.addEventListener('DOMContentLoaded', function() {
           week: '一週顯示',
 //          list:'待辦事項'
         },
-      dateClick: function(info) {         
+      dateClick: function(info) {        
         $('#add').modal('show');        
         $("#start").val(info.dateStr+" 12:00");
         $("#end").val(info.dateStr+" 13:00");
         Cookies.set('dateval', info.dateStr);
       },
       eventClick:function(info) { 
+          window.db_name = info.event.extendedProps.database_name;
+          window.db_id = info.event.extendedProps.db_id;
+        //   console.log(db_name)
+        //   console.log(db_id)
           var start = moment(info.event.start).format("YYYY-MM-DD HH:mm");
           var end = moment(info.event.end).format("YYYY-MM-DD HH:mm");
 //          console.log(info.event.allDay);//true or false
           $('#update_delete').modal('show');
           $("#up_title").val(info.event.title);
           $("#site").attr('href',info.event.extendedProps.description);
-          if((info.event.extendedProps.description).substr(0,7) == "http://"){
+        //   if((info.event.extendedProps.description).substr(0,7) == "http://"){
+          if((info.event.extendedProps.description).includes(".php")){
               $("#btn").attr('hidden',false);
           }else{
               $("#btn").attr('hidden',true);
@@ -53,9 +58,17 @@ document.addEventListener('DOMContentLoaded', function() {
             $("#up_description").val(info.event.extendedProps.description);
 
           
-         
-          $("#up_start").val(start);
-          $("#up_end").val(end);    
+            if(start != "Invalid date")
+            {
+                $("#up_start").val(start);
+            }
+            if(end != "Invalid date")
+            {
+                $("#up_end").val(end);
+            }
+          
+          
+              
           
           //發佈人region
           $.ajax({
@@ -133,9 +146,12 @@ document.addEventListener('DOMContentLoaded', function() {
                                 description:$("#up_description").val(),
                                 start:$("#up_start").val(),
                                 end:$("#up_end").val(),
+                                db_name:db_name,
+                                db_id:db_id,
                             },
                             type: "POST",
                             success: function (data) {
+                                console.log(data)
                                 if(data == 1){
                                     swal({
                                         title:'修改成功！',
@@ -169,11 +185,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 }  
             });
           //endregion
-      },
+      },       
       events: "database/get_note.php",
-
     });
     calendar.render();
+    
 });
 //endregion
 

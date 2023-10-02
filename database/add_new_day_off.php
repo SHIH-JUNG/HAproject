@@ -33,6 +33,11 @@ $title = $_POST['title'];
 $signer = $_POST['signer'];
 $rec_date_time = $_POST['rec_date_time'];
 
+@$calendar_title = $_POST['calendar_title'];
+@$calendar_start_time = $_POST['calendar_start_time'];
+@$calendar_end_time = $_POST['calendar_end_time'];
+
+
 $sign_state = $Director . "未簽核" . "、" . $Supervise . "未簽核" . "、" . $Job_agent . "未簽核";
 
 
@@ -128,7 +133,11 @@ NOW(), '$user',
 
 
 $sql .= "INSERT INTO `signature_notice` (`Sign_id`, `Title`,`Url`,`Timestamp`, `Assign`, `Signer`, `Sign_state`, `Type`, `Create_date`, `Create_name`) 
-VALUES ('$day_off_id', '$title','$url','$rec_date_time', '$user', '$signer', '$sign_state', 'day_off', Now(), '$user')";
+VALUES ('$day_off_id', '$title','$url','$rec_date_time', '$user', '$signer', '$sign_state', 'day_off', Now(), '$user');";
+
+$sql .= "INSERT INTO `calendar` (`title`, `description`, `start`, 
+`end`, `backgroundColor`, `publisher`, `date`, `database_name`, `db_id`, `authority`) VALUES 
+('$calendar_title','$url', '$calendar_start_time', '$calendar_end_time', '#FFA042', '$user', NOW(), 'day_off', '$day_off_id', '$user');";
 
 if (mysqli_multi_query($conn, $sql)) {
     echo true;

@@ -17,6 +17,11 @@ $Booker = $_POST['Booker'];
 
 $user = $_SESSION['name'];
 
+$Title = $_POST['Title'];
+$Description = $_POST['Description'];
+$Start_t = $_POST['Start_t'];
+$End_t = $_POST['End_t'];
+
 $sql = "UPDATE `vehicle_retain` SET 
 `Back_timestap` = '$Back_timestap',  
 `Borrow_date` = '$Borrow_date', `Out_timestap` = '$Out_timestap', 
@@ -25,8 +30,14 @@ $sql = "UPDATE `vehicle_retain` SET
 `Update_name` = '$user', 
 `Update_date` = NOW() WHERE `Id` = '$Id';";
 
+$sql .= 
+"UPDATE `calendar` SET 
+`title` = '$Title',  
+`description` = '$Description', `start` = '$Start_t', 
+`end` = '$End_t'
+WHERE `database_name` = 'vehicle_retain' AND `db_id` = '$Id';";
 
-if(mysqli_query($conn,$sql)){
+if(mysqli_multi_query($conn,$sql)){
     echo true;
 }else{
     echo false;

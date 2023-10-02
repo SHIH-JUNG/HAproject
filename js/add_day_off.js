@@ -524,10 +524,17 @@ load_time_picker = function() {
 
   for (var i = work_hs; i <= work_he; i++)
   {
-    $("#overtime_time_start_h").append('<option value="'+i+'">'+i+'</option>');
-    $("#overtime_time_end_h").append('<option value="'+i+'">'+i+'</option>');
+    $("#overtime_time_start_h").append('<option value="'+LeadingZero(i, 2)+'">'+LeadingZero(i, 2)+'</option>');
+    $("#overtime_time_end_h").append('<option value="'+LeadingZero(i, 2)+'">'+LeadingZero(i, 2)+'</option>');
   }
 }
+
+// 字串補零 region
+function LeadingZero( code, dataLength){
+  var str = Array(10).join('0') + code;
+  return str.slice(0 - dataLength)
+}
+//endregion
 
 //新增請假紀錄 region
 $("#day_off_add_new").on("click", function () {
@@ -705,10 +712,14 @@ function submit_form() {
   form_data.append("signer", $("#job_agent").val() + "、" + $("#director").val() + "、" + $("#supervise").val());
   form_data.append("rec_date_time", timenow +" 00:00");
 
+  form_data.append("calendar_title", '請假：' + user_name + " " + deal_type($("[name='day_off_type']:checked").val()));
+  form_data.append("calendar_start_time", split_date(overtime_date_arr[0]) + " " + overtime_date_arr[2]);
+  form_data.append("calendar_end_time", split_date(overtime_date_arr[1]) + " " + overtime_date_arr[3]);
+
   // 預覽傳到後端的資料詳細內容
-  // for (var pair of form_data.entries()) {
-  //   console.log(pair[0] + ", " + pair[1]);
-  // }
+  for (var pair of form_data.entries()) {
+    console.log(pair[0] + ", " + pair[1]);
+  }
 
 
   $.ajax({
@@ -720,7 +731,7 @@ function submit_form() {
       processData: false,
       async: true,
       success: function (data) {
-        // console.log(data);
+        console.log(data);
         if (data == 1) {
           swal({
             type: "success",

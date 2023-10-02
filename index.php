@@ -86,8 +86,8 @@
                                                 <table style="font-size:15px;font-family:新細明體;" class="text-center table-striped table-sm" id="ann_table" data-toggle="table" data-page-size=5 data-search="false" data-pagination="true" data-pagination-parts="[pageList]">
                                                     <thead>
                                                         <tr>
-                                                            <th data-width="65" data-width-unit="%">標題</th>
                                                             <th data-width="20" data-width-unit="%">日期</th>
+                                                            <th data-width="65" data-width-unit="%">標題</th>
                                                             <th data-width="15" data-width-unit="%">承辦人員</th>
                                                         </tr>
                                                     </thead>
@@ -153,8 +153,8 @@
                                                 <table style="font-size:15px;font-family:新細明體;" class="text-center table-striped table-sm" data-toggle="table" data- data-page-size=5 data-search="false" data-pagination="true" data-pagination-parts="[pageList]">
                                                     <thead>
                                                         <tr>
-                                                            <th data-width="65" data-width-unit="%">標題</th>
                                                             <th data-width="20" data-width-unit="%">日期</th>
+                                                            <th data-width="65" data-width-unit="%">標題</th>
                                                             <th data-width="15" data-width-unit="%">承辦人員</th>
                                                         </tr>
                                                     </thead>
@@ -184,8 +184,8 @@
                                                 <table style="font-size:15px;font-family:新細明體;" class="text-center table-hover table-striped table-sm" data-toggle="table" data- data-page-size=5 data-search="false" data-pagination="true" data-pagination-parts="[pageList]">
                                                     <thead>
                                                         <tr>
-                                                            <th data-width="40" data-width-unit="%">標題</th>
                                                             <th data-width="15" data-width-unit="%">訪視日期</th>
+                                                            <th data-width="40" data-width-unit="%">標題</th>
                                                             <th data-width="10" data-width-unit="%">承辦人員1</th>
                                                             <th data-width="10" data-width-unit="%">承辦人員2</th>
                                                             <th data-width="15" data-width-unit="%">結束時間</th>
@@ -219,9 +219,9 @@
                                                 <table style="font-size:15px;font-family:新細明體;" class="text-center table-hover table-striped table-sm" data-toggle="table" data- data-page-size=5 data-search="false" data-pagination="true" data-pagination-parts="[pageList]">
                                                     <thead>
                                                         <tr>
+                                                            <th data-width="20" data-width-unit="%">請假日期</th>
                                                             <th data-width="20" data-width-unit="%">請假人員</th>
                                                             <th data-width="15" data-width-unit="%">假別</th>
-                                                            <th data-width="20" data-width-unit="%">請假日期</th>
                                                             <th data-width="10" data-width-unit="%">時數</th>
                                                             <th data-width="20" data-width-unit="%">職務代理人</th>
                                                             <th data-width="10" data-width-unit="%">審核狀態</th>
@@ -911,7 +911,8 @@
     <!-- ================== JQ cookie.js ================== -->
     <script src="javascript/cookie/js.cookie-2.1.3.min.js"></script>
     <!-- ================== 行事曆 ================== -->
-    <script src="js/lib/main.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
+    <!-- <script src="js/lib/main.js"></script> -->
+    <script src="javascript/index.global.min.js"></script>
     <!-- ================== 行事曆設定 ================== -->
     <script src="js/fullcalendar.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
     <!-- ================== 登出設定 ================== -->
@@ -922,10 +923,7 @@
     <script src="javascript/bootstrap-table.min.js"></script>
     <script src="javascript/bootstrap-table-zh-TW.min.js"></script>
     
-    <!--     ==================  時間24小時 ================== -->
-    <script type="text/javascript" src="js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
-    <script type="text/javascript" src="js/bootstrap-datetimepicker.zh-TW.js" charset="UTF-8"></script>
-
+    
     <script>
         //設定js變數抓取使用者名稱
         var assign_name = '<?php echo $_SESSION["name"]; ?>';
@@ -933,6 +931,10 @@
 
     <!-- ================== announcement ================== -->
     <script src="js/index.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
+    <!--     ==================  時間24小時 ================== -->
+    <script type="text/javascript" src="js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="js/bootstrap-datetimepicker.zh-TW.js" charset="UTF-8"></script>
+
 </body>
 
 </html>

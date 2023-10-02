@@ -27,9 +27,9 @@ else
 $add_auto_note = "INSERT INTO `sign_notice` (`file_name`,`datetime`,`authority`,`person`,`authority_name`) VALUES ('$title', '$start_datetime', '1' ,'$publisher','$see_note')";
 mysqli_query($conn,$add_auto_note);
 if($url != ""){
-    $sql = "INSERT INTO `calendar` (`title`,`description`,`start`, `end`, `publisher`) VALUES ('$title','$url','$start_datetime', '$end_datetime', '$publisher')";
+    $sql = "INSERT INTO `calendar` (`title`,`description`,`start`, `end`, `publisher`, `authority`) VALUES ('$title','$url','$start_datetime', '$end_datetime', '$publisher', '$publisher')";
 }else{
-    $sql = "INSERT INTO `calendar` (`title`,`description`, `start`, `end`, `publisher`) VALUES ('$title','$description','$start_datetime', '$end_datetime', '$publisher')";
+    $sql = "INSERT INTO `calendar` (`title`,`description`, `start`, `end`, `publisher`, `authority`) VALUES ('$title','$description','$start_datetime', '$end_datetime', '$publisher', '$publisher')";
 }
 
 	if(mysqli_query($conn,$sql)){

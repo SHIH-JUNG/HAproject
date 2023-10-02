@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： localhost
--- 產生時間： 2023-10-01 09:36:47
+-- 產生時間： 2023-10-02 14:03:12
 -- 伺服器版本： 10.4.28-MariaDB
 -- PHP 版本： 8.2.4
 
@@ -239,7 +239,10 @@ CREATE TABLE `announcement` (
 INSERT INTO `announcement` (`Id`, `title`, `authority`, `publisher`, `datetime`) VALUES
 (1, 'testaaaaaa', 7, '社工組長', '2023-09-12'),
 (2, 'asdadasd', 3, '社工組長', '2023-09-12'),
-(3, '9月22日-團督會議', 3, '社工組長', '2023-09-16');
+(3, '9月22日-團督會議', 3, '社工組長', '2023-09-16'),
+(4, 'test', 3, '園主任', '2023-10-02'),
+(5, 'teasda', 4, '園主任', '2023-10-02'),
+(6, 'aaaaaaaaa', 7, '園主任', '2023-10-02');
 
 -- --------------------------------------------------------
 
@@ -317,7 +320,8 @@ CREATE TABLE `board_supervisor_v2` (
 INSERT INTO `board_supervisor_v2` (`Id`, `Year`, `record_content`, `upload_content`, `Agenda_file_path`, `Rec_file_path`, `Director`, `Director_signature`, `Director_sign_msg`, `Director_sign_time`, `Supervise`, `Supervise_signature`, `Supervise_sign_msg`, `Supervise_sign_time`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
 (1, '112', '', '\"[{\"name\":\"upload_agenda_title_name\",\"value\":\"test理監事會記錄議程test25\"},{\"name\":\"upload_agenda_date\",\"value\":\"112年08月25日\"},{\"name\":\"upload_agenda_remark\",\"value\":\"test;;議程test25\"},{\"name\":\"upload_title_name\",\"value\":\"test理監事會記錄標題825\"},{\"name\":\"upload_rec_date\",\"value\":\"112年08月25日\"},{\"name\":\"upload_rec_remark\",\"value\":\"test;;理監事會記錄;;825\"},{\"name\":\"upload_rec_director\",\"value\":\"園主任\"},{\"name\":\"upload_rec_supervise\",\"value\":\"執行長\"}]\"', '[\"../board_supervisor/112_0_data/upload/test825-1.docx\",\"../board_supervisor/112_0_data/upload/test825-2.docx\",\"../board_supervisor/112_0_data/upload/test825-1 - 複製.docx\"]', '[\"../board_supervisor/112_0_data/upload/rec_test825-1.docx\",\"../board_supervisor/112_0_data/upload/rec_test825-1 - 複製.docx\",\"../board_supervisor/112_0_data/upload/rec_test825-2.docx\"]', '園主任', '', '', '', '執行長', '', '', '', '2023-08-30 21:36:02', '園主任', '0000-00-00 00:00:00', ''),
 (2, '112', '', '\"[{\"name\":\"upload_agenda_title_name\",\"value\":\"test會議章程0902\"},{\"name\":\"upload_agenda_date\",\"value\":\"112年09月02日\"},{\"name\":\"upload_agenda_remark\",\"value\":\"0902\"},{\"name\":\"upload_title_name\",\"value\":\"test理監事會記錄0902\"},{\"name\":\"upload_rec_date\",\"value\":\"112年09月02日\"},{\"name\":\"upload_rec_remark\",\"value\":\"dwa0902\"},{\"name\":\"upload_rec_director\",\"value\":\"社工組長\"},{\"name\":\"upload_rec_supervise\",\"value\":\"執行長\"}]\"', '', '', '社工組長', '', '', '', '執行長', '', '', '', '2023-09-25 22:29:35', 'jia', '0000-00-00 00:00:00', ''),
-(3, '112', '', '\"[{\"name\":\"upload_agenda_title_name\",\"value\":\"TT會議章程0822\"},{\"name\":\"upload_agenda_date\",\"value\":\"112年08月22日\"},{\"name\":\"upload_agenda_remark\",\"value\":\"TTASSD0822\"},{\"name\":\"upload_title_name\",\"value\":\"TT理監事會記錄0901\"},{\"name\":\"upload_rec_date\",\"value\":\"112年09月01日\"},{\"name\":\"upload_rec_remark\",\"value\":\"TT0901\"},{\"name\":\"director\",\"value\":\"社工組長\"},{\"name\":\"supervise\",\"value\":\"執行長\"}]\"', '', '[\"../board_supervisor/112_3_data/upload/tEST0901.docx\"]', '社工組長', '', '', '', '執行長', '', '', '', '2023-09-25 22:42:49', 'jia', '2023-09-25 22:45:58', 'jia');
+(3, '112', '', '\"[{\"name\":\"upload_agenda_title_name\",\"value\":\"TT會議章程0822\"},{\"name\":\"upload_agenda_date\",\"value\":\"112年08月22日\"},{\"name\":\"upload_agenda_remark\",\"value\":\"TTASSD0822\"},{\"name\":\"upload_title_name\",\"value\":\"TT理監事會記錄0901\"},{\"name\":\"upload_rec_date\",\"value\":\"112年09月01日\"},{\"name\":\"upload_rec_remark\",\"value\":\"TT0901\"},{\"name\":\"director\",\"value\":\"社工組長\"},{\"name\":\"supervise\",\"value\":\"執行長\"}]\"', '', '[\"../board_supervisor/112_3_data/upload/tEST0901.docx\"]', '社工組長', '', '', '', '執行長', '', '', '', '2023-09-25 22:42:49', 'jia', '2023-09-25 22:45:58', 'jia'),
+(4, '112', '', '\"[{\"name\":\"upload_agenda_title_name\",\"value\":\"test會議章程標題1006\"},{\"name\":\"upload_agenda_date\",\"value\":\"112年10月06日\"},{\"name\":\"upload_agenda_remark\",\"value\":\"test\"},{\"name\":\"upload_title_name\",\"value\":\"test理監事會記錄標題1006\"},{\"name\":\"upload_rec_date\",\"value\":\"112年10月06日\"},{\"name\":\"upload_rec_remark\",\"value\":\"trdasd\"},{\"name\":\"upload_rec_director\",\"value\":\"社工組長\"},{\"name\":\"upload_rec_supervise\",\"value\":\"執行長\"}]\"', '', '', '社工組長', '', '', '', '執行長', '', '', '', '2023-10-02 18:17:42', 'jia', '0000-00-00 00:00:00', '');
 
 -- --------------------------------------------------------
 
@@ -331,94 +335,33 @@ CREATE TABLE `calendar` (
   `description` varchar(2000) NOT NULL,
   `start` varchar(16) NOT NULL,
   `end` varchar(16) NOT NULL,
+  `backgroundColor` varchar(1000) NOT NULL,
   `publisher` varchar(10) NOT NULL,
   `url` varchar(100) NOT NULL,
-  `date` datetime NOT NULL DEFAULT current_timestamp()
+  `date` datetime NOT NULL DEFAULT current_timestamp(),
+  `database_name` varchar(1000) NOT NULL,
+  `db_id` varchar(2000) NOT NULL,
+  `authority` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `calendar`
 --
 
-INSERT INTO `calendar` (`id`, `title`, `description`, `start`, `end`, `publisher`, `url`, `date`) VALUES
-(20, 'yukia(海洛因,安非他命)面訪', 'http://140.127.22.3/HappyAlliance/HAproject/phone_detail_v2.php?phone_id=2', '2021-09-26 14:00', '2021-09-26 15:00', '園主任', '', '2022-01-25 18:24:48'),
-(21, 'yukia(海洛因,安非他命)面訪', 'http://140.127.22.3/HappyAlliance/HAproject/phone_detail_v2.php?phone_id=2', '2021-10-15 14:00', '2021-10-15 15:00', '園主任', '', '2022-01-25 18:34:36'),
-(22, 'yukia(海洛因,安非他命)面訪', 'http://140.127.22.3/HappyAlliance/HAproject/phone_detail_v2.php?phone_id=2', '2021-10-11 12:00', '2021-10-11 13:00', '園主任', '', '2022-01-25 18:35:40'),
-(23, 'Allen(K他命)面訪', 'http://140.127.22.3/HappyAlliance/HAproject/phone_detail_v2.php?phone_id=1', '2021-09-17 08:00', '2021-09-17 09:00', '園主任', '', '2022-01-25 19:16:02'),
-(24, 'Deny(大麻)面訪', 'http://140.127.22.3/HappyAlliance/HAproject/phone_detail_v2.php?phone_id=3', '2021-12-18 15:00', '2021-12-18 16:00', '園主任', '', '2022-01-25 20:07:36'),
-(25, '黃QQ(2021-12-09)監所輔導-訪談', 'http://140.127.22.3/HappyAlliance/HAproject/counsel_detail.php?id=1&counsel_id=766', '2021-12-09 15:00', '2021-12-09 18:30', '園主任', '', '2022-03-09 17:51:49'),
-(26, '黃QQ(2021-12-09)監所輔導-訪談', 'http://140.127.22.3/HappyAlliance/HAproject/counsel_detail.php?id=1&counsel_id=766', '2021-12-09 09:30', '2021-12-09 11:00', '園主任', '', '2022-03-09 17:53:20'),
-(27, '黃QQ(2021-12-16)監所輔導-訪談', 'http://140.127.22.3/HappyAlliance/HAproject/counsel_detail.php?id=1&counsel_id=766', '2021-12-16 08:30', '2021-12-16 11:00', '園主任', '', '2022-03-09 17:57:47'),
-(28, '黃QQ(2021-12-10)監所輔導-訪談', 'http://140.127.22.3/HappyAlliance/HAproject/counsel_detail.php?id=1&counsel_id=766', '2021-12-10 12:00', '2021-12-10 13:00', '園主任', '', '2022-03-09 17:58:37'),
-(29, '黃QQ(2022-01-21)監所輔導-訪談', 'http://140.127.22.3/HappyAlliance/HAproject/counsel_detail.php?id=1&counsel_id=766', '2022-01-21 07:00', '2022-01-21 08:30', '園主任', '', '2022-03-09 17:59:13'),
-(30, '黃QQ(2022-01-28)監所輔導-訪談', 'http://140.127.22.3/HappyAlliance/HAproject/counsel_detail.php?id=1&counsel_id=766', '2022-01-28 12:00', '2022-01-28 13:00', '園主任', '', '2022-03-09 18:21:39'),
-(31, '黃QQ(2022-02-04)監所輔導-訪談', 'http://140.127.22.3/HappyAlliance/HAproject/counsel_detail.php?id=1&counsel_id=766', '2022-02-04 06:30', '2022-02-04 09:00', '園主任', '', '2022-03-09 19:32:25'),
-(32, 'test(2021-11-11)監所輔導-訪談', 'http://140.127.22.3/HappyAlliance/HAproject/counsel_detail.php?id=2&counsel_id=622', '2021-11-11 12:00', '2021-11-11 13:00', '園主任', '', '2022-03-09 19:36:12'),
-(33, 'Timmy(酒精)面訪', 'http://140.127.22.3/HappyAlliance/HAproject/phone_detail_v2.php?phone_id=4', '2021-11-07 12:00', '2021-11-07 13:00', '園主任', '', '2022-04-15 19:18:08'),
-(34, 'Deny(大麻)面訪', 'http://140.127.22.3/HappyAlliance/HAproject/phone_detail_v2.php?phone_id=3', '2021-11-25 10:00', '2021-11-25 11:00', '園主任', '', '2022-04-15 19:28:08'),
-(35, 'test(古柯鹼,搖頭丸,K他命,FM2藥丸,酒精,強力膠,檳榔,其他藥物)面訪', 'http://140.127.22.3/HappyAlliance/HAproject/phone_detail_v2.php?phone_id=6', '2022-06-09 12:00', '2022-06-09 13:00', '社工員1', '', '2022-06-27 10:27:10'),
-(36, 'Allen(2022-06-29)在職訓練', 'http://140.127.22.3/HappyAlliance/HAproject/training_detail.php?name=Allen&tra_id=10', '2022-06-29 12:00', '2022-06-29 13:00', '社工員1', '', '2022-07-05 10:05:53'),
-(37, 'Allen(2022-07-14)在職訓練', 'http://140.127.22.3/HappyAlliance/HAproject/training_detail.php?name=Allen&tra_id=10', '2022-07-14 12:00', '2022-07-14 13:00', '社工員1', '', '2022-07-05 10:14:26'),
-(38, 'Allen(2022-07-06)在職訓練', 'http://140.127.22.3/HappyAlliance/HAproject/training_detail.php?name=Allen&tra_id=10', '2022-07-06 12:00', '2022-07-06 13:00', '社工員1', '', '2022-07-05 10:54:51'),
-(39, 'Allen()在職訓練', 'http://140.127.22.3/HappyAlliance/HAproject/training_detail.php?name=Allen&tra_id=10', ' 12:00', ' 13:00', '社工員1', '', '2022-07-05 16:18:44'),
-(40, 'Allen(2022-07-08)在職訓練', 'http://140.127.22.3/HappyAlliance/HAproject/training_detail.php?name=Allen&tra_id=10', '2022-07-08 12:00', '2022-07-08 13:00', '社工員1', '', '2022-07-07 20:24:38'),
-(60, '團督記錄簽核：第12次團督紀錄', 'http://140.127.22.3/HappyAlliance/HAproject/supervisor_record_detail.php?year=111&id=13&sr_id=13&rec_type=fillin', '2022-07-11 14:46', '2022-07-12 09:30', '園主任', '', '2022-07-11 20:57:46'),
-(61, '團督記錄簽核：upload第3次團督會議記錄', 'http://140.127.22.3/HappyAlliance/HAproject/supervisor_record_detail.php?year=111&id=14&sr_id=14&rec_type=upload', '2022-07-11 15:09', '2022-07-13 15:09', '園主任', '', '2022-07-11 21:05:09'),
-(64, '團督記錄簽核：第5次團督會議紀錄upload', 'http://140.127.22.3/HappyAlliance/HAproject/supervisor_record_detail.php?year=111&id=16&sr_id=16&rec_type=upload', '2022-07-11 15:12', '2022-07-13 15:12', '園主任', '', '2022-07-11 21:09:12'),
-(67, '理監事會議記錄簽核：第3次理監事會議紀錄', 'http://140.127.22.3/HappyAlliance/HAproject/board_supervisor_detail.php?year=111&id=30&bs_id=30&rec_type=fillin', '2022-07-11 15:28', '2022-07-13 15:28', '園主任', '', '2022-07-11 21:33:28'),
-(68, '理監事會議記錄簽核：第15次理監事會議紀錄', 'http://140.127.22.3/HappyAlliance/HAproject/board_supervisor_detail.php?year=111&id=31&bs_id=31&rec_type=upload', '2022-07-11 15:58', '2022-07-13 15:58', '園主任', '', '2022-07-11 21:34:58'),
-(70, '會員大會記錄簽核：第33次會員大會記錄upload', 'http://140.127.22.3/HappyAlliance/HAproject/members_assemble_detail.php?year=111&id=12&ma_id=12&rec_type=upload', '2022-07-11 16:45', '2022-07-13 16:45', '園主任', '', '2022-07-11 22:02:45'),
-(71, '會員大會記錄簽核：test會員大會記錄標題3', 'http://140.127.22.3/HappyAlliance/HAproject/members_assemble_detail.php?year=111&id=13&ma_id=13&rec_type=fillin', '2022-07-11 16:39', '2022-07-13 16:39', '園主任', '', '2022-07-11 22:03:39'),
-(72, 'test001()在職訓練', 'http://localhost/HappyAlliance/HAproject/training_detail.php?id=27', ' 12:00', ' 13:00', '社工員1', '', '2022-10-18 13:10:05'),
-(73, '陳O玲(古柯鹼,大麻,菸)面訪', 'https://140.127.22.2/HappyAlliance/HAproject/phone_detail_v2.php?phone_id=8', '2022-10-26 12:00', '2022-10-26 13:00', '花花', '', '2022-10-25 10:00:44'),
-(74, '測O試(FM2藥丸,檳榔)面訪', 'https://140.127.22.2/HappyAlliance/HAproject/phone_detail_v2.php?phone_id=9', '2022-10-31 16:00', '2022-10-31 17:00', '花花', '', '2022-10-25 10:44:28'),
-(75, '測O試(FM2藥丸,檳榔)面訪', 'https://140.127.22.2/HappyAlliance/HAproject/phone_detail_v2.php?phone_id=9', '2022-11-04 10:00', '2022-11-04 11:00', '花花', '', '2022-10-25 10:45:21'),
-(76, '測O試(2022-10-13)監所服務-訪談', 'https://140.127.22.2/HappyAlliance/HAproject/counsel_detail.php?id=3&counsel_id=999', '2022-10-13 13:00', '2022-10-13 15:00', '花花', '', '2022-10-25 11:03:38'),
-(77, '測O試(2022-10-14)監所服務-訪談', 'https://140.127.22.2/HappyAlliance/HAproject/counsel_detail.php?id=3&counsel_id=999', '2022-10-14 09:00', '2022-10-14 11:30', '花花', '', '2022-10-25 11:04:36'),
-(78, '測O試(2022-10-15)監所服務-訪談', 'https://140.127.22.2/HappyAlliance/HAproject/counsel_detail.php?id=3&counsel_id=999', '2022-10-15 16:00', '2022-10-15 17:00', '花花', '', '2022-10-25 11:05:16'),
-(79, '測O試(2022-10-15)監所服務-訪談', 'https://140.127.22.2/HappyAlliance/HAproject/counsel_detail.php?id=3&counsel_id=999', '2022-10-15 16:00', '2022-10-15 17:00', '花花', '', '2022-10-25 11:05:16'),
-(80, '測O試(2022-10-15)監所服務-訪談', 'https://140.127.22.2/HappyAlliance/HAproject/counsel_detail.php?id=3&counsel_id=999', '2022-10-15 16:00', '2022-10-15 17:00', '花花', '', '2022-10-25 11:05:16'),
-(81, '測O試(2022-10-17)監所服務-訪談', 'https://140.127.22.2/HappyAlliance/HAproject/counsel_detail.php?id=3&counsel_id=999', '2022-10-17 12:00', '2022-10-17 13:00', '花花', '', '2022-10-25 11:05:56'),
-(82, '測O試(2022-10-18)監所服務-訪談', 'https://140.127.22.2/HappyAlliance/HAproject/counsel_detail.php?id=3&counsel_id=999', '2022-10-18 11:00', '2022-10-18 12:00', '花花', '', '2022-10-25 11:06:25'),
-(83, '測O試(2022-10-19)監所服務-訪談', 'https://140.127.22.2/HappyAlliance/HAproject/counsel_detail.php?id=3&counsel_id=999', '2022-10-19 14:00', '2022-10-19 15:00', '花花', '', '2022-10-25 11:06:55'),
-(84, 'qas()在職訓練', 'http://localhost/HappyAlliance/HAproject/training_detail.php?id=31', ' 12:00', ' 13:00', '社工員1', '', '2022-11-29 14:56:39'),
-(85, 'ㄓㄜㄒㄧㄢ(2022-12-06)在職訓練', 'https://140.127.22.2/HappyAlliance/HAproject/training_detail.php?id=34', '2022-12-06 12:00', '2022-12-06 13:00', '花花', '', '2022-12-06 16:15:32'),
-(86, '青蛙(酒精,精神藥物,香菸)面訪', 'https://140.127.22.2/HappyAlliance/HAproject/phone_detail_v2.php?phone_id=12', '2019-02-03 12:00', '2019-02-03 17:00', '花花', '', '2022-12-09 09:08:25'),
-(87, '盧櫻桃(2020-07-29)監所服務-訪談', 'https://140.127.22.2/HappyAlliance/HAproject/counsel_detail.php?id=6&counsel_id=0', '2020-07-29 04:00', '2020-07-29 19:00', '花花', '', '2022-12-09 09:33:04'),
-(88, '盧櫻桃(2021-08-06)監所服務-訪談', 'https://140.127.22.2/HappyAlliance/HAproject/counsel_detail.php?id=6&counsel_id=0', '2021-08-06 13:00', '2021-08-06 14:00', '花花', '', '2022-12-09 09:33:42'),
-(89, '盧櫻桃(2022-01-01)監所服務-訪談', 'https://140.127.22.2/HappyAlliance/HAproject/counsel_detail.php?id=6&counsel_id=0', '2022-01-01 12:00', '2022-01-01 16:00', '花花', '', '2022-12-09 09:34:15'),
-(90, '盧櫻桃(2022-02-01)監所服務-訪談', 'https://140.127.22.2/HappyAlliance/HAproject/counsel_detail.php?id=6&counsel_id=0', '2022-02-01 01:00', '2022-02-01 07:30', '花花', '', '2022-12-09 09:35:19'),
-(91, '盧櫻桃(2022-03-01)監所服務-訪談', 'https://140.127.22.2/HappyAlliance/HAproject/counsel_detail.php?id=6&counsel_id=0', '2022-03-01 07:00', '2022-03-01 09:00', '花花', '', '2022-12-09 09:35:52'),
-(92, '盧櫻桃(2022-04-03)監所服務-訪談', 'https://140.127.22.2/HappyAlliance/HAproject/counsel_detail.php?id=6&counsel_id=0', '2022-04-03 12:30', '2022-04-03 14:00', '花花', '', '2022-12-09 09:36:27'),
-(93, '盧櫻桃(2022-05-09)監所服務-訪談', 'https://140.127.22.2/HappyAlliance/HAproject/counsel_detail.php?id=6&counsel_id=0', '2022-05-09 13:30', '2022-05-09 15:30', '花花', '', '2022-12-09 09:37:21'),
-(94, '盧櫻桃(2022-06-05)監所服務-訪談', 'https://140.127.22.2/HappyAlliance/HAproject/counsel_detail.php?id=6&counsel_id=0', '2022-06-05 12:00', '2022-06-05 13:00', '花花', '', '2022-12-09 09:38:01'),
-(95, 'fff()在職訓練', 'http://localhost/HappyAlliance/HAproject/training_detail.php?id=31', ' 12:00', ' 13:00', 'ㄓㄜㄒㄧㄢ', '', '2023-04-10 09:12:16'),
-(96, '測O試(FM2藥丸,檳榔)面訪', 'https://140.127.22.2/HappyAlliance/HAproject/phone_detail_v2.php?phone_id=9', '2023-03-30 12:00', '2023-03-30 13:00', '社工員1', '', '2023-04-13 13:24:56'),
-(97, 'fdfsf()在職訓練', 'https://140.127.22.2/HappyAlliance/HAproject/training_detail.php?id=31', ' 12:00', ' 13:00', '社工員1', '', '2023-06-15 11:01:54'),
-(98, '(2023-06-12)在職訓練', 'https://140.127.22.2/HappyAlliance/HAproject/training_detail.php?id=31', '2023-06-12 05:00', '2023-06-12 06:00', '社工員1', '', '2023-06-15 11:03:18'),
-(99, 'timo(2023-06-09)在職訓練', 'https://140.127.22.2/HappyAlliance/HAproject/training_detail.php?id=41', '2023-06-09 03:00', '2023-06-09 04:00', '社工員1', '', '2023-06-15 11:21:40'),
-(100, 'timo(2023-06-17)在職訓練', 'https://140.127.22.2/HappyAlliance/HAproject/training_detail.php?id=41', '2023-06-17 12:00', '2023-06-17 13:00', '社工員1', '', '2023-06-15 13:16:05'),
-(101, 'timo()在職訓練', 'https://140.127.22.2/HappyAlliance/HAproject/training_detail.php?id=41', ' 12:00', ' 13:00', '社工員1', '', '2023-06-15 13:28:33'),
-(102, 'timo(2023-06-17)在職訓練', 'https://140.127.22.2/HappyAlliance/HAproject/training_detail.php?id=41', '2023-06-17 12:00', '2023-06-17 13:00', '社工員1', '', '2023-06-15 13:52:10'),
-(103, 'timo(2023-06-02)在職訓練', 'https://140.127.22.2/HappyAlliance/HAproject/training_detail.php?id=41', '2023-06-02 12:00', '2023-06-02 15:00', '社工員1', '', '2023-06-15 15:13:29'),
-(104, 'timo(2023-06-20)在職訓練', 'https://140.127.22.2/HappyAlliance/HAproject/training_detail.php?id=41', '2023-06-20 12:00', '2023-06-20 20:00', '社工員1', '', '2023-06-15 15:18:27'),
-(105, 'timo()在職訓練', 'https://140.127.22.2/HappyAlliance/HAproject/training_detail.php?id=41', ' 12:00', ' 13:00', '社工員1', '', '2023-06-15 21:13:49'),
-(106, 'ddddd()在職訓練', 'https://140.127.22.2/HappyAlliance/HAproject/training_detail.php?id=48', ' 12:00', ' 13:00', '社工員1', '', '2023-06-15 21:33:42'),
-(107, '黃QQ(2023-07-13)監所服務-訪談', 'https://140.127.22.2/HappyAlliance/HAproject/counsel_detail.php?id=1&counsel_id=766', '2023-07-13 12:00', '2023-07-13 13:00', '社工員1', '', '2023-07-12 10:45:11'),
-(108, 'ddddd(2023-07-05)在職訓練', 'https://140.127.22.2/HappyAlliance/HAproject/training_detail.php?id=48', '2023-07-05 12:00', '2023-07-05 13:00', '社工員1', '', '2023-07-12 10:45:41'),
-(109, 'Timo()在職訓練', 'https://140.127.22.2/HappyAlliance/HAproject/training_detail.php?id=51', ' 12:00', ' 13:00', '社工員1', '', '2023-07-12 13:09:54'),
-(110, '黃QQ(2023-07-05)監所服務-訪談', 'https://140.127.22.2/HappyAlliance/HAproject/counsel_detail.php?id=1&counsel_id=766', '2023-07-05 12:00', '2023-07-05 13:00', '社工員1', '', '2023-07-12 13:12:04'),
-(111, '(2023-07-10)在職訓練', 'https://140.127.22.2/HappyAlliance/HAproject/training_detail.php?id=51', '2023-07-10 12:00', '2023-07-10 13:00', '社工組長', '', '2023-07-13 14:45:49'),
-(112, '(2023-07-06)在職訓練', 'https://140.127.22.2/HappyAlliance/HAproject/training_detail.php?id=51', '2023-07-06 08:00', '2023-07-06 09:00', '社工組長', '', '2023-07-13 14:47:56'),
-(113, 'fffg(2023-06-29)在職訓練', 'https://140.127.22.2/HappyAlliance/HAproject/training_detail.php?id=55&training_id=0', '2023-06-29 12:00', '2023-06-29 13:00', '社工員1', '', '2023-07-14 10:01:24'),
-(114, 'qqqq()在職訓練', 'https://140.127.22.2/HappyAlliance/HAproject/training_detail.php?id=58&training_id=0', ' 12:00', ' 13:00', '執行長', '', '2023-07-14 12:21:58'),
-(115, 'fffg(2023-07-04)在職訓練', 'https://140.127.22.2/HappyAlliance/HAproject/training_detail.php?id=55&training_id=0', '2023-07-04 12:30', '2023-07-04 13:30', '執行長', '', '2023-07-14 13:01:33'),
-(116, 'fffg(2023-07-11)在職訓練', 'https://140.127.22.2/HappyAlliance/HAproject/training_detail.php?id=55&training_id=0', '2023-07-11 12:30', '2023-07-11 13:30', '執行長', '', '2023-07-14 13:01:44'),
-(117, 'wu先生(2023-07-20)監所服務-訪談', 'https://140.127.22.2/HappyAlliance/HAproject/counsel_detail.php?id=7&counsel_id=9527', '2023-07-20 12:00', '2023-07-20 13:00', '花花', '', '2023-07-20 10:19:28'),
-(118, 'cccc(2023-08-10)在職訓練', 'https://140.127.22.2/HappyAlliance/HAproject/training_detail.php?id=67&training_id=3', '2023-08-10 12:00', '2023-08-10 13:00', '社工員1', '', '2023-08-09 13:15:29'),
-(119, '內部開會', '內部開會\n時間：1400', '2023-09-12 14:00', '2023-09-12 16:00', '社工組長', '', '2023-09-16 12:29:27'),
-(120, '出訪', '8:00', '2023-09-12 08:00', '2023-09-12 12:00', '社工組長', '', '2023-09-16 12:29:50'),
-(121, '團督會議', 'test', '2023-09-22 13:00', '2023-09-22 16:00', '社工組長', '', '2023-09-16 12:30:19');
+INSERT INTO `calendar` (`id`, `title`, `description`, `start`, `end`, `backgroundColor`, `publisher`, `url`, `date`, `database_name`, `db_id`, `authority`) VALUES
+(2, 'testa', 'bbb', '2023-10-10 12:00', '2023-10-10 13:00', '', 'jia', '', '2023-10-02 16:26:39', '', '', 'jia'),
+(3, 'bas', 'ttt', '2023-10-11 12:00', '2023-10-11 13:00', '', '園主任', '', '2023-10-02 16:28:28', '', '', '園主任'),
+(4, '車輛外出登記-jia', '借出車輛：FAS-0982，地點：test高雄，外出時間：16:25', '2023-10-02 16:20', '2023-10-02 17:45', '#D9006C	', 'jia', '', '2023-10-02 16:39:41', 'vehicle_retain', '11', 'all'),
+(5, '車輛外出登記-jia', '借出車輛：DAW-0921，地點：ttt高雄，外出時間：17:00', '2023-10-02 17:00', '2023-10-02 00:00', '#D9006C	', 'jia', '', '2023-10-02 16:55:34', 'vehicle_retain', '12', 'all'),
+(6, '車輛外出登記-jia', '借出車輛：TES交通工具，地點：P，外出時間：14:25', '2023-10-02 14:25', '2023-10-02 15:20', '#D9006C	', 'jia', '', '2023-10-02 16:57:28', 'vehicle_retain', '13', 'all'),
+(7, '社工訪視-test社工訪視', '標題：test社工訪視，時間：2023-10-02 14:05，主要承辦人員：社工員1', '2023-10-02 14:05', '2023-10-02 15:15', '#02C874', 'jia', '', '2023-10-02 17:01:53', 'visit_index', '4', 'all'),
+(8, '請假：jia 事假', 'day_off_detail.php?day_off_id=3&resume_id=1', '2023-10-06 08:30', '2023-10-06 11:00', '#FFA042', 'jia', '', '2023-10-02 17:37:44', 'day_off', '3', 'jia'),
+(9, '團督記錄簽核：test團督記錄標題aab', 'supervisor_record_detail_v2.php?year=112&id=5&sr_id=5&rec_type=upload', '2023-10-05 00:00', '2023-10-05 00:00', 'purple', 'jia', '', '2023-10-02 18:14:38', 'supervisor_record', '5', '社工組長、執行長'),
+(10, '理監事會記錄簽核：test理監事會記錄標題1006', 'board_supervisor_detail_v2.php?year=112&id=4&bs_id=4&rec_type=upload', '2023-10-06 00:00', '2023-10-06 00:00', 'purple', 'jia', '', '2023-10-02 18:17:42', 'board_supervisor', '4', '社工組長、執行長'),
+(11, '會員大會記錄簽核：會員大會記錄標題1011', 'members_assemble_detail_v2.php?year=112&id=3&ma_id=3&rec_type=upload', '2023-10-11 00:00', '2023-10-11 00:00', 'purple', 'jia', '', '2023-10-02 18:19:21', 'members_assemble', '3', '園主任、執行長'),
+(12, '車輛外出登記-園主任', '借出車輛：adasdad，地點：adasdsa，外出時間：12:00', '2023-10-02 12:00', '2023-10-02 00:00', '#D9006C	', '園主任', '', '2023-10-02 18:24:04', 'vehicle_retain', '14', 'all'),
+(13, 'testb', 'asdas', '2023-10-04 12:00', '2023-10-04 13:00', '', 'jia', '', '2023-10-02 19:56:12', '', '', 'jia'),
+(14, '社工訪視-test標題社工訪視快樂聯盟', '標題：test標題社工訪視快樂聯盟，時間：2023-10-02 17:05，主要承辦人員：社工員1', '2023-10-02 17:05', '0000-00-00 00:00', '#02C874', 'jia', '', '2023-10-02 20:02:22', 'visit_index', '5', 'all');
 
 -- --------------------------------------------------------
 
@@ -845,6 +788,8 @@ CREATE TABLE `day_off_v2` (
   `Fillin_date` date NOT NULL,
   `Day_off_type` varchar(50) NOT NULL,
   `Reason` longtext NOT NULL,
+  `Disposal_type` varchar(1000) NOT NULL,
+  `Hours_type` varchar(1000) NOT NULL,
   `Other_files` longtext NOT NULL,
   `Overtime_date_start` varchar(1000) NOT NULL,
   `Overtime_date_end` varchar(1000) NOT NULL,
@@ -876,9 +821,10 @@ CREATE TABLE `day_off_v2` (
 -- 傾印資料表的資料 `day_off_v2`
 --
 
-INSERT INTO `day_off_v2` (`Id`, `Resume_id`, `Resume_name`, `Rec_year`, `Fillin_date`, `Day_off_type`, `Reason`, `Other_files`, `Overtime_date_start`, `Overtime_date_end`, `Hours`, `Remain_comp_hours`, `Remain_annual_hours`, `Used_comp_hours`, `Used_annual_hours`, `Allow_status`, `Create_date`, `Create_name`, `Update_date`, `Update_name`, `Supervise`, `Supervise_signature`, `Supervise_sign_msg`, `Supervise_sign_time`, `Job_agent`, `Job_agent_signature`, `Job_agent_sign_msg`, `Job_agent_sign_time`, `Director`, `Director_signature`, `Director_sign_msg`, `Director_sign_time`) VALUES
-(1, 1, 'jia', 112, '2023-06-03', '病假', 'teradads請假\r\n事由', '../resume/resume_user1_testuser/day_off_datas/dayoftest111.docx', '112年05月09日_08:00', '112年05月09日_14:00', 6, 0, 16.4, 0, 6, '核准', '2023-06-03 20:06:43', 'jia', '2023-06-03 21:22:21', '社工組長', '執行長', '../signature/1685965557.png', 'ddd65', '2023-06-05 19:45:57', '社工員2', '', '', '', '社工組長', '../signature/1685965325.png', 'test65', '2023-06-05 19:42:05'),
-(2, 6, 'fffff', 112, '2023-09-07', '事假', 'testatsdasd\r\nreww\r\n請假\r\n事由', '../resume/resume_user6_ffff/day_off_datas/testasdadsa_day_off09.docx', '112年09月01日_10:00', '112年09月01日_14:00', 4, 0, 20, 0, 4, '審核中', '2023-09-07 21:19:31', 'fffff', '2023-09-07 21:19:31', '', '執行長', '', '', '', '社工員2', '', '', '', '社工組長', '', '', '');
+INSERT INTO `day_off_v2` (`Id`, `Resume_id`, `Resume_name`, `Rec_year`, `Fillin_date`, `Day_off_type`, `Reason`, `Disposal_type`, `Hours_type`, `Other_files`, `Overtime_date_start`, `Overtime_date_end`, `Hours`, `Remain_comp_hours`, `Remain_annual_hours`, `Used_comp_hours`, `Used_annual_hours`, `Allow_status`, `Create_date`, `Create_name`, `Update_date`, `Update_name`, `Supervise`, `Supervise_signature`, `Supervise_sign_msg`, `Supervise_sign_time`, `Job_agent`, `Job_agent_signature`, `Job_agent_sign_msg`, `Job_agent_sign_time`, `Director`, `Director_signature`, `Director_sign_msg`, `Director_sign_time`) VALUES
+(1, 1, 'jia', 112, '2023-06-03', '病假', 'teradads請假\r\n事由', '', '', '../resume/resume_user1_testuser/day_off_datas/dayoftest111.docx', '112年05月09日_08:00', '112年05月09日_14:00', 6, 0, 16.4, 0, 6, '核准', '2023-06-03 20:06:43', 'jia', '2023-06-03 21:22:21', '社工組長', '執行長', '../signature/1685965557.png', 'ddd65', '2023-06-05 19:45:57', '社工員2', '', '', '', '社工組長', '../signature/1685965325.png', 'test65', '2023-06-05 19:42:05'),
+(2, 6, 'fffff', 112, '2023-09-07', '事假', 'testatsdasd\r\nreww\r\n請假\r\n事由', '', '', '../resume/resume_user6_ffff/day_off_datas/testasdadsa_day_off09.docx', '112年09月01日_10:00', '112年09月01日_14:00', 4, 0, 20, 0, 4, '審核中', '2023-09-07 21:19:31', 'fffff', '2023-09-07 21:19:31', '', '執行長', '', '', '', '社工員2', '', '', '', '社工組長', '', '', ''),
+(3, 1, 'jia', 112, '2023-10-02', '事假', 'test請假\r\n事由', '扣時數', '半天假', '../resume/resume_user1_testuser/day_off_datas/testdayoff.docx', '112年10月06日_8:30', '112年10月06日_11:00', 2.5, 0, 14.4, 0, 2.5, '審核中', '2023-10-02 17:37:44', 'jia', '2023-10-02 17:37:44', '', '執行長', '', '', '', '社工員2', '', '', '', '社工組長', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -1468,7 +1414,15 @@ INSERT INTO `login_record` (`Id`, `Login_timestamp`, `Login_account`, `Login_aut
 (269, '2023-09-29 20:42:58', 'test5', '2', '園主任', '22.593916310975608,120.48880948217636', 0),
 (270, '2023-09-29 20:49:06', 'testuser', '5', 'jia', '22.593916310975608,120.48880948217636', 0),
 (271, '2023-09-29 20:55:26', 'test5', '2', '園主任', '22.593909666666665,120.48881566666667', 0),
-(272, '2023-10-01 12:41:00', 'testuser', '5', 'jia', '22.593916472840217,120.48880938832706', 1);
+(272, '2023-10-01 12:41:00', 'testuser', '5', 'jia', '22.593916472840217,120.48880938832706', 1),
+(273, '2023-10-02 15:27:20', 'testuser', '5', 'jia', '22.593916310975608,120.48880948217636', 1),
+(274, '2023-10-02 15:32:33', 'test5', '2', '園主任', '22.593916310975608,120.48880948217636', 1),
+(275, '2023-10-02 16:13:08', 'testuser', '5', 'jia', '22.593916310975608,120.48880948217636', 0),
+(276, '2023-10-02 16:26:53', 'test5', '2', '園主任', '22.5939125,120.488813', 0),
+(277, '2023-10-02 16:28:40', 'testuser', '5', 'jia', '22.593916310975608,120.48880948217636', 0),
+(278, '2023-10-02 18:10:49', 'testuser', '5', 'jia', '22.593916310975608,120.48880948217636', 0),
+(279, '2023-10-02 18:19:51', 'test5', '2', '園主任', '22.593916310975608,120.48880948217636', 0),
+(280, '2023-10-02 19:10:50', 'testuser', '5', 'jia', '22.5939125,120.488813', 0);
 
 -- --------------------------------------------------------
 
@@ -1537,7 +1491,8 @@ CREATE TABLE `members_assemble_v2` (
 
 INSERT INTO `members_assemble_v2` (`Id`, `Year`, `record_content`, `upload_content`, `Agenda_file_path`, `Rec_file_path`, `Director`, `Director_signature`, `Director_sign_msg`, `Director_sign_time`, `Supervise`, `Supervise_signature`, `Supervise_sign_msg`, `Supervise_sign_time`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
 (1, '111', '', '\"[{\"name\":\"upload_agenda_title_name\",\"value\":\"test會員大會記錄_議程test1111\"},{\"name\":\"upload_agenda_date\",\"value\":\"111年11月11日\"},{\"name\":\"upload_agenda_remark\",\"value\":\"test;;議程;;111年11月11日\"},{\"name\":\"upload_title_name\",\"value\":\"test會員大會記錄標題1111111\"},{\"name\":\"upload_rec_date\",\"value\":\"111年11月11日\"},{\"name\":\"upload_rec_remark\",\"value\":\"111年11月11日;;test會員大會記錄\"},{\"name\":\"upload_rec_director\",\"value\":\"園主任\"},{\"name\":\"upload_rec_supervise\",\"value\":\"執行長\"}]\"', '[\"../members_assemble/111_0_data/upload/test111_11_11-1.docx\",\"../members_assemble/111_0_data/upload/test111_11_11-1 - 複製.docx\",\"../members_assemble/111_0_data/upload/test111_11_11-2.docx\"]', '[\"../members_assemble/111_0_data/upload/test111_11_11-recx1.docx\",\"../members_assemble/111_0_data/upload/test111_11_11-recx2.docx\"]', '園主任', '', '', '', '執行長', '', '', '', '2023-08-30 22:06:49', '園主任', '0000-00-00 00:00:00', ''),
-(2, '112', '', '\"[{\"name\":\"upload_agenda_title_name\",\"value\":\"tt會議章程0902\"},{\"name\":\"upload_agenda_date\",\"value\":\"112年09月02日\"},{\"name\":\"upload_agenda_remark\",\"value\":\"tt;;0902\"},{\"name\":\"upload_title_name\",\"value\":\"tt會員大會記錄0906\"},{\"name\":\"upload_rec_date\",\"value\":\"112年09月06日\"},{\"name\":\"upload_rec_remark\",\"value\":\"0906\"},{\"name\":\"director\",\"value\":\"園主任\"},{\"name\":\"supervise\",\"value\":\"執行長\"}]\"', '[\"../members_assemble/112_2_data/upload/ma0906.docx\"]', '', '園主任', '', '', '', '執行長', '', '', '', '2023-09-25 22:50:32', 'jia', '2023-09-25 22:50:59', 'jia');
+(2, '112', '', '\"[{\"name\":\"upload_agenda_title_name\",\"value\":\"tt會議章程0902\"},{\"name\":\"upload_agenda_date\",\"value\":\"112年09月02日\"},{\"name\":\"upload_agenda_remark\",\"value\":\"tt;;0902\"},{\"name\":\"upload_title_name\",\"value\":\"tt會員大會記錄0906\"},{\"name\":\"upload_rec_date\",\"value\":\"112年09月06日\"},{\"name\":\"upload_rec_remark\",\"value\":\"0906\"},{\"name\":\"director\",\"value\":\"園主任\"},{\"name\":\"supervise\",\"value\":\"執行長\"}]\"', '[\"../members_assemble/112_2_data/upload/ma0906.docx\"]', '', '園主任', '', '', '', '執行長', '', '', '', '2023-09-25 22:50:32', 'jia', '2023-09-25 22:50:59', 'jia'),
+(3, '112', '', '\"[{\"name\":\"upload_agenda_title_name\",\"value\":\"會議章程標題1011\"},{\"name\":\"upload_agenda_date\",\"value\":\"112年10月11日\"},{\"name\":\"upload_agenda_remark\",\"value\":\"dwdaw\"},{\"name\":\"upload_title_name\",\"value\":\"會員大會記錄標題1011\"},{\"name\":\"upload_rec_date\",\"value\":\"112年10月11日\"},{\"name\":\"upload_rec_remark\",\"value\":\"dwd1011\"},{\"name\":\"upload_rec_director\",\"value\":\"園主任\"},{\"name\":\"upload_rec_supervise\",\"value\":\"執行長\"}]\"', '', '', '園主任', '', '', '', '執行長', '', '', '', '2023-10-02 18:19:21', 'jia', '0000-00-00 00:00:00', '');
 
 -- --------------------------------------------------------
 
@@ -2066,7 +2021,11 @@ INSERT INTO `record_warn` (`Id`, `Record_id`, `Rtype_name`, `R_or_G`, `Title`, `
 (8, 3, 'board_supervisor', 'G', '上傳提醒：TT理監事會記錄0901', '2023-08-29 00:00:00', 'board_supervisor_detail_v2.php?year=112&id=3&bs_id=3&rec_type=upload', '議程未完成上傳', '2023-09-25 22:42:49', 'jia', '0000-00-00 00:00:00', ''),
 (9, 3, 'board_supervisor', 'R', '上傳提醒：TT理監事會記錄0901', '2023-09-08 00:00:00', 'board_supervisor_detail_v2.php?year=112&id=3&bs_id=3&rec_type=upload', '已上傳', '2023-09-25 22:42:49', 'jia', '2023-09-25 22:45:58', 'jia'),
 (10, 2, 'members_assemble', 'G', '上傳提醒：tt會員大會記錄0906', '2023-09-09 00:00:00', 'members_assemble_detail_v2.php?year=112&id=2&ma_id=2&rec_type=upload', '已上傳', '2023-09-25 22:50:32', 'jia', '2023-09-25 22:50:59', 'jia'),
-(11, 2, 'members_assemble', 'R', '上傳提醒：tt會員大會記錄0906', '2023-09-13 00:00:00', 'members_assemble_detail_v2.php?year=112&id=2&ma_id=2&rec_type=upload', '記錄未完成上傳', '2023-09-25 22:50:32', 'jia', '0000-00-00 00:00:00', '');
+(11, 2, 'members_assemble', 'R', '上傳提醒：tt會員大會記錄0906', '2023-09-13 00:00:00', 'members_assemble_detail_v2.php?year=112&id=2&ma_id=2&rec_type=upload', '記錄未完成上傳', '2023-09-25 22:50:32', 'jia', '0000-00-00 00:00:00', ''),
+(12, 4, 'board_supervisor', 'G', '上傳提醒：test理監事會記錄標題1006', '2023-10-13 00:00:00', 'board_supervisor_detail_v2.php?year=112&id=4&bs_id=4&rec_type=upload', '議程未完成上傳', '2023-10-02 18:17:42', 'jia', '0000-00-00 00:00:00', ''),
+(13, 4, 'board_supervisor', 'R', '上傳提醒：test理監事會記錄標題1006', '2023-10-13 00:00:00', 'board_supervisor_detail_v2.php?year=112&id=4&bs_id=4&rec_type=upload', '記錄未完成上傳', '2023-10-02 18:17:42', 'jia', '0000-00-00 00:00:00', ''),
+(14, 3, 'members_assemble', 'G', '上傳提醒：會員大會記錄標題1011', '2023-10-18 00:00:00', 'members_assemble_detail_v2.php?year=112&id=3&ma_id=3&rec_type=upload', '議程未完成上傳', '2023-10-02 18:19:21', 'jia', '0000-00-00 00:00:00', ''),
+(15, 3, 'members_assemble', 'R', '上傳提醒：會員大會記錄標題1011', '2023-10-18 00:00:00', 'members_assemble_detail_v2.php?year=112&id=3&ma_id=3&rec_type=upload', '記錄未完成上傳', '2023-10-02 18:19:21', 'jia', '0000-00-00 00:00:00', '');
 
 -- --------------------------------------------------------
 
@@ -2408,7 +2367,11 @@ INSERT INTO `signature_notice` (`Id`, `Sign_id`, `Title`, `Url`, `Timestamp`, `A
 (97, '3', '理監事會記錄簽核：TT理監事會記錄0901', 'board_supervisor_detail_v2.php?year=112&id=3&bs_id=3&rec_type=upload', '2023-09-01 00:00', 'jia', '社工組長、執行長', '社工組長未簽核、執行長未簽核', 'board_supervisor', '2023-09-25 22:42:49', 'jia', '2023-09-25 22:42:49', ''),
 (98, '2', '會員大會記錄簽核：tt會員大會記錄0906', 'members_assemble_detail_v2.php?year=112&id=2&ma_id=2&rec_type=upload', '2023-09-06 00:00', 'jia', '園主任、執行長', '園主任未簽核、執行長未簽核', 'members_assemble', '2023-09-25 22:50:32', 'jia', '2023-09-25 22:50:32', ''),
 (99, '8', '生輔紀錄簽核：日期生活輔導員tesst生活輔導員', 'dlgrec_detail.php?dlgrec_id=8', '2023-09-26 13:49', '社工員2', '社工員2、園主任、執行長', '社工員2未簽核、園主任未簽核、執行長未簽核', 'dlgrec', '2023-09-26 19:38:49', '園主任', '2023-09-26 19:38:49', ''),
-(100, '10', '生輔紀錄簽核：日期2023-09-07生活輔導員test管理員/生活輔導員', 'peers_dlgrec_detail.php?peers_dlgrec_id=10', '2023-09-26 13:26', '社工員1', '社工員1、園主任、執行長', '社工員1未簽核、園主任未簽核、執行長未簽核', 'peers_dlgrec', '2023-09-26 19:42:26', '園主任', '2023-09-26 19:42:26', '');
+(100, '10', '生輔紀錄簽核：日期2023-09-07生活輔導員test管理員/生活輔導員', 'peers_dlgrec_detail.php?peers_dlgrec_id=10', '2023-09-26 13:26', '社工員1', '社工員1、園主任、執行長', '社工員1未簽核、園主任未簽核、執行長未簽核', 'peers_dlgrec', '2023-09-26 19:42:26', '園主任', '2023-09-26 19:42:26', ''),
+(101, '3', '請假單簽核：jia 事假', 'day_off_detail.php?day_off_id=3&resume_id=1', '2023-10-02 00:00', 'jia', '社工員2、社工組長、執行長', '社工組長未簽核、執行長未簽核、社工員2未簽核', 'day_off', '2023-10-02 17:37:44', 'jia', '2023-10-02 17:37:44', ''),
+(102, '5', '團督記錄簽核：test團督記錄標題aa', 'supervisor_record_detail_v2.php?year=112&id=5&sr_id=5&rec_type=upload', '2023-10-05 00:00', 'jia', '社工組長、執行長', '社工組長未簽核、執行長未簽核', 'supervisor_record', '2023-10-02 18:14:38', 'jia', '2023-10-02 18:14:38', ''),
+(103, '4', '理監事會記錄簽核：test理監事會記錄標題1006', 'board_supervisor_detail_v2.php?year=112&id=4&bs_id=4&rec_type=upload', '2023-10-06 00:00', 'jia', '社工組長、執行長', '社工組長未簽核、執行長未簽核', 'board_supervisor', '2023-10-02 18:17:42', 'jia', '2023-10-02 18:17:42', ''),
+(104, '3', '會員大會記錄簽核：會員大會記錄標題1011', 'members_assemble_detail_v2.php?year=112&id=3&ma_id=3&rec_type=upload', '2023-10-11 00:00', 'jia', '園主任、執行長', '園主任未簽核、執行長未簽核', 'members_assemble', '2023-10-02 18:19:21', 'jia', '2023-10-02 18:19:21', '');
 
 -- --------------------------------------------------------
 
@@ -2433,12 +2396,12 @@ CREATE TABLE `sign_notice` (
 INSERT INTO `sign_notice` (`Id`, `file_name`, `authority`, `date`, `person`, `datetime`, `authority_name`) VALUES
 (2, '開會', 1, '0000-00-00', '園主任', '2021-12-16 12:00', '、、'),
 (3, 'Allen家訪', 1, '0000-00-00', '園主任', '2021-12-21 12:00', '、、'),
-(4, '1213測試', 1, '0000-00-00', '園主任', '2021-12-14 12:00', '、、'),
+(4, '車輛外出登記-jia', 1, '0000-00-00', '園主任', '2023-10-02 16:20', '、、'),
 (5, 'Tim(安非他命)會談', 1, '0000-00-00', '園主任', '2021-11-19 09:00', '社工員1、社工員2、'),
 (6, 'deny(大麻)會談', 1, '0000-00-00', '園主任', '2021-10-14 12:00', '社工員2、社工員1、'),
-(7, 'deny(大麻)會談', 1, '0000-00-00', '園主任', '2021-12-31 12:00', '社工員2、社工員1、'),
+(7, '社工訪視-test社工訪視', 1, '0000-00-00', '園主任', '2023-10-02 14:05', '社工員2、社工員1、'),
 (8, 'deny(大麻)會談', 1, '0000-00-00', '園主任', '2021-12-31 12:00', '社工員2、社工員1、'),
-(9, 'Allen(K他命)會談', 1, '0000-00-00', '園主任', '2021-11-09 12:00', '社工員2、社工組長、'),
+(9, '團督記錄簽核：test團督記錄標題aab', 1, '0000-00-00', '園主任', '2023-10-05 00:00', '社工員2、社工組長、'),
 (10, 'Allen(K他命)會談', 1, '0000-00-00', '園主任', '2021-11-06 07:00', '社工員1、社工員2、'),
 (11, 'Allen(K他命)會談', 1, '0000-00-00', '園主任', '2021-11-10 12:00', '社工員1、社工員2、'),
 (12, 'Allen(K他命)面訪', 1, '0000-00-00', '園主任', '2021-12-27 12:00', '社工員1、執行長、'),
@@ -2513,7 +2476,11 @@ INSERT INTO `sign_notice` (`Id`, `file_name`, `authority`, `date`, `person`, `da
 (81, 'cccc(2023-08-10)在職訓練', 1, '0000-00-00', '社工員1', '2023-08-10 12:00', '、、'),
 (82, '內部開會', 1, '0000-00-00', '社工組長', '2023-09-12 14:00', '、'),
 (83, '出訪', 1, '0000-00-00', '社工組長', '2023-09-12 08:00', '、'),
-(84, '團督會議', 1, '0000-00-00', '社工組長', '2023-09-22 13:00', '、');
+(84, '團督會議', 1, '0000-00-00', '社工組長', '2023-09-22 13:00', '、'),
+(85, 'ssa', 1, '0000-00-00', '園主任', '2023-10-24 12:00', '、'),
+(86, 'testa', 1, '0000-00-00', 'jia', '2023-10-10 12:00', '、'),
+(87, 'bas', 1, '0000-00-00', '園主任', '2023-10-11 12:00', '、'),
+(88, 'testb', 1, '0000-00-00', 'jia', '2023-10-04 12:00', '、');
 
 -- --------------------------------------------------------
 
@@ -2604,7 +2571,8 @@ INSERT INTO `supervisor_record_v2` (`Id`, `Year`, `record_content`, `upload_cont
 (1, '112', '', '\"[{\"name\":\"upload_agenda_title_name\",\"value\":\"test會議章程標題815\"},{\"name\":\"upload_agenda_date\",\"value\":\"112年08月15日\"},{\"name\":\"upload_agenda_remark\",\"value\":\"test會議章程標題;;815;;abaaaa\"},{\"name\":\"upload_title_name\",\"value\":\"test團督記錄標題815\"},{\"name\":\"upload_rec_date\",\"value\":\"112年08月15日\"},{\"name\":\"upload_rec_remark\",\"value\":\"test;;團督記錄標題;;815;;a\"},{\"name\":\"director\",\"value\":\"園主任\"},{\"name\":\"supervise\",\"value\":\"執行長\"}]\"', '[\"../supervisor_record/112_0_data/upload/testd1234.docx\",\"../supervisor_record/112_0_data/upload/testd123.docx\",\"../supervisor_record/112_0_data/upload/testd123 - 複製.docx\",\"../supervisor_record/112_0_data/upload/testd1234 - 複製 (2).docx\"]', '[\"../supervisor_record/112_0_data/upload/tcsacas.docx\",\"../supervisor_record/112_0_data/upload/tstaaaa.docx\",\"../supervisor_record/112_0_data/upload/asdadasdsb - 複製.jpg\",\"../supervisor_record/112_0_data/upload/asdadasdsb.jpg\"]', '園主任', '../supervisor_record/signature/1692191331.png', 'dwdw', '2023-08-16 21:08:51', '執行長', '', '', '', '2023-08-16 19:18:10', 'jia', '2023-08-16 22:16:31', '園主任'),
 (2, '112', '', '\"[{\"name\":\"upload_agenda_title_name\",\"value\":\"TEST會議章程標題925\"},{\"name\":\"upload_agenda_date\",\"value\":\"112年09月25日\"},{\"name\":\"upload_agenda_remark\",\"value\":\"TEST;;議程;;925\"},{\"name\":\"upload_title_name\",\"value\":\"TEST團督記錄標題925\"},{\"name\":\"upload_rec_date\",\"value\":\"112年09月25日\"},{\"name\":\"upload_rec_remark\",\"value\":\"TEST;;記錄;;925\"},{\"name\":\"director\",\"value\":\"社工組長\"},{\"name\":\"supervise\",\"value\":\"執行長\"}]\"', '[\"../supervisor_record/112_2_data/upload/議程925.docx\"]', '[\"../supervisor_record/112_2_data/upload/TEST會議記錄925.docx\"]', '社工組長', '', '', '', '執行長', '', '', '', '2023-09-25 17:51:41', 'jia', '2023-09-25 18:06:06', 'jia'),
 (3, '112', '', '\"[{\"name\":\"upload_agenda_title_name\",\"value\":\"test會議章程922\"},{\"name\":\"upload_agenda_date\",\"value\":\"112年09月22日\"},{\"name\":\"upload_agenda_remark\",\"value\":\"test922\"},{\"name\":\"upload_title_name\",\"value\":\"test團督記錄922\"},{\"name\":\"upload_rec_date\",\"value\":\"112年09月22日\"},{\"name\":\"upload_rec_remark\",\"value\":\"testassasdaa;;922\"},{\"name\":\"upload_rec_director\",\"value\":\"園主任\"},{\"name\":\"upload_rec_supervise\",\"value\":\"執行長\"}]\"', '', '', '園主任', '', '', '', '執行長', '', '', '', '2023-09-25 18:09:38', 'jia', '0000-00-00 00:00:00', ''),
-(4, '112', '', '\"[{\"name\":\"upload_agenda_title_name\",\"value\":\"tt會議章程0902\"},{\"name\":\"upload_agenda_date\",\"value\":\"112年09月02日\"},{\"name\":\"upload_agenda_remark\",\"value\":\"testasdasds\"},{\"name\":\"upload_title_name\",\"value\":\"test團督記錄0904\"},{\"name\":\"upload_rec_date\",\"value\":\"112年09月04日\"},{\"name\":\"upload_rec_remark\",\"value\":\"aaaaaa\"},{\"name\":\"director\",\"value\":\"社工組長\"},{\"name\":\"supervise\",\"value\":\"園主任\"}]\"', '[\"../supervisor_record/112_4_data/upload/aaa.docx\"]', '', '社工組長', '', '', '', '園主任', '', '', '', '2023-09-25 22:39:04', 'jia', '2023-09-25 23:20:07', 'jia');
+(4, '112', '', '\"[{\"name\":\"upload_agenda_title_name\",\"value\":\"tt會議章程0902\"},{\"name\":\"upload_agenda_date\",\"value\":\"112年09月02日\"},{\"name\":\"upload_agenda_remark\",\"value\":\"testasdasds\"},{\"name\":\"upload_title_name\",\"value\":\"test團督記錄0904\"},{\"name\":\"upload_rec_date\",\"value\":\"112年09月04日\"},{\"name\":\"upload_rec_remark\",\"value\":\"aaaaaa\"},{\"name\":\"director\",\"value\":\"社工組長\"},{\"name\":\"supervise\",\"value\":\"園主任\"}]\"', '[\"../supervisor_record/112_4_data/upload/aaa.docx\"]', '', '社工組長', '', '', '', '園主任', '', '', '', '2023-09-25 22:39:04', 'jia', '2023-09-25 23:20:07', 'jia'),
+(5, '112', '', '\"[{\"name\":\"upload_agenda_title_name\",\"value\":\"test會議章程標題\"},{\"name\":\"upload_agenda_date\",\"value\":\"112年10月04日\"},{\"name\":\"upload_agenda_remark\",\"value\":\"asdad\"},{\"name\":\"upload_title_name\",\"value\":\"test團督記錄標題aa\"},{\"name\":\"upload_rec_date\",\"value\":\"112年10月05日\"},{\"name\":\"upload_rec_remark\",\"value\":\"test\"},{\"name\":\"upload_rec_director\",\"value\":\"社工組長\"},{\"name\":\"upload_rec_supervise\",\"value\":\"執行長\"}]\"', '[\"../supervisor_record/112_5_data/upload/test團督記錄_章程.docx\"]', '[\"../supervisor_record/112_5_data/upload/test團督記錄.docx\"]', '社工組長', '', '', '', '執行長', '', '', '', '2023-10-02 18:14:38', 'jia', '0000-00-00 00:00:00', '');
 
 -- --------------------------------------------------------
 
@@ -2807,7 +2775,14 @@ INSERT INTO `vehicle_retain` (`Id`, `Borrow_date`, `Out_timestap`, `Back_timesta
 (2, '2023-10-02', '09:25:00', '00:00:00', 'test1002', '屏東市區1002', 'VAR-1242', '社工員2', '2023-10-01 15:23:08', 'jia', '2023-10-01 15:23:08', ''),
 (3, '2023-10-01', '16:00:00', '00:00:00', 'TEST事由', '屏東市區445', 'DRE-0982', '社工組長', '2023-10-01 15:23:41', 'jia', '2023-10-01 15:23:41', ''),
 (4, '2023-10-01', '13:05:00', '00:00:00', 'TEST事由', '高雄231', 'DDA-1233', '社工員1', '2023-10-01 15:24:49', 'jia', '2023-10-01 15:24:49', ''),
-(7, '2023-10-01', '10:30:00', '00:00:00', 'adasd', 'dasd', 'ttt', 'jia', '2023-10-01 15:31:44', 'jia', '2023-10-01 15:31:44', '');
+(7, '2023-10-01', '10:30:00', '00:00:00', 'adasd', 'dasd', 'ttt', 'jia', '2023-10-01 15:31:44', 'jia', '2023-10-01 15:31:44', ''),
+(8, '2023-10-02', '15:30:00', '00:00:00', 'TEST事由', '地點高雄', 'FVR-0921', '園主任', '2023-10-02 15:55:40', '園主任', '2023-10-02 15:55:40', ''),
+(9, '2023-10-02', '13:30:00', '00:00:00', 'adsd', '屏東市', 'DEA-9988', '園主任', '2023-10-02 16:04:55', '園主任', '2023-10-02 16:04:55', ''),
+(10, '2023-10-02', '17:00:00', '00:00:00', 'test事由', 'test高雄', 'DAS-0982', 'jia', '2023-10-02 16:20:24', 'jia', '2023-10-02 16:20:24', ''),
+(11, '2023-10-02', '16:20:00', '17:45:00', 'ttt事由', 'test高雄', 'FAS-0982', 'jia', '2023-10-02 16:39:41', 'jia', '2023-10-02 16:39:41', ''),
+(12, '2023-10-02', '17:00:00', '17:50:00', 'ttt事由', 'ttt高雄', 'DAW-0921', 'jia', '2023-10-02 16:55:34', 'jia', '2023-10-02 16:56:09', 'jia'),
+(13, '2023-10-02', '14:25:00', '15:20:00', 'TTT', 'P', 'TES交通工具', 'jia', '2023-10-02 16:57:28', 'jia', '2023-10-02 16:57:53', 'jia'),
+(14, '2023-10-02', '12:00:00', '00:00:00', 'taasd', 'adasdsa', 'adasdad', '園主任', '2023-10-02 18:24:04', '園主任', '2023-10-02 18:24:04', '');
 
 -- --------------------------------------------------------
 
@@ -2836,7 +2811,9 @@ CREATE TABLE `visit_index` (
 INSERT INTO `visit_index` (`Id`, `Visit_title`, `Visit_time`, `Visit_assign1`, `Visit_assign2`, `Visit_end_time`, `Remark`, `Create_date`, `Create_name`, `Update_date`, `Update_name`) VALUES
 (1, 'test社工訪視', '2023-09-07 09:30:00', '社工員1', '社工員2', '2023-09-07 12:00:00', '', '2023-09-07 19:09:01', '園主任', '2023-09-16 12:31:45', '社工組長'),
 (2, 'testaaaaaaaaa', '2023-09-06 08:20:00', '社工員2', '丘培民', '2023-09-07 15:30:00', 'test\n訪視結束15:30', '2023-09-07 20:01:44', '園主任', '2023-09-07 20:26:24', '園主任'),
-(3, '社工訪視1', '2023-09-15 14:30:00', '社工組長', '社工員2', NULL, '', '2023-09-16 12:31:16', '社工組長', '2023-09-16 12:31:16', '');
+(3, '社工訪視1', '2023-09-15 14:30:00', '社工組長', '社工員2', NULL, '', '2023-09-16 12:31:16', '社工組長', '2023-09-16 12:31:16', ''),
+(4, 'test社工訪視', '2023-10-02 14:05:00', '社工員1', '社工員2', '2023-10-02 15:15:00', 'aaa', '2023-10-02 17:01:53', 'jia', '2023-10-02 17:08:32', 'jia'),
+(5, 'test標題社工訪視快樂聯盟', '2023-10-02 17:05:00', '社工員1', '社工員2', NULL, '', '2023-10-02 20:02:22', 'jia', '2023-10-02 20:02:22', '');
 
 -- --------------------------------------------------------
 
@@ -3431,7 +3408,7 @@ ALTER TABLE `accounting_record_report`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `announcement`
 --
 ALTER TABLE `announcement`
-  MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `board_supervisor`
@@ -3443,13 +3420,13 @@ ALTER TABLE `board_supervisor`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `board_supervisor_v2`
 --
 ALTER TABLE `board_supervisor_v2`
-  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `calendar`
 --
 ALTER TABLE `calendar`
-  MODIFY `id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
+  MODIFY `id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `case_report`
@@ -3491,7 +3468,7 @@ ALTER TABLE `current_case`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `day_off_v2`
 --
 ALTER TABLE `day_off_v2`
-  MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `dlgrec`
@@ -3533,7 +3510,7 @@ ALTER TABLE `leave_rule_table`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `login_record`
 --
 ALTER TABLE `login_record`
-  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=273;
+  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=281;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `members_assemble`
@@ -3545,7 +3522,7 @@ ALTER TABLE `members_assemble`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `members_assemble_v2`
 --
 ALTER TABLE `members_assemble_v2`
-  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `overtime`
@@ -3629,7 +3606,7 @@ ALTER TABLE `received_forms`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `record_warn`
 --
 ALTER TABLE `record_warn`
-  MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `resume`
@@ -3671,13 +3648,13 @@ ALTER TABLE `screening_type_keywords`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `signature_notice`
 --
 ALTER TABLE `signature_notice`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `sign_notice`
 --
 ALTER TABLE `sign_notice`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `supervisor_record`
@@ -3689,7 +3666,7 @@ ALTER TABLE `supervisor_record`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `supervisor_record_v2`
 --
 ALTER TABLE `supervisor_record_v2`
-  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `training`
@@ -3719,13 +3696,13 @@ ALTER TABLE `user_info_default_auth`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `vehicle_retain`
 --
 ALTER TABLE `vehicle_retain`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `visit_index`
 --
 ALTER TABLE `visit_index`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `volunteer`

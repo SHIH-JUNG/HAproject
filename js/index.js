@@ -2,7 +2,7 @@ const notyf = new Notyf();
 
 // 民國年轉換日期格式yyyy-dd-mm region
 function split_date(date) {
-    console.log(date)
+    // console.log(date)
     return parseInt(date.split("年")[0])+1911+"-"+date.split("年")[1].split("月")[0]+"-"+date.split("年")[1].split("月")[1].split("日")[0]; 
   }
   //endregion
@@ -45,7 +45,6 @@ $(document).ready(function () {
 		startView: 1,
     });
 
-
     // 載入全部user至下拉式選單
     // append_user();
     user_element_arr = ['#vr_booker', '#add_vr_booker', '#u_vr_booker', 
@@ -56,152 +55,196 @@ $(document).ready(function () {
     });
     
     $("#add_vr_booker").val(assign_name);
-    
-    //show 訊息公告 region
-    $.ajax({
-        url: "database/announcement.php",
-        type: "POST",
-        dataType: "JSON",
-        async: false,//啟用同步請求
-        success: function (data) {
-            // console.log(data);
-            var cssString = "";
-            for (var index in data.title) {
-                cssString += 
-                        '<tr>' +
-                        '<td style="LINE-HEIGHT:1px">' + data.title[index] + '</td>' +
-                        '<td style="LINE-HEIGHT:1px">' + data.date[index] + '</td>' +
-                        '<td style="LINE-HEIGHT:1px">' + data.publisher[index] + '</td>' +
-                        '</tr>'
-            }
+});    
 
-            if(cssString != '') {
-                $("#ann").html(cssString);
-            }
-        },
-        error: function (e) {
-            notyf.alert('伺服器錯誤,無法載入' + e);
+
+//show 訊息公告 region
+$.ajax({
+    url: "database/announcement.php",
+    type: "POST",
+    dataType: "JSON",
+    async: false,//啟用同步請求
+    success: function (data) {
+        // console.log(data);
+        var cssString = "";
+        for (var index in data.title) {
+            cssString += 
+                    '<tr>' +
+                    '<td style="LINE-HEIGHT:1px">' + data.date[index] + '</td>' +
+                    '<td style="LINE-HEIGHT:1px">' + data.title[index] + '</td>' +
+                    '<td style="LINE-HEIGHT:1px">' + data.publisher[index] + '</td>' +
+                    '</tr>'
         }
-    });
-    //endregion
 
-    //show 車輛保留 region
-    $.ajax({
-        url: "database/vehicle_retain_show.php",
-        type: "POST",
-        dataType: "JSON",
-        async: false,//啟用同步請求
-        success: function (data) {
-            console.log(data);
+        if(cssString != '') {
+            $("#ann").html(cssString);
+        }
+    },
+    error: function (e) {
+        notyf.alert('伺服器錯誤,無法載入' + e);
+    }
+});
+//endregion
 
-            var cssString = "";
-            $.each(data, function (index, value) {
+//show 車輛保留 region
+$.ajax({
+    url: "database/vehicle_retain_show.php",
+    type: "POST",
+    dataType: "JSON",
+    async: false,//啟用同步請求
+    success: function (data) {
+        // console.log(data);
 
-                var timenow = moment().format('YYYY-MM-DD HH:mm');
+        var cssString = "";
+        $.each(data, function (index, value) {
 
-                let date_diff = DateDiff(timenow.split(" ")[0], value.Borrow_date);
+            var timenow = moment().format('YYYY-MM-DD HH:mm');
 
-                //只顯示當天的資料
-                if(date_diff == 0)
-                {
-                    var tr_color = "";
-                    var back_timestap = "";
-    
-                    // 判斷是否結束，結束的話Back_timestap不為null值
-                    if(value.Back_timestap == '00:00:00')
-                    {
-                        tr_color = "#FF9797";
-                        back_timestap = "";
-                    }
-                    else
-                    {
-                        tr_color = "#90ee90";
-                        back_timestap = value.Back_timestap.split(":")[0] + ":" + value.Back_timestap.split(":")[1];
-                    }
-                    
-                    cssString +=
-                                '<tr style="background-color:'+tr_color+';" id="'+value.Id+'">' +
-                                '<td row_name="n_row" style="LINE-HEIGHT:1px">' + value.Borrow_date + '</td>' +
-                                '<td row_name="n_row" style="LINE-HEIGHT:1px">' + value.Out_timestap.split(":")[0] + ":" + value.Out_timestap.split(":")[1] + '</td>' +
-                                '<td row_name="n_row" style="LINE-HEIGHT:1px">' + value.Reason + '</td>' +
-                                '<td row_name="n_row" style="LINE-HEIGHT:1px">' + value.Place + '</td>' +
-                                '<td row_name="n_row" style="LINE-HEIGHT:1px">' + value.Vehicle + '</td>' +
-                                '<td row_name="n_row" style="LINE-HEIGHT:1px">' + back_timestap + '</td>' +
-                                '<td row_name="n_row" style="LINE-HEIGHT:1px">' + value.Booker + '</td>';
-    
-                    if(value.Back_timestap == '00:00:00')
-                    {
-                        cssString += '<td row_name="last_row" style="LINE-HEIGHT:1px">' + '<a style="text-decoration: underline;" href="javascript: void(0)" onclick="end_vehicle_retain('+value.Id+')">歸還車輛</a>' + '</td>' +
-                        '</tr>';
-                    }
-                    else
-                    {
-                        cssString += '<td row_name="last_row" style="LINE-HEIGHT:1px"><span style="color:blue;">已結束</span></td></tr>';
-                    }
-                }
-            });
-            
-            if(cssString != '') {
-                $("#vehicle_retain_info").html(cssString);
-            }
+            let date_diff = DateDiff(timenow.split(" ")[0], value.Borrow_date);
 
-            //綁定表格欄onclick事件，點擊顯示模態框，車輛保留-詳細資料
-            $("#vehicle_retain_info>tr td").each(function(i,v)
+            //只顯示當天的資料
+            if(date_diff == 0)
             {
-                var currentEle_class = $(this).attr("row_name");
-
-                if(currentEle_class != "last_row")
-                {
-                    var currentEle = $(this);
-                    
-                    currentEle.on("click",function () {
-                    
-                        var attr_id = $(this).parent("tr").attr("id");
-
-                        $('#show_vehicle_retain_m').modal('show');
-                    
-                        show_vehicle_retain_modal(attr_id);
-                    });
-                }
-            });
-
-        },
-        error: function (e) {
-            notyf.alert('伺服器錯誤,無法載入' + e);
-        }
-    });
-    //endregion
-
-    //show 社工訪視 region
-    $.ajax({
-        url: "database/visit_show.php",
-        type: "POST",
-        dataType: "JSON",
-        async: false,//啟用同步請求
-        success: function (data) {
-            // console.log(data);
-
-            var cssString = "";
-            $.each(data, function (index, value) {
-
-                var timenow = moment().format('YYYY-MM-DD HH:mm');
-
                 var tr_color = "";
+                var back_timestap = "";
 
-                // 判斷訪視是否結束，結束的話Visit_end_time不為null值
+                // 判斷是否結束，結束的話Back_timestap不為null值
+                if(value.Back_timestap == '00:00:00')
+                {
+                    tr_color = "#FF9797";
+                    back_timestap = "";
+                }
+                else
+                {
+                    tr_color = "#90ee90";
+                    back_timestap = value.Back_timestap.split(":")[0] + ":" + value.Back_timestap.split(":")[1];
+                }
+                
+                cssString +=
+                            '<tr style="background-color:'+tr_color+';" id="'+value.Id+'">' +
+                            '<td class="n_row" row_name="n_row" style="LINE-HEIGHT:1px">' + value.Borrow_date + '</td>' +
+                            '<td class="n_row" row_name="n_row" style="LINE-HEIGHT:1px">' + value.Out_timestap.split(":")[0] + ":" + value.Out_timestap.split(":")[1] + '</td>' +
+                            '<td class="n_row" row_name="n_row" style="LINE-HEIGHT:1px">' + value.Reason + '</td>' +
+                            '<td class="n_row" row_name="n_row" style="LINE-HEIGHT:1px">' + value.Place + '</td>' +
+                            '<td class="n_row" row_name="n_row" style="LINE-HEIGHT:1px">' + value.Vehicle + '</td>' +
+                            '<td class="n_row" row_name="n_row" style="LINE-HEIGHT:1px">' + back_timestap + '</td>' +
+                            '<td class="n_row" row_name="n_row" style="LINE-HEIGHT:1px">' + value.Booker + '</td>';
+
+                if(value.Back_timestap == '00:00:00')
+                {
+                    cssString += '<td row_name="last_row" style="LINE-HEIGHT:1px">' + '<a style="text-decoration: underline;" href="javascript: void(0)" onclick="end_vehicle_retain('+value.Id+')">歸還車輛</a>' + '</td>' +
+                    '</tr>';
+                }
+                else
+                {
+                    cssString += '<td row_name="last_row" style="LINE-HEIGHT:1px"><span style="color:blue;">已結束</span></td></tr>';
+                }
+            }
+        });
+        
+        if(cssString != '') {
+            $("#vehicle_retain_info").html(cssString);
+        }
+
+        //綁定表格欄onclick事件，點擊顯示模態框，車輛保留-詳細資料
+        // $("#vehicle_retain_info>tr td").each(function(i,v)
+        // {
+        //     var currentEle_class = $(this).attr("row_name");
+
+        //     if(currentEle_class != "last_row")
+        //     {
+        //         var currentEle = $(this);
+        //         // console.log($(this))
+        //         // currentEle.on("click",function () {
+        //         $("#vehicle_retain_info").on("click", currentEle, function() {
+        //             console.log($(this).children("tr").attr("id"))
+        //             var attr_id = $(this).parent("tr").attr("id");
+        //             // var attr_id = $(this).children("tr").attr("id");
+                    
+        //             $('#show_vehicle_retain_m').modal('show');
+                
+        //             show_vehicle_retain_modal(attr_id);
+        //         });
+        //     }
+        // });
+
+        $("#vehicle_retain_info").on("click", ".n_row", function() {
+            var attr_id = $(this).parent("tr").attr("id");
+            // var attr_id = $(this).children("tr").attr("id");
+            
+            $('#show_vehicle_retain_m').modal('show');
+        
+            show_vehicle_retain_modal(attr_id);
+        });
+
+    },
+    error: function (e) {
+        notyf.alert('伺服器錯誤,無法載入' + e);
+    }
+});
+//endregion
+
+//show 社工訪視 region
+$.ajax({
+    url: "database/visit_show.php",
+    type: "POST",
+    dataType: "JSON",
+    async: false,//啟用同步請求
+    success: function (data) {
+        // console.log(data);
+
+        var cssString = "";
+        $.each(data, function (index, value) {
+
+            var timenow = moment().format('YYYY-MM-DD HH:mm');
+
+            var tr_color = "";
+
+            // 判斷訪視是否結束，結束的話Visit_end_time不為null值
+            if(value.Visit_end_time == null)
+            {
+                var visit_end_time = "";
+                tr_color = "#FF9797";
+
+                cssString +=
+                        '<tr style="background-color:'+tr_color+';" id="'+value.Id+'">' +
+                        '<td class="n_row" row_name="n_row" style="LINE-HEIGHT:1px">' + value.Visit_time + '</td>' +
+                        '<td class="n_row" row_name="n_row" style="LINE-HEIGHT:1px">' + value.Visit_title + '</td>' +
+                        '<td class="n_row" row_name="n_row" style="LINE-HEIGHT:1px">' + value.Visit_assign1 + '</td>' +
+                        '<td class="n_row" row_name="n_row" style="LINE-HEIGHT:1px">' + value.Visit_assign2 + '</td>' +
+                        '<td class="n_row" row_name="n_row" style="LINE-HEIGHT:1px">' + visit_end_time + '</td>';
+                
                 if(value.Visit_end_time == null)
                 {
-                    var visit_end_time = "";
-                    tr_color = "#FF9797";
+                    cssString += '<td row_name="last_row" style="LINE-HEIGHT:1px">' + '<a style="text-decoration: underline;" href="javascript: void(0)" onclick="end_visit('+value.Id+')">結束訪視</a>' + '</td>' +
+                    '</tr>';
+                }
+                else
+                {
+                    cssString += '<td row_name="last_row" style="LINE-HEIGHT:1px"><span style="color:blue;">已結束</span></td></tr>';
+                }
+            }
+            else
+            {
+                let date_diff = DateDiff(timenow.split(" ")[0], value.Visit_end_time.split(" ")[0]);
+
+                // console.log(date_diff)
+
+                var visit_end_time = value.Visit_end_time;
+                tr_color = "#90ee90";
+
+                if(date_diff <= 7) // 判斷訪視是否結束，已結束的訪視只留下最近七天的紀錄
+                {
+                    
 
                     cssString +=
-                            '<tr style="background-color:'+tr_color+';" id="'+value.Id+'">' +
-                            '<td row_name="n_row" style="LINE-HEIGHT:1px">' + value.Visit_title + '</td>' +
-                            '<td row_name="n_row" style="LINE-HEIGHT:1px">' + value.Visit_time + '</td>' +
-                            '<td row_name="n_row" style="LINE-HEIGHT:1px">' + value.Visit_assign1 + '</td>' +
-                            '<td row_name="n_row" style="LINE-HEIGHT:1px">' + value.Visit_assign2 + '</td>' +
-                            '<td row_name="n_row" style="LINE-HEIGHT:1px">' + visit_end_time + '</td>';
-                    
+                        '<tr class="n_row" style="background-color:'+tr_color+';" id="'+value.Id+'">' +
+                        '<td class="n_row" row_name="n_row" style="LINE-HEIGHT:1px">' + value.Visit_time + '</td>' +
+                        '<td class="n_row" row_name="n_row" style="LINE-HEIGHT:1px">' + value.Visit_title + '</td>' +
+                        '<td class="n_row" row_name="n_row" style="LINE-HEIGHT:1px">' + value.Visit_assign1 + '</td>' +
+                        '<td class="n_row" row_name="n_row" style="LINE-HEIGHT:1px">' + value.Visit_assign2 + '</td>' +
+                        '<td class="n_row" row_name="n_row" style="LINE-HEIGHT:1px">' + visit_end_time + '</td>';
+                
                     if(value.Visit_end_time == null)
                     {
                         cssString += '<td row_name="last_row" style="LINE-HEIGHT:1px">' + '<a style="text-decoration: underline;" href="javascript: void(0)" onclick="end_visit('+value.Id+')">結束訪視</a>' + '</td>' +
@@ -212,188 +255,164 @@ $(document).ready(function () {
                         cssString += '<td row_name="last_row" style="LINE-HEIGHT:1px"><span style="color:blue;">已結束</span></td></tr>';
                     }
                 }
+            }
+            
+        });
+        
+        if(cssString != '') {
+            $("#visit_info").html(cssString);
+        }
+
+        //綁定表格欄onclick事件，點擊顯示模態框，社工訪視-詳細資料
+        // $("#visit_info>tr td").each(function(i,v)
+        // {
+        //     var currentEle_class = $(this).attr("row_name");
+
+        //     if(currentEle_class != "last_row")
+        //     {
+        //         var currentEle = $(this);
+                
+        //         currentEle.on("click",function () {
+                
+        //             var attr_id = $(this).parent("tr").attr("id");
+
+        //             $('#show_visit_m').modal('show');
+                
+        //             show_visit_modal(attr_id);
+        //         });
+        //     }
+        // });
+
+        $("#visit_info").on("click", ".n_row", function() {
+            var attr_id = $(this).parent("tr").attr("id");
+            // var attr_id = $(this).children("tr").attr("id");
+            
+            $('#show_visit_m').modal('show');
+        
+            show_visit_modal(attr_id);
+        });
+
+    },
+    error: function (e) {
+        notyf.alert('伺服器錯誤,無法載入' + e);
+    }
+});
+//endregion
+
+
+//show 請假 region
+$.ajax({
+    url: "database/day_off_show.php",
+    type: "POST",
+    dataType: "JSON",
+    async: false,//啟用同步請求
+    success: function (data) {
+        // console.log(data);
+
+        var cssString = "";
+        $.each(data, function (index, value) {
+
+            var timenow = moment().format('YYYY-MM-DD HH:mm');
+
+            // let date_diff = 7;
+            let date_diff = DateDiff(timenow.split(" ")[0], value.Update_date.split(" ")[0]);
+            
+            // console.log(date_diff);
+            
+            if(date_diff <= 7) // 只留下最近七天有更新過的紀錄
+            {
+                var tr_color = "";
+
+                if(value.Allow_status != "核准")
+                {
+                    tr_color = "#FF9797";
+                }
                 else
                 {
-                    let date_diff = DateDiff(timenow.split(" ")[0], value.Visit_end_time.split(" ")[0]);
-
-                    // console.log(date_diff)
-
-                    var visit_end_time = value.Visit_end_time;
                     tr_color = "#90ee90";
-
-                    if(date_diff <= 7) // 判斷訪視是否結束，已結束的訪視只留下最近七天的紀錄
-                    {
-                        
-
-                        cssString +=
-                            '<tr style="background-color:'+tr_color+';" id="'+value.Id+'">' +
-                            '<td row_name="n_row" style="LINE-HEIGHT:1px">' + value.Visit_title + '</td>' +
-                            '<td row_name="n_row" style="LINE-HEIGHT:1px">' + value.Visit_time + '</td>' +
-                            '<td row_name="n_row" style="LINE-HEIGHT:1px">' + value.Visit_assign1 + '</td>' +
-                            '<td row_name="n_row" style="LINE-HEIGHT:1px">' + value.Visit_assign2 + '</td>' +
-                            '<td row_name="n_row" style="LINE-HEIGHT:1px">' + visit_end_time + '</td>';
-                    
-                        if(value.Visit_end_time == null)
-                        {
-                            cssString += '<td row_name="last_row" style="LINE-HEIGHT:1px">' + '<a style="text-decoration: underline;" href="javascript: void(0)" onclick="end_visit('+value.Id+')">結束訪視</a>' + '</td>' +
-                            '</tr>';
-                        }
-                        else
-                        {
-                            cssString += '<td row_name="last_row" style="LINE-HEIGHT:1px"><span style="color:blue;">已結束</span></td></tr>';
-                        }
-                    }
                 }
+
+                var day_off_date = value.Overtime_date_start.split("_");
+                var day_off_date_str = split_date(day_off_date[0]) + " " +day_off_date[1];
                 
-            });
-            
-            if(cssString != '') {
-                $("#visit_info").html(cssString);
+                var row_url = "day_off_detail.php?day_off_id=" + value.Id + "&resume_id=" + value.Resume_id;
+                
+                cssString +=
+                        '<tr style="background-color:'+tr_color+';" id="'+value.Id+'">' +
+                        '<td row_name="n_row" style="LINE-HEIGHT:1px">' + day_off_date_str + '</td>' +
+                        '<td row_name="n_row" style="LINE-HEIGHT:1px">' + value.Resume_name + '</td>' +
+                        '<td row_name="n_row" style="LINE-HEIGHT:1px">' + value.Day_off_type + '</td>' +
+                        '<td row_name="n_row" style="LINE-HEIGHT:1px">' + value.Hours + '</td>' +
+                        '<td row_name="n_row" style="LINE-HEIGHT:1px">' + value.Job_agent + '</td>' +
+                        '<td row_name="n_row" style="LINE-HEIGHT:1px">' + value.Allow_status + '</td>';
+                
+                cssString += '<td row_name="last_row" style="LINE-HEIGHT:1px">' + '<a style="text-decoration: underline;" href="'+row_url+'">查看</a>' + '</td>' +
+                '</tr>';
             }
+        });
+        
+        if(cssString != '') {
+            $("#dayoff_info").html(cssString);
+        }
+    },
+    error: function (e) {
+        notyf.alert('伺服器錯誤,無法載入' + e);
+    }
+});
+//endregion
 
-            //綁定表格欄onclick事件，點擊顯示模態框，社工訪視-詳細資料
-            $("#visit_info>tr td").each(function(i,v)
-            {
-                var currentEle_class = $(this).attr("row_name");
 
-                if(currentEle_class != "last_row")
+//show 會議記錄提醒 region
+$.ajax({
+    url: "database/record_warn_show.php",
+    type: "POST",
+    dataType: "JSON",
+    async: false,//啟用同步請求
+    success: function (data) {
+        // console.log(data);
+
+        var cssString = "";
+        $.each(data, function (index, value) {
+
+            var timenow = moment().format('YYYY-MM-DD HH:mm');
+
+            let date_diff = getDaysBetween(timenow.split(" ")[0], value.Warn_timestap.split(" ")[0]);
+
+            if(date_diff <= 0) // date_diff小於等於0，表示到了提醒日期
+            {                    
+                var rtype = "";
+
+                if(value.R_or_G == "R")
                 {
-                    var currentEle = $(this);
-                    
-                    currentEle.on("click",function () {
-                    
-                        var attr_id = $(this).parent("tr").attr("id");
-
-                        $('#show_visit_m').modal('show');
-                    
-                        show_visit_modal(attr_id);
-                    });
+                    rtype = "會議記錄";
                 }
-            });
-
-        },
-        error: function (e) {
-            notyf.alert('伺服器錯誤,無法載入' + e);
-        }
-    });
-    //endregion
-
-
-    //show 請假 region
-    $.ajax({
-        url: "database/day_off_show.php",
-        type: "POST",
-        dataType: "JSON",
-        async: false,//啟用同步請求
-        success: function (data) {
-            console.log(data);
-
-            var cssString = "";
-            $.each(data, function (index, value) {
-
-                var timenow = moment().format('YYYY-MM-DD HH:mm');
-
-                // let date_diff = 7;
-                let date_diff = DateDiff(timenow.split(" ")[0], value.Update_date.split(" ")[0]);
-                
-                // console.log(date_diff);
-                
-                if(date_diff <= 7) // 只留下最近七天有更新過的紀錄
+                else if(value.R_or_G == "G")
                 {
-                    var tr_color = "";
-
-                    if(value.Allow_status != "核准")
-                    {
-                        tr_color = "#FF9797";
-                    }
-                    else
-                    {
-                        tr_color = "#90ee90";
-                    }
-
-                    var day_off_date = value.Overtime_date_start.split("_");
-                    var day_off_date_str = split_date(day_off_date[0]) + " " +day_off_date[1];
-                    
-                    var row_url = "day_off_detail.php?day_off_id=" + value.Id + "&resume_id=" + value.Resume_id;
-                    
-                    cssString +=
-                            '<tr style="background-color:'+tr_color+';" id="'+value.Id+'">' +
-                            '<td row_name="n_row" style="LINE-HEIGHT:1px">' + value.Resume_name + '</td>' +
-                            '<td row_name="n_row" style="LINE-HEIGHT:1px">' + value.Day_off_type + '</td>' +
-                            '<td row_name="n_row" style="LINE-HEIGHT:1px">' + day_off_date_str + '</td>' +
-                            '<td row_name="n_row" style="LINE-HEIGHT:1px">' + value.Hours + '</td>' +
-                            '<td row_name="n_row" style="LINE-HEIGHT:1px">' + value.Job_agent + '</td>' +
-                            '<td row_name="n_row" style="LINE-HEIGHT:1px">' + value.Allow_status + '</td>';
-                    
-                    cssString += '<td row_name="last_row" style="LINE-HEIGHT:1px">' + '<a style="text-decoration: underline;" href="'+row_url+'">查看</a>' + '</td>' +
-                    '</tr>';
+                    rtype = "會議議程";
                 }
-            });
-            
-            if(cssString != '') {
-                $("#dayoff_info").html(cssString);
+                                    
+                cssString +=
+                        '<tr id="'+value.Id+'">' +
+                        '<td row_name="n_row" style="LINE-HEIGHT:1px">' + value.Create_date + '</td>' +
+                        '<td row_name="n_row" style="LINE-HEIGHT:1px">' + value.Title + '</td>' +
+                        '<td row_name="n_row" style="LINE-HEIGHT:1px">' + rtype + '</td>' +
+                        '<td row_name="n_row" style="LINE-HEIGHT:1px">' + value.State + '</td>' +
+                        '<td row_name="n_row" style="LINE-HEIGHT:1px">' + value.Create_name + '</td>';
+                
+                cssString += '<td row_name="last_row" style="LINE-HEIGHT:1px">' + '<a style="text-decoration: underline;" href="'+value.Url+'">查看</a>' + '</td>' +
+                '</tr>';
             }
-        },
-        error: function (e) {
-            notyf.alert('伺服器錯誤,無法載入' + e);
+        });
+        
+        if(cssString != '') {
+            $("#record_warn_info").html(cssString);
         }
-    });
-    //endregion
-
-
-    //show 會議記錄提醒 region
-    $.ajax({
-        url: "database/record_warn_show.php",
-        type: "POST",
-        dataType: "JSON",
-        async: false,//啟用同步請求
-        success: function (data) {
-            console.log(data);
-
-            var cssString = "";
-            $.each(data, function (index, value) {
-
-                var timenow = moment().format('YYYY-MM-DD HH:mm');
-
-                let date_diff = getDaysBetween(timenow.split(" ")[0], value.Warn_timestap.split(" ")[0]);
-
-                if(date_diff <= 0) // date_diff小於等於0，表示到了提醒日期
-                {                    
-                    var rtype = "";
-
-                    if(value.R_or_G == "R")
-                    {
-                        rtype = "會議記錄";
-                    }
-                    else if(value.R_or_G == "G")
-                    {
-                        rtype = "會議議程";
-                    }
-                                        
-                    cssString +=
-                            '<tr id="'+value.Id+'">' +
-                            '<td row_name="n_row" style="LINE-HEIGHT:1px">' + value.Create_date + '</td>' +
-                            '<td row_name="n_row" style="LINE-HEIGHT:1px">' + value.Title + '</td>' +
-                            '<td row_name="n_row" style="LINE-HEIGHT:1px">' + rtype + '</td>' +
-                            '<td row_name="n_row" style="LINE-HEIGHT:1px">' + value.State + '</td>' +
-                            '<td row_name="n_row" style="LINE-HEIGHT:1px">' + value.Create_name + '</td>';
-                    
-                    cssString += '<td row_name="last_row" style="LINE-HEIGHT:1px">' + '<a style="text-decoration: underline;" href="'+value.Url+'">查看</a>' + '</td>' +
-                    '</tr>';
-                }
-            });
-            
-            if(cssString != '') {
-                $("#record_warn_info").html(cssString);
-            }
-        },
-        error: function (e) {
-            notyf.alert('伺服器錯誤,無法載入' + e);
-        }
-    });
-    //endregion
-});    
-
+    },
+    error: function (e) {
+        notyf.alert('伺服器錯誤,無法載入' + e);
+    }
+});
+//endregion
 
 
 //insert 車輛保留 region
@@ -433,6 +452,10 @@ $("#add_new_vehicle_retain").click(function(){
                 Place:$("#add_vr_place").val(),
                 Vehicle:$("#add_vr_vehicle").val(),
                 Booker:$("#add_vr_booker").val(),
+                Title:"車輛外出登記-"+$("#add_vr_booker").val(),
+                Description:"借出車輛："+$("#add_vr_vehicle").val() + "，地點：" + $("#add_vr_place").val() + "，外出時間：" + $("#add_out_timestap").val(),
+                Start_t:$("#add_borrow_date").val() + " " + $("#add_out_timestap").val(),
+                End_t:$("#add_borrow_date").val() + " 00:00:00",
             },
             type: "POST",
             dataType: "JSON",
@@ -516,7 +539,7 @@ function show_vehicle_retain_modal(modal_id) {
         dataType: "JSON",
         async: false,//啟用同步請求
         success: function (data) {
-            console.log(data);
+            // console.log(data);
     
             $.each(data, function (index, value) {
                 $("#back_timestap").val(value.Back_timestap.split(":")[0] + ":" + value.Back_timestap.split(":")[1]);
@@ -560,7 +583,7 @@ load_update_vehicle_retain_data = function(vr_id) {
         dataType: "JSON",
         async: false,//啟用同步請求
         success: function (data) {
-            console.log(data);
+            // console.log(data);
 
             $.each(data, function (index, value) {
                 // $("#u_back_timestap").val();
@@ -595,6 +618,10 @@ update_vehicle_retain = function(this_btn) {
             Place:$("#u_vr_place").val(),
             Vehicle:$("#u_vr_vehicle").val(),
             Booker:$("#u_vr_booker").val(),
+            Title:"車輛外出登記-"+$("#u_vr_booker").val(),
+            Description:"借出車輛："+$("#u_vr_vehicle").val() + "，地點：" + $("#u_vr_place").val() + "，外出時間：" + $("#u_out_timestap").val(),
+            Start_t:$("#u_borrow_date").val() + " " + $("#u_out_timestap").val(),
+            End_t:$("#u_borrow_date").val() + " " + $("#u_back_timestap").val(),
         },
         type: "POST",
         dataType: "JSON",
@@ -635,7 +662,7 @@ function show_visit_modal(modal_id) {
         dataType: "JSON",
         async: false,//啟用同步請求
         success: function (data) {
-            console.log(data);
+            // console.log(data);
     
             $.each(data, function (index, value) {
     
@@ -705,6 +732,10 @@ $("#add_new_visit").click(function(){
                 Visit_time:$("#visit_time").val(),
                 Visit_assign1:$("#visit_assign1").val(),
                 Visit_assign2:$("#visit_assign2").val(),
+                Title:"社工訪視-"+$("#visit_title").val(),
+                Description:"標題："+$("#visit_title").val() + "，時間：" + $("#visit_time").val() + "，主要承辦人員：" + $("#visit_assign1").val(),
+                Start_t:$("#visit_time").val(),
+                End_t:'0000-00-00 00:00:00',
             },
             type: "POST",
             dataType: "JSON",
@@ -782,6 +813,7 @@ update_visit = function(this_btn){
             Id:attr_id,
             Visit_end_time:$("#visit_end_time").val(),
             Visit_remark:$("#remark").val(),
+            End_t:$("#visit_end_time").val(),
         },
         type: "POST",
         dataType: "JSON",

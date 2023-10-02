@@ -157,6 +157,11 @@ VALUES ('$bs_id', '$title','$url','$rec_date_time', '$user', '$signer', '$sign_s
 
 $sql .= $rw_sql;
 
+$sql .= "INSERT INTO `calendar` (`title`, `description`, `start`, 
+`end`, `backgroundColor`, `publisher`, `date`, `database_name`, `db_id`, `authority`) VALUES 
+('$title','$url', '$rec_date_time', '$rec_date_time', 'purple', '$user', NOW(), 'board_supervisor', '$bs_id', '$signer');";
+
+
 if(mysqli_multi_query($conn,$sql)){
     echo true;
 }else{

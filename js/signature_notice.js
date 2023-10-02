@@ -163,8 +163,8 @@ $.ajax({
                 '<table style="font-size:15px;font-family:新細明體;" class="text-center table-hover table-striped table-sm" data-toggle="table" data- data-page-size=5 data-search="false" data-pagination="true" data-pagination-parts="[pageList]">' +
                     '<thead>' +
                     '<tr>' +
-                        '<th>標題</th>' +
                         '<th>日期</th>' +
+                        '<th>標題</th>' +
                         '<th>承辦人員</th>' +
                         '<th>簽核主管</th>' +
                         '<th>簽核狀態</th>' +
@@ -211,8 +211,8 @@ $.ajax({
                 '<table style="font-size:15px;font-family:新細明體;" class="text-center table-hover table-striped table-sm" data-toggle="table" data- data-page-size=5 data-search="false" data-pagination="true" data-pagination-parts="[pageList]">' +
                     '<thead>' +
                     '<tr>' +
-                        '<th>標題</th>' +
                         '<th>日期</th>' +
+                        '<th>標題</th>' +
                         '<th>承辦人員</th>' +
                         '<th>簽核主管</th>' +
                         '<th>簽核狀態</th>' +
@@ -341,8 +341,8 @@ $.ajax({
             // 寫入前端網頁元素
             cssString = 
             '<tr style="background-color:'+panel_color+';">' +
-            '<td style="LINE-HEIGHT:1px;">' + value.Title + '</td>' +
             '<td style="LINE-HEIGHT:1px">' + value.Timestamp + '</td>' +
+            '<td style="LINE-HEIGHT:1px;">' + value.Title + '</td>' +
             '<td style="LINE-HEIGHT:1px">' + value.Assign + '</td>' +
             '<td style="LINE-HEIGHT:1px">' + value.Signer + '</td>' +
             '<td style="LINE-HEIGHT:1px">' + value.Sign_state + '</td>' +
