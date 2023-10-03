@@ -65,7 +65,7 @@ $.ajax({
     dataType: "JSON",
     async: false,//啟用同步請求
     success: function (data) {
-        // console.log(data);
+        console.log(data);
         var cssString = "";
         for (var index in data.title) {
             cssString += 

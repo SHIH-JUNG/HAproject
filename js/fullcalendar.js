@@ -40,6 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
       eventClick:function(info) { 
           window.db_name = info.event.extendedProps.database_name;
           window.db_id = info.event.extendedProps.db_id;
+          window.authority_num = info.event.extendedProps.authority_num;
         //   console.log(db_name)
         //   console.log(db_id)
           var start = moment(info.event.start).format("YYYY-MM-DD HH:mm");
@@ -92,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     confirmButtonText: '確定', 
                     cancelButtonText: '取消',
                 }).then(function() {
-                    if(db_name == "")
+                    if(db_name == "" || db_name == "announcement")
                     {
                         $.ajax({
                             url: "database/delete_note.php",
@@ -162,6 +163,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 end:$("#up_end").val(),
                                 db_name:db_name,
                                 db_id:db_id,
+                                authority_num:authority_num,
                             },
                             type: "POST",
                             success: function (data) {

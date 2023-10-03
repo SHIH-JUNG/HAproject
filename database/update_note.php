@@ -10,6 +10,7 @@ $end = $_POST['end'];
 
 @$db_name = $_POST['db_name'];
 @$db_id = $_POST['db_id'];
+@$authority_num = $_POST['authority_num'];
 
 $user = $_SESSION['name'];
 
@@ -41,6 +42,13 @@ elseif ($db_name == 'day_off') {
 }
 elseif ($db_name == 'supervisor_record' || $db_name == 'board_supervisor'  || $db_name == 'members_assemble') {
     $sqlUpdate = "UPDATE `calendar` SET `title` = '$title' WHERE `calendar`.`id` = '$id';";
+}
+elseif ($db_name == 'announcement') {
+    $ann_description = "標題：" . $title . "，權限：" . $authority_num . "，發佈時間：" . $start;
+
+    $sqlUpdate = "UPDATE `calendar` SET `title` = '$title', `start` = '$start', `end` = '$start', `description` = '$ann_description' WHERE `calendar`.`id` = '$id';";
+
+    $sqlUpdate .= "UPDATE `announcement` SET `title` = '$title', `datetime` = '$start' WHERE `Id` = '$db_id';";
 }
 else
 {

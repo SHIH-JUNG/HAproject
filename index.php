@@ -446,7 +446,7 @@
                                     <input class="col-sm-12" id="ann_title" placeholder="請輸入標題" type="text">
                                 </div>
                                 <div class="col-sm-12 text-center">
-                                    <label>權限等級</label>
+                                    <label>可看到訊息的最低權限等級</label>
                                 </div>
                                 <div class="col-sm-12 text-center">
                                     <select class="col-sm-12" id="ann_authority">

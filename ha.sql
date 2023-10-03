@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： localhost
--- 產生時間： 2023-10-02 14:03:12
+-- 產生時間： 2023-10-03 12:58:38
 -- 伺服器版本： 10.4.28-MariaDB
 -- PHP 版本： 8.2.4
 
@@ -226,9 +226,9 @@ INSERT INTO `accounting_record_report` (`Id`, `Report_year`, `Report_type`, `Rep
 
 CREATE TABLE `announcement` (
   `Id` int(244) NOT NULL,
-  `title` varchar(10) NOT NULL,
-  `authority` int(11) NOT NULL,
-  `publisher` varchar(10) NOT NULL,
+  `title` varchar(500) NOT NULL,
+  `authority` int(20) NOT NULL,
+  `publisher` varchar(50) NOT NULL,
   `datetime` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -242,7 +242,9 @@ INSERT INTO `announcement` (`Id`, `title`, `authority`, `publisher`, `datetime`)
 (3, '9月22日-團督會議', 3, '社工組長', '2023-09-16'),
 (4, 'test', 3, '園主任', '2023-10-02'),
 (5, 'teasda', 4, '園主任', '2023-10-02'),
-(6, 'aaaaaaaaa', 7, '園主任', '2023-10-02');
+(6, 'aaaaaaaaa', 7, '園主任', '2023-10-02'),
+(7, 'test公告1003', 5, '園主任', '2023-10-03'),
+(8, 'test公告1003auth4', 4, 'jia', '2023-10-03');
 
 -- --------------------------------------------------------
 
@@ -341,27 +343,30 @@ CREATE TABLE `calendar` (
   `date` datetime NOT NULL DEFAULT current_timestamp(),
   `database_name` varchar(1000) NOT NULL,
   `db_id` varchar(2000) NOT NULL,
-  `authority` varchar(1000) NOT NULL
+  `authority` varchar(1000) NOT NULL,
+  `authority_num` int(244) NOT NULL DEFAULT 100
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `calendar`
 --
 
-INSERT INTO `calendar` (`id`, `title`, `description`, `start`, `end`, `backgroundColor`, `publisher`, `url`, `date`, `database_name`, `db_id`, `authority`) VALUES
-(2, 'testa', 'bbb', '2023-10-10 12:00', '2023-10-10 13:00', '', 'jia', '', '2023-10-02 16:26:39', '', '', 'jia'),
-(3, 'bas', 'ttt', '2023-10-11 12:00', '2023-10-11 13:00', '', '園主任', '', '2023-10-02 16:28:28', '', '', '園主任'),
-(4, '車輛外出登記-jia', '借出車輛：FAS-0982，地點：test高雄，外出時間：16:25', '2023-10-02 16:20', '2023-10-02 17:45', '#D9006C	', 'jia', '', '2023-10-02 16:39:41', 'vehicle_retain', '11', 'all'),
-(5, '車輛外出登記-jia', '借出車輛：DAW-0921，地點：ttt高雄，外出時間：17:00', '2023-10-02 17:00', '2023-10-02 00:00', '#D9006C	', 'jia', '', '2023-10-02 16:55:34', 'vehicle_retain', '12', 'all'),
-(6, '車輛外出登記-jia', '借出車輛：TES交通工具，地點：P，外出時間：14:25', '2023-10-02 14:25', '2023-10-02 15:20', '#D9006C	', 'jia', '', '2023-10-02 16:57:28', 'vehicle_retain', '13', 'all'),
-(7, '社工訪視-test社工訪視', '標題：test社工訪視，時間：2023-10-02 14:05，主要承辦人員：社工員1', '2023-10-02 14:05', '2023-10-02 15:15', '#02C874', 'jia', '', '2023-10-02 17:01:53', 'visit_index', '4', 'all'),
-(8, '請假：jia 事假', 'day_off_detail.php?day_off_id=3&resume_id=1', '2023-10-06 08:30', '2023-10-06 11:00', '#FFA042', 'jia', '', '2023-10-02 17:37:44', 'day_off', '3', 'jia'),
-(9, '團督記錄簽核：test團督記錄標題aab', 'supervisor_record_detail_v2.php?year=112&id=5&sr_id=5&rec_type=upload', '2023-10-05 00:00', '2023-10-05 00:00', 'purple', 'jia', '', '2023-10-02 18:14:38', 'supervisor_record', '5', '社工組長、執行長'),
-(10, '理監事會記錄簽核：test理監事會記錄標題1006', 'board_supervisor_detail_v2.php?year=112&id=4&bs_id=4&rec_type=upload', '2023-10-06 00:00', '2023-10-06 00:00', 'purple', 'jia', '', '2023-10-02 18:17:42', 'board_supervisor', '4', '社工組長、執行長'),
-(11, '會員大會記錄簽核：會員大會記錄標題1011', 'members_assemble_detail_v2.php?year=112&id=3&ma_id=3&rec_type=upload', '2023-10-11 00:00', '2023-10-11 00:00', 'purple', 'jia', '', '2023-10-02 18:19:21', 'members_assemble', '3', '園主任、執行長'),
-(12, '車輛外出登記-園主任', '借出車輛：adasdad，地點：adasdsa，外出時間：12:00', '2023-10-02 12:00', '2023-10-02 00:00', '#D9006C	', '園主任', '', '2023-10-02 18:24:04', 'vehicle_retain', '14', 'all'),
-(13, 'testb', 'asdas', '2023-10-04 12:00', '2023-10-04 13:00', '', 'jia', '', '2023-10-02 19:56:12', '', '', 'jia'),
-(14, '社工訪視-test標題社工訪視快樂聯盟', '標題：test標題社工訪視快樂聯盟，時間：2023-10-02 17:05，主要承辦人員：社工員1', '2023-10-02 17:05', '0000-00-00 00:00', '#02C874', 'jia', '', '2023-10-02 20:02:22', 'visit_index', '5', 'all');
+INSERT INTO `calendar` (`id`, `title`, `description`, `start`, `end`, `backgroundColor`, `publisher`, `url`, `date`, `database_name`, `db_id`, `authority`, `authority_num`) VALUES
+(3, 'bas', 'ttt', '2023-10-11 12:00', '2023-10-11 13:00', '', '園主任', '', '2023-10-02 16:28:28', '', '', '園主任', 100),
+(4, '車輛外出登記-jia', '借出車輛：FAS-0982，地點：test高雄，外出時間：16:25', '2023-10-02 16:20', '2023-10-02 17:45', '#D9006C	', 'jia', '', '2023-10-02 16:39:41', 'vehicle_retain', '11', 'all', 100),
+(5, '車輛外出登記-jia', '借出車輛：DAW-0921，地點：ttt高雄，外出時間：17:00', '2023-10-02 17:00', '2023-10-02 00:00', '#D9006C	', 'jia', '', '2023-10-02 16:55:34', 'vehicle_retain', '12', 'all', 100),
+(6, '車輛外出登記-jia', '借出車輛：TES交通工具，地點：P，外出時間：14:25', '2023-10-02 14:25', '2023-10-02 15:20', '#D9006C	', 'jia', '', '2023-10-02 16:57:28', 'vehicle_retain', '13', 'all', 100),
+(7, '社工訪視-test社工訪視', '標題：test社工訪視，時間：2023-10-02 14:05，主要承辦人員：社工員1', '2023-10-02 14:05', '2023-10-02 15:15', '#02C874', 'jia', '', '2023-10-02 17:01:53', 'visit_index', '4', 'all', 100),
+(8, '請假：jia 事假', 'day_off_detail.php?day_off_id=3&resume_id=1', '2023-10-06 08:30', '2023-10-06 11:00', '#FFA042', 'jia', '', '2023-10-02 17:37:44', 'day_off', '3', 'jia', 100),
+(9, '團督記錄簽核：test團督記錄標題aab', 'supervisor_record_detail_v2.php?year=112&id=5&sr_id=5&rec_type=upload', '2023-10-05 00:00', '2023-10-05 00:00', 'purple', 'jia', '', '2023-10-02 18:14:38', 'supervisor_record', '5', '社工組長、執行長', 100),
+(10, '理監事會記錄簽核：test理監事會記錄標題1006', 'board_supervisor_detail_v2.php?year=112&id=4&bs_id=4&rec_type=upload', '2023-10-06 00:00', '2023-10-06 00:00', 'purple', 'jia', '', '2023-10-02 18:17:42', 'board_supervisor', '4', '社工組長、執行長', 100),
+(11, '會員大會記錄簽核：會員大會記錄標題1011', 'members_assemble_detail_v2.php?year=112&id=3&ma_id=3&rec_type=upload', '2023-10-11 00:00', '2023-10-11 00:00', 'purple', 'jia', '', '2023-10-02 18:19:21', 'members_assemble', '3', '園主任、執行長', 100),
+(12, '車輛外出登記-園主任', '借出車輛：adasdad，地點：adasdsa，外出時間：12:00', '2023-10-02 12:00', '2023-10-02 00:00', '#D9006C	', '園主任', '', '2023-10-02 18:24:04', 'vehicle_retain', '14', 'all', 100),
+(14, '社工訪視-test標題社工訪視快樂聯盟', '標題：test標題社工訪視快樂聯盟，時間：2023-10-02 17:05，主要承辦人員：社工員1', '2023-10-02 17:05', '0000-00-00 00:00', '#02C874', 'jia', '', '2023-10-02 20:02:22', 'visit_index', '5', 'all', 100),
+(15, 'testaaa', 'bbbb', '2023-10-04 13:25', '2023-10-04 14:25', '', 'jia', '', '2023-10-02 20:10:14', '', '', 'jia', 100),
+(17, 'test公告1003', '標題：test公告1003，權限：5，發佈時間：2023/10/03 12:47:08', '2023-10-03 18:47', '2023-10-03 18:47', 'red', '園主任', '', '2023-10-03 18:47:08', 'announcement', '7', '', 5),
+(18, 'test公告1003auth4', '標題：test公告1003auth4，權限：4，發佈時間：2023-10-03 18:00', '2023-10-03 18:00', '2023-10-03 18:00', 'red', 'jia', '', '2023-10-03 18:53:36', 'announcement', '8', '', 4),
+(19, 'test', 'asdassd', '2023-10-05 12:00', '2023-10-05 13:00', '', '園主任', '', '2023-10-03 18:54:24', '', '', '園主任', 100);
 
 -- --------------------------------------------------------
 
@@ -1422,7 +1427,13 @@ INSERT INTO `login_record` (`Id`, `Login_timestamp`, `Login_account`, `Login_aut
 (277, '2023-10-02 16:28:40', 'testuser', '5', 'jia', '22.593916310975608,120.48880948217636', 0),
 (278, '2023-10-02 18:10:49', 'testuser', '5', 'jia', '22.593916310975608,120.48880948217636', 0),
 (279, '2023-10-02 18:19:51', 'test5', '2', '園主任', '22.593916310975608,120.48880948217636', 0),
-(280, '2023-10-02 19:10:50', 'testuser', '5', 'jia', '22.5939125,120.488813', 0);
+(280, '2023-10-02 19:10:50', 'testuser', '5', 'jia', '22.5939125,120.488813', 0),
+(281, '2023-10-02 20:07:39', 'testuser', '5', 'jia', '22.593916310975608,120.48880948217636', 0),
+(282, '2023-10-03 17:33:05', 'testuser', '5', 'jia', '22.593916310975608,120.48880948217636', 1),
+(283, '2023-10-03 18:04:44', 'test5', '2', '園主任', '22.593916310975608,120.48880948217636', 1),
+(284, '2023-10-03 18:47:23', 'test3', '3', '社工組長', '22.593916310975608,120.48880948217636', 1),
+(285, '2023-10-03 18:53:00', 'testuser', '5', 'jia', '22.5939125,120.488813', 0),
+(286, '2023-10-03 18:54:13', 'test5', '2', '園主任', '22.593916472840217,120.48880938832706', 0);
 
 -- --------------------------------------------------------
 
@@ -2394,7 +2405,6 @@ CREATE TABLE `sign_notice` (
 --
 
 INSERT INTO `sign_notice` (`Id`, `file_name`, `authority`, `date`, `person`, `datetime`, `authority_name`) VALUES
-(2, '開會', 1, '0000-00-00', '園主任', '2021-12-16 12:00', '、、'),
 (3, 'Allen家訪', 1, '0000-00-00', '園主任', '2021-12-21 12:00', '、、'),
 (4, '車輛外出登記-jia', 1, '0000-00-00', '園主任', '2023-10-02 16:20', '、、'),
 (5, 'Tim(安非他命)會談', 1, '0000-00-00', '園主任', '2021-11-19 09:00', '社工員1、社工員2、'),
@@ -2403,14 +2413,11 @@ INSERT INTO `sign_notice` (`Id`, `file_name`, `authority`, `date`, `person`, `da
 (8, 'deny(大麻)會談', 1, '0000-00-00', '園主任', '2021-12-31 12:00', '社工員2、社工員1、'),
 (9, '團督記錄簽核：test團督記錄標題aab', 1, '0000-00-00', '園主任', '2023-10-05 00:00', '社工員2、社工組長、'),
 (10, 'Allen(K他命)會談', 1, '0000-00-00', '園主任', '2021-11-06 07:00', '社工員1、社工員2、'),
-(11, 'Allen(K他命)會談', 1, '0000-00-00', '園主任', '2021-11-10 12:00', '社工員1、社工員2、'),
 (12, 'Allen(K他命)面訪', 1, '0000-00-00', '園主任', '2021-12-27 12:00', '社工員1、執行長、'),
-(13, 'Allen(K他命)面訪', 1, '0000-00-00', '園主任', '2021-12-27 09:00', '社工組長、社工員1、'),
 (14, 'Allen(K他命)面訪', 1, '0000-00-00', '園主任', '2021-11-17 12:00', '社工組長、社工員2、'),
 (15, 'Allen(K他命)面訪', 1, '0000-00-00', '園主任', '2021-12-27 12:00', '社工組長、執行長、'),
-(16, 'Allen(K他命)面訪', 1, '0000-00-00', '園主任', '2021-12-28 12:00', '社工員2、社工員1、'),
 (17, 'Allen(K他命)面訪', 1, '0000-00-00', '園主任', '2021-12-26 12:00', '社工員2、社工員1、'),
-(18, 'Allen(K他命)面訪', 1, '0000-00-00', '園主任', '2022-01-04 12:00', '社工員1、社工組長、'),
+(18, 'test公告1003auth4', 1, '0000-00-00', '園主任', '2023-10-03 18:00', '社工員1、社工組長、'),
 (19, 'Allen(K他命)面訪', 1, '0000-00-00', '園主任', '2021-11-27 12:00', '社工員1、社工組長、'),
 (20, 'yukia(海洛因,安非他命)面訪', 1, '0000-00-00', '園主任', '2021-09-26 14:00', '社工員1、社工組長、'),
 (21, 'yukia(海洛因,安非他命)面訪', 1, '0000-00-00', '園主任', '2021-10-15 14:00', '社工員2、社工組長、'),
@@ -2480,7 +2487,9 @@ INSERT INTO `sign_notice` (`Id`, `file_name`, `authority`, `date`, `person`, `da
 (85, 'ssa', 1, '0000-00-00', '園主任', '2023-10-24 12:00', '、'),
 (86, 'testa', 1, '0000-00-00', 'jia', '2023-10-10 12:00', '、'),
 (87, 'bas', 1, '0000-00-00', '園主任', '2023-10-11 12:00', '、'),
-(88, 'testb', 1, '0000-00-00', 'jia', '2023-10-04 12:00', '、');
+(88, 'testb', 1, '0000-00-00', 'jia', '2023-10-04 12:00', '、'),
+(89, 'testaaa', 1, '0000-00-00', 'jia', '2023-10-04 13:25', '、'),
+(90, 'test', 1, '0000-00-00', '園主任', '2023-10-05 12:00', '、');
 
 -- --------------------------------------------------------
 
@@ -3408,7 +3417,7 @@ ALTER TABLE `accounting_record_report`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `announcement`
 --
 ALTER TABLE `announcement`
-  MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `Id` int(244) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `board_supervisor`
@@ -3426,7 +3435,7 @@ ALTER TABLE `board_supervisor_v2`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `calendar`
 --
 ALTER TABLE `calendar`
-  MODIFY `id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `case_report`
@@ -3510,7 +3519,7 @@ ALTER TABLE `leave_rule_table`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `login_record`
 --
 ALTER TABLE `login_record`
-  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=281;
+  MODIFY `Id` int(240) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=287;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `members_assemble`
@@ -3654,7 +3663,7 @@ ALTER TABLE `signature_notice`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `sign_notice`
 --
 ALTER TABLE `sign_notice`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `supervisor_record`
