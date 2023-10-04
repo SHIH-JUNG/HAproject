@@ -174,6 +174,19 @@
                                                                 <td style="border-bottom: solid 1px;"><input id="lecturer" class="program_question" type="text"></td>
                                                             </tr>
 
+                                                            <tr style="text-align:left">
+                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">檔案上傳</td>
+                                                                    <td style="border-bottom: solid 1px;">
+                                                                        <div class="col-sm-8">
+                                                                            <div class="text-left">
+                                                                                <input name="program_act_file" type="file" class="form-control" />
+                                                                                <br>
+                                                                                <div id="program_act_file"></div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                            </tr>
+
                                                         </table>
                                                     </div>
                                                 </div>

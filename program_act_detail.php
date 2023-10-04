@@ -202,6 +202,19 @@
                                                                             </tr>
 
                                                                             <tr style="text-align:left">
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">檔案上傳</td>
+                                                                                <td style="border-bottom: solid 1px;">
+                                                                                    <div class="col-sm-8">
+                                                                                        <div class="text-left">
+                                                                                            <input name="upload" type="file" class="program_question form-control">
+                                                                                            <br>
+                                                                                            <div id="upload"></div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+
+                                                                            <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">創建日期</td>
                                                                                 <td style="border-bottom: solid 1px;"><input id="create_date" name="ch_datepicker" type="text" disabled="disabled"></td>
                                                                             </tr>

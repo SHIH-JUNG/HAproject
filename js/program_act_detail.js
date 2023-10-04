@@ -124,7 +124,7 @@ check_sql_date_format = function (date) {
 program_id = getUrlVars()["program_id"];
 // re_year = getUrlVars()["year"];
 
-//抓發文表region
+//抓方案活動表region
 $(document).ready(function () {
   $.ajax({
     url: "database/find_program_act_data_detail.php",
@@ -156,6 +156,14 @@ $(document).ready(function () {
         $("#create_name").val(value.Create_name);
         $("#update_date").val(check_sql_date_format(value.Update_date));
         $("#update_name").val(value.Update_name);
+
+        var program_act_file_path = value.Upload_path.replace("../", "./");
+        program_act_file_name = value.Upload_name;
+        var a_element_content = '<a href="'+program_act_file_path+'" style="text-decoration:none;color:blue;" target="_blank">'
+        +program_act_file_name
+        +'</a><br/><br/>';
+
+        $("#upload").html(a_element_content);
       });
     },
     error: function (e) {
@@ -213,9 +221,114 @@ $(document).ready(function () {
   // });
 });
 
+//檢查檔名是否重複，提示使用者region
+function check_file_exist() {
+  var check_file_value = $('input[type="file"]').prop("files");
+  var warning_str = "";
+  var file_arr = [];
+  var file_n = "";
+  var exist_info = [];
+
+  for (var i = 0; i < check_file_value.length; i++) {
+    file_arr.push(check_file_value[i]["name"]);
+  }
+  $.each(file_arr, function (index, value) {
+    $.ajax({
+      url: "database/program_act_file_check.php",
+      data: {
+        file_name: value,
+      },
+      type: "POST",
+      dataType: "JSON",
+      async: false,
+      success: function (data) {
+        //  console.log(data)
+        if (data != "") {
+          $.each(data, function (index, value) {
+            file_n = data[index].file_path.replace(
+              "../program_act/",
+              ""
+            );
+
+            warning_str += "已有重複檔案名稱：\n" + file_n;
+
+            exist_info.push([file_n, warning_str]);
+          });
+        } else {
+          warning_str = "";
+        }
+      },
+      error: function (e) {
+        console.log(e);
+        notyf.alert('伺服器錯誤,無法載入');
+      },
+    });
+  });
+  return exist_info;
+}
+//endregion
+
+//更新發文個案表基本資料region
+// $("#program_update").on("click", function () {
+//   var program_id = getUrlVars()["program_id"];
+
+//   var stau = false;
+
+//   if (check_updat_program_act_data() != "") {
+//     stau = false;
+//   } else {
+//     stau = true;
+//   }
+//   console.log(stau);
+
+//   if (!stau) {
+//     swal({
+//       title: check_updat_program_act_data(),
+//       type: "error",
+//     });
+//   } else {
+//     $.ajax({
+//       url: "database/update_program_act_data_detail.php",
+//       data: {
+//         program_id: program_id,
+//         // Year: $("#year").val(),
+//         Date: $("#date").val(),
+//         Activity_name: $("#activity_name").val(),
+//         Activity_category: $("#activity_category").val(),
+//         Person: $("#person").val(),
+//         Location: $("#location").val(),
+//         Service: $("#service").val(),
+//         Cost: $("#cost").val(),
+//         Number: $("#number").val(),
+//         Lecturer: $("#lecturer").val(),
+//       },
+//       type: "POST",
+//       dataType: "JSON",
+//       success: function (data) {
+//         if (data == 1) {
+//           swal({
+//             title: "修改成功！",
+//             type: "success",
+//           }).then(function () {
+//             location.reload();
+//           });
+//         } else {
+//           swal({
+//             title: "修改失敗！請聯絡負責單位",
+//             type: "error",
+//           });
+//         }
+//       },
+//       error: function (e) {
+//         console.log(e);
+//       },
+//     });
+//   }
+// });
+
 //更新發文個案表基本資料region
 $("#program_update").on("click", function () {
-  var program_id = getUrlVars()["program_id"];
+  var pu_id = getUrlVars()["program_id"];
 
   var stau = false;
 
@@ -232,44 +345,116 @@ $("#program_update").on("click", function () {
       type: "error",
     });
   } else {
-    $.ajax({
-      url: "database/update_program_act_data_detail.php",
-      data: {
-        program_id: program_id,
-        // Year: $("#year").val(),
-        Date: $("#date").val(),
-        Activity_name: $("#activity_name").val(),
-        Activity_category: $("#activity_category").val(),
-        Person: $("#person").val(),
-        Location: $("#location").val(),
-        Service: $("#service").val(),
-        Cost: $("#cost").val(),
-        Number: $("#number").val(),
-        Lecturer: $("#lecturer").val(),
-      },
-      type: "POST",
-      dataType: "JSON",
-      success: function (data) {
-        if (data == 1) {
-          swal({
-            title: "修改成功！",
-            type: "success",
-          }).then(function () {
-            location.reload();
-          });
-        } else {
-          swal({
-            title: "修改失敗！請聯絡負責單位",
-            type: "error",
-          });
-        }
-      },
-      error: function (e) {
-        console.log(e);
-      },
-    });
+    var exist_arr = check_file_exist();
+      if(exist_arr.length != 0)
+      {
+        swal({
+          title: exist_arr[0][1],
+          text: "選擇『確認送出』覆蓋現有檔案，或是按『取消』更改檔名",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#DD6B55",
+          confirmButtonText: "確認送出",
+          cancelButtonText: "取消",
+          showConfirmButton: true,
+          showCancelButton: true,
+        })
+          .then(
+            function (result) {
+              if (result) {
+                submit_form();
+              }
+            },
+            function (dismiss) {
+              if (dismiss == "cancel") {
+                swal({
+                  title: "已取消，建議請更改檔名",
+                  type: "success",
+                });
+              }
+            }
+          )
+          .catch(swal.noop);
+      }
+      else
+      {
+        submit_form();
+      }
   }
 });
+
+function submit_form() {
+
+  //去掉資料內前後端多餘的空白，file類型須排除，否則報錯
+  $("input, textarea").each(function () {
+    if ($(this).attr("type") != "file") {
+        $(this).val(jQuery.trim($(this).val()));
+    }
+    });
+  
+    var form_data = new FormData();
+
+
+    $("input[type='file']").each(function(index, element) {
+        var program_act_files = $(this).prop("files");
+
+        if (program_act_files != undefined) {
+          if (program_act_files.length != 0) {
+            for (var i = 0; i < program_act_files.length; i++) {
+              form_data.append("program_act_files"+index, program_act_files[i]);
+              // console.log(program_act_files[i])
+            }
+          } 
+        }
+    });
+
+    form_data.append("program_id", program_id);
+    form_data.append("Year", $("#year").val());
+    form_data.append("Date", $("#date").val());
+    form_data.append("Activity_name", $("#activity_name").val());
+    form_data.append("Activity_category",$("#activity_category").val());
+    form_data.append("Person", $("#person").val());
+    form_data.append("Location",$("#location").val());
+    form_data.append("Service",$("#service").val());
+    form_data.append("Cost",$("#cost").val());
+    form_data.append("Number",$("#number").val());
+    form_data.append("Lecturer",$("#lecturer").val());
+
+    // 預覽傳到後端的資料詳細內容
+    for (var pair of form_data.entries()) {
+      console.log(pair[0] + ", " + pair[1]);
+    }
+
+
+  $.ajax({
+    url: "database/update_program_act_data_detail.php",
+    type: "POST",
+    data: form_data,
+    contentType: false,
+    cache: false,
+    processData: false,
+    async: true,
+    success: function (data) {
+      console.log(data);
+      if (data == 1) {
+        swal({
+          title: "修改成功！",
+          type: "success",
+        }).then(function () {
+          location.reload();
+        });
+      } else {
+        swal({
+          title: "修改失敗！請聯絡負責單位",
+          type: "error",
+        });
+      }
+    },
+    error: function (e) {
+      console.log(e);
+    },
+  });
+}
 
 //結案個案表(update)的必填欄位 region
 function check_updat_program_act_data() {

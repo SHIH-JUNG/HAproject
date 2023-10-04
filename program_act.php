@@ -158,6 +158,15 @@
                                                                     <!-- <option value="">所有</option> -->
                                                                 </select>
                                                             </td>
+
+                                                            <td class="text-right" style="background-color:rgb(255 201 54)">檔案是否上傳：</td>
+                                                            <td class="text-left">
+                                                                <select rel="9" class="filter search">
+                                                                    <option value="">所有</option>
+                                                                    <option value="已上傳">已上傳</option>
+                                                                    <option value="未上傳">未上傳</option>
+                                                                </select>
+                                                            </td>
                                                             <td colspan="8" class="text-right">
                                                                 <button onclick="location.reload();">重置搜尋</button><span> </span>
                                                             </td>
@@ -190,6 +199,7 @@
                                                                 <th>執行費用</th>
                                                                 <th>人數</th>
                                                                 <th>講師</th>
+                                                                <th>檔案是否上傳</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody id="call_view"></tbody>

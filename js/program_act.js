@@ -150,6 +150,11 @@ $.ajax({
     console.log(data)
     $.each(data, function (index, value) {
       // var update_date = value.Update_date != "0000-00-00" ? value.Update_date : "";
+      var isUpload = '未上傳';
+
+      if(value.Upload_name != ""){
+        isUpload = '已上傳';
+      }
 
       cssString +=
         '<tr id="' +
@@ -181,6 +186,9 @@ $.ajax({
         "</td>" +
         '<td style="text-align:center">' +
         value.Lecturer +
+        "</td>" +
+        '<td style="text-align:center">' +
+        isUpload +
         "</td>" +
         "</tr>";
 
