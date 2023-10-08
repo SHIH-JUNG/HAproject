@@ -129,7 +129,7 @@ $.ajax({
   async: false, //啟用同步請求
   success: function (data) {
     var cssString = "";
-    console.log(data)
+    // console.log(data)
     $.each(data, function (index, value) {
       // var update_date = value.Update_date != "0000-00-00" ? value.Update_date : "";
 
@@ -206,7 +206,7 @@ $.ajax({
         $("[id='c_allow_status"+value.Id+"']").val(c_allow_status);
 
     });
-    console.log(cssString)
+    // console.log(cssString)
     //找出所有查詢表格下拉式選單，將內容排序、加上"所有查詢"、去除重複值
     var filter_select = $("select.filter");
 
@@ -264,7 +264,7 @@ $.ajax({
   },
 
   error: function (e) {
-    console.log(e);
+    // console.log(e);
   },
 });
 
@@ -393,7 +393,7 @@ update_allow_status = function(overtime_id_str, allow_status_str) {
         },
       // dataType: "JSON", // 若要傳回字串 如：noallow，不可設定為json格式
       success: function (data) {
-        console.log(data);
+        // console.log(data);
         if (data == 1) 
         {
           swal({
@@ -418,16 +418,16 @@ update_allow_status = function(overtime_id_str, allow_status_str) {
         {
           swal({
             type: "error",
-            title: "更新失敗!請聯絡負責人",
+            title: "更新失敗！請聯絡網站維護人員",
             allowOutsideClick: false, //不可點背景關閉
           });
         }
       },
       error: function (e) {
-        console.log(e)
+        // console.log(e)
         swal({
             type: "error",
-            title: "更新失敗!請聯絡負責人",
+            title: "更新失敗！請聯絡網站維護人員",
             allowOutsideClick: false, //不可點背景關閉
         });
       },

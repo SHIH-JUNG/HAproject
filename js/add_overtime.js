@@ -136,12 +136,14 @@ $("input[overtime_date*='overtime_date']").change( function(event) {
 });
 // endregion
 
+//判斷是否為數字，若不是賦值為0 region
 function getNum(val) {
   if (isNaN(val)) {
     return 0;
   }
   return val;
 }
+// endregion
 
 //新增請假紀錄 region
 $("#overtime_add_new").on("click", function () {
@@ -176,7 +178,7 @@ $("#overtime_add_new").on("click", function () {
       .then(
         function (result) {
           if (result) {
-            console.log(check_overtime_status());
+            // console.log(check_overtime_status());
             // 若已經有加班申請審核中，則不能再次申請加班
             if(check_overtime_status())
             {
@@ -232,7 +234,7 @@ check_overtime_status = function() {
     async: false,//啟用同步請求
     success: function (data) {
         
-      console.log(data)
+      // console.log(data);
 
       if(data.length == 0)
       {
@@ -245,8 +247,8 @@ check_overtime_status = function() {
       
     },
     error:function(e){
-        notyf.alert('伺服器錯誤,無法載入');
-        console.log(e)
+        notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
+        // console.log(e);
     }
   });
 
@@ -270,8 +272,8 @@ function submit_form() {
 
   var rec_year = $("#overtime_date").val().split(".")[0];
 
-  console.log(timenow);
-  console.log(rec_year);
+  // console.log(timenow);
+  // console.log(rec_year);
 
   var form_data = new FormData();
 
@@ -329,7 +331,7 @@ function submit_form() {
       processData: false,
       async: true,
       success: function (data) {
-        console.log(data);
+        // console.log(data);
         if (data == 1) {
           swal({
             type: "success",
@@ -342,16 +344,16 @@ function submit_form() {
         } else {
           swal({
             type: "error",
-            title: "新增失敗!請聯絡負責人",
+            title: "新增失敗！請聯絡網站維護人員",
             allowOutsideClick: false, //不可點背景關閉
           });
         }
       },
       error: function (e) {
-          console.log(e)
+          // console.log(e);
           swal({
               type: "error",
-              title: "新增失敗!請聯絡負責人",
+              title: "新增失敗！請聯絡網站維護人員",
               allowOutsideClick: false, //不可點背景關閉
           });
       },
@@ -368,13 +370,13 @@ function check_overtime_data() {
     var check_element = $(this).parent("td").siblings("td").children()[0];
     var check_element_name = $(this).parent("td").text();
 
-    console.log($(check_element))
-    console.log($(check_element).val())
+    // console.log($(check_element));
+    // console.log($(check_element).val());
 
     var check_element_tagname = $(check_element).prop("tagName");
     var check_element_type = $(check_element).attr("type");
 
-    console.log(check_element_tagname)    
+    // console.log(check_element_tagname);    
     if(check_element_tagname == "INPUT" && check_element_type=="file")
     {
       var file_len = $(check_element).prop("files").length;

@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             },
                             type: "POST",
                             success: function (data) {
-                                console.log(data);
+                                // console.log(data);
                                 if(data == 1){
                                     swal({
                                         title:'刪除成功！',
@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                     }) 
                                 }else{
                                     swal({
-                                      title:'刪除失敗！請聯絡負責單位',
+                                      title:'刪除失敗！請聯絡網站維護人員',
                                       type:'error',
                                      })
                                 }                            
@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             },
                             type: "POST",
                             success: function (data) {
-                                console.log(data)
+                                // console.log(data)
                                 if(data == 1){
                                     swal({
                                         title:'修改成功！',
@@ -177,7 +177,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                     }) 
                                 }else{
                                     swal({
-                                      title:'修改失敗！請聯絡負責單位',
+                                      title:'修改失敗！請聯絡網站維護人員',
                                       type:'error',
                                      })
                                 }                            
@@ -227,7 +227,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 //新增行事曆活動region
 $("#add_new_note").click(function(){
-    console.log("a")
 //    console.log($("#end").val(),$("#start").val())
     if($("#title").val() != ""){
 //        console.log("OK");
@@ -244,7 +243,7 @@ $("#add_new_note").click(function(){
             },
             type: "POST",
             success: function (data) {
-                console.log(data)
+                // console.log(data)
                 
                 if (data == 1) {
                   swal({
@@ -255,13 +254,17 @@ $("#add_new_note").click(function(){
                   });
                 } else {
                   swal({
-                    title: "新增失敗！",
+                    title: "新增失敗！請聯絡網站維護人員",
                     type: "error",
                   });
                 }
               },
               error: function (e) {
-                console.log("錯誤"+e);
+                // console.log("錯誤"+e);
+                swal({
+                    title: "新增失敗！請聯絡網站維護人員",
+                    type: "error",
+                  });
               },
         });   
     }else{

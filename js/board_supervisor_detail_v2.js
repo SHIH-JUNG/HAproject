@@ -262,7 +262,7 @@ signature_submit = function(this_btn) {
         else 
         {
           swal({
-            title: "生成簽名圖片失敗！請聯絡負責單位",
+            title: "生成簽名圖片失敗！請聯絡網站維護人員",
             type: "error",
           });
         }
@@ -576,7 +576,7 @@ function load_rec_datas()
       });
     },
     error: function (e) {
-      notyf.alert('伺服器錯誤,無法載入');
+      notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
     },
   });
 
@@ -709,7 +709,7 @@ function submit_form_data_upload()
       } else {
         swal({
           type: "error",
-          title: "更新失敗!請聯絡負責人",
+          title: "更新失敗！請聯絡網站維護人員",
           allowOutsideClick: false, //不可點背景關閉
         });
       }
@@ -717,7 +717,7 @@ function submit_form_data_upload()
     error: function (e) {
       swal({
         type: "error",
-        title: "更新失敗!請聯絡負責人",
+        title: "更新失敗！請聯絡網站維護人員",
         allowOutsideClick: false, //不可點背景關閉
       });
     //   console.log(e);
@@ -849,7 +849,7 @@ selectFiles_delete = function (select_file_type_n) {
             //console.log(e)
             swal({
               type: "error",
-              title: "刪除檔案失敗!請聯絡負責人",
+              title: "刪除檔案失敗！請聯絡網站維護人員",
               allowOutsideClick: false, //不可點背景關閉
             });
           },

@@ -13,21 +13,26 @@ function getUrlVars() {
 }
 //endregion
 
+// 獲取網址參數 region
 var arc_year = getUrlVars()["year"];
 var arc_month = getUrlVars()["month"];
 var arc_id = getUrlVars()["arc_id"];
 var i_type = getUrlVars()["i_type"];
+//endregion
 
 window.invoice_year_arr = [];
 window.invoice_month_arr = [];
 
+// 設定返回頁面連結 region
 back_arc_page = function() {
   window.location.href = "accounting_record_cash_v2.php?year=" + arc_year + "&i_type=" + i_type + "&arc_month=" + arc_month + "";
 }
+//endregion
 
 
 $(document).ready(function () {
-    
+  
+    //載入零用金的年份、月份 region
     $("[invoice_arr='year']").each(function(){
 
     var this_id = $(this).attr("id");
@@ -47,7 +52,9 @@ $(document).ready(function () {
     $.each(invoice_month_arr,function(i,v){
     load_invoice_month_optios(v);
     });
+    //endregion
 
+    // 抓取資料 region
     $.ajax({
         url: "database/find_accounting_record_cash_detail_v2.php",
         data: {
@@ -108,15 +115,17 @@ $(document).ready(function () {
           });
         },
         error: function (e) {
-          console.log(e);
-          notyf.alert('伺服器錯誤,無法載入');
+          // console.log(e);
+          notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
         },
     });
+    //endregion
 
     $(".arc_question").attr("disabled", true);
 
 });
 
+// 載入零用金的年份選項內容 region
 load_invoice_year_optios = function(id_arr_val) 
 {
     var currentYear = new Date().getFullYear() - 1911;
@@ -133,7 +142,9 @@ load_invoice_year_optios = function(id_arr_val)
     $("[id='"+id_arr_val+"']").append('<option value="'+i+'">'+i+'</option>');
     }
 }
+//endregion
 
+// 載入零用金的月份選項內容 region
 load_invoice_month_optios = function(id_arr_val) 
 {  
     $("[id='"+id_arr_val+"']").append('<option value=""  disabled selected>請選擇年度</option>');
@@ -142,14 +153,13 @@ load_invoice_month_optios = function(id_arr_val)
     $("[id='"+id_arr_val+"']").append('<option value="'+i+'">'+i+'</option>');
     }
 }
+//endregion
 
 //宣告存入 file Object的空陣列
 window.file_name = [];
 
 // 顯示檔名 region
 $("input[type='file']").change(function (event) {
-
-   
   // console.log(event.target.files)
   // console.log(event.target.files.length)
 
@@ -273,9 +283,9 @@ function submit_form_data_upload()
 
   
 
-    for (var pair of form_data.entries()) {
-      console.log(pair[0] + ", " + pair[1]);
-    }
+    // for (var pair of form_data.entries()) {
+    //   console.log(pair[0] + ", " + pair[1]);
+    // }
 
     $.ajax({
         url: "database/update_upload_accounting_record_cash_detail_v2.php",
@@ -286,7 +296,7 @@ function submit_form_data_upload()
         processData: false,
         async: true,
         success: function (data) {
-        console.log(data);
+        // console.log(data);
         if (data == 1) {
             swal({
             type: "success",
@@ -299,7 +309,7 @@ function submit_form_data_upload()
         } else {
             swal({
             type: "error",
-            title: "更新失敗!請聯絡負責人",
+            title: "更新失敗！請聯絡網站維護人員",
             allowOutsideClick: false, //不可點背景關閉
             });
         }
@@ -307,10 +317,10 @@ function submit_form_data_upload()
         error: function (e) {
         swal({
             type: "error",
-            title: "更新失敗!請聯絡負責人",
+            title: "更新失敗！請聯絡網站維護人員",
             allowOutsideClick: false, //不可點背景關閉
         });
-        console.log(e);
+        // console.log(e);
         },
     });
 }
@@ -358,7 +368,7 @@ function check_updat_data() {
 //endregion
 
 
-// 刪除履歷表檔案內容 多檔案上傳 region
+// 刪除檔案內容 多檔案上傳 region
 selectFiles_delete = function () {
 
 
@@ -416,10 +426,10 @@ selectFiles_delete = function () {
   
             },
             error: function (e) {
-              console.log(e)
+              // console.log(e);
               swal({
                 type: "error",
-                title: "刪除檔案失敗!請聯絡負責人",
+                title: "刪除檔案失敗！請聯絡網站維護人員",
                 allowOutsideClick: false, //不可點背景關閉
               });
             },
@@ -444,13 +454,14 @@ selectFiles_delete = function () {
     }
   
   
-  }
-  //endregion
+}
+//endregion
   
-  window.selectedFiles = [];
-  window.selectedFiles_str = "";
+window.selectedFiles = [];
+window.selectedFiles_str = "";
   
-  selectFiles_insert = function () {
+// 多檔案上傳 選取檔案設定 region
+selectFiles_insert = function () {
   
   
     if(selectedFiles.length==0)
@@ -482,11 +493,11 @@ selectFiles_delete = function () {
           }
         }).catch(swal.noop)
     }
-      
-  }
-  
-  
-  selected_files = function() {
+}
+//endregion
+
+// 多檔案上傳預覽顯示 region
+selected_files = function() {
     selectedFiles = [];
     selectedFiles_str = "";
     var html = '<span style="color:red;">上傳檔案清單預覽：</span><br/>';
@@ -549,6 +560,7 @@ selectFiles_delete = function () {
       // $("#selected-files").html(html);
     });
 }
+//endregion
 
 //記錄總表格鎖定控制region
 function arc_edit() {

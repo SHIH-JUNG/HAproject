@@ -26,7 +26,7 @@ $(function() {
 //設置存放有資料的量表名稱之陣列
 var form_type_arr = [];
 
-//填寫資料(輔導紀錄)region
+//抓網址參數 region
 var name = decodeURIComponent(getUrlVars()["name"]);
 var pid =getUrlVars()["pid"];
 var date = getUrlVars()["date"];
@@ -72,7 +72,7 @@ $(document).ready(function () {
             $(".case_user").text(data[0].Case_assign);
         },
         error: function (e) {
-            notyf.alert('伺服器錯誤,無法載入');
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
             }
     });
 
@@ -126,8 +126,8 @@ function load_form_type_array()
             load_each_form();
         },
         error: function (e) {
-            console.log(e);
-            notyf.alert('伺服器錯誤,無法載入');
+            // console.log(e);
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
         }
     });
 }
@@ -315,8 +315,8 @@ function load_each_form()
                 })
             },
             error: function (e) {
-                console.log(e);
-                notyf.alert('伺服器錯誤,無法載入');
+                // console.log(e);
+                notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
             }
         });
     });
@@ -500,15 +500,15 @@ function store(num, form_name){
                 })
             } else {
                 swal({
-                    title: '儲存失敗！',
+                    title: '儲存失敗！請聯絡網站維護人員',
                     type: 'error',
                 })
             }
         },
         error: function (e) {
-            console.log(e);
+            // console.log(e);
             swal({
-                title: '儲存失敗！',
+                title: '儲存失敗！請聯絡網站維護人員',
                 type: 'error',
             })
         }
@@ -785,7 +785,7 @@ function i_store(num, form_name){
         processData:false,
         async:true,
         success: function (data) {
-            console.log(data)
+            // console.log(data)
             //console.log(typeof data)
             if(data == 1){
                 swal({
@@ -798,15 +798,15 @@ function i_store(num, form_name){
            else
            {
                 swal({
-                    title:'上傳失敗！請聯絡負責單位',
+                    title:'上傳失敗！請聯絡網站維護人員',
                     type:'error',
                 })
             }
         },
         error: function (e) {
-            console.log(e);
+            // console.log(e);
             swal({
-                title:'上傳失敗！請聯絡負責單位',
+                title:'上傳失敗！請聯絡網站維護人員',
                 type:'error',
             })
         }
@@ -954,7 +954,7 @@ function datatable_sign_show(signer_type ,signer, sign_path, sign_time, sign_msg
 
     var $parent = $(this).parent();
 
-    console.log($(this))
+    // console.log($(this))
 
     var sign_msg = $(this).attr("sign_msg");
     var sign_time = $(this).attr("sign_time");
@@ -1037,7 +1037,7 @@ if (src_data) {
     },
     async: false,
     success: function (data) {
-        console.log(data);
+        // console.log(data);
         if (data == 1) 
         {
             swal({
@@ -1059,7 +1059,7 @@ if (src_data) {
         else 
         {
         swal({
-            title: "生成簽名圖片失敗！請聯絡負責單位",
+            title: "生成簽名圖片失敗！請聯絡網站維護人員",
             type: "error",
         });
         }

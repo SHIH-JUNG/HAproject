@@ -6,6 +6,7 @@ $(document).ready(function () {
 window.origin_sync_link = "";
 window.origin_share_link = "";
 
+// 載入google sheet內容，讀取txt檔案內儲存的網址 region
 load_url = function () 
 {
     $.get("./accounting_sheet/HAproject_accounting_google_sheet_api.txt", function(url) {
@@ -20,8 +21,9 @@ load_url = function ()
     });
     $.ajaxSettings.async = true;
 }
+//endregion
 
-
+// 更新google sheet 同步網址 region
 update_sync_url = function() {
 
     swal({
@@ -83,7 +85,9 @@ update_sync_url = function() {
 
     
 }
+//endregion
 
+// 更新google sheet 分享網址 region
 update_share_url = function() {
 
     swal({
@@ -142,8 +146,9 @@ update_share_url = function() {
         }
         }).catch(swal.noop)
 }
+//endregion
 
-
+// 恢復原本的同步網址 region
 recover_sync_url = function() {
     swal({
         title: "確認復原？",
@@ -177,7 +182,9 @@ recover_sync_url = function() {
     }
     }).catch(swal.noop)
 }
+//endregion
 
+// 恢復原本的分享網址 region
 recover_share_url = function() {
 
     swal({
@@ -211,3 +218,4 @@ recover_share_url = function() {
     }
     }).catch(swal.noop)
 }
+//endregion

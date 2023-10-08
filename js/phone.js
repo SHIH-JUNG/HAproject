@@ -4,7 +4,7 @@ const notyf = new Notyf();
 var address_arr=[];
 var new_address_arr=[];
 
-//抓所有電話諮詢紀錄region
+//抓所有簡短服務 region
     $.ajax({
         url: "database/find_data.php",
         type: "POST",
@@ -117,7 +117,7 @@ var new_address_arr=[];
         },
         
         error: function (e) {
-            notyf.alert('伺服器錯誤,無法載入');
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
          }
     });
 //endregion
@@ -179,7 +179,7 @@ $.each(get_tr_phoneid, function(index,val) {
             });
         },
         error: function (e) {
-            notyf.alert('伺服器錯誤,無法載入');
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
         }
     });
 }); 
@@ -242,7 +242,7 @@ $.ajax({
     },
     
     error: function (e) {
-        notyf.alert('伺服器錯誤,無法載入');
+        notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
     }
 });
 //endregion

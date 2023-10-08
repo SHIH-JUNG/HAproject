@@ -150,7 +150,7 @@ $.ajax({
   async: false, //啟用同步請求
   success: function (data) {
     var cssString = "";
-    console.log(data);
+    // console.log(data);
     $.each(data, function (index, value) {
 
       var executive_sign_arr = datatable_sign_show('executive', value.Executive, value.Executive_signature, value.Executive_sign_time, value.Executive_sign_msg);
@@ -304,7 +304,7 @@ $.ajax({
   },
 
   error: function (e) {
-    console.log(e);
+    // console.log(e);
   },
 });
 //endregion

@@ -4,6 +4,8 @@ window.year_list = [];
 
 
 $(document).ready(function () {
+
+  // 載入年份資料 region
   $.ajax({
     // url: "database/find_ar_cash_yearlist.php",
     url: "database/find_ar_cash_yearlist_v2.php",
@@ -37,10 +39,11 @@ $(document).ready(function () {
       $("#ar_cash_yearlist_all").append(cssstring);
     },
     error: function (e) {
-      notyf.alert('伺服器錯誤,無法載入');
+      notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
       // console.log(e);
     },
   });
+  //endregion
   
   // console.log(year_list)
   
@@ -133,7 +136,7 @@ load_year_balance_num = function(year_num) {
     //  console.log(e)
       swal({
         type: "error",
-        title: "系統錯誤!請聯絡負責人",
+        title: "系統錯誤！請聯絡網站維護人員",
         allowOutsideClick: false, //不可點背景關閉
       })
       // .then(function () {

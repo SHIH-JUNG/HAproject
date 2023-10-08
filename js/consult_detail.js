@@ -110,7 +110,7 @@ load_consult_addfirst_datas = function() {
                 
                 $("[name='m_type[]'][value='"+m_type_val+"']").attr('checked',true);
                 
-                console.log(value.M_addiction)
+                // console.log(value.M_addiction)
                 
                 if(value.M_addiction.includes("、"))
                 {
@@ -183,7 +183,7 @@ load_consult_addfirst_datas = function() {
         
         },
         error:function(e){
-            notyf.alert('伺服器錯誤,無法載入');
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
         }
     });
 }
@@ -244,7 +244,7 @@ load_consult_phone_rec_datas = function() {
             $(".update_btn").attr("onclick","show_modal(this);");
         },
         error:function(e){
-            notyf.alert('伺服器錯誤,無法載入');
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
         }
     });
 }
@@ -327,7 +327,7 @@ load_consult_face_rec_datas = function() {
             $(".update_btn").attr("onclick","show_modal(this);");
         },
         error:function(e){
-            notyf.alert('伺服器錯誤,無法載入');
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
         }
     });
 }
@@ -503,17 +503,17 @@ update_consult_data = function() {
                     }) 
                 }else{
                     swal({
-                        title:'更新失敗！請聯絡負責單位',
+                        title:'更新失敗！請聯絡網站維護人員',
                         type:'error',
                     })
                 }  
             },
             error:function(e){
                 swal({
-                    title:'更新失敗！請聯絡負責單位',
+                    title:'更新失敗！請聯絡網站維護人員',
                     type:'error',
                 })
-                console.log(e)
+                // console.log(e)
             }
         });
     }
@@ -678,17 +678,17 @@ add_consult_phone = function() {
                     }) 
                 }else{
                     swal({
-                        title:'新增電訪記錄失敗！請聯絡負責單位',
+                        title:'新增電訪記錄失敗！請聯絡網站維護人員',
                         type:'error',
                     })
                 }  
             },
             error:function(e){
                 swal({
-                    title:'新增電訪記錄失敗！請聯絡負責單位',
+                    title:'新增電訪記錄失敗！請聯絡網站維護人員',
                     type:'error',
                 })
-                console.log(e)
+                // console.log(e)
             }
         });
     }
@@ -819,17 +819,17 @@ add_consult_face = function() {
                     }) 
                 }else{
                     swal({
-                        title:'新增面訪記錄失敗！請聯絡負責單位',
+                        title:'新增面訪記錄失敗！請聯絡網站維護人員',
                         type:'error',
                     })
                 }  
             },
             error:function(e){
                 swal({
-                    title:'新增面訪記錄失敗！請聯絡負責單位',
+                    title:'新增面訪記錄失敗！請聯絡網站維護人員',
                     type:'error',
                 })
-                console.log(e)
+                // console.log(e)
             }
         });
     }
@@ -1079,8 +1079,8 @@ load_update_type_phone_data = function(consult_id)
             
         },
         error:function(e){
-            notyf.alert('伺服器錯誤,無法載入');
-            console.log(e)
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
+            // console.log(e)
         }
     });
 }
@@ -1255,8 +1255,8 @@ load_update_type_face_data = function(consult_id)
             });            
         },
         error:function(e){
-            notyf.alert('伺服器錯誤,無法載入');
-            console.log(e)
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
+            // console.log(e)
         }
     });
 }
@@ -1341,7 +1341,7 @@ update_rec_data = function(this_btn)
         type: "POST",
         // dataType: "JSON",
         success: function (data) {
-            console.log(data)
+            // console.log(data)
             if(data == 1){
                 swal({
                     title:'更新成功！',
@@ -1351,17 +1351,17 @@ update_rec_data = function(this_btn)
                 }) 
             }else{
                 swal({
-                    title:'更新失敗！請聯絡負責單位',
+                    title:'更新失敗！請聯絡網站維護人員',
                     type:'error',
                 })
             }  
         },
         error:function(e){
             swal({
-                title:'更新失敗！請聯絡負責單位',
+                title:'更新失敗！請聯絡網站維護人員',
                 type:'error',
             })
-            console.log(e)
+            // console.log(e)
         }
     });
 
@@ -1469,7 +1469,7 @@ $("#trans_to_opencase_submit").on('click',function(){
                 tran_case_referral = data.Referral_detail[0];
             },
             error:function(e){
-                notyf.alert('伺服器錯誤,無法載入開案所需資料!');
+                notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員!');
             }
         });
 
@@ -1566,8 +1566,8 @@ find_case_auto_id = function(object_type_val) {
             }
         },
         error:function(e){
-            console.log(e);
-            notyf.alert('伺服器錯誤,無法載入開案所需資料!');
+            // console.log(e);
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員!');
         }
     });
 }
@@ -1658,7 +1658,7 @@ function check_case_isrepeat() {
             }
         },
         error: function (e) {
-            // notyf.alert('伺服器錯誤,無法載入開案所需資料!');
+            // notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員!');
         }
     });
     
@@ -1701,7 +1701,7 @@ function tab_toggle() {
 }
 
 $('#menu_tab_nav li a, .breadcrumb li, .brand-img').on('click',function() {
-  localStorage.removeItem('activeTab');
+    localStorage.removeItem('activeTab');
 });
 
 //endregion

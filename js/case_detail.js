@@ -8,7 +8,7 @@ function getUrlVars() {
 }
 //endregion
 
-//填寫資料(輔導紀錄)region
+//載入網址參數 region
 var name = decodeURIComponent(getUrlVars()["name"]);
 var pid =getUrlVars()["pid"];
 var date = getUrlVars()["date"];
@@ -34,11 +34,11 @@ const notyf = new Notyf();
 //將日期轉為民國年格式111.03.07 region
 trans_to_Tw = function (endate) {
     var strAry = endate.split("-");
-  
+
     if (parseInt(strAry[0]) > 1911) {
-      strAry[0] = parseInt(strAry[0]) - 1911;
+        strAry[0] = parseInt(strAry[0]) - 1911;
     }
-  
+
     return strAry[0] + "年" + strAry[1] + "月" + strAry[2] + "日";
 };
 //endregion
@@ -210,7 +210,7 @@ function add_form_interlocution_ques_type_keywords() {
             // console.log(exist_ques_type_keywords);
         },
         error:function(e){
-            notyf.alert('伺服器錯誤,無法載入');
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
         }
     });
 }
@@ -252,16 +252,16 @@ insert_ques_type_keywords = function() {
                 }else{
                     swal({
                         type: 'error',
-                        title: '新增失敗!請聯絡負責人',
+                        title: '新增失敗！請聯絡網站維護人員',
                         allowOutsideClick: false //不可點背景關閉
                         })
                 }  
             },
             error:function(e){
-                console.log(e);
+                // console.log(e);
                 swal({
                     type: 'error',
-                    title: '新增失敗!請聯絡負責人',
+                    title: '新增失敗！請聯絡網站維護人員',
                     allowOutsideClick: false //不可點背景關閉
                     })
             }
@@ -436,8 +436,8 @@ function load_sullen_data() {
             // console.log(sp_str2)
         },
         error: function (e) {
-            notyf.alert('伺服器錯誤,無法載入');
-            console.log(e)
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
+            // console.log(e)
         }
     });
 }
@@ -514,8 +514,8 @@ function load_life_data() {
             // console.log(sp_str2)
         },
         error: function (e) {
-            notyf.alert('伺服器錯誤,無法載入');
-            console.log(e)
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
+            // console.log(e)
         }
     });
 }
@@ -591,8 +591,8 @@ function load_familyship_data() {
             // console.log(sp_str2)
         },
         error: function (e) {
-            notyf.alert('伺服器錯誤,無法載入');
-            console.log(e)
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
+            // console.log(e)
         }
     });
 }
@@ -668,8 +668,8 @@ function load_BSRS5_data() {
             $("#bsrs5_test_area").append(sp_str);
         },
         error: function (e) {
-            notyf.alert('伺服器錯誤,無法載入');
-            console.log(e)
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
+            // console.log(e)
         }
     });
 }
@@ -758,91 +758,91 @@ function check_file_exist(){
     var exist_info = [];
 
     for(var i=0; i<check_file_value.length; i++){
-         file_arr.push(check_file_value[i]["name"]);
+        file_arr.push(check_file_value[i]["name"]);
      }
      $.each(file_arr, function (index, value) {
-         $.ajax({
-             url: "database/case_file_check.php",
-             data: {
+        $.ajax({
+            url: "database/case_file_check.php",
+            data: {
                 file_name:value,
                 Case_id:open_id,
                 Form_id:form_id,
                 Form_type:form_type,
                 Case_pid:pid
-             },
-             type: "POST",
-             dataType: "JSON",
-             async:false,
-             success: function (data) {
+            },
+            type: "POST",
+            dataType: "JSON",
+            async:false,
+            success: function (data) {
                 //  console.log(data)
-                 if(data!="")
-                 {
-                     $.each(data, function (index, value) {
-                         var form_type_str = "";
- 
-                         file_n = data[index].file_path.replace("\.\.\/upload\/", "");
- 
-                         switch (data[index].Form_type) {
-                             case "case":
-                                 form_type_str = "個案評估表";
-                                 
-                                 break;
-                             case "BSRS5":
-                                 form_type_str = "BSRS-5量表";
-                                 
-                                 break;
-                             case "sullen":
-                                 form_type_str = "憂鬱量表";
-                                 break;
-                         }
-     
-                         warning_str += '檔案名稱：'+file_n+'，\n'+
-                                         '開案案號：'+data[index].Case_id+'，\n'+
-                                         '量表類型：'+form_type_str+'，\n'+
-                                         '檔案創建者：'+data[index].Create_name+'，\n'+
-                                         '檔案更新者：'+data[index].Update_name+'。\n\n';
-                         
+                if(data!="")
+                {
+                    $.each(data, function (index, value) {
+                        var form_type_str = "";
+
+                        file_n = data[index].file_path.replace("\.\.\/upload\/", "");
+
+                        switch (data[index].Form_type) {
+                            case "case":
+                                form_type_str = "個案評估表";
+                                
+                                break;
+                            case "BSRS5":
+                                form_type_str = "BSRS-5量表";
+                                
+                                break;
+                            case "sullen":
+                                form_type_str = "憂鬱量表";
+                                break;
+                        }
+    
+                        warning_str += '檔案名稱：'+file_n+'，\n'+
+                                        '開案案號：'+data[index].Case_id+'，\n'+
+                                        '量表類型：'+form_type_str+'，\n'+
+                                        '檔案創建者：'+data[index].Create_name+'，\n'+
+                                        '檔案更新者：'+data[index].Update_name+'。\n\n';
+                        
 
                         exist_info.push([file_n, warning_str]);
-                     });
-                 }
-                 else
-                 {
-                     warning_str = "";
-                 }               
-             },
-             error: function (e) {
-                notyf.alert('伺服器錯誤,無法載入');
-             }
-         });
-     });
-     return exist_info;
-  }
- //endregion
+                    });
+                }
+                else
+                {
+                    warning_str = "";
+                }               
+            },
+            error: function (e) {
+                notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
+            }
+        });
+    });
+    return exist_info;
+}
+//endregion
 
- other_info_push = function(form_tpye) {
+other_info_push = function(form_tpye) {
 
     var other_info_arr = [];
     
     switch (form_tpye) {
         case 'case':
 
-              var get_case_closed = $('input[name="case_closed_radio"]:checked').val();
+            var get_case_closed = $('input[name="case_closed_radio"]:checked').val();
 
-              if(get_case_closed=='結案')
-              {
-                other_info_arr.push({name:form_tpye,value:'結案'});
-              }
-              else if(get_case_closed=='暫不結案')
-              {                
-                var case_closed_str = "暫不結案，持續服務至民國"+$('input[name="case_closed_year"]').val()+"年"+$('input[name="case_closed_month"]').val()+"月"+$('input[name="case_closed_day"]').val()+"日";
-                other_info_arr.push({name:form_tpye,value:case_closed_str});
-              }
-              else
-              {
-                other_info_arr.push({name:form_tpye,value:''});
-              }
-              
+            if(get_case_closed=='結案')
+            {
+            other_info_arr.push({name:form_tpye,value:'結案'});
+            }
+            else if(get_case_closed=='暫不結案')
+            {                
+            var case_closed_str = "暫不結案，持續服務至民國"+$('input[name="case_closed_year"]').val()+"年"+$('input[name="case_closed_month"]').val()+"月"+$('input[name="case_closed_day"]').val()+"日";
+            other_info_arr.push({name:form_tpye,value:case_closed_str});
+            }
+            else
+            {
+            other_info_arr.push({name:form_tpye,value:''});
+            }
+            
             break;
 
         case 'life':
@@ -982,256 +982,7 @@ function check_file_exist(){
 
     return other_info_arr;
 
- }
-
-
-//儲存後資料預覽測試region
-test = function()
-{   
-    if($('input[type="file"]').length!=0)
-    {
-        var exist_arr = check_file_exist();
-
-        if(exist_arr.length!=0)
-        {
-            swal({
-                title: exist_arr[0][0]+"已存在。相關資訊如下：\n"+exist_arr[0][1],
-                text: "選擇『確認送出』覆蓋現有檔案，或是按『取消』更改檔名",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#DD6B55",
-                confirmButtonText: "確認送出",
-                cancelButtonText: "取消",
-                showConfirmButton: true,
-                showCancelButton: true
-            }).then(function(result) {
-                if (result) {
-                    test_submit_data();
-                }
-            }, function(dismiss){
-                if(dismiss == 'cancel'){
-                    swal({
-                        title:'已取消，建議請更改檔名',
-                        type:'success',                        
-                    })
-                }
-            }).catch(swal.noop)
-        }
-        else
-        {
-            test_submit_data();
-        }
-    }
-    else
-    {
-        test_submit_data();
-    }
-   
-    
 }
-
-
-
-function test_submit_data()
-{
-    var form_type = getUrlVars()["form_type"];
-    //去掉資料內前後端多餘的空白
-    $('input, textarea').each(function(){
-        if($(this).attr('type')!='file')
-        {
-            $(this).val(jQuery.trim($(this).val()));
-        }
-    });
-
-    var form_data = new FormData();
-
-    var customfile = $('[type="file"]').prop('files');
-
-
-    // console.log(typeof customfile)
-    
-    var form = $('.form').serializeArray();
-    // console.log(form)
-
-    if(file_name.length==0)
-    {
-        var input_files_len = $('[type="file"]');
-        var inputs_files_value = $('[type="file"]').attr("value");
-        var inputs_files_name = $('[type="file"]').attr("name");
-
-        if(inputs_files_value!=undefined)
-        {
-            for(var i=0;i<input_files_len.length;i++)
-            {
-                file_name.push({name:inputs_files_name,value:inputs_files_value}); 
-            }
-        }
-
-        form = form.concat(file_name);
-    }
-    else
-    {
-        form = form.concat(file_name);
-    }
-
-    if(form_type=="health")
-    {
-        form_health_arr = new Array();
-
-        $(".form_health table").each(function(index, name){
-            var get_tab_id = $(this).attr("id");
-            var name_arr1 = $("[name='"+get_tab_id+"&medical_rec_1[]']");
-            var name_arr2 = $("[name='"+get_tab_id+"&medical_rec_2[]']");
-        
-            var arr_len  = name_arr1.length;
-            var arr2_len  = name_arr2.length;
-        
-            var arr1 = new Array();
-            var arr2 = new Array();
-           
-            for (i = 0; i < arr_len; i++)
-            {
-                arr1.push(name_arr1[i].value); 
-            } 
-            
-            for (i = 0; i < arr2_len; i++)
-            {
-                arr2.push(name_arr2[i].value); 
-            }
-            var isstrspace = 0;
-
-            arr1.forEach(function(item, index, arr) {
-                if (item==null || item=="") {
-                    isstrspace ++
-                }
-            });
-
-            arr2.forEach(function(item, index, arr) {
-                if (item==null || item=="") {
-                    isstrspace ++
-                }
-            });
-
-            console.log(isstrspace)
-            if(isstrspace!=(arr_len+arr2_len))
-            {
-                form_health_arr.push({name:name_arr1.attr("name"),value:arr1})
-                form_health_arr.push({name:name_arr2.attr("name"),value:arr2})
-            }
-            else
-            {
-                console.log("no")
-            }
-
-
-        });
-        // var form_health_arr = $('.form_health').serializeArray();
-
-        form_data.append("health_rec", JSON.stringify(form_health_arr));
-    }
-
-    if(form_type=="resource")
-    {
-        form_resource_arr = new Array();
-
-        $(".form_resource table").each(function(index, name){
-            var get_tab_id = $(this).attr("id");
-            var name_arr1 = $("[name='"+get_tab_id+"&resource_rec_1[]']");
-        
-            var arr_len  = name_arr1.length;
-        
-            var arr1 = new Array();
-           
-            for (i = 0; i < arr_len; i++)
-            {
-                arr1.push(name_arr1[i].value); 
-            } 
-            
-            var isstrspace = 0;
-
-            arr1.forEach(function(item, index, arr) {
-                if (item==null || item=="") {
-                    isstrspace ++
-                }
-            });
-
-            if(isstrspace!=arr_len)
-            {
-                form_resource_arr.push({name:name_arr1.attr("name"),value:arr1})
-            }
-        });
-
-        form_data.append("answer", JSON.stringify(form_resource_arr));
-    }
-    else
-    {
-        form_data.append("answer", JSON.stringify(form));
-    }
-
-    var other_info = other_info_push(form_type);
-
-    if(other_info.length>0)
-    {
-        form_data.append("other_info", JSON.stringify(other_info));
-    }
-
-    // console.log(form)
-
-     //將其他摘要訊息添加至form_data，other_info用來顯示在case_all.php的各量表摘要表格上
-     var other_info = other_info_push(form_type);
-
-    //  console.log(other_info)
-    //  console.log(other_info.length)
-     if(other_info.length>0)
-     {
-         form_data.append("other_info", JSON.stringify(other_info));
-     }
- 
-     form_data.append("Fillin_date", $("input[name*='fillin_date']").val());
-
-
-     if(typeof customfile !== 'undefined')
-     {
-         if(customfile.length!=0)
-         {
-             for(var i=0; i<customfile.length; i++){
-                 form_data.append("file4", customfile[i]);
-                 // console.log(customfile[i])
-             }
-         }
-         else
-         {
-             //載入量表『無重新上傳檔案』情況下按儲存，則加入File_name供後端程式判斷
-             form_data.append("File_name", $('[type="file"]').attr("value"));
-         }
-     }
-
-     var case_report_datas = get_case_report_datas(form_type);
-
-    
-
-    form_data.append("Case_seqid", id);
-    form_data.append("Case_id", open_id);
-    form_data.append("Form_id", form_id);
-    form_data.append("Form_type", form_type);
-    form_data.append("Case_name", name);
-    form_data.append("Case_pid", pid);
-    form_data.append("Case_report", JSON.stringify(case_report_datas));
-    form_data.append("Case_storage", storage_type);
-    
-    if(form_type=="case" || form_type=="interlocution")
-    {
-        var case_report2_datas = get_case_report2_datas();
-        form_data.append("Case_report2", JSON.stringify(case_report2_datas));
-    }
-    // form_data.append("answer", JSON.stringify(form));
-
-    for (var pair of form_data.entries()) {
-        console.log(pair[0]+ ', ' + pair[1]); 
-    }
-}
-//endregion
-
 
 //網頁載入 region
 $(document).ready(function () {
@@ -1372,8 +1123,8 @@ $(document).ready(function () {
             $("#case_user").val(data[0].Case_assign);
         },
         error: function (e) {
-            notyf.alert('伺服器錯誤,無法載入');
-         }
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
+        }
     });
 });
 //endregion
@@ -1404,9 +1155,11 @@ function getAge(birthday) {
 }
 //endregion
 
+// 隱藏元素 region
 hideContainer = function(this_el) {
     $(this_el).hide();
 }
+//endregion
 
 //載入各量表 資料 region
 function load_all_forms_data(type_name,url_str)
@@ -1614,11 +1367,12 @@ function load_all_forms_data(type_name,url_str)
                 }
             }
 
+            // 資源量表
             if(form_type == "resource")
             {
                 var data_json_resource = JSON.parse("[" +data[0].answer.replace('\"\[\{', '\[\{').replace('\}\]\"', '\}\]') + "]");
 
-                console.log(data_json_resource[0])
+                // console.log(data_json_resource[0])
                 // console.log(data_json_resource[0])
                 //依據input的type類型名稱寫入資料，file類型名稱另外寫 region
                 $.each(data_json_resource[0], function (i, datan) {
@@ -1626,15 +1380,11 @@ function load_all_forms_data(type_name,url_str)
                         $("input[name='"+datan.name+"']").eq(e).val(v);                            
                     });
                 });
-
             }
-
-           
-        
         },
         error: function (e) {
-            console.log(e)
-            notyf.alert('伺服器錯誤,無法載入');
+            // console.log(e)
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
         }
     });
 }
@@ -1661,7 +1411,6 @@ $("#case_storage_submit").on('click', function () {
 
     // console.log(case_storage_type)
 
-
     if(case_storage_type == "cache")
     {
         form_check_submit(case_storage_type);
@@ -1679,7 +1428,6 @@ $("#case_storage_submit").on('click', function () {
             }
             else
             {
-           
                 if($("#case_storage_pwd").val() == login_user_pwd)
                 {
                     form_check_submit(case_storage_type);
@@ -1795,8 +1543,8 @@ function get_case_report_datas(form_type) {
             case_assign = data[0].Case_assign;
         },
         error: function (e) {
-            console.log(e)
-            notyf.alert('伺服器錯誤,無法載入');
+            // console.log(e)
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
         }
     });
 
@@ -1860,6 +1608,7 @@ function get_case_report_datas(form_type) {
 }
 //endregion
 
+// 獲取服務報表的分析內容 region
 function get_case_report2_datas() {
     var report_datas2 = [];
 
@@ -1905,11 +1654,9 @@ function get_case_report2_datas() {
             break;
     }
 
-
-    
     return report_datas2;
 }
-
+//endregion
 
 // 防五秒內重複送出表單
 window.submit_detail_click = true;
@@ -2215,15 +1962,15 @@ function submit_form_data() {
             else
             {
                     swal({
-                        title:'上傳失敗！請聯絡負責單位',
+                        title:'上傳失敗！請聯絡網站維護人員',
                         type:'error',
                     })
                 }
             },
             error: function (e) {
-                console.log(e);
+                // console.log(e);
                 swal({
-                    title:'上傳失敗！請聯絡負責單位',
+                    title:'上傳失敗！請聯絡網站維護人員',
                     type:'error',
                 })
             }
@@ -2232,11 +1979,9 @@ function submit_form_data() {
 
         setTimeout(function() {
             submit_detail_click = true;
-        }, 5000);//五秒内不能重复点击
+        }, 5000);//五秒内不能重複點擊
 
     }
-    
-
 }
 //endregion
 
@@ -2306,7 +2051,6 @@ $("#preview").on('click', function(){
 //endregion
 
 //設定麵包屑返回region
-
 window.history_url = 'case_all.php?name='+name+'&gender='+gender+'&pid='+pid+'&date='+date+'&property='+property+'&type='+type+'&grade='+ grade+'&id='+id+'&open_id='+open_id+'&referral='+referral+'&case_Create_date='+case_Create_date+'&unopen_type='+unopen_type+'&birth='+birth+'';
 $("#history").attr('href',history_url);
 
@@ -2314,10 +2058,8 @@ history_back_btn = function() {
     location.href = history_url;
 }
 
-
 var url2 = 'case_all_all.php?id='+id+'&open_id='+open_id+'';
 $("#history2").attr('href',url2);
-
 //endregion
 
 // 轉級 region
@@ -2356,15 +2098,15 @@ $("#trans_grade_submit").on('click', function () {
                         })
                     } else {
                         swal({
-                            title: '轉級失敗！',
+                            title: '轉級失敗！請聯絡網站維護人員',
                             type: 'error',
                         })
                     }
                 },
                 error: function (e) {
-                    console.log(e);
+                    // console.log(e);
                     swal({
-                        title: '轉級失敗！',
+                        title: '轉級失敗！請聯絡網站維護人員',
                         type: 'error',
                     })
                 }
@@ -2409,15 +2151,15 @@ $("#trans_user_submit").on('click', function () {
                         })
                     } else {
                         swal({
-                            title: '轉案失敗！',
+                            title: '轉案失敗！請聯絡網站維護人員',
                             type: 'error',
                         })
                     }
                 },
                 error: function (e) {
-                    console.log(e);
+                    // console.log(e);
                     swal({
-                        title: '轉案失敗！',
+                        title: '轉案失敗！請聯絡網站維護人員',
                         type: 'error',
                     })
                 }
@@ -2477,10 +2219,10 @@ function append_user(){
         success: function (data) {
             // console.log('test',data)
             for (var index in data.Id) {
-              $("#supervise1").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
-              $("#supervise2").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+                $("#supervise1").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+                $("#supervise2").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
             }
         },
     });
-  }
-  //endregion
+}
+//endregion

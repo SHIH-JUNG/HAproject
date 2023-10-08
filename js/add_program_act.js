@@ -9,8 +9,8 @@ datepicker_create = function (selector_id) {
       showButtonPanel: true,
       yearRange: "-109:+0",
       onClose: function (dateText) {
-        console.log($("#" + selector_id).val());
-        console.log(trans_to_EN(dateText));
+        // console.log($("#" + selector_id).val());
+        // console.log(trans_to_EN(dateText));
       },
       beforeShow: function (input, inst) {
         var $this = $(this);
@@ -164,7 +164,7 @@ $(document).ready(function () {
 //         } else {
 //           swal({
 //             type: "error",
-//             title: "新增失敗!請聯絡負責人",
+//             title: "新增失敗！請聯絡網站維護人員",
 //             allowOutsideClick: false, //不可點背景關閉
 //           }).then(function () {
 //             // window.location.replace("program_act_yearlist.php");
@@ -231,7 +231,7 @@ function submit_form() {
       processData: false,
       async: true,
       success: function (data) {
-        console.log(data);
+        // console.log(data);
         if (data == 1) {
           swal({
             type: "success",
@@ -244,23 +244,23 @@ function submit_form() {
         } else {
           swal({
             type: "error",
-            title: "新增失敗!請聯絡負責人",
+            title: "新增失敗！請聯絡網站維護人員",
             allowOutsideClick: false, //不可點背景關閉
           });
         }
       },
       error: function (e) {
-          console.log(e)
+          // console.log(e);
           swal({
               type: "error",
-              title: "新增失敗!請聯絡負責人",
+              title: "新增失敗！請聯絡網站維護人員",
               allowOutsideClick: false, //不可點背景關閉
           });
       },
     });
 }
 
-//檢查志工紀錄的必填欄位region
+//檢查必填欄位region
 function check_add_program_act_data() {
   //   var year = $("#year").val();
   var date = $("#date").val();

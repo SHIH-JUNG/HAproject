@@ -25,8 +25,8 @@ $(document).ready(function () {
       $("#ar_cash_yearlist_all").append(cssstring);
     },
     error: function (e) {
-      notyf.alert('伺服器錯誤,無法載入');
-      console.log(e);
+      notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
+      // console.log(e);
     },
   });
 });

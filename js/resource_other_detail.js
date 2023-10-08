@@ -80,7 +80,7 @@ input_onchange = function(index, inputname){
     //加總每該列每一欄字串
     for(var i=(index+1)*6-2;i>(index+1)*6-7;i--)
     {
-        console.log(i)
+        // console.log(i)
         var inputs_value = $("#"+get_this_id+" ."+get_tobody+" input").eq(i).val();
         is_input_null+= inputs_value;
     }

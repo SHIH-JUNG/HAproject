@@ -27,8 +27,8 @@ function add_screening_keywords() {
             });
         },
         error:function(e){
-            console.log(e);
-            notyf.alert('伺服器錯誤,無法載入');
+            // console.log(e);
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
         }
     });
 
@@ -46,8 +46,8 @@ function add_screening_keywords() {
             });
         },
         error:function(e){
-            console.log(e);
-            notyf.alert('伺服器錯誤,無法載入');
+            // console.log(e);
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
         }
     });
 }
@@ -115,8 +115,8 @@ $.ajax({
     },
     
     error: function (e) {
-            console.log(e);
-            notyf.alert('伺服器錯誤,無法載入');
+            // console.log(e);
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
      }
 });
 

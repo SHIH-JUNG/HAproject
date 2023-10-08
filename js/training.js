@@ -119,7 +119,7 @@ $.ajax({
   async: false, //啟用同步請求
   success: function (data) {
     var cssString = "";
-    console.log(data);
+    // console.log(data);
 
     cumulation_hours = 0;
 
@@ -231,7 +231,7 @@ $.ajax({
   },
 
   error: function (e) {
-    console.log(e);
+    // console.log(e);
   },
 });
 //endregion
@@ -276,7 +276,7 @@ load_update_training_data = function(training_id, acc_id)
         dataType: "JSON",
         async: false,
         success: function (data) {
-            console.log(data)
+            // console.log(data)
 
             $.each(data,function(index,value){
 
@@ -332,8 +332,8 @@ load_update_training_data = function(training_id, acc_id)
             // endregion
         },
         error:function(e){
-            notyf.alert('伺服器錯誤,無法載入');
-            console.log(e)
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
+            // console.log(e)
         }
     });
 }
@@ -459,9 +459,9 @@ function submit_data(tr_id) {
     form_data.append("Remark",$("#u_remark").val());
 
     // 預覽傳到後端的資料詳細內容
-    for (var pair of form_data.entries()) {
-      console.log(pair[0] + ", " + pair[1]);
-    }
+    // for (var pair of form_data.entries()) {
+    //   console.log(pair[0] + ", " + pair[1]);
+    // }
 
 
   $.ajax({
@@ -473,7 +473,7 @@ function submit_data(tr_id) {
     processData: false,
     async: true,
     success: function (data) {
-      console.log(data);
+      // console.log(data);
       if (data == 1) {
         swal({
           title: "修改成功！",
@@ -483,13 +483,17 @@ function submit_data(tr_id) {
         });
       } else {
         swal({
-          title: "修改失敗！請聯絡負責單位",
+          title: "修改失敗！請聯絡網站維護人員",
           type: "error",
         });
       }
     },
     error: function (e) {
-      console.log(e);
+      // console.log(e);
+      swal({
+        title: "修改失敗！請聯絡網站維護人員",
+        type: "error",
+      });
     },
   });
 }

@@ -67,7 +67,7 @@ $(function () {
            url: "database/check_login.php",
            data: $("#form_login").serialize(), // serializes the form's elements.
            success: function(data){   
-              console.log(data);
+            //   console.log(data);
                if(data == 1){
                     swal({
                         type: 'success',

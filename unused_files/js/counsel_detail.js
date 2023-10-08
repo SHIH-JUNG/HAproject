@@ -244,7 +244,7 @@ load_counsel_addfirst_datas = function() {
             
         },
         error:function(e){
-            notyf.alert('伺服器錯誤,無法載入');
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
         }
     });
 }
@@ -347,7 +347,7 @@ submit_data = function() {
                 }) 
             }else{
                 swal({
-                    title:'更新失敗！請聯絡負責單位',
+                    title:'更新失敗！請聯絡網站維護人員',
                     type:'error',
                 })
             }  
@@ -355,7 +355,7 @@ submit_data = function() {
         error:function(e){
             console.log(e);
             swal({
-                title:'更新失敗！請聯絡負責單位',
+                title:'更新失敗！請聯絡網站維護人員',
                 type:'error',
             })
         }
@@ -1063,7 +1063,7 @@ function counsel_visit_show() {
 
         },
         error:function(e){
-            notyf.alert('伺服器錯誤,無法載入');
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
         }
     });
 //endregion
@@ -1305,7 +1305,7 @@ $("#trans_to_opencase_submit").on('click',function(){
                 tran_case_sex_o = data[0].Sexual_orientation;
             },
             error:function(e){
-                notyf.alert('伺服器錯誤,無法載入開案所需資料!');
+                notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員!');
             }
         });
 
@@ -1404,7 +1404,7 @@ find_case_auto_id = function(object_type_val) {
         },
         error:function(e){
             console.log(e);
-            notyf.alert('伺服器錯誤,無法載入開案所需資料!');
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員!');
         }
     });
 }
@@ -1495,7 +1495,7 @@ function check_case_isrepeat() {
             }
         },
         error: function (e) {
-            // notyf.alert('伺服器錯誤,無法載入開案所需資料!');
+            // notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員!');
         }
     });
     

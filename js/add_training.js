@@ -94,7 +94,7 @@ function submit_form() {
       processData: false,
       async: true,
       success: function (data) {
-        console.log(data);
+        // console.log(data);
         if (data == 1) {
           swal({
             type: "success",
@@ -107,16 +107,16 @@ function submit_form() {
         } else {
           swal({
             type: "error",
-            title: "新增失敗!請聯絡負責人",
+            title: "新增失敗！請聯絡網站維護人員",
             allowOutsideClick: false, //不可點背景關閉
           });
         }
       },
       error: function (e) {
-          console.log(e)
+          // console.log(e);
           swal({
               type: "error",
-              title: "新增失敗!請聯絡負責人",
+              title: "新增失敗！請聯絡網站維護人員",
               allowOutsideClick: false, //不可點背景關閉
           });
       },
@@ -161,8 +161,8 @@ function check_file_exist() {
         }
       },
       error: function (e) {
-        console.log(e);
-        notyf.alert('伺服器錯誤,無法載入');
+        // console.log(e);
+        notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
       },
     });
   });

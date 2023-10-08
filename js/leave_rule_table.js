@@ -66,7 +66,7 @@ $(document).ready(function () {
         error: function (e) {
             swal({
             type: "error",
-            title: "系統錯誤!請聯絡負責人",
+            title: "系統錯誤！請聯絡網站維護人員",
             allowOutsideClick: false, //不可點背景關閉
             }).then(function () {
             history.back();
@@ -77,9 +77,8 @@ $(document).ready(function () {
 });
 
 
+// 更新規則內容 region
 update_rule = function() {
-
-
     swal({
         title: "確定要修改特休規則表的內容？",
         text: "選擇『確認』將修改當前規則，並且將無法復原",
@@ -94,7 +93,6 @@ update_rule = function() {
         .then(
           function (result) {
             if (result) {
-             
                 var update_leave_rule_arr = [];
 
                 $("[id*='leave_num']").each(function(){
@@ -104,8 +102,8 @@ update_rule = function() {
             
                 var update_leave_rule = JSON.parse(JSON.stringify(update_leave_rule_arr));
 
-                console.log(update_leave_rule)    
-                console.log(typeof update_leave_rule)
+                // console.log(update_leave_rule)    
+                // console.log(typeof update_leave_rule)
             
                 $.ajax({
                     url: "database/update_leave_rule_table_data.php",
@@ -115,7 +113,7 @@ update_rule = function() {
                     },
                     //            dataType: "JSON",
                     success: function (data) {
-                      console.log(data);
+                      // console.log(data);
                       if (data == 1) {
                         swal({
                           type: "success",
@@ -127,7 +125,7 @@ update_rule = function() {
                       } else {
                         swal({
                           type: "error",
-                          title: "更新失敗!請聯絡負責人",
+                          title: "更新失敗！請聯絡網站維護人員",
                           allowOutsideClick: false, //不可點背景關閉
                         });
                       }
@@ -135,7 +133,7 @@ update_rule = function() {
                     error: function () {
                       swal({
                         type: "error",
-                        title: "更新失敗!請聯絡負責人",
+                        title: "更新失敗！請聯絡網站維護人員",
                         allowOutsideClick: false, //不可點背景關閉
                       });
                     },
@@ -144,9 +142,8 @@ update_rule = function() {
           }
         )
         .catch(swal.noop);
-
-   
 }
+//endregion
 
 
 //篩檢總表格鎖定控制region

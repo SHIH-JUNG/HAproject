@@ -240,7 +240,7 @@ signature_submit = function(this_btn) {
       },
       async: false,
       success: function (data) {
-        console.log(data);
+        // console.log(data);
         if (data == 1) 
         {
           swal({
@@ -262,7 +262,7 @@ signature_submit = function(this_btn) {
         else 
         {
           swal({
-            title: "生成簽名圖片失敗！請聯絡負責單位",
+            title: "生成簽名圖片失敗！請聯絡網站維護人員",
             type: "error",
           });
         }
@@ -576,7 +576,7 @@ function load_rec_datas()
       });
     },
     error: function (e) {
-      notyf.alert('伺服器錯誤,無法載入');
+      notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
     },
   });
 
@@ -688,7 +688,7 @@ function submit_form_data_upload()
     processData: false,
     async: true,
     success: function (data) {
-      console.log(data);
+      // console.log(data);
       if (data == 1) {
         swal({
           type: "success",
@@ -709,7 +709,7 @@ function submit_form_data_upload()
       } else {
         swal({
           type: "error",
-          title: "更新失敗!請聯絡負責人",
+          title: "更新失敗！請聯絡網站維護人員",
           allowOutsideClick: false, //不可點背景關閉
         });
       }
@@ -717,10 +717,10 @@ function submit_form_data_upload()
     error: function (e) {
       swal({
         type: "error",
-        title: "更新失敗!請聯絡負責人",
+        title: "更新失敗！請聯絡網站維護人員",
         allowOutsideClick: false, //不可點背景關閉
       });
-      console.log(e);
+      // console.log(e);
     },
   });
 }
@@ -794,7 +794,7 @@ selectFiles_delete = function (select_file_type_n) {
   }
 
   if ($("[name='"+file_type_n+"_check']:checked").length > 0) {
-    console.log($("#val_arr" + $("[name='"+file_type_n+"_check']:checked").attr("value")))
+    // console.log($("#val_arr" + $("[name='"+file_type_n+"_check']:checked").attr("value")))
     swal({
       title: "是否刪除該檔案？\n" + "檔名："+ $("#val_arr" + $("[name='"+file_type_n+"_check']:checked").attr("value")).text(),
       text: "確認刪除後將無法復原操作",
@@ -811,14 +811,14 @@ selectFiles_delete = function (select_file_type_n) {
         var file_val = $("[name='"+file_type_n+"_check']:checked").attr("value");
 
         
-        console.log(file_input_val_arr)
+        // console.log(file_input_val_arr)
         var sr_file = file_input_val_arr.splice(parseInt(file_val), 1);
-        console.log("------------------------")
-        console.log(file_sql_id)
-        console.log(sr_id)
-        console.log(file_input_val_arr)
-        console.log(file_val)
-        console.log(sr_file[0])
+        // console.log("------------------------")
+        // console.log(file_sql_id)
+        // console.log(sr_id)
+        // console.log(file_input_val_arr)
+        // console.log(file_val)
+        // console.log(sr_file[0])
 
         $.ajax({
           url: "database/delete_sr_file.php",
@@ -833,7 +833,7 @@ selectFiles_delete = function (select_file_type_n) {
           },
           // dataType: "JSON",
           success: function (data) {
-            console.log(data);
+            // console.log(data);
             if (data == 1) {
               swal({
                 type: "success",
@@ -846,10 +846,10 @@ selectFiles_delete = function (select_file_type_n) {
 
           },
           error: function (e) {
-            console.log(e)
+            // console.log(e)
             swal({
               type: "error",
-              title: "刪除檔案失敗!請聯絡負責人",
+              title: "刪除檔案失敗！請聯絡網站維護人員",
               allowOutsideClick: false, //不可點背景關閉
             });
           },
@@ -981,8 +981,8 @@ selected_files = function(select_file_type_n) {
         for (var a = 0; a < event.files.length; a++) {
           selectedFiles1.push(event.files[a]);
     
-          console.log(event.files[a])
-          console.log(selectedFiles1)
+          // console.log(event.files[a])
+          // console.log(selectedFiles1)
           if(a == 0)
           {
             selectedFiles1_str += event.files[a].name;
@@ -1051,8 +1051,8 @@ selected_files = function(select_file_type_n) {
         for (var a = 0; a < event.files.length; a++) {
           selectedFiles2.push(event.files[a]);
     
-          console.log(event.files[a])
-          console.log(selectedFiles2)
+          // console.log(event.files[a])
+          // console.log(selectedFiles2)
     
           if(a == 0)
           {

@@ -67,7 +67,7 @@ $.ajax({
     dataType: "JSON",
     async: false, //啟用同步請求
     success: function (data) {
-      console.log(data);
+      // console.log(data);
       var cssString = "";
       
       $.each(data, function (index, value) {
@@ -125,13 +125,13 @@ $.ajax({
     error: function (e) {
       // swal({
       //   type: "error",
-      //   title: "系統錯誤!請聯絡負責人",
+      //   title: "系統錯誤！請聯絡網站維護人員",
       //   allowOutsideClick: false, //不可點背景關閉
       // })
     //   .then(function () {
     //     history.back();
     //   });
-    notyf.alert('伺服器錯誤,無法載入');
+    notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
     },
 });
 //endregion

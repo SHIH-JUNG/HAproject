@@ -1,4 +1,6 @@
-//新增詢戒電話表region
+const notyf = new Notyf();
+
+//新增簡短服務 region
 $("#phone_add_new").on('click',function(){
 
 //分割年月region
@@ -8,8 +10,8 @@ Arr = date.split("-"); // 根据“-”分割
 
 y = Arr[0];
 m = Arr[1];
-console.log("Arr[0]"+y);
-console.log("Arr[1]"+m);
+// console.log("Arr[0]"+y);
+// console.log("Arr[1]"+m);
 //endregion
 check_checkbox();//判斷是否勾選傳入陣列
 check_radio();
@@ -55,7 +57,7 @@ if($("#call_datetime").val() != "" && $("#name").val() != ""){
             },
 //            dataType: "JSON",
             success: function (data) {
-                console.log(data);
+                // console.log(data);
                 if(data == 1){
                     swal({
                         type: 'success',
@@ -67,7 +69,7 @@ if($("#call_datetime").val() != "" && $("#name").val() != ""){
                 }else{
                     swal({
                         type: 'error',
-                        title: '新增失敗!請聯絡負責人',
+                        title: '新增失敗！請聯絡網站維護人員',
                         allowOutsideClick: false //不可點背景關閉
                         })
                         // .then(function () {
@@ -78,7 +80,7 @@ if($("#call_datetime").val() != "" && $("#name").val() != ""){
                 error: function () {
                     swal({
                         type: "error",
-                        title: "新增失敗!請聯絡負責人",
+                        title: "新增失敗！請聯絡網站維護人員",
                         allowOutsideClick: false, //不可點背景關閉
                     });
                 }
@@ -290,7 +292,8 @@ $("#add_phone").on('click',function(){
                     }
                 },
                 error:function(e){
-                    console.log(e);
+                    // console.log(e);
+                    notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員!');
                 }
             });
     

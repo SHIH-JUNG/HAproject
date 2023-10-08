@@ -149,7 +149,7 @@ $.ajax({
   async: false, //啟用同步請求
   success: function (data) {
     var cssString = "";
-    console.log(data);
+    // console.log(data);
     $.each(data, function (index, value) {
 
       var leader_sign_arr = datatable_sign_show('leader', value.Leader, value.Leader_signature, value.Leader_sign_time, value.Leader_sign_msg);
@@ -288,7 +288,7 @@ $.ajax({
   },
 
   error: function (e) {
-    console.log(e);
+    // console.log(e);
   },
 });
 //endregion

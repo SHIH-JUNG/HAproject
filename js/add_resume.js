@@ -140,7 +140,7 @@ function submit_form() {
     error: function (e) {
         swal({
         type: "error",
-        title: "系統錯誤!請聯絡負責人",
+        title: "系統錯誤！請聯絡網站維護人員",
         allowOutsideClick: false, //不可點背景關閉
         }).then(function () {
         history.back();
@@ -191,9 +191,9 @@ function submit_form() {
   form_data.append("File_year",file_year);
 
 
-  for (var pair of form_data.entries()) {
-    console.log(pair[0] + ", " + pair[1]);
-  }
+  // for (var pair of form_data.entries()) {
+  //   console.log(pair[0] + ", " + pair[1]);
+  // }
 
   $.ajax({
     url: "database/add_new_resume_user_datas.php",
@@ -216,16 +216,16 @@ function submit_form() {
       } else {
         swal({
           type: "error",
-          title: "新增失敗!請聯絡負責人",
+          title: "新增失敗！請聯絡網站維護人員",
           allowOutsideClick: false, //不可點背景關閉
         });
       }
     },
     error: function (e) {
-      console.log(e);
+      // console.log(e);
       swal({
         type: "error",
-        title: "新增失敗!請聯絡負責人",
+        title: "新增失敗！請聯絡網站維護人員",
         allowOutsideClick: false, //不可點背景關閉
       });
     },

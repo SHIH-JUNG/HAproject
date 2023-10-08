@@ -108,7 +108,7 @@ $.ajax({
 
     },
     error: function (e) {
-        notyf.alert('伺服器錯誤,無法載入');
+        notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
         console.log(e)
     }
 });
@@ -177,16 +177,18 @@ $(document).ready(function(){
     //         $("#closed_id").val(str_id);
     //     },
     //     error:function(e){
-    //         notyf.alert('伺服器錯誤,無法載入結案所需資料!');
+    //         notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員結案所需資料!');
     //     }
     // });
 
 });
 //endregion
 
+// 隱藏元素 region
 hideContainer = function(this_el) {
     $(this_el).hide();
 }
+//endregion
 
 //新增至結案 region
 $("#trans_closed").on('click',function(){
@@ -361,7 +363,7 @@ function trans_closed_database()
             }else{
                 swal({
                     type: 'error',
-                    title: '新增失敗!請聯絡負責人',
+                    title: '新增失敗！請聯絡網站維護人員',
                     allowOutsideClick: false //不可點背景關閉
                     }).then(function () {
                         location.reload();
@@ -371,7 +373,7 @@ function trans_closed_database()
             error: function (e) {
                 swal({
                     type: 'error',
-                    title: '新增失敗!請聯絡負責人',
+                    title: '新增失敗！請聯絡網站維護人員',
                     allowOutsideClick: false //不可點背景關閉
                 }).then(function () {
                     location.reload();

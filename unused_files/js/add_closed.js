@@ -165,7 +165,7 @@ function trans_closed_database()
             }else{
                 swal({
                     type: 'error',
-                    title: '新增失敗!請聯絡負責人',
+                    title: '新增失敗！請聯絡網站維護人員',
                     allowOutsideClick: false //不可點背景關閉
                     })
                     // .then(function () {
@@ -176,7 +176,7 @@ function trans_closed_database()
             error: function (e) {
                 swal({
                     type: 'error',
-                    title: '新增失敗!請聯絡負責人',
+                    title: '新增失敗！請聯絡網站維護人員',
                     allowOutsideClick: false //不可點背景關閉
                 })
                 console.log(e)

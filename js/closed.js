@@ -12,7 +12,7 @@ $.ajax({
     async: false,//啟用同步請求
     success: function (data) {
         var cssString = "";
-        console.log(data)
+        //console.log(data) 
 
         $.each(data,function(index,value){
 
@@ -144,8 +144,8 @@ $.ajax({
     },
     
     error: function (e) {
-            console.log(e);
-            notyf.alert('伺服器錯誤,無法載入');
+            // console.log(e);
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
      }
 });
 
@@ -315,9 +315,9 @@ function( settings, data, dataIndex ) {
     var max_date = parseInt(Date.parse( $('#open_max_date').val()), 10 );
     var date = parseInt(Date.parse( data[3] )) || 0; // use data for the date column
     if ( ( isNaN( min_date ) && isNaN( max_date ) ) ||
-         ( isNaN( min_date ) && date <= max_date ) ||
-         ( min_date <= date   && isNaN( max_date ) ) ||
-         ( min_date <= date   && date <= max_date ) )
+        ( isNaN( min_date ) && date <= max_date ) ||
+        ( min_date <= date   && isNaN( max_date ) ) ||
+        ( min_date <= date   && date <= max_date ) )
     {
         return true;
     }
@@ -330,9 +330,9 @@ var closed_date_range = (
         var max_date = parseInt(Date.parse( $('#closed_max_date').val()), 10 );
         var date = parseInt(Date.parse( data[4] )) || 0; // use data for the date column
         if ( ( isNaN( min_date ) && isNaN( max_date ) ) ||
-             ( isNaN( min_date ) && date <= max_date ) ||
-             ( min_date <= date   && isNaN( max_date ) ) ||
-             ( min_date <= date   && date <= max_date ) )
+            ( isNaN( min_date ) && date <= max_date ) ||
+            ( min_date <= date   && isNaN( max_date ) ) ||
+            ( min_date <= date   && date <= max_date ) )
         {
             return true;
         }

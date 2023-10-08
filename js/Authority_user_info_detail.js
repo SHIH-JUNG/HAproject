@@ -54,7 +54,7 @@ $.ajax({
         }
     },
     error: function (e) {
-        notyf.alert('伺服器錯誤,無法載入' + e);
+        notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
     }
 });
 //endregion
@@ -107,7 +107,7 @@ auth_update = function (this_btn) {
                             // }) 
                         }else{
                             swal({
-                                title:'修改失敗！請聯絡負責單位',
+                                title:'修改失敗！請聯絡網站維護人員',
                                 type:'error',
                             })
                         }  
@@ -115,7 +115,7 @@ auth_update = function (this_btn) {
                     error:function(e){
                         // console.log(e);
                         swal({
-                            title:'修改失敗！請聯絡負責單位',
+                            title:'修改失敗！請聯絡網站維護人員',
                             type:'error',
                         })
                     }
@@ -181,7 +181,7 @@ auto_load_default_auth = function() {
 }
 //endregion
 
-
+// 依據權限等級和職位 載入當前的權限設定 region
 find_default_auth = function () {
     $.ajax({
         url: "database/find_user_info_detail_authority.php",
@@ -193,7 +193,7 @@ find_default_auth = function () {
         dataType: "JSON",
         async: false,//啟用同步請求
         success: function (data) {
-            console.log(data);
+            // console.log(data);
     
             $("[name='auth_href_name']").prop('checked', false);
 
@@ -214,7 +214,8 @@ find_default_auth = function () {
             }
         },
         error: function (e) {
-            notyf.alert('伺服器錯誤,無法載入' + e);
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
         }
     });
 }
+//endregion

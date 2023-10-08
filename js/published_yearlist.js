@@ -23,7 +23,7 @@ $(document).ready(function () {
       $("#pu_yearlist_all").append(cssstring);
     },
     error: function (e) {
-      console.log(e);
+      // console.log(e);
     },
   });
 });

@@ -319,7 +319,7 @@ function add_new_current_case_database()
         },
 //            dataType: "JSON",
         success: function (data) {
-            console.log(data);
+            // console.log(data);
             if(data == 1){
                 swal({
                     type: 'success',
@@ -331,7 +331,7 @@ function add_new_current_case_database()
             }else{
                 swal({
                     type: 'error',
-                    title: '新增失敗!請聯絡負責人',
+                    title: '新增失敗！請聯絡網站維護人員',
                     allowOutsideClick: false //不可點背景關閉
                     }).then(function () {
                         location.reload();
@@ -341,7 +341,7 @@ function add_new_current_case_database()
             error: function () {
                 swal({
                     type: "error",
-                    title: "新增失敗!請聯絡負責人",
+                    title: "新增失敗！請聯絡網站維護人員",
                     allowOutsideClick: false, //不可點背景關閉
                 });
             }
@@ -436,8 +436,8 @@ find_case_auto_id = function(object_type_val) {
            }
         },
         error:function(e){
-            console.log(e);
-            notyf.alert('伺服器錯誤,無法載入開案所需資料!');
+            // console.log(e);
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員!');
         }
     });
 }
@@ -481,6 +481,7 @@ function check_case_isrepeat() {
         },
         error: function (e) {
             // console.log(e);
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員!');
         }
     });
     
@@ -515,14 +516,14 @@ function add_new_caseedit_calendar() {
                 }) 
             }else{
                 swal({
-                title:'新增失敗！',
+                title:'新增失敗！請聯絡網站維護人員',
                 type:'error',
                 })
             } 
         },
     error:function(e){
         swal({
-            title:'新增失敗！',
+            title:'新增失敗！請聯絡網站維護人員',
             type:'error',
         })
     }

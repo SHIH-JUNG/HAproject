@@ -65,7 +65,7 @@ $.ajax({
     dataType: "JSON",
     async: false,//啟用同步請求
     success: function (data) {
-        console.log(data);
+        // console.log(data);
         var cssString = "";
         for (var index in data.title) {
             cssString += 
@@ -81,7 +81,7 @@ $.ajax({
         }
     },
     error: function (e) {
-        notyf.alert('伺服器錯誤,無法載入' + e);
+        notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
     }
 });
 //endregion
@@ -179,7 +179,7 @@ $.ajax({
 
     },
     error: function (e) {
-        notyf.alert('伺服器錯誤,無法載入' + e);
+        notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
     }
 });
 //endregion
@@ -294,7 +294,7 @@ $.ajax({
 
     },
     error: function (e) {
-        notyf.alert('伺服器錯誤,無法載入' + e);
+        notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
     }
 });
 //endregion
@@ -356,7 +356,7 @@ $.ajax({
         }
     },
     error: function (e) {
-        notyf.alert('伺服器錯誤,無法載入' + e);
+        notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
     }
 });
 //endregion
@@ -409,7 +409,7 @@ $.ajax({
         }
     },
     error: function (e) {
-        notyf.alert('伺服器錯誤,無法載入' + e);
+        notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
     }
 });
 //endregion
@@ -477,10 +477,10 @@ $("#add_new_vehicle_retain").click(function(){
             error: function (e) {
                 swal({
                     type: 'error',
-                    title: '新增失敗!請聯絡負責人',
+                    title: '新增失敗！請聯絡網站維護人員',
                     allowOutsideClick: false //不可點背景關閉
                 })
-                console.log(e)
+                // console.log(e)
             }
         });
     }
@@ -553,7 +553,7 @@ function show_vehicle_retain_modal(modal_id) {
                 
         },
         error: function (e) {
-            notyf.alert('伺服器錯誤,無法載入' + e);
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
         }
     });
 }
@@ -597,7 +597,7 @@ load_update_vehicle_retain_data = function(vr_id) {
             });
         },
         error: function (e) {
-            notyf.alert('伺服器錯誤,無法載入' + e);
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
         }
     });
 }
@@ -635,15 +635,15 @@ update_vehicle_retain = function(this_btn) {
                 }) 
             }else{
                 swal({
-                    title:'更新失敗！請聯絡負責單位',
+                    title:'更新失敗！請聯絡網站維護人員',
                     type:'error',
                 })
             }  
         },
         error:function(e){
-            console.log(e);
+            // console.log(e);
             swal({
-                title:'更新失敗！請聯絡負責單位',
+                title:'更新失敗！請聯絡網站維護人員',
                 type:'error',
             })
         }
@@ -685,7 +685,7 @@ function show_visit_modal(modal_id) {
                 
         },
         error: function (e) {
-            notyf.alert('伺服器錯誤,無法載入' + e);
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
         }
     });
 }
@@ -757,10 +757,10 @@ $("#add_new_visit").click(function(){
             error: function (e) {
                 swal({
                     type: 'error',
-                    title: '新增失敗!請聯絡負責人',
+                    title: '新增失敗！請聯絡網站維護人員',
                     allowOutsideClick: false //不可點背景關閉
                 })
-                console.log(e)
+                // console.log(e)
             }
         });
     }
@@ -827,15 +827,15 @@ update_visit = function(this_btn){
                 }) 
             }else{
                 swal({
-                    title:'更新失敗！請聯絡負責單位',
+                    title:'更新失敗！請聯絡網站維護人員',
                     type:'error',
                 })
             }  
         },
         error:function(e){
-            console.log(e);
+            // console.log(e);
             swal({
-                title:'更新失敗！請聯絡負責單位',
+                title:'更新失敗！請聯絡網站維護人員',
                 type:'error',
             })
         }
@@ -899,10 +899,10 @@ $("#add_new_ann").click(function(){
             error: function (e) {
                 swal({
                     type: 'error',
-                    title: '新增失敗!請聯絡負責人',
+                    title: '新增失敗！請聯絡網站維護人員',
                     allowOutsideClick: false //不可點背景關閉
                 })
-                console.log(e)
+                // console.log(e)
             }
         });
     }

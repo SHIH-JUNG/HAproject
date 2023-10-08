@@ -59,23 +59,12 @@ add_user_info = function ()
                     }
                 },
                 error: function (e) {
-                    notyf.alert('伺服器錯誤,無法載入' + e);
+                    notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
                 }
             });
         }
     });
 }
-
-
-
-
-
-
-
-
-
-
-
 
 //載入權限等級至前端選項 region
 function load_auth_num() {

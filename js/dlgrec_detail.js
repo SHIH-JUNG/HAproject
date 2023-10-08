@@ -127,8 +127,8 @@ $(document).ready(function(){
             });
         },
         error:function(e){
-            console.log(e);
-            notyf.alert('伺服器錯誤,無法載入');
+            // console.log(e);
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
         }
     });
     $(".dlgrec_question").attr("disabled",true);
@@ -255,7 +255,7 @@ sign_msg_model = function (sign_type_name) {
            else 
            {
             swal({
-              title: "生成簽名圖片失敗！請聯絡負責單位",
+              title: "生成簽名圖片失敗！請聯絡網站維護人員",
               type: "error",
             });
           }
@@ -345,8 +345,8 @@ function check_file_exist() {
           }
         },
         error: function (e) {
-          console.log(e);
-          notyf.alert('伺服器錯誤,無法載入');
+          // console.log(e);
+          notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
         },
       });
     });
@@ -422,7 +422,7 @@ function check_file_exist() {
 //                     }) 
 //                 }else{
 //                     swal({
-//                         title:'更新失敗！請聯絡負責單位',
+//                         title:'更新失敗！請聯絡網站維護人員',
 //                         type:'error',
 //                     })
 //                 }  
@@ -430,7 +430,7 @@ function check_file_exist() {
 //             error:function(e){
 //                 // console.log(e);
 //                 swal({
-//                     title:'更新失敗！請聯絡負責單位',
+//                     title:'更新失敗！請聯絡網站維護人員',
 //                     type:'error',
 //                 })
 //             }
@@ -450,7 +450,7 @@ $("#dlgrec_update").on("click", function () {
     } else {
       stau = true;
     }
-    console.log(stau);
+    // console.log(stau);
   
     if (!stau) {
       swal({
@@ -548,9 +548,9 @@ $("#dlgrec_update").on("click", function () {
       form_data.append("supervise2",$("#supervise2").val());
   
       // 預覽傳到後端的資料詳細內容
-      for (var pair of form_data.entries()) {
-        console.log(pair[0] + ", " + pair[1]);
-      }
+      // for (var pair of form_data.entries()) {
+      //   console.log(pair[0] + ", " + pair[1]);
+      // }
   
   
     $.ajax({
@@ -562,7 +562,7 @@ $("#dlgrec_update").on("click", function () {
       processData: false,
       async: true,
       success: function (data) {
-        console.log(data);
+        // console.log(data);
         if (data == 1) {
           swal({
             title: "修改成功！",
@@ -572,13 +572,17 @@ $("#dlgrec_update").on("click", function () {
           });
         } else {
           swal({
-            title: "修改失敗！請聯絡負責單位",
+            title: "修改失敗！請聯絡網站維護人員",
             type: "error",
           });
         }
       },
       error: function (e) {
-        console.log(e);
+        // console.log(e);
+        swal({
+          title: "修改失敗！請聯絡網站維護人員",
+          type: "error",
+        });
       },
     });
   }

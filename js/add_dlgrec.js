@@ -17,14 +17,14 @@ $("#dlgrec_add_new").on('click',function(){
     else {
         stau = true;
     }
-    console.log(stau);
+    // console.log(stau);
 
     if(!stau)
     {
         swal({
             title:check_add_dlgrec_data(),
             type:'error'
-          })
+        })
     }
     else
     { 
@@ -59,7 +59,7 @@ $("#dlgrec_add_new").on('click',function(){
             },
 //            dataType: "JSON",
             success: function (data) {
-                console.log(data);
+                // console.log(data);
                 if(data == 1){
                     swal({
                         type: 'success',
@@ -71,7 +71,7 @@ $("#dlgrec_add_new").on('click',function(){
                 }else{
                     swal({
                         type: 'error',
-                        title: '新增失敗!請聯絡負責人',
+                        title: '新增失敗！請聯絡網站維護人員',
                         allowOutsideClick: false //不可點背景關閉
                         })
                 }  
@@ -79,10 +79,10 @@ $("#dlgrec_add_new").on('click',function(){
                 error: function (e) {
                     swal({
                         type: 'error',
-                        title: '新增失敗!請聯絡負責人',
+                        title: '新增失敗！請聯絡網站維護人員',
                         allowOutsideClick: false //不可點背景關閉
                     })
-                    console.log(e);
+                    // console.log(e);
                 }
         });
     }

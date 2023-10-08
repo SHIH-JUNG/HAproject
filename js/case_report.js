@@ -29,10 +29,10 @@ datepicker_create = function (selector_id) {
         } else {
           outerh = outerh * 0.8;
         }
-        console.log($this.offset().top)
-        console.log($this.offset().left)
+        // console.log($this.offset().top)
+        // console.log($this.offset().left)
         // console.log(outerh)
-  
+
         var top = $this.offset().top - outerh;
         // var left = $this.offset().left - 100;
         if($this.offset().left < 460)
@@ -44,12 +44,12 @@ datepicker_create = function (selector_id) {
             var left = $this.offset().left - 250;
         }
         setTimeout(function () {
-          cal.css({
-            top: top,
-            left: left,
-          });
+            cal.css({
+                top: top,
+                left: left,
+            });
         }, 10);
-      },
+    },
     });
     // $("#" + selector_id).datepicker("setDate", "today");
   };
@@ -107,6 +107,7 @@ $(document).ready(function () {
     });
     //endregion
 
+    // 初始化data table
     Init_datatable();
 });
 
@@ -149,7 +150,7 @@ $.ajax({
             // });
     },
     error: function (e) {
-        notyf.alert('伺服器錯誤,無法載入');
+        notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
     }
 });
 //endregion
@@ -201,7 +202,7 @@ $.ajax({
         });
     },
     error: function (e) {
-        notyf.alert('伺服器錯誤,無法載入' );
+        notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員' );
     }
 });
 //endregion
@@ -343,12 +344,10 @@ $.ajax({
                     {
                         $("#case_user").append('<option value="'+report_info_arr[0].Case_assign+'">'+report_info_arr[0].Case_assign+'</option>');
                     }
-                   
-
                     // console.log(report_info_arr);
                 },
                 error: function (e) {
-                    notyf.alert('伺服器錯誤,無法載入');
+                    notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
                 }
             });
             //endregion
@@ -389,7 +388,7 @@ $.ajax({
         });
     },
     error: function (e) {
-        notyf.alert('伺服器錯誤,無法載入');
+        notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
     }
 });
 //endregion
@@ -411,6 +410,7 @@ submit_case_report_select = function() {
             break;
     }
 
+    // 初始化 表格才會顯示正確的統計資料 data table功能才能正常
     Init_datatable();
 }
 //endregion
@@ -468,7 +468,7 @@ filter_date_select = function() {
                 case_assign_text = $("#case_assign").val();
             }
 
-            console.log(case_assign_text)
+            // console.log(case_assign_text)
 
             $("#report_date_title").text("日期："+$("#filter_date_select").val());
             $("#report_case_assign").text("社工："+case_assign_text);
@@ -480,8 +480,8 @@ filter_date_select = function() {
                 // });
         },
         error: function (e) {
-            notyf.alert('伺服器錯誤,無法載入');
-            console.log(e);
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
+            // console.log(e);
         }
     });
 
@@ -513,7 +513,7 @@ filter_date_input = function() {
 
     if(is_allow)
     {
-       $.ajax({
+        $.ajax({
             url: "database/find_data_filter_date_input_case_report.php",
             data:{
                 r_min_date:r_min_date,
@@ -577,7 +577,7 @@ filter_date_input = function() {
                 
             },
             error: function (e) {
-                notyf.alert('伺服器錯誤,無法載入');
+                notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
             }
         });
 
@@ -611,7 +611,8 @@ check_case_report_date_filter = function(min_date, max_date) {
 }
 //endregion
 
- function get_age(birth) {
+// 依據生日計算年齡 region
+function get_age(birth) {
     var age = "0";
 
     birth = Date.parse(birth.replace('/-/g', "/"));
@@ -626,18 +627,13 @@ check_case_report_date_filter = function(min_date, max_date) {
 
     return age;
 }
-
-
-
-
-
-
+//endregion
 
 
 
 //設定table搜尋框重整後自動填入文字 region
 
-//table設定region
+//table設定 region
 function Init_datatable() {
 $table_1 = $("[name='tab_all_1']").DataTable({
         "ordering": true,
@@ -747,13 +743,13 @@ var ages_range = (function( settings, data, dataIndex ) {
     var min_age = parseInt($('#min_age').val());
     var max_age = parseInt($('#max_age').val());
     var age = parseInt(data[1]) || 0; // use data for the date column
-    console.log(data[1])
-    console.log(min_age)
-    console.log(max_age)
+    // console.log(data[1])
+    // console.log(min_age)
+    // console.log(max_age)
     if ( ( isNaN( min_age ) && isNaN( max_age ) ) ||
-         ( isNaN( min_age ) && age <= max_age ) ||
-         ( min_age <= age   && isNaN( max_age ) ) ||
-         ( min_age <= age   && age <= max_age ) )
+        ( isNaN( min_age ) && age <= max_age ) ||
+        ( min_age <= age   && isNaN( max_age ) ) ||
+        ( min_age <= age   && age <= max_age ) )
     {
         return true;
     }

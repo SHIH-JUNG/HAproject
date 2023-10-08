@@ -250,7 +250,7 @@ function trans_to_opendata_database()
         },
 //            dataType: "JSON",
         success: function (data) {
-            console.log(data);
+            // console.log(data);
             if(data == 1){
                 swal({
                     type: 'success',
@@ -262,7 +262,7 @@ function trans_to_opendata_database()
             }else{
                 swal({
                     type: 'error',
-                    title: '新增失敗!請聯絡負責人',
+                    title: '新增失敗！請聯絡網站維護人員',
                     allowOutsideClick: false //不可點背景關閉
                     }).then(function () {
                         location.reload();
@@ -272,7 +272,7 @@ function trans_to_opendata_database()
             error: function () {
                 swal({
                     type: 'error',
-                    title: '新增失敗!請聯絡負責人',
+                    title: '新增失敗！請聯絡網站維護人員',
                     allowOutsideClick: false //不可點背景關閉
                 }).then(function () {
                     location.reload();
@@ -307,14 +307,14 @@ function add_new_caseedit_calendar() {
                 }) 
             }else{
                 swal({
-                title:'新增失敗！',
+                title:'新增失敗！請聯絡網站維護人員',
                 type:'error',
                 })
             } 
         },
     error:function(e){
         swal({
-            title:'新增失敗！',
+            title:'新增失敗！請聯絡網站維護人員',
             type:'error',
         })
     }

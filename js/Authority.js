@@ -59,7 +59,7 @@ $(".user_info_table").on('click', 'tr', function() {
                             } else {
                                 swal({
                                     type: 'error',
-                                    title: '修改失敗!',
+                                    title: '修改失敗！請聯絡網站維護人員',
                                     allowOutsideClick: false //不可點背景關閉
                                 })
                             }
@@ -67,7 +67,7 @@ $(".user_info_table").on('click', 'tr', function() {
                         error: function (e) {
                             swal({
                                 type: 'error',
-                                title: '伺服器錯誤!無法載入!!',
+                                title: '伺服器錯誤，無法載入，請聯絡網站維護人員',
                                 allowOutsideClick: false //不可點背景關閉
                             })
                         }
@@ -122,7 +122,7 @@ $(".user_info_table").on('click', 'tr', function() {
                         } else {
                             swal({
                                 type: 'error',
-                                title: '刪除失敗!',
+                                title: '刪除失敗！請聯絡網站維護人員',
                                 allowOutsideClick: false //不可點背景關閉
                             })
                         }
@@ -130,7 +130,7 @@ $(".user_info_table").on('click', 'tr', function() {
                     error: function (e) {
                             swal({
                                 type: 'error',
-                                title: '伺服器錯誤，無法載入!',
+                                title: '伺服器錯誤，無法載入，請聯絡網站維護人員',
                                 allowOutsideClick: false //不可點背景關閉
                             })
                     }
@@ -143,32 +143,32 @@ $(".user_info_table").on('click', 'tr', function() {
 //endregion
 
 //全部使用者權限帳號載入 region
-        $.ajax({
-            url: "database/find_user_info.php",
-            type: "POST",
-            dataType: "JSON",
-            async: false,//啟用同步請求
-            success: function (data) {
-                var cssString = "";
-                $.each(data,function(index,value){
-                    cssString += 
-                            '<tr data-toggle="modal" data-target="#jump-authority">' +
-                            '<td style="LINE-HEIGHT:1px">' + value.Id + '</td>' +
-                            '<td style="LINE-HEIGHT:1px">' + value.Name + '</td>' +
-                            '<td style="LINE-HEIGHT:1px">' + value.Job + '</td>' +
-                            '<td style="LINE-HEIGHT:1px">' + value.Account + '</td>' +
-                            '<td style="LINE-HEIGHT:1px">*****</td>' +
-                            '<td style="LINE-HEIGHT:1px">' + value.Email + '</td>' +
-                            '<td style="LINE-HEIGHT:1px">' + value.Authority + '</td>' +
-                            '<td style="LINE-HEIGHT:1px">' + '<a href="Authority_user_info_detail.php?id='+value.Id+'" style="text-decoration: underline;color:black;">查看</a>' + '</td>' +
-                            '</tr>'
-                });
-                $("#user_info").html(cssString);
-            },
-            error: function (e) {
-                notyf.alert('伺服器錯誤,無法載入' + e);
-            }
+$.ajax({
+    url: "database/find_user_info.php",
+    type: "POST",
+    dataType: "JSON",
+    async: false,//啟用同步請求
+    success: function (data) {
+        var cssString = "";
+        $.each(data,function(index,value){
+            cssString += 
+                    '<tr data-toggle="modal" data-target="#jump-authority">' +
+                    '<td style="LINE-HEIGHT:1px">' + value.Id + '</td>' +
+                    '<td style="LINE-HEIGHT:1px">' + value.Name + '</td>' +
+                    '<td style="LINE-HEIGHT:1px">' + value.Job + '</td>' +
+                    '<td style="LINE-HEIGHT:1px">' + value.Account + '</td>' +
+                    '<td style="LINE-HEIGHT:1px">*****</td>' +
+                    '<td style="LINE-HEIGHT:1px">' + value.Email + '</td>' +
+                    '<td style="LINE-HEIGHT:1px">' + value.Authority + '</td>' +
+                    '<td style="LINE-HEIGHT:1px">' + '<a href="Authority_user_info_detail.php?id='+value.Id+'" style="text-decoration: underline;color:black;">查看</a>' + '</td>' +
+                    '</tr>'
         });
+        $("#user_info").html(cssString);
+    },
+    error: function (e) {
+        notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
+    }
+});
 //endregion   
 
 //載入權限等級至前端選項 region

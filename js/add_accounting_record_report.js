@@ -56,45 +56,6 @@ $(document).ready(function () {
 
 });
 
-function test1() {
-    //去掉資料內前後端多餘的空白，file類型須排除，否則報錯
-    $("input, textarea").each(function () {
-        if ($(this).attr("type") != "file") {
-            $(this).val(jQuery.trim($(this).val()));
-        }
-        });
-      
-        var form_data = new FormData();
-    
-        var report_year = $("#report_date").val().split("\/")[0];
-    
-    
-        $("input[type='file']").each(function(index, element) {
-            var report_files = $(this).prop("files");
-    
-            if (report_files != undefined) {
-              if (report_files.length != 0) {
-                for (var i = 0; i < report_files.length; i++) {
-                  form_data.append("report_files"+index, report_files[i]);
-                  // console.log(report_files[i])
-                }
-              } 
-            }
-        });
-    
-        form_data.append("Report_type", $("#report_type").val());
-        form_data.append("Report_title", $("#report_title").val());
-        form_data.append("Report_date", $("#report_date").val());
-        form_data.append("Remark",$("#remark").val());
-        form_data.append("Report_year", report_year);
-    
-        // 預覽傳到後端的資料詳細內容
-        for (var pair of form_data.entries()) {
-          console.log(pair[0] + ", " + pair[1]);
-        }
-}
-
-
 // 新增零用金資料 region
 $("#rec_add_new").on("click", function () {
     var stau = false;
@@ -163,7 +124,7 @@ function submit_form() {
         processData: false,
         async: true,
         success: function (data) {
-          console.log(data);
+          // console.log(data);
           if (data == 1) {
             swal({
               type: "success",
@@ -176,16 +137,16 @@ function submit_form() {
           } else {
             swal({
               type: "error",
-              title: "新增失敗!請聯絡負責人",
+              title: "新增失敗！請聯絡網站維護人員",
               allowOutsideClick: false, //不可點背景關閉
             });
           }
         },
         error: function (e) {
-            console.log(e)
+            // console.log(e);
             swal({
                 type: "error",
-                title: "新增失敗!請聯絡負責人",
+                title: "新增失敗！請聯絡網站維護人員",
                 allowOutsideClick: false, //不可點背景關閉
             });
         },
@@ -266,7 +227,7 @@ $("input[type='file']").change(function (event) {
 });
 // endregion
 
-// 轉換檔名的日期，ex：1101122 -> 110/11/22
+// 轉換檔名的日期，ex：1101122 -> 110/11/22 region
 function trans_file_date(file_format) {
     var year = file_format.substr(0, 3);
     var month = file_format.substr(3, 2);
@@ -274,3 +235,4 @@ function trans_file_date(file_format) {
 
     return year + "/" + month + "/" + date;
 }
+// endregion

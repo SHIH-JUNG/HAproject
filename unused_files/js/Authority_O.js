@@ -39,12 +39,12 @@ $(document).ready(function () {
                             } else {
                                 swal({
                                     type:'error',
-                                    title:'新增失敗',
+                                    title:'新增失敗！請聯絡網站維護人員',
                                 })
                             }
                         },
                         error: function (e) {
-                            notyf.alert('伺服器錯誤,無法載入' + e);
+                            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
                         }
                     });
                 }
@@ -98,7 +98,7 @@ var id = $.trim($(this).find("td:eq(0)").text());
                         } else {
                             swal({
                                 type: 'error',
-                                title: '修改失敗!',
+                                title: '修改失敗！請聯絡網站維護人員',
                                 allowOutsideClick: false //不可點背景關閉
                             })
                         }
@@ -106,7 +106,7 @@ var id = $.trim($(this).find("td:eq(0)").text());
                     error: function (e) {
                             swal({
                                 type: 'error',
-                                title: '伺服器錯誤!無法載入!!',
+                                title: '伺服器錯誤，無法載入，請聯絡網站維護人員',
                                 allowOutsideClick: false //不可點背景關閉
                             })
                     }
@@ -148,7 +148,7 @@ var id = $.trim($(this).find("td:eq(0)").text());
                                 } else {
                                     swal({
                                         type: 'error',
-                                        title: '刪除失敗!',
+                                        title: '刪除失敗！請聯絡網站維護人員',
                                         allowOutsideClick: false //不可點背景關閉
                                     })
                                 }
@@ -156,7 +156,7 @@ var id = $.trim($(this).find("td:eq(0)").text());
                             error: function (e) {
                                     swal({
                                         type: 'error',
-                                        title: '伺服器錯誤，無法載入!',
+                                        title: '伺服器錯誤，無法載入，請聯絡網站維護人員',
                                         allowOutsideClick: false //不可點背景關閉
                                     })
                             }
@@ -191,7 +191,7 @@ var id = $.trim($(this).find("td:eq(0)").text());
                 $("#user_info").html(cssString);
             },
             error: function (e) {
-                notyf.alert('伺服器錯誤,無法載入' + e);
+                notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
             }
         });
 //endregion   
@@ -211,7 +211,7 @@ var id = $.trim($(this).find("td:eq(0)").text());
 
             },
             error: function (e) {
-                notyf.alert('伺服器錯誤,無法載入' + e);
+                notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
             }
         });
 //endregion

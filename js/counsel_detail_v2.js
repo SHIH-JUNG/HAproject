@@ -193,7 +193,7 @@ load_counsel_addfirst_datas = function() {
         type: "POST",
         dataType: "JSON",
         success: function (data) {
-            console.log(data)
+            // console.log(data)
 
             $.each(data,function(index,value){
                 
@@ -251,7 +251,7 @@ load_counsel_addfirst_datas = function() {
             
         },
         error:function(e){
-            notyf.alert('伺服器錯誤,無法載入');
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
         }
     });
 }
@@ -270,7 +270,7 @@ $("#counsel_update").on('click',function(){
     {
         stau = true;
     }
-    console.log(stau);
+    // console.log(stau);
 
     if(!stau)
     {
@@ -352,15 +352,15 @@ submit_data = function() {
                 }) 
             }else{
                 swal({
-                    title:'更新失敗！請聯絡負責單位',
+                    title:'更新失敗！請聯絡網站維護人員',
                     type:'error',
                 })
             }  
         },
         error:function(e){
-            console.log(e);
+            // console.log(e);
             swal({
-                title:'更新失敗！請聯絡負責單位',
+                title:'更新失敗！請聯絡網站維護人員',
                 type:'error',
             })
         }
@@ -505,7 +505,7 @@ load_counsel_face_rec_datas = function() {
             $(".update_btn").attr("onclick","show_modal(this);");
         },
         error:function(e){
-            notyf.alert('伺服器錯誤,無法載入');
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
         }
     });
 }
@@ -576,17 +576,17 @@ add_counsel_face = function() {
                     }) 
                 }else{
                     swal({
-                        title:'新增訪談記錄失敗！請聯絡負責單位',
+                        title:'新增訪談記錄失敗！請聯絡網站維護人員',
                         type:'error',
                     })
                 }  
             },
             error:function(e){
                 swal({
-                    title:'新增訪談記錄失敗！請聯絡負責單位',
+                    title:'新增訪談記錄失敗！請聯絡網站維護人員',
                     type:'error',
                 })
-                console.log(e)
+                // console.log(e)
             }
         });
     }
@@ -846,8 +846,8 @@ load_update_type_face_data = function(counsel_v_id)
             });            
         },
         error:function(e){
-            notyf.alert('伺服器錯誤,無法載入');
-            console.log(e)
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
+            // console.log(e)
         }
     });
 }
@@ -892,7 +892,7 @@ update_rec_data = function(this_btn)
         type: "POST",
         // dataType: "JSON",
         success: function (data) {
-            console.log(data)
+            // console.log(data)
             if(data == 1){
                 swal({
                     title:'更新成功！',
@@ -902,17 +902,17 @@ update_rec_data = function(this_btn)
                 }) 
             }else{
                 swal({
-                    title:'更新失敗！請聯絡負責單位',
+                    title:'更新失敗！請聯絡網站維護人員',
                     type:'error',
                 })
             }  
         },
         error:function(e){
             swal({
-                title:'更新失敗！請聯絡負責單位',
+                title:'更新失敗！請聯絡網站維護人員',
                 type:'error',
             })
-            console.log(e)
+            // console.log(e)
         }
     });
 
@@ -986,7 +986,7 @@ $("#trans_to_opencase_submit").on('click',function(){
     else {
         stau = true;
     }
-    console.log(stau);
+    // console.log(stau);
 
     if(!stau)
     {
@@ -1019,7 +1019,7 @@ $("#trans_to_opencase_submit").on('click',function(){
                 tran_case_sex_o = data[0].Sexual_orientation;
             },
             error:function(e){
-                notyf.alert('伺服器錯誤,無法載入開案所需資料!');
+                notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員!');
             }
         });
 
@@ -1117,8 +1117,8 @@ find_case_auto_id = function(object_type_val) {
             }
         },
         error:function(e){
-            console.log(e);
-            notyf.alert('伺服器錯誤,無法載入開案所需資料!');
+            // console.log(e);
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員!');
         }
     });
 }
@@ -1209,7 +1209,7 @@ function check_case_isrepeat() {
             }
         },
         error: function (e) {
-            // notyf.alert('伺服器錯誤,無法載入開案所需資料!');
+            // notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員!');
         }
     });
     

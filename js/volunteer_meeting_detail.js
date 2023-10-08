@@ -48,8 +48,8 @@ datepicker_create = function (selector_id) {
         {
           outerh = outerh * 3;
         }
-        console.log($this.offset().top)
-        console.log(outerh)
+        // console.log($this.offset().top)
+        // console.log(outerh)
   
         var top = $this.offset().top - outerh;
         var left = $this.offset().left - 10;
@@ -213,7 +213,7 @@ $(document).ready(function () {
 
             var resolution_contents_json = JSON.parse("[" +value.Resolution_contents.replace('\"\[', '\[').replace('\]\"', '\]') + "]");
             
-            console.log(resolution_contents_json[0])
+            // console.log(resolution_contents_json[0])
 
             $.each(proposal_contents_json[0], function (i, datan) {
                 var css_str = 
@@ -239,8 +239,8 @@ $(document).ready(function () {
           });
         },
         error: function (e) {
-          console.log(e);
-          notyf.alert('伺服器錯誤,無法載入');
+          // console.log(e);
+          notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
         },
     });
     
@@ -447,7 +447,7 @@ get_attendees_seq_contents = function() {
     //     },
     //     error: function (e) {
     //       console.log(e);
-    //       notyf.alert('伺服器錯誤,無法載入');
+    //       notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
     //     },
     //   });
     // });
@@ -584,9 +584,9 @@ submit_form_data_upload = function() {
     form_data.append("title", '志工會議記錄簽核：'+$("#title_name").val());
     form_data.append("rec_date_time", split_date($("#meeting_date").val())+" 00:00");
     
-    for (var pair of form_data.entries()) {
-      console.log(pair[0] + ", " + pair[1]);
-    }
+    // for (var pair of form_data.entries()) {
+    //   console.log(pair[0] + ", " + pair[1]);
+    // }
   
     $.ajax({
       url: "database/update_volunteer_meeting_data_detail.php",
@@ -597,7 +597,7 @@ submit_form_data_upload = function() {
       processData: false,
       async: true,
       success: function (data) {
-        console.log(data);
+        // console.log(data);
         if (data == 1) {
           swal({
             type: "success",
@@ -613,7 +613,7 @@ submit_form_data_upload = function() {
         } else {
           swal({
             type: "error",
-            title: "更新失敗!請聯絡負責人",
+            title: "更新失敗！請聯絡網站維護人員",
             allowOutsideClick: false, //不可點背景關閉
           });
         }
@@ -621,10 +621,10 @@ submit_form_data_upload = function() {
       error: function (e) {
         swal({
           type: "error",
-          title: "更新失敗!請聯絡負責人",
+          title: "更新失敗！請聯絡網站維護人員",
           allowOutsideClick: false, //不可點背景關閉
         });
-        console.log(e);
+        // console.log(e);
       },
     });
   }
@@ -788,7 +788,7 @@ function check_file_exist() {
         file_arr.push(check_file_value2[i]["name"]);
     }
 
-    console.log(file_arr)
+    // console.log(file_arr)
 
     $.each(file_arr, function (index, value) {
         $.ajax({
@@ -800,7 +800,7 @@ function check_file_exist() {
         dataType: "JSON",
         async: false,
         success: function (data) {
-            console.log(data)
+            // console.log(data)
             if (data != "")
             {
                 warning_str += "已有重複檔案名稱：\n" + value;
@@ -811,8 +811,8 @@ function check_file_exist() {
             }
         },
         error: function (e) {
-            console.log(e);
-            notyf.alert('伺服器錯誤,無法載入');
+            // console.log(e);
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
         },
         });
     });
@@ -827,7 +827,7 @@ selectFiles_delete = function () {
 
 
   if ($("[name='file_2_check']:checked").length > 0) {
-    console.log($("#val_arr" + $("[name='file_2_check']:checked").attr("value")))
+    // console.log($("#val_arr" + $("[name='file_2_check']:checked").attr("value")))
     swal({
       title: "是否刪除該檔案？\n" + "檔名："+ $("#val_arr" + $("[name='file_2_check']:checked").attr("value")).text(),
       text: "確認刪除後將無法復原操作",
@@ -875,10 +875,10 @@ selectFiles_delete = function () {
 
           },
           error: function (e) {
-            console.log(e)
+            // console.log(e)
             swal({
               type: "error",
-              title: "刪除檔案失敗!請聯絡負責人",
+              title: "刪除檔案失敗！請聯絡網站維護人員",
               allowOutsideClick: false, //不可點背景關閉
             });
           },

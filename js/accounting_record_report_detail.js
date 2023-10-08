@@ -8,11 +8,13 @@ function getUrlVars() {
       }
     );
     return vars;
-  }
-  //endregion
+}
+//endregion
 
+// 獲取網址參數 region
 var arr_id = getUrlVars()["id"];
 var arr_year = getUrlVars()["year"];
+//endregion
 
 const notyf = new Notyf();
 
@@ -65,7 +67,7 @@ datepicker_create = function (selector_id) {
 
 
 $(document).ready(function () {
-    // 抓會議記錄資料 region
+    // 抓報表記錄資料 region
     $.ajax({
       url: "database/find_accounting_record_report_data_detail.php",
       data: {
@@ -75,7 +77,7 @@ $(document).ready(function () {
       type: "POST",
       dataType: "JSON",
       success: function (data) {
-        console.log(data);
+        // console.log(data);
 
         $.each(data, function (index, value) {
             
@@ -97,8 +99,8 @@ $(document).ready(function () {
 
       },
       error: function (e) {
-        notyf.alert('伺服器錯誤,無法載入');
-        console.log(e);
+        notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
+        // console.log(e);
       },
     });
 
@@ -151,8 +153,8 @@ function check_file_exist() {
         }
       },
       error: function (e) {
-        console.log(e);
-        notyf.alert('伺服器錯誤,無法載入');
+        // console.log(e);
+        notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
       },
     });
   });
@@ -250,9 +252,9 @@ function submit_form() {
     form_data.append("Report_year", report_year);
 
     // 預覽傳到後端的資料詳細內容
-    for (var pair of form_data.entries()) {
-      console.log(pair[0] + ", " + pair[1]);
-    }
+    // for (var pair of form_data.entries()) {
+    //   console.log(pair[0] + ", " + pair[1]);
+    // }
 
 
     $.ajax({
@@ -264,7 +266,7 @@ function submit_form() {
         processData: false,
         async: true,
         success: function (data) {
-          console.log(data);
+          // console.log(data);
           if (data == 1) {
             swal({
               type: "success",
@@ -277,16 +279,16 @@ function submit_form() {
           } else {
             swal({
               type: "error",
-              title: "更新失敗!請聯絡負責人",
+              title: "更新失敗！請聯絡網站維護人員",
               allowOutsideClick: false, //不可點背景關閉
             });
           }
         },
         error: function (e) {
-            console.log(e)
+            // console.log(e)
             swal({
                 type: "error",
-                title: "更新失敗!請聯絡負責人",
+                title: "更新失敗！請聯絡網站維護人員",
                 allowOutsideClick: false, //不可點背景關閉
             });
         },
@@ -334,8 +336,8 @@ function check_update_rec_data() {
           // errorstr += "未選擇上傳的檔案!\r\n";
           // }
       }
-   
-     return errorstr;
+      
+    return errorstr;
 }
 //endregion
 

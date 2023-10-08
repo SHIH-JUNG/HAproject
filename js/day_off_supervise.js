@@ -130,7 +130,7 @@ $.ajax({
   async: false, //啟用同步請求
   success: function (data) {
     var cssString = "";
-    console.log(data);
+    // console.log(data);
     $.each(data, function (index, value) {
       var supervise_sign_arr = datatable_sign_show('supervise', value.Supervise, value.Supervise_signature, value.Supervise_sign_time, value.Supervise_sign_msg);
 
@@ -284,7 +284,7 @@ $.ajax({
   },
 
   error: function (e) {
-    console.log(e);
+    // console.log(e);
   },
 });
 //endregion
@@ -411,7 +411,7 @@ update_allow_status = function(day_off_id_str, allow_status_str) {
       },
     // dataType: "JSON", // 若要傳回字串 如：noallow，不可設定為json格式
     success: function (data) {
-      console.log(data);
+      // console.log(data);
       if (data == 1) 
       {
         swal({
@@ -436,16 +436,16 @@ update_allow_status = function(day_off_id_str, allow_status_str) {
       {
         swal({
           type: "error",
-          title: "更新失敗!請聯絡負責人",
+          title: "更新失敗！請聯絡網站維護人員",
           allowOutsideClick: false, //不可點背景關閉
         });
       }
     },
     error: function (e) {
-      console.log(e)
+      // console.log(e)
       swal({
           type: "error",
-          title: "更新失敗!請聯絡負責人",
+          title: "更新失敗！請聯絡網站維護人員",
           allowOutsideClick: false, //不可點背景關閉
       });
     },

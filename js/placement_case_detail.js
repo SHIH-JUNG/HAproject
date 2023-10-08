@@ -180,7 +180,7 @@ function check_file_exist(){
              },
              error: function (e) {
                 //  console.log(e);
-                 notyf.alert('伺服器錯誤,無法載入');
+                 notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
              }
          });
      });
@@ -352,7 +352,7 @@ $(document).ready(function () {
             $("#case_user").val(data[0].Case_assign);
         },
         error: function (e) {
-            notyf.alert('伺服器錯誤,無法載入');
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
          }
     });
 });
@@ -384,11 +384,13 @@ function getAge(birthday) {
 }
 //endregion
 
+// 隱藏元素 region
 hideContainer = function(this_el) {
     $(this_el).hide();
 }
+//endregion
 
- //載入各量表 資料 region
+//載入各量表 資料 region
 function load_all_forms_data(type_name,url_str)
 {
         //載入各量表 資料
@@ -491,8 +493,8 @@ function load_all_forms_data(type_name,url_str)
 
         },
         error: function (e) {
-            console.log(e)
-            notyf.alert('伺服器錯誤,無法載入');
+            // console.log(e)
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
         }
     });
 }
@@ -652,8 +654,8 @@ function get_case_report_datas(form_type) {
             case_assign = data[0].Case_assign;
         },
         error: function (e) {
-            console.log(e)
-            notyf.alert('伺服器錯誤,無法載入');
+            // console.log(e)
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
         }
     });
 
@@ -966,7 +968,7 @@ function submit_form_data() {
             processData:false,
             async:true,
             success: function (data) {
-                console.log(data)
+                // console.log(data)
                 //console.log(typeof data)
                 if(data == 1){
                     swal({
@@ -979,15 +981,15 @@ function submit_form_data() {
                else
                {
                     swal({
-                        title:'上傳失敗！請聯絡負責單位',
+                        title:'上傳失敗！請聯絡網站維護人員',
                         type:'error',
                     })
                 }
             },
             error: function (e) {
-                console.log(e);
+                // console.log(e);
                 swal({
-                    title:'上傳失敗！請聯絡負責單位',
+                    title:'上傳失敗！請聯絡網站維護人員',
                     type:'error',
                 })
             }
@@ -1119,15 +1121,15 @@ $("#trans_grade_submit").on('click', function () {
                         })
                     } else {
                         swal({
-                            title: '轉級失敗！',
+                            title: '轉級失敗！請聯絡網站維護人員',
                             type: 'error',
                         })
                     }
                 },
                 error: function (e) {
-                    console.log(e);
+                    // console.log(e);
                     swal({
-                        title: '轉級失敗！',
+                        title: '轉級失敗！請聯絡網站維護人員',
                         type: 'error',
                     })
                 }
@@ -1172,15 +1174,15 @@ $("#trans_user_submit").on('click', function () {
                         })
                     } else {
                         swal({
-                            title: '轉案失敗！',
+                            title: '轉案失敗！請聯絡網站維護人員',
                             type: 'error',
                         })
                     }
                 },
                 error: function (e) {
-                    console.log(e);
+                    // console.log(e);
                     swal({
-                        title: '轉案失敗！',
+                        title: '轉案失敗！請聯絡網站維護人員',
                         type: 'error',
                     })
                 }

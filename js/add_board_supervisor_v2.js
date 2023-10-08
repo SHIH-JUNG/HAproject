@@ -334,7 +334,7 @@ function submit_form_data_upload()
     processData: false,
     async: true,
     success: function (data) {
-      console.log(data);
+      // console.log(data);
       if (data == 1) {
         swal({
           type: "success",
@@ -347,7 +347,7 @@ function submit_form_data_upload()
       } else {
         swal({
           type: "error",
-          title: "新增失敗!請聯絡負責人",
+          title: "新增失敗！請聯絡網站維護人員",
           allowOutsideClick: false, //不可點背景關閉
         });
       }
@@ -355,10 +355,10 @@ function submit_form_data_upload()
     error: function (e) {
       swal({
         type: "error",
-        title: "新增失敗!請聯絡負責人",
+        title: "新增失敗！請聯絡網站維護人員",
         allowOutsideClick: false, //不可點背景關閉
       });
-      console.log(e);
+      // console.log(e);
     },
   });
 }

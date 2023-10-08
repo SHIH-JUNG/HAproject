@@ -125,8 +125,8 @@ function load_sullen_data() {
             sullen_data_str = sp_str0 + sp_str1 + sp_str2;
         },
         error: function (e) {
-            notyf.alert('伺服器錯誤,無法載入');
-            console.log(e)
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
+            // console.log(e)
         }
     });
 }
@@ -202,8 +202,8 @@ function load_life_data() {
             // console.log(sp_str2)
         },
         error: function (e) {
-            notyf.alert('伺服器錯誤,無法載入');
-            console.log(e)
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
+            // console.log(e)
         }
     });
 }
@@ -279,8 +279,8 @@ function load_familyship_data() {
             familyship_data_str = sp_str0 + sp_str1 + sp_str2;
         },
         error: function (e) {
-            notyf.alert('伺服器錯誤,無法載入');
-            console.log(e)
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
+            // console.log(e)
         }
     });
 }
@@ -326,8 +326,8 @@ function load_BSRS5_data() {
             BSRS5_data_str = sp_str;
         },
         error: function (e) {
-            notyf.alert('伺服器錯誤,無法載入');
-            console.log(e)
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
+            // console.log(e)
         }
     });
 }
@@ -356,7 +356,7 @@ $.ajax({
     async: false,
     success: function (data) {
 
-        console.log(data)
+        // console.log(data)
 
         //將ajax結果轉為json
         var data_json = JSON.parse("[" +data[0].answer.replace('\"\[', '\[').replace('\]\"', '\]') + "]");
@@ -416,8 +416,8 @@ $.ajax({
 
     },
     error: function (e) {
-        notyf.alert('伺服器錯誤,無法載入');
-        console.log(e)
+        notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
+        // console.log(e)
     }
 });
 
@@ -570,16 +570,18 @@ $(document).ready(function(){
     //         $("#closed_id").val(str_id);
     //     },
     //     error:function(e){
-    //         notyf.alert('伺服器錯誤,無法載入結案所需資料!');
+    //         notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員結案所需資料!');
     //     }
     // });
 
 });
 //endregion
 
+// 隱藏元素 region
 hideContainer = function(this_el) {
     $(this_el).hide();
 }
+//endregion
 
 //新增至結案 region
 $("#trans_closed").on('click',function(){
@@ -742,7 +744,7 @@ function trans_closed_database()
         },
 //            dataType: "JSON",
         success: function (data) {
-            console.log(data);
+            // console.log(data);
             if(data == 1){
                 swal({
                     type: 'success',
@@ -754,7 +756,7 @@ function trans_closed_database()
             }else{
                 swal({
                     type: 'error',
-                    title: '新增失敗!請聯絡負責人',
+                    title: '新增失敗！請聯絡網站維護人員',
                     allowOutsideClick: false //不可點背景關閉
                     }).then(function () {
                         location.reload();
@@ -764,12 +766,12 @@ function trans_closed_database()
             error: function (e) {
                 swal({
                     type: 'error',
-                    title: '新增失敗!請聯絡負責人',
+                    title: '新增失敗！請聯絡網站維護人員',
                     allowOutsideClick: false //不可點背景關閉
                 }).then(function () {
                     location.reload();
                 })
-                console.log(e)
+                // console.log(e)
             }
     });
 }

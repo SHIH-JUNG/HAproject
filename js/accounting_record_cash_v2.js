@@ -8,9 +8,11 @@ function getUrlVars() {
 }
 //endregion
 
+// 獲取網址參數 region
 var arc_year = getUrlVars()["year"];
 var i_type = decodeURIComponent(getUrlVars()["i_type"]);
 var arc_month = getUrlVars()["arc_month"];
+//endregion
 
 // page reload時保持上次的頁籤狀態 region
 function tab_toggle() {
@@ -29,9 +31,11 @@ $('#menu_tab_nav li a, .breadcrumb li, .brand-img').on('click',function() {
 });
 //endregion
 
+// 設定返回頁面連結 region
 back_arc_page = function() {
   window.location.href = "accounting_record_cash_yearlist_v2.php";
 }
+//endregion
 
 window.month_list = [];
 
@@ -149,7 +153,7 @@ $(document).ready(function () {
         error: function (e) {
           swal({
             type: "error",
-            title: "系統錯誤!請聯絡負責人",
+            title: "系統錯誤！請聯絡網站維護人員",
             allowOutsideClick: false, //不可點背景關閉
           })
           // .then(function () {
@@ -291,7 +295,7 @@ load_month_balance_num = function(month_num) {
     error: function (e) {
       swal({
         type: "error",
-        title: "系統錯誤!請聯絡負責人",
+        title: "系統錯誤！請聯絡網站維護人員",
         allowOutsideClick: false, //不可點背景關閉
       })
       // .then(function () {

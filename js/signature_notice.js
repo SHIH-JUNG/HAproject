@@ -91,7 +91,7 @@ $.ajax({
                     if(sign_state_arr_index > -1)
                     {
                         user_sign_state = sign_state_arr[sign_state_arr_index].split(user_name) || '';
-                        console.log(user_sign_state)
+                        // console.log(user_sign_state)
 
                         switch (user_sign_state[1]) {
                             case "未簽核":
@@ -231,7 +231,7 @@ $.ajax({
         $("#accordion_panel_2").append(board_cssString2);
     },
     error: function (e) {
-        notyf.alert('伺服器錯誤,無法載入' + e);
+        notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
     }
 });
 //endregion
@@ -244,9 +244,7 @@ $.ajax({
     dataType: "JSON",
     async: false,//啟用同步請求
     success: function (data) {
-        console.log(data);
-
-        
+        // console.log(data);
 
         $.each(data,function(index,value){
 
@@ -260,8 +258,8 @@ $.ajax({
 
             var cssString = "";
 
-           console.log(signer_arr)
-            console.log(sign_state_arr)
+            // console.log(signer_arr)
+            // console.log(sign_state_arr)
 
             // 在簽核者欄位中找有無跟當前登入使用者名稱相符的元素，並儲存陣列索引值
             $.each(signer_arr,function(i,v){
@@ -315,7 +313,7 @@ $.ajax({
                     if(sign_state_arr_index > -1)
                     {
                         user_sign_state = sign_state_arr[sign_state_arr_index].split(user_name) || '';
-                        console.log(user_sign_state)
+                        // console.log(user_sign_state)
 
                         switch (user_sign_state[1]) {
                             case "未簽核":
@@ -364,7 +362,7 @@ $.ajax({
          
     },
     error: function (e) {
-        notyf.alert('伺服器錯誤,無法載入' + e);
+        notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
     }
 });
 //endregion 

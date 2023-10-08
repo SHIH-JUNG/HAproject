@@ -100,7 +100,7 @@ $(document).ready(function () {
   //將input name名稱為ch_datepicker創建datepicker初始化 region
   $("input[datepicker='ch_datepicker']").each(function () {
     var this_id = $(this).attr("id");
-    console.log(this_id)
+    // console.log(this_id)
     datepicker_create(this_id);
   });
   //endregion
@@ -254,8 +254,8 @@ $(document).ready(function () {
       });
     },
     error: function (e) {
-      console.log(e);
-      notyf.alert('伺服器錯誤,無法載入');
+      // console.log(e);
+      notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
     },
   });
 
@@ -331,8 +331,8 @@ $(document).ready(function () {
       });
     },
     error: function (e) {
-      console.log(e);
-      notyf.alert('伺服器錯誤,無法載入');
+      // console.log(e);
+      notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
     },
   });
 
@@ -502,7 +502,7 @@ signature_submit = function(this_btn) {
       },
       async: false,
       success: function (data) {
-        console.log(data);
+        // console.log(data);
         if (data == 1) 
         {
           swal({
@@ -524,7 +524,7 @@ signature_submit = function(this_btn) {
         else 
         {
           swal({
-            title: "生成簽名圖片失敗！請聯絡負責單位",
+            title: "生成簽名圖片失敗！請聯絡網站維護人員",
             type: "error",
           });
       }
@@ -586,7 +586,7 @@ $("#vo_update").on("click", function () {
   } else {
     stau = true;
   }
-  console.log(stau);
+  // console.log(stau);
 
   if (!stau) {
     swal({
@@ -630,7 +630,7 @@ submit_form = function() {
       }
     });
 
-    console.log(selectedFiles)
+    // console.log(selectedFiles)
 
     for (var a = 0; a < selectedFiles.length; a++) {
       form_data.append("volunteer_files0[]", selectedFiles[a]);
@@ -682,7 +682,7 @@ submit_form = function() {
         processData: false,
         async: true,
         success: function (data) {
-          console.log(data);
+          // console.log(data);
           if (data == 1) {
             swal({
               type: "success",
@@ -695,16 +695,16 @@ submit_form = function() {
           } else {
             swal({
               type: "error",
-              title: "新增失敗!請聯絡負責人",
+              title: "新增失敗！請聯絡網站維護人員",
               allowOutsideClick: false, //不可點背景關閉
             });
           }
         },
         error: function (e) {
-            console.log(e)
+            // console.log(e)
             swal({
                 type: "error",
-                title: "新增失敗!請聯絡負責人",
+                title: "新增失敗！請聯絡網站維護人員",
                 allowOutsideClick: false, //不可點背景關閉
             });
         },
@@ -814,17 +814,17 @@ add_hours = function() {
           });
         } else {
           swal({
-            title: "新增時數失敗！請聯絡負責單位",
+            title: "新增時數失敗！請聯絡網站維護人員",
             type: "error",
           });
         }
       },
       error: function (e) {
         swal({
-          title: "新增時數失敗！請聯絡負責單位",
+          title: "新增時數失敗！請聯絡網站維護人員",
           type: "error",
         });
-        console.log(e);
+        // console.log(e);
       },
     });
   }
@@ -977,7 +977,7 @@ selectFiles_delete = function () {
           },
           // dataType: "JSON",
           success: function (data) {
-            console.log(data);
+            // console.log(data);
             if (data == 1) {
               swal({
                 type: "success",
@@ -990,10 +990,10 @@ selectFiles_delete = function () {
 
           },
           error: function (e) {
-            console.log(e)
+            // console.log(e)
             swal({
               type: "error",
-              title: "刪除檔案失敗!請聯絡負責人",
+              title: "刪除檔案失敗！請聯絡網站維護人員",
               allowOutsideClick: false, //不可點背景關閉
             });
           },

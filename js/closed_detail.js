@@ -80,52 +80,52 @@ $(document).ready(function(){
                 var supervise1_sign_file_val = value.Supervise1_signature.replace(
                     "../signature/",
                     ""
-                  );
-          
-                  $("#supervise1_signature_simg").text("點擊顯示簽名圖片");
-                  
-                  if(supervise1_sign_file_val=="")
-                  {
-                    $("#supervise1_signature_simg").attr("onclick", "javascript:swal({title: '未簽名',type: 'error',}); return false;")
-                  }
-                  else
-                  {
-                    $("#supervise1_signature_simg").attr(
-                      "href",
-                      "./signature/" + supervise1_sign_file_val
-                    );
-                  }
-                  
-          
-                  supervise1_msg_arr.push(value.Supervise1_sign_msg);
-                  supervise1_msg_arr.push(value.Supervise1_sign_time);
+                );
+        
+                $("#supervise1_signature_simg").text("點擊顯示簽名圖片");
+                
+                if(supervise1_sign_file_val=="")
+                {
+                $("#supervise1_signature_simg").attr("onclick", "javascript:swal({title: '未簽名',type: 'error',}); return false;")
+                }
+                else
+                {
+                $("#supervise1_signature_simg").attr(
+                    "href",
+                    "./signature/" + supervise1_sign_file_val
+                );
+                }
+                
+        
+                supervise1_msg_arr.push(value.Supervise1_sign_msg);
+                supervise1_msg_arr.push(value.Supervise1_sign_time);
 
-                  var supervise2_sign_file_val = value.Supervise2_signature.replace(
-                    "../signature/",
-                    ""
-                  );
-          
-                  $("#supervise2_signature_simg").text("點擊顯示簽名圖片");
-                  
-                  if(supervise2_sign_file_val=="")
-                  {
-                    $("#supervise2_signature_simg").attr("onclick", "javascript:swal({title: '未簽名',type: 'error',}); return false;")
-                  }
-                  else
-                  {
-                    $("#supervise2_signature_simg").attr(
-                      "href",
-                      "./signature/" + supervise2_sign_file_val
-                    );
-                  }
-                  
-          
-                  supervise2_msg_arr.push(value.Supervise2_sign_msg);
-                  supervise2_msg_arr.push(value.Supervise2_sign_time);
+                var supervise2_sign_file_val = value.Supervise2_signature.replace(
+                "../signature/",
+                ""
+                );
+        
+                $("#supervise2_signature_simg").text("點擊顯示簽名圖片");
+                
+                if(supervise2_sign_file_val=="")
+                {
+                $("#supervise2_signature_simg").attr("onclick", "javascript:swal({title: '未簽名',type: 'error',}); return false;")
+                }
+                else
+                {
+                $("#supervise2_signature_simg").attr(
+                    "href",
+                    "./signature/" + supervise2_sign_file_val
+                );
+                }
+                
+        
+                supervise2_msg_arr.push(value.Supervise2_sign_msg);
+                supervise2_msg_arr.push(value.Supervise2_sign_time);
             });
         },
         error:function(e){
-            notyf.alert('伺服器錯誤,無法載入');
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
         }
     });
     $(".closed_question").attr("disabled",true);
@@ -148,13 +148,13 @@ $(document).ready(function(){
   $("#signature_area").hide();
   //endregion 
 });
-
 //endregion  
 
+// 隱藏元素 region
 hideContainer = function(this_el) {
     $(this_el).hide();
 }
-
+//endregion  
 
 sign_msg_model = function (sign_type_name) {
     //手動新增按鈕點擊跳出模態框
@@ -266,7 +266,7 @@ sign_msg_model = function (sign_type_name) {
            else 
            {
             swal({
-              title: "生成簽名圖片失敗！請聯絡負責單位",
+              title: "生成簽名圖片失敗！請聯絡網站維護人員",
               type: "error",
             });
           }
@@ -335,7 +335,7 @@ var stau = false;
     else {
         stau = true;
     }
-    console.log(stau);
+    // console.log(stau);
 
     if(!stau)
     {
@@ -390,15 +390,15 @@ var stau = false;
                     }) 
                 }else{
                     swal({
-                        title:'更新失敗！請聯絡負責單位',
+                        title:'更新失敗！請聯絡網站維護人員',
                         type:'error',
                     })
                 }  
             },
             error:function(e){
-                console.log(e);
+                // console.log(e);
                 swal({
-                    title:'更新失敗！請聯絡負責單位',
+                    title:'更新失敗！請聯絡網站維護人員',
                     type:'error',
                 })
             }

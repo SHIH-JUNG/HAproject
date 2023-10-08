@@ -176,7 +176,7 @@ $.ajax({
   dataType: "JSON",
   async: false, //啟用同步請求
   success: function (data) {
-    console.log(data)
+    // console.log(data)
     var cssString = "";
 
     $.each(data, function (index, value) {
@@ -285,8 +285,8 @@ $.ajax({
   },
 
   error: function (e) {
-    console.log(e);
-    notyf.alert('伺服器錯誤,無法載入');
+    // console.log(e);
+    notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
   },
 });
 //endregion

@@ -26,8 +26,8 @@ function add_screening_keywords() {
             });
         },
         error:function(e){
-            console.log(e);
-            notyf.alert('伺服器錯誤,無法載入');
+            // console.log(e);
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
         }
     });
 
@@ -45,8 +45,8 @@ function add_screening_keywords() {
             });
         },
         error:function(e){
-            console.log(e);
-            notyf.alert('伺服器錯誤,無法載入');
+            // console.log(e);
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
         }
     });
 }
@@ -83,16 +83,16 @@ $("#add_screening_type_btn").on('click',function(){
                 }else{
                     swal({
                         type: 'error',
-                        title: '新增失敗!請聯絡負責人',
+                        title: '新增失敗！請聯絡網站維護人員',
                         allowOutsideClick: false //不可點背景關閉
                         })
                 }  
             },
             error:function(e){
-                console.log(e);
+                // console.log(e);
                 swal({
                     type: "error",
-                    title: "新增失敗!請聯絡負責人",
+                    title: "新增失敗！請聯絡網站維護人員",
                     allowOutsideClick: false, //不可點背景關閉
                 });
             }
@@ -128,16 +128,16 @@ $("#add_screening_results_btn").on('click',function(){
                 }else{
                     swal({
                         type: 'error',
-                        title: '新增失敗!請聯絡負責人',
+                        title: '新增失敗！請聯絡網站維護人員',
                         allowOutsideClick: false //不可點背景關閉
                         })
                 }  
             },
             error:function(e){
-                console.log(e);
+                // console.log(e);
                 swal({
                     type: "error",
-                    title: "新增失敗!請聯絡負責人",
+                    title: "新增失敗！請聯絡網站維護人員",
                     allowOutsideClick: false, //不可點背景關閉
                 });
             }
@@ -156,8 +156,8 @@ Arr = date.split("-"); // 根据“-”分割
 
 y = Arr[0];
 m = Arr[1];
-console.log("Arr[0]"+y);
-console.log("Arr[1]"+m);
+// console.log("Arr[0]"+y);
+// console.log("Arr[1]"+m);
 //endregion
 
 //處理年齡分類region
@@ -173,7 +173,7 @@ check_age_type_radio();
     else {
         stau = true;
     }
-    console.log(stau);
+    // console.log(stau);
 
     if(!stau)
     {
@@ -181,7 +181,7 @@ check_age_type_radio();
         swal({
             title:check_add_screening_data(),
             type:'error'
-          })
+        })
     }
     else
     { 
@@ -208,7 +208,7 @@ check_age_type_radio();
             },
 //            dataType: "JSON",
             success: function (data) {
-                console.log(data);
+                // console.log(data);
                 if(data == 1){
                     swal({
                         type: 'success',
@@ -220,7 +220,7 @@ check_age_type_radio();
                 }else{
                     swal({
                         type: 'error',
-                        title: '新增失敗!請聯絡負責人',
+                        title: '新增失敗！請聯絡網站維護人員',
                         allowOutsideClick: false //不可點背景關閉
                         })
                         // .then(function () {
@@ -231,7 +231,7 @@ check_age_type_radio();
                 error: function () {
                     swal({
                         type: "error",
-                        title: "新增失敗!請聯絡負責人",
+                        title: "新增失敗！請聯絡網站維護人員",
                         allowOutsideClick: false, //不可點背景關閉
                     });
                 }
@@ -256,14 +256,14 @@ function check_age_type_radio(){
     {
         if (a_radio[i].checked == true)
         {
-           a_val = a_radio[i].value;
+            a_val = a_radio[i].value;
             break;
         }else{
             a_val= "";
         }    
     }
     
-    console.log(a_val);
+    // console.log(a_val);
 }
 //endregion
 
@@ -343,21 +343,21 @@ function check_add_screening_data()
 
 
 //呼叫user方法region           
-        $.ajax({
-            type:'POST',
-            url:'database/find_check_user.php',
-            dataType: "JSON",
-            async: false,//啟用同步請求
-            success: function (data) {
-                for (var index in data.Id) {
-                    $(".user").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
-                }
-            },
-            error:function(e){
-                console.log(e);
-                notyf.alert('伺服器錯誤,無法載入');
-            }
-        });
+$.ajax({
+    type:'POST',
+    url:'database/find_check_user.php',
+    dataType: "JSON",
+    async: false,//啟用同步請求
+    success: function (data) {
+        for (var index in data.Id) {
+            $(".user").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+        }
+    },
+    error:function(e){
+        // console.log(e);
+        notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
+    }
+});
 
 //endregion
 

@@ -233,7 +233,7 @@ $(document).ready(function () {
         error: function (e) {
           swal({
             type: "error",
-            title: "系統錯誤!請聯絡負責人",
+            title: "系統錯誤！請聯絡網站維護人員",
             allowOutsideClick: false, //不可點背景關閉
           }).then(function () {
             history.back();
@@ -297,7 +297,7 @@ $(document).ready(function () {
         error: function (e) {
           swal({
             type: "error",
-            title: "系統錯誤!請聯絡負責人",
+            title: "系統錯誤！請聯絡網站維護人員",
             allowOutsideClick: false, //不可點背景關閉
           }).then(function () {
             history.back();
@@ -396,7 +396,7 @@ update_arc = function() {
           } else {
             swal({
               type: "error",
-              title: "更新失敗!請聯絡負責人",
+              title: "更新失敗！請聯絡網站維護人員",
               allowOutsideClick: false, //不可點背景關閉
             });
           }
@@ -404,7 +404,7 @@ update_arc = function() {
         error: function () {
           swal({
             type: "error",
-            title: "更新失敗!請聯絡負責人",
+            title: "更新失敗！請聯絡網站維護人員",
             allowOutsideClick: false, //不可點背景關閉
           });
         },

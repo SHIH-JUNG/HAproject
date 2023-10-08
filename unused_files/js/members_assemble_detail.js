@@ -242,7 +242,7 @@ $(document).ready(function () {
       });
     },
     error: function (e) {
-      notyf.alert('伺服器錯誤,無法載入');
+      notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
     },
   });
   $(".ma_question").attr("disabled", true);
@@ -338,7 +338,7 @@ function jsignature_initialization(init_name) {
                       }) 
                   }else{
                       swal({
-                          title:'生成簽名圖片失敗！請聯絡負責單位',
+                          title:'生成簽名圖片失敗！請聯絡網站維護人員',
                           type:'error',
                       })
                   }
@@ -469,7 +469,7 @@ function rec_update_fillin() {
         } else {
           swal({
             type: "error",
-            title: "更新失敗!請聯絡負責人",
+            title: "更新失敗！請聯絡網站維護人員",
             allowOutsideClick: false, //不可點背景關閉
           });
         }
@@ -477,7 +477,7 @@ function rec_update_fillin() {
       error: function () {
         swal({
           type: "error",
-          title: "更新失敗!請聯絡負責人",
+          title: "更新失敗！請聯絡網站維護人員",
           allowOutsideClick: false, //不可點背景關閉
         });
       },
@@ -591,7 +591,7 @@ function check_file_exist() {
         }
       },
       error: function (e) {
-        notyf.alert('伺服器錯誤,無法載入');
+        notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
       },
     });
   });
@@ -747,7 +747,7 @@ function submit_form_data_upload() {
       } else {
         swal({
           type: "error",
-          title: "更新失敗!請聯絡負責人",
+          title: "更新失敗！請聯絡網站維護人員",
           allowOutsideClick: false, //不可點背景關閉
         });
       }
@@ -755,7 +755,7 @@ function submit_form_data_upload() {
     error: function (e) {
       swal({
         type: "error",
-        title: "更新失敗!請聯絡負責人",
+        title: "更新失敗！請聯絡網站維護人員",
         allowOutsideClick: false, //不可點背景關閉
       });
       console.log(e);

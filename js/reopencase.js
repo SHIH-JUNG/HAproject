@@ -59,8 +59,8 @@ $(document).ready(function(){
             });
         },
         error:function(e){
-            console.log(e);
-            notyf.alert('伺服器錯誤,無法載入');
+            // console.log(e);
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
         }
     });
     //endregion
@@ -267,7 +267,7 @@ function add_new_current_case_database()
         },
 //            dataType: "JSON",
         success: function (data) {
-            console.log(data);
+            // console.log(data);
             if(data == 1){
                 swal({
                     type: 'success',
@@ -279,7 +279,7 @@ function add_new_current_case_database()
             }else{
                 swal({
                     type: 'error',
-                    title: '新增失敗!請聯絡負責人',
+                    title: '新增失敗！請聯絡網站維護人員',
                     allowOutsideClick: false //不可點背景關閉
                     }).then(function () {
                         location.reload();
@@ -289,7 +289,7 @@ function add_new_current_case_database()
             error: function () {
                 swal({
                     type: 'error',
-                    title: '新增失敗!請聯絡負責人',
+                    title: '新增失敗！請聯絡網站維護人員',
                     allowOutsideClick: false //不可點背景關閉
                 }).then(function () {
                     location.reload();

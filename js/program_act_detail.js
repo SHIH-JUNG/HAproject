@@ -167,7 +167,7 @@ $(document).ready(function () {
       });
     },
     error: function (e) {
-      console.log(e);
+      // console.log(e);
     },
   });
 
@@ -259,8 +259,8 @@ function check_file_exist() {
         }
       },
       error: function (e) {
-        console.log(e);
-        notyf.alert('伺服器錯誤,無法載入');
+        // console.log(e);
+        notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
       },
     });
   });
@@ -314,7 +314,7 @@ function check_file_exist() {
 //           });
 //         } else {
 //           swal({
-//             title: "修改失敗！請聯絡負責單位",
+//             title: "修改失敗！請聯絡網站維護人員",
 //             type: "error",
 //           });
 //         }
@@ -326,7 +326,7 @@ function check_file_exist() {
 //   }
 // });
 
-//更新發文個案表基本資料region
+//更新方案活動資料 region
 $("#program_update").on("click", function () {
   var pu_id = getUrlVars()["program_id"];
 
@@ -337,7 +337,7 @@ $("#program_update").on("click", function () {
   } else {
     stau = true;
   }
-  console.log(stau);
+  // console.log(stau);
 
   if (!stau) {
     swal({
@@ -421,9 +421,9 @@ function submit_form() {
     form_data.append("Lecturer",$("#lecturer").val());
 
     // 預覽傳到後端的資料詳細內容
-    for (var pair of form_data.entries()) {
-      console.log(pair[0] + ", " + pair[1]);
-    }
+    // for (var pair of form_data.entries()) {
+    //   console.log(pair[0] + ", " + pair[1]);
+    // }
 
 
   $.ajax({
@@ -435,7 +435,7 @@ function submit_form() {
     processData: false,
     async: true,
     success: function (data) {
-      console.log(data);
+      // console.log(data);
       if (data == 1) {
         swal({
           title: "修改成功！",
@@ -445,18 +445,18 @@ function submit_form() {
         });
       } else {
         swal({
-          title: "修改失敗！請聯絡負責單位",
+          title: "修改失敗！請聯絡網站維護人員",
           type: "error",
         });
       }
     },
     error: function (e) {
-      console.log(e);
+      // console.log(e);
     },
   });
 }
 
-//結案個案表(update)的必填欄位 region
+//(update)檢查必填欄位 region
 function check_updat_program_act_data() {
   // var year = $("#year").val();
   var date = $("#date").val();
@@ -538,14 +538,14 @@ function check_updat_program_act_data() {
 //           });
 //         } else {
 //           swal({
-//             title: "新增失敗！請聯絡負責單位",
+//             title: "新增失敗！請聯絡網站維護人員",
 //             type: "error",
 //           });
 //         }
 //       },
 //       error: function (e) {
 //         swal({
-//           title: "新增失敗！請聯絡負責單位",
+//           title: "新增失敗！請聯絡網站維護人員",
 //           type: "error",
 //         });
 //         console.log(e);
@@ -583,7 +583,7 @@ function cancel() {
 }
 //endregion
 
-//結案個案總表格鎖定控制region
+//詳細表格鎖定控制region
 function program_edit() {
   $(".program_question").attr("disabled", false);
   $("#edit_div").attr("hidden", true);

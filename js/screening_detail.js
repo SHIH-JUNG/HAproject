@@ -57,7 +57,7 @@ $(document).ready(function(){
             $("#up_applicant").html(data.Update_name[0]);
         },
         error:function(e){
-            notyf.alert('伺服器錯誤,無法載入');
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
         }
     });
     $(".screening_question").attr("disabled",true);
@@ -87,8 +87,8 @@ function add_screening_keywords() {
             });
         },
         error:function(e){
-            console.log(e);
-            notyf.alert('伺服器錯誤,無法載入');
+            // console.log(e);
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
         }
     });
 
@@ -106,8 +106,8 @@ function add_screening_keywords() {
             });
         },
         error:function(e){
-            console.log(e);
-            notyf.alert('伺服器錯誤,無法載入');
+            // console.log(e);
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
         }
     });
 }
@@ -143,16 +143,16 @@ $("#add_screening_type_btn").on('click',function(){
                 }else{
                     swal({
                         type: 'error',
-                        title: '新增失敗!請聯絡負責人',
+                        title: '新增失敗！請聯絡網站維護人員',
                         allowOutsideClick: false //不可點背景關閉
                         })
                 }  
             },
             error:function(e){
-                console.log(e);
+                // console.log(e);
                 swal({
                     type: 'error',
-                    title: '新增失敗!請聯絡負責人',
+                    title: '新增失敗！請聯絡網站維護人員',
                     allowOutsideClick: false //不可點背景關閉
                 })
             }
@@ -188,16 +188,16 @@ $("#add_screening_results_btn").on('click',function(){
                 }else{
                     swal({
                         type: 'error',
-                        title: '新增失敗!請聯絡負責人',
+                        title: '新增失敗！請聯絡網站維護人員',
                         allowOutsideClick: false //不可點背景關閉
                         })
                 }  
             },
             error:function(e){
-                console.log(e);
+                // console.log(e);
                 swal({
                     type: 'error',
-                    title: '新增失敗!請聯絡負責人',
+                    title: '新增失敗！請聯絡網站維護人員',
                     allowOutsideClick: false //不可點背景關閉
                 })
             }
@@ -250,7 +250,7 @@ var stau = false;
     else {
         stau = true;
     }
-    console.log(stau);
+    // console.log(stau);
 
     if(!stau)
     {
@@ -258,7 +258,7 @@ var stau = false;
         swal({
             title:check_updat_screening_data(),
             type:'error'
-          })
+        })
     }
     else
     { 
@@ -293,14 +293,14 @@ var stau = false;
                     }) 
                 }else{
                     swal({
-                        title:'更新失敗！請聯絡負責單位',
+                        title:'更新失敗！請聯絡網站維護人員',
                         type:'error',
                     })
                 }  
             },
             error:function(e){
                 swal({
-                    title:'更新失敗！請聯絡負責單位',
+                    title:'更新失敗！請聯絡網站維護人員',
                     type:'error',
                 })
             }
@@ -475,7 +475,7 @@ $("#trans_to_opencase_submit").on('click',function(){
                 tran_case_sex_o = data.Sexual_orientation[0];
             },
             error:function(e){
-                notyf.alert('伺服器錯誤,無法載入開案所需資料!');
+                notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員!');
             }
         });
 
@@ -573,8 +573,8 @@ find_case_auto_id = function(object_type_val) {
            }
         },
         error:function(e){
-            console.log(e);
-            notyf.alert('伺服器錯誤,無法載入開案所需資料!');
+            // console.log(e);
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員!');
         }
     });
 }
@@ -666,8 +666,8 @@ function check_case_isrepeat() {
             }
         },
         error: function (e) {
-            console.log(e);
-            // notyf.alert('伺服器錯誤,無法載入開案所需資料!');
+            // console.log(e);
+            // notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員!');
         }
     });
     

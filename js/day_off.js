@@ -132,7 +132,7 @@ $.ajax({
   async: false, //啟用同步請求
   success: function (data) {
     var cssString = "";
-    console.log(data);
+    // console.log(data);
     $.each(data, function (index, value) {
       var supervise_sign_arr = datatable_sign_show('supervise', value.Supervise, value.Supervise_signature, value.Supervise_sign_time, value.Supervise_sign_msg);
 
@@ -275,7 +275,7 @@ $.ajax({
   },
 
   error: function (e) {
-    console.log(e);
+    // console.log(e);
   },
 });
 //endregion
@@ -295,7 +295,7 @@ load_remain_hours = function() {
       async: false,//啟用同步請求
       success: function (data) {
         
-        console.log(data)
+        // console.log(data)
 
         $.each(data, function (index, value) {
 
@@ -328,8 +328,8 @@ load_remain_hours = function() {
 
       },
       error:function(e){
-          notyf.alert('伺服器錯誤,無法載入');
-          console.log(e)
+          notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
+          // console.log(e)
       }
   });
 
@@ -523,7 +523,7 @@ var date_range = function (settings, data, dataIndex) {
 var fillin_date_range = (function( settings, data, dataIndex ) {
   var min_date = parseInt(Date.parse( split_date($('#fillin_date_start').val())), 10 );
   var max_date = parseInt(Date.parse( split_date($('#fillin_date_end').val())), 10 );
-  console.log( split_date($('#fillin_date_end').val()))
+  // console.log( split_date($('#fillin_date_end').val()))
   var date = parseInt(Date.parse( split_date(data[1]) )) || 0; // use data for the date column
   if ( ( isNaN( min_date ) && isNaN( max_date ) ) ||
        ( isNaN( min_date ) && date <= max_date ) ||

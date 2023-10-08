@@ -9,8 +9,8 @@ datepicker_create = function (selector_id) {
       showButtonPanel: true,
       yearRange: "-109:+0",
       onClose: function (dateText) {
-        console.log($("#" + selector_id).val());
-        console.log(trans_to_EN(dateText));
+        // console.log($("#" + selector_id).val());
+        // console.log(trans_to_EN(dateText));
       },
       beforeShow: function (input, inst) {
         var $this = $(this);
@@ -160,7 +160,7 @@ function submit_form() {
       processData: false,
       async: true,
       success: function (data) {
-        console.log(data);
+        // console.log(data);
         if (data == 1) {
           swal({
             type: "success",
@@ -173,16 +173,16 @@ function submit_form() {
         } else {
           swal({
             type: "error",
-            title: "新增失敗!請聯絡負責人",
+            title: "新增失敗！請聯絡網站維護人員",
             allowOutsideClick: false, //不可點背景關閉
           });
         }
       },
       error: function (e) {
-          console.log(e)
+          // console.log(e);
           swal({
               type: "error",
-              title: "新增失敗!請聯絡負責人",
+              title: "新增失敗！請聯絡網站維護人員",
               allowOutsideClick: false, //不可點背景關閉
           });
       },
@@ -190,7 +190,7 @@ function submit_form() {
 }
 
 
-// //新增來文紀錄region
+// 新增發文region
 $("#pu_add_new").on("click", function () {
    
   //判斷該量表是否含有 input[type="file"] 類型資料
@@ -302,8 +302,8 @@ function check_null_data() {
     var check_element = $(this).parent("td").siblings("td").children()[0];
     var check_element_name = $(this).parent("td").text();
 
-    console.log($(check_element))
-    console.log($(check_element).val())
+    // console.log($(check_element));
+    // console.log($(check_element).val());
 
     var check_element_tagname = $(check_element).prop("tagName");
     var check_element_type = $(check_element).attr("type");
@@ -377,8 +377,8 @@ function check_file_exist() {
         }
       },
       error: function (e) {
-        console.log(e);
-        notyf.alert('伺服器錯誤,無法載入');
+        // console.log(e);
+        notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
       },
     });
   });

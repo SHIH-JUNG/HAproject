@@ -178,7 +178,7 @@ $("#vo_add_new").on("click", function () {
   } else {
     stau = true;
   }
-  console.log(stau);
+  // console.log(stau);
 
   if (!stau) {
     swal({
@@ -277,7 +277,7 @@ function submit_form() {
       processData: false,
       async: true,
       success: function (data) {
-        console.log(data);
+        // console.log(data);
         if (data == 1) {
           swal({
             type: "success",
@@ -290,16 +290,16 @@ function submit_form() {
         } else {
           swal({
             type: "error",
-            title: "新增失敗!請聯絡負責人",
+            title: "新增失敗！請聯絡網站維護人員",
             allowOutsideClick: false, //不可點背景關閉
           });
         }
       },
       error: function (e) {
-          console.log(e)
+          // console.log(e)
           swal({
               type: "error",
-              title: "新增失敗!請聯絡負責人",
+              title: "新增失敗！請聯絡網站維護人員",
               allowOutsideClick: false, //不可點背景關閉
           });
       },

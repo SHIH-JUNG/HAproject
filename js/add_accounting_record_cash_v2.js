@@ -9,11 +9,11 @@ $(document).ready(function () {
   select_form_class(2);
   //endregion
 
+  //載入零用金的年份、月份 region
   window.invoice_year_arr = [];
   window.invoice_month_arr = [];
 
   $("[invoice_arr='year']").each(function(){
-
     var this_id = $(this).attr("id");
     invoice_year_arr.push(this_id);
   });
@@ -31,6 +31,7 @@ $(document).ready(function () {
   $.each(invoice_month_arr,function(i,v){
     load_invoice_month_optios(v);
   });
+  //endregion
 
 });
 
@@ -43,7 +44,7 @@ load_invoice_year_optios = function(id_arr_val)
 
   var max_range = currentYear + 5;
 
-  console.log(min_range, max_range)
+  // console.log(min_range, max_range)
 
   $("[id='"+id_arr_val+"']").append('<option value=""  disabled selected>請選擇年度</option>');
 
@@ -158,6 +159,7 @@ $("#rec_add_new").on("click", function () {
 
     var submit_trans_href = "";
 
+    // 根據 form_class的選項新增資料
     switch (form_class) {
       case "0":
         submit_trans_href = "accounting_record_cash_v2.php?year=" + $("#invoice_year2").val()
@@ -269,9 +271,9 @@ $("#rec_add_new").on("click", function () {
         break;
     }
   
-    for (var pair of form_data.entries()) {
-      console.log(pair[0] + ", " + pair[1]);
-    }
+    // for (var pair of form_data.entries()) {
+    //   console.log(pair[0] + ", " + pair[1]);
+    // }
 
     var stau = false;
   
@@ -298,7 +300,7 @@ $("#rec_add_new").on("click", function () {
         // data: submit_data,
         //            dataType: "JSON",
         success: function (data) {
-          console.log(data);
+          // console.log(data);
           if (data == 1) {
             swal({
               type: "success",
@@ -310,7 +312,7 @@ $("#rec_add_new").on("click", function () {
           } else {
             swal({
               type: "error",
-              title: "新增失敗!請聯絡負責人",
+              title: "新增失敗！請聯絡網站維護人員",
               allowOutsideClick: false, //不可點背景關閉
             });
           }
@@ -318,10 +320,10 @@ $("#rec_add_new").on("click", function () {
         error: function (e) {
           swal({
             type: "error",
-            title: "新增失敗!請聯絡負責人",
+            title: "新增失敗！請聯絡網站維護人員",
             allowOutsideClick: false, //不可點背景關閉
           });
-          console.log(e);
+          // console.log(e);
         },
       });
     }

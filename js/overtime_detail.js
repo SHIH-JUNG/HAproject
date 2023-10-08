@@ -174,7 +174,7 @@ $(document).ready(function () {
       });
     },
     error: function (e) {
-      console.log(e);
+      // console.log(e);
     },
   });
 
@@ -373,7 +373,7 @@ signature_submit = function(this_btn) {
         else 
         {
           swal({
-            title: "生成簽名圖片失敗！請聯絡負責單位",
+            title: "生成簽名圖片失敗！請聯絡網站維護人員",
             type: "error",
           });
         }
@@ -462,8 +462,8 @@ function submit_form() {
 
   var rec_year = $("#overtime_date").val().split("年")[0];
 
-  console.log(timenow);
-  console.log(rec_year);
+  // console.log(timenow);
+  // console.log(rec_year);
 
   var form_data = new FormData();
 
@@ -503,7 +503,7 @@ function submit_form() {
       processData: false,
       async: true,
       success: function (data) {
-        console.log(data);
+        // console.log(data);
         if (data == 1) {
           swal({
             type: "success",
@@ -516,16 +516,16 @@ function submit_form() {
         } else {
           swal({
             type: "error",
-            title: "新增失敗!請聯絡負責人",
+            title: "新增失敗！請聯絡網站維護人員",
             allowOutsideClick: false, //不可點背景關閉
           });
         }
       },
       error: function (e) {
-          console.log(e)
+          // console.log(e)
           swal({
               type: "error",
-              title: "新增失敗!請聯絡負責人",
+              title: "新增失敗！請聯絡網站維護人員",
               allowOutsideClick: false, //不可點背景關閉
           });
       },
@@ -584,7 +584,7 @@ update_allow_status = function(overtime_id_str, allow_status_str) {
       },
     // dataType: "JSON", // 若要傳回字串 如：noallow，不可設定為json格式
     success: function (data) {
-      console.log(data);
+      // console.log(data);
       if (data == 1) 
       {
         swal({
@@ -611,16 +611,16 @@ update_allow_status = function(overtime_id_str, allow_status_str) {
       {
         swal({
           type: "error",
-          title: "更新失敗!請聯絡負責人",
+          title: "更新失敗！請聯絡網站維護人員",
           allowOutsideClick: false, //不可點背景關閉
         });
       }
     },
     error: function (e) {
-      console.log(e)
+      // console.log(e)
       swal({
           type: "error",
-          title: "更新失敗!請聯絡負責人",
+          title: "更新失敗！請聯絡網站維護人員",
           allowOutsideClick: false, //不可點背景關閉
       });
     },
@@ -673,7 +673,7 @@ revoke_overtime_submit = function() {
       },
     // dataType: "JSON", // 若要傳回字串 如：noallow，不可設定為json格式
     success: function (data) {
-      console.log(data);
+      // console.log(data);
       if (data == 1) 
       {
         swal({
@@ -707,16 +707,16 @@ revoke_overtime_submit = function() {
       {
         swal({
           type: "error",
-          title: "撤銷加班紀錄失敗!請聯絡負責人",
+          title: "撤銷加班紀錄失敗！請聯絡網站維護人員",
           allowOutsideClick: false, //不可點背景關閉
         });
       }
     },
     error: function (e) {
-      console.log(e)
+      // console.log(e)
       swal({
           type: "error",
-          title: "撤銷加班紀錄失敗!請聯絡負責人",
+          title: "撤銷加班紀錄失敗！請聯絡網站維護人員",
           allowOutsideClick: false, //不可點背景關閉
       });
     },
@@ -733,13 +733,13 @@ function check_overtime_data() {
     var check_element = $(this).parent("td").siblings("td").children()[0];
     var check_element_name = $(this).parent("td").text();
 
-    console.log($(check_element))
-    console.log($(check_element).val())
+    // console.log($(check_element))
+    // console.log($(check_element).val())
 
     var check_element_tagname = $(check_element).prop("tagName");
     var check_element_type = $(check_element).attr("type");
 
-    console.log(check_element_tagname)    
+    // console.log(check_element_tagname)    
     if(check_element_tagname == "INPUT" && check_element_type=="file")
     {
       var file_len = $(check_element).prop("files").length;

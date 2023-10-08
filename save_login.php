@@ -20,7 +20,7 @@
     <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
 
     <meta charset="UTF-8" />
-    <!--    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="description" content="快樂聯盟資管系統">
     <meta name="author" content="HANG">
     <title>個案管理系統</title>
@@ -55,8 +55,8 @@
     <!-- ================== JQ cookie.js ================== -->
     <script src="javascript/cookie/js.cookie-2.1.3.min.js"></script>
     <!--     ==================  時間24小時 ================== -->
-    <script type="text/javascript" src="js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
-    <script type="text/javascript" src="js/bootstrap-datetimepicker.zh-TW.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="javascript/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="javascript/bootstrap-datetimepicker.zh-TW.js" charset="UTF-8"></script>
 
     <script>
         $( document ).ready(function() {

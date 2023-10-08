@@ -182,8 +182,8 @@ function load_files() {
           file_year_arr.sort((a, b) => b - a)
       },
       error:function(e){
-          notyf.alert('伺服器錯誤,無法載入');
-          console.log(e)
+          notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
+          // console.log(e)
       }
   });
 
@@ -256,7 +256,7 @@ function load_program_datas() {
       dataType: "JSON",
       async: false,//啟用同步請求
       success: function (data) {
-          console.log(data)
+          // console.log(data)
 
           $.each(data,function(index,value){
               $("#date").val(check_sql_date_format(value.Date));
@@ -269,8 +269,8 @@ function load_program_datas() {
         
       },
       error:function(e){
-          notyf.alert('伺服器錯誤,無法載入');
-          console.log(e)
+          notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
+          // console.log(e)
       }
   });
 
@@ -283,7 +283,7 @@ function load_program_datas() {
       dataType: "JSON",
       async: false,//啟用同步請求
       success: function (data) {
-          console.log(data.length)
+          // console.log(data.length)
 
           var this_year_file_upload_num = 0;
           var recently_upload_date = "---年--月--日";
@@ -351,8 +351,8 @@ function load_program_datas() {
           $(".recently_upload_date").text(recently_upload_date);
       },
       error:function(e){
-          notyf.alert('伺服器錯誤,無法載入');
-          console.log(e)
+          notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
+          // console.log(e)
       }
   });
 
@@ -460,16 +460,16 @@ program_update = function() {
           } else {
             swal({
               type: "error",
-              title: "更新失敗!請聯絡負責人",
+              title: "更新失敗！請聯絡網站維護人員",
               allowOutsideClick: false, //不可點背景關閉
             });
           }
         },
         error: function (e) {
-          console.log(e)
+          // console.log(e)
           swal({
               type: "error",
-              title: "更新失敗!請聯絡負責人",
+              title: "更新失敗！請聯絡網站維護人員",
               allowOutsideClick: false, //不可點背景關閉
           });
         },
@@ -573,16 +573,16 @@ $.ajax({
     } else {
       swal({
         type: "error",
-        title: "更新失敗!請聯絡負責人",
+        title: "更新失敗！請聯絡網站維護人員",
         allowOutsideClick: false, //不可點背景關閉
       });
     }
   },
   error: function (e) {
-    console.log(e)
+    // console.log(e)
     swal({
         type: "error",
-        title: "更新失敗!請聯絡負責人",
+        title: "更新失敗！請聯絡網站維護人員",
         allowOutsideClick: false, //不可點背景關閉
     });
   },
@@ -626,7 +626,7 @@ get_files_name_value = function() {
 // endregion
 
 
-//預約表格鎖定控制region
+//表格鎖定控制region
 function program_forms_edit(id){
   $('.program_forms_question'+id+'').attr('disabled', false);
   $('#edit_div'+id+'').attr('hidden', true);
@@ -640,7 +640,7 @@ function program_forms_cancel(id){
 };
 //endregion
 
-//篩檢總表格鎖定控制region
+//總表格鎖定控制region
 function program_edit(){
   $('.program_question').attr('disabled', false);
   $('#edit_div').attr('hidden', true);
@@ -653,12 +653,12 @@ function program_cancel(){
 };
 //endregion
 
-// 刪除履歷表檔案內容 多檔案上傳 region
+// 刪除檔案內容 多檔案上傳 region
 selectFiles_delete = function () {
 
 
   if ($("[name='file_a_check']:checked").length > 0) {
-    console.log($("#val_arr" + $("[name='file_a_check']:checked").attr("value")))
+    // console.log($("#val_arr" + $("[name='file_a_check']:checked").attr("value")))
     swal({
       title: "是否刪除該檔案？\n" + "檔名："+ $("#val_arr" + $("[name='file_a_check']:checked").attr("value")).text(),
       text: "確認刪除後將無法復原操作",
@@ -678,8 +678,8 @@ selectFiles_delete = function () {
 
         var r_file_a = file_a_input_val_arr.splice(parseInt(file_a_val), 1);
 
-        console.log(file_a_input_val_arr)
-        console.log(r_file_a)
+        // console.log(file_a_input_val_arr)
+        // console.log(r_file_a)
 
         $.ajax({
           url: "database/delete_resume_file_a.php",
@@ -693,7 +693,7 @@ selectFiles_delete = function () {
           },
           // dataType: "JSON",
           success: function (data) {
-            console.log(data);
+            // console.log(data);
             if (data == 1) {
               swal({
                 type: "success",
@@ -706,10 +706,10 @@ selectFiles_delete = function () {
 
           },
           error: function (e) {
-            console.log(e)
+            // console.log(e)
             swal({
               type: "error",
-              title: "刪除檔案失敗!請聯絡負責人",
+              title: "刪除檔案失敗！請聯絡網站維護人員",
               allowOutsideClick: false, //不可點背景關閉
             });
           },

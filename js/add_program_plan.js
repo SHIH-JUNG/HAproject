@@ -9,8 +9,8 @@ datepicker_create = function (selector_id) {
       showButtonPanel: true,
       yearRange: "-109:+0",
       onClose: function (dateText) {
-        console.log($("#" + selector_id).val());
-        console.log(trans_to_EN(dateText));
+        // console.log($("#" + selector_id).val());
+        // console.log(trans_to_EN(dateText));
       },
       beforeShow: function (input, inst) {
         var $this = $(this);
@@ -111,7 +111,7 @@ $(document).ready(function () {
 // 存放檔案名稱
 window.file_name = [];
 
-// 新增員工履歷 region
+// 新增 region
 $("#program_plan_form").validator().on("submit", function (e) {
   if (e.isDefaultPrevented()) {
     return false;
@@ -162,9 +162,9 @@ function submit_form() {
   form_data.append("File_year", date_year_split[0]);
 
 
-  for (var pair of form_data.entries()) {
-    console.log(pair[0] + ", " + pair[1]);
-  }
+  // for (var pair of form_data.entries()) {
+  //   console.log(pair[0] + ", " + pair[1]);
+  // }
 
   $.ajax({
     url: "database/add_new_program_plan_user_datas.php",
@@ -175,7 +175,7 @@ function submit_form() {
     processData: false,
     async: true,
     success: function (data) {
-      console.log(data);
+      // console.log(data);
       if (data == 1) {
         swal({
           type: "success",
@@ -187,16 +187,16 @@ function submit_form() {
       } else {
         swal({
           type: "error",
-          title: "新增失敗!請聯絡負責人",
+          title: "新增失敗！請聯絡網站維護人員",
           allowOutsideClick: false, //不可點背景關閉
         });
       }
     },
     error: function (e) {
-      console.log(e);
+      // console.log(e);
       swal({
         type: "error",
-        title: "新增失敗!請聯絡負責人",
+        title: "新增失敗！請聯絡網站維護人員",
         allowOutsideClick: false, //不可點背景關閉
       });
     },

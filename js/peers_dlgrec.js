@@ -4,7 +4,7 @@ $(function() {
     imagePreview();  
   });
 
-//抓所有電話詢戒表region
+//抓所有生輔記錄 region
 $.ajax({
     url: "database/find_data_peers_dlgrec.php",
     type: "POST",
@@ -100,8 +100,8 @@ $.ajax({
     },
     
     error: function (e) {
-            console.log(e);
-            notyf.alert('伺服器錯誤,無法載入');
+            // console.log(e);
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
      }
 });
 

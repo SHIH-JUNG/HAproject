@@ -148,7 +148,7 @@ $("#counsel_add_new").on('click',function(){
         swal({
             title:check_add_counsel_data(),
             type:'error'
-          })
+        })
     }
     else
     { 
@@ -232,7 +232,7 @@ submit_data = function() {
             else{
             swal({
                 type: 'error',
-                title: '新增失敗!請聯絡負責人',
+                title: '新增失敗！請聯絡網站維護人員',
                 allowOutsideClick: false //不可點背景關閉
                 })
         }  
@@ -240,14 +240,14 @@ submit_data = function() {
             error: function () {
                 swal({
                     type: 'error',
-                    title: '新增失敗!請聯絡負責人',
+                    title: '新增失敗！請聯絡網站維護人員',
                     allowOutsideClick: false //不可點背景關閉
                 })
             }
     });
 }
 
-// 字母匹配
+// 字母匹配 region
 function dislodgeLetter(str) {
     var result;
     var reg = /[a-zA-Z]+/;  //[a-zA-Z]表示匹配字母，g表示全局匹配
@@ -256,17 +256,18 @@ function dislodgeLetter(str) {
     }
     return str;
 }
+//endregion
 
 //檢查篩檢者資料的必填欄位region
 function check_add_counsel_data()
 {
-   var refferal = $("#refferal").val();
-   var counsel_id = $("#t_sn").val();
-   var name = $("#name").val();
-   var birth = $("#birth").val();
-   var pid = $("#pid").val();
-   var cocktail_therapy_status = $("#cocktail_therapy_status").val();
-   var cocktail_therapy_name = $("#cocktail_therapy_name").val();
+    var refferal = $("#refferal").val();
+    var counsel_id = $("#t_sn").val();
+    var name = $("#name").val();
+    var birth = $("#birth").val();
+    var pid = $("#pid").val();
+    var cocktail_therapy_status = $("#cocktail_therapy_status").val();
+    var cocktail_therapy_name = $("#cocktail_therapy_name").val();
 
     var errorstr = "";
 

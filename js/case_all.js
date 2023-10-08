@@ -26,7 +26,7 @@ const notyf = new Notyf();
 //設置存放有資料的量表名稱之陣列
 var form_type_arr = [];
 
-//填寫資料(輔導紀錄)region
+//載入網址參數 region
 var name = decodeURIComponent(getUrlVars()["name"]);
 var pid =getUrlVars()["pid"];
 var date = getUrlVars()["date"];
@@ -59,7 +59,6 @@ window.sign_name_type = "";
 
 //抓所有量表region
 $(document).ready(function () {
-       
     // 顯示摘要表重要資訊(姓名、開案日期、個案類別、類別屬性、接案工作人員...)
     $.ajax({
         url: "database/find_case.php",
@@ -75,8 +74,8 @@ $(document).ready(function () {
             $(".case_user").text(data[0].Case_assign);
         },
         error: function (e) {
-            notyf.alert('伺服器錯誤,無法載入');
-         }
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
+        }
     });
 
     $(".case_name").text(name);
@@ -103,10 +102,12 @@ $(document).ready(function () {
 });
 //endregion
 
+// 設置返回連結 region
 back_case_all_all = function() {
     localStorage.removeItem('activeTab');
     window.location.href = 'case_all_all.php?id='+id+'&open_id='+open_id+'';
 }
+//endregion
 
 function load_form_type_array()
 {
@@ -129,7 +130,7 @@ function load_form_type_array()
             load_each_form();
         },
         error: function (e) {
-            notyf.alert('伺服器錯誤,無法載入');
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
         }
     });
 }
@@ -325,7 +326,7 @@ function load_each_form()
                 })
             },
             error: function (e) {
-                notyf.alert('伺服器錯誤,無法載入');
+                notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
             }
         });
     });
@@ -422,15 +423,15 @@ delete_upload_data = function() {
         else
         {
                 swal({
-                    title:'上傳失敗！請聯絡負責單位',
+                    title:'上傳失敗！請聯絡網站維護人員',
                     type:'error',
                 })
             }
         },
         error: function (e) {
-            console.log(e);
+            // console.log(e);
             swal({
-                title:'上傳失敗！請聯絡負責單位',
+                title:'上傳失敗！請聯絡網站維護人員',
                 type:'error',
             })
         }
@@ -596,7 +597,7 @@ load_update_type_data = function(sql_id_str, form_type_str) {
             });
         },
         error: function (e) {
-            notyf.alert('伺服器錯誤,無法載入');
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
         }
     });
 }
@@ -734,15 +735,15 @@ update_upload_data = function(this_btn) {
         else
         {
                 swal({
-                    title:'上傳失敗！請聯絡負責單位',
+                    title:'上傳失敗！請聯絡網站維護人員',
                     type:'error',
                 })
             }
         },
         error: function (e) {
-            console.log(e);
+            // console.log(e);
             swal({
-                title:'上傳失敗！請聯絡負責單位',
+                title:'上傳失敗！請聯絡網站維護人員',
                 type:'error',
             })
         }
@@ -982,7 +983,7 @@ form_add_new = function(obj){
 //endregion
 
     
-//點擊儲存到case_all資料庫region
+//點擊儲存到case_all資料庫 region
 function store(num, form_name){
     
     swal({
@@ -1062,15 +1063,15 @@ store_submit_datas = function(num, form_name) {
                 })
             } else {
                 swal({
-                    title: '儲存失敗！',
+                    title: '儲存失敗！請聯絡網站維護人員',
                     type: 'error',
                 })
             }
         },
         error: function (e) {
-            console.log(e);
+            // console.log(e);
             swal({
-                title: '儲存失敗！',
+                title: '儲存失敗！請聯絡網站維護人員',
                 type: 'error',
             })
         }
@@ -1153,8 +1154,8 @@ add_new_type_onchange = function(obj){
     //獲取該物件 num 編號 (select的num)
     var obj_num = $("#"+obj_id).attr("num");
 
-     //獲取該物件 obj_name 類型名稱 (select的obj_name)
-     var obj_name = $("#"+obj_id).attr("obj_name");
+    //獲取該物件 obj_name 類型名稱 (select的obj_name)
+    var obj_name = $("#"+obj_id).attr("obj_name");
 
     //獲取該物件的量表類型名稱+編號 (obj_name + num)
     var obj_name_num = obj_id.replace("add_new_type", "");
@@ -1791,7 +1792,7 @@ i_store_submit_datas = function(num, form_name)
             else
             {
                 swal({
-                    title:'上傳失敗！請聯絡負責單位',
+                    title:'上傳失敗！請聯絡網站維護人員',
                     type:'error',
                 })
             }
@@ -1799,7 +1800,7 @@ i_store_submit_datas = function(num, form_name)
         error: function (e) {
             console.log(e);
             swal({
-                title:'上傳失敗！請聯絡負責單位',
+                title:'上傳失敗！請聯絡網站維護人員',
                 type:'error',
             })
         }
@@ -1820,32 +1821,31 @@ function tab_toggle() {
 }
 
 $('#menu_tab_nav li a, .breadcrumb li, .brand-img').on('click',function() {
-  localStorage.removeItem('activeTab');
+    localStorage.removeItem('activeTab');
 });
-
 //endregion
 
 // 顯示簽核相關欄位 region
 function datatable_sign_show(signer_type ,signer, sign_path, sign_time, sign_msg) {
     var sign_arr = [];
-  
+
     var sign_stus = "";
     var sign_css_str = "";
     var type_name = "";
-  
+
     switch (signer_type) {
-      case "supervise1":
-        type_name = "督導";
-        break;
-    case "supervise2":
-        type_name = "執行長";
-        break;
+        case "supervise1":
+            type_name = "督導";
+            break;
+        case "supervise2":
+            type_name = "執行長";
+            break;
     }
-  
+
     if (sign_msg == "") {
-      sign_stus = "目前尚無留言內容";
+        sign_stus = "目前尚無留言內容";
     } else {
-      sign_stus =
+        sign_stus =
         "留言時間：" +
         sign_time +
         "，留言內容：" +
@@ -1853,11 +1853,11 @@ function datatable_sign_show(signer_type ,signer, sign_path, sign_time, sign_msg
     }
   
     if (sign_path != "") {
-      var supervise_sign_file_val = sign_path.replace(
+        var supervise_sign_file_val = sign_path.replace(
         "../signature/",
-        "./signature/"
-      );
-      sign_css_str +=
+        "./signature/");
+        
+        sign_css_str +=
         '<a src="' +
         supervise_sign_file_val +
         '" style="color:blue;display: block;" target="_blank" alt="' +
@@ -1949,7 +1949,7 @@ function datatable_sign_show(signer_type ,signer, sign_path, sign_time, sign_msg
 
     var $parent = $(this).parent();
 
-    console.log($(this))
+    // console.log($(this))
 
     var sign_msg = $(this).attr("sign_msg");
     var sign_time = $(this).attr("sign_time");
@@ -2039,7 +2039,7 @@ if (src_data) {
     },
     async: false,
     success: function (data) {
-        console.log(data);
+        // console.log(data);
         if (data == 1) 
         {
             swal({
@@ -2061,7 +2061,7 @@ if (src_data) {
         else 
         {
         swal({
-            title: "生成簽名圖片失敗！請聯絡負責單位",
+            title: "生成簽名圖片失敗！請聯絡網站維護人員",
             type: "error",
         });
         }

@@ -11,7 +11,7 @@ function getUrlVars() {
 }
 //endregion
 
-//抓所有曾入住紀錄region
+//抓所有開案記錄，包含曾經開案的記錄 region
 $(document).ready(function () {
     var pcase_id = getUrlVars()["id"];
     var open_id = getUrlVars()["open_id"];
@@ -44,8 +44,8 @@ $(document).ready(function () {
             $("#placement_case_all").append(cssstring);
         },
         error: function (e) {
-            console.log(e);
-            notyf.alert('伺服器錯誤,無法載入');
+            // console.log(e);
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
         }
     });
 });

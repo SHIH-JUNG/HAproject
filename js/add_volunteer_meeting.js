@@ -48,8 +48,8 @@ datepicker_create = function (selector_id) {
       {
         outerh = outerh * 3;
       }
-      console.log($this.offset().top)
-      console.log(outerh)
+      // console.log($this.offset().top)
+      // console.log(outerh)
 
       var top = $this.offset().top - outerh;
       var left = $this.offset().left - 10;
@@ -237,7 +237,7 @@ get_attendees_seq_contents = function() {
   //     },
   //     error: function (e) {
   //       console.log(e);
-  //       notyf.alert('伺服器錯誤,無法載入');
+  //       notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
   //     },
   //   });
   // });
@@ -388,9 +388,9 @@ submit_form_data_upload = function() {
   form_data.append("title", '志工會議記錄簽核：'+$("#title_name").val());
   form_data.append("rec_date_time", split_date($("#meeting_date").val())+" 00:00");
   
-  for (var pair of form_data.entries()) {
-    console.log(pair[0] + ", " + pair[1]);
-  }
+  // for (var pair of form_data.entries()) {
+  //   console.log(pair[0] + ", " + pair[1]);
+  // }
 
   $.ajax({
     url: "database/add_new_upload_volunteer_meeting.php",
@@ -401,7 +401,7 @@ submit_form_data_upload = function() {
     processData: false,
     async: true,
     success: function (data) {
-      console.log(data);
+      // console.log(data);
       if (data == 1) {
         swal({
           type: "success",
@@ -414,7 +414,7 @@ submit_form_data_upload = function() {
       } else {
         swal({
           type: "error",
-          title: "新增失敗!請聯絡負責人",
+          title: "新增失敗！請聯絡網站維護人員",
           allowOutsideClick: false, //不可點背景關閉
         });
       }
@@ -422,10 +422,10 @@ submit_form_data_upload = function() {
     error: function (e) {
       swal({
         type: "error",
-        title: "新增失敗!請聯絡負責人",
+        title: "新增失敗！請聯絡網站維護人員",
         allowOutsideClick: false, //不可點背景關閉
       });
-      console.log(e);
+      // console.log(e);
     },
   });
 }
@@ -596,7 +596,7 @@ function check_file_exist() {
       file_arr.push(check_file_value2[i]["name"]);
   }
 
-  console.log(file_arr)
+  // console.log(file_arr)
 
   $.each(file_arr, function (index, value) {
       $.ajax({
@@ -608,7 +608,7 @@ function check_file_exist() {
       dataType: "JSON",
       async: false,
       success: function (data) {
-          console.log(data)
+          // console.log(data)
           if (data != "")
           {
               warning_str += "已有重複檔案名稱：\n" + value;
@@ -619,8 +619,8 @@ function check_file_exist() {
           }
       },
       error: function (e) {
-          console.log(e);
-          notyf.alert('伺服器錯誤,無法載入');
+          // console.log(e);
+          notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
       },
       });
   });
@@ -628,7 +628,7 @@ function check_file_exist() {
 }
 //endregion
 
-
+// 回到前一頁 region
 history_back = function() {
   
   swal({
@@ -659,3 +659,4 @@ history_back = function() {
     )
     .catch(swal.noop);
 }
+//endregion

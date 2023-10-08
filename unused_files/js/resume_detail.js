@@ -271,7 +271,7 @@ $("#res_update").on("click", function () {
           });
         } else {
           swal({
-            title: "修改失敗！請聯絡負責單位",
+            title: "修改失敗！請聯絡網站維護人員",
             type: "error",
           });
         }
@@ -597,7 +597,7 @@ $("#preview_word2").on("click", function () {
 //       } else {
 //         swal({
 //           type: "error",
-//           title: "新增失敗!請聯絡負責人",
+//           title: "新增失敗！請聯絡網站維護人員",
 //           allowOutsideClick: false, //不可點背景關閉
 //         });
 //       }

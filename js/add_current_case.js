@@ -47,7 +47,7 @@ $("#case_add_new").on('click',function(){
         swal({
             title:check_current_case_value(),
             type:'error'
-          })
+        })
     }
     else
     { 
@@ -56,7 +56,7 @@ $("#case_add_new").on('click',function(){
 });
 //endregion
 
-// 字母匹配
+// 字母匹配 region
 function dislodgeLetter(str) {
     var result;
     var reg = /[a-zA-Z]+/;  //[a-zA-Z]表示匹配字母，g表示全局匹配
@@ -65,8 +65,9 @@ function dislodgeLetter(str) {
     }
     return str;
 }
+//endregion
 
-//檢查新增個案表格有無未填寫欄位，若有未填寫欄位將會在點擊新增按鈕時提示region
+//檢查新增個案表格有無未填寫欄位，若有未填寫欄位將會在點擊新增按鈕時提示 region
 function check_update_currentcase_data()
 {
     var case_id = $("#case_id").val();
@@ -318,7 +319,7 @@ function add_new_current_case_database()
         },
 //            dataType: "JSON",
         success: function (data) {
-            console.log(data);
+            // console.log(data);
             if(data == 1){
                 swal({
                     type: 'success',
@@ -330,7 +331,7 @@ function add_new_current_case_database()
             }else{
                 swal({
                     type: 'error',
-                    title: '新增失敗!請聯絡負責人',
+                    title: '新增失敗！請聯絡網站維護人員',
                     allowOutsideClick: false //不可點背景關閉
                     })
                     // .then(function () {
@@ -341,7 +342,7 @@ function add_new_current_case_database()
             error: function () {
                 swal({
                     type: 'error',
-                    title: '新增失敗!請聯絡負責人',
+                    title: '新增失敗！請聯絡網站維護人員',
                     allowOutsideClick: false //不可點背景關閉
                 })
             }
@@ -349,7 +350,7 @@ function add_new_current_case_database()
 }
 //endregion
 
-
+// 如果服務對象類型是親職兒少則另外設定 region
 window.submit_ab_id_str = "";
 $('#case_id_prestr').on('change', function() {
     
@@ -359,7 +360,7 @@ $('#case_id_prestr').on('change', function() {
 
     find_case_auto_id("親職兒少");
 });    
-
+//endregion
 
 // 根據服務對象類型 自動填入 開案編號 region
 $('#object_type').on('change', function() {
@@ -409,8 +410,8 @@ find_case_auto_id = function(object_type_val) {
     
             
             var str_id = (parseInt(case_id)+1).toString();
-           
-           switch (object_type_val) {
+
+            switch (object_type_val) {
             case '一般藥癮者':
             case '藥癮家庭':   
                     $("#case_id").val("RE"+str_id);
@@ -434,11 +435,11 @@ find_case_auto_id = function(object_type_val) {
             default:
                     $("#case_id").val("");
                 break;
-           }
+            }
         },
         error:function(e){
-            console.log(e);
-            notyf.alert('伺服器錯誤,無法載入開案所需資料!');
+            // console.log(e);
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員!');
         }
     });
 }
@@ -482,7 +483,7 @@ function check_case_isrepeat() {
         },
         error: function (e) {
             // console.log(e);
-            // notyf.alert('伺服器錯誤,無法載入開案所需資料!');
+            // notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員!');
         }
     });
     
@@ -517,14 +518,14 @@ function add_new_caseedit_calendar() {
                 }) 
             }else{
                 swal({
-                title:'新增失敗！',
+                title:'新增失敗！請聯絡網站維護人員',
                 type:'error',
                 })
             } 
         },
     error:function(e){
         swal({
-            title:'新增失敗！',
+            title:'新增失敗！請聯絡網站維護人員',
             type:'error',
         })
     }

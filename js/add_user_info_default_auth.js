@@ -1,11 +1,11 @@
 const notyf = new Notyf();
 
-// 網頁載入
+// 網頁載入 region
 $(document).ready(function () {
     load_auth_num();
     load_auth_job();
 });
-
+//endregion
 
 //新增預設權限 region
 add_user_info_default_auth = function () {
@@ -67,7 +67,7 @@ function submit_form() {
             else{
             swal({
                 type: 'error',
-                title: '新增失敗!請聯絡負責人',
+                title: '新增失敗！請聯絡網站維護人員',
                 allowOutsideClick: false //不可點背景關閉
                 })
         }  
@@ -75,7 +75,7 @@ function submit_form() {
             error: function () {
                 swal({
                     type: 'error',
-                    title: '新增失敗!請聯絡負責人',
+                    title: '新增失敗！請聯絡網站維護人員',
                     allowOutsideClick: false //不可點背景關閉
                 })
             }

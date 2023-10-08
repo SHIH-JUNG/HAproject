@@ -134,7 +134,7 @@ function getUrlVars() {
 }
 //endregion
 
-//團督記錄表格region
+//方案活動表格 region
 // var vo_year = getUrlVars()["year"];
 
 $.ajax({
@@ -147,7 +147,7 @@ $.ajax({
   async: false, //啟用同步請求
   success: function (data) {
     var cssString = "";
-    console.log(data)
+    // console.log(data)
     $.each(data, function (index, value) {
       // var update_date = value.Update_date != "0000-00-00" ? value.Update_date : "";
       var isUpload = '未上傳';
@@ -319,7 +319,7 @@ $.ajax({
   },
 
   error: function (e) {
-    console.log(e);
+    // console.log(e);
   },
 });
 

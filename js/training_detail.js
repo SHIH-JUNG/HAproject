@@ -139,7 +139,7 @@ $(document).ready(function () {
     dataType: "JSON",
     async: false,
     success: function (data) {
-      console.log(data);
+      // console.log(data);
       $.each(data, function (index, value) {
 
         $("#name").val(value.Name);
@@ -168,7 +168,7 @@ $(document).ready(function () {
       });
     },
     error: function (e) {
-      console.log(e);
+      // console.log(e);
     },
   });
 
@@ -235,8 +235,8 @@ function check_file_exist() {
         }
       },
       error: function (e) {
-        console.log(e);
-        notyf.alert('伺服器錯誤,無法載入');
+        // console.log(e);
+        notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
       },
     });
   });
@@ -255,7 +255,7 @@ $("#tra_update").on("click", function () {
   } else {
     stau = true;
   }
-  console.log(stau);
+  // console.log(stau);
 
   if (!stau) {
     swal({
@@ -339,9 +339,9 @@ function submit_form() {
     form_data.append("Update_name",$("#update_name").val());
 
     // 預覽傳到後端的資料詳細內容
-    for (var pair of form_data.entries()) {
-      console.log(pair[0] + ", " + pair[1]);
-    }
+    // for (var pair of form_data.entries()) {
+    //   console.log(pair[0] + ", " + pair[1]);
+    // }
 
 
   $.ajax({
@@ -353,7 +353,7 @@ function submit_form() {
     processData: false,
     async: true,
     success: function (data) {
-      console.log(data);
+      // console.log(data);
       if (data == 1) {
         swal({
           title: "修改成功！",
@@ -363,13 +363,17 @@ function submit_form() {
         });
       } else {
         swal({
-          title: "修改失敗！請聯絡負責單位",
+          title: "修改失敗！請聯絡網站維護人員",
           type: "error",
         });
       }
     },
     error: function (e) {
-      console.log(e);
+      // console.log(e);
+      swal({
+        title: "修改失敗！請聯絡網站維護人員",
+        type: "error",
+      });
     },
   });
 }
@@ -633,7 +637,7 @@ function reservation_rec_new() {
     } else {
       stau = true;
     }
-    console.log(stau);
+    // console.log(stau);
 
     if (!stau) {
       swal({
@@ -701,13 +705,17 @@ function reservation_rec_new() {
             });
           } else {
             swal({
-              title: "新增失敗！",
+              title: "新增失敗！請聯絡網站維護人員",
               type: "error",
             });
           }
         },
         error: function (e) {
-          console.log("錯誤");
+          // console.log("錯誤");
+          swal({
+            title: "新增失敗！請聯絡網站維護人員",
+            type: "error",
+          });
         },
       });
       //    //endregion
@@ -741,13 +749,17 @@ function reservation_rec_new() {
             });
           } else {
             swal({
-              title: "新增失敗！",
+              title: "新增失敗！請聯絡網站維護人員",
               type: "error",
             });
           }
         },
         error: function (e) {
-          console.log(e);
+          // console.log(e);
+          swal({
+            title: "新增失敗！請聯絡網站維護人員",
+            type: "error",
+          });
         },
       });
       //endregion
@@ -770,9 +782,7 @@ function training_show() {
       },
       type: "POST",
       dataType: "JSON",
-      success: function (data) {   
-        console.log("test")
-        console.log(data)   
+      success: function (data) {    
           var cssString5 = "";
           var hometabcssString5 = "";
           var Name_arr = [];
@@ -966,7 +976,7 @@ function training_show() {
              
           //填入預約下拉開始結束時間region
           $.each(data,function(index,value){
-            console.log(data)
+            // console.log(data)
             $('#start_time_h' + value.Id + '').val(value.Start_time_h);
             $('#start_time_m' + value.Id + '').val(value.Start_time_m);
             $('#end_time_h' + value.Id + '').val(value.End_time_h);
@@ -979,8 +989,8 @@ function training_show() {
 
       },
       error:function(e){
-          // notyf.alert('伺服器錯誤,無法載入');
-          console.log(e)
+          // notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
+          // console.log(e)
       }
   });
 //endregion
@@ -1190,7 +1200,7 @@ $("#trans_to_opencase_submit").on("click", function () {
   } else {
     stau = true;
   }
-  console.log(stau);
+  // console.log(stau);
 
   if (!stau) {
     // alert(check_trans_to_opencase_value());
@@ -1218,7 +1228,7 @@ $("#trans_to_opencase_submit").on("click", function () {
         tran_case_referral = data[0].Refferal;
       },
       error: function (e) {
-        console.log("error");
+        // console.log("error");
       },
     });
 
@@ -1460,7 +1470,7 @@ function update_add_face(id) {
   } else {
     stau = true;
   }
-  console.log(stau);
+  // console.log(stau);
 
   if (!stau) {
     swal({
@@ -1519,13 +1529,17 @@ function update_add_face(id) {
           });
         } else {
           swal({
-            title: "修改失敗！",
+            title: "修改失敗！請聯絡網站維護人員",
             type: "error",
           });
         }
       },
       error: function (e) {
-        console.log("error" + e);
+        // console.log("error" + e);
+        swal({
+          title: "修改失敗！請聯絡網站維護人員",
+          type: "error",
+        });
       },
     });
   }

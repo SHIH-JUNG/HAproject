@@ -184,8 +184,8 @@ function load_files() {
       file_year_arr.sort((a, b) => b - a)
     },
     error: function (e) {
-      notyf.alert('伺服器錯誤,無法載入');
-      console.log(e)
+      notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
+      // console.log(e)
     }
   });
 
@@ -290,8 +290,8 @@ function load_resume_datas() {
 
     },
     error: function (e) {
-      notyf.alert('伺服器錯誤,無法載入');
-      console.log(e)
+      notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
+      // console.log(e)
     }
   });
 
@@ -418,8 +418,8 @@ function load_resume_datas() {
       $(".recently_upload_date").text(recently_upload_date);
     },
     error: function (e) {
-      notyf.alert('伺服器錯誤,無法載入');
-      console.log(e)
+      notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
+      // console.log(e)
     }
   });
 
@@ -485,8 +485,8 @@ load_remain_hours = function () {
 
     },
     error: function (e) {
-      notyf.alert('伺服器錯誤,無法載入');
-      console.log(e)
+      notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
+      // console.log(e)
     }
   });
 
@@ -565,7 +565,7 @@ resume_update = function () {
       error: function (e) {
         swal({
           type: "error",
-          title: "系統錯誤!請聯絡負責人",
+          title: "系統錯誤！請聯絡網站維護人員",
           allowOutsideClick: false, //不可點背景關閉
         }).then(function () {
           history.back();
@@ -580,7 +580,7 @@ resume_update = function () {
     $("input.resume_question[type='file']").each(function (index, element) {
       var resume_files = $(this).prop("files");
 
-      console.log(resume_files.length)
+      // console.log(resume_files.length)
 
       if (resume_files != undefined) {
         if (resume_files.length != 0) {
@@ -588,7 +588,7 @@ resume_update = function () {
 
             form_data.append("resume_files" + (index + 1 ), resume_files[i]);
 
-            console.log(resume_files[i])
+            // console.log(resume_files[i])
           }
         } else {
           //載入量表『無重新上傳檔案』情況下按儲存，則加入File_name供後端程式判斷
@@ -597,7 +597,7 @@ resume_update = function () {
       }
     });
 
-    console.log(selectedFiles)
+    // console.log(selectedFiles)
 
     for (var a = 0; a < selectedFiles.length; a++) {
       form_data.append("resume_files0[]", selectedFiles[a]);
@@ -621,9 +621,9 @@ resume_update = function () {
     form_data.append("File_year", file_year);
 
     // 預覽傳到後端的資料詳細內容
-    for (var pair of form_data.entries()) {
-      console.log(pair[0] + ", " + pair[1]);
-    }
+    // for (var pair of form_data.entries()) {
+    //   console.log(pair[0] + ", " + pair[1]);
+    // }
 
 
     $.ajax({
@@ -638,7 +638,7 @@ resume_update = function () {
         processData: false,
         async: true,
       success: function (data) {
-        console.log(data);
+        // console.log(data);
         if (data == 1) {
           swal({
             type: "success",
@@ -654,16 +654,16 @@ resume_update = function () {
         } else {
           swal({
             type: "error",
-            title: "更新失敗!請聯絡負責人",
+            title: "更新失敗！請聯絡網站維護人員",
             allowOutsideClick: false, //不可點背景關閉
           });
         }
       },
       error: function (e) {
-        console.log(e)
+        // console.log(e)
         swal({
             type: "error",
-            title: "更新失敗!請聯絡負責人",
+            title: "更新失敗！請聯絡網站維護人員",
             allowOutsideClick: false, //不可點背景關閉
         });
       },
@@ -763,16 +763,16 @@ update_row = function (row_year) {
       } else {
         swal({
           type: "error",
-          title: "更新失敗!請聯絡負責人",
+          title: "更新失敗！請聯絡網站維護人員",
           allowOutsideClick: false, //不可點背景關閉
         });
       }
     },
     error: function (e) {
-      console.log(e)
+      // console.log(e)
       swal({
         type: "error",
-        title: "更新失敗!請聯絡負責人",
+        title: "更新失敗！請聯絡網站維護人員",
         allowOutsideClick: false, //不可點背景關閉
       });
     },
@@ -891,7 +891,7 @@ selectFiles_delete = function () {
 
 
   if ($("[name='file_a_check']:checked").length > 0) {
-    console.log($("#val_arr" + $("[name='file_a_check']:checked").attr("value")))
+    // console.log($("#val_arr" + $("[name='file_a_check']:checked").attr("value")))
     swal({
       title: "是否刪除該檔案？\n" + "檔名："+ $("#val_arr" + $("[name='file_a_check']:checked").attr("value")).text(),
       text: "確認刪除後將無法復原操作",
@@ -911,8 +911,8 @@ selectFiles_delete = function () {
 
         var r_file_a = file_a_input_val_arr.splice(parseInt(file_a_val), 1);
 
-        console.log(file_a_input_val_arr)
-        console.log(r_file_a)
+        // console.log(file_a_input_val_arr)
+        // console.log(r_file_a)
 
         $.ajax({
           url: "database/delete_resume_file_a.php",
@@ -926,7 +926,7 @@ selectFiles_delete = function () {
           },
           // dataType: "JSON",
           success: function (data) {
-            console.log(data);
+            // console.log(data);
             if (data == 1) {
               swal({
                 type: "success",
@@ -939,10 +939,10 @@ selectFiles_delete = function () {
 
           },
           error: function (e) {
-            console.log(e)
+            // console.log(e)
             swal({
               type: "error",
-              title: "刪除檔案失敗!請聯絡負責人",
+              title: "刪除檔案失敗！請聯絡網站維護人員",
               allowOutsideClick: false, //不可點背景關閉
             });
           },

@@ -21,7 +21,7 @@ $.ajax({
         $("#user_info").html(cssString);
     },
     error: function (e) {
-        notyf.alert('伺服器錯誤,無法載入' + e);
+        notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
     }
 });
 //endregion
@@ -60,7 +60,7 @@ $("input[type='radio'][name='tr_update']").on("change", function () {
             }
         },
         error: function (e) {
-            notyf.alert('伺服器錯誤,無法載入' + e);
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
         }
     });
 });
@@ -114,7 +114,7 @@ auth_update = function (this_btn) {
                             // }) 
                         }else{
                             swal({
-                                title:'修改失敗！請聯絡負責單位',
+                                title:'修改失敗！請聯絡網站維護人員',
                                 type:'error',
                             })
                         }  
@@ -122,7 +122,7 @@ auth_update = function (this_btn) {
                     error:function(e){
                         // console.log(e);
                         swal({
-                            title:'修改失敗！請聯絡負責單位',
+                            title:'修改失敗！請聯絡網站維護人員',
                             type:'error',
                         })
                     }

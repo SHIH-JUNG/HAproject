@@ -15,7 +15,7 @@ social_worker_msg_arr = [];
 supervise1_msg_arr = [];
 supervise2_msg_arr = [];
 
-//抓個別特定結案表region
+//顯示生輔記錄 region
 $(document).ready(function(){
 
     $.ajax({
@@ -125,8 +125,8 @@ $(document).ready(function(){
             });
         },
         error:function(e){
-            console.log(e);
-            notyf.alert('伺服器錯誤,無法載入');
+            // console.log(e);
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
         }
     });
     $(".peers_dlgrec_question").attr("disabled",true);
@@ -250,10 +250,10 @@ sign_msg_model = function (sign_type_name) {
                     allowOutsideClick: false //不可點背景關閉
                 });
             }
-           else 
-           {
+          else 
+          {
             swal({
-              title: "生成簽名圖片失敗！請聯絡負責單位",
+              title: "生成簽名圖片失敗！請聯絡網站維護人員",
               type: "error",
             });
           }
@@ -343,8 +343,8 @@ function check_file_exist() {
         }
       },
       error: function (e) {
-        console.log(e);
-        notyf.alert('伺服器錯誤,無法載入');
+        // console.log(e);
+        notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
       },
     });
   });
@@ -419,7 +419,7 @@ function check_file_exist() {
 //                     }) 
 //                 }else{
 //                     swal({
-//                         title:'更新失敗！請聯絡負責單位',
+//                         title:'更新失敗！請聯絡網站維護人員',
 //                         type:'error',
 //                     })
 //                 }  
@@ -427,7 +427,7 @@ function check_file_exist() {
 //             error:function(e){
 //                 // console.log(e);
 //                 swal({
-//                     title:'更新失敗！請聯絡負責單位',
+//                     title:'更新失敗！請聯絡網站維護人員',
 //                     type:'error',
 //                 })
 //             }
@@ -436,7 +436,7 @@ function check_file_exist() {
 
 // });
 
-//更新結案表基本資料region
+//更新生輔記錄資料region
 $("#peers_dlgrec_update").on("click", function () {
     var peers_dlgrec_id = getUrlVars()["peers_dlgrec_id"];
   
@@ -447,7 +447,7 @@ $("#peers_dlgrec_update").on("click", function () {
     } else {
       stau = true;
     }
-    console.log(stau);
+    // console.log(stau);
   
     if (!stau) {
       swal({
@@ -545,9 +545,9 @@ $("#peers_dlgrec_update").on("click", function () {
       form_data.append("supervise2",$("#supervise2").val());
   
       // 預覽傳到後端的資料詳細內容
-      for (var pair of form_data.entries()) {
-        console.log(pair[0] + ", " + pair[1]);
-      }
+      // for (var pair of form_data.entries()) {
+      //   console.log(pair[0] + ", " + pair[1]);
+      // }
   
   
     $.ajax({
@@ -559,7 +559,7 @@ $("#peers_dlgrec_update").on("click", function () {
       processData: false,
       async: true,
       success: function (data) {
-        console.log(data);
+        // console.log(data);
         if (data == 1) {
           swal({
             title: "修改成功！",
@@ -569,19 +569,23 @@ $("#peers_dlgrec_update").on("click", function () {
           });
         } else {
           swal({
-            title: "修改失敗！請聯絡負責單位",
+            title: "修改失敗！請聯絡網站維護人員",
             type: "error",
           });
         }
       },
       error: function (e) {
-        console.log(e);
+        // console.log(e);
+        swal({
+          title: "修改失敗！請聯絡網站維護人員",
+          type: "error",
+        });
       },
     });
 }
 
 
-//結案表(update)的必填欄位 region
+//(update)檢查必填欄位 region
 function check_updat_peers_dlgrec_data()
 {
     var peers_dlgrec_date = $("#peers_dlgrec_date").val();

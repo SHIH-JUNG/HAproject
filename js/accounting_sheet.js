@@ -1,4 +1,5 @@
 
+// 載入google sheet內容，讀取txt檔案內儲存的網址 region
 $(document).ready(function () {
     $.get("./accounting_sheet/HAproject_accounting_google_sheet_api.txt", function(url) {
         $("#google_sheet_frame").attr("src", url);
@@ -10,3 +11,4 @@ $(document).ready(function () {
     });
     $.ajaxSettings.async = true;
 });
+//endregion

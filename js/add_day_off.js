@@ -156,8 +156,8 @@ load_remain_hours = function() {
 
       },
       error:function(e){
-          notyf.alert('伺服器錯誤,無法載入');
-          console.log(e)
+          notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
+          // console.log(e);
       }
   });
 
@@ -601,6 +601,7 @@ $("#day_off_add_new").on("click", function () {
 });
 //endregion
 
+// 檢查審核狀態 region
 check_day_off_status = function() {
 
   var status = true;
@@ -628,14 +629,14 @@ check_day_off_status = function() {
       
     },
     error:function(e){
-        notyf.alert('伺服器錯誤,無法載入');
-        console.log(e)
+        notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
+        // console.log(e);
     }
   });
 
   return status;
 }
-
+//endregion
 
 // 處理送出的值 region
 function submit_form() {
@@ -717,9 +718,9 @@ function submit_form() {
   form_data.append("calendar_end_time", split_date(overtime_date_arr[1]) + " " + overtime_date_arr[3]);
 
   // 預覽傳到後端的資料詳細內容
-  for (var pair of form_data.entries()) {
-    console.log(pair[0] + ", " + pair[1]);
-  }
+  // for (var pair of form_data.entries()) {
+  //   console.log(pair[0] + ", " + pair[1]);
+  // }
 
 
   $.ajax({
@@ -731,7 +732,7 @@ function submit_form() {
       processData: false,
       async: true,
       success: function (data) {
-        console.log(data);
+        // console.log(data);
         if (data == 1) {
           swal({
             type: "success",
@@ -744,16 +745,16 @@ function submit_form() {
         } else {
           swal({
             type: "error",
-            title: "新增失敗!請聯絡負責人",
+            title: "新增失敗！請聯絡網站維護人員",
             allowOutsideClick: false, //不可點背景關閉
           });
         }
       },
       error: function (e) {
-          console.log(e)
+          // console.log(e);
           swal({
               type: "error",
-              title: "新增失敗!請聯絡負責人",
+              title: "新增失敗！請聯絡網站維護人員",
               allowOutsideClick: false, //不可點背景關閉
           });
       },
@@ -869,7 +870,7 @@ function append_user(){
       dataType: "JSON",
       async: false,//啟用同步請求
       success: function (data) {
-          // console.log('test',data)
+          // console.log('test',data);
           for (var index in data.Id) {
             $("#job_agent").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
             $("#supervise").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
