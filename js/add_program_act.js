@@ -216,6 +216,10 @@ function submit_form() {
   form_data.append("Number",$("#number").val());
   form_data.append("Lecturer",$("#lecturer").val());
 
+  form_data.append("calendar_title", '方案活動：' + user_name);
+  form_data.append("calendar_start_time", $("#date").val());
+  form_data.append("calendar_end_time", $("#date").val());
+
   // 預覽傳到後端的資料詳細內容
   // for (var pair of form_data.entries()) {
   //   console.log(pair[0] + ", " + pair[1]);
