@@ -11,6 +11,8 @@ $user = $_SESSION['name'];
 
 $sql = "UPDATE `user_info` SET `Authority_pages` = '$auth_href_name_arr', `Update_date` = NOW(), `Update_name` = '$user' WHERE `Id` = '$Id';";
 	if(mysqli_query($conn,$sql)){
+        $_SESSION['authority_pages'] = $auth_href_name_arr;
+
         echo true;
     }else{
         echo false;

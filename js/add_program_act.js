@@ -216,7 +216,7 @@ function submit_form() {
   form_data.append("Number",$("#number").val());
   form_data.append("Lecturer",$("#lecturer").val());
 
-  form_data.append("calendar_title", '方案活動：' + user_name);
+  form_data.append("calendar_title", '方案活動：' + $("#activity_name").val());
   form_data.append("calendar_start_time", $("#date").val());
   form_data.append("calendar_end_time", $("#date").val());
 

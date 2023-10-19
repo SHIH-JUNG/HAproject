@@ -50,7 +50,7 @@
         <?php include("page_nav.php"); ?>
         <!--/最上方導覽列-->
         <!--左側導覽列-->
-        <?php include("menu.php"); ?>
+        <?php include("auth_menu.php"); ?>
         <!--/左側導覽列-->
         <!--網頁內容-->
         <div class="page-wrapper">
@@ -142,7 +142,7 @@
                             </div>
                         </div>
                     </div>
-                    <div style="zoom:80%" class="row text-center">
+                    <!-- <div style="zoom:80%" class="row text-center">
                         <div class="col-sm-12">
                             <div class="panel panel-default card-view">
                                 <div class="panel-wrapper collapse in">
@@ -172,7 +172,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div style="zoom:80%" class="row text-center">
                         <div class="col-sm-12">
                             <div class="panel panel-default card-view">
@@ -969,4 +969,20 @@
 </body>
 
 </html>
+<?php
+    // if(isset($href_name))
+    // {
+    //     if(!in_array($href_name,$authority_pages))
+    //     {
+    //         echo '<script> swal({
+    //                 title:"您無權限查看當前頁面!",
+    //                 type:"error"
+    //             }).then(function(){
+    //                 window.history.go (-1); 
+    //             }); 
+    //             </script>';  
+    //     } 
+    // }
+
+?>
 <?php include("database/timeout_logout.php"); ?>

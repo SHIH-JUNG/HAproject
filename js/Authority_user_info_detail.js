@@ -102,9 +102,9 @@ auth_update = function (this_btn) {
                                 title:'修改成功！',
                                 type:'success',                        
                             })
-                            // .then(function(){
-                            //     location.reload();
-                            // }) 
+                            .then(function(){
+                                location.reload();
+                            });
                         }else{
                             swal({
                                 title:'修改失敗！請聯絡網站維護人員',

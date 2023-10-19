@@ -2041,6 +2041,7 @@ button.fancy-button.btn-warning.btn-0.fc-agendaWeek-button:hover, .fancy-button.
 .fixed-sidebar-left {
   position: fixed;
   top: 60px;
+  top: 3.5em;
   left: 0;
   width: 225px;
   margin-left: 0;
