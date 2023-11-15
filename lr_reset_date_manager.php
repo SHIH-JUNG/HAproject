@@ -163,22 +163,15 @@
                                     <div class="row">
                                         <div class="col-sm-12 col-xs-12">
                                             <div class="text-right">
-                                                <button style="font-size:20px;" type="button" class="btn btn-danger" onclick="location.href='employee_hours_manager.php';"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill-gear" viewBox="0 0 16 16">
+                                                <button style="font-size:20px;" type="button" class="btn btn-danger" onclick="location.href='leave_rule_table.php';"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill-gear" viewBox="0 0 16 16">
                                                 <path d="M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm-9 8c0 1 1 1 1 1h5.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.544-3.393C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4Zm9.886-3.54c.18-.613 1.048-.613 1.229 0l.043.148a.64.64 0 0 0 .921.382l.136-.074c.561-.306 1.175.308.87.869l-.075.136a.64.64 0 0 0 .382.92l.149.045c.612.18.612 1.048 0 1.229l-.15.043a.64.64 0 0 0-.38.921l.074.136c.305.561-.309 1.175-.87.87l-.136-.075a.64.64 0 0 0-.92.382l-.045.149c-.18.612-1.048.612-1.229 0l-.043-.15a.64.64 0 0 0-.921-.38l-.136.074c-.561.305-1.175-.309-.87-.87l.075-.136a.64.64 0 0 0-.382-.92l-.148-.045c-.613-.18-.613-1.048 0-1.229l.148-.043a.64.64 0 0 0 .382-.921l-.074-.136c-.306-.561.308-1.175.869-.87l.136.075a.64.64 0 0 0 .92-.382l.045-.148ZM14 12.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0Z"/>
                                                 </svg>
-                                                    修改員工特/補休時數
-                                                </button>
-                                            </div><br>
-                                            <div class="text-right">
-                                                <button style="font-size:20px;" type="button" class="btn btn-danger" onclick="location.href='lr_reset_date_manager.php';"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill-gear" viewBox="0 0 16 16">
-                                                <path d="M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm-9 8c0 1 1 1 1 1h5.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.544-3.393C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4Zm9.886-3.54c.18-.613 1.048-.613 1.229 0l.043.148a.64.64 0 0 0 .921.382l.136-.074c.561-.306 1.175.308.87.869l-.075.136a.64.64 0 0 0 .382.92l.149.045c.612.18.612 1.048 0 1.229l-.15.043a.64.64 0 0 0-.38.921l.074.136c.305.561-.309 1.175-.87.87l-.136-.075a.64.64 0 0 0-.92.382l-.045.149c-.18.612-1.048.612-1.229 0l-.043-.15a.64.64 0 0 0-.921-.38l-.136.074c-.561.305-1.175-.309-.87-.87l.075-.136a.64.64 0 0 0-.382-.92l-.148-.045c-.613-.18-.613-1.048 0-1.229l.148-.043a.64.64 0 0 0 .382-.921l-.074-.136c-.306-.561.308-1.175.869-.87l.136.075a.64.64 0 0 0 .92-.382l.045-.148ZM14 12.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0Z"/>
-                                                </svg>
-                                                    重製特休規則日期
+                                                    特休規則管理
                                                 </button>
                                             </div>
                                             <br>
                                             <div class="text-center">
-                                                <h4 id="form_type">勞基法特別休假日數規則</h4>
+                                                <h4 id="form_type">重製特休規則日期設定</h4>
                                             </div>
                                             <br>
                                             <div class="tab-content" id="myTabContent">
@@ -187,38 +180,14 @@
                                                     </div>
                                                     <div class="table-wrap" style="user-select: auto;">
                                                         <div class="table-responsive col-sm-12 text-center">
-                                                            <form id="form_a" class="form" action="">
-                                                                <table style="width:40%;" class="table table-bordered">
-                                                                    <tr>
-                                                                        <td colspan="2">
-                                                                            <h3>勞基法特休規則表</h3>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr style="text-align:left">
-                                                                        <td style="padding: 0; border-bottom: 1px solid white !important;">
-                                                                            <div class="table-wrap">
-                                                                                <div class="table-responsive">
-                                                                                    <table class="table display dataTable no-footer" style="font-size:15px;font-family:微軟正黑體;width:100%" data-toolbar="#toolbar">
-                                                                                        <thead>
-                                                                                            <tr style="background-color:rgb(255 201 54);">
-                                                                                                <th style="width:70%;border-right: 1px solid #111;">勞工服務年資</th>
-                                                                                                <th>特別休假日數</th>
-                                                                                            </tr>
-                                                                                        </thead>
-                                                                                        <tbody class="leave_rule_table" id="leave_rule_table_tbody">
-
-                                                                                        </tbody>
-                                                                                    </table>
-                                                                                    <div class="text-center">
-                                                                                        <span class="count_people"></span>
-                                                                                        <span class="count_people2"></span>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </td>
-                                                                    </tr>
-                                                                </table>
-                                                            </form>
+                                                            <div>
+                                                                <span>每年特休重製時間：</span>
+                                                                <input type="text">
+                                                                <span>月</span>
+                                                                <input type="text">
+                                                                <span>日</span>
+                                                                <span> 上午6:00</span>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
