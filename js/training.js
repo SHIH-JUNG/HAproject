@@ -381,7 +381,7 @@ load_update_training_data = function(training_id, acc_id) {
                 $.each(data, function(index, value) {
 
                     $('#u_training_date').val(value.Training_date);
-
+                    console.log(acc_id);
                     var tr_start_time_h = value.Training_start_time.split(':')[0];
                     var tr_start_time_m = value.Training_start_time.split(':')[1];
                     var tr_end_time_h = value.Training_end_time.split(':')[0];
@@ -415,20 +415,24 @@ load_update_training_data = function(training_id, acc_id) {
                     //         '</a>';
                     // }
 
-                    var trainingFilePath_arr = value.Upload_path.replace("../", "./").replace("\[", "").replace("\]", "").replace(/\"/g, "").split(",");
+                    var trainingFilePath_arr = value.Upload_path.replace("\[", "").replace("\]", "").replace(/\"/g, "").split(",");
                     var trainingFileName_arr = value.Upload_name.replace("\[", "").replace("\]", "").replace(/\"/g, "").split(",");
+                    window.uploadName_input_name_arr = [];
+                    window.uploadName_input_path_arr = [];
                     var tr_file_htmlstr = "";
                     if (value.Upload_path != "") {
                         $.each(trainingFilePath_arr, function(i, val) {
                             var index = trainingFileName_arr[i].lastIndexOf(".");
+                            uploadName_input_name_arr.push(trainingFileName_arr[i]);
+                            uploadName_input_path_arr.push(val);
                             if (isAssetTypeAnImage(trainingFileName_arr[i].substr(index + 1))) {
-                                tr_file_htmlstr += '<input class="sr_question" style="zoom: 1.5" class="form-check-input" type="radio" name="trainingFile1_check" file_type_name="agenda_file_path" forms_sql_id="' + value.Id + '" value="' + i + '">' +
-                                    '<span> 檔案' + (i + 1) + '：</span><a id="val_arr' + i + '" href="' + trainingFilePath_arr[i] + '" style="text-decoration:none;color:blue;" target="_blank">' +
+                                tr_file_htmlstr += '<input class="sr_question" style="zoom: 1.5" class="form-check-input" type="radio" name="uploadName_check" file_type_name="agenda_file_path" forms_sql_id="' + value.Id + '" value="' + i + '">' +
+                                    '<span> 檔案' + (i + 1) + '：</span><a id="val_arr' + i + '" href="' + val.replace("../", "./") + '" style="text-decoration:none;color:blue;" target="_blank">' +
                                     trainingFileName_arr[i] +
                                     '</a><br/>';
                             } else {
-                                tr_file_htmlstr += '<input class="sr_question" style="zoom: 1.5" class="form-check-input" type="radio" name="trainingFile1_check" file_type_name="agenda_file_path" forms_sql_id="' + value.Id + '" value="' + i + '">' +
-                                    '<span> 檔案' + (i + 1) + '：</span><a id="val_arr' + i + '" href="' + trainingFilePath_arr[i] + '" style="text-decoration:none;color:blue;" target="_blank">' +
+                                tr_file_htmlstr += '<input class="sr_question" style="zoom: 1.5" class="form-check-input" type="radio" name="uploadName_check" file_type_name="agenda_file_path" forms_sql_id="' + value.Id + '" value="' + i + '">' +
+                                    '<span> 檔案' + (i + 1) + '：</span><a id="val_arr' + i + '" href="' + val.replace("../", "./") + '" style="text-decoration:none;color:blue;" target="_blank">' +
                                     trainingFileName_arr[i] +
                                     '</a><br/><br/>';
                             }
@@ -436,8 +440,9 @@ load_update_training_data = function(training_id, acc_id) {
                     } else {
                         tr_file_htmlstr = '目前無檔案上傳';
                     }
+
                     tr_file_htmlstr += '<br/>' +
-                        '<button class="sr_question" style="color:red;margin-right:3em;margin-bottom:.5em;" type="button" onclick="selectFiles_delete(0);">刪除</button>' +
+                        '<button class="sr_question" style="color:red;margin-right:3em;margin-bottom:.5em;" type="button" training_id="' + training_id + '" onclick="selectFiles_delete(this);">刪除</button>' +
                         '<div>※點選上面要刪除的檔案</div>' +
                         '<br/><hr style="border:3px dashed blue; height:1px">' +
                         '<button class="sr_question" style="color:blue;" type="button" onclick="selectFiles_insert(0);">新增檔案+</button><br/><div id="selected-files1"><span style="color:red;">上傳檔案清單預覽：</span><br/></div>';
@@ -460,6 +465,96 @@ load_update_training_data = function(training_id, acc_id) {
                 // console.log(e)
             }
         });
+    }
+    //endregion
+
+// 刪除履歷表檔案內容 多檔案上傳 region
+selectFiles_delete = function(this_btn) {
+        var file_type_n = "uploadName";
+        var file_input_path_arr = uploadName_input_path_arr;
+        var file_input_name_arr = uploadName_input_name_arr;
+
+        if ($("[name='" + file_type_n + "_check']:checked").length > 0) {
+            //console.log($("#val_arr" + $("[name='" + file_type_n + "_check']:checked").attr("value")))
+            swal({
+                title: "是否刪除該檔案？\n" + "檔名：" + $("#val_arr" + $("[name='" + file_type_n + "_check']:checked").attr("value")).text(),
+                text: "確認刪除後將無法復原操作",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "確認",
+                cancelButtonText: "取消",
+                showConfirmButton: true,
+                showCancelButton: true
+            }).then(function(result) {
+                if (result) {
+                    var file_sql_id = $("[name='" + file_type_n + "_check']:checked").attr("forms_sql_id");
+                    var file_val = $("[name='" + file_type_n + "_check']:checked").attr("value");
+                    var del_sql_id = $(this_btn).attr("training_id");
+
+                    // console.log(file_input_path_arr);
+                    var sr_file = file_input_path_arr.splice(parseInt(file_val), 1);
+                    var sr_name = file_input_name_arr.splice(parseInt(file_val), 1);
+                    // console.log("------------------------");
+                    // console.log(file_sql_id);
+                    // console.log(del_sql_id);
+                    // console.log(file_input_path_arr);
+                    // console.log(file_input_name_arr);
+                    // console.log(file_val);
+                    // console.log(sr_file);
+                    // console.log(sr_name);
+
+                    $.ajax({
+                        url: "database/delete_training_file.php",
+                        type: "POST",
+                        data: {
+                            File_type_n: file_type_n,
+                            Form_sql_id: file_sql_id,
+                            sr_id: del_sql_id,
+                            File_arr: file_input_path_arr,
+                            Name_arr: file_input_name_arr,
+                            File_delete_index: file_val,
+                            Remove_file: sr_file[0],
+                        },
+                        // dataType: "JSON",
+                        success: function(data) {
+                            //console.log(data);
+                            if (data == 1) {
+                                swal({
+                                    type: "success",
+                                    title: "刪除檔案成功!",
+                                    allowOutsideClick: false, //不可點背景關閉
+                                }).then(function() {
+                                    location.reload();
+                                });
+                            }
+                        },
+                        error: function(e) {
+                            //console.log(e)
+                            swal({
+                                type: "error",
+                                title: "刪除檔案失敗！請聯絡網站維護人員",
+                                allowOutsideClick: false, //不可點背景關閉
+                            });
+                        },
+                    });
+
+                }
+            }, function(dismiss) {
+                if (dismiss == 'cancel') {
+                    swal({
+                        title: '已取消',
+                        type: 'success',
+                    })
+                }
+            }).catch(swal.noop)
+        } else {
+            swal({
+                type: 'warning',
+                title: '請選取要刪除的檔案!',
+                allowOutsideClick: false //不可點背景關閉
+            })
+        }
     }
     //endregion
 
