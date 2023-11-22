@@ -612,7 +612,7 @@ function submit_data(tr_id) {
             }
         },
         error: function(e) {
-            // console.log(e);
+            //console.log(e);
             swal({
                 title: "修改失敗！請聯絡網站維護人員",
                 type: "error",
