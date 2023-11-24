@@ -24,6 +24,8 @@
     <link href="css/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
     <!-- ================== CSS font-awesome ================== -->
     <link href="font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <!-- Bootstrap FileDialog -->
+    <link rel="stylesheet" href="css/bootstrap-file-dialog-dist/bootstrap.fd.css">
     <!--  table  -->
     <!--    <link rel="stylesheet" href="css/bootstrap-table.min.css">-->
     <!-- ================== 匯出EXCEL ================== -->
@@ -123,11 +125,11 @@
     <!-- /#wrapper -->
 
     <!--\ Modal -->
-    <div class="modal fade" id="update_rec_modal" tabindex="-1" role="dialog" aria-labelledby="update_rec_modal_label" data-backdrop="static">
+    <div class="modal fade" id="update_rec_modal" tabindex="-1" role="dialog" aria-labelledby="update_rec_modal_label" data-backdrop="static" style="overflow:auto">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" onclick=clearSelectedFiles1()>&times;</span></button>
                     <h4 class="modal-title" id="update_rec_modal_label">在職訓練記錄</h4>
                 </div>
                 <div class="modal-body">
@@ -182,8 +184,6 @@
                                     <td style="border-bottom: solid 1px;">
                                         <div class="col-sm-8">
                                             <div class="text-left">
-                                                <input name="u_training_file" type="file" class="form-control" />
-                                                <br>
                                                 <div id="u_training_file"></div>
                                             </div>
                                         </div>
@@ -219,6 +219,8 @@
     <!-- 表格 JavaScript -->
     <!-- <script src="javascript/jquery.dataTables.min.js"></script>
     <script src="javascript/dataTables-data.js"></script> -->
+    <!-- Bootstrap FileDialog -->
+    <script src="javascript/bootstrap-file-dialog-dist/bootstrap.fd.js"></script>
 
     <!-- 滾動條 JavaScript -->
     <script src="javascript/jquery.slimscroll.js"></script>
@@ -262,7 +264,7 @@
     <script src="js/jQuery-TWzipcode-master/twzipcode.js"></script>
     <script src="js/jQuery-TWzipcode-master/jquery.twzipcode.js"></script>
     <script src="js/jQuery-TWzipcode-master/jquery.twzipcode.min.js"></script>
--->
+    -->
 </body>
 <script>
     //$("#twzipcode").twzipcode({

@@ -13,6 +13,8 @@
     <link href="css/notify/notyf.min.css" rel="stylesheet" />
     <!--  sweetalert2  -->
     <link href="css/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
+    <!-- Bootstrap FileDialog -->
+    <link rel="stylesheet" href="css/bootstrap-file-dialog-dist/bootstrap.fd.css">
     <!-- ================== CSS bootstrap-select ================== -->
     <link href="css/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
     <!--  table  -->
@@ -175,8 +177,12 @@
                                                                     <td style="border-bottom: solid 1px;">
                                                                         <div class="col-sm-8">
                                                                             <div class="text-left">
-                                                                                <input name="training_file" type="file" class="form-control" />
-                                                                                <br>
+                                                                                <!--<input name="training_file" type="file" class="form-control" />
+                                                                                <br>-->
+                                                                                <button class="sr_question" style="color:blue;" type="button" onclick="selectFiles_insert();">
+                                                                                新增檔案+
+                                                                                </button><br/>
+                                                                                <div id="selected-files1"><span style="color:red;">上傳檔案清單預覽：</span><br/></div>
                                                                                 <div id="training_file"></div>
                                                                             </div>
                                                                         </div>
@@ -196,7 +202,7 @@
                                                         <path d="M10.854 7.854a.5.5 0 0 0-.708-.708L7.5 9.793 6.354 8.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
                                                         <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
                                                     </svg>新增</button>
-                                                <a href="training_list.php"><button style="font-size:15px" type="button" class="btn btn-default"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-excel" viewBox="0 0 16 16">
+                                                <a href="training.php"><button style="font-size:15px" type="button" class="btn btn-default"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-excel" viewBox="0 0 16 16">
                                                             <path d="M5.884 6.68a.5.5 0 1 0-.768.64L7.349 10l-2.233 2.68a.5.5 0 0 0 .768.64L8 10.781l2.116 2.54a.5.5 0 0 0 .768-.641L8.651 10l2.233-2.68a.5.5 0 0 0-.768-.64L8 9.219l-2.116-2.54z" />
                                                             <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
                                                         </svg>取消</button></a>
@@ -226,6 +232,8 @@
     <script src="javascript/dropdown-bootstrap-extended.js"></script>
     <!-- Init -->
     <script src="javascript/init.js"></script>
+    <!-- Bootstrap FileDialog -->
+    <script src="javascript/bootstrap-file-dialog-dist/bootstrap.fd.js"></script>
     <!-- ================== JS notify控制 ================== -->
     <script src="javascript/notify/notyf.min.js"></script>
     <!-- ================== JS sweetalert2 ================== -->

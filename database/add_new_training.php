@@ -52,29 +52,36 @@ else
 @$file_name = "";
 @$file = "";
 
+$file_0_arr = array();
+$file_1_arr = array();
+
 // 無該檔案資料夾則建立
 if (!is_dir($file_dir)) {
     mkdir($file_dir, 0777, true);
 }
 
 // 判斷報表上傳
-if (isset($_FILES["training_file0"]))
+if (isset($_FILES["Upload_name"]))
 {
-    @$file_name = $_FILES["training_file0"]["name"];
-    @$file = "../training/" . $_FILES["training_file0"]["name"];
-
+    for ($a = 0; $a < count($_FILES["Upload_name"]["name"]); $a++){
+        @$file_name = $_FILES["Upload_name"]["name"][$a];
+        @$file = "../training/" . $_FILES["Upload_name"]["name"][$a];
     
-
-    if ($_FILES["training_file0"]["error"] > 0) {
-
-        echo false;
-    } else {
-        //設定檔案上傳路徑，選擇指定資料夾
-        move_uploaded_file(
-            $_FILES["training_file0"]["tmp_name"],
-            "../training/" . $_FILES["training_file0"]["name"]
-        );
+        if ($_FILES["Upload_name"]["error"][$a] > 0) {
+            echo false;
+        } else {
+            //設定檔案上傳路徑，選擇指定資料夾
+            move_uploaded_file(
+                $_FILES["Upload_name"]["tmp_name"][$a],
+                "../training/" . $_FILES["Upload_name"]["name"][$a]
+            );
+        }
+        array_push($file_0_arr, $file_name);
+        array_push($file_1_arr, $file);
     }
+    $file_0_arr = json_encode($file_0_arr,JSON_UNESCAPED_UNICODE);
+    $file_1_arr = json_encode($file_1_arr,JSON_UNESCAPED_UNICODE);
+
 }
 
 $sql = "INSERT INTO `training` (`Id`, `Account_id`, `Resume_id`, `Name`, 
@@ -84,7 +91,8 @@ $sql = "INSERT INTO `training` (`Id`, `Account_id`, `Resume_id`, `Name`,
 ('$training_id', '$acc_id', '$resume_id', '$user', 
 '$Training_date', '$Training_start_time', '$Training_end_time', 
 '$Training_name', '$Hours', '$Place', '$Remark', '$first_insert',
-'$file', '$file_name', Now(), '$user');";
+'$file_1_arr', '$file_0_arr', Now(), '$user');";
+
 if (mysqli_query($conn, $sql)) {
     echo true;
 } else {
