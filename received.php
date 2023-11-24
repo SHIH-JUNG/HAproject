@@ -171,11 +171,17 @@
                                                                 <th>承辦人員</th>
                                                                 <th>更新日期</th>
                                                                 <th>更新者</th>
+                                                                <th>簽章狀態</th>
+                                                                <th>簽章狀態</th>
+                                                                <th>簽章狀態</th>
+                                                                <th>簽章狀態</th>
+                                                                <th>簽章狀態</th>
+                                                                <!--20231118 update 
                                                                 <th>理事長簽章</th>
                                                                 <th>主管簽章</th>
                                                                 <th>執行長簽章</th>
                                                                 <th>組長簽章</th>
-                                                                <th>發派</th>
+                                                                <th>發派</th> -->
                                                             </tr>
                                                         </thead>
                                                         <tbody id="call_view"></tbody>
