@@ -202,7 +202,7 @@
                                                                             
                                                                             <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline">
-                                                                                    <label>組長簽章</label>
+                                                                                    <label>簽章</label>
                                                                                 </td>
                                                                                 <td style="">
                                                                                     <div class="col-sm-3" style="margin-top: 0.6em;">
@@ -219,7 +219,7 @@
                                                                             </tr>
                                                                             <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline">
-                                                                                    <label>主管簽章</label>
+                                                                                    <label>簽章</label>
                                                                                 </td>
                                                                                 <td style="">
                                                                                     <div class="col-sm-3" style="margin-top: 0.6em;">

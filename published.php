@@ -173,8 +173,11 @@
                                                                 <th>創建日期</th>
                                                                 <th>更新日期</th>
                                                                 <th>更新者</th>
+                                                                <th>簽章狀態</th>
+                                                                <th>簽章狀態</th>
+                                                                <!-- 20231121 update
                                                                 <th>組長簽章</th>
-                                                                <th>主管簽章</th>
+                                                                <th>主管簽章</th> -->
                                                             </tr>
                                                         </thead>
                                                         <tbody id="call_view"></tbody>

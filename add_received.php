@@ -156,18 +156,18 @@
                                                                 </tr>
 
                                                                 <tr style="text-align:left">
-                                                                    <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>理事長(簽核)</td>
+                                                                    <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>簽核人</td>
                                                                     <td style="border-bottom: solid 1px;">
-                                                                        <div class="col-sm-6">
-                                                                            <select name="executive" id="executive" style="width:100%;">
+                                                                        <div class="col-sm-6">                                                                                                                                                                                                                                                                     
+                                                                            <select name="executive" id="executive" style="width:100%;">                                                                          
                                                                                 <option value="">請選擇</option>
-                                                                            </select>
+                                                                            </select>                                                                                                                                                       
                                                                         </div>
                                                                     </td>
                                                                 </tr>
-
+                                                                </script>
                                                                 <tr style="text-align:left">
-                                                                    <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>主管(簽核)</td>
+                                                                    <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>簽核人</td>
                                                                     <td style="border-bottom: solid 1px;">
                                                                         <div class="col-sm-6">
                                                                             <select name="supervise" id="supervise" style="width:100%;">
@@ -178,7 +178,7 @@
                                                                 </tr>
                                                             
                                                                 <tr style="text-align:left">
-                                                                    <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>執行長(簽核)</td>
+                                                                    <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>簽核人</td>
                                                                     <td style="border-bottom: solid 1px;">
                                                                         <div class="col-sm-6">
                                                                             <select name="leader" id="leader" style="width:100%;">
@@ -188,7 +188,7 @@
                                                                     </td>
                                                                 </tr>
                                                                 <tr style="text-align:left">
-                                                                    <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>組長(簽核)</td>
+                                                                    <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>簽核人</td>
                                                                     <td style="border-bottom: solid 1px;">
                                                                         <div class="col-sm-6">
                                                                             <select name="director" id="director" style="width:100%;">
@@ -199,7 +199,7 @@
                                                                 </tr>
 
                                                                 <tr style="text-align:left">
-                                                                    <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>發派(簽核)</td>
+                                                                    <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>簽核人</td>
                                                                     <td style="border-bottom: solid 1px;">
                                                                         <div class="col-sm-6">
                                                                             <select name="distribution" id="distribution" style="width:100%;">
