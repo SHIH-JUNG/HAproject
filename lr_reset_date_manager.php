@@ -180,13 +180,13 @@
                                                     </div>
                                                     <div class="table-wrap" style="user-select: auto;">
                                                         <div class="table-responsive col-sm-12 text-center">
-                                                            <div>
-                                                                <span>每年特休重製時間：</span>
-                                                                <input type="text">
+                                                            <div id="resetDate">
+                                                                <!--<span>每年特休重製時間：</span>
+                                                                <input type="text" id="resetMonth">
                                                                 <span>月</span>
-                                                                <input type="text">
+                                                                <input type="text" id="resetDay">
                                                                 <span>日</span>
-                                                                <span> 上午6:00</span>
+                                                                <span> 上午6:00</span>-->
                                                             </div>
                                                         </div>
                                                     </div>
@@ -256,8 +256,8 @@
     <!-- 日期民國-->
     <script src="javascript/jquery-ui.min.js"></script>
     <script src="javascript/datepickerTw3.js"></script>
-    <!-- ================== leave_rule_table ================== -->
-    <script type="text/javascript" src="js/leave_rule_table.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
+    <!-- ================== lr_reset_date_manager_data ================== -->
+    <script type="text/javascript" src="js/lr_reset_date_manager_data.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
     <!-- ================== 地區選擇下拉 ================== -->
     <!--
     <script src="js/jQuery-TWzipcode-master/twzipcode.js"></script>
