@@ -1,11 +1,16 @@
+<?php session_start(); ?>
 <?php
 include("sql_connect.php");
 
-$Resume_id = $_POST['Resume_id'];
+$this_year = date('Y') - 1911;
+
 
 //region 抓資料
-$note = "SELECT * FROM `resume` WHERE `Id` = '$Resume_id' ORDER BY `resume`.`Id` DESC LIMIT 1;";
-$note = "SELECT * FROM `resume_seniority` WHERE `Resume_id` = '$id_num[0]' AND `Rec_year` = '$this_year';";
+$note = "SELECT resume.Name,resume_seniority.Id,resume_seniority.Resume_id,resume_seniority.Seniority_num,resume_seniority.Rec_year, resume_seniority.Type, 
+resume_seniority.Annual_default, resume_seniority.Change_num, resume_seniority.Day_off_id, resume_seniority.Overtime_id 
+FROM resume_seniority JOIN resume ON resume_seniority.Resume_id = resume.Id 
+WHERE resume_seniority.Rec_year = '$this_year' GROUP BY resume_seniority.Resume_id;";
+
 
 //宣告空的陣列
 $datas = array();
@@ -32,4 +37,6 @@ if ($select_all) {
 
 mysqli_close($conn);
 echo json_encode($datas);
-//endregion
+// endregion
+
+?>
