@@ -80,6 +80,8 @@
     <script src="javascript/jquery.slimscroll.js"></script>
     <!-- Fancy Dropdown JS -->
     <script src="javascript/dropdown-bootstrap-extended.js"></script>
+    <!-- ================== moment ================== -->
+    <script src='javascript/moment2.29.0.min.js'></script>
     <!-- Init -->
     <script src="javascript/init.js"></script>
     <!-- 登入 -->
