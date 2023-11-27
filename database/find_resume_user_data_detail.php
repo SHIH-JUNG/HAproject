@@ -5,7 +5,7 @@ $Resume_id = $_POST['Resume_id'];
 
 //region 抓資料
 $note = "SELECT * FROM `resume` WHERE `Id` = '$Resume_id' ORDER BY `resume`.`Id` DESC LIMIT 1;";
-$note = "SELECT * FROM `resume_seniority` WHERE `Resume_id` = '$id_num[0]' AND `Rec_year` = '$this_year';";
+//$note = "SELECT * FROM `resume_seniority` WHERE `Resume_id` = '$id_num[0]' AND `Rec_year` = '$this_year';";
 
 //宣告空的陣列
 $datas = array();
