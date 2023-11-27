@@ -59,9 +59,9 @@ update_rule = function() {
                         RDay = $("#resetDay").val();
                         rest_M = parseInt(RMonth);
                         rest_D = parseInt(RDay);
+                        var today = new Date();
                         newyear = today.getFullYear() - 1911;
                         if (rest_M <= 12 && rest_M > 0 && rest_D <= MonthDay[rest_M - 1] && rest_D > 0) {
-                            var today = new Date();
                             //調整日期格式
                             if (rest_M < 10) { RMonth = '0' + rest_M; }
                             if (rest_D < 10) { RDay = '0' + rest_D; }
@@ -70,7 +70,7 @@ update_rule = function() {
                             if (parseInt(resetDate.replaceAll('/', '')) - parseInt('' + newyear + (today.getMonth() + 1) + today.getDate()) < 0) {
                                 resetDate = (newyear + 1) + '/' + RMonth + '/' + RDay;
                             }
-                            // console.log(resetDate);
+                            console.log(resetDate);
                             // console.log(today.getFullYear() + '' + (today.getMonth() + 1) + today.getDate());
                             $.ajax({
                                 url: "database/Update_lr_reset_date_manager.php",
@@ -78,9 +78,9 @@ update_rule = function() {
                                 data: {
                                     rest_date: resetDate,
                                 },
-                                //            dataType: "JSON",
+                                dataType: "JSON",
                                 success: function(data) {
-                                    //console.log(data);
+                                    console.log(data);
                                     if (data == 1) {
                                         swal({
                                             type: "success",
@@ -98,6 +98,7 @@ update_rule = function() {
                                     }
                                 },
                                 error: function() {
+                                    console.log(e);
                                     swal({
                                         type: "error",
                                         title: "更新失敗！請聯絡網站維護人員",
