@@ -1,17 +1,18 @@
+<?php session_start(); ?>
 <?php
 include("sql_connect.php");
 
-$Resume_id = $_POST['Resume_id'];
+$user = $_SESSION['name'];
+$user_acc = $_SESSION['Account'];
 
-//region 抓資料
-$note = "SELECT * FROM `resume` WHERE `Id` = '$Resume_id' ORDER BY `resume`.`Id` DESC LIMIT 1;";
-//$note = "SELECT * FROM `resume_seniority` WHERE `Resume_id` = '$id_num[0]' AND `Rec_year` = '$this_year';";
+$Rec_year = $_POST['Rec_year'];
+// 查詢
+$note = "SELECT RS.*, R.Entry_date FROM `resume_seniority` AS RS, `resume` AS R WHERE `RS`.`Rec_year` = $Rec_year AND RS.Resume_id = R.Id;";
 
 //宣告空的陣列
 $datas = array();
 
 $select_all = mysqli_query($conn, $note);
-
 //如果請求成功
 if ($select_all) {
     //使用 mysqli_num_rows 方法，判別執行的語法，其取得的資料量，是否大於0
@@ -23,7 +24,6 @@ if ($select_all) {
             $datas[] = $row;
         }
     }
-
     //釋放資料庫查詢到的記憶體
     mysqli_free_result($select_all);
 } else {
@@ -32,4 +32,6 @@ if ($select_all) {
 
 mysqli_close($conn);
 echo json_encode($datas);
-//endregion
+// endregion
+
+?>

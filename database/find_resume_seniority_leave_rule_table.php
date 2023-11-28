@@ -1,11 +1,13 @@
+<?php session_start(); ?>
 <?php
 include("sql_connect.php");
 
-$Resume_id = $_POST['Resume_id'];
+$user = $_SESSION['name'];
+$user_acc = $_SESSION['Account'];
 
-//region 抓資料
-$note = "SELECT * FROM `resume` WHERE `Id` = '$Resume_id' ORDER BY `resume`.`Id` DESC LIMIT 1;";
-//$note = "SELECT * FROM `resume_seniority` WHERE `Resume_id` = '$id_num[0]' AND `Rec_year` = '$this_year';";
+$Rec_year = $_POST['Rec_year'];
+// 查詢
+$note = "SELECT * FROM `resume_seniority` WHERE `Rec_year` = '$Rec_year';";
 
 //宣告空的陣列
 $datas = array();
@@ -32,4 +34,6 @@ if ($select_all) {
 
 mysqli_close($conn);
 echo json_encode($datas);
-//endregion
+// endregion
+
+?>

@@ -839,7 +839,44 @@ get_files_name_value = function () {
 update_annual_hours = function () {
 
   if (authority_level >= 2) {
+    var form_data = new FormData();
+    form_data.append("R_id", resume_id);
+    form_data.append("Annual_default",$("#update_origin_hours").val());
+    form_data.append("this_year", new Date().getFullYear()-1911);
+    $.ajax({
+      url: "database/update_resume_detail_annual_hours.php",
+      type: "POST",
+      data: form_data,
+      contentType: false,
+      cache: false,
+      processData: false,
+      async: true,
+      success: function(data) {
+          // console.log(data);
+          if (data == 1) {
+              swal({
+                  type: "success",
+                  title: "更新成功!",
+                  allowOutsideClick: false, //不可點背景關閉
+              });
+          } else {
+              swal({
+                  type: "error",
+                  title: "部分更新失敗！請聯絡網站維護人員",
+                  allowOutsideClick: false, //不可點背景關閉
+              });
+          }
+      },
+      error: function(e) {
+          // console.log(e)
+          swal({
+              type: "error",
+              title: "更新失敗！請聯絡網站維護人員",
+              allowOutsideClick: false, //不可點背景關閉
+          });
 
+      },
+  });
   }
   else {
     swal({

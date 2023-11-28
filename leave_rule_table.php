@@ -230,6 +230,7 @@
                                                         <button style="font-size:20px" id="leave_rule_edit" class="btn btn-default" onclick="leave_rule_edit();">編輯</button>
                                                     </div>
                                                     <div id="save_div" hidden>
+                                                        <button style="font-size:20px" id="resume_seniority_update" class="btn btn-default" onclick="update_Annual()">特休時數更新</button>
                                                         <button style="font-size:20px" id="leave_rule_update" class="btn btn-default" onclick="update_rule()">修改</button>           
                                                         <button style="font-size:20px" id="leave_rule_cancel" class="btn btn-default" onclick="leave_rule_cancel();">取消</button>
                                                     </div>
