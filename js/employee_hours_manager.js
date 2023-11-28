@@ -11,9 +11,9 @@ function getUrlVars() {
 }
 //endregion
 
-$(document).ready(function(){
-  load_remain_hours();
-});
+// $(document).ready(function(){
+//   load_remain_hours();
+// });
 
 //查詢當前帳號登入者的今年度特休/請假/加班/可請假時數 region
   $.ajax({
@@ -29,7 +29,7 @@ $(document).ready(function(){
 
 
       $.each(data, function (index, value) {
-        ehm.push([value.Name, value.Resume_id, value.Seniority_num])
+        ehm.push([value.Name, value.Resume_id, value.Seniority_num, value.Annual_default, value.Change_num, value.Day_off_id])
       });
 
       console.log(ehm)
@@ -65,26 +65,26 @@ $.each(ehm, function (i, inner_ehm) {
       
       // console.log(data)
 
-      $.each(data, function (index, value) {
+      // $.each(data, function (index, value) {
 
-        switch (value.Type) {
-          case "Annual_default":
-            ehm_annual_hours += Number(value.Annual_default);
-            break;
+      //   switch (value.Type) {
+      //     case "Annual_default":
+      //       ehm_annual_hours += Number(value.Annual_default);
+      //       break;
         
-          case "Annual_hours":
-            ehm_annual_hours += Number(value.Change_num);
-            break;
+      //     case "Annual_hours":
+      //       ehm_annual_hours += Number(value.Change_num);
+      //       break;
 
-          case "Comp_hours":
-            ehm_comp_hours += Number(value.Change_num);
-            break;
+      //     case "Comp_hours":
+      //       ehm_comp_hours += Number(value.Change_num);
+      //       break;
 
-          case "Leave":
-            ehm_leave_hours += Number(value.Change_num);
-            break;
-        }
-      });
+      //     case "Leave":
+      //       ehm_leave_hours += Number(value.Change_num);
+      //       break;
+      //   }
+      // });
 
       ehm_cssString +=
         '<tr resume_id="' +
@@ -97,16 +97,19 @@ $.each(ehm, function (i, inner_ehm) {
         inner_ehm[2] +
         "</td>" +
         '<td class="n_row" style="text-align:center">' +
-        parseFloat(ehm_annual_hours).toFixed(1) +
+        // parseFloat(ehm_annual_hours).toFixed(1) +
+        inner_ehm[3]+
         "</td>" +
         '<td class="n_row" style="text-align:center">' +
-        parseFloat(ehm_comp_hours).toFixed(1) +
+        // parseFloat(ehm_comp_hours).toFixed(1) +
+        inner_ehm[4] +
         "</td>" +
         '<td class="n_row" style="text-align:center">' +
-        parseFloat(ehm_leave_hours).toFixed(1) +
+        // parseFloat(ehm_leave_hours).toFixed(1) +
+        inner_ehm[5] +
         "</td>" +
         '<td class="n_row" style="text-align:center">' +
-        parseFloat(parseFloat(ehm_annual_hours) + parseFloat(ehm_comp_hours) - parseFloat(ehm_leave_hours)).toFixed(1) +
+        parseFloat(parseFloat(inner_ehm[3]) + parseFloat(inner_ehm[4]) - parseFloat(inner_ehm[5])).toFixed(1) +
         "</td>" +
         "</tr>";
       
