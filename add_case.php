@@ -165,13 +165,14 @@ input[type=number] {
                                                                 </td>
                                                             </tr>
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>類別屬性</td>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;"></i>類別屬性</td>
                                                                 <td style="border-bottom: solid 1px;">
                                                                     <select id="case_property" style="width:160px;">
                                                                     <option value="">請選擇</option>
                                                                     <option value="安置家園">安置家園</option>
                                                                     <option value="自立宿舍">自立宿舍</option>
                                                                     <option value="社區">社區</option>
+                                                                    <option value="家屬">家屬</option>
                                                                     <!-- <option value="藥癮家庭">藥癮家庭</option>
                                                                     <option value="藥癮者">藥癮者</option>
                                                                     <option value="親子教育">親子教育</option> -->
@@ -179,7 +180,7 @@ input[type=number] {
                                                                 </td>
                                                             </tr>
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>類別屬性階段</td>
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;"></i>類別屬性階段</td>
                                                                 <td style="border-bottom: solid 1px;"><input id="case_stage" type="text"></td>
                                                             </tr>
                                                             <tr style="text-align:left">
