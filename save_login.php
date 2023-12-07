@@ -87,12 +87,14 @@
 
             if(navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(showPosition);
+                    console.log(navigator.geolocation);
                 } else {
                     alert("Geolocation is not supported by this browser.");
                 }
             
             
             function showPosition(pos){
+                console.log(pos);
                 $.post('database/save_login_record.php', {
                         'lat':pos.coords.latitude,
                         'lng':pos.coords.longitude
@@ -102,7 +104,8 @@
                         // alert("打卡成功!");
                         swal({
                             title:'打卡成功!',
-                            type:'success',                        
+                            type:'success',   
+                            allowOutsideClick: false //不可點背景關閉                     
                         }).then(function(){
                             window.location.replace("index.php"); 
                         }) 
@@ -113,7 +116,7 @@
                     }
                 });
             }
-            window.location.replace("index.php"); 
+            
         });
     </script>
 </body>
