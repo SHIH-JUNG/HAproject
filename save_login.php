@@ -87,14 +87,14 @@
 
             if(navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(showPosition);
-                    console.log(navigator.geolocation);
+                    //console.log(navigator.geolocation);
                 } else {
                     alert("Geolocation is not supported by this browser.");
                 }
             
             
             function showPosition(pos){
-                console.log(pos);
+                //console.log(pos);
                 $.post('database/save_login_record.php', {
                         'lat':pos.coords.latitude,
                         'lng':pos.coords.longitude
@@ -116,7 +116,7 @@
                     }
                 });
             }
-            
+            window.location.replace("index.php"); 
         });
     </script>
 </body>
