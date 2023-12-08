@@ -304,9 +304,9 @@ function check_add_screening_data()
     if (screening_type == null) {
         errorstr += "未填寫篩檢類型!\r\n";
     }
-    // if (screening_results == null) {
-    //     errorstr += "未填寫篩檢結果!\r\n";
-    // }
+    if (screening_results == null) {
+        errorstr += "未填寫篩檢結果!\r\n";
+    }
     if(age !=null || age!="")
     {
         if (age_radio <=0) {
