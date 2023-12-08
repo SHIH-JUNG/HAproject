@@ -181,15 +181,15 @@ function check_current_case_value()
     if (object_type == null) {
         errorstr += "未選擇個案類別!\r\n";
     }
-    if (case_property == null) {
-        errorstr += "未選擇類別屬性!\r\n";
-    }
-    if(case_property.replace(/\s*/g, "") == '自立宿舍' || case_property.replace(/\s*/g, "") == '安置家園')
-    {
-        if (case_stage == null) {
-            errorstr += "未填寫類別屬性階段!\r\n";
-        }
-    }
+    // if (case_property == null) {
+    //     errorstr += "未選擇類別屬性!\r\n";
+    // }
+    // if(case_property.replace(/\s*/g, "") == '自立宿舍' || case_property.replace(/\s*/g, "") == '安置家園')
+    // {
+    //     if (case_stage == null) {
+    //         errorstr += "未填寫類別屬性階段!\r\n";
+    //     }
+    // }
     if (open_case_date == null) {
         errorstr += "未填寫開案日期!\r\n";
     }
@@ -214,11 +214,11 @@ function check_current_case_value()
     if (pid == null) {
         errorstr += "未選擇身分證字號!\r\n";
     }
-    if (referral == null) {
-        errorstr += "未選擇轉介來源!\r\n";
-    }
+    // if (referral == null) {
+    //     errorstr += "未選擇轉介來源!\r\n";
+    // }
     if (errorstr == "") {
-        // console.log(caseid_repeat)
+        //console.log(caseid_repeat)
         if(caseid_repeat)
         {
             errorstr += "開案編號重複!!!\r\n";
@@ -232,15 +232,15 @@ function check_current_case_value()
         if (object_type.replace(/\s*/g, "") == '') {
             errorstr += "未選擇個案類別!\r\n";
         }
-        if (case_property.replace(/\s*/g, "") == '') {
-            errorstr += "未選擇類別屬性!\r\n";
-        }
-        if(case_property.replace(/\s*/g, "") == '自立宿舍' || case_property.replace(/\s*/g, "") == '安置家園')
-        {
-            if (case_stage.replace(/\s*/g, "") == '') {
-                errorstr += "未填寫類別屬性階段!\r\n";
-            }
-        }
+        // if (case_property.replace(/\s*/g, "") == '') {
+        //     errorstr += "未選擇類別屬性!\r\n";
+        // }
+        // if(case_property.replace(/\s*/g, "") == '自立宿舍' || case_property.replace(/\s*/g, "") == '安置家園')
+        // {
+        //     if (case_stage.replace(/\s*/g, "") == '') {
+        //         errorstr += "未填寫類別屬性階段!\r\n";
+        //     }
+        // }
         if (open_case_date.replace(/\s*/g, "") == '') {
             errorstr += "未填寫開案日期!\r\n";
         }
@@ -274,9 +274,9 @@ function check_current_case_value()
             }
         }
 
-        if (referral.replace(/\s*/g, "") == '') {
-            errorstr += "未選擇轉介來源!\r\n";
-        }
+        // if (referral.replace(/\s*/g, "") == '') {
+        //     errorstr += "未選擇轉介來源!\r\n";
+        // }
     }
 
     return errorstr;
@@ -292,7 +292,7 @@ function add_new_current_case_database()
     }
     else
     {
-        var open_case_id = $('#open_case_t_sn').val()
+        var open_case_id = $('#case_id').val()
     }
 
     $.ajax({
@@ -457,7 +457,7 @@ function check_case_isrepeat() {
     }
     else
     {
-        var r_case_id = $("#open_case_t_sn").val();
+        var r_case_id = $("#case_id").val();
     }
 
     // console.log(r_case_id)
