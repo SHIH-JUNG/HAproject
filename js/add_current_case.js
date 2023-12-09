@@ -218,7 +218,7 @@ function check_current_case_value()
     //     errorstr += "未選擇轉介來源!\r\n";
     // }
     if (errorstr == "") {
-        // console.log(caseid_repeat)
+        //console.log(caseid_repeat)
         if(caseid_repeat)
         {
             errorstr += "開案編號重複!!!\r\n";
