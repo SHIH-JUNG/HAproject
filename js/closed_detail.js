@@ -48,7 +48,11 @@ $(document).ready(function(){
                 $("#main_issue").val(value.Main_issue);
                 $("#minor_issue").val(value.Minor_issue);
                 $("#intervention").val(value.Intervention);
+                // var evaluations=value.Evaluation.split("四、")
+                // var evaluation=evaluations[0]
                 $("#evaluation").val(value.Evaluation);
+                // console.log(evaluations);
+                // console.log(evaluations[1].replaceAll("\n","").replaceAll("\t","").split(":"));
 
                 if(value.Closed_reason.includes("other"))
                 {
