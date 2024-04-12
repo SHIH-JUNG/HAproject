@@ -16,6 +16,8 @@ var local_href_str = local_href.split("?")[1];
 
 var history1 = local_href_str.split("&form_id")[0];
 
+var file='';
+
 $("#history").attr('href',"case_all.php?"+history1);
 $("#history2").attr('href',"case_all_all.php?"+'id='+ open_seqid +'&open_id='+ open_id);
 $(".history3").attr('href',"case_detail.php?"+local_href_str);
@@ -366,7 +368,7 @@ $.ajax({
 
             switch (datan.name) {
                 case "customFile1":
-                    var file = datan.value.replace("\.\.\/upload\/", "");
+                    file = datan.value.replace("\.\.\/upload\/", "");
                     $("#customFile1").html('<a name="customFile_a" href="./upload/'+file+'" style="text-decoration:none;color:blue;" target="_blank">'+file+'<br/></a><img style="vertical-align:middle;" width="auto" onerror="hideContainer(this)" src="./upload/'+file+'">');
                     
                     customFile = datan.value;
@@ -718,7 +720,7 @@ function check_trans_closed_data()
 //新增至結案資料庫 region
 function trans_closed_database()
 {
-    // console.log($("#open_date").val())
+    //console.log($("#open_date").val())
     $.ajax({
         url: "database/add_new_closed_v2.php",
         type: "POST",
@@ -744,7 +746,7 @@ function trans_closed_database()
         },
 //            dataType: "JSON",
         success: function (data) {
-            // console.log(data);
+            console.log(data);
             if(data == 1){
                 swal({
                     type: 'success',
@@ -759,7 +761,7 @@ function trans_closed_database()
                     title: '新增失敗！請聯絡網站維護人員',
                     allowOutsideClick: false //不可點背景關閉
                     }).then(function () {
-                        location.reload();
+                       // location.reload();
                     })
             }  
         },
@@ -769,9 +771,9 @@ function trans_closed_database()
                     title: '新增失敗！請聯絡網站維護人員',
                     allowOutsideClick: false //不可點背景關閉
                 }).then(function () {
-                    location.reload();
+                    //location.reload();
                 })
-                // console.log(e)
+                console.log(e)
             }
     });
 }

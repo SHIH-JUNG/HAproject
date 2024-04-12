@@ -176,19 +176,19 @@
 
 </html>
 <?php
-    // if(isset($href_name))
-    // {
-    //     if(!in_array($href_name,$authority_pages))
-    //     {
-    //         echo '<script> swal({
-    //                 title:"您無權限查看當前頁面!",
-    //                 type:"error"
-    //             }).then(function(){
-    //                 window.history.go (-1); 
-    //             }); 
-    //             </script>';  
-    //     } 
-    // }
+    if(isset($href_name))
+    {
+        if(!in_array($href_name,$authority_pages))
+        {
+            echo '<script> swal({
+                    title:"您無權限查看當前頁面!",
+                    type:"error"
+                }).then(function(){
+                    window.history.go (-1); 
+                }); 
+                </script>';  
+        } 
+    }
 
 ?>
 <?php include("database/timeout_logout.php"); ?>
