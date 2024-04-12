@@ -123,13 +123,13 @@ function submit_form() {
   var year = received_date_year_split[0];
 
   $("input[type='file']").each(function(index, element) {
-      var received_file = $(this).prop("files");
+      var received_files = $(this).prop("files");
 
-      if (received_file != undefined) {
-        if (received_file.length != 0) {
-          for (var i = 0; i < received_file.length; i++) {
-            form_data.append("received_file"+index, received_file[i]);
-            // console.log(received_file[i])
+      if (received_files != undefined) {
+        if (received_files.length != 0) {
+          for (var i = 0; i < received_files.length; i++) {
+            form_data.append("received_files"+index, received_files[i]);
+            // console.log(received_files[i])
           }
         } 
       }

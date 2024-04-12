@@ -122,10 +122,11 @@
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>年分</td>
                                                                 <td style="border-bottom: solid 1px;"><input id="year" type="text"></td>
                                                                 </tr> -->
+                                                                <!-- 20240412 Update
                                                                 <tr style="text-align:left">
                                                                     <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>收文標題</td>
                                                                     <td style="border-bottom: solid 1px;"><input id="title_name" type="text"></td>
-                                                                </tr>
+                                                                </tr> -->
                                                                 <tr style="text-align:left">
                                                                     <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i class="fillin_need" style="color:red;">※</i>來文日期</td>
                                                                     <td style="border-bottom: solid 1px;"><input id="received_date" name="ch_datepicker" type="text"></td>

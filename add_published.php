@@ -118,9 +118,13 @@
                                                                     <h3>新增發文紀錄</h3>
                                                                 </td>
                                                             </tr>
-
+                                                            <!-- 20240412 Update
                                                             <tr style="text-align:left">
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>發文標題</td>
+                                                                <td style="border-bottom: solid 1px;"><input id="title_name" type="text"></td>
+                                                            </tr> -->
+                                                            <tr style="text-align:left">
+                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>受文者</td>
                                                                 <td style="border-bottom: solid 1px;"><input id="title_name" type="text"></td>
                                                             </tr>
                                                             <tr style="text-align:left">

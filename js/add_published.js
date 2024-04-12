@@ -122,13 +122,13 @@ function submit_form() {
   var year = published_date_year_split[0];
 
   $("input[type='file']").each(function(index, element) {
-      var published_file = $(this).prop("files");
+      var published_files = $(this).prop("files");
 
-      if (published_file != undefined) {
-        if (published_file.length != 0) {
-          for (var i = 0; i < published_file.length; i++) {
-            form_data.append("published_file"+index, published_file[i]);
-            // console.log(published_file[i])
+      if (published_files != undefined) {
+        if (published_files.length != 0) {
+          for (var i = 0; i < published_files.length; i++) {
+            form_data.append("published_files"+index, published_files[i]);
+            // console.log(published_files[i])
           }
         } 
       }
