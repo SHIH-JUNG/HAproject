@@ -10,7 +10,7 @@ $email = $_POST['email'];
 @$authority = $_POST['authority'];
 @$job = $_POST['job'];
 
-$user = $_SESSION['name'];
+// $user = $_SESSION['name'];
 
 
 $sql = "INSERT INTO `user_info` (`Account`, `Password`, `Name`, `Authority`, `Date`, `Job`, `Email`, `Allow_create_acc`, `Create_date`, `Create_name`) VALUES
@@ -18,7 +18,7 @@ $sql = "INSERT INTO `user_info` (`Account`, `Password`, `Name`, `Authority`, `Da
  '$authority', NOW(), '$job',
  '$email',
  '審核中',
- Now(),'$user')";
+ Now(),'$name')";
 	if(mysqli_query($conn,$sql)){
         echo true;
     }else{
