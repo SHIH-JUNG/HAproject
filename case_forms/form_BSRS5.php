@@ -278,7 +278,7 @@
                                                         </td>
                                                         <td style="background-color:rgb(255 201 54);text-align:left;  text-align:center">處置情形如下:</td>
                                                         <td>
-                                                            <textarea style="width:100%;resize: none;font-size: 20px;min-height:5em;" name="statement" id="statement"></textarea>
+                                                            <textarea style="width:100%;resize: none;font-size: 20px;min-height:20em;" name="statement" id="statement"></textarea>
                                                         </td>
                                                     </tr>
                                                 </table>
