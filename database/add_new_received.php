@@ -13,12 +13,12 @@ $Num_receive = $_REQUEST['Num_receive'];
 
 // 西元年 2022-01-01
 $Sign_received_date = $_REQUEST['Sign_received_date'];
-$Executive = $_REQUEST['Executive'];
-$Supervise = $_REQUEST['Supervise'];
-$Leader = $_REQUEST['Leader'];
-$Director = $_REQUEST['Director'];
-$Distribution = $_REQUEST['Distribution'];
-
+// $Executive = $_REQUEST['Executive'];
+// $Supervise = $_REQUEST['Supervise'];
+// $Leader = $_REQUEST['Leader'];
+// $Director = $_REQUEST['Director'];
+// $Distribution = $_REQUEST['Distribution'];
+$Employee_sign = $_REQUEST['employee_sign'];
 
 $user = $_SESSION['name'];
 
@@ -45,10 +45,24 @@ $end_datetime = date("Y-m-d H:s" ,strtotime("+2 day"));
 $title = '收文簽核：主旨'.$Subject.",來文單位".$Unit;
 
 $sign_received_date = $Sign_received_date." 00:00";
+$signers = explode('、', $Employee_sign);
+$sign_state='';
+$Sign_Path='';
+$sign_msg='';
+$sign_date='';
+foreach($signers as &$signer){
+    $sign_state .= $signer .'未簽核 ';
+    $Sign_Path .= '待簽核 ';
+    $sign_msg .= '目前尚無留言內容 ';
+    $sign_date .= date("Y-m-d") ." ";
+}
+$sign_state = str_replace(' ', '、', trim($sign_state));
+$Sign_Path = str_replace(' ', '、', trim($Sign_Path));
+$sign_msg = str_replace(' ', '、', trim($sign_msg));
+$sign_date = str_replace(' ', '、', trim($sign_date));
+// $signers = $Executive.'、'.$Supervise.'、'.$Leader.'、'.$Director.'、'.$Distribution;
 
-$signers = $Executive.'、'.$Supervise.'、'.$Leader.'、'.$Director.'、'.$Distribution;
-
-$sign_state = $Executive . "未簽核" .'、'.$Supervise . "未簽核" .'、'.$Leader . "未簽核" .'、'.$Director . "未簽核" .'、'.$Distribution . "未簽核" ;
+// $sign_state = $Executive . "未簽核" .'、'.$Supervise . "未簽核" .'、'.$Leader . "未簽核" .'、'.$Director . "未簽核" .'、'.$Distribution . "未簽核" ;
 
 // 上傳報表路徑
 @$file_dir = "../received/";
@@ -82,12 +96,12 @@ if (isset($_FILES["received_files0"]))
 
 
 $sql = "INSERT INTO `received` (`Id`, `Year`,`Title_name`,`Received_date`,`Subject`,`Unit`,
-`Num_receive`, `Upload_path`, `Upload_name`,`Executive`,`Supervise`, `Leader`, `Director`, `Distribution`, `Create_date`,`Create_name`) VALUES
- ($received_id, '$Year','$Title_Name','$Received_date','$Subject','$Unit','$Num_receive', '$file', '$file_name', '$Executive', '$Supervise', '$Leader', '$Director', '$Distribution',Now(),'$user');";
+`Num_receive`, `Upload_path`, `Upload_name`,`employee_sign`, `employee_sign_imagePath`, `employee_sign_msg`, `employee_sign_Date`, `Create_date`,`Create_name`) VALUES
+ ($received_id, '$Year','$Title_Name','$Received_date','$Subject','$Unit','$Num_receive', '$file', '$file_name', '$Employee_sign', $Sign_Path, $sign_msg, $sign_date, Now(),'$user');";
 
 $sql .= "INSERT INTO `signature_notice` (`Sign_id`, `Title`,`Url`,`Timestamp`, `Assign`, `Signer`, `Sign_state`, `Type`, `Create_date`, `Create_name`) 
-VALUES ($received_id, '$title', '$url', '$sign_received_date', '$user', '$signers', '$sign_state', 'received', Now(), '$user');";
-
+VALUES ($received_id, '$title', '$url', '$sign_received_date', '$user', '$Employee_sign', '$sign_state', 'received', Now(), '$user');";
+// echo $sql;
 if (mysqli_multi_query($conn, $sql)) {
     echo true;
 } else {

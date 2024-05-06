@@ -144,11 +144,17 @@ function submit_form() {
 
 
   form_data.append("Sign_received_date", trans_to_EN($("#received_date").val()));
-  form_data.append("Executive",$("#executive").val());
-  form_data.append("Supervise",$("#supervise").val());
-  form_data.append("Leader",$("#leader").val());
-  form_data.append("Director",$("#director").val());
-  form_data.append("Distribution",$("#distribution").val());
+  // form_data.append("Executive",$("#executive").val());
+  // form_data.append("Supervise",$("#supervise").val());
+  // form_data.append("Leader",$("#leader").val());
+  // form_data.append("Director",$("#director").val());
+  // form_data.append("Distribution",$("#distribution").val());
+  employee_sign='';
+  $(".addSign").each(function(i,n){
+    employee_sign += $(this).val() + ' '
+    //console.log($(this).val());
+  });
+  form_data.append("employee_sign", employee_sign.trim().replaceAll(' ','、'));
 
   // 預覽傳到後端的資料詳細內容
   // for (var pair of form_data.entries()) {
@@ -165,7 +171,7 @@ function submit_form() {
       processData: false,
       async: true,
       success: function (data) {
-        // console.log(data);
+        console.log(data);
         if (data == 1) {
           swal({
             type: "success",
@@ -184,7 +190,7 @@ function submit_form() {
         }
       },
       error: function (e) {
-          // console.log(e);
+          //console.log(e);
           swal({
               type: "error",
               title: "新增失敗！請聯絡網站維護人員",
@@ -194,6 +200,43 @@ function submit_form() {
     });
 }
 
+//新增的簽核選項
+var new_addSign_tr='<tr style="text-align:left"><td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;"><input type="button" value="刪除" onclick="deleteTr(this)"><i style="color:red;">※</i>簽核人</td><td style="border-bottom: solid 1px;"><div class="col-sm-6"><select name="addSign" class="addSign" style="width:100%;"><option value="">請選擇</option></select></div></td></tr>';
+var tableTr='';
+//var signList='';
+
+//紀錄已選定簽核人
+function NowSign(){
+  tableTr='';
+  $(".addSign").each(function(i,n){
+    var name=$(this).val();
+    if(name==''){
+      name = "請選擇";
+    }
+    tableTr += '<tr style="text-align:left"><td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;"><input type="button" value="刪除" onclick="deleteTr(this)"><i style="color:red;">※</i>簽核人</td><td style="border-bottom: solid 1px;"><div class="col-sm-6"><select name="addSign" class="addSign" style="width:100%;"><option value="'+name+'">'+name+'</option></select></div></td></tr>';
+    //console.log($(this).val());
+  });
+}
+
+// 新增簽核人
+$("#addTR").on("click", function () {
+  NowSign();
+  tableTr += new_addSign_tr;
+  $("#add_sign").html(tableTr);
+  append_user();
+});
+
+//刪除簽核人
+$(".buttonDelete").on("click", function (){
+  $(this).closest('tr').remove();
+  console.log('click');
+});
+
+function deleteTr(obj){
+  var tr = obj.parentNode.parentNode;
+  tr.parentNode.removeChild(tr);
+}
+
 // //新增來文紀錄region
 $("#re_add_new").on("click", function () {
    
@@ -201,7 +244,7 @@ $("#re_add_new").on("click", function () {
   if ($('input[type="file"]').length != 0) {
     var exist_arr = check_file_exist();
 
-    // console.log(exist_arr);
+    //console.log(exist_arr);
     //如果上傳的檔案檔名重複則提示使用者
     if (exist_arr.length != 0) {
       // console.log(exist_arr[0][1]);
@@ -257,51 +300,51 @@ $("#re_add_new").on("click", function () {
 //endregion
 
 //檢查必填欄位region
-function check_add_received_data() {
-  var title_name = $("#title_name").val();
-  var received_date = $("#received_date").val();
-  var unit = $("#unit").val();
-  var num_receive = $("#num_receive").val();
-  var subject = $("#subject").val();
+// function check_add_received_data() {
+//   var title_name = $("#title_name").val();
+//   var received_date = $("#received_date").val();
+//   var unit = $("#unit").val();
+//   var num_receive = $("#num_receive").val();
+//   var subject = $("#subject").val();
 
-  var errorstr = "";
+//   var errorstr = "";
 
-  if (title_name == null) {
-    errorstr += "未填寫來文記錄標題!\r\n";
-  }
-  if (received_date == null) {
-    errorstr += "未填寫來文日期!\r\n";
-  }
-  if (unit == null) {
-    errorstr += "未填寫受文單位!\r\n";
-  }
-  if (num_receive == null) {
-    errorstr += "未填寫來文字號!\r\n";
-  }
-  if (subject == null) {
-    errorstr += "未填寫主旨!\r\n";
-  }
+//   if (title_name == null) {
+//     errorstr += "未填寫來文記錄標題!\r\n";
+//   }
+//   if (received_date == null) {
+//     errorstr += "未填寫來文日期!\r\n";
+//   }
+//   if (unit == null) {
+//     errorstr += "未填寫受文單位!\r\n";
+//   }
+//   if (num_receive == null) {
+//     errorstr += "未填寫來文字號!\r\n";
+//   }
+//   if (subject == null) {
+//     errorstr += "未填寫主旨!\r\n";
+//   }
 
-  if (errorstr == "") {
-    if (title_name.replace(/\s*/g, "") == "") {
-      errorstr += "未填寫來文記錄標題!\r\n";
-    }
-    if (received_date.replace(/\s*/g, "") == "") {
-      errorstr += "未填寫來文日期!\r\n";
-    }
-    if (unit.replace(/\s*/g, "") == "") {
-      errorstr += "未填寫受文單位!\r\n";
-    }
-    if (num_receive.replace(/\s*/g, "") == "") {
-      errorstr += "未填寫來文字號!\r\n";
-    }
-    if (subject.replace(/\s*/g, "") == "") {
-      errorstr += "未填寫主旨!\r\n";
-    }
-  }
+//   if (errorstr == "") {
+//     if (title_name.replace(/\s*/g, "") == "") {
+//       errorstr += "未填寫來文記錄標題!\r\n";
+//     }
+//     if (received_date.replace(/\s*/g, "") == "") {
+//       errorstr += "未填寫來文日期!\r\n";
+//     }
+//     if (unit.replace(/\s*/g, "") == "") {
+//       errorstr += "未填寫受文單位!\r\n";
+//     }
+//     if (num_receive.replace(/\s*/g, "") == "") {
+//       errorstr += "未填寫來文字號!\r\n";
+//     }
+//     if (subject.replace(/\s*/g, "") == "") {
+//       errorstr += "未填寫主旨!\r\n";
+//     }
+//   }
 
-  return errorstr;
-}
+//   return errorstr;
+// }
 //endregion
 
 //檢查必填欄位 region
@@ -407,11 +450,13 @@ function append_user(){
       success: function (data) {
           // console.log('test',data)
           for (var index in data.Id) {
-            $("#executive").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
-            $("#supervise").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
-            $("#leader").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
-            $("#director").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
-            $("#distribution").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+            // 簽核人表單
+            // $("#executive").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+            // $("#supervise").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+            // $("#leader").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+            // $("#director").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+            // $("#distribution").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+            $(".addSign").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
           }
       },
   });
