@@ -114,6 +114,14 @@
                                                         <td colspan="5">
                                                             <input name="education_graduate" style="zoom: 1.5" value="畢業" type="radio"><span>畢業</span>
                                                             <input name="education_graduate" style="zoom: 1.5" value="肄業" type="radio"><span>肄業</span>
+                                                            <input name="education_graduate" style="zoom: 1.5" value="就讀中" type="radio"><span>就讀中</span>
+                                                            <input name="education_graduate" style="zoom: 1.5" value="休學中" type="radio"><span>休學中</span>
+                                                            <br>
+                                                            <input name="highest_education" style="zoom: 1.5" value="國小" type="radio"><span>國小</span>
+                                                            <input name="highest_education" style="zoom: 1.5" value="國中" type="radio"><span>國中</span>
+                                                            <input name="highest_education" style="zoom: 1.5" value="高中" type="radio"><span>高中</span>
+                                                            <input name="highest_education" style="zoom: 1.5" value="大學" type="radio"><span>大學</span>
+                                                            <input name="highest_education" style="zoom: 1.5" value="碩專" type="radio"><span>碩專</span>
                                                         </td>
                                                     </tr>
 
@@ -159,7 +167,7 @@
                                                             <table style="width:100%;">
                                                             <tr>
                                                                 <td>
-                                                                    <input name="physical_mental_q" style="zoom: 1.5" value="正常" type="checkbox"><span>正常</span>
+                                                                    <input name="physical_mental_q" style="zoom: 1.5" value="正常" type="checkbox" class="none" onclick="toggleCheckboxes(this)"><span>正常</span>
                                                                 </td>
                                                             </tr>
                                                                 <tr>
@@ -219,6 +227,7 @@
                                                                     <td>
                                                                         <br/>
                                                                         <input name="physical_mental_q" style="zoom: 1.5" value="其他" type="checkbox"><span>其他(例如︰高血壓、糖尿病、輕度憂鬱症等可能影響工作支疾病)</span>
+                                                                        <input style="width:20em;" name="physical_mental_t_3" id="physical_mental_t_3" type="text">
                                                                     </td>
                                                                 </tr>
                                                         </table>
@@ -347,7 +356,6 @@
                                                                         <input name="basic_skills_radio" style="zoom: 1.5" value="不具備" type="radio"><span>不具備</span>
                                                                     </td>
                                                                 </tr>
-
                                                                 <tr>
                                                                     <td>
                                                                         <br/>
@@ -355,14 +363,13 @@
                                                                         <input name="computer_skills_checkbox" style="zoom: 1.5" value="基本文書操作" type="checkbox"><span>基本文書操作</span>
                                                                         <input name="computer_skills_checkbox" style="zoom: 1.5" value="美工軟體" type="checkbox"><span>美工軟體</span>
                                                                         <input name="computer_skills_checkbox" style="zoom: 1.5" value="程式設計" type="checkbox"><span>程式設計</span>
-                                                                        <input name="computer_skills_checkbox" style="zoom: 1.5" value="不具備" type="checkbox"><span>不具備</span>
+                                                                        <input name="computer_skills_checkbox" style="zoom: 1.5" value="不具備" type="checkbox" class="none" onclick="toggleCheckboxes(this)"><span>不具備</span>
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>
                                                                         <br/>
-                                                                        &diams;&nbsp;其他
-                                                                        <input name="other_skills_checkbox" style="zoom: 1.5" value="其他" type="checkbox">
+                                                                        &diams;&nbsp;<input name="other_skills_checkbox" style="zoom: 1.5" value="其他" type="checkbox">其他
                                                                         <input style="width:22em;" name="other_skills_t_0" id="other_skills_t_0" type="text">
                                                                         &nbsp;&nbsp;&nbsp;&nbsp;
                                                                         <input name="other_skills_checkbox" style="zoom: 1.5" value="會 計" type="checkbox"><span>會 計</span>
@@ -384,7 +391,7 @@
                                                                 <tr>
                                                                     <td>
                                                                         <br/>
-                                                                        &diams;&nbsp;不需要他人協助(
+                                                                        &diams;&nbsp;<input name="traffic_checkbox" style="zoom: 1.5" value="不需要他人協助" type="checkbox" class="none" onclick="toggleCheckboxes(this)">不需要他人協助(
                                                                         <input name="traffic_capacity_checkbox" style="zoom: 1.5" value="腳踏車" type="checkbox"><span>腳踏車</span>
                                                                         <input name="traffic_capacity_checkbox" style="zoom: 1.5" value="機車" type="checkbox"><span>機車</span>
                                                                         <input name="traffic_capacity_checkbox" style="zoom: 1.5" value="汽車" type="checkbox"><span>汽車</span>
@@ -394,7 +401,7 @@
                                                                 <tr>
                                                                     <td>
                                                                         <br/>
-                                                                        &diams;&nbsp;需要他人協助
+                                                                        &diams;&nbsp;<input name="traffic_checkbox" style="zoom: 1.5" value="需要他人協助" type="checkbox">需要他人協助
                                                                     </td>
                                                                 </tr>
                                                                 <tr>

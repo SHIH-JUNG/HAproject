@@ -692,57 +692,83 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
+                        
                         <div class="col-sm-12 text-center">
+                            <div class="col-sm-12">
+                                <label>日期</label>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="input-group date form_date" data-date-format="yyyy-mm-dd" data-link-field="dtp_input1">
+                                    <input id="borrow_date" class="form-control" type="text" value="" readonly>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 text-center">
+                            <div class="col-sm-12">
+                                <label>外出時間</label>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="input-group date form_time" data-date-format="hh:ii" data-link-field="dtp_input1">
+                                    <input id="out_timestap" class="form-control" type="text" value="" readonly>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- <div class="col-sm-12 text-center">
                             <label>日期</label>
                         </div>
                         <div class="col-sm-12 text-center">
-                            <input class="col-sm-12" id="borrow_date" placeholder="請輸入日期" type="text" readonly>
+                             <input class="col-sm-12" id="borrow_date" placeholder="請輸入日期" type="text" readonly>
                         </div>
                         <div class="col-sm-12 text-center">
                             <label>外出時間</label>
                         </div>
                         <div class="col-sm-12 text-center">
                             <input class="col-sm-12" id="out_timestap" placeholder="請輸入外出時間" type="text" readonly>
-                        </div>
+                        </div> -->
                         <div class="col-sm-12 text-center">
                             <label>事由</label>
                         </div>
                         <div class="col-sm-12 text-center">
-                            <input class="col-sm-12" id="vr_reason" placeholder="請輸入事由" type="text" readonly>
+                            <input class="col-sm-12" id="vr_reason" placeholder="請輸入事由" type="text">  <!-- readonly> -->
                         </div>
 
                         <div class="col-sm-12 text-center">
                             <label>地點</label>
                         </div>
                         <div class="col-sm-12 text-center">
-                            <input class="col-sm-12" id="vr_place" placeholder="請輸入地點" type="text" readonly>
+                            <input class="col-sm-12" id="vr_place" placeholder="請輸入地點" type="text">  <!-- readonly> -->
                         </div>
                         
                         <div class="col-sm-12 text-center">
                             <label>交通工具</label>
                         </div>
                         <div class="col-sm-12 text-center">
-                            <input class="col-sm-12" id="vr_vehicle" placeholder="請輸入交通工具" type="text" readonly>
+                            <input class="col-sm-12" id="vr_vehicle" placeholder="請輸入交通工具" type="text">  <!-- readonly> -->
                         </div>
                         <div class="col-sm-12 text-center">
                             <label>返回時間</label>
                         </div>
                         <div class="col-sm-12 text-center">
-                            <input class="col-sm-12" id="back_timestap" placeholder="請輸入返回時間" type="text" readonly>
+                            <input class="col-sm-12" id="back_timestap" placeholder="請輸入返回時間" type="text">  <!-- readonly> -->
                         </div>
 
                         <div class="col-sm-12 text-center">
                             <label>外出者</label>
                         </div>
                         <div class="col-sm-12 text-center">
-                            <input class="col-sm-12" id="vr_booker" placeholder="請輸入外出者" type="text" readonly>
+                            <input class="col-sm-12" id="vr_booker" placeholder="請輸入外出者" type="text">  <!-- readonly> -->
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <div class="text-center col-sm-12">
                         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                        <!-- <button onclick="update_visit()" type="button" class="btn btn-primary">新增</button> -->
+                        <button id="update_vehicle_retain_button" onclick="update_show_vehicle_retain_modal(this)" type="button" class="btn btn-primary">修改</button>
                     </div>
                 </div>
             </div>

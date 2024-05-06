@@ -31,6 +31,27 @@ var form_type = decodeURIComponent(getUrlVars()["form_type"]);
 
 const notyf = new Notyf();
 
+// 複選問題 creation date 20240502
+function toggleCheckboxes(checkedCheckbox) {
+    const symptoms = document.querySelectorAll('input[name="'+checkedCheckbox.name+'"]:not(.none)');
+    // console.log(checkedCheckbox.name);
+    // 其他選項設置 disabled 屬性
+    symptoms.forEach(symptom => {
+    symptom.disabled = checkedCheckbox.checked;
+    symptom.checked = false;
+    });
+}
+
+function load_checkboxDisabled(){
+    var checkboxNone = document.getElementsByClassName('none');
+    // console.log(checkboxNone);
+    checkboxNone.forEach(checkboxNone => {
+        if(checkboxNone.checked == true){
+            toggleCheckboxes(checkboxNone)
+        }
+    })
+}
+
 //將日期轉為民國年格式111.03.07 region
 trans_to_Tw = function (endate) {
     var strAry = endate.split("-");
@@ -1187,11 +1208,9 @@ function load_all_forms_data(type_name,url_str)
                 // console.log(data_json)
                 //依據input的type類型名稱寫入資料，file類型名稱另外寫 region
                 $.each(data_json[0], function (i, datan) {
-
                     //獲取name值對應的input類型
                     var inputs_type = $("input[name='"+datan.name+"']").attr('type');
                     
-
                     //根據對應的類型選擇js語法填入資料
                     if(inputs_type!=undefined)
                     {
@@ -1380,6 +1399,10 @@ function load_all_forms_data(type_name,url_str)
                         $("input[name='"+datan.name+"']").eq(e).val(v);                            
                     });
                 });
+            }
+
+            if(form_type == "employment_satif"){
+                load_checkboxDisabled();
             }
         },
         error: function (e) {

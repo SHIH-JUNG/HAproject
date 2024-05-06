@@ -152,16 +152,19 @@ $.ajax({
     var cssString = "";
     // console.log(data);
     $.each(data, function (index, value) {
-
       var executive_sign_arr = datatable_sign_show('executive', value.Executive, value.Executive_signature, value.Executive_sign_time, value.Executive_sign_msg);
-      
       var supervise_sign_arr = datatable_sign_show('supervise', value.Supervise, value.Supervise_signature, value.Supervise_sign_time, value.Supervise_sign_msg);
-
       var leader_sign_arr = datatable_sign_show('leader', value.Leader, value.Leader_signature, value.Leader_sign_time, value.Leader_sign_msg);
-
       var director_sign_arr = datatable_sign_show('director', value.Director, value.Director_signature, value.Director_sign_time, value.Director_sign_msg);
-
       var distribution_sign_arr = datatable_sign_show('distribution', value.Distribution, value.Distribution_signature, value.Distribution_sign_time, value.Distribution_sign_msg);
+      var employeeSign = value.employee_sign.split('、');
+      var employeeSign_imagePath = value.employee_sign_imagePath.split('、');
+      var employeeSign_msg = value.employee_sign_msg.split('、');
+      var employeeSign_Date = value.employee_sign_Date.split('、');
+      var signNum = employeeSign.length;
+      if(signNum>4){
+        signNum=4;
+      }
 
       var isUpload = '未上傳';
       // var cert_isUpload = '未上傳';
@@ -204,6 +207,11 @@ $.ajax({
         '<td style="text-align:center">' +
         value.Update_name +
         "</td>" +
+        // '<td style="text-align:center">' +
+        // executive_sign_arr[0] +
+        // executive_sign_arr[1] +
+        // "</td>" +
+
         '<td style="text-align:center">' +
         executive_sign_arr[0] +
         executive_sign_arr[1] +
@@ -225,6 +233,13 @@ $.ajax({
         distribution_sign_arr[1] +
         "</td>" +
         "</tr>";
+
+      // for(var i=0;i<=signNum;i++){
+      //   cssString+='<td style="text-align:center">' +
+      //     employeeSign[i] +
+      //     employeeSign_imagePath[i] +
+      //     "</td>";
+      // }
 
       $("#received_date").append(
         '<option value="' +

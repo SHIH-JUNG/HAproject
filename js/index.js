@@ -173,7 +173,7 @@ $.ajax({
             // var attr_id = $(this).children("tr").attr("id");
             
             $('#show_vehicle_retain_m').modal('show');
-        
+            $("#update_vehicle_retain_button").attr("btn_id",attr_id);
             show_vehicle_retain_modal(attr_id);
         });
 
@@ -559,7 +559,49 @@ function show_vehicle_retain_modal(modal_id) {
 }
 //endregion
 
-//點擊 修改車輛保留狀態 返回的時間 region
+//修改 車輛保留 detail show modal region
+function update_show_vehicle_retain_modal(this_btn) {
+    var attr_id = $(this_btn).attr("btn_id");
+    $.ajax({
+        url: "database/update_vehicle_retain_show.php",
+        data:{
+            Id:attr_id,
+            Back_timestap:$("#back_timestap").val(),
+            Borrow_date:$("#borrow_date").val(),
+            Out_timestap:$("#out_timestap").val(),
+            Reason:$("#vr_reason").val(),
+            Place:$("#vr_place").val(),
+            Vehicle:$("#vr_vehicle").val(),
+            Booker:$("#vr_booker").val()
+        },
+        type: "POST",
+        dataType: "JSON",
+        async: false,
+        success: function (data) {
+            console.log(data);
+            if(data == 1){
+                swal({
+                    title:'更新成功！',
+                    type:'success',                        
+                }).then(function(){
+                    location.reload();
+                }) 
+            }else{
+                swal({
+                    title:'更新失敗！請聯絡網站維護人員',
+                    type:'error',
+                })
+            }  
+        },
+        error: function (e) {
+            console.log(e);
+            notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
+        }
+    });
+}
+//endregion
+
+//點擊 送出車輛保留狀態 返回的時間 region
 end_vehicle_retain = function(attr_id){
     $('#update_vehicle_retain_m').modal('show'); 
 
@@ -603,10 +645,9 @@ load_update_vehicle_retain_data = function(vr_id) {
 }
 //endregion
 
-// modal修改車輛保留及修改返回的時間 region
+// modal送出車輛保留及修改返回的時間 region
 update_vehicle_retain = function(this_btn) {
     var attr_id = $(this_btn).attr("btn_id");
-
     $.ajax({                                                                                    
         url: "database/update_vehicle_retain.php",
         data:{
@@ -641,7 +682,7 @@ update_vehicle_retain = function(this_btn) {
             }  
         },
         error:function(e){
-            // console.log(e);
+            console.log(e);
             swal({
                 title:'更新失敗！請聯絡網站維護人員',
                 type:'error',
@@ -806,7 +847,6 @@ check_visit_data = function() {
 //update end 社工訪視 region
 update_visit = function(this_btn){
     var attr_id = $(this_btn).attr("btn_id");
-
     $.ajax({                                                                                    
         url: "database/end_visit.php",
         data:{
