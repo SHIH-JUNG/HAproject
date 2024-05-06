@@ -18,12 +18,12 @@ $sql = "INSERT INTO `user_info` (`Account`, `Password`, `Name`, `Authority`, `Da
  '$authority', NOW(), '$job',
  '$email',
  '審核中',
- Now(),'$name')";
-if(mysqli_query($conn,$sql)){
-    echo true;
-}else{
-    echo false;
-}
+ Now(),'$user')";
+	if(mysqli_query($conn,$sql)){
+        echo true;
+    }else{
+        echo false;
+    }
 
 mysqli_close($conn);
 ?>

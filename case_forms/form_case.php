@@ -84,12 +84,12 @@
 
                                                         <td style="background-color:rgb(255 201 54);text-align:left;color:#d86d6d;">個案姓名：</td>
                                                         <td>
-                                                            <input style="width:85%;" name="case_name" id="case_name" type="text" disabled="disabled">
+                                                            <input style="width:85%;" name="case_name" id="case_name" type="text" >
                                                         </td>
 
                                                         <td style="background-color:rgb(255 201 54);text-align:left;color:#d86d6d;">開案日期：</td>
                                                         <td>
-                                                            <input style="width:85%;" name="open_date" id="open_date" type="date" disabled="disabled">
+                                                            <input style="width:85%;" name="open_date" id="open_date" type="date" >
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -357,12 +357,12 @@
                                                     <tr>
                                                         <td style="background-color:rgb(255 201 54);text-align:left;min-width: 11em;">就醫時間</td>
                                                         <td>
-                                                            <input name="treatment_time" style="zoom: 1.5" value="0" type="radio">
+                                                            <input name="treatment_time" style="zoom: 1.5" value="0" type="checkbox">
                                                             <span>HIV診斷 民國</span>
                                                             <input style="width:3em;" name="treatment_time_year" id="treatment_time_year" type="text"><span>年</span>
                                                             <input style="width:3em;" name="treatment_time_month" id="treatment_time_month" type="text"><span>月</span>
                                                             <br/>
-                                                            <input name="treatment_time" style="zoom: 1.5" value="1" type="radio">
+                                                            <input name="treatment_time" style="zoom: 1.5" value="1" type="checkbox">
                                                             <span>其他疾病</span>
                                                             <input style="width:18em;" name="treatment_time_1" id="treatment_time_1" type="text">
                                                         </td>
@@ -501,19 +501,40 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td><input name="medicine" style="zoom: 1.5" value="美沙冬療法" type="checkbox"><span>美沙冬療法</span></td>
-                                                                    <td></td>
+                                                                    <td><input name="treatment_time" style="zoom: 1.5" value="1" type="checkbox"><span>其他藥物:</span>
+                                                                        <input style="width:12em;" name="medical_other" id="medical_other" type="text"></td>
                                                                     <td></td>
                                                                 </tr>
                                                             </table>
                                                         </td>
                                                     </tr>
+                                            
+                                                <script>
+                                                    // 複選問題 creation date 20240502
+                                                    function toggleCheckboxes(checkedCheckbox) {
+                                                        const noneCheckbox = document.getElementById('none');
+                                                        const symptoms = document.querySelectorAll('input[name="symptoms"]');
+
+                                                        // 檢查是否勾選了「無」選項
+                                                        if (checkedCheckbox === noneCheckbox) {
+                                                            // 其他選項設置 disabled 屬性
+                                                            symptoms.forEach(symptom => {
+                                                            symptom.disabled = checkedCheckbox.checked;
+                                                            });
+                                                        } else {
+                                                            // 如果選擇了其他選項，取消勾選「無」選項
+                                                            noneCheckbox.checked = false;
+                                                        }
+                                                        }
+                                                </script>
+
 
                                                     <tr>
                                                         <td style="background-color:rgb(255 201 54);text-align:left;">合併症狀</td>
                                                         <td colspan="3">
                                                             <div class="col-sm-12">
                                                                 <div class="text-left">
-                                                                    <input name="symptoms" style="zoom: 1.5" value="無" type="checkbox"><span>無</span>
+                                                                    <input style="zoom: 1.5" type="checkbox" id="none" onclick="toggleCheckboxes(this)" value="無"><span>無</span>
                                                                     <input name="symptoms" style="zoom: 1.5" value="持續疲倦" type="checkbox"><span>持續疲倦</span>
                                                                     <input name="symptoms" style="zoom: 1.5" value="皮膚發疹" type="checkbox"><span>皮膚發疹</span>
                                                                     <input name="symptoms" style="zoom: 1.5" value="腹瀉" type="checkbox"><span>腹瀉</span>
