@@ -171,6 +171,36 @@
                                                                         </div>
                                                                     </td>
                                                                 </tr>
+                                                                <tr style="text-align:left">
+                                                                    <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>簽核人</td>
+                                                                    <td style="border-bottom: solid 1px;">
+                                                                        <div class="col-sm-6">
+                                                                            <select name="executive" id="executive" style="width:100%;">
+                                                                                <option value="">請選擇</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr style="text-align:left">
+                                                                    <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>簽核人</td>
+                                                                    <td style="border-bottom: solid 1px;">
+                                                                        <div class="col-sm-6">
+                                                                            <select name="supervise" id="supervise" style="width:100%;">
+                                                                                <option value="">請選擇</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr style="text-align:left">
+                                                                    <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>簽核人</td>
+                                                                    <td style="border-bottom: solid 1px;">
+                                                                        <div class="col-sm-6">
+                                                                            <select name="distribution" id="distribution" style="width:100%;">
+                                                                                <option value="">請選擇</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
 
                                                         </table>
                                                     </div>

@@ -206,7 +206,42 @@
                                                                                 </td>
                                                                                 <td style="">
                                                                                     <div class="col-sm-3" style="margin-top: 0.6em;">
-                                                                                        <select class="pu_question" id="leader" style="width:100%;">
+                                                                                        <select class="re_question" id="executive" style="width:100%;">
+                                                                                                <option value="">請選擇</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                    <div class="col-sm-9">
+                                                                                        <button style="margin:.5em;margin-right:3em;color:red;" type="button" onclick="signature_btn_click('executive');">簽名</button>
+                                                                                        <button style="margin:.5em;" type="button" onclick="sign_msg_model('executive');" data-toggle="modal" data-target="#myModal">查看留言</button>
+                                                                                        <a src="" id="executive_signature_simg" style="color:blue;" target="_blank" alt="簽名圖片連結"></a>
+                                                                                    </div>   
+                                                                                </td>
+                                                                            </tr>
+                                                                            <!-- 20231118 Update-->
+                                                                            <tr style="text-align:left">
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline">
+                                                                                    <label>簽章</label>
+                                                                                </td>
+                                                                                <td style="">
+                                                                                    <div class="col-sm-3" style="margin-top: 0.6em;">
+                                                                                        <select class="re_question" id="supervise" style="width:100%;">
+                                                                                                <option value="">請選擇</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                    <div class="col-sm-9">
+                                                                                        <button style="margin:.5em;margin-right:3em;color:red;" type="button" onclick="signature_btn_click('supervise');">簽名</button>
+                                                                                        <button style="margin:.5em;" type="button" onclick="sign_msg_model('supervise');" data-toggle="modal" data-target="#myModal">查看留言</button>
+                                                                                        <a src="" id="supervise_signature_simg" style="color:blue;" target="_blank" alt="簽名圖片連結"></a>
+                                                                                    </div>   
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr style="text-align:left">
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline">
+                                                                                    <label>簽章</label>
+                                                                                </td>
+                                                                                <td style="">
+                                                                                    <div class="col-sm-3" style="margin-top: 0.6em;">
+                                                                                        <select class="re_question" id="leader" style="width:100%;">
                                                                                                 <option value="">請選擇</option>
                                                                                         </select>
                                                                                     </div>
@@ -223,7 +258,7 @@
                                                                                 </td>
                                                                                 <td style="">
                                                                                     <div class="col-sm-3" style="margin-top: 0.6em;">
-                                                                                        <select class="pu_question" id="director" style="width:100%;">
+                                                                                        <select class="re_question" id="director" style="width:100%;">
                                                                                                 <option value="">請選擇</option>
                                                                                         </select>
                                                                                     </div>
@@ -234,6 +269,23 @@
                                                                                     </div>
                                                                                 </td>
                                                                             </tr>
+                                                                            <tr style="text-align:left">
+                                                                                <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline">
+                                                                                    <label>簽章</label>
+                                                                                </td>
+                                                                                <td style="">
+                                                                                    <div class="col-sm-3" style="margin-top: 0.6em;">
+                                                                                        <select class="re_question" id="distribution" style="width:100%;">
+                                                                                                <option value="">請選擇</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                    <div class="col-sm-9">
+                                                                                        <button style="margin:.5em;margin-right:3em;color:red;" type="button"  onclick="signature_btn_click('distribution');">簽名</button>
+                                                                                        <button style="margin:.5em;" type="button" onclick="sign_msg_model('distribution');" data-toggle="modal" data-target="#myModal">查看留言</button>
+                                                                                        <a src="" id="distribution_signature_simg" style="color:blue;" target="_blank" alt="簽名圖片連結"></a>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>                              
 
                                                                             <tr>
                                                                                 <td colspan="2">

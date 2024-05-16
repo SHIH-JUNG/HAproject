@@ -144,6 +144,9 @@ function submit_form() {
   form_data.append("Sign_published_date", trans_to_EN($("#published_date").val()));
   form_data.append("Leader",$("#leader").val());
   form_data.append("Director",$("#director").val());
+  form_data.append("Executive",$("#executive").val());
+  form_data.append("Supervise",$("#supervise").val());
+  form_data.append("Distribution",$("#distribution").val());
 
   // 預覽傳到後端的資料詳細內容
   // for (var pair of form_data.entries()) {
@@ -398,6 +401,9 @@ function append_user(){
           for (var index in data.Id) {
             $("#leader").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
             $("#director").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+            $("#executive").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+            $("#supervise").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');            
+            $("#distribution").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
           }
       },
   });
