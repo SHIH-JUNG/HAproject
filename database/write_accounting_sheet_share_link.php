@@ -1,16 +1,16 @@
 <?php
-session_start();
-include("sql_connect.php");
-
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $content = $_POST['content'];
-    $origin_content = $_POST['origin_content'];
+    $file = '../accounting_sheet/HAproject_accounting_google_sheet_share_url_new2.txt'; // 根據需要調整路徑
 
-    // $file = fopen("../accounting_sheet/HAproject_accounting_google_sheet_share_url.txt", "w");
-    $file = "../accounting_sheet/HAproject_accounting_google_sheet_share_url.txt";
-    $file_origin = "../accounting_sheet/HAproject_accounting_google_sheet_share_url_origin.txt";
-
-    file_put_contents($file, $content);
-    file_put_contents($file_origin, $origin_content);
-    // echo file_put_contents($file, $content);
-    fclose($file);
+    if (file_put_contents($file, $content) !== false) {
+        echo "Success";
+    } else {
+        http_response_code(500);
+        echo "Error";
+    }
+} else {
+    http_response_code(405); // 方法不允許
+    echo "Invalid request method";
+}
 ?>
