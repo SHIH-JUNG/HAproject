@@ -82,7 +82,6 @@ auth_update = function (this_btn) {
             if (result) {
                 var sql_id = $(this_btn).attr("sql_id");    
                 var authority_pages_arr = [];
-            
                 $("input[name='auth_href_name']:checked").each(function () {
                     authority_pages_arr.push($(this).val());
                 });
@@ -113,7 +112,7 @@ auth_update = function (this_btn) {
                         }  
                     },
                     error:function(e){
-                        // console.log(e);
+                        console.log(e);
                         swal({
                             title:'修改失敗！請聯絡網站維護人員',
                             type:'error',
@@ -188,7 +187,7 @@ find_default_auth = function () {
         type: "POST",
         data: {
             Authority: user_authority,
-            Job: user_job,
+            // Job: user_job,
         },
         dataType: "JSON",
         async: false,//啟用同步請求
@@ -214,6 +213,7 @@ find_default_auth = function () {
             }
         },
         error: function (e) {
+            // console.log(e);
             notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
         }
     });

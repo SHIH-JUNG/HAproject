@@ -97,7 +97,7 @@ if (isset($_FILES["received_files0"]))
 
 $sql = "INSERT INTO `received` (`Id`, `Year`,`Title_name`,`Received_date`,`Subject`,`Unit`,
 `Num_receive`, `Upload_path`, `Upload_name`,`employee_sign`, `employee_sign_imagePath`, `employee_sign_msg`, `employee_sign_Date`, `Create_date`,`Create_name`) VALUES
- ($received_id, '$Year','$Title_Name','$Received_date','$Subject','$Unit','$Num_receive', '$file', '$file_name', '$Employee_sign', $Sign_Path, $sign_msg, $sign_date, Now(),'$user');";
+ ($received_id, '$Year','$Title_Name','$Received_date','$Subject','$Unit','$Num_receive', '$file', '$file_name', '$Employee_sign', '$Sign_Path', '$sign_msg', '$sign_date', Now(),'$user');";
 
 $sql .= "INSERT INTO `signature_notice` (`Sign_id`, `Title`,`Url`,`Timestamp`, `Assign`, `Signer`, `Sign_state`, `Type`, `Create_date`, `Create_name`) 
 VALUES ($received_id, '$title', '$url', '$sign_received_date', '$user', '$Employee_sign', '$sign_state', 'received', Now(), '$user');";

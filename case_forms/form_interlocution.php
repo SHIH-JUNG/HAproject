@@ -110,7 +110,7 @@
                                                             </table>
                                                         </td>
                                                         <td><input name="assign_name" id="assign_name" type="text"></td>
-                                                        <td><input name="supervise_name" id="supervise_name" type="text"></td>
+                                                        <td id='SignOff'><input name="supervise_name" id="supervise_name" type="text"></td>
                                                     </tr>
                                                 </table>
                                             </form>

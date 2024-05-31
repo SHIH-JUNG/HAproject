@@ -171,7 +171,7 @@ function submit_form() {
       processData: false,
       async: true,
       success: function (data) {
-        console.log(data);
+        // console.log(data);
         if (data == 1) {
           swal({
             type: "success",
@@ -206,7 +206,7 @@ var tableTr='';
 //var signList='';
 
 //紀錄已選定簽核人
-function NowSign(){
+function NewSign(){
   tableTr='';
   $(".addSign").each(function(i,n){
     var name=$(this).val();
@@ -220,7 +220,7 @@ function NowSign(){
 
 // 新增簽核人
 $("#addTR").on("click", function () {
-  NowSign();
+  NewSign();
   tableTr += new_addSign_tr;
   $("#add_sign").html(tableTr);
   append_user();

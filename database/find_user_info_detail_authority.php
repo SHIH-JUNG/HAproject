@@ -2,10 +2,10 @@
 include("sql_connect.php"); 
 
 $Authority = $_POST['Authority'];
-$Job = $_POST['Job'];
+// $Job = $_POST['Job'];
 
 //region 抓資料
-$note = "SELECT * FROM `user_info_default_auth` WHERE `Authority_num`='$Authority' AND `Job`='$Job';";
+$note = "SELECT * FROM `user_info_default_auth` WHERE `Authority_num`='$Authority';";
 
 //宣告空的陣列
 $datas = array();
