@@ -7,15 +7,15 @@ window.origin_sync_link = "";
 window.origin_share_link = "";
 
 // 載入google sheet內容，讀取txt檔案內儲存的網址 region
-load_url = function () 
+load_url = function ()
 {
-    $.get("./accounting_sheet/HAproject_accounting_google_sheet_api.txt", function(url) {
+    $.get("./accounting_sheet/HAproject_accounting_google_sheet_api_new.txt", function(url) {
         origin_sync_link = url;
         $("#sync_link").val(url);
     });
     $.ajaxSettings.async = true;
-    
-    $.get("./accounting_sheet/HAproject_accounting_google_sheet_share_url.txt", function(url) {
+
+    $.get("./accounting_sheet/HAproject_accounting_google_sheet_share_url_new2.txt", function(url) {
         origin_share_link = url;
         $("#share_link").val(url);
     });
@@ -37,7 +37,7 @@ update_sync_url = function() {
         showCancelButton: true
     }).then(function (result) {
     if (result) {
-        if($("#sync_link").val() == "") 
+        if($("#sync_link").val() == "")
         {
             swal({
                 title:"同步連結不可為空值!\r\n",
@@ -47,15 +47,14 @@ update_sync_url = function() {
         else
         {
             var sync_link = $("#sync_link").val();
-    
-    
+
+
             $.ajax({
-                url: "database/write_accounting_sheet_sync_link.php", 
-                type: "POST", 
+                url: "database/write_accounting_sheet_sync_link.php",
+                type: "POST",
                 data: {
-                    origin_content:origin_sync_link,
                     content: sync_link
-                }, 
+                },
                 success: function(response){
                     // console.log(response);
                     swal({
@@ -83,7 +82,7 @@ update_sync_url = function() {
     }
     }).catch(swal.noop)
 
-    
+
 }
 //endregion
 
@@ -101,7 +100,7 @@ update_share_url = function() {
             showCancelButton: true
         }).then(function (result) {
         if (result) {
-            if($("#share_link").val() == "") 
+            if($("#share_link").val() == "")
             {
                 swal({
                     title:"分享連結不可為空值!\r\n",
@@ -113,12 +112,11 @@ update_share_url = function() {
                 var share_link = $("#share_link").val();
 
                 $.ajax({
-                    url: "database/write_accounting_sheet_share_link.php", 
-                    type: "POST", 
+                    url: "database/write_accounting_sheet_share_link.php",
+                    type: "POST",
                     data: {
-                        origin_content:origin_share_link,
                         content: share_link
-                    }, 
+                    },
                     success: function(response){
                         // console.log(response);
                         swal({
@@ -161,16 +159,16 @@ recover_sync_url = function() {
         showCancelButton: true
     }).then(function (result) {
     if (result) {
-        $.get("./accounting_sheet/HAproject_accounting_google_sheet_api_origin.txt", function(url) {
+        $.get("./accounting_sheet_origin/HAproject_accounting_google_sheet_api_origin.txt", function(url) {
             origin_sync_link = url;
             $("#sync_link").val(url);
-    
+
             swal({
                 title:"已復原",
                 type:'success'
             })
         });
-    
+
         $.ajaxSettings.async = true;
     }
     }, function (dismiss) {
@@ -198,10 +196,10 @@ recover_share_url = function() {
         showCancelButton: true
     }).then(function (result) {
     if (result) {
-        $.get("./accounting_sheet/HAproject_accounting_google_sheet_share_url_origin.txt", function(url) {
+        $.get("./accounting_sheet_origin/HAproject_accounting_google_sheet_share_url_origin2.txt", function(url) {
             origin_share_link = url;
             $("#share_link").val(url);
-    
+
             swal({
                 title:"已復原",
                 type:'success'

@@ -13,8 +13,11 @@ $Num_publish = $_REQUEST['Num_publish'];
 
 // 西元年 2022-01-01
 $Sign_published_date = $_REQUEST['Sign_published_date'];
+$Executive = $_REQUEST['Executive'];
+$Supervise = $_REQUEST['Supervise'];
 $Leader = $_REQUEST['Leader'];
 $Director = $_REQUEST['Director'];
+$Distribution = $_REQUEST['Distribution'];
 
 
 
@@ -44,9 +47,9 @@ $title = '發文簽核：主旨'.$Subject;
 
 $sign_published_date = $Sign_published_date." 00:00";
 
-$signers = $Leader.'、'.$Director;
+$signers = $Executive.'、'.$Supervise.'、'.$Leader.'、'.$Director.'、'.$Distribution;
 
-$sign_state = $Leader . "未簽核" . "、" . $Director . "未簽核";
+$sign_state = $Executive . "未簽核" .'、'.$Supervise . "未簽核" .'、'.$Leader . "未簽核" .'、'.$Director . "未簽核" .'、'.$Distribution . "未簽核" ;
 
 
 // 上傳報表路徑
@@ -81,8 +84,8 @@ if (isset($_FILES["published_files0"]))
 }
 
 $sql = "INSERT INTO `published` (`Id`, `Year`,`Title_name`,`Published_date`,`Subject`,
-`Num_publish`, `Upload_path`, `Upload_name`, `Leader`, `Director`, `Create_date`,`Create_name`) VALUES
- ($published_id, '$Year','$Title_Name','$published_date','$Subject','$Num_publish', '$file', '$file_name', '$Leader', '$Director', Now(),'$user');";
+`Num_publish`, `Upload_path`, `Upload_name`, `Executive`, `Supervise`, `Leader`, `Director`, `Distribution`, `Create_date`,`Create_name`) VALUES
+ ($published_id, '$Year','$Title_Name','$published_date','$Subject','$Num_publish', '$file', '$file_name', '$Executive', '$Supervise', '$Leader', '$Director', '$Distribution', Now(),'$user');";
 
 $sql .= "INSERT INTO `signature_notice` (`Sign_id`, `Title`,`Url`,`Timestamp`, `Assign`, `Signer`, `Sign_state`, `Type`, `Create_date`, `Create_name`) 
 VALUES ($published_id, '$title', '$url', '$sign_published_date', '$user', '$signers', '$sign_state', 'published', Now(), '$user');";
@@ -94,4 +97,3 @@ if (mysqli_multi_query($conn, $sql)) {
 }
 
 mysqli_close($conn);
-
