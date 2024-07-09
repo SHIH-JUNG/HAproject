@@ -175,7 +175,7 @@ var tableTr='';
 //紀錄已選定簽核人
 function NewSign(){
   var stepSignNumber = document.getElementsByClassName("signName").length;
-  tableTr+='<tr style="text-align:left"><td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline"><label>簽章</label></td><td style=""><div class="col-sm-3" style="margin-top: 0.6em;"><select class="signName" id="signName'+stepSignNumber+'" style="width:100%;"><option value="">請選擇</option></select></div><div class="col-sm-9"><button style="margin:.5em;margin-right:3em;color:red;" type="button"  onclick="signature_btn_click('+stepSignNumber+');">簽名</button><button style="margin:.5em;" type="button" onclick="sign_msg_model('+stepSignNumber+');" data-toggle="modal" data-target="#myModal">查看留言</button><a src="" id="signName'+stepSignNumber+'_signature_simg" style="color:blue;" target="_blank" alt="簽名圖片連結"></a></div></td></tr>'
+  tableTr+='<tr style="text-align:left"><td style="text-align:right;background-color:rgb(135 185 96);border-bottom-color: white;border-right-color: white;" class="NOline"><label>簽章</label></td><td style=""><div class="col-sm-3" style="margin-top: 0.6em;"><select class="signName" id="signName'+stepSignNumber+'" style="width:100%;"><option value="">請選擇</option></select></div><div class="col-sm-9"><button style="margin:.5em;margin-right:3em;color:red;" type="button"  onclick="signature_btn_click('+stepSignNumber+');">簽名</button><button style="margin:.5em;" type="button" onclick="sign_msg_model('+stepSignNumber+');" data-toggle="modal" data-target="#myModal">查看留言</button><a src="" id="signName'+stepSignNumber+'_signature_simg" style="color:blue;" target="_blank" alt="簽名圖片連結"></a></div></td></tr>'
   $("#allSign").html(tableTr);
 }
 

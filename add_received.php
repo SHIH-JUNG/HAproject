@@ -210,7 +210,7 @@
                                                                 </tr> -->
                                                                 <tbody id="add_sign" >
                                                                     <tr style="text-align:left">
-                                                                        <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;">
+                                                                        <td style="text-align:right;background-color:rgb(135 185 96);border-bottom-color: white;border-right-color: white;">
                                                                             <input type="button" value="刪除" onclick="deleteTr(this)">
                                                                             <i style="color:red;">※</i>簽核人
                                                                         </td>
