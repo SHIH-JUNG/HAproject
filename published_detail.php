@@ -206,7 +206,7 @@ $user_name = $_SESSION['name'];
                                                                                 <td style="border-bottom: solid 1px;"><input id="update_name" class="pu_question" type="text"></td>
                                                                             </tr>
 
-                                                                            <tr style="text-align:left">
+                                                                            <!-- <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline">
                                                                                     <label>簽章</label>
                                                                                 </td>
@@ -222,9 +222,9 @@ $user_name = $_SESSION['name'];
                                                                                         <a src="" id="executive_signature_simg" style="color:blue;" target="_blank" alt="簽名圖片連結"></a>
                                                                                     </div>
                                                                                 </td>
-                                                                            </tr>
+                                                                            </tr> -->
                                                                             <!-- 20231118 Update-->
-                                                                            <tr style="text-align:left">
+                                                                            <!-- <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline">
                                                                                     <label>簽章</label>
                                                                                 </td>
@@ -291,8 +291,10 @@ $user_name = $_SESSION['name'];
                                                                                         <a src="" id="distribution_signature_simg" style="color:blue;" target="_blank" alt="簽名圖片連結"></a>
                                                                                     </div>
                                                                                 </td>
-                                                                            </tr>
-
+                                                                            </tr> -->
+                                                                            <tbody id="allSign">
+                                           
+                                                                            </tbody>
                                                                             <tr>
                                                                                 <td colspan="2">
                                                                                     <div id="edit_div">

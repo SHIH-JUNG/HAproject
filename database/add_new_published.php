@@ -13,13 +13,12 @@ $Num_publish = $_REQUEST['Num_publish'];
 
 // 西元年 2022-01-01
 $Sign_published_date = $_REQUEST['Sign_published_date'];
-$Executive = $_REQUEST['Executive'];
-$Supervise = $_REQUEST['Supervise'];
-$Leader = $_REQUEST['Leader'];
-$Director = $_REQUEST['Director'];
-$Distribution = $_REQUEST['Distribution'];
-
-
+// $Executive = $_REQUEST['Executive'];
+// $Supervise = $_REQUEST['Supervise'];
+// $Leader = $_REQUEST['Leader'];
+// $Director = $_REQUEST['Director'];
+// $Distribution = $_REQUEST['Distribution'];
+$Employee_sign = $_REQUEST['employee_sign'];
 
 $user = $_SESSION['name'];
 
@@ -47,10 +46,25 @@ $title = '發文簽核：主旨'.$Subject;
 
 $sign_published_date = $Sign_published_date." 00:00";
 
-$signers = $Executive.'、'.$Supervise.'、'.$Leader.'、'.$Director.'、'.$Distribution;
+// $signers = $Executive.'、'.$Supervise.'、'.$Leader.'、'.$Director.'、'.$Distribution;
 
-$sign_state = $Executive . "未簽核" .'、'.$Supervise . "未簽核" .'、'.$Leader . "未簽核" .'、'.$Director . "未簽核" .'、'.$Distribution . "未簽核" ;
+// $sign_state = $Executive . "未簽核" .'、'.$Supervise . "未簽核" .'、'.$Leader . "未簽核" .'、'.$Director . "未簽核" .'、'.$Distribution . "未簽核" ;
 
+$signers = explode('、', $Employee_sign);
+$sign_state='';
+$Sign_Path='';
+$sign_msg='';
+$sign_date='';
+foreach($signers as &$signer){
+    $sign_state .= $signer .'未簽核 ';
+    $Sign_Path .= '待簽核 ';
+    $sign_msg .= '目前尚無留言內容 ';
+    $sign_date .= date("Y-m-d") ." ";
+}
+$sign_state = str_replace(' ', '、', trim($sign_state));
+$Sign_Path = str_replace(' ', '、', trim($Sign_Path));
+$sign_msg = str_replace(' ', '、', trim($sign_msg));
+$sign_date = str_replace(' ', '、', trim($sign_date));
 
 // 上傳報表路徑
 @$file_dir = "../published/";
@@ -84,11 +98,11 @@ if (isset($_FILES["published_files0"]))
 }
 
 $sql = "INSERT INTO `published` (`Id`, `Year`,`Title_name`,`Published_date`,`Subject`,
-`Num_publish`, `Upload_path`, `Upload_name`, `Executive`, `Supervise`, `Leader`, `Director`, `Distribution`, `Create_date`,`Create_name`) VALUES
- ($published_id, '$Year','$Title_Name','$published_date','$Subject','$Num_publish', '$file', '$file_name', '$Executive', '$Supervise', '$Leader', '$Director', '$Distribution', Now(),'$user');";
+`Num_publish`, `Upload_path`, `Upload_name`, `employee_sign`, `employee_sign_imagePath`, `employee_sign_msg`, `employee_sign_Date`, `Create_date`,`Create_name`) VALUES
+ ($published_id, '$Year','$Title_Name','$published_date','$Subject','$Num_publish', '$file', '$file_name', '$Employee_sign', '$Sign_Path', '$sign_msg', '$sign_date', Now(),'$user');";
 
 $sql .= "INSERT INTO `signature_notice` (`Sign_id`, `Title`,`Url`,`Timestamp`, `Assign`, `Signer`, `Sign_state`, `Type`, `Create_date`, `Create_name`) 
-VALUES ($published_id, '$title', '$url', '$sign_published_date', '$user', '$signers', '$sign_state', 'published', Now(), '$user');";
+VALUES ($published_id, '$title', '$url', '$sign_published_date', '$user', '$Employee_sign', '$sign_state', 'published', Now(), '$user');";
 
 if (mysqli_multi_query($conn, $sql)) {
     echo true;

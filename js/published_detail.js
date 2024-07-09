@@ -114,21 +114,36 @@ check_sql_date_format = function (date) {
   return date;
 };
 
-$.ajax({
-  type:'POST',
-  url:'database/find_check_user.php',
-  dataType: "JSON",
-  async: false,//啟用同步請求
-  success: function (data) {
-      for (var index in data.Id) {
-        $("#executive").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
-        $("#supervise").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
-        $("#leader").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
-        $("#director").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
-        $("#distribution").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
-      }
-  },
-});
+function add_option(){
+  $.ajax({
+    type:'POST',
+    url:'database/find_check_user.php',
+    dataType: "JSON",
+    async: false,//啟用同步請求
+    success: function (data) {
+        // console.log('test',data)
+        for (var index in data.Id) {
+            $(".signName").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+        }
+    },
+  });
+}
+
+// $.ajax({
+//   type:'POST',
+//   url:'database/find_check_user.php',
+//   dataType: "JSON",
+//   async: false,//啟用同步請求
+//   success: function (data) {
+//       for (var index in data.Id) {
+//         $("#executive").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+//         $("#supervise").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+//         $("#leader").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+//         $("#director").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+//         $("#distribution").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+//       }
+//   },
+// });
 
 pu_id = getUrlVars()["pu_id"];
 pu_year = getUrlVars()["year"];
@@ -138,6 +153,20 @@ supervise_msg_arr = [];
 leader_msg_arr = [];
 director_msg_arr = [];
 distribution_msg_arr = [];
+var employeeSign_arr = []
+var employeeSign_imagePath_arr = []
+var employeeSign_msg_arr = [];
+var employeeSign_Date_arr = [];
+
+//新增的簽核選項
+var tableTr='';
+
+//紀錄已選定簽核人
+function NewSign(){
+  var stepSignNumber = document.getElementsByClassName("signName").length;
+  tableTr+='<tr style="text-align:left"><td style="text-align:right;background-color:rgb(135 185 96);border-bottom-color: white;border-right-color: white;" class="NOline"><label>簽章</label></td><td style=""><div class="col-sm-3" style="margin-top: 0.6em;"><select class="signName" id="signName'+stepSignNumber+'" style="width:100%;"><option value="">請選擇</option></select></div><div class="col-sm-9"><button style="margin:.5em;margin-right:3em;color:red;" type="button"  onclick="signature_btn_click('+stepSignNumber+');">簽名</button><button style="margin:.5em;" type="button" onclick="sign_msg_model('+stepSignNumber+');" data-toggle="modal" data-target="#myModal">查看留言</button><a src="" id="signName'+stepSignNumber+'_signature_simg" style="color:blue;" target="_blank" alt="簽名圖片連結"></a></div></td></tr>'
+  $("#allSign").html(tableTr);
+}
 
 //抓發文表region
 $(document).ready(function () {
@@ -170,22 +199,51 @@ $(document).ready(function () {
 
         $("#upload").html(a_element_content);
 
-        handleSignature(value.Executive_signature, "#executive_signature_simg", "./signature/", value.Executive, "executive");
-        handleSignature(value.Supervise_signature, "#supervise_signature_simg", "./signature/", value.Supervise, "supervise");
-        handleSignature(value.Leader_signature, "#leader_signature_simg", "./signature/", value.Leader, "leader");
-        handleSignature(value.Director_signature, "#director_signature_simg", "./signature/", value.Director, "director");
-        handleSignature(value.Distribution_signature, "#distribution_signature_simg", "./signature/", value.Distribution, "distribution");
+        // handleSignature(value.Executive_signature, "#executive_signature_simg", "./signature/", value.Executive, "executive");
+        // handleSignature(value.Supervise_signature, "#supervise_signature_simg", "./signature/", value.Supervise, "supervise");
+        // handleSignature(value.Leader_signature, "#leader_signature_simg", "./signature/", value.Leader, "leader");
+        // handleSignature(value.Director_signature, "#director_signature_simg", "./signature/", value.Director, "director");
+        // handleSignature(value.Distribution_signature, "#distribution_signature_simg", "./signature/", value.Distribution, "distribution");
+        // executive_msg_arr.push(value.Executive_sign_msg);
+        // executive_msg_arr.push(value.Executive_sign_time);
+        // supervise_msg_arr.push(value.Supervise_sign_msg);
+        // supervise_msg_arr.push(value.Supervise_sign_time);
+        // leader_msg_arr.push(value.Leader_sign_msg);
+        // leader_msg_arr.push(value.Leader_sign_time);
+        // director_msg_arr.push(value.Director_sign_msg);
+        // director_msg_arr.push(value.Director_sign_time);
+        // distribution_msg_arr.push(value.Distribution_sign_msg);
+        // distribution_msg_arr.push(value.Distribution_sign_time);
 
-        executive_msg_arr.push(value.Executive_sign_msg);
-        executive_msg_arr.push(value.Executive_sign_time);
-        supervise_msg_arr.push(value.Supervise_sign_msg);
-        supervise_msg_arr.push(value.Supervise_sign_time);
-        leader_msg_arr.push(value.Leader_sign_msg);
-        leader_msg_arr.push(value.Leader_sign_time);
-        director_msg_arr.push(value.Director_sign_msg);
-        director_msg_arr.push(value.Director_sign_time);
-        distribution_msg_arr.push(value.Distribution_sign_msg);
-        distribution_msg_arr.push(value.Distribution_sign_time);
+        var employeeSign = value.employee_sign.split('、');
+        var employeeSign_imagePath = value.employee_sign_imagePath.split('、');
+        var employeeSign_msg = value.employee_sign_msg.split('、');
+        var employeeSign_Date = value.employee_sign_Date.split('、');
+        // console.log(employeeSign);
+        for(var i=0;i<employeeSign.length;i++){
+          NewSign();
+        }
+        add_option();
+        for(var i=0;i<employeeSign.length;i++){
+          // console.log(employeeSign[i])
+          $("#signName"+i).val(employeeSign[i]);
+          $("#signName"+i+"_signature_simg").text("點擊顯示簽名圖片");
+          if(employeeSign_imagePath[i]=="" || employeeSign_imagePath[i]=="待簽核")
+            {
+              $("#signName"+i+"_signature_simg").attr("onclick", "javascript:swal({title: '未簽名',type: 'error',}); return false;")
+            }
+            else
+            {
+              $("#signName"+i+"_signature_simg").attr(
+                "href",
+                "./signature/" + employeeSign_imagePath[i]
+              );
+            }
+            employeeSign_arr.push(employeeSign[i]);
+            employeeSign_imagePath_arr.push(employeeSign_imagePath[i]);
+            employeeSign_msg_arr.push(employeeSign_msg[i]);
+            employeeSign_Date_arr.push(employeeSign_Date[i]);
+        }
       });
     },
     error: function (e) {
@@ -194,6 +252,7 @@ $(document).ready(function () {
   });
 
   $(".pu_question").attr("disabled", true);
+  $(".signName").attr("disabled", true);
 
   //jsignature插件初始化 region
   jsignature_initialization();
@@ -224,21 +283,21 @@ $(document).ready(function () {
 
 //endregion
 
-function handleSignature(signature, elementId, path, signName, boardName) {
-  var signFileVal = signature.replace("../signature/", "");
-  $(elementId).text("點擊顯示簽名圖片");
+// function handleSignature(signature, elementId, path, signName, boardName) {
+//   var signFileVal = signature.replace("../signature/", "");
+//   $(elementId).text("點擊顯示簽名圖片");
 
-  if (signFileVal == "") {
-    $(elementId).attr("onclick", "javascript:swal({title: '未簽名',type: 'error',}); return false;")
-  } else {
-    $(elementId).attr("href", path + signFileVal);
-  }
+//   if (signFileVal == "") {
+//     $(elementId).attr("onclick", "javascript:swal({title: '未簽名',type: 'error',}); return false;")
+//   } else {
+//     $(elementId).attr("href", path + signFileVal);
+//   }
 
-  $(elementId).siblings(".sign_btn").attr("board_name", boardName).css("color", "red");
+//   $(elementId).siblings(".sign_btn").attr("board_name", boardName).css("color", "red");
 
-  // 設定對應的簽名名稱
-  $("#" + boardName).val(signName);
-}
+//   // 設定對應的簽名名稱
+//   $("#" + boardName).val(signName);
+// }
 
 sign_msg_model = function (sign_type_name) {
   //手動新增按鈕點擊跳出模態框
@@ -271,10 +330,16 @@ sign_msg_model = function (sign_type_name) {
       break;
 
     case "distribution":
-        var type_name = "發派";
-        $(".sign_msg").text(distribution_msg_arr[0]);
-        $(".sign_msg_time").val(distribution_msg_arr[1]);
-        break;
+      var type_name = "發派";
+      $(".sign_msg").text(distribution_msg_arr[0]);
+      $(".sign_msg_time").val(distribution_msg_arr[1]);
+      break;
+    default:
+      var type_name = "簽核";
+      // console.log(employeeSign_msg_arr);
+      $(".sign_msg").text(employeeSign_msg_arr[sign_type_name]);
+      $(".sign_msg_time").val(employeeSign_Date_arr[sign_type_name]);
+      break;
   }
 
   $(".sign_msg_td_name").text(type_name + "簽名留言內容");
@@ -306,10 +371,27 @@ function jsignature_initialization() {
 signature_submit = function(this_btn) {
   // 獲取簽名類型(督導、組長、主管)
   var sign_type = $(this_btn).attr("board_name");
-  var sign_name = $(`#${sign_type}`).val();
+  // var sign_name = $(`#${sign_type}`).val();
 
   var ajax_url = "database/update_published_data_detail_signature.php";
   var src_data = $("#signature_images").attr("src");
+  var today = new Date();
+  var year = today.getFullYear();
+  var month = today.getMonth()+1;
+  var day = today.getDay();
+  var hour = today.getHours();
+  var minute = today.getMinutes();
+  var second = today.getSeconds();
+  if($("#signature_msg").val() != ""){
+    employeeSign_msg_arr[sign_type] = $("#signature_msg").val();
+  }
+  employeeSign_imagePath_arr[sign_type] = "../signature/" + year + month + day + ".png";
+  employeeSign_Date_arr[sign_type] = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
+  // console.log(employeeSign_msg_arr+'\n'+employeeSign_imagePath_arr+'\n'+employeeSign_Date_arr);
+  var smg_arr = employeeSign_msg_arr.join('、');
+  var imagePath_arr = employeeSign_imagePath_arr.join('、');
+  var Date_arr = employeeSign_Date_arr.join('、');
+  var datePath = "../signature/" + year + month + day + ".png"
 
   // 判斷有無簽名圖片，若有送出簽名並儲存檔案
   if (src_data) {
@@ -321,6 +403,10 @@ signature_submit = function(this_btn) {
         src_data: src_data,
         sign_msg: $("#signature_msg").val(),
         sign_type: sign_type,
+        imagePath_arr,
+        smg_arr,
+        Date_arr,
+        datePath,
       },
       async: false,
       success: function (data) {
@@ -366,10 +452,14 @@ signature_btn_click = function(sign_board_name) {
     case "distribution":
       type_name = "發派";
       break;
+    default:
+      type_name = employeeSign_arr[sign_board_name];
+      break;
   }
 
   // 檢查當前使用者名稱是否與簽名欄位名稱匹配
-  var sign_name = $("#" + sign_board_name).val();
+  var sign_name = $("#signName" + sign_board_name).val();
+  // console.log(sign_name + '/' + user_name);
   if (sign_name !== user_name) {
     alert("您只能在顯示自己帳號的欄位中簽章！");
     return false;

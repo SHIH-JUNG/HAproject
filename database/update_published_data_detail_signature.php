@@ -4,6 +4,10 @@ include("sql_connect.php");
 $Pu_id = $_REQUEST['pu_id'];
 $sign_msg = $_POST['sign_msg'];
 $sign_type = $_POST['sign_type'];
+$employeeSign_imagePath_arr = $_POST['imagePath_arr'];
+$employeeSign_msg_arr = $_POST['smg_arr'];
+$employeeSign_Date_arr = $_POST['Date_arr'];
+$datePath = $_POST['datePath'];
 
 $user = $_SESSION['name'];
 
@@ -37,7 +41,8 @@ switch ($sign_type) {
         $sql_str = " `Director` = '$user', `Director_signature` = '$new_file', `Director_sign_msg` = '$sign_msg',`Director_sign_time` = NOW()";
         break;
     default:
-        return false;
+        $sql_str = " `employee_sign_imagePath` = '$employeeSign_imagePath_arr', `employee_sign_msg` = '$employeeSign_msg_arr',`employee_sign_Date` = '$employeeSign_Date_arr'";
+        $new_file = $datePath;
         break;
 }
 

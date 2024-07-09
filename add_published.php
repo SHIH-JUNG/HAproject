@@ -151,7 +151,7 @@
                                                                         </div>
                                                                     </td>
                                                             </tr>
-                                                            <tr style="text-align:left">
+                                                            <!--<tr style="text-align:left">
                                                                     <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>簽核人</td>
                                                                     <td style="border-bottom: solid 1px;">
                                                                         <div class="col-sm-6">
@@ -171,7 +171,7 @@
                                                                         </div>
                                                                     </td>
                                                                 </tr>
-                                                                <!-- <tr style="text-align:left">
+                                                                 <tr style="text-align:left">
                                                                     <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>簽核人</td>
                                                                     <td style="border-bottom: solid 1px;">
                                                                         <div class="col-sm-6">
@@ -190,7 +190,7 @@
                                                                             </select>
                                                                         </div>
                                                                     </td>
-                                                                </tr>
+                                                                </tr> 
                                                                 <tr style="text-align:left">
                                                                     <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>簽核人</td>
                                                                     <td style="border-bottom: solid 1px;">
@@ -200,8 +200,23 @@
                                                                             </select>
                                                                         </div>
                                                                     </td>
-                                                                </tr> -->
-
+                                                                </tr>-->
+                                                            <tbody id="add_sign" >
+                                                                <tr style="text-align:left">
+                                                                    <td style="text-align:right;background-color:rgb(135 185 96);border-bottom-color: white;border-right-color: white;">
+                                                                        <input type="button" value="刪除" onclick="deleteTr(this)">
+                                                                        <i style="color:red;">※</i>簽核人
+                                                                    </td>
+                                                                    <td style="border-bottom: solid 1px;">
+                                                                        <div class="col-sm-6">                                                                                                                                                                                                                                                                     
+                                                                            <select name="addSign" class="addSign" style="width:100%;">                                                                          
+                                                                                <option value="">請選擇</option>
+                                                                            <!-- </select>-->
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <!-- </script> -->
+                                                            </tbody>
                                                         </table>
                                                     </div>
                                                 </div>
@@ -214,6 +229,10 @@
                                                             <path d="M5.884 6.68a.5.5 0 1 0-.768.64L7.349 10l-2.233 2.68a.5.5 0 0 0 .768.64L8 10.781l2.116 2.54a.5.5 0 0 0 .768-.641L8.651 10l2.233-2.68a.5.5 0 0 0-.768-.64L8 9.219l-2.116-2.54z" />
                                                             <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
                                                         </svg>取消</button></a>
+                                                <button id="addTR" style="font-size:15px" type="button" class="btn btn-default"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-check" viewBox="0 0 16 16">
+                                                            <path d="M10.854 7.854a.5.5 0 0 0-.708-.708L7.5 9.793 6.354 8.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
+                                                            <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
+                                                    </svg>增加簽核人</button>
                                             </div>
                                         </div>
                                     </div>

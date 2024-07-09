@@ -137,23 +137,23 @@ function add_option(){
   });
 }
 
-$.ajax({
-  type:'POST',
-  url:'database/find_check_user.php',
-  dataType: "JSON",
-  async: false,//啟用同步請求
-  success: function (data) {
-      // console.log('test',data)
-      for (var index in data.Id) {
-          $("#executive").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
-          $("#supervise").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
-          $("#leader").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
-          $("#director").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
-          $("#distribution").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
-          $(".signName").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
-      }
-  },
-});
+// $.ajax({
+//   type:'POST',
+//   url:'database/find_check_user.php',
+//   dataType: "JSON",
+//   async: false,//啟用同步請求
+//   success: function (data) {
+//       // console.log('test',data)
+//       for (var index in data.Id) {
+//           $("#executive").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+//           $("#supervise").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+//           $("#leader").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+//           $("#director").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+//           $("#distribution").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+//           $(".signName").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+//       }
+//   },
+// });
 
 
 re_id = getUrlVars()["re_id"];
@@ -575,6 +575,14 @@ signature_btn_click = function(sign_board_name) {
     default:
       type_name = employeeSign_arr[sign_board_name];
       break;
+  }
+
+  // 檢查當前使用者名稱是否與簽名欄位名稱匹配
+  var sign_name = $("#signName" + sign_board_name).val();
+  console.log(sign_name + '/' + user_name);
+  if (sign_name !== user_name) {
+    alert("您只能在顯示自己帳號的欄位中簽章！");
+    return false;
   }
 
   $("#signature_h4").text(type_name + "簽名");

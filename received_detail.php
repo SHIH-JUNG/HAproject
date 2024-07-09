@@ -1,4 +1,6 @@
-<?php session_start(); ?>
+<?php session_start(); 
+$user_name = $_SESSION['name'];
+?>
 <?php include("database/check_authority.php"); ?> <?php include("no_cache.php"); ?>
 <?php $href_name =  'page_a'; ?>
 <?php @$re_year =  $_GET['year']; ?>
@@ -21,7 +23,11 @@
     <!--  日期民國  -->
     <link data-require="jqueryui@*" rel="stylesheet" href="css/jquery-ui.css" />
     <link href="css/dtsel.css" rel="stylesheet" />
-
+    <script>
+        //設定js變數抓取使用者名稱
+        var user_name = '<?php echo $_SESSION["name"]; ?>';
+    </script>
+    
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="description" content="快樂聯盟資管系統">

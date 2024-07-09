@@ -5,7 +5,7 @@ include("sql_connect.php");
 $user = $_SESSION['name'];
 $Re_id = $_REQUEST['re_id'];
 $Year = $_REQUEST['Year'];
-$Title_name = $_REQUEST['Title_name'];
+// $Title_name = $_REQUEST['Title_name'];
 $Received_date = $_REQUEST['Received_date'];
 $Subject = $_REQUEST['Subject'];
 $Unit = $_REQUEST['Unit'];
@@ -45,7 +45,7 @@ if (isset($_FILES["received_files0"]))
     $sql_file_upload = ",`Upload_path`= '$file', `Upload_name` = '$file_name'";
 }
 
-$sqlUpdate = "UPDATE `received` SET `Received_date` = '$Received_date', `Title_name` = '$Title_name'
+$sqlUpdate = "UPDATE `received` SET `Received_date` = '$Received_date'
 ".$sql_file_upload."
 ,`Subject` = '$Subject',`Unit` = '$Unit',`Num_receive` = '$Num_receive', 
 `Update_name` = '$user', `Update_date` = NOW() WHERE `Id` = '$Re_id' ORDER BY `received`.`Received_date` ASC LIMIT 1;";

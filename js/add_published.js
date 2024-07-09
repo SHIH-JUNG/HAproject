@@ -142,11 +142,17 @@ function submit_form() {
 
 
   form_data.append("Sign_published_date", trans_to_EN($("#published_date").val()));
-  form_data.append("Leader",$("#leader").val());
-  form_data.append("Director",$("#director").val());
+  // form_data.append("Leader",$("#leader").val());
+  // form_data.append("Director",$("#director").val());
   // form_data.append("Executive",$("#executive").val());
   // form_data.append("Supervise",$("#supervise").val());
   // form_data.append("Distribution",$("#distribution").val());
+  employee_sign='';
+  $(".addSign").each(function(i,n){
+    employee_sign += $(this).val() + ' '
+    //console.log($(this).val());
+  });
+  form_data.append("employee_sign", employee_sign.trim().replaceAll(' ','、'));
 
   // 預覽傳到後端的資料詳細內容
   // for (var pair of form_data.entries()) {
@@ -163,7 +169,7 @@ function submit_form() {
       processData: false,
       async: true,
       success: function (data) {
-        // console.log(data);
+        console.log(data);
         if (data == 1) {
           swal({
             type: "success",
@@ -192,6 +198,42 @@ function submit_form() {
     });
 }
 
+//新增的簽核選項
+var new_addSign_tr='<tr style="text-align:left"><td style="text-align:right;background-color:rgb(135 185 96);border-bottom-color: white;border-right-color: white;"><input type="button" value="刪除" onclick="deleteTr(this)"><i style="color:red;">※</i>簽核人</td><td style="border-bottom: solid 1px;"><div class="col-sm-6"><select name="addSign" class="addSign" style="width:100%;"><option value="">請選擇</option></select></div></td></tr>';
+var tableTr='';
+//var signList='';
+
+//紀錄已選定簽核人
+function NewSign(){
+  tableTr='';
+  $(".addSign").each(function(i,n){
+    var name=$(this).val();
+    if(name==''){
+      name = "請選擇";
+    }
+    tableTr += '<tr style="text-align:left"><td style="text-align:right;background-color:rgb(135 185 96);border-bottom-color: white;border-right-color: white;"><input type="button" value="刪除" onclick="deleteTr(this)"><i style="color:red;">※</i>簽核人</td><td style="border-bottom: solid 1px;"><div class="col-sm-6"><select name="addSign" class="addSign" style="width:100%;"><option value="'+name+'">'+name+'</option></select></div></td></tr>';
+    //console.log($(this).val());
+  });
+}
+
+// 新增簽核人
+$("#addTR").on("click", function () {
+  NewSign();
+  tableTr += new_addSign_tr;
+  $("#add_sign").html(tableTr);
+  append_user();
+});
+
+//刪除簽核人
+$(".buttonDelete").on("click", function (){
+  $(this).closest('tr').remove();
+  console.log('click');
+});
+
+function deleteTr(obj){
+  var tr = obj.parentNode.parentNode;
+  tr.parentNode.removeChild(tr);
+}
 
 // 新增發文region
 $("#pu_add_new").on("click", function () {
@@ -399,11 +441,12 @@ function append_user(){
       success: function (data) {
           // console.log('test',data)
           for (var index in data.Id) {
-            $("#leader").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
-            $("#director").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+            // $("#leader").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+            // $("#director").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
             // $("#executive").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
             // $("#supervise").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
             // $("#distribution").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+            $(".addSign").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
           }
       },
   });
