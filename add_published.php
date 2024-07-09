@@ -171,7 +171,7 @@
                                                                         </div>
                                                                     </td>
                                                                 </tr>
-                                                                <tr style="text-align:left">
+                                                                <!-- <tr style="text-align:left">
                                                                     <td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>簽核人</td>
                                                                     <td style="border-bottom: solid 1px;">
                                                                         <div class="col-sm-6">
@@ -200,7 +200,7 @@
                                                                             </select>
                                                                         </div>
                                                                     </td>
-                                                                </tr>
+                                                                </tr> -->
 
                                                         </table>
                                                     </div>
@@ -270,10 +270,10 @@
                     title:"您無權限查看當前頁面!",
                     type:"error"
                 }).then(function(){
-                    window.history.go (-1); 
-                }); 
-                </script>';  
-        } 
+                    window.history.go (-1);
+                });
+                </script>';
+        }
     }
 
 ?>

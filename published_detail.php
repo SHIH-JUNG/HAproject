@@ -1,4 +1,6 @@
-<?php session_start(); ?>
+<?php session_start();
+$user_name = $_SESSION['name'];
+?>
 <?php include("database/check_authority.php"); ?> <?php include("no_cache.php"); ?>
 <?php $href_name =  'page_b'; ?>
 <?php @$pu_year =  $_GET['year']; ?>
@@ -21,6 +23,10 @@
     <!--  日期民國  -->
     <link data-require="jqueryui@*" rel="stylesheet" href="css/jquery-ui.css" />
     <link href="css/dtsel.css" rel="stylesheet" />
+    <script>
+        //設定js變數抓取使用者名稱
+        var user_name = '<?php echo $_SESSION["name"]; ?>';
+    </script>
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -199,7 +205,7 @@
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">更新者</td>
                                                                                 <td style="border-bottom: solid 1px;"><input id="update_name" class="pu_question" type="text"></td>
                                                                             </tr>
-                                                                            
+
                                                                             <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline">
                                                                                     <label>簽章</label>
@@ -214,7 +220,7 @@
                                                                                         <button style="margin:.5em;margin-right:3em;color:red;" type="button" onclick="signature_btn_click('executive');">簽名</button>
                                                                                         <button style="margin:.5em;" type="button" onclick="sign_msg_model('executive');" data-toggle="modal" data-target="#myModal">查看留言</button>
                                                                                         <a src="" id="executive_signature_simg" style="color:blue;" target="_blank" alt="簽名圖片連結"></a>
-                                                                                    </div>   
+                                                                                    </div>
                                                                                 </td>
                                                                             </tr>
                                                                             <!-- 20231118 Update-->
@@ -232,7 +238,7 @@
                                                                                         <button style="margin:.5em;margin-right:3em;color:red;" type="button" onclick="signature_btn_click('supervise');">簽名</button>
                                                                                         <button style="margin:.5em;" type="button" onclick="sign_msg_model('supervise');" data-toggle="modal" data-target="#myModal">查看留言</button>
                                                                                         <a src="" id="supervise_signature_simg" style="color:blue;" target="_blank" alt="簽名圖片連結"></a>
-                                                                                    </div>   
+                                                                                    </div>
                                                                                 </td>
                                                                             </tr>
                                                                             <tr style="text-align:left">
@@ -285,7 +291,7 @@
                                                                                         <a src="" id="distribution_signature_simg" style="color:blue;" target="_blank" alt="簽名圖片連結"></a>
                                                                                     </div>
                                                                                 </td>
-                                                                            </tr>                              
+                                                                            </tr>
 
                                                                             <tr>
                                                                                 <td colspan="2">
@@ -414,10 +420,10 @@
                     title:"您無權限查看當前頁面!",
                     type:"error"
                 }).then(function(){
-                    window.history.go (-1); 
-                }); 
-                </script>';  
-        } 
+                    window.history.go (-1);
+                });
+                </script>';
+        }
     }
 
 ?>

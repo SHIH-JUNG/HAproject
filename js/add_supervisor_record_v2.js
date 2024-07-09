@@ -95,7 +95,7 @@ $(document).ready(function () {
 
 // 民國年轉換日期格式yyyy-dd-mm region
 function split_date(date) {
-  return parseInt(date.split("年")[0])+1911+"-"+date.split("年")[1].split("月")[0]+"-"+date.split("年")[1].split("月")[1].split("日")[0]; 
+  return parseInt(date.split("年")[0])+1911+"-"+date.split("年")[1].split("月")[0]+"-"+date.split("年")[1].split("月")[1].split("日")[0];
 }
 //endregion
 
@@ -106,7 +106,7 @@ window.file_name = [];
 // 顯示檔名 region
 $("input[type='file']").change(function (event) {
 
-   
+
   // console.log(event.target.files)
   // console.log(event.target.files.length)
 
@@ -118,7 +118,7 @@ $("input[type='file']").change(function (event) {
   // 顯示檔名
   $.each(event.target.files, function(key,val) {
 
-    
+
     file_names_str += "檔案" + (key + 1) + "名稱：" + val.name + "<br/>";
 
     //若檔案類型為圖片則創建img元素
@@ -179,7 +179,7 @@ get_files_name_value = function() {
 
     //獲取 file name名稱
     var name = $(this).attr("name");
-    
+
     // file_name.push({ name: name, value: filePath[filePath.length - 1] });
 
     if($(this).context.files.length == 1)
@@ -193,13 +193,13 @@ get_files_name_value = function() {
       $.each($(this).context.files, function(key,val) {
 
         files_arr.push(val.name);
-    
+
       });
 
       file_name.push({ name: name, value:files_arr});
     }
 
-    
+
  });
 
 //  console.log(file_name)
@@ -214,23 +214,23 @@ $("#rec_add_new_upload").on("click", function () {
 
   var stau = false;
 
-  if (check_add_rec_data_upload() != "") 
+  if (check_add_rec_data_upload() != "")
   {
     stau = false;
-  } 
-  else 
+  }
+  else
   {
     stau = true;
   }
 
-  if (!stau) 
+  if (!stau)
   {
     swal({
       title: check_add_rec_data_upload(),
       type: "error",
     });
-  } 
-  else 
+  }
+  else
   {
     submit_form_data_upload();
   }
@@ -239,7 +239,7 @@ $("#rec_add_new_upload").on("click", function () {
 //endregion
 
 //上傳會議記錄ajax資料格式 region
-function submit_form_data_upload() 
+function submit_form_data_upload()
 {
   //去掉資料內前後端多餘的空白，file類型須排除，否則報錯
   $("input, textarea").each(function () {
@@ -280,9 +280,9 @@ function submit_form_data_upload()
   $("[name='customFile1']").each(function(index, element) {
     var agenda_files = $(this).prop("files");
     // console.log(agenda_files.length)
-    
+
     if (agenda_files != undefined) {
-      if (agenda_files.length != 0) 
+      if (agenda_files.length != 0)
       {
         for (var i = 0; i < agenda_files.length; i++) {
           // console.log(agenda_files[i])
@@ -295,9 +295,9 @@ function submit_form_data_upload()
   $("[name='customFile2']").each(function(index, element) {
     var rec_files = $(this).prop("files");
     // console.log(rec_files.length)
-    
+
     if (rec_files != undefined) {
-      if (rec_files.length != 0) 
+      if (rec_files.length != 0)
       {
         for (var i = 0; i < rec_files.length; i++) {
           // console.log(rec_files[i])
@@ -368,7 +368,7 @@ function submit_form_data_upload()
 //檢查會議記錄的必填欄位 upload region
 function check_add_rec_data_upload() {
   var upload_title_name = $("#upload_title_name").val();
-  var upload_agenda_title_name = $("#upload_agenda_title_name").val();
+  // var upload_agenda_title_name = $("#upload_agenda_title_name").val();
   // var customFile1 = $("[name*=customFile1]").prop("files").length;
   // var customFile2 = $("[name*=customFile2]").prop("files").length;
 
@@ -380,9 +380,9 @@ function check_add_rec_data_upload() {
   if(upload_title_name == null) {
     errorstr += "未填寫團督記錄標題!\r\n";
   }
-  if(upload_agenda_title_name == null) {
-    errorstr += "未填寫會議章程標題!\r\n";
-  }
+  // if(upload_agenda_title_name == null) {
+  //   errorstr += "未填寫會議章程標題!\r\n";
+  // }
   // if(customFile1 == 0) {
   //   errorstr += "未上傳會議章程檔案!\r\n";
   // }
@@ -399,9 +399,9 @@ function check_add_rec_data_upload() {
     if(upload_title_name.replace(/\s*/g, "") == "") {
       errorstr += "未填寫團督記錄標題!\r\n";
     }
-    if(upload_agenda_title_name.replace(/\s*/g, "") == "") {
-      errorstr += "未填寫會議章程標題!\r\n";
-    }
+    // if(upload_agenda_title_name.replace(/\s*/g, "") == "") {
+    //   errorstr += "未填寫會議章程標題!\r\n";
+    // }
     if (upload_rec_director.replace(/\s*/g, "") == "") {
       errorstr += "未選擇主管!\r\n";
     }

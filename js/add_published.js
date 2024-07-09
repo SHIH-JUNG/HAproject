@@ -130,7 +130,7 @@ function submit_form() {
             form_data.append("published_files"+index, published_files[i]);
             // console.log(published_files[i])
           }
-        } 
+        }
       }
   });
 
@@ -144,9 +144,9 @@ function submit_form() {
   form_data.append("Sign_published_date", trans_to_EN($("#published_date").val()));
   form_data.append("Leader",$("#leader").val());
   form_data.append("Director",$("#director").val());
-  form_data.append("Executive",$("#executive").val());
-  form_data.append("Supervise",$("#supervise").val());
-  form_data.append("Distribution",$("#distribution").val());
+  // form_data.append("Executive",$("#executive").val());
+  // form_data.append("Supervise",$("#supervise").val());
+  // form_data.append("Distribution",$("#distribution").val());
 
   // 預覽傳到後端的資料詳細內容
   // for (var pair of form_data.entries()) {
@@ -195,7 +195,7 @@ function submit_form() {
 
 // 新增發文region
 $("#pu_add_new").on("click", function () {
-   
+
   //判斷該量表是否含有 input[type="file"] 類型資料
   if ($('input[type="file"]').length != 0) {
     var exist_arr = check_file_exist();
@@ -335,7 +335,7 @@ function check_null_data() {
       {
         errorstr += check_element_name.replace("※", "") + "\r\n";
       }
-    }    
+    }
   });
 
   return errorstr;
@@ -390,7 +390,7 @@ function check_file_exist() {
 //endregion
 
 //呼叫user方法region
-function append_user(){             
+function append_user(){
   $.ajax({
       type:'POST',
       url:'database/find_check_user.php',
@@ -401,9 +401,9 @@ function append_user(){
           for (var index in data.Id) {
             $("#leader").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
             $("#director").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
-            $("#executive").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
-            $("#supervise").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');            
-            $("#distribution").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+            // $("#executive").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+            // $("#supervise").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+            // $("#distribution").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
           }
       },
   });
