@@ -152,20 +152,19 @@ $.ajax({
     var cssString = "";
     // console.log(data);
     $.each(data, function (index, value) {
-      var executive_sign_arr = datatable_sign_show('executive', value.Executive, value.Executive_signature, value.Executive_sign_time, value.Executive_sign_msg);
-      var supervise_sign_arr = datatable_sign_show('supervise', value.Supervise, value.Supervise_signature, value.Supervise_sign_time, value.Supervise_sign_msg);
-      var leader_sign_arr = datatable_sign_show('leader', value.Leader, value.Leader_signature, value.Leader_sign_time, value.Leader_sign_msg);
-      var director_sign_arr = datatable_sign_show('director', value.Director, value.Director_signature, value.Director_sign_time, value.Director_sign_msg);
-      var distribution_sign_arr = datatable_sign_show('distribution', value.Distribution, value.Distribution_signature, value.Distribution_sign_time, value.Distribution_sign_msg);
+      // var executive_sign_arr = datatable_sign_show('executive', value.Executive, value.Executive_signature, value.Executive_sign_time, value.Executive_sign_msg);
+      // var supervise_sign_arr = datatable_sign_show('supervise', value.Supervise, value.Supervise_signature, value.Supervise_sign_time, value.Supervise_sign_msg);
+      // var leader_sign_arr = datatable_sign_show('leader', value.Leader, value.Leader_signature, value.Leader_sign_time, value.Leader_sign_msg);
+      // var director_sign_arr = datatable_sign_show('director', value.Director, value.Director_signature, value.Director_sign_time, value.Director_sign_msg);
+      // var distribution_sign_arr = datatable_sign_show('distribution', value.Distribution, value.Distribution_signature, value.Distribution_sign_time, value.Distribution_sign_msg);
       var employeeSign = value.employee_sign.split('、');
       var employeeSign_imagePath = value.employee_sign_imagePath.split('、');
       var employeeSign_msg = value.employee_sign_msg.split('、');
       var employeeSign_Date = value.employee_sign_Date.split('、');
-      var signNum = employeeSign.length;
-      if(signNum>4){
-        signNum=4;
-      }
-
+      var Signed = employeeSign_imagePath.filter(x => x=="待簽核").length-1;
+      var employeeSignNumber = employeeSign_imagePath.length-1;
+      (Signed<0) && (Signed=0);
+      //console.log(employeeSign + '/' + Signed + '/' +employeeSignNumber);
       var isUpload = '未上傳';
       // var cert_isUpload = '未上傳';
 
@@ -206,40 +205,55 @@ $.ajax({
         "</td>" +
         '<td style="text-align:center">' +
         value.Update_name +
-        "</td>" +
+        "</td>";
         // '<td style="text-align:center">' +
         // executive_sign_arr[0] +
         // executive_sign_arr[1] +
         // "</td>" +
 
-        '<td style="text-align:center">' +
-        executive_sign_arr[0] +
-        executive_sign_arr[1] +
-        "</td>" +
-        '<td style="text-align:center">' +
-        supervise_sign_arr[0] +
-        supervise_sign_arr[1] +
-        "</td>" +
-        '<td style="text-align:center">' +
-        leader_sign_arr[0] +
-        leader_sign_arr[1] +
-        "</td>" +
-        '<td style="text-align:center">' +
-        director_sign_arr[0] +
-        director_sign_arr[1] +
-        "</td>" +
-        '<td style="text-align:center">' +
-        distribution_sign_arr[0] +
-        distribution_sign_arr[1] +
-        "</td>" +
-        "</tr>";
-
-      // for(var i=0;i<=signNum;i++){
-      //   cssString+='<td style="text-align:center">' +
-      //     employeeSign[i] +
-      //     employeeSign_imagePath[i] +
-      //     "</td>";
-      // }
+        // '<td style="text-align:center">' +
+        // executive_sign_arr[0] +
+        // executive_sign_arr[1] +
+        // "</td>" +
+        // '<td style="text-align:center">' +
+        // supervise_sign_arr[0] +
+        // supervise_sign_arr[1] +
+        // "</td>" +
+        // '<td style="text-align:center">' +
+        // leader_sign_arr[0] +
+        // leader_sign_arr[1] +
+        // "</td>" +
+        // '<td style="text-align:center">' +
+        // director_sign_arr[0] +
+        // director_sign_arr[1] +
+        // "</td>" +
+        // '<td style="text-align:center">' +
+        // distribution_sign_arr[0] +
+        // distribution_sign_arr[1] +
+        // "</td>" +
+        // "</tr>";
+      
+      //顯示前4位簽核人狀態(NEW)
+      for(var i=0;i<4;i++){
+        var signType_arr = []
+        if(i<employeeSignNumber){
+          // console.log(employeeSign[i] + '/' + employeeSign_imagePath[i] + '/' + employeeSign_Date[i] + '/' + employeeSign_msg[i] + '/')
+          signType_arr = datatable_sign_show('sign', employeeSign[i], employeeSign_imagePath[i], employeeSign_Date[i], employeeSign_msg[i]);
+        }
+        else{
+          signType_arr = datatable_sign_show('None', '', '', '', '');
+        }
+        cssString+='<td style="text-align:center" align="center">' +
+          signType_arr[0] +
+          signType_arr[1] +
+          "</td>";
+      }
+      //顯示總體簽核狀態
+      cssString+='<td style="text-align:center">' +
+        employeeSignNumber +
+        '/' +
+        (employeeSignNumber-Signed) +
+        "</td></tr>";
 
       $("#received_date").append(
         '<option value="' +
@@ -324,7 +338,7 @@ $.ajax({
 });
 //endregion
 
-
+//簽核人員的方式
 function datatable_sign_show(signer_type ,signer, sign_path, sign_time, sign_msg) {
   var sign_arr = [];
 
@@ -348,9 +362,12 @@ function datatable_sign_show(signer_type ,signer, sign_path, sign_time, sign_msg
     case "distribution":
       type_name = "發派";
       break;
+    case "sign":
+      type_name = "";
+      break;
   }
 
-  if (sign_msg == "") {
+  if (sign_msg == "" || sign_msg == "目前尚無留言內容") {
     sign_stus = "目前尚無留言內容";
   } else {
     sign_stus =
@@ -360,7 +377,7 @@ function datatable_sign_show(signer_type ,signer, sign_path, sign_time, sign_msg
       sign_msg;
   }
 
-  if (sign_path != "") {
+  if (sign_path != "" && sign_path != "待簽核") {
     var supervise_sign_file_val = sign_path.replace(
       "../signature/",
       "./signature/"
@@ -372,15 +389,17 @@ function datatable_sign_show(signer_type ,signer, sign_path, sign_time, sign_msg
       sign_stus +
       '" data-bs-toggle="tooltip" data-bs-placement="left" title="' +
       sign_stus +
-      '">'+type_name+'已簽章<img style="vertical-align:middle;" class="apreview" width="25px" title="' +
+      '">'+type_name+'已簽章<img style="vertical-align:middle;" class="apreview" width="0px" title="' +
       sign_stus +
       '" src="' +
       supervise_sign_file_val +
       '"></a>';
   }
-
+  if (signer_type == "None"){
+    sign_css_str = '<i>無</i>';
+  }
   if (sign_css_str == "") {
-    sign_css_str = '<i style="color:gray;">待簽核</i>';
+    sign_css_str = '<br><i style="color:gray;">待簽核</i>';
   }
 
   sign_arr.push(signer);

@@ -171,10 +171,10 @@
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>年度</td>
                                                                                 <td style="border-bottom: solid 1px;"><input id="year" class="re_question" type="text"></td>
                                                                             </tr>
-                                                                            <tr style="text-align:left">
+                                                                            <!-- <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>來文標題</td>
                                                                                 <td style="border-bottom: solid 1px;"><input id="title_name" class="re_question" type="text"></td>
-                                                                            </tr>
+                                                                            </tr> -->
                                                                             <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>來文日期</td>
                                                                                 <td style="border-bottom: solid 1px;"><input id="received_date" class="re_question" name="ch_datepicker" type="text"></td>
@@ -219,6 +219,7 @@
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">更新者</td>
                                                                                 <td style="border-bottom: solid 1px;"><input id="update_name" class="re_question" type="text"></td>
                                                                             </tr>
+                                                                            <!-- 
                                                                             <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline">
                                                                                     <label>簽章</label>
@@ -236,7 +237,9 @@
                                                                                     </div>   
                                                                                 </td>
                                                                             </tr>
-                                                                            <!-- 20231118 Update-->
+                                                                            -->
+                                                                            <!-- 20231118 Update -->
+                                                                             <!-- 
                                                                             <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline">
                                                                                     <label>簽章</label>
@@ -305,7 +308,10 @@
                                                                                     </div>
                                                                                 </td>
                                                                             </tr>
-
+                                                                            -->
+                                                                            <tbody id="allSign">
+                                           
+                                                                            </tbody>
                                                                             <tr>
                                                                                 <td colspan="2">
                                                                                     <div id="edit_div">
