@@ -201,7 +201,7 @@ function submit_form() {
 }
 
 //新增的簽核選項
-var new_addSign_tr='<tr style="text-align:left"><td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;"><input type="button" value="刪除" onclick="deleteTr(this)"><i style="color:red;">※</i>簽核人</td><td style="border-bottom: solid 1px;"><div class="col-sm-6"><select name="addSign" class="addSign" style="width:100%;"><option value="">請選擇</option></select></div></td></tr>';
+var new_addSign_tr='<tr style="text-align:left"><td style="text-align:right;background-color:rgb(135 185 96);border-bottom-color: white;border-right-color: white;"><input type="button" value="刪除" onclick="deleteTr(this)"><i style="color:red;">※</i>簽核人</td><td style="border-bottom: solid 1px;"><div class="col-sm-6"><select name="addSign" class="addSign" style="width:100%;"><option value="">請選擇</option></select></div></td></tr>';
 var tableTr='';
 //var signList='';
 
@@ -213,7 +213,7 @@ function NewSign(){
     if(name==''){
       name = "請選擇";
     }
-    tableTr += '<tr style="text-align:left"><td style="text-align:right;background-color:rgb(255 0 0);border-bottom-color: white;border-right-color: white;"><input type="button" value="刪除" onclick="deleteTr(this)"><i style="color:red;">※</i>簽核人</td><td style="border-bottom: solid 1px;"><div class="col-sm-6"><select name="addSign" class="addSign" style="width:100%;"><option value="'+name+'">'+name+'</option></select></div></td></tr>';
+    tableTr += '<tr style="text-align:left"><td style="text-align:right;background-color:rgb(135 185 96);border-bottom-color: white;border-right-color: white;"><input type="button" value="刪除" onclick="deleteTr(this)"><i style="color:red;">※</i>簽核人</td><td style="border-bottom: solid 1px;"><div class="col-sm-6"><select name="addSign" class="addSign" style="width:100%;"><option value="'+name+'">'+name+'</option></select></div></td></tr>';
     //console.log($(this).val());
   });
 }
