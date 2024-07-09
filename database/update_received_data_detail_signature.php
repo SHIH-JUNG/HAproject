@@ -4,6 +4,10 @@ include("sql_connect.php");
 $re_id = $_POST['re_id'];
 $sign_msg = $_POST['sign_msg'];
 $sign_type = $_POST['sign_type'];
+$employeeSign_imagePath_arr = $_POST['imagePath_arr'];
+$employeeSign_msg_arr = $_POST['smg_arr'];
+$employeeSign_Date_arr = $_POST['Date_arr'];
+$datePath = $_POST['datePath'];
 
 $user = $_SESSION['name'];
 
@@ -46,13 +50,15 @@ switch ($sign_type) {
         $sql_str = " `Distribution` = '$user', `Distribution_signature` = '$new_file', `Distribution_sign_msg` = '$sign_msg',`Distribution_sign_time` = NOW()";
         break;
     default:
-        return false;
+        $sql_str = " `employee_sign_imagePath` = '$employeeSign_imagePath_arr', `employee_sign_msg` = '$employeeSign_msg_arr',`employee_sign_Date` = '$employeeSign_Date_arr'";
+        $new_file = $datePath;
         break;
 }
 
 //转换为图片文件
 if (file_put_contents($new_file, base64_decode($base64_content[1]))) {
     $sqlUpdate = "UPDATE `received` SET $sql_str WHERE `Id` = '$re_id' ORDER BY `received`.`Create_date` ASC LIMIT 1;";
+    echo $sqlUpdate;
     if (mysqli_query($conn, $sqlUpdate)) {
         echo true;
     } else {
