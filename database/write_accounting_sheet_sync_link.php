@@ -1,7 +1,7 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $content = $_POST['content'];
-    $file = '../accounting_sheet/HAproject_accounting_google_sheet_api_new.txt'; // 根據需要調整路徑
+    $file = '../accounting_sheet/HAproject_accounting_google_sheet_sync_new.txt'; // 根據需要調整路徑
 
     if (file_put_contents($file, $content) !== false) {
         echo "Success";

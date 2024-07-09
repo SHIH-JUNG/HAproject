@@ -9,13 +9,13 @@ window.origin_share_link = "";
 // 載入google sheet內容，讀取txt檔案內儲存的網址 region
 load_url = function ()
 {
-    $.get("./accounting_sheet/HAproject_accounting_google_sheet_api_new.txt", function(url) {
+    $.get("./accounting_sheet/HAproject_accounting_google_sheet_sync_new.txt", function(url) {
         origin_sync_link = url;
         $("#sync_link").val(url);
     });
     $.ajaxSettings.async = true;
 
-    $.get("./accounting_sheet/HAproject_accounting_google_sheet_share_url_new2.txt", function(url) {
+    $.get("./accounting_sheet/HAproject_accounting_google_sheet_share_new.txt", function(url) {
         origin_share_link = url;
         $("#share_link").val(url);
     });
@@ -159,7 +159,7 @@ recover_sync_url = function() {
         showCancelButton: true
     }).then(function (result) {
     if (result) {
-        $.get("./accounting_sheet_origin/HAproject_accounting_google_sheet_api_origin.txt", function(url) {
+        $.get("./accounting_sheet_origin/HAproject_accounting_google_sheet_api_sync_origin.txt", function(url) {
             origin_sync_link = url;
             $("#sync_link").val(url);
 
@@ -196,7 +196,7 @@ recover_share_url = function() {
         showCancelButton: true
     }).then(function (result) {
     if (result) {
-        $.get("./accounting_sheet_origin/HAproject_accounting_google_sheet_share_url_origin2.txt", function(url) {
+        $.get("./accounting_sheet_origin/HAproject_accounting_google_sheet_api_share_origin.txt", function(url) {
             origin_share_link = url;
             $("#share_link").val(url);
 
