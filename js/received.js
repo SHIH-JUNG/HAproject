@@ -236,7 +236,7 @@ $.ajax({
       //顯示前4位簽核人狀態(NEW)
       for(var i=0;i<4;i++){
         var signType_arr = []
-        if(i<employeeSignNumber){
+        if(i<=employeeSignNumber){
           // console.log(employeeSign[i] + '/' + employeeSign_imagePath[i] + '/' + employeeSign_Date[i] + '/' + employeeSign_msg[i] + '/')
           signType_arr = datatable_sign_show('sign', employeeSign[i], employeeSign_imagePath[i], employeeSign_Date[i], employeeSign_msg[i]);
         }
