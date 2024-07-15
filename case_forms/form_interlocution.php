@@ -67,7 +67,7 @@
                                                         <th>會談地點</th>
                                                         <th>個案問題</th>
                                                         <th>處遇內容摘要記錄</th>
-                                                        <th>社工/關懷人員</th>
+                                                        <th>社工人員</th>
                                                         <th>督導</th>
                                                     </tr>
                                                     <tr>
@@ -78,7 +78,7 @@
                                                                 <option value="電訪">電訪</option>
                                                                 <option value="面訪">面訪</option>
                                                                 <option value="家訪">家訪</option>
-                                                            </select>     
+                                                            </select>
                                                         </td>
                                                         <td>
                                                             <span>選擇個案問題分類，並按+號添加至下方</span>
@@ -117,7 +117,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div class="panel-footer" style="text-align:center;">
                                     <button style="font-size:20px" id="add_interlocution_detail" class="btn btn-default" data-toggle="modal"data-target="#case_storage_model">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-save2" viewBox="0 0 16 16">

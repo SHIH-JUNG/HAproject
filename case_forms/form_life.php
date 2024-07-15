@@ -84,7 +84,7 @@
                                                             <input name="life_answer2" style="zoom: 1.5" value="5" type="radio"><span>非常滿意</span>
                                                         </td>
                                                     </tr>
-                                                  
+
                                                     <tr>
                                                         <td></td>
                                                         <td>3.您覺得身體疼痛會妨礙您處理需要做的事情嗎？</td>
@@ -109,7 +109,7 @@
                                                             <input name="life_answer4" style="zoom: 1.5" value="1" type="radio"><span>非常需要</span>
                                                         </td>
                                                     </tr>
-                                               
+
                                                     <tr>
                                                         <td></td>
                                                         <td>5.您享受生活嗎？</td>
@@ -134,7 +134,7 @@
                                                             <input name="life_answer6" style="zoom: 1.5" value="5" type="radio"><span>非常有</span>
                                                         </td>
                                                     </tr>
-                                                   
+
                                                     <tr>
                                                         <td></td>
                                                         <td>7.您集中精神的能力有多好？</td>
@@ -159,7 +159,7 @@
                                                             <input name="life_answer8" style="zoom: 1.5" value="5" type="radio"><span>非常安全</span>
                                                         </td>
                                                     </tr>
-                                                   
+
                                                     <tr>
                                                         <td></td>
                                                         <td>9.您所處的環境健康嗎？(如污染、噪音、氣候、景觀)</td>
@@ -184,7 +184,7 @@
                                                             <input name="life_answer10" style="zoom: 1.5" value="5" type="radio"><span>完全足夠</span>
                                                         </td>
                                                     </tr>
-                                                   
+
                                                     <tr>
                                                         <td></td>
                                                         <td>11.您能接受自己的外表嗎？</td>
@@ -210,14 +210,14 @@
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                       
+
                                                         <td></td>
                                                         <td>13.您能方便得到每日生活所需的資訊嗎？</td>
                                                         <td></td>
                                                         <td>14.您有機會從事休閒活動嗎？</td>
                                                     </tr>
                                                     <tr>
-                                                       
+
                                                         <td></td>
                                                         <td>
                                                             <input name="life_answer13" style="zoom: 1.5" value="1" type="radio"><span>完全不方便</span>
@@ -235,7 +235,7 @@
                                                             <input name="life_answer14" style="zoom: 1.5" value="5" type="radio"><span>完全有機會</span>
                                                         </td>
                                                     </tr>
-                                                    
+
                                                     <tr>
                                                         <td></td>
                                                         <td>15.您四處行動的能力好嗎？</td>
@@ -260,7 +260,7 @@
                                                             <input name="life_answer16" style="zoom: 1.5" value="5" type="radio"><span>非常滿意</span>
                                                         </td>
                                                     </tr>
-                                                   
+
                                                     <tr>
                                                         <td></td>
                                                         <td>17.您滿意自己從事日常活動的能力嗎？</td>
@@ -285,7 +285,7 @@
                                                             <input name="life_answer18" style="zoom: 1.5" value="5" type="radio"><span>非常滿意</span>
                                                         </td>
                                                     </tr>
-                                                    
+
                                                     <tr>
                                                         <td></td>
                                                         <td>19.您對自己滿意嗎？</td>
@@ -310,7 +310,7 @@
                                                             <input name="life_answer20" style="zoom: 1.5" value="5" type="radio"><span>非常滿意</span>
                                                         </td>
                                                     </tr>
-                                                    
+
                                                     <tr>
                                                         <td></td>
                                                         <td>21.您滿意自己的性生活嗎？</td>
@@ -335,7 +335,7 @@
                                                             <input name="life_answer22" style="zoom: 1.5" value="5" type="radio"><span>非常滿意</span>
                                                         </td>
                                                     </tr>
-                                                    
+
                                                     <tr>
                                                         <td></td>
                                                         <td>23.您滿意自己住所的狀況嗎？</td>
@@ -360,7 +360,7 @@
                                                             <input name="life_answer24" style="zoom: 1.5" value="5" type="radio"><span>非常滿意</span>
                                                         </td>
                                                     </tr>
-                                                  
+
                                                     <tr>
                                                         <td></td>
                                                         <td>25.您滿意所使用的交通運輸方式嗎？</td>
@@ -385,7 +385,7 @@
                                                             <input name="life_answer26" style="zoom: 1.5" value="1" type="radio"><span>一直都有</span>
                                                         </td>
                                                     </tr>
-                                                   
+
                                                     <tr>
                                                         <td></td>
                                                         <td>27.您覺得自己有面子或被尊重嗎？</td>
@@ -576,7 +576,7 @@
                                                             <input name="birth" id="birth" type="date">
                                                         </td>
                                                     </tr>
-                                                    
+
                                                     <tr>
                                                         <td style="background-color:rgb(255 201 54);text-align:right;">4.</td>
                                                         <td style="background-color:rgb(255 201 54);text-align:left;">教育程度</td>
@@ -709,8 +709,8 @@
                                                         <td style="background-color:rgb(255 201 54);text-align:right;">10.</td>
                                                         <td style="background-color:rgb(255 201 54);text-align:left;">您花多少時間完成此問卷</td>
                                                         <td>
-                                                            <input style="width:5em;" name="fillin_endtime" id="fillin_endtime" type="text">   
-                                                            <span>分鐘。</span>                                                         
+                                                            <input style="width:5em;" name="fillin_endtime" id="fillin_endtime" type="text">
+                                                            <span>分鐘。</span>
                                                         </td>
                                                     </tr>
                                                 </table>
@@ -720,7 +720,7 @@
                                 </div> -->
 
                                 <div class="panel-footer" style="text-align:center;">
-                                    <button style="font-size:20px" id="add_life_detail" class="btn btn-default" data-toggle="modal" data-target="#case_storage_model">
+                                    <button style="font-size:20px" id="add_life_detail" class="btn btn-default" data-toggle="modal" data-target="#case_storage_model2">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-save2" viewBox="0 0 16 16">
                                     <path d="M2 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H9.5a1 1 0 0 0-1 1v4.5h2a.5.5 0 0 1 .354.854l-2.5 2.5a.5.5 0 0 1-.708 0l-2.5-2.5A.5.5 0 0 1 5.5 6.5h2V2a2 2 0 0 1 2-2H14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h2.5a.5.5 0 0 1 0 1H2z"/>
                                     </svg>

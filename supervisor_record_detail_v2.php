@@ -70,7 +70,7 @@
     padding: 0;
     padding-top: 15px;
     }
-    
+
     .preview {position:absolute;background:#fff;padding:10px;display:none;}
 
     img {
@@ -151,7 +151,7 @@
                                                 <ul style="font-size:17px" class="nav nav-tabs" id="myTab" role="tablist">
                                                     <li class="nav-item active" role="presentation">
                                                         <a class="nav-link" id="home-tab" data-toggle="pill" href="#one" role="tab" aria-selected="true">
-                                                            <b>會議章程</b>
+                                                            <b>會議議程</b>
                                                         </a>
                                                     </li>
                                                     <li class="nav-item" role="presentation">
@@ -167,7 +167,7 @@
                                                                 <div class="panel-heading" id="headingOne">
                                                                     <h2 class="mb-0">
                                                                         <button class="btn btn-link btn-block collapsed" type="button" data-toggle="collapse" data-parent="#myTabContent" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                                                                            <span style="color:black;font-size:17px">會議章程</span>
+                                                                            <span style="color:black;font-size:17px">會議議程</span>
                                                                         </button>
                                                                     </h2>
                                                                 </div>
@@ -176,7 +176,7 @@
                                                                         <form id="form_a" class="form">
                                                                             <table style="width:75%;margin-bottom: 0px;" class="table table-bordered">
                                                                                 <tr style="text-align:left">
-                                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;width:12em;">會議章程標題</td>
+                                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;width:12em;">會議議程標題</td>
                                                                                     <td style="border-bottom: solid 1px;"><div class="col-sm-10"><input class="sr_question" id="upload_agenda_title_name" name="upload_agenda_title_name" type="text" style="width:100%;"></div></td>
                                                                                 </tr>
                                                                                 <tr style="text-align:left">
@@ -212,7 +212,7 @@
                                                                                         <button style="font-size:20px" id="sr_edit" class="btn btn-default" onclick="sr_edit();">編輯</button>
                                                                                     </div>
                                                                                     <div id="save_div" hidden>
-                                                                                        <button style="font-size:20px" id="rec_update" class="btn btn-default" onclick="rec_update();">修改</button>           
+                                                                                        <button style="font-size:20px" id="rec_update" class="btn btn-default" onclick="rec_update();">修改</button>
                                                                                         <button style="font-size:20px" id="sr_cancel" class="btn btn-default" onclick="sr_cancel();">取消</button>
                                                                                     </div>
                                                                                 </td>
@@ -226,7 +226,7 @@
                                                                             </div>
                                                                         </div> -->
                                                                     </div>
-                                                                    
+
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -304,10 +304,10 @@
                                                                                     </td>
                                                                                 </tr>
                                                                             </table>
-                                                                        </form>                                                                    
-                                                                        
+                                                                        </form>
+
                                                                     </div>
-                                                                    
+
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -317,7 +317,7 @@
                                                             <button style="font-size:20px" id="sr_edit" class="btn btn-default" onclick="sr_edit();">編輯</button>
                                                         </div>
                                                         <div id="save_div" hidden>
-                                                            <button style="font-size:20px" id="rec_update" class="btn btn-default" onclick="rec_update();">修改</button>           
+                                                            <button style="font-size:20px" id="rec_update" class="btn btn-default" onclick="rec_update();">修改</button>
                                                             <button style="font-size:20px" id="sr_cancel" class="btn btn-default" onclick="sr_cancel();">取消</button>
                                                         </div>
                                                     </div>
@@ -330,7 +330,7 @@
                                                     </div>
                                                     <?php include("signnature_canvas2.php"); ?>
                                                 </div>
-                                               
+
                                             </div>
                                         </div>
                                     </div>
@@ -391,7 +391,7 @@
     <script src="javascript/dropdown-bootstrap-extended.js"></script>
     <!-- Bootstrap FileDialog -->
     <script src="javascript/bootstrap-file-dialog-dist/bootstrap.fd.js"></script>
-    
+
     <!-- Init -->
     <script src="javascript/init.js"></script>
     <!-- ================== JS notify控制 ================== -->
@@ -433,10 +433,10 @@
                     title:"您無權限查看當前頁面!",
                     type:"error"
                 }).then(function(){
-                    window.history.go (-1); 
-                }); 
-                </script>';  
-        } 
+                    window.history.go (-1);
+                });
+                </script>';
+        }
     }
 
 ?>

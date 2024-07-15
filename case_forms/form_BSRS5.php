@@ -63,7 +63,7 @@
                                                         <td>
                                                             <input style="width:85%;" name="name" id="name" type="text">
                                                         </td>
-                                                        
+
                                                         <td style="background-color:rgb(255 201 54);text-align:left;">性別</td>
                                                         <td>
                                                             <div class="col-sm-12">
@@ -84,7 +84,7 @@
                                                         <td>
                                                             <input style="width:85%;" name="age" id="age" type="number">
                                                         </td>
-                                                        
+
                                                     </tr>
 
                                                     <tr>
@@ -145,7 +145,7 @@
                                                         </td>
                                                         <td>
                                                             <input name="answer1" style="zoom: 1.5" value="4" type="radio">
-                                                        </td>                                                      
+                                                        </td>
                                                     </tr>
 
                                                     <tr>
@@ -287,7 +287,7 @@
                                     </div>
                                 </div>
                                 <div class="panel-footer" style="text-align:center;">
-                                    <button style="font-size:20px" id="add_BSRS5_detail" class="btn btn-default" data-toggle="modal"data-target="#case_storage_model">
+                                    <button style="font-size:20px" id="add_BSRS5_detail" class="btn btn-default" data-toggle="modal"data-target="#case_storage_model2">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-save2" viewBox="0 0 16 16">
                                     <path d="M2 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H9.5a1 1 0 0 0-1 1v4.5h2a.5.5 0 0 1 .354.854l-2.5 2.5a.5.5 0 0 1-.708 0l-2.5-2.5A.5.5 0 0 1 5.5 6.5h2V2a2 2 0 0 1 2-2H14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h2.5a.5.5 0 0 1 0 1H2z"/>
                                     </svg>

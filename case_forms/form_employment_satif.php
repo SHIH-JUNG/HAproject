@@ -154,7 +154,7 @@
                                                     </tr>
                                                 </table>
                                             </form>
-                                            
+
                                             <form id="form_2" class="form">
                                                 <table style="width:100%;" class="table table-bordered">
                                                     <tr>
@@ -257,7 +257,7 @@
 
                                                                         <input name="correction_rec" style="zoom: 1.5" value="入監服刑" type="checkbox"><span>入監服刑</span>
                                                                         <input style="width:3em;" name="correction_rec_t_3" id="correction_rec_t_3" type="text"><span>次</span>
-                                                                        
+
                                                                         <span>期間︰</span><input style="width:15em;" name="correction_rec_t_4" id="correction_rec_t_4" type="text">
                                                                         <span>處所︰</span><input style="width:24em;" name="correction_rec_t_5" id="correction_rec_t_5" type="text"><span>。</span>
                                                                     </td>
@@ -347,7 +347,7 @@
                                                                         基本技能︰
                                                                     </td>
                                                                 </tr>
-                                                                
+
                                                                 <tr>
                                                                     <td>
                                                                         <br/>
@@ -485,7 +485,7 @@
                                                                         </td>
                                                                     </tr>
                                                                 </table>
-                                                            </td>                                                            
+                                                            </td>
                                                         </tr>
                                                         <tr>
                                                             <td colspan="5" style="background-color:rgb(255 201 54);"></td>
@@ -702,9 +702,9 @@
                                         </div>
                                     </div>
                                 </div>
-                               
+
                                 <div class="panel-footer" style="text-align:center;">
-                                    <button style="font-size:20px" id="add_employment_satif_detail" class="btn btn-default" data-toggle="modal"data-target="#case_storage_model">
+                                    <button style="font-size:20px" id="add_employment_satif_detail" class="btn btn-default" data-toggle="modal"data-target="#case_storage_model2">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-save2" viewBox="0 0 16 16">
                                     <path d="M2 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H9.5a1 1 0 0 0-1 1v4.5h2a.5.5 0 0 1 .354.854l-2.5 2.5a.5.5 0 0 1-.708 0l-2.5-2.5A.5.5 0 0 1 5.5 6.5h2V2a2 2 0 0 1 2-2H14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h2.5a.5.5 0 0 1 0 1H2z"/>
                                     </svg>

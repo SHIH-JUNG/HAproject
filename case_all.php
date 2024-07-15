@@ -41,7 +41,7 @@
         /*必須*/
     }
 
-    .preview {position:absolute;background:#fff;padding:10px;display:none;}  
+    .preview {position:absolute;background:#fff;padding:10px;display:none;}
 </style>
 
 <body>
@@ -314,7 +314,7 @@
                                                                     <th>檔案名稱/<br/>量表內容</th>
                                                                     <th>備註</th>
                                                                     <th>修改/刪除</th>
-                                                                    <th>簽核狀態</th>
+                                                                    <!-- <th>簽核狀態</th> -->
                                                                     <th style="width:5em;"></th>
                                                                     <tbody id="life_full_add"></tbody>
                                                                 </table>
@@ -355,7 +355,7 @@
                                                                     <th>檔案名稱/<br/>量表內容</th>
                                                                     <th>備註</th>
                                                                     <th>修改/刪除</th>
-                                                                    <th>簽核狀態</th>
+                                                                    <!-- <th>簽核狀態</th> -->
                                                                     <th></th>
                                                                     <tbody id="health_full_add"></tbody>
                                                                 </table>
@@ -391,7 +391,7 @@
                                                                         <th>前/中/後測</th>
                                                                         <th>備註</th>
                                                                         <th>修改/刪除</th>
-                                                                        <th>簽核狀態</th>
+                                                                        <!-- <th>簽核狀態</th> -->
                                                                     <th></th>
                                                                         <tbody id="sullen_full_add"></tbody>
                                                                     </table>
@@ -429,7 +429,7 @@
                                                                         <th>檔案名稱/<br/>量表內容</th>
                                                                         <th>備註</th>
                                                                         <th>修改/刪除</th>
-                                                                        <th>簽核狀態</th>
+                                                                        <!-- <th>簽核狀態</th> -->
                                                                     <th></th>
                                                                         <tbody id="employment_satif_full_add"></tbody>
                                                                     </table>
@@ -514,7 +514,7 @@
                                                                         <th>檔案名稱/<br/>量表內容</th>
                                                                         <th>備註</th>
                                                                         <th>修改/刪除</th>
-                                                                        <th>簽核狀態</th>
+                                                                        <!-- <th>簽核狀態</th> -->
                                                                     <th></th>
                                                                         <tbody id="familyship_full_add"></tbody>
                                                                     </table>
@@ -549,7 +549,7 @@
                                                                         <th>檔案名稱/<br/>量表內容</th>
                                                                         <th>備註</th>
                                                                         <th>修改/刪除</th>
-                                                                        <th>簽核狀態</th>
+                                                                        <!-- <th>簽核狀態</th> -->
                                                                     <th></th>
                                                                         <tbody id="BSRS5_full_add"></tbody>
                                                                     </table>
@@ -585,7 +585,7 @@
                                                                     <th>檔案名稱/<br/>評估表內容</th>
                                                                     <th>備註</th>
                                                                     <th>修改/刪除</th>
-                                                                    <th>簽核狀態</th>
+                                                                    <!-- <th>簽核狀態</th> -->
                                                                     <th></th>
                                                                     <tbody id="settlement_full_add"></tbody>
                                                                 </table>
@@ -605,7 +605,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!-- <div class="text-right">       
+                                                <!-- <div class="text-right">
                                                     <button id="add_new_inside" style="font-size:15px" type="button" class="btn btn-default">新增至在園家屬關懷一覽表</button>
                                                     <button id="end" style="font-size:15px" type="button" class="btn btn-default">新增至離園一覽表(結案)</button>
                                                     <button id="train" style="font-size:15px" type="button" class="btn btn-default">新增至培訓一覽表(結案)</button>
@@ -639,7 +639,7 @@
                     <table id="all_data" style="width:auto;margin:0 auto;" class="table table-bordered">
                         <tr style="text-align:left">
                             <td class="sign_msg_td_name" style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">督導<br/>留言內容</td>
-                            
+
                             <td class="sign_msg_td_name" style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">執行長<br/>留言內容</td>
                         </tr>
                         <tr>
@@ -721,7 +721,7 @@
                                 <br/>
                                 <span style="color:red;">
                                     ※請輸入您的使用者登入密碼，以確認繼續當前操作
-                                </span>                           
+                                </span>
                             </td>
                         </tr>
                     </table>
@@ -777,9 +777,9 @@
                                         </div>
                                     </div>
                                     <br/>
-                                    <span style="color:blue;">                          
+                                    <span style="color:blue;">
                                         ※原先的檔案將會被刪除或覆蓋
-                                    </span>                           
+                                    </span>
                                 </td>
                             </tr>
                             <tr style="text-align:left">
@@ -874,9 +874,9 @@
                                         </div>
                                     </div>
                                     <br/>
-                                    <span style="color:blue;">                          
+                                    <span style="color:blue;">
                                         ※原先的檔案將會被刪除或覆蓋
-                                    </span>                           
+                                    </span>
                                 </td>
                             </tr>
                             <tr style="text-align:left">
@@ -911,7 +911,7 @@
                 <div class="modal-body">
                     <form id="form_modal">
                         <table id="update_upload_all_data" style="width:auto;margin:0 auto;" class="table table-bordered">
-                            
+
                         </table>
                     </from>
                 </div>
@@ -977,7 +977,7 @@
     </script>
     <!-- ================== case_all.js ================== -->
     <script src='js/case_all.js<?php echo "?" . date("Y-m-d h:i:sa") ?>'></script>
-    
+
 </body>
 
 </html>
@@ -990,10 +990,10 @@
                     title:"您無權限查看當前頁面!",
                     type:"error"
                 }).then(function(){
-                    window.history.go (-1); 
-                }); 
-                </script>';  
-        } 
+                    window.history.go (-1);
+                });
+                </script>';
+        }
     }
 
 ?>

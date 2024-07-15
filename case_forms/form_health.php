@@ -34,7 +34,7 @@
     }
 
     .medical_rec_1 tr td:nth-child(1)
-    {   
+    {
         width:6.5em;
     }
 
@@ -52,12 +52,12 @@
     /* .medical_rec_1 tr td:nth-child(2),
     .medical_rec_1 tr td:nth-child(4),
     .medical_rec_2 tr td:nth-child(2)
-    {   
+    {
         width:4em;
     }
 
     .medical_rec_1 tr td:nth-child(3)
-    {   
+    {
         width:6em;
     } */
 </style>
@@ -122,7 +122,7 @@
                                                         <td style="width:45%;">
                                                             <input name="birth" id="birth" type="date">
                                                         </td>
-                                                    </tr>                                                    
+                                                    </tr>
 
                                                     <tr>
                                                         <td style="background-color:rgb(255 201 54);text-align:left;">身分證字號</td>
@@ -163,7 +163,7 @@
                                                             <input style="width:18em;" name="medical_info" id="medical_info" type="text">
                                                         </td>
                                                     </tr>
-                                                
+
                                                     <tr>
                                                         <td style="background-color:rgb(255 201 54);text-align:left;">HIV個案管理師</td>
                                                         <td>
@@ -494,7 +494,7 @@
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody id="smoke_rec_2">
-                                                                    
+
                                                                 </tbody>
                                                             </table>
                                                         </td>
@@ -516,14 +516,14 @@
                                     <div class="table-wrap">
                                         <div class="table-responsive">
                                             <form class="form_health">
-                                                
+
                                             </form>
                                         </div>
                                     </div>
                                 </div>
-                               
+
                                 <div class="panel-footer" style="text-align:center;">
-                                    <button style="font-size:20px" id="add_health_detail" class="btn btn-default" data-toggle="modal"data-target="#case_storage_model">
+                                    <button style="font-size:20px" id="add_health_detail" class="btn btn-default" data-toggle="modal"data-target="#case_storage_model2">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-save2" viewBox="0 0 16 16">
                                     <path d="M2 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H9.5a1 1 0 0 0-1 1v4.5h2a.5.5 0 0 1 .354.854l-2.5 2.5a.5.5 0 0 1-.708 0l-2.5-2.5A.5.5 0 0 1 5.5 6.5h2V2a2 2 0 0 1 2-2H14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h2.5a.5.5 0 0 1 0 1H2z"/>
                                     </svg>
