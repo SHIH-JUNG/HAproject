@@ -36,10 +36,10 @@
     <title>個案管理系統</title>
 </head>
 <style>
-    iframe{      
-        display: block;  /* iframes are inline by default */   
-        height: 100vh;  /* Set height to 100% of the viewport height */   
-        width: 100vw;  /* Set width to 100% of the viewport width */     
+    iframe{
+        display: block;  /* iframes are inline by default */
+        height: 100vh;  /* Set height to 100% of the viewport height */
+        width: 100vw;  /* Set width to 100% of the viewport width */
         border: none; /* Remove default border */
         background: lightyellow; /* Just for styling */
     }
@@ -108,7 +108,8 @@
                                         <div class="col-sm-12 col-xs-12">
                                             <table style="width:100%;">
                                                 <tr>
-                                                    <td style="vertical-align: top;width: 8em;"><span style="color:blue;">同步連結設定：</span></td>
+                                                <label for="sync_link">
+                                                    <td style="vertical-align: top;width: 8em;"><span style="color:blue;">同步連結設定：</span></td></label>
                                                     <td style="text-align: center;">
                                                         <textarea id="sync_link" style="width:90%;resize: none;font-size: 20px;min-height:8em;"></textarea>
                                                     </td>
@@ -119,7 +120,8 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td style="vertical-align: top;width: 8em;"><span style="color:green;">分享連結設定：</span></td>
+                                                <label for="share_link">
+                                                    <td style="vertical-align: top;width: 8em;"><span style="color:green;">分享連結設定：</span></td></label>
                                                     <td style="text-align: center;">
                                                         <textarea id="share_link" style="width:90%;resize: none;font-size: 20px;min-height:8em;"></textarea>
                                                     </td>
@@ -224,10 +226,10 @@
                     title:"您無權限查看當前頁面!",
                     type:"error"
                 }).then(function(){
-                    window.history.go (-1); 
-                }); 
-                </script>';  
-        } 
+                    window.history.go (-1);
+                });
+                </script>';
+        }
     }
 
 ?>

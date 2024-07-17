@@ -1,4 +1,3 @@
-
 $(document).ready(function () {
     load_url();
 });
@@ -6,18 +5,14 @@ $(document).ready(function () {
 window.origin_sync_link = "";
 window.origin_share_link = "";
 
-// 載入google sheet內容，讀取txt檔案內儲存的網址 region
-load_url = function ()
-{
-    $.get("./accounting_sheet/HAproject_accounting_google_sheet_sync_new.txt", function(url) {
-        origin_sync_link = url;
-        $("#sync_link").val(url);
-    });
-    $.ajaxSettings.async = true;
-
-    $.get("./accounting_sheet/HAproject_accounting_google_sheet_share_new.txt", function(url) {
-        origin_share_link = url;
-        $("#share_link").val(url);
+// 載入google sheet內容，讀取資料庫內儲存的網址 region
+load_url = function () {
+    $.get("database/get_google_sheet_links.php", function(data) {
+        var links = JSON.parse(data); // 使用JSON.parse而不是eval
+        origin_sync_link = links.sync_link;
+        origin_share_link = links.share_link;
+        $("#sync_link").val(links.sync_link);
+        $("#share_link").val(links.share_link);
     });
     $.ajaxSettings.async = true;
 }
@@ -159,14 +154,21 @@ recover_sync_url = function() {
         showCancelButton: true
     }).then(function (result) {
     if (result) {
-        $.get("./accounting_sheet_origin/HAproject_accounting_google_sheet_api_sync_origin.txt", function(url) {
-            origin_sync_link = url;
-            $("#sync_link").val(url);
+        $.get("database/recover_sync_link.php", function(data) {
+            var response = JSON.parse(data);
+            if (response.error) {
+                swal({
+                    title:"復原失敗!",
+                    type:'error'
+                });
+            } else {
+                $("#sync_link").val(response.previous_sync_link);
 
-            swal({
-                title:"已復原",
-                type:'success'
-            })
+                swal({
+                    title:"已復原",
+                    type:'success'
+                });
+            }
         });
 
         $.ajaxSettings.async = true;
@@ -196,14 +198,21 @@ recover_share_url = function() {
         showCancelButton: true
     }).then(function (result) {
     if (result) {
-        $.get("./accounting_sheet_origin/HAproject_accounting_google_sheet_api_share_origin.txt", function(url) {
-            origin_share_link = url;
-            $("#share_link").val(url);
+        $.get("database/recover_share_link.php", function(data) {
+            var response = JSON.parse(data);
+            if (response.error) {
+                swal({
+                    title:"復原失敗!",
+                    type:'error'
+                });
+            } else {
+                $("#share_link").val(response.previous_share_link);
 
-            swal({
-                title:"已復原",
-                type:'success'
-            })
+                swal({
+                    title:"已復原",
+                    type:'success'
+                });
+            }
         });
         $.ajaxSettings.async = true;
     }

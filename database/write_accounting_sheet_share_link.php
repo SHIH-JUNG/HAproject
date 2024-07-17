@@ -1,16 +1,22 @@
 <?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $content = $_POST['content'];
-    $file = '../accounting_sheet/HAproject_accounting_google_sheet_share_new.txt'; // 根據需要調整路徑
-
-    if (file_put_contents($file, $content) !== false) {
-        echo "Success";
-    } else {
-        http_response_code(500);
-        echo "Error";
-    }
-} else {
-    http_response_code(405); // 方法不允許
-    echo "Invalid request method";
+session_start();
+include("sql_connect.php");
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
+
+$share_link = $_POST['content'];
+
+// Update the database with the new share link and save the old one
+$sql = "UPDATE accounting_sheet
+        SET previous_share_link = share_link, share_link = '$share_link'
+        WHERE id = 1";
+if ($conn->query($sql) === TRUE) {
+    echo "Success";
+} else {
+    echo "Error" . $conn->error;
+}
+
+$conn->close();
 ?>
