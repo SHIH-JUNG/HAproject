@@ -1,3 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: left;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            text-align: center;
+        }
+        .form-container {
+            font-family: Arial, sans-serif;
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        .page-break {
+            page-break-before: always;
+        }
+        input[type="checkbox"], input[type="radio"] {
+            transform: scale(1.2);
+            margin: 4px;
+            position: relative;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div id="form-container">
 <style>
     .resource_table thead tr th {
         background-color: rgb(255 201 54);
@@ -19,22 +59,22 @@
     }
 
     .resourcetab_th tr th:nth-child(1)
-    {   
+    {
         width:16em;
     }
 
     .resourcetab_th tr th:nth-child(6)
-    {   
+    {
         width:7em;
     }
 
     .resourcetab_th tr th:nth-child(3)
-    {   
+    {
         width:6em;
     }
 
     .resourcetab_th tr th:nth-child(5)
-    {   
+    {
         width:12em;
     }
 
@@ -87,12 +127,12 @@
                                                 </tr>
                                             </table>
                                             <form id="form_1" class="form_resource">
-                                               
+
                                             </form>
                                         </div>
                                     </div>
                                 </div>
-                            
+
                                 <div class="panel-footer" style="text-align:center;">
                                     <button style="font-size:20px" id="add_resource_detail" class="btn btn-default" data-toggle="modal"data-target="#case_storage_model">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-save2" viewBox="0 0 16 16">
@@ -106,6 +146,9 @@
                                     返回</button>
                                     <!-- <button style="font-size:20px" id="preview" class="btn btn-default">預覽匯出</button> -->
                                     <!-- <button style="font-size:20px" onclick="test()" class="btn btn-default">測試</button> -->
+                                </div>
+                                <div class="text-right">
+                                <button style="font-size:20px" class="btn btn-default" onclick="previewAndPrintSection('one')">匯出個案服務滿意度調查表為PDF</button>
                                 </div>
                                 <!-- <div class="text-right">
                                     <button style="font-size:20px" id="trans_grade" type="button" class="btn btn-default">轉級</button>

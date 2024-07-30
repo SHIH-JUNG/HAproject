@@ -70,7 +70,7 @@
     padding: 0;
     padding-top: 15px;
     }
-    
+
     .preview {position:absolute;background:#fff;padding:10px;display:none;}
 
     img {
@@ -151,7 +151,7 @@
                                                 <ul style="font-size:17px" class="nav nav-tabs" id="myTab" role="tablist">
                                                     <li class="nav-item active" role="presentation">
                                                         <a class="nav-link" id="home-tab" data-toggle="pill" href="#one" role="tab" aria-selected="true">
-                                                            <b>會議章程</b>
+                                                            <b>會議議程</b>
                                                         </a>
                                                     </li>
                                                     <li class="nav-item" role="presentation">
@@ -212,7 +212,7 @@
                                                                                         <button style="font-size:20px" id="bs_edit" class="btn btn-default" onclick="bs_edit();">編輯</button>
                                                                                     </div>
                                                                                     <div id="save_div" hidden>
-                                                                                        <button style="font-size:20px" id="rec_update" class="btn btn-default" onclick="rec_update();">修改</button>           
+                                                                                        <button style="font-size:20px" id="rec_update" class="btn btn-default" onclick="rec_update();">修改</button>
                                                                                         <button style="font-size:20px" id="bs_cancel" class="btn btn-default" onclick="bs_cancel();">取消</button>
                                                                                     </div>
                                                                                 </td>
@@ -226,7 +226,7 @@
                                                                             </div>
                                                                         </div> -->
                                                                     </div>
-                                                                    
+
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -304,10 +304,10 @@
                                                                                     </td>
                                                                                 </tr>
                                                                             </table>
-                                                                        </form>                                                                    
-                                                                        
+                                                                        </form>
+
                                                                     </div>
-                                                                    
+
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -317,7 +317,7 @@
                                                             <button style="font-size:20px" id="bs_edit" class="btn btn-default" onclick="bs_edit();">編輯</button>
                                                         </div>
                                                         <div id="save_div" hidden>
-                                                            <button style="font-size:20px" id="rec_update" class="btn btn-default" onclick="rec_update();">修改</button>           
+                                                            <button style="font-size:20px" id="rec_update" class="btn btn-default" onclick="rec_update();">修改</button>
                                                             <button style="font-size:20px" id="bs_cancel" class="btn btn-default" onclick="bs_cancel();">取消</button>
                                                         </div>
                                                     </div>
@@ -330,7 +330,7 @@
                                                     </div>
                                                     <?php include("signnature_canvas2.php"); ?>
                                                 </div>
-                                               
+
                                             </div>
                                         </div>
                                     </div>
@@ -391,7 +391,7 @@
     <script src="javascript/dropdown-bootstrap-extended.js"></script>
     <!-- Bootstrap FileDialog -->
     <script src="javascript/bootstrap-file-dialog-dist/bootstrap.fd.js"></script>
-    
+
     <!-- Init -->
     <script src="javascript/init.js"></script>
     <!-- ================== JS notify控制 ================== -->
@@ -433,10 +433,10 @@
                     title:"您無權限查看當前頁面!",
                     type:"error"
                 }).then(function(){
-                    window.history.go (-1); 
-                }); 
-                </script>';  
-        } 
+                    window.history.go (-1);
+                });
+                </script>';
+        }
     }
 
 ?>

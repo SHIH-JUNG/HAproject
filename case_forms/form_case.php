@@ -1,4 +1,44 @@
-<style>
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: left;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            text-align: center;
+        }
+        .form-container {
+            font-family: Arial, sans-serif;
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        .page-break {
+            page-break-before: always;
+        }
+        input[type="checkbox"], input[type="radio"] {
+            transform: scale(1.2);
+            margin: 4px;
+            position: relative;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div id="form-container">
+        <style>
     .medicine_table tr td
     {
         padding-left:.2em;
@@ -65,16 +105,16 @@
                             </ul>
                             <div class="tab-content" id="myTabContent">
                                 <div class="tab-pane fade in active" id="one" role="tabpanel" aria-labelledby="home-tab">
-                                    <div class="col-sm-12">
-                                        <div style="margin-top:15px" class="text-center">
-                                            <h4>基本資料</h4>
-                                        </div>
-                                    </div>
                                     <div class="panel-body">
                                     </div>
                                     <div class="table-wrap">
                                         <div class="table-responsive">
                                             <form id="form_1" class="form">
+                                            <div class="col-sm-12">
+                                                <div style="margin-top:15px" class="text-center">
+                                                    <h4>基本資料</h4>
+                                                </div>
+                                            </div>
                                                 <table style="width:auto;" class="table table-bordered">
                                                     <tr>
                                                         <td style="background-color:rgb(255 201 54);text-align:left;color:#d86d6d;">案號：</td>
@@ -97,7 +137,7 @@
                                                         <td>
                                                             <input style="width:85%;" name="assign_name" id="assign_name" type="text">
                                                         </td>
-                                                        
+
                                                         <td style="background-color:rgb(255 201 54);text-align:left;color:#d86d6d;">填表日期：</td>
                                                         <td>
                                                             <input style="width:85%;" name="fillin_date" id="fillin_date" type="date">
@@ -310,7 +350,7 @@
                                                             </div>
                                                         </td>
                                                     </tr>
-                                                    
+
                                                     <tr>
                                                         <td colspan="6" style="background-color:rgb(255 201 54);text-align:left;">個案家庭概況描述</td>
                                                     </tr>
@@ -336,23 +376,23 @@
                                                             </div>
                                                         </td>
                                                     </tr>
-                                                    
+
                                                 </table>
                                             </form>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="two" role="tabpanel" aria-labelledby="profile-tab">
-                                    <div class="col-sm-12">
-                                        <div style="margin-top:15px" class="text-center">
-                                            <h4>醫療追蹤</h4>
-                                        </div>
-                                    </div>
                                     <div class="panel-body">
                                     </div>
                                     <div class="table-wrap">
                                         <div class="table-responsive">
                                             <form id="form_2" class="form">
+                                            <div class="col-sm-12">
+                                            <div style="margin-top:15px" class="text-center">
+                                                <h4>醫療追蹤</h4>
+                                            </div>
+                                            </div>
                                                 <table style="width:auto;" class="table table-bordered">
                                                     <tr>
                                                         <td style="background-color:rgb(255 201 54);text-align:left;min-width: 11em;">就醫時間</td>
@@ -508,7 +548,7 @@
                                                             </table>
                                                         </td>
                                                     </tr>
-                                            
+
                                                 <script>
                                                     // 複選問題 creation date 20240502
                                                     function toggleCheckboxes(checkedCheckbox) {
@@ -556,16 +596,16 @@
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="three" role="tabpanel" aria-labelledby="profile-tab">
-                                    <div class="col-sm-12">
-                                        <div style="margin-top:15px" class="text-center">
-                                            <h4>問題陳述/評估與診斷/處遇計畫/社工策略/資源與轉介</h4>
-                                        </div>
-                                    </div>
                                     <div class="panel-body">
                                     </div>
                                     <div class="table-wrap">
                                         <div class="table-responsive">
                                             <form id="form_3" class="form">
+                                            <div class="col-sm-12">
+                                            <div style="margin-top:15px" class="text-center">
+                                                <h4>問題陳述/評估與診斷/處遇計畫/社工策略/資源與轉介</h4>
+                                            </div>
+                                            </div>
                                                 <table style="width:80%;" class="table table-bordered">
                                                     <tr>
                                                         <td style="background-color:rgb(255 201 54);text-align:left;">個案問題陳述</td>
@@ -676,16 +716,16 @@
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="four" role="tabpanel" aria-labelledby="profile-tab">
-                                    <div class="col-sm-12">
-                                        <div style="margin-top:15px" class="text-center">
-                                            <h4>成效評估</h4>
-                                        </div>
-                                    </div>
                                     <div class="panel-body">
                                     </div>
                                     <div class="table-wrap">
                                         <div class="table-responsive">
                                             <form id="form_4" class="form">
+                                            <div class="col-sm-12">
+                                            <div style="margin-top:15px" class="text-center">
+                                                <h4>成效評估</h4>
+                                            </div>
+                                            </div>
                                                 <table style="width:auto;" class="table table-bordered">
                                                     <tr>
                                                         <td style="background-color:rgb(255 201 54);text-align:right;">1.</td>
@@ -803,7 +843,7 @@
                                                                         <span>，</span><input name="BSRS5_checkbox" style="zoom: 1.5" value="無" type="checkbox"><span>無自殺想法</span>
                                                                     </td>
                                                                 </tr>
-                                                            </table>    
+                                                            </table>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -852,7 +892,7 @@
                                                                         <input style="width:3em;" name="posttest_life_month" id="posttest_life_month" type="text"><span>月</span>
                                                                         <input style="width:3em;" name="posttest_life_day" id="posttest_life_day" type="text"><span>日</span>
                                                                         <span>測）</span>
-                                                                        &emsp;                                                                    
+                                                                        &emsp;
                                                                         <input style="width:3em;" name="posttest_life_score" id="posttest_life_score" type="text"><span>分</span>
                                                                         <span id="posttest_life_area">
 
@@ -1048,7 +1088,11 @@
                                 <div class="text-right">
                                     <button style="font-size:20px" id="trans_grade" type="button" class="btn btn-default" data-toggle="modal" data-target="#trans_grade_model">轉級</button>
                                     <button style="font-size:20px" id="trans_case" type="button" class="btn btn-default" data-toggle="modal" data-target="#trans_user_model">轉案</button>
-                                    <button style="font-size:20px" id="end" type="button" class="btn btn-default">結案</button>
+                                    <button style="font-size:20px" id="end" type="button" class="btn btn-default">結案</button><br><br>
+                                    <button style="font-size:20px" class="btn btn-default" onclick="previewAndPrintSection('form_1')">匯出基本資料為PDF</button>
+                                    <button style="font-size:20px" class="btn btn-default" onclick="previewAndPrintSection('form_2')">匯出醫療追蹤為PDF</button>
+                                    <button style="font-size:20px" class="btn btn-default" onclick="previewAndPrintSection('form_3')">匯出問題陳述/評估與診斷/處遇計畫/社工策略/資源與轉介為PDF</button>
+                                    <button style="font-size:20px" class="btn btn-default" onclick="previewAndPrintSection('form_4')">匯出成效評估為PDF</button>
                                 </div>
                             </div>
                         </div>
@@ -1058,3 +1102,126 @@
         </div>
     </div>
 </div>
+    </div>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="case_detail.js"></script>
+    <script>
+
+        function fillFormValues() {
+            // 執行JavaScript代碼填充表單數據
+            //個案評估表自動填入資料
+            $("#name").val(name);
+            $("#pid").val(decodeURIComponent(pid));
+            $("input[name='sex'][value='"+gender+"']").attr('checked',true);
+            $("#open_date").val(decodeURIComponent(date));
+            $("#birth").val(birth);
+            $("#age").val(getAge(birth.split('-'))[0]);
+            $("#assign_name").val(assign_name);
+            //填寫日期自動帶入
+            $("input[name*='fillin_date']").each(function(){
+                //獲取現在時間 moment.js插件
+                var timenow = moment().format('YYYY-MM-DD');
+                $(this).val(timenow);
+            });
+        }
+
+        function previewAndPrintSection(sectionId) {
+            fillFormValues(); // 確保數據填充
+            setTimeout(function() {
+                var element = document.getElementById(sectionId);
+                if (element) {
+                    // 預處理 radio 和 checkbox 元素
+                    preprocessFormElements(element);
+
+                    html2canvas(element, {
+                        scale: 3,
+                        logging: true, // 啟用日誌以幫助調試
+                        useCORS: true, // 允許跨域圖片
+                        allowTaint: true // 允許跨域圖片
+                    }).then(function(canvas) {
+                        var imgData = canvas.toDataURL('image/png');
+                        var pdf = new jspdf.jsPDF('p', 'mm', 'a4');
+                        var imgWidth = 210;
+                        var pageHeight = 297;
+                        var imgHeight = canvas.height * imgWidth / canvas.width;
+                        var heightLeft = imgHeight;
+                        var position = 0;
+
+                        if (heightLeft < pageHeight) {
+                            pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, heightLeft);
+                        } else {
+                            pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, pageHeight);
+                            heightLeft -= pageHeight;
+
+                            while (heightLeft > 0) {
+                                position = heightLeft - imgHeight;
+                                pdf.addPage();
+                                pdf.addImage(imgData, 'PNG', 0, position, imgWidth, pageHeight);
+                                heightLeft -= pageHeight;
+                            }
+                        }
+
+                // 恢復原始表單元素
+                restoreFormElements(element);
+
+                var previewWindow = window.open('', '_blank');
+                previewWindow.document.write('<html><head><title>預覽 PDF</title></head><body>');
+                previewWindow.document.write('<embed width="100%" height="100%" src="' + pdf.output('bloburl') + '" type="application/pdf">');
+                previewWindow.document.write('</body></html>');
+                previewWindow.document.close();
+                    });
+                }
+            }, 100); // 延遲打印以確保數據已經填充
+        }
+
+        function preprocessFormElements(element) {
+            var radios = element.querySelectorAll('input[type="radio"]');
+            var checkboxes = element.querySelectorAll('input[type="checkbox"]');
+
+            radios.forEach(function(radio) {
+                var span = document.createElement('span');
+                span.className = 'custom-radio';
+                span.textContent = radio.checked ? '●' : '○';
+                radio.parentNode.insertBefore(span, radio);
+                radio.style.display = 'none';
+            });
+
+            checkboxes.forEach(function(checkbox) {
+                var span = document.createElement('span');
+                span.className = 'custom-checkbox';
+                span.textContent = checkbox.checked ? '☑' : '☐';
+                checkbox.parentNode.insertBefore(span, checkbox);
+                checkbox.style.display = 'none';
+            });
+        }
+
+        function restoreFormElements(element) {
+            var customRadios = element.querySelectorAll('.custom-radio');
+            var customCheckboxes = element.querySelectorAll('.custom-checkbox');
+
+            customRadios.forEach(function(span) {
+                span.parentNode.removeChild(span);
+            });
+
+            customCheckboxes.forEach(function(span) {
+                span.parentNode.removeChild(span);
+            });
+
+            var radios = element.querySelectorAll('input[type="radio"]');
+            var checkboxes = element.querySelectorAll('input[type="checkbox"]');
+
+            radios.forEach(function(radio) {
+                radio.style.display = '';
+            });
+
+            checkboxes.forEach(function(checkbox) {
+                checkbox.style.display = '';
+            });
+        }
+    </script>
+</body>
+</html>

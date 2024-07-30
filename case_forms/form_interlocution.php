@@ -67,7 +67,7 @@
                                                         <th>會談地點</th>
                                                         <th>個案問題</th>
                                                         <th>處遇內容摘要記錄</th>
-                                                        <th>社工/關懷人員</th>
+                                                        <th>關懷人員</th>
                                                         <th>督導</th>
                                                     </tr>
                                                     <tr>
@@ -109,8 +109,35 @@
                                                                 <tr><td><textarea style="min-height:14em;height:auto;width:100%;resize: none;font-size: 20px;" name="interlocution_next_target" id="interlocution_next_target" placeholder="請輸入下次服務目標"></textarea></td></tr>
                                                             </table>
                                                         </td>
-                                                        <td><input name="assign_name" id="assign_name" type="text"></td>
-                                                        <td id='SignOff'><input name="supervise_name" id="supervise_name" type="text"></td>
+                                                        <!-- <td><input name="assign_name" id="assign_name" type="text"></td>
+                                                        <td id='SignOff'><input name="supervise_name" id="supervise_name" type="text"></td> -->
+
+                                                            <td>
+                                                                <div class="col-sm-12" style="margin-top:0.3em;">
+                                                                <select name="signName" class="signName" style="width:70%; display: block; margin-bottom: 10px;">
+                                                                    <option value="">請選擇</option>
+                                                                </select>
+                                                                </div>
+                                                                <div class="col-sm-12" style="margin-bottom: 10px;">
+                                                                <button style="width:70%; color:red;" type="button" class="signature_btn"data-sign-board-name="assign" onclick="signature_btn">簽名</button>
+                                                                </div>
+                                                                <div class="col-sm-12">
+                                                                <a src="" id="show_signature_image" style="color:blue;" target="_blank" alt="簽名圖片連結">點擊顯示簽名圖片</a>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="col-sm-12" style="margin-top:0.3em;">
+                                                                <select name="signName" class="signName" style="width:70%; display: block; margin-bottom: 10px;">
+                                                                    <option value="">請選擇</option>
+                                                                </select>
+                                                                </div>
+                                                                <div class="col-sm-12" style="margin-bottom: 10px;">
+                                                                <button style="width:70%; color:red;" type="button" class="signature_btn" #case_storage_model onclick="signature_btn">簽名</button>
+                                                                </div>
+                                                                <div class="col-sm-12">
+                                                                <a src="" id="show_signature_image" style="color:blue;" target="_blank" alt="簽名圖片連結">點擊顯示簽名圖片</a>
+                                                                </div>
+                                                            </td>
                                                     </tr>
                                                 </table>
                                             </form>
