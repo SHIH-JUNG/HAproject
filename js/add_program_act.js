@@ -206,10 +206,18 @@ function submit_form() {
       }
   });
 
+  var personChick="";
+  if($("#person").val()=="其他"){
+    personChick = "其他-"+$("#other_person").val();
+  }
+  else{
+    personChick = $("#person").val();
+  }
+
   form_data.append("Date", $("#date").val());
   form_data.append("Activity_name", $("#activity_name").val());
   form_data.append("Activity_category", $("#activity_category").val());
-  form_data.append("Person",$("#person").val());
+  form_data.append("Person",personChick);
   form_data.append("Location",$("#location").val());
   form_data.append("Service",$("#service").val());
   form_data.append("Cost",$("#cost").val());
@@ -235,7 +243,7 @@ function submit_form() {
       processData: false,
       async: true,
       success: function (data) {
-        // console.log(data);
+        console.log(data);
         if (data == 1) {
           swal({
             type: "success",
@@ -254,10 +262,10 @@ function submit_form() {
         }
       },
       error: function (e) {
-          // console.log(e);
+          console.log(e);
           swal({
               type: "error",
-              title: "新增失敗！請聯絡網站維護人員",
+              title: "新增失敗！請聯絡網站維護人員1",
               allowOutsideClick: false, //不可點背景關閉
           });
       },
@@ -364,3 +372,16 @@ function check_add_program_act_data() {
 // });
 
 //endregion
+
+const selectElement = document.querySelector("#person");
+
+selectElement.addEventListener("change", (event) => {
+  var result = document.querySelector("#other_person");
+  // console.log(event.target.value);
+  if(event.target.value == "其他"){
+    result.type = "text";
+  }
+  else{
+    result.type = "hidden";
+  }
+});

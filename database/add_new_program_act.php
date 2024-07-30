@@ -21,14 +21,14 @@ $Lecturer = $_REQUEST['Lecturer'];
 
 $user = $_SESSION['name'];
 
-if($id_num[0]>0)
-{
-    $program_act_id = (int)$id_num[0] + 1;
-}
-else
-{
-    $program_act_id = 1;
-}
+// if($id_num[0]>0)
+// {
+//     $program_act_id = (int)$id_num[0] + 1;
+// }
+// else
+// {
+//     $program_act_id = 1;
+// }
 
 // 上傳報表路徑
 @$file_dir = "../program_act/";
@@ -66,9 +66,9 @@ $sql = "INSERT INTO `program_act` (`Date`,`Activity_name`,`Activity_category`,`P
 `Cost`,`Number`,`Lecturer`,`Create_date`,`Create_name`) VALUES
  ('$Date','$Activity_name','$Activity_category','$Person','$Location','$Service','$Cost','$Number','$Lecturer', Now(),'$user');";
 
-$sql .= "INSERT INTO `calendar` (`title`, `description`, `start`, 
-`end`, `backgroundColor`, `publisher`, `date`, `database_name`, `db_id`, `authority`) VALUES 
-('$calendar_title','$url', '$calendar_start_time', '$calendar_end_time', '#FFA042', '$user', NOW(), 'program_act', '$program_act_id', '$user');";
+// $sql .= "INSERT INTO `calendar` (`title`, `description`, `start`, 
+// `end`, `backgroundColor`, `publisher`, `date`, `database_name`, `db_id`, `authority`) VALUES 
+// ('$calendar_title','$url', '$calendar_start_time', '$calendar_end_time', '#FFA042', '$user', NOW(), 'program_act', '$program_act_id', '$user');";
 
 
 if (mysqli_query($conn, $sql)) {

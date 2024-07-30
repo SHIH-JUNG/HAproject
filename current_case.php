@@ -206,6 +206,7 @@
                                                                 <th>出生年月日</th>
                                                                 <th>身分證字號</th>
                                                                 <th>轉介來源</th>
+                                                                <th>編輯</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody style="text-align:center" id="open_case"></tbody>

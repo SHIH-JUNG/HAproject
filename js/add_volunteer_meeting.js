@@ -431,13 +431,28 @@ submit_form_data_upload = function() {
 }
 //endregion
 
-
 //檢查會議記錄的必填欄位 upload region
 function check_add_rec_data_upload() {
   var errorstr = "以下為必填欄位，不能為空值!\r\n";
-
-  $(".fillin_need").each(function(index,element){
-
+  var active = document.getElementsByClassName("nav-item active")[0].innerText;
+  var active_form = "one";
+  if(active == "志工會議議程"){
+    active_form = "two";
+  }
+  else if(active == "提案&檢討及建議&臨時動議"){
+    active_form = "three";
+  }
+  else if(active == "閱後簽名"){
+    active_form = "four";
+  }
+  else if(active == "上傳會議活動資料及照片"){
+    active_form = "five";
+  }
+  else{
+    active_form = "one";
+  }
+  $("#"+active_form+" .fillin_need").each(function(index,element){
+    // console.log("#"+active_form+", .fillin_need");
     var check_element = $(this).parent("td").siblings("td").children().children()[0];
     var check_element_name = $(this).parent("td").text();
     

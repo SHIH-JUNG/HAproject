@@ -144,7 +144,15 @@ $(document).ready(function () {
 
         $("#activity_name").val(value.Activity_name);
         $("#activity_category").val(value.Activity_category);
-        $("#person").val(value.Person);
+        if(value.Person.includes("其他")){
+          var funds=value.Person.split('-')
+          $("#person").val(funds[0]);
+          $("#other_person").val(funds[1]);
+        }
+        else{
+          $("#person").val(value.Person);
+          document.getElementById('other_person').type = 'hidden';
+        }
         $("#location").val(value.Location);
         $("#service").val(value.Service);
 
@@ -408,12 +416,20 @@ function submit_form() {
         }
     });
 
+    var personChick="";
+    if($("#person").val()=="其他"){
+      personChick = "其他-"+$("#other_person").val();
+    }
+    else{
+      personChick = $("#person").val();
+    }
+    // console.log(personChick);
     form_data.append("program_id", program_id);
     form_data.append("Year", $("#year").val());
     form_data.append("Date", $("#date").val());
     form_data.append("Activity_name", $("#activity_name").val());
     form_data.append("Activity_category",$("#activity_category").val());
-    form_data.append("Person", $("#person").val());
+    form_data.append("Person", personChick);
     form_data.append("Location",$("#location").val());
     form_data.append("Service",$("#service").val());
     form_data.append("Cost",$("#cost").val());
@@ -609,3 +625,16 @@ $("#preview_word2").on("click", function () {
   location.href = "preview_word2.php?program_id=" + program_id + "";
 });
 //endregion
+
+const selectElement = document.querySelector("#person");
+
+selectElement.addEventListener("change", (event) => {
+  var result = document.querySelector("#other_person");
+  // console.log(event.target.value);
+  if(event.target.value == "其他"){
+    result.type = "text";
+  }
+  else{
+    result.type = "hidden";
+  }
+});
