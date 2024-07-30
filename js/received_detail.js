@@ -459,7 +459,7 @@ sign_msg_model = function (sign_type_name) {
       break;
   }
 
-  $(".sign_msg_td_name").text(type_name + "簽名留言內容");
+  $(".sign_msg_td_name").text(type_name + "意見");
 };
 
 //jsignature插件初始化 region

@@ -154,10 +154,18 @@ function submit_form() {
     }
   });
 
+  var foundChick="";
+  if($("#fund").val()=="其他"){
+    foundChick = "其他-"+$("#funding").val();
+  }
+  else{
+    foundChick = $("#fund").val();
+  }
+
   form_data.append("Date", $("#date").val());
   form_data.append("Plan_name", $("#plan_name").val());
   form_data.append("Plan_from", $("#plan_from").val());
-  form_data.append("Fund", $("#fund").val());
+  form_data.append("Fund", foundChick);
   form_data.append("Remark", $("#remark").val());
   form_data.append("File_year", date_year_split[0]);
 
@@ -238,3 +246,16 @@ get_files_name_value = function() {
  return file_name;
 }
 // endregion
+
+const selectElement = document.querySelector("#fund");
+
+selectElement.addEventListener("change", (event) => {
+  var result = document.querySelector("#funding");
+  // console.log(event.target.value);
+  if(event.target.value == "其他"){
+    result.type = "text";
+  }
+  else{
+    result.type = "hidden";
+  }
+});

@@ -93,7 +93,9 @@ if (isset($_FILES["volunteer_files0"]))
     }
     $file_0_arr = json_encode($file_0_arr,JSON_UNESCAPED_UNICODE);
 }
-
+if(count($file_0_arr)==0){
+    $file_0_arr="";
+}
 
 $sql = "INSERT INTO `volunteer_v2` (`Id`, `Year` ,`Name` ,`Birth` ,`Gender` ,
 `Home_phone` ,`Cellphone`, 

@@ -171,11 +171,12 @@
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;"><i style="color:red;">※</i>對象</td>
                                                                                 <td style="border-bottom: solid 1px;">
                                                                                     <select id="person" class="program_question">
-                                                                                        <option value="愛滋感染者">愛滋感染者</option>
-                                                                                        <option value="一般藥癮者">一般藥癮者</option>
-                                                                                        <option value="藥癮家庭">藥癮家庭</option>
-                                                                                        <option value="親職兒少">親職兒少</option>
+                                                                                        <option value="藥癮愛滋感染者">藥癮愛滋感染者</option>
+                                                                                        <option value="藥癮者">藥癮者</option>
+                                                                                        <option value="藥癮者家庭">藥癮者家庭</option>
+                                                                                        <option value="其他">其他</option>
                                                                                     </select>
+                                                                                    <input id="other_person" class="program_question" type="text">
                                                                                 </td>
                                                                                 </td>
                                                                             </tr>

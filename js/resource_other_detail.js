@@ -1,7 +1,7 @@
 // 設定欄列數量和各表頭名稱 region
 resourcetab_th_num = 6;
 resourcetab_row_num = 15;
-resourcetab_th = '<tr><th>機構/捐助者<br/>名稱</th><th>承辦人員及聯絡電話</th><th>協助<br/>項目</th><th>個案運用之資源</th><th>日期</th><th>社工員</th></tr>';
+resourcetab_th = '<tr><th>機構/捐助者<br/>名稱</th><th>承辦人員及聯絡電話</th><th>協助<br/>項目</th><th>個案運用之資源</th><th>日期</th><th>社工</th></tr>';
 //endregion
 
 // 網頁載入 region

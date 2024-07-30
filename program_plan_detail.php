@@ -174,12 +174,14 @@
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">經費來源</td>
                                                                                 <td style="border-bottom: solid 1px;">
                                                                                     <select id="fund" class="program_question">
-                                                                                        <option value="人事">人事</option>
-                                                                                        <option value="事務">事務</option>
-                                                                                        <option value="專管">專管</option>
-                                                                                        <option value="服務期程">服務期程</option>
-                                                                                        <option value="專案人員">專案人員</option>
+                                                                                        <option value="衛生福利部心健司">衛生福利部心健司</option>
+                                                                                        <option value="屏東縣政府">屏東縣政府</option>
+                                                                                        <option value="法務部">法務部</option>
+                                                                                        <option value="中華社會福利聯合勸募協會">中華社會福利聯合勸募協會</option>
+                                                                                        <option value="衛生福利部疾病管制署">衛生福利部疾病管制署</option>
+                                                                                        <option value="其他">其他</option>
                                                                                     </select>
+                                                                                    <input id="funding" class="program_question" type="text">
                                                                                 </td>
                                                                                 </td>
                                                                             </tr>

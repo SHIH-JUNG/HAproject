@@ -113,7 +113,7 @@
                                     <div class="panel-body">
                                         <div class="table-wrap">
                                             <div class="table-responsive">
-                                                <div class="text-center">車輛保留</div>
+                                                <div class="text-center">車輛管理</div>
                                                 <table style="font-size:15px;font-family:新細明體;" class="text-center table-striped table-sm" data-toggle="table" data- data-page-size=5 data-search="false" data-pagination="true" data-pagination-parts="[pageList]">
                                                     <thead>
                                                         <tr>
@@ -688,7 +688,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="show_vehicle_retain_ModalLabel">車輛保留-詳細資料</h4>
+                    <h4 class="modal-title" id="show_vehicle_retain_ModalLabel">車輛管理-詳細資料</h4>
                 </div>
                 <div class="modal-body">
                     <div class="row">

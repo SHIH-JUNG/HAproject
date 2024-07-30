@@ -257,12 +257,19 @@ function load_program_datas() {
       async: false,//啟用同步請求
       success: function (data) {
           // console.log(data)
-
           $.each(data,function(index,value){
               $("#date").val(check_sql_date_format(value.Date));
               $("#plan_name").val(value.Plan_name);
               $("#plan_from").val(value.Plan_from);
-              $("#fund").val(value.Fund);
+              if(value.Fund.includes("其他")){
+                var funds=value.Fund.split('-')
+                $("#fund").val(funds[0]);
+                $("#funding").val(funds[1]);
+              }
+              else{
+                $("#fund").val(value.Fund);
+                document.getElementById('funding').type = 'hidden';
+              }
               $("#remark").val(value.Remark);
           });
           
@@ -418,11 +425,19 @@ program_update = function() {
       // 未選擇檔案的file陣列no_file_arr加入File_name變數供後端程式判斷
       // form_data.append("File_name", JSON.stringify(no_file_arr));
 
+      var foundChick="";
+      if($("#fund").val()=="其他"){
+        foundChick = "其他-"+$("#funding").val();
+      }
+      else{
+        foundChick = $("#fund").val();
+      }
+
       form_data.append("Program_id", program_id);
       form_data.append("Date", $("#date").val());
       form_data.append("Plan_name", $("#plan_name").val());
       form_data.append("Plan_from", $("#plan_from").val());
-      form_data.append("Fund", $("#fund").val());
+      form_data.append("Fund", foundChick);
       form_data.append("Remark", $("#remark").val());
       form_data.append("File_year", year_split);
 
@@ -541,11 +556,19 @@ $("input.program_forms_question"+row_year+"[type='file']").each(function(index, 
     }
 });
 
+var foundChick="";
+if($("#fund").val()=="其他"){
+  foundChick = "其他-"+$("#funding").val();
+}
+else{
+  foundChick = $("#fund").val();
+}
+
 form_data.append("program_id", program_id);
 form_data.append("Date", $("#date").val());
 form_data.append("Plan_name", $("#plan_name").val());
 form_data.append("Plan_from", $("#plan_from").val());
-form_data.append("Fund", $("#fund").val());
+form_data.append("Fund", foundChick);
 form_data.append("Remark", $("#remark").val());
 
 $.ajax({
@@ -821,4 +844,17 @@ function tab_toggle() {
 
 $('#menu_tab_nav li a, .breadcrumb li, .brand-img').on('click',function() {
   localStorage.removeItem('activeTab');
+});
+
+const selectElement = document.querySelector("#fund");
+
+selectElement.addEventListener("change", (event) => {
+  var result = document.querySelector("#funding");
+  // console.log(event.target.value);
+  if(event.target.value == "其他"){
+    result.type = "text";
+  }
+  else{
+    result.type = "hidden";
+  }
 });

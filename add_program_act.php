@@ -142,11 +142,12 @@
                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">對象</td>
                                                                 <td style="border-bottom: solid 1px;">
                                                                     <select id="person">
-                                                                        <option value="愛滋感染者">愛滋感染者</option>
-                                                                        <option value="一般藥癮者">一般藥癮者</option>
-                                                                        <option value="藥癮家庭">藥癮家庭</option>
-                                                                        <option value="親職兒少">親職兒少</option>
+                                                                        <option value="藥癮愛滋感染者">藥癮愛滋感染者</option>
+                                                                        <option value="藥癮者">藥癮者</option>
+                                                                        <option value="藥癮者家庭">藥癮者家庭</option>
+                                                                        <option value="其他">其他</option>
                                                                     </select>
+                                                                    <input id="other_person" type="hidden">
                                                             </tr>
 
                                                             <tr style="text-align:left">
@@ -191,7 +192,7 @@
                                                     </div>
                                                 </div>
                                                 <br>
-                                                <button id="program_act_add_new" style="font-size:15px" type="button" class="btn btn-default"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-check" viewBox="0 0 16 16">
+                                                <button id="program_act_add_new" style="font-size:15px" type="button" class="btn btn-default" onclick="submit_form()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-check" viewBox="0 0 16 16">
                                                         <path d="M10.854 7.854a.5.5 0 0 0-.708-.708L7.5 9.793 6.354 8.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
                                                         <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
                                                     </svg>新增</button>
