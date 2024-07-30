@@ -460,6 +460,9 @@
                                             </form>
                                         </div>
                                     </div>
+                                    <div class="text-right">
+                                        <button style="font-size:20px" class="btn btn-default" onclick="previewAndPrintSection('form_1')">匯出生活品質問卷為PDF</button>
+                                    </div>
                                 </div>
                                 <div class="tab-pane fade" id="two" role="tabpanel" aria-labelledby="profile-tab">
                                     <div class="panel-body">
@@ -562,6 +565,9 @@
                                                 </table>
                                             </form>
                                         </div>
+                                    </div>
+                                    <div class="text-right">
+                                        <button style="font-size:20px" class="btn btn-default" onclick="previewAndPrintSection('form_2')">匯出綜合自我評估為PDF</button>
                                     </div>
                                 </div>
                                 <!-- <div class="tab-pane fade" id="three" role="tabpanel" aria-labelledby="profile-tab">
@@ -770,10 +776,10 @@
                                     返回</button>
                                     <!-- <button style="font-size:20px" id="preview" class="btn btn-default">預覽匯出</button> -->
                                 </div>
-                                <div class="text-right">
+                                <!-- <div class="text-right">
                                 <button style="font-size:20px" class="btn btn-default" onclick="previewAndPrintSection('form_1')">匯出生活品質問卷為PDF</button>
                                 <button style="font-size:20px" class="btn btn-default" onclick="previewAndPrintSection('form_2')">匯出綜合自我評估為PDF</button>
-                                </div>
+                                </div> -->
                                 <!-- <div class="text-right">
                                     <button style="font-size:20px" id="trans_grade" type="button" class="btn btn-default">轉級</button>
                                     <button style="font-size:20px" id="trans_case" type="button" class="btn btn-default">轉案</button>

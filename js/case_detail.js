@@ -1566,8 +1566,8 @@ $("#case_storage_submit").on('click', function () {
     }
     else if(case_storage_type == "storage")
     {
-        if($("#supervise1").val() != "" && $("#supervise2").val() != "")
-        {
+        // if($("#supervise1").val() != "" && $("#supervise2").val() != "")
+        // {
             if($("#case_storage_pwd").val() == "")
             {
                 swal({
@@ -1589,14 +1589,14 @@ $("#case_storage_submit").on('click', function () {
                     })
                 }
             }
-        }
-        else
-        {
-            swal({
-                title:'請選擇督導/執行長名稱',
-                type:'error',
-            })
-        }
+        // }
+        // else
+        // {
+        //     swal({
+        //         title:'請選擇督導/執行長名稱',
+        //         type:'error',
+        //     })
+        // }
     }
 });
 //endregion

@@ -178,6 +178,9 @@
                                                             </form>
                                                         </div>
                                                     </div>
+                                                    <div class="text-right">
+                                                        <button style="font-size:20px" class="btn btn-default" onclick="previewAndPrintSection('form_1')">匯出基本資料為PDF</button>
+                                                    </div>
                                                 </div>
                                                 <div class="tab-pane fade" id="two" role="tabpanel" aria-labelledby="profile-tab">
                                                     <div class="col-sm-12">
@@ -405,6 +408,9 @@
                                                             </form>
                                                         </div>
                                                     </div>
+                                                    <div class="text-right">
+                                                        <button style="font-size:20px" class="btn btn-default" onclick="previewAndPrintSection('form_2')">匯出量表內容為PDF</button>
+                                                    </div>
                                                 </div>
                                                 <div class="panel-footer" style="text-align:center;">
                                                     <button style="font-size:20px" id="add_familyship_detail" class="btn btn-default" data-toggle="modal"data-target="#case_storage_model2">
@@ -420,10 +426,10 @@
                                                     <!-- <button style="font-size:20px" id="preview" class="btn btn-default">預覽匯出</button> -->
                                                     <!-- <button style="font-size:20px" onclick="test()" class="btn btn-default">測試</button> -->
                                                 </div>
-                                                <div class="text-right">
+                                                <!-- <div class="text-right">
                                                 <button style="font-size:20px" class="btn btn-default" onclick="previewAndPrintSection('one')">匯出基本資料為PDF</button>
                                                 <button style="font-size:20px" class="btn btn-default" onclick="previewAndPrintSection('two')">匯出量表內容為PDF</button>
-                                                </div>
+                                                </div> -->
                                                 <!-- <div class="text-right">
                                                     <button style="font-size:20px" id="trans_grade" type="button" class="btn btn-default">轉級</button>
                                                     <button style="font-size:20px" id="trans_case" type="button" class="btn btn-default">轉案</button>
