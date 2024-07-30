@@ -94,17 +94,17 @@
                             </ul>
                             <div class="tab-content" id="myTabContent">
                                 <div class="tab-pane fade in active" id="one" role="tabpanel" aria-labelledby="home-tab">
-                                    <div class="col-sm-12">
-                                        <div style="margin-top:15px" class="text-center">
-                                            <h4>基本資料</h4>
-                                        </div>
-                                    </div>
+
                                     <div class="panel-body">
                                     </div>
                                     <div class="table-wrap">
                                         <div class="table-responsive">
                                             <form id="form_1" class="form">
-
+                                            <div class="col-sm-12">
+                                            <div style="margin-top:15px" class="text-center">
+                                                <h4>基本資料</h4>
+                                            </div>
+                                            </div>
                                                 <table style="width:auto;" class="table table-bordered">
                                                     <tr>
                                                         <td style="background-color:rgb(255 201 54);text-align:left;color:#d86d6d;">個案姓名：</td>
@@ -351,18 +351,21 @@
                                             </form>
                                         </div>
                                     </div>
+                                    <div class="text-right">
+                                        <button style="font-size:20px" class="btn btn-default" onclick="previewAndPrintSection('form_1')">匯出基本資料為PDF</button>
+                                    </div>
                                 </div>
                                 <div class="tab-pane fade" id="two" role="tabpanel" aria-labelledby="profile-tab">
-                                    <div class="col-sm-12">
-                                        <div style="margin-top:15px" class="text-center">
-                                            <h4>醫療追蹤</h4>
-                                        </div>
-                                    </div>
                                     <div class="panel-body">
                                     </div>
                                     <div class="table-wrap">
                                         <div class="table-responsive">
                                             <form id="form_2" class="form">
+                                            <div class="col-sm-12">
+                                            <div style="margin-top:15px" class="text-center">
+                                                <h4>醫療追蹤</h4>
+                                            </div>
+                                            </div>
                                                 <table style="width:auto;" class="table table-bordered">
                                                     <tr>
                                                         <td style="background-color:rgb(255 201 54);text-align:left;min-width: 11em;">診斷HIV時間</td>
@@ -503,18 +506,21 @@
                                             </form>
                                         </div>
                                     </div>
+                                    <div class="text-right">
+                                        <button style="font-size:20px" class="btn btn-default" onclick="previewAndPrintSection('form_2')">匯出醫療追蹤為PDF</button>
+                                    </div>
                                 </div>
                                 <div class="tab-pane fade" id="three" role="tabpanel" aria-labelledby="profile-tab">
-                                    <div class="col-sm-12">
-                                        <div style="margin-top:15px" class="text-center">
-                                            <h4>問題陳述/問題分析與診斷/處遇計畫/資源與轉介/成效評估</h4>
-                                        </div>
-                                    </div>
                                     <div class="panel-body">
                                     </div>
                                     <div class="table-wrap">
                                         <div class="table-responsive">
                                             <form id="form_3" class="form">
+                                            <div class="col-sm-12">
+                                            <div style="margin-top:15px" class="text-center">
+                                                <h4>問題陳述/問題分析與診斷/處遇計畫/資源與轉介/成效評估</h4>
+                                            </div>
+                                            </div>
                                                 <table style="width:80%;" class="table table-bordered">
                                                     <tr>
                                                         <td style="background-color:rgb(255 201 54);text-align:left;">個案問題陳述</td>
@@ -683,6 +689,9 @@
                                             </form>
                                         </div>
                                     </div>
+                                    <div class="text-right">
+                                        <button style="font-size:20px" class="btn btn-default" onclick="previewAndPrintSection('form_3')">匯出問題陳述/問題分析與診斷/處遇計畫/資源與轉介/成效評估為PDF</button>
+                                    </div>
                                 </div>
                                 <div class="panel-footer" style="text-align:center;">
                                     <button style="font-size:20px" id="add_settlement_detail" class="btn btn-default" data-toggle="modal"data-target="#case_storage_model2">
@@ -698,11 +707,11 @@
                                     <!-- <button style="font-size:20px" id="preview" class="btn btn-default">預覽匯出</button> -->
                                     <!-- <button style="font-size:20px" onclick="test()" class="btn btn-default">測試</button> -->
                                 </div>
-                                <div class="text-right">
+                                <!-- <div class="text-right">
                                     <button style="font-size:20px" class="btn btn-default" onclick="previewAndPrintSection('one')">匯出基本資料為PDF</button>
                                     <button style="font-size:20px" class="btn btn-default" onclick="previewAndPrintSection('two')">匯出醫療追蹤為PDF</button>
                                     <button style="font-size:20px" class="btn btn-default" onclick="previewAndPrintSection('three')">匯出問題陳述/問題分析與診斷/處遇計畫/資源與轉介/成效評估為PDF</button>
-                                </div>
+                                </div> -->
                                 <!-- <div class="text-right">
                                     <button style="font-size:20px" id="trans_grade" type="button" class="btn btn-default">轉級</button>
                                     <button style="font-size:20px" id="trans_case" type="button" class="btn btn-default">轉案</button>

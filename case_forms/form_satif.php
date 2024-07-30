@@ -433,6 +433,9 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                    <div class="text-right">
+                                                        <button style="font-size:20px" class="btn btn-default" onclick="previewAndPrintSection('one')">匯出個案服務滿意度調查表為PDF</button>
+                                                    </div>
                                                 <div class="panel-footer" style="text-align:center;">
                                                     <button style="font-size:20px" id="add_satif_detail" class="btn btn-default" data-toggle="modal"data-target="#case_storage_model2">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-save2" viewBox="0 0 16 16">
@@ -444,9 +447,9 @@
                                     <path d="M.5 3.5A.5.5 0 0 0 0 4v8a.5.5 0 0 0 1 0V8.753l6.267 3.636c.54.313 1.233-.066 1.233-.697v-2.94l6.267 3.636c.54.314 1.233-.065 1.233-.696V4.308c0-.63-.693-1.01-1.233-.696L8.5 7.248v-2.94c0-.63-.692-1.01-1.233-.696L1 7.248V4a.5.5 0 0 0-.5-.5z"/>
                                     </svg>
                                     返回</button>
-                                    <div class="text-right">
+                                    <!-- <div class="text-right">
                                     <button style="font-size:20px" class="btn btn-default" onclick="previewAndPrintSection('one')">匯出個案服務滿意度調查表為PDF</button>
-                                    </div>
+                                    </div> -->
                                                     <!-- <button style="font-size:20px" id="preview" class="btn btn-default">預覽匯出</button> -->
                                                 </div>
                                                 <!-- <div class="text-right">

@@ -381,6 +381,9 @@
                                             </form>
                                         </div>
                                     </div>
+                                    <div class="text-right">
+                                        <button style="font-size:20px" class="btn btn-default" onclick="previewAndPrintSection('form_1')">匯出基本資料為PDF</button>
+                                    </div>
                                 </div>
                                 <div class="tab-pane fade" id="two" role="tabpanel" aria-labelledby="profile-tab">
                                     <div class="panel-body">
@@ -594,6 +597,9 @@
                                             </form>
                                         </div>
                                     </div>
+                                    <div class="text-right">
+                                        <button style="font-size:20px" class="btn btn-default" onclick="previewAndPrintSection('form_2')">匯出醫療追蹤為PDF</button>
+                                    </div>
                                 </div>
                                 <div class="tab-pane fade" id="three" role="tabpanel" aria-labelledby="profile-tab">
                                     <div class="panel-body">
@@ -713,6 +719,9 @@
                                                 </table>
                                             </form>
                                         </div>
+                                    </div>
+                                    <div class="text-right">
+                                        <button style="font-size:20px" class="btn btn-default" onclick="previewAndPrintSection('form_3')">匯出問題陳述/評估與診斷/處遇計畫/社工策略/資源與轉介為PDF</button>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="four" role="tabpanel" aria-labelledby="profile-tab">
@@ -1070,6 +1079,9 @@
                                             </form>
                                         </div>
                                     </div>
+                                    <div class="text-right">
+                                        <button style="font-size:20px" class="btn btn-default" onclick="previewAndPrintSection('form_4')">匯出成效評估為PDF</button>
+                                    </div>
                                 </div>
                                 <div class="panel-footer" style="text-align:center;">
                                     <button style="font-size:20px" id="add_case_detail" class="btn btn-default" data-toggle="modal"data-target="#case_storage_model">
@@ -1089,10 +1101,10 @@
                                     <button style="font-size:20px" id="trans_grade" type="button" class="btn btn-default" data-toggle="modal" data-target="#trans_grade_model">轉級</button>
                                     <button style="font-size:20px" id="trans_case" type="button" class="btn btn-default" data-toggle="modal" data-target="#trans_user_model">轉案</button>
                                     <button style="font-size:20px" id="end" type="button" class="btn btn-default">結案</button><br><br>
-                                    <button style="font-size:20px" class="btn btn-default" onclick="previewAndPrintSection('form_1')">匯出基本資料為PDF</button>
+                                    <!-- <button style="font-size:20px" class="btn btn-default" onclick="previewAndPrintSection('form_1')">匯出基本資料為PDF</button>
                                     <button style="font-size:20px" class="btn btn-default" onclick="previewAndPrintSection('form_2')">匯出醫療追蹤為PDF</button>
                                     <button style="font-size:20px" class="btn btn-default" onclick="previewAndPrintSection('form_3')">匯出問題陳述/評估與診斷/處遇計畫/社工策略/資源與轉介為PDF</button>
-                                    <button style="font-size:20px" class="btn btn-default" onclick="previewAndPrintSection('form_4')">匯出成效評估為PDF</button>
+                                    <button style="font-size:20px" class="btn btn-default" onclick="previewAndPrintSection('form_4')">匯出成效評估為PDF</button> -->
                                 </div>
                             </div>
                         </div>
