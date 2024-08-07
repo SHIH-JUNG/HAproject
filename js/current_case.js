@@ -1,5 +1,4 @@
 const notyf = new Notyf();
-
 var buttonCheck = false;
 //抓所有個案region
 $.ajax({
@@ -20,21 +19,22 @@ $.ajax({
             cssString += 
             '<tr name="'+ value.Name +'" date="'+ value.Open_case_date +'" property="'+ value.Case_property +'" type="'+ value.Object_type +'" phoneid="'+value.Phone_id+'" id="'+value.Id+'" openid="'+value.Case_id+'" pid="'+value.Case_pid+'">' +
                 '<td style="text-align:center" class="tdBody">' + value.Case_id + '</td>' +
-                '<td style="text-align:center" class="tdBody">' + value.Name + '</td>' +
+                '<td style="text-align:center" class="tdBody"><input value="' + value.Name + '" size="10"  class="caseEdit' + value.Name + '" disabled></td>' +
                 '<td style="text-align:center" class="tdBody">' + value.Case_Create_date + '</td>' +
                 '<td style="text-align:center" class="tdBody">' + value.Object_type + '</td>' +
                 '<td style="text-align:center" class="tdBody">' + value.Case_grade + '</td>' +
                 '<td style="text-align:center" class="tdBody">' + value.Case_property + '</td>' +
                 '<td style="text-align:center" class="tdBody">' + value.Case_stage + '</td>' +
                 '<td style="text-align:center" class="tdBody">' + value.Open_case_date + '</td>' +
-                '<td style="text-align:center" class="tdBody">' + value.Phone + '</td>' +
-                '<td style="text-align:center" class="tdBody">' + value.Birth + '</td>' +
-                '<td style="text-align:center" class="tdBody">' + value.Case_pid + '</td>' +
+                '<td style="text-align:center" class="tdBody"><input value="' + value.Phone + '" size="12"  class="caseEdit' + value.Name + '" disabled></td>' +
+                '<td style="text-align:center" class="tdBody"><input value="' + value.Birth + '" size="12"  class="caseEdit' + value.Name + '" disabled></td>' +
+                '<td style="text-align:center" class="tdBody"><input value="' + value.Case_pid + '" size="12"  class="caseEdit' + value.Name + '" disabled></td>' +
                 '<td style="text-align:center" class="tdBody">' + value.Referral + '</td>' +
-                '<td style="text-align:center"><button onclick="update_case()">修改</button></td>'+
+                '<td style="text-align:center"><button id="' + value.Name + '_edit_btn" onclick="update_case(\'' + value.Name + '\')">修改</button><button id="' + value.Name + '_save_btn" onclick="save_case(\'' + value.Case_id + '\', \'' + value.Name + '\')" hidden>儲存</button></td>'+
             '</tr>'
             // $("#open_id").append('<option value="'+value.Case_id+'">'+value.Case_id+'</option>');
         });
+        
 
         // //option小到大排序
         // $('#open_id option').sort(function(a,b){
@@ -61,22 +61,22 @@ $.ajax({
             //點擊table tr 進入詳細頁面
             $(".table-hover tbody").on("click","tr",function () {
                 // console.log($(this).attr("class"));
-                window.location.href = 'case_all_all.php?id='+$(this).attr("id")+'&open_id='+$(this).attr("openid")+'';
-                if($("#username").text() == "園主任"){
+                if(buttonCheck==false){
                     window.location.href = 'case_all_all.php?id='+$(this).attr("id")+'&open_id='+$(this).attr("openid")+'';
-                } else if($(this).attr("assign") == $("#username").text()){
-                    window.location.href = 'case_all_all.php?id='+$(this).attr("id")+'&open_id='+$(this).attr("openid")+'';
-                }else{
-                    swal({
-                        title: '您無關看此個案的權限！',
-                        type: 'warning',
-                    }).then(function () {
-                        window.location.href = 'current_case.php#';
-                    })
-                    
-                    
                 }
-                //    window.location.href = 'four_all_all.php?name='+$(this).attr("name")+'&date='+$(this).attr("date")+'&house='+$(this).attr("house")+'&id='+$(this).attr("id")+'&open_id='+$(this).attr("openid")+'&addition='+$(this).attr("addition")+'&age='+$(this).attr("age")+'&gender='+$(this).attr("gender")+'&four_id='+$(this).attr("four_id")+'&face_num='+$(this).attr("face_num")+'';
+                // if($("#username").text() == "園主任"){
+                //     window.location.href = 'case_all_all.php?id='+$(this).attr("id")+'&open_id='+$(this).attr("openid")+'';
+                // } else if($(this).attr("assign") == $("#username").text()){
+                //     window.location.href = 'case_all_all.php?id='+$(this).attr("id")+'&open_id='+$(this).attr("openid")+'';
+                // }else{
+                //     swal({
+                //         title: '您無關看此個案的權限！',
+                //         type: 'warning',
+                //     }).then(function () {
+                //         window.location.href = 'current_case.php#';
+                //     })
+                // }
+                // window.location.href = 'four_all_all.php?name='+$(this).attr("name")+'&date='+$(this).attr("date")+'&house='+$(this).attr("house")+'&id='+$(this).attr("id")+'&open_id='+$(this).attr("openid")+'&addition='+$(this).attr("addition")+'&age='+$(this).attr("age")+'&gender='+$(this).attr("gender")+'&four_id='+$(this).attr("four_id")+'&face_num='+$(this).attr("face_num")+'';
             });
     },
     error: function (e) {
@@ -84,6 +84,8 @@ $.ajax({
      }
 });
 //endregion
+
+$(".caseEdit").attr("disabled", true);
 
 //table設定region
 var $table = $('#tab_case').DataTable({
@@ -213,7 +215,42 @@ $('.buttons-excel').each(function() {
 }) 
 //endregion
 
-function update_case(){
-    console.log('test');
-    console.log(this);
+function update_case(caseName){
+    buttonCheck=true;
+    $(".caseEdit"+caseName).attr("disabled", false);
+    $("#"+caseName+"_edit_btn").attr("hidden", true);
+    $("#"+caseName+"_save_btn").attr("hidden", false);
+}
+
+function save_case(caseID, caseName){
+    var NewInput=[];
+    $("input[class='caseEdit"+caseName+"']").each(function(index){
+        NewInput.push(this["value"]);
+    });
+    console.log(NewInput);
+    $.ajax({
+        url: "database/update_current_case.php",
+        type: "POST",
+        data: {
+            caseID: caseID,
+            newCaseName: NewInput[0],
+            phone: NewInput[1],
+            birthday: NewInput[2],
+            ID: NewInput[3]
+        },
+        dataType: "JSON",
+        async: false,//啟用同步請求
+        success: function (data) {
+            // console.log(data)
+            if(data=1){
+                location.reload();
+            }
+            else{
+                notyf.alert('修改失敗！請聯絡網站維護人員');
+            }
+        },
+        error: function (e) {
+            notyf.alert('修改失敗！請聯絡網站維護人員');
+         }
+    });
 }
