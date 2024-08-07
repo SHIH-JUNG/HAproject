@@ -1,3 +1,7 @@
+ALTER TABLE `published` ADD `employee_sign` VARCHAR(30) NOT NULL AFTER `Update_name`, ADD `employee_sign_imagePath` TEXT NOT NULL AFTER `employee_sign`, ADD `employee_sign_msg` TEXT NOT NULL AFTER `employee_sign_imagePath`, ADD `employee_sign_Date` VARCHAR(54) NOT NULL AFTER `employee_sign_msg`;
+
+ALTER TABLE `received` ADD `employee_sign` VARCHAR(30) NOT NULL AFTER `Update_name`, ADD `employee_sign_imagePath` TEXT NOT NULL AFTER `employee_sign`, ADD `employee_sign_msg` TEXT NOT NULL AFTER `employee_sign_imagePath`, ADD `employee_sign_Date` VARCHAR(54) NOT NULL AFTER `employee_sign_msg`;
+
 CREATE TABLE accounting_sheet (
   id int(11) NOT NULL,
   sync_link varchar(255) NOT NULL,
