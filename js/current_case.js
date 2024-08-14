@@ -25,21 +25,20 @@ $.ajax({
                 '<td style="text-align:center" class="tdBody">' + value.Case_id + '</td>' +
                 '<td style="text-align:center" class="tdBody"><input value="' + value.Name + '" size="10"  class="caseEdit' + value.Name + '" disabled></td>' +
                 '<td style="text-align:center" class="tdBody">' + value.Case_Create_date + '</td>' +
-                '<td style="text-align:center" class="tdBody">' + value.Object_type + '</td>' +
-                '<td style="text-align:center" class="tdBody">' + value.Case_grade + '</td>' +
-                '<td style="text-align:center" class="tdBody">' + value.Case_property + '</td>' +
-                '<td style="text-align:center" class="tdBody">' + value.Case_stage + '</td>' +
-                '<td style="text-align:center" class="tdBody">' + value.Open_case_date + '</td>' +
+                '<td style="text-align:center" class="tdBody"><input value="' + value.Object_type + '" size="12"  class="caseEdit' + value.Name + '" disabled></td>' +
+                '<td style="text-align:center" class="tdBody"><input value="' + value.Case_grade + '" size="12"  class="caseEdit' + value.Name + '" disabled></td>' +
+                '<td style="text-align:center" class="tdBody"><input value="' + value.Case_property + '" size="12"  class="caseEdit' + value.Name + '" disabled></td>' +
+                '<td style="text-align:center" class="tdBody"><input value="' + value.Case_stage + '" size="12"  class="caseEdit' + value.Name + '" disabled></td>' +
+                '<td style="text-align:center" class="tdBody"><input value="' + value.Open_case_date + '" size="12"  class="caseEdit' + value.Name + '" disabled></td>' +
                 '<td style="text-align:center" class="tdBody"><input value="' + value.Phone + '" size="12"  class="caseEdit' + value.Name + '" disabled></td>' +
                 '<td style="text-align:center" class="tdBody"><input value="' + value.Birth + '" size="12"  class="caseEdit' + value.Name + '" disabled></td>' +
-                '<td style="text-align:center" class="tdBody"><input value="' + value.Case_pid + '" size="12"  class="caseEdit' + value.Name + '" disabled></td>' +
-                '<td style="text-align:center" class="tdBody">' + value.Referral + '</td>' +
-                '<td style="text-align:center" class="tdBody"><input value="' + value.Case_assign + '" size="12"  class="caseEdit' + value.Name + '" disabled></td>' +
+                '<td style="text-align:center" class="tdBody"><input value="' + value.Case_pid + '" size="12" class="caseEdit' + value.Name + '" disabled></td>' +
+                '<td style="text-align:center" class="tdBody"><input value="' + value.Referral + '" size="12"  class="caseEdit' + value.Name + '" disabled></td>' +
+                '<td style="text-align:center" class="tdBody"><select name="assign" class="caseEdit' + value.Name + ' assign" style="width:125px;" disabled><option value="'+value.Case_assign+'">'+value.Case_assign+'</option></select></td>' +
                 '<td style="text-align:center"><button id="' + value.Name + '_edit_btn" onclick="update_case(\'' + value.Name + '\')">修改</button><button id="' + value.Name + '_save_btn" onclick="save_case(\'' + value.Case_id + '\', \'' + value.Name + '\')" hidden>儲存</button></td>'+
             '</tr>'
             // $("#open_id").append('<option value="'+value.Case_id+'">'+value.Case_id+'</option>');
         });
-        
 
         // //option小到大排序
         // $('#open_id option').sort(function(a,b){
@@ -90,6 +89,8 @@ $.ajax({
      }
 });
 //endregion
+
+append_user();
 
 $(".caseEdit").attr("disabled", true);
 
@@ -234,6 +235,7 @@ function save_case(caseID, caseName){
         NewInput.push(this["value"]);
     });
     // console.log(NewInput);
+
     $.ajax({
         url: "database/update_current_case.php",
         type: "POST",
@@ -241,17 +243,29 @@ function save_case(caseID, caseName){
             caseID: caseID,
             user_name: user_name,
             newCaseName: NewInput[0],
-            phone: NewInput[1],
-            birthday: NewInput[2],
-            ID: NewInput[3],
-            assign: NewInput[4]
+            Object_type: NewInput[1],
+            Case_grade: NewInput[2],
+            Case_property: NewInput[3],
+            Case_stage: NewInput[4],
+            Open_case_date: NewInput[5],
+            phone: NewInput[6],
+            birthday: NewInput[7],
+            ID: NewInput[8],
+            Referral: NewInput[9],
+            assign: $(".caseEdit"+caseName+".assign").val()
         },
         dataType: "JSON",
         async: false,//啟用同步請求
         success: function (data) {
             // console.log(data)
-            if(data=1){
-                location.reload();
+            if(data==1){
+                swal({
+                    type: "success",
+                    title: "修改成功!",
+                    allowOutsideClick: false, //不可點背景關閉
+                  }).then(function () {
+                    location.reload();
+                  });
             }
             else{
                 notyf.alert('修改失敗！請聯絡網站維護人員');
@@ -263,3 +277,20 @@ function save_case(caseID, caseName){
          }
     });
 }
+
+//呼叫user方法region
+function append_user(){
+    $.ajax({
+        type:'POST',
+        url:'database/find_check_user.php',
+        dataType: "JSON",
+        async: false,//啟用同步請求
+        success: function (data) {
+            // console.log(data)
+            for (var index in data.Id) {
+              $(".assign").append('<option value="'+data.Name[index]+'">'+data.Name[index]+'</option>');
+            }
+        },
+    });
+  }
+  //endregion
