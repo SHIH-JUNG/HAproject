@@ -31,6 +31,38 @@
     <title>個案管理系統</title>
 </head>
 <style>
+        /* table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: left;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            text-align: center;
+        }
+        .form-container {
+            font-family: Arial, sans-serif;
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        } */
+        .page-break {
+            page-break-before: always;
+        }
+        input[type="checkbox"], input[type="radio"] {
+            transform: scale(1.2);
+            margin: 4px;
+            position: relative;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
     table {
         margin-left: auto;
         margin-right: auto;
@@ -75,6 +107,7 @@
 </style>
 
 <body>
+<div id="form-container">
     <!--讀取進度條-->
     <div class="preloader-it">
         <div class="la-anim-1"></div>
@@ -264,7 +297,7 @@
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">更新者</td>
                                                                                 <td style="border-bottom: solid 1px;"><input id="update_name" type="text" disabled="disabled"></td>
                                                                             </tr>
-
+                                                                        </table>
                                                                             <tr>
                                                                                 <td colspan="2">
                                                                                     <div id="edit_div">
@@ -274,16 +307,19 @@
                                                                                         <button style="font-size:20px" id="program_update" class="btn btn-default" onclick="program_update();">修改</button>
                                                                                         <button style="font-size:20px" id="program_cancel" class="btn btn-default" onclick="program_cancel();">取消</button>
                                                                                     </div>
+                                                                                    <br>
+                                                                                    <div class="text-center">
+                                                                                        <button style="font-size:20px" class="btn btn-default" onclick="previewAndPrintSection('all_data')">匯出為PDF</button>
+                                                                                    </div>
                                                                                 </td>
                                                                             </tr>
-                                                                        </table>
 
                                                                         <div class="col-sm-12" style="padding-left:0;padding-right:0;margin-top:3em;">
                                                                             <div class="text-center col-sm-4" style="padding-left:0;">
                                                                             </div>
-                                                                            <div class="text-center col-sm-4">
+                                                                            <!-- <div class="text-center col-sm-4">
                                                                                 <button style="font-size:20px;" id="preview_word2" class="btn btn-default">預覽匯出</button>
-                                                                            </div>
+                                                                            </div> -->
                                                                             <!-- <div class="text-right col-sm-4" style="padding-right:0;">
                                                                                 <button type="button" id="trans_to_opencase" class="btn btn-default trans_btn" style="font-size:20px" data-toggle="modal" data-target="#myModal">
                                                                                     轉案(新增至開案個案)
@@ -347,6 +383,7 @@
 
         </div>
     </div>
+</div>
 
     <!--\ Modal -->
     <!-- <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
@@ -379,7 +416,122 @@
         </div>
     </div> -->
     <!-- Modal /-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script>
 
+        function fillFormValues() {
+            // 執行JavaScript代碼填充表單數據
+            //個案評估表自動填入資料
+            // $("#name").val(name);
+            // $("#pid").val(decodeURIComponent(pid));
+            // $("input[name='sex'][value='"+gender+"']").attr('checked',true);
+            // $("#open_date").val(decodeURIComponent(date));
+            // $("#birth").val(birth);
+            // $("#age").val(getAge(birth.split('-'))[0]);
+            // $("#assign_name").val(assign_name);
+            //填寫日期自動帶入
+            $("input[name*='fillin_date']").each(function(){
+                //獲取現在時間 moment.js插件
+                var timenow = moment().format('YYYY-MM-DD');
+                $(this).val(timenow);
+            });
+        }
+
+        function previewAndPrintSection(sectionId) {
+            fillFormValues(); // 確保數據填充
+            setTimeout(function() {
+                var element = document.getElementById(sectionId);
+                if (element) {
+                    // 預處理 radio 和 checkbox 元素
+                    preprocessFormElements(element);
+
+                    html2canvas(element, {
+                        scale: 3,
+                        logging: true, // 啟用日誌以幫助調試
+                        useCORS: true, // 允許跨域圖片
+                        allowTaint: true // 允許跨域圖片
+                    }).then(function(canvas) {
+                        var imgData = canvas.toDataURL('image/png');
+                        var pdf = new jspdf.jsPDF('p', 'mm', 'a4');
+                        var imgWidth = 210;
+                        var pageHeight = 297;
+                        var imgHeight = canvas.height * imgWidth / canvas.width;
+                        var heightLeft = imgHeight;
+                        var position = 0;
+
+                        if (heightLeft < pageHeight) {
+                            pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, heightLeft);
+                        } else {
+                            pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, pageHeight);
+                            heightLeft -= pageHeight;
+
+                            while (heightLeft > 0) {
+                                position = heightLeft - imgHeight;
+                                pdf.addPage();
+                                pdf.addImage(imgData, 'PNG', 0, position, imgWidth, pageHeight);
+                                heightLeft -= pageHeight;
+                            }
+                        }
+
+                // 恢復原始表單元素
+                restoreFormElements(element);
+
+                var previewWindow = window.open('', '_blank');
+                previewWindow.document.write('<html><head><title>預覽 PDF</title></head><body>');
+                previewWindow.document.write('<embed width="100%" height="100%" src="' + pdf.output('bloburl') + '" type="application/pdf">');
+                previewWindow.document.write('</body></html>');
+                previewWindow.document.close();
+                    });
+                }
+            }, 100); // 延遲打印以確保數據已經填充
+        }
+
+        function preprocessFormElements(element) {
+            var radios = element.querySelectorAll('input[type="radio"]');
+            var checkboxes = element.querySelectorAll('input[type="checkbox"]');
+
+            radios.forEach(function(radio) {
+                var span = document.createElement('span');
+                span.className = 'custom-radio';
+                span.textContent = radio.checked ? '●' : '○';
+                radio.parentNode.insertBefore(span, radio);
+                radio.style.display = 'none';
+            });
+
+            checkboxes.forEach(function(checkbox) {
+                var span = document.createElement('span');
+                span.className = 'custom-checkbox';
+                span.textContent = checkbox.checked ? '☑' : '☐';
+                checkbox.parentNode.insertBefore(span, checkbox);
+                checkbox.style.display = 'none';
+            });
+        }
+
+        function restoreFormElements(element) {
+            var customRadios = element.querySelectorAll('.custom-radio');
+            var customCheckboxes = element.querySelectorAll('.custom-checkbox');
+
+            customRadios.forEach(function(span) {
+                span.parentNode.removeChild(span);
+            });
+
+            customCheckboxes.forEach(function(span) {
+                span.parentNode.removeChild(span);
+            });
+
+            var radios = element.querySelectorAll('input[type="radio"]');
+            var checkboxes = element.querySelectorAll('input[type="checkbox"]');
+
+            radios.forEach(function(radio) {
+                radio.style.display = '';
+            });
+
+            checkboxes.forEach(function(checkbox) {
+                checkbox.style.display = '';
+            });
+        }
+    </script>
     <!-- /#wrapper -->
     <!-- JavaScript -->
     <!-- Bootstrap and jQuery -->
@@ -427,10 +579,10 @@
                     title:"您無權限查看當前頁面!",
                     type:"error"
                 }).then(function(){
-                    window.history.go (-1); 
-                }); 
-                </script>';  
-        } 
+                    window.history.go (-1);
+                });
+                </script>';
+        }
     }
 
 ?>
