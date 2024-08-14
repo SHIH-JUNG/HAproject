@@ -1,7 +1,4 @@
-<?php session_start(); 
-$user_name = $_SESSION['name'];
-$id = $_SESSION['authority'];
-?>
+<?php session_start(); ?>
 <?php include("database/check_authority.php"); ?><?php include("no_cache.php"); ?>
 <?php $href_name =  'page_n1'; ?>
 <!DOCTYPE html>
@@ -25,11 +22,6 @@ $id = $_SESSION['authority'];
     <link href="css/jquery.dataTables1.10.16.min.css" rel="stylesheet" />
     <link href="css/buttons.dataTables1.5.1.min.css" rel="stylesheet" />
     
-    <script>
-        //設定js變數抓取使用者名稱
-        var user_name = '<?php echo $_SESSION["name"]; ?>';
-        var id = '<?php echo $_SESSION["authority"]; ?>';
-    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="description" content="快樂聯盟資管系統">
@@ -61,19 +53,11 @@ $id = $_SESSION['authority'];
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                           <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
                         </svg>
-                        <li><span><a href="current_case.php">個案管理</a></span></li>
+                        <li><span><a href="case_summary.php">個案管理</a></span></li>
                         <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                         </svg>
-                        <li><span><a href="current_case.php">開案管理</a></span></li>
-                        <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
-                        </svg>
-                        <li><span><a href="current_case.php">開案個案</a></span></li>
-                        <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
-                        </svg>
-                        <li><span>開案個案一覽表</span></li>
+                        <li><span>開案總表</span></li>
                     </ol>
                     <!--/麵包屑-->
                 </div>
@@ -187,35 +171,26 @@ $id = $_SESSION['authority'];
                                                 </div>
                                             </div>
                                             <p>
-                                            <div class="text-center"><h4>開案個案一覽表</h4></div>
+                                            <div class="text-center"><h4>開案總表</h4></div>
                                             <div class="table-wrap">
                                                 <div class="table-responsive">
                                                     <table class="table display table-hover" style="font-size:15px;font-family:微軟正黑體;width:100%" id="tab_case" data-toolbar="#toolbar">                                                       
                                                     <thead>
                                                             <tr>
                                                                 <th class="text-right" colspan="15">
-                                                                            <a href="add_case.php"><button style="font-size:15px" type="button" class="btn btn-default"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                                            <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
-                                                                            <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z" />
-                                                                            <path fill-rule="evenodd" d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5z" />
-                                                                        </svg>新增</button></a>
                                                                 </th>
                                                             </tr>
                                                             <tr style="background-color:rgb(255 201 54)">
-                                                                <th>開案編號</th>
-                                                                <th>姓名</th>
-                                                                <th>登入日期</th>
-                                                                <th>個案類別</th>
-                                                                <th>個案分級</th> 
-                                                                <th>類別屬性</th>
-                                                                <th>類別屬性<br/>階段</th>
+                                                                <th>案號</th>
                                                                 <th>開案日期</th>
+                                                                <th>個案姓名</th>
+                                                                <th>性別</th>
                                                                 <th>電話</th>
-                                                                <th>出生年月日</th>
-                                                                <th>身分證字號</th>
-                                                                <th>轉介來源</th>
-                                                                <th>負責人員</th>
-                                                                <th>編輯</th>
+                                                                <th>身分證字號</th> 
+                                                                <th>個案來源</th>
+                                                                <th>開案社工</th>
+                                                                <th>結案日期</th>
+                                                                <th>結案社工</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody style="text-align:center" id="open_case"></tbody>
@@ -267,7 +242,7 @@ $id = $_SESSION['authority'];
     <!-- ================== 登出設定 ================== -->
     <script src='js/logout.js'></script>
     <!-- ================== case.js ================== -->
-    <script src='js/current_case.js<?php echo "?".date("Y-m-d h:i:sa")?>'></script>
+    <script src='js/case_summary.js<?php echo "?".date("Y-m-d h:i:sa")?>'></script>
     <!-- ================== moment ================== -->
     <script src='javascript/moment2.29.0.min.js'></script>
     <!-- ================== table ================== -->

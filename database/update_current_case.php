@@ -4,19 +4,23 @@
 //只要此頁面上有用到連接MySQL就要include它
 include("sql_connect.php");
 
-$user = $_SESSION['name'];
+// $user = $_SESSION['name'];
 
 $caseID = $_POST['caseID'];
+$user_name = $_POST['user_name'];
 $newCaseName = $_POST['newCaseName'];
 $phone = $_POST['phone'];
 $birthday = $_POST['birthday'];
 $ID = $_POST['ID'];
+$assign = $_POST['assign'];
 
 $sql = "UPDATE `current_case` SET `Name` = '$newCaseName',
 `Phone` = '$phone',
 `Birth` = '$birthday',
 `Case_pid` = '$ID',
-`Update_date` = NOW(), `Update_name` = '$user'
+`Case_assign` = '$assign',
+`Update_date` = NOW(),
+`Update_name` = '$user_name'
 WHERE `Case_id` = '$caseID';";
 // echo $sql;
 

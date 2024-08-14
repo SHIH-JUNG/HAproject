@@ -96,6 +96,9 @@
     // 結案
     $closed_page = '';
 
+    //開案總表
+    $case_summary = '';
+
     // 安置中心生輔紀錄
     $dlgrec_all_pages = '';
 
@@ -320,6 +323,14 @@
                     $closed_page = 
                     '<li>
                         <a href="closed.php">結案
+                        </a>
+                    </li>';
+                break;
+
+            case 'page_case':
+                    $case_summary = 
+                    '<li>
+                        <a href="case_summary.php">開案總表
                         </a>
                     </li>';
                 break;
@@ -599,7 +610,7 @@
         <ul style="font-size:18px" id="case" class="collapse">';
 
     // 個案管理 = 未開案管理 + 開案管理 + 結案 + 安置中心生輔紀錄 + 服務報表
-    $case_pages .= $nonopen_case_pages . $open_case_pages . $closed_page . $dlgrec_all_pages . $case_report_page;
+    $case_pages .= $nonopen_case_pages . $open_case_pages . $closed_page . $case_summary . $dlgrec_all_pages . $case_report_page;
 
     // 行政管理 - 加入結尾
     $case_pages .= '</ul></li>';

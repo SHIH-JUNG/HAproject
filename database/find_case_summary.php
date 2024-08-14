@@ -5,32 +5,18 @@ include("sql_connect.php");
 @$Id = $_POST['Id'];
 // @$four_id = $_POST['four_id'];
 @$Open_id = $_POST['Open_id'];
-$user_name = $_POST['user_name'];
-$id = $_POST['id'];
-$permissions = '';
 // $Phone_id = '4';
 // $Open_id = '2';
-// echo $user_name;
 //region 抓資料
-
-if($id <= 3){
-  $permissions = "";
-}
-else{
-  $permissions = " AND `Case_assign` = '$user_name' ";
-}
-
 if($Open_id != "" && $Phone_id != ""){
-    $sql = "SELECT *,DATE(`current_case`.`Open_case_date`) AS Open_case_date FROM `current_case` WHERE `Id`='$Id' AND `Case_id`='$Open_id' AND `Case_state` = '未結案' $permissions ORDER BY `current_case`.`Open_case_date` DESC";
+    $sql = "SELECT *,DATE(`current_case`.`Open_case_date`) AS Open_case_date FROM `current_case` WHERE `Id`='$Id' AND `Case_id`='$Open_id' AND `Case_state` = '未結案' ORDER BY `current_case`.`Open_case_date` DESC";
 }
 else if($Open_id != ""){
-  $sql = "SELECT *,DATE(`current_case`.`Open_case_date`) AS Open_case_date FROM `current_case` WHERE `Case_id`='$Open_id' $permissions ORDER BY `current_case`.`Open_case_date` DESC";
+  $sql = "SELECT *,DATE(`current_case`.`Open_case_date`) AS Open_case_date FROM `current_case` WHERE `Case_id`='$Open_id' ORDER BY `current_case`.`Open_case_date` DESC";
 }
 else{
-    $sql = "SELECT *,DATE(`current_case`.`Open_case_date`) AS Open_case_date FROM `current_case` WHERE `Case_state` = '未結案' $permissions ORDER BY `current_case`.`Open_case_date` DESC";
+    $sql = "SELECT *,DATE(`current_case`.`Open_case_date`) AS Open_case_date FROM `current_case` ORDER BY `current_case`.`Open_case_date` DESC";
 }
-
-
 
 //宣告空的陣列
 $datas = array();

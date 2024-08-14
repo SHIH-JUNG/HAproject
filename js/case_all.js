@@ -61,7 +61,7 @@ window.sign_name_type = "";
 $(document).ready(function () {
     // 顯示摘要表重要資訊(姓名、開案日期、個案類別、類別屬性、接案工作人員...)
     $.ajax({
-        url: "database/find_case.php",
+        url: "database/find_case_all_all.php",
         data: {
             Open_id:open_id,
             Id:id

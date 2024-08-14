@@ -181,6 +181,7 @@
                                                                 <input name="auth_href_name" style="zoom: 1.5" value="page_n1" type="checkbox"><span>開案個案</span>
                                                                 <input name="auth_href_name" style="zoom: 1.5" value="page_n2" type="checkbox"><span>安置評估</span><br/><br/>
                                                                 <input name="auth_href_name" style="zoom: 1.5" value="page_o" type="checkbox"><span>結案</span><br/><br/>
+                                                                <input name="auth_href_name" style="zoom: 1.5" value="page_case" type="checkbox"><span>開案總表</span><br/><br/>
                                                                 <input name="auth_href_name" style="zoom: 1.5" value="page_p1" type="checkbox"><span>生輔紀錄</span>
                                                                 <input name="auth_href_name" style="zoom: 1.5" value="page_p2" type="checkbox"><span>同儕生輔紀錄</span><br/><br/>
                                                                 <input name="auth_href_name" style="zoom: 1.5" value="page_q" type="checkbox"><span>服務報表</span>

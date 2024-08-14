@@ -17,7 +17,7 @@ $(document).ready(function () {
     var open_id = getUrlVars()["open_id"];
 //    console.log(four_id)
     $.ajax({
-        url: "database/find_case.php",
+        url: "database/find_case_all_all.php",
         data: {
             Id: id,
             Open_id:open_id
@@ -26,7 +26,7 @@ $(document).ready(function () {
         dataType: "JSON",
         success: function (data) {
             var cssstring ="";
-//            console.log(data)
+        //    console.log(data)
 
             $.each(data,function(index,value){
                 cssstring += 
