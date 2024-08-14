@@ -167,7 +167,7 @@
                                                                 <div class="panel-heading" id="headingOne">
                                                                     <h2 class="mb-0">
                                                                         <button class="btn btn-link btn-block collapsed" type="button" data-toggle="collapse" data-parent="#myTabContent" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                                                                            <span style="color:black;font-size:17px">會議章程</span>
+                                                                            <span style="color:black;font-size:17px">會議議程</span>
                                                                         </button>
                                                                     </h2>
                                                                 </div>
@@ -176,7 +176,7 @@
                                                                         <form id="form_a" class="form">
                                                                             <table style="width:75%;margin-bottom: 0px;" class="table table-bordered">
                                                                                 <tr style="text-align:left">
-                                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;width:12em;">會議章程標題</td>
+                                                                                    <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;width:12em;">會議議程標題</td>
                                                                                     <td style="border-bottom: solid 1px;"><div class="col-sm-10"><input class="bs_question" id="upload_agenda_title_name" name="upload_agenda_title_name" type="text" style="width:100%;"></div></td>
                                                                                 </tr>
                                                                                 <tr style="text-align:left">
