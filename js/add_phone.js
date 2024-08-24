@@ -15,7 +15,7 @@ m = Arr[1];
 //endregion
 check_checkbox();//判斷是否勾選傳入陣列
 check_radio();
-check_main_checkbox();//判斷主要戒治物質值   
+check_main_checkbox();//判斷主要戒治物質值
 check_main_type_radio(); //判斷 毒品施用方式
 //console.log(r_val, a_val, l_val ,w_val ,k_val , main_val );
 //var county = $("#twzipcode").twzipcode('get','county');
@@ -64,7 +64,7 @@ if($("#call_datetime").val() != "" && $("#name").val() != ""){
                         title: '新增成功!',
                         allowOutsideClick: false //不可點背景關閉
                         }).then(function () {
-                            window.location.replace("phone.php"); 
+                            window.location.replace("phone.php");
                         })
                 }else{
                     swal({
@@ -73,9 +73,9 @@ if($("#call_datetime").val() != "" && $("#name").val() != ""){
                         allowOutsideClick: false //不可點背景關閉
                         })
                         // .then(function () {
-                        //     window.location.replace("phone.php"); 
+                        //     window.location.replace("phone.php");
                         // })
-                }  
+                }
             },
                 error: function () {
                     swal({
@@ -129,8 +129,8 @@ function check_main_checkbox(){
             }else{
                 main_val.push(checkbox2[i].value);
             }
-            
-        }    
+
+        }
     }
 
 //    console.log(main_val)
@@ -150,8 +150,8 @@ function check_main_type_radio() {
             }else{
                 m_type_val = m_type_radio[i].value;
             }
-            
-        }    
+
+        }
     }
 
     //    console.log(m_type_val)
@@ -183,23 +183,23 @@ function check_radio(){
     var e_len = e_radio.length;
 
     phone_val= new Array();
-    
+
     for (i = 0; i < phone_len; i++)
     {
         if (phone_radio[i].value != "")
         {
            phone_val.push(phone_radio[i].value);
-        }    
+        }
     }
 
     refphone_val= new Array();
-    
+
     for (i = 0; i < refphone_len; i++)
     {
         if (refphone_radio[i].value != "")
         {
            refphone_val.push(refphone_radio[i].value);
-        }    
+        }
     }
 
     for (i = 0; i < r_len; i++)
@@ -211,7 +211,7 @@ function check_radio(){
     //        console.log(w_val)
         }else{
             r_val= "";
-        }    
+        }
     }
     for (i = 0; i < l_len; i++)
     {
@@ -222,7 +222,7 @@ function check_radio(){
     //        console.log(w_val)
         }else{
             l_val= "";
-        }    
+        }
     }
     for (i = 0; i < a_len; i++)
     {
@@ -233,7 +233,7 @@ function check_radio(){
     //        console.log(w_val)
         }else{
             a_val= "";
-        }    
+        }
     }
     for (i = 0; i < ref_len; i++)
     {
@@ -244,7 +244,7 @@ function check_radio(){
     //        console.log(w_val)
         }else{
             ref_val= "";
-        } 
+        }
     }
     // for (i = 0; i < k_len; i++)
     // {
@@ -255,19 +255,19 @@ function check_radio(){
     // //        console.log(w_val)
     //     }else{
     //         k_val = "";
-    //     }    
+    //     }
     // }
 
     for (i = 0; i < e_len; i++)
     {
-        if (e_radio[i].checked == true)
+        if (e_radio[i].checked != true)
         {
            e_val = e_radio[i].value;
             break;
     //        console.log(w_val)
         }else{
             e_val = "";
-        }    
+        }
     }
     // console.log(phone_val,refphone_val,r_val,l_val,a_val,ref_val,k_val,e_val);
 }
@@ -275,12 +275,12 @@ function check_radio(){
 
 //新增電話按鈕region
 $("#add_phone").on('click',function(){
-   $("#new_phone").append('<br><br><input name="phone[]" type="number" placeholder="次要" max="10">'); 
+   $("#new_phone").append('<br><br><input name="phone[]" type="number" placeholder="次要" max="10">');
 });
 //endregion
 
 
-    //呼叫user方法region           
+    //呼叫user方法region
             $.ajax({
                 type:'POST',
                 url:'database/find_check_user.php',
@@ -296,7 +296,7 @@ $("#add_phone").on('click',function(){
                     notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員!');
                 }
             });
-    
+
     //endregion
 
 //endregion
