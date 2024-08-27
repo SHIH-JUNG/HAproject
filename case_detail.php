@@ -1,11 +1,22 @@
-<?php session_start(); ?>
+<?php session_start();
+$user_name = $_SESSION['name'];
+$id = $_SESSION['authority'];
+?>
 <?php include("database/check_authority.php"); ?><?php include("no_cache.php"); ?>
 <?php $href_name =  'page_n1'; ?>
 <?php @$values1 =  $_GET['form_type']; ?>
 <!DOCTYPE html>
 <html>
-
+<script>
+        //設定js變數抓取使用者名稱
+        var user_name = '<?php echo $_SESSION["name"]; ?>';
+        var id = '<?php echo $_SESSION["authority"]; ?>';
+    </script>
 <head>
+    <script>
+        //設定js變數抓取使用者名稱
+        var user_name = '<?php echo $_SESSION["name"]; ?>';
+    </script>
     <!--網頁icon-->
     <link rel="icon" href="image/LOGO.png" type="image/x-icon">
     <!-- CSS-->
