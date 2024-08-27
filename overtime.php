@@ -92,7 +92,7 @@
                 <footer class="footer container-fluid pl-30 pr-30">
                     <div class="row">
                         <div class="col-sm-12 text-center">
-                            <p>Copyright &copy; 2020國立屏東科技大學資訊管理系</p>
+                            <p>Copyright &copy; 台灣世界快樂聯盟</p>
                             <span style="display:none" id="counter"></span>
                         </div>
                     </div>
