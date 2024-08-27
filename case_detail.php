@@ -7,16 +7,12 @@ $id = $_SESSION['authority'];
 <?php @$values1 =  $_GET['form_type']; ?>
 <!DOCTYPE html>
 <html>
-<script>
+    <script>
         //設定js變數抓取使用者名稱
         var user_name = '<?php echo $_SESSION["name"]; ?>';
         var id = '<?php echo $_SESSION["authority"]; ?>';
     </script>
 <head>
-    <script>
-        //設定js變數抓取使用者名稱
-        var user_name = '<?php echo $_SESSION["name"]; ?>';
-    </script>
     <!--網頁icon-->
     <link rel="icon" href="image/LOGO.png" type="image/x-icon">
     <!-- CSS-->
