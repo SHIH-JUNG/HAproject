@@ -16,7 +16,7 @@ var date = getUrlVars()["date"];
 var grade = getUrlVars()["grade"];
 var property = decodeURIComponent(getUrlVars()["property"]);
 var type = decodeURIComponent(getUrlVars()["type"]);
-
+var id = getUrlVars()["id"];
 var open_id = getUrlVars()["open_id"];
 // var addition =decodeURIComponent(getUrlVars()["addition"]);
 // var age = decodeURIComponent(getUrlVars()["age"]);
@@ -174,11 +174,11 @@ function jsignature_initialization() {
             break;
     }
 
-    var sign_name = $("#signName" + sign_board_name).val();
-    if (sign_name !== user_name) {
-        alert("您只能在顯示自己帳號的欄位中簽章！");
-        return false;
-    }
+    // var sign_name = $("#signName" + sign_board_name).val();
+    // if (sign_name !== user_name) {
+    //     alert("您只能在顯示自己帳號的欄位中簽章！");
+    //     return false;
+    // }
 
     $("#signature_h4").text(type_name + "簽名");
     $("#signature_title_td").text(type_name);
@@ -1354,7 +1354,7 @@ $(document).ready(function () {
         data: {
             user_name:user_name,
             Open_id:open_id,
-            id:id
+            id:user_id
         },
         type: "POST",
         dataType: "JSON",
