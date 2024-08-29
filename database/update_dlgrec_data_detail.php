@@ -3,6 +3,9 @@ session_start();
 include("sql_connect.php");
 $dlgrec_id = $_REQUEST['dlgrec_id']; 
 
+$social_worker = $_REQUEST['social_worker'];
+$supervise1 = $_REQUEST['supervise1'];
+$supervise2 = $_REQUEST['supervise2'];
 $bf_num = $_REQUEST['bf_num'];
 $al_num = $_REQUEST['al_num'];
 $em_num = $_REQUEST['em_num'];
@@ -67,6 +70,7 @@ if (isset($_FILES["dlgrec_files0"]))
 $sqlUpdate ="UPDATE `dlgrec` SET `bf_num` = '$bf_num', `al_num` = '$al_num', `em_num` = '$em_num', `lp_num` = '$lp_num', `leave_num` = '$leave_num', `dlgrec_date` = '$dlgrec_date',
  `dlgrec_0` = '$dlgrec_0', `dlgrec_1` = '$dlgrec_2', `dlgrec_3` = '$dlgrec_3', `dlgrec_4` = '$dlgrec_4', `dlgrec_5` = '$dlgrec_5', `dlgrec_6` = '$dlgrec_6',
  `dlgrec_7` = '$dlgrec_7', `dlgrec_8` = '$dlgrec_8', `dlgrec_9` = '$dlgrec_9', `dlgrec_10` = '$dlgrec_10', `dlgrec_11` = '$dlgrec_11',
+  `social_worker` = '$social_worker', `supervise1` = '$supervise1', `supervise2` = '$supervise2',
   `dlg_manager` = '$dlg_manager',".$sql_file_upload."
   `Update_name` = '$user', `Update_date` = NOW() WHERE `Id` = '$dlgrec_id' ORDER BY `dlgrec`.`Create_date` ASC LIMIT 1;";
 
