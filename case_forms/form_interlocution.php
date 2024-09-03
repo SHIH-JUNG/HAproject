@@ -5,11 +5,13 @@
         table {
             width: 100%;
             border-collapse: collapse;
+            table-layout: fixed;
         }
         table, th, td {
             border: 1px solid black;
-            padding: 10px;
-            text-align: left;
+            padding: 8px;
+            text-align: center;
+            word-wrap: break-word;
         }
         h1, h2, h3, h4, h5, h6 {
             text-align: center;
@@ -37,7 +39,6 @@
     </style>
 </head>
 <body>
-    <div id="form-container">
 <style>
     #form_1 table tr th
     {
@@ -51,11 +52,17 @@
         vertical-align: top;
     }
 
-    #form_1 table tr td input,
-    #form_1 table tr td textarea,
-    #form_1 table tr td select
+    #form_1 table tr td input
+    {
+        width: 70%;
+    }
+    #form_1 table tr td textarea
     {
         width: 100%;
+    }
+    #form_1 table tr td select
+    {
+        width: 50%;
     }
 </style>
 <div style="zoom:80%" class="row">
@@ -87,7 +94,7 @@
                                     </div>
                                     <div class="table-wrap">
                                         <div class="table-responsive">
-                                            <table style="width:100%;" class="table table-bordered">
+                                            <table style="width:90%;" class="table table-bordered">
                                                 <tr>
                                                     <td style="background-color:rgb(255 201 54);text-align:left;color:#d86d6d;">案號：</td>
                                                     <td>
@@ -101,7 +108,7 @@
                                                 </tr>
                                             </table>
                                             <form id="form_1" class="form">
-                                                <table style="width:100%;" class="table table-bordered">
+                                                <table style="width:100%;" class="text-center">
                                                     <tr>
                                                         <th>會談時間</th>
                                                         <th>會談地點</th>
@@ -123,19 +130,19 @@
                                                         <td>
                                                             <span>選擇個案問題分類，並按+號添加至下方</span>
                                                             <!-- <select name="interlocution_ques_type" id="interlocution_ques_type" style="width:80%;"></select> -->
-                                                            <select id="interlocution_ques_type" style="width:80%;"></select>
+                                                            <select id="interlocution_ques_type" style="width:100%;"></select>
+                                                            <br><br>
                                                             <button onclick="add_ques_types();return false;">+添加</button>
-                                                            <br/>
-                                                            <br/>
+                                                            <br><br>
                                                             <div>
-                                                                <input style="width:65%;" id="add_interlocution_ques_type" type="text">
+                                                                <input style="width:100%;" id="add_interlocution_ques_type" type="text">
+                                                                <br><br>
                                                                 <button id="add_interlocution_ques_type_btn" onclick="insert_ques_type_keywords();return false;">新增問題類型</button>
                                                             </div>
                                                             <br/>
-                                                            <br/>
                                                             <span>個案問題分類：</span>
                                                             <textarea style="min-height:6em;height:auto;width:100%;resize: none;font-size: 20px;" name="interlocution_ques_types" id="interlocution_ques_types" readonly></textarea>
-                                                            <button onclick="return_ques_types();return false;">刪掉最後的分類</button><button style="margin-left:1em;" onclick="clear_ques_types();return false;">清空問題分類</button>
+                                                            <button onclick="return_ques_types();return false;">刪掉最後的分類</button><button style="margin-center:1em;margin-top:0.3em;" onclick="clear_ques_types();return false;">清空問題分類</button>
                                                             <div class="text-left" style="font-size:16px;color:red;">※有誤刪或清空操作請別存檔並重新整理網頁</div>
                                                             <textarea style="min-height:26em;height:auto;width:100%;resize: none;font-size: 20px;margin-top:1.5em;" name="interlocution_ques" id="interlocution_ques" placeholder="請輸入個案問題"></textarea>
                                                         </td>
@@ -144,9 +151,9 @@
                                                                 <tr><td>訪談時間</td></tr>
                                                                 <tr><td><input name="interlocution_time" id="interlocution_time" type="time"></td></tr>
                                                                 <tr><td>處遇</td></tr>
-                                                                <tr><td><textarea style="min-height:14em;height:auto;width:100%;resize: none;font-size: 20px;" name="interlocution_content" id="interlocution_content" placeholder="請輸入處遇"></textarea></td></tr>
+                                                                <tr><td><textarea style="min-height:20em;height:auto;width:100%;resize: none;font-size: 20px;" name="interlocution_content" id="interlocution_content" placeholder="請輸入處遇"></textarea></td></tr>
                                                                 <tr><td>下次服務目標</td></tr>
-                                                                <tr><td><textarea style="min-height:14em;height:auto;width:100%;resize: none;font-size: 20px;" name="interlocution_next_target" id="interlocution_next_target" placeholder="請輸入下次服務目標"></textarea></td></tr>
+                                                                <tr><td><textarea style="min-height:20em;height:auto;width:100%;resize: none;font-size: 20px;" name="interlocution_next_target" id="interlocution_next_target" placeholder="請輸入下次服務目標"></textarea></td></tr>
                                                             </table>
                                                         </td>
                                                         <!-- <td><input name="assign_name" id="assign_name" type="text"></td>
@@ -154,32 +161,44 @@
 
                                                             <td>
                                                                 <div class="col-sm-12" style="margin-top:0.3em;">
-                                                                <select name="signName" class="signName" style="width:70%; display: block; margin-bottom: 10px;">
+                                                                <select name="assign" class="signName" style="width:60%; display: block; margin-bottom: 10px;">
                                                                     <option value="">請選擇</option>
                                                                 </select>
                                                                 </div>
                                                                 <div class="col-sm-12" style="margin-bottom: 10px;">
-                                                                <button style="width:70%; color:red;" type="button" class="signature_btn"data-sign-board-name="assign" onclick="signature_btn">簽名</button>
+                                                                <button style="width:60%; color:red;" type="button" onclick="signature_btn_click('assign')">簽名</button>
                                                                 </div>
-                                                                <div class="col-sm-12">
-                                                                <a src="" id="show_signature_image" style="color:blue;" target="_blank" alt="簽名圖片連結">點擊顯示簽名圖片</a>
-                                                                </div>
+                                                                <!-- <div class="col-sm-12">
+                                                                <a src="" id="show_signature_image1" style="color:blue;" target="_blank" alt="簽名圖片連結">點擊顯示簽名圖片</a>
+                                                                </div> -->
                                                             </td>
                                                             <td>
                                                                 <div class="col-sm-12" style="margin-top:0.3em;">
-                                                                <select name="signName" class="signName" style="width:70%; display: block; margin-bottom: 10px;">
+                                                                <select name="supervisor1" class="signName" style="width:60%; display: block; margin-bottom: 10px;">
                                                                     <option value="">請選擇</option>
                                                                 </select>
                                                                 </div>
                                                                 <div class="col-sm-12" style="margin-bottom: 10px;">
-                                                                <button style="width:70%; color:red;" type="button" class="signature_btn" #case_storage_model onclick="signature_btn">簽名</button>
+                                                                <button style="width:60%; color:red;" type="button" onclick="signature_btn_click('supervisor1')">簽名</button>
                                                                 </div>
-                                                                <div class="col-sm-12">
-                                                                <a src="" id="show_signature_image" style="color:blue;" target="_blank" alt="簽名圖片連結">點擊顯示簽名圖片</a>
+                                                                <!-- <div class="col-sm-12">
+                                                                <a src="" id="show_signature_image2" style="color:blue;" target="_blank" alt="簽名圖片連結">點擊顯示簽名圖片</a>
+                                                                </div> -->
+                                                                <div class="col-sm-12" style="margin-top:0.3em;">
+                                                                <select name="supervisor2" class="signName" style="width:60%; display: block; margin-bottom: 10px;">
+                                                                    <option value="">請選擇</option>
+                                                                </select>
                                                                 </div>
+                                                                <div class="col-sm-12" style="margin-bottom: 10px;">
+                                                                <button style="width:60%; color:red;" type="button" onclick="signature_btn_click('supervisor2')">簽名</button>
+                                                                </div>
+                                                                <!-- <div class="col-sm-12">
+                                                                <a src="" id="show_signature_image3" style="color:blue;" target="_blank" alt="簽名圖片連結">點擊顯示簽名圖片</a>
+                                                                </div> -->
                                                             </td>
                                                     </tr>
                                                 </table>
+                                                <!-- <div id="allSign"></div> -->
                                             </form>
                                         </div>
                                     </div>
@@ -200,7 +219,7 @@
                                     <!-- <button style="font-size:20px" onclick="test()" class="btn btn-default">測試</button> -->
                                 </div>
                                 <div class="text-right">
-                                    <button style="font-size:20px" class="btn btn-default" onclick="previewAndPrintSection('one')">匯出個別會談摘要記錄表為PDF</button>
+                                    <button style="font-size:20px" class="btn btn-default" onclick="generatePDF()">匯出個別會談摘要記錄表為PDF</button>
                                 </div>
                                 <!-- <div class="text-right">
                                     <button style="font-size:20px" id="trans_grade" type="button" class="btn btn-default">轉級</button>
@@ -208,6 +227,7 @@
                                     <button style="font-size:20px" id="end" type="button" class="btn btn-default">結案</button>
                                 </div> -->
                             </div>
+                            <?php include("signnature_canvas3.php"); ?>
                         </div>
                     </div>
                 </div>
@@ -215,126 +235,145 @@
         </div>
     </div>
 </div>
-</div>
 
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
 <script src="case_detail.js"></script>
 <script>
 
-    function fillFormValues() {
-        // 執行JavaScript代碼填充表單數據
-        //個案評估表自動填入資料
-        $("#name").val(name);
-        $("#pid").val(decodeURIComponent(pid));
-        $("input[name='sex'][value='"+gender+"']").attr('checked',true);
-        $("#open_date").val(decodeURIComponent(date));
-        $("#birth").val(birth);
-        $("#age").val(getAge(birth.split('-'))[0]);
-        $("#assign_name").val(assign_name);
-        //填寫日期自動帶入
-        $("input[name*='fillin_date']").each(function(){
-            //獲取現在時間 moment.js插件
-            var timenow = moment().format('YYYY-MM-DD');
-            $(this).val(timenow);
-        });
-    }
+    // function fillFormValues() {
+    //     // 執行JavaScript代碼填充表單數據
+    //     //個案評估表自動填入資料
+    //     $("#name").val(name);
+    //     $("#pid").val(decodeURIComponent(pid));
+    //     $("input[name='sex'][value='"+gender+"']").attr('checked',true);
+    //     $("#open_date").val(decodeURIComponent(date));
+    //     $("#birth").val(birth);
+    //     $("#age").val(getAge(birth.split('-'))[0]);
+    //     $("#assign_name").val(assign_name);
+    //     //填寫日期自動帶入
+    //     $("input[name*='fillin_date']").each(function(){
+    //         //獲取現在時間 moment.js插件
+    //         var timenow = moment().format('YYYY-MM-DD');
+    //         $(this).val(timenow);
+    //     });
+    // }
 
-    function previewAndPrintSection(sectionId) {
-        fillFormValues(); // 確保數據填充
-        setTimeout(function() {
-            var element = document.getElementById(sectionId);
-            if (element) {
-                // 預處理 radio 和 checkbox 元素
-                preprocessFormElements(element);
+    // function previewAndPrintSection(sectionId) {
+    //     fillFormValues(); // 確保數據填充
+    //     setTimeout(function() {
+    //         var element = document.getElementById(sectionId);
+    //         if (element) {
+    //             // 預處理 radio 和 checkbox 元素
+    //             preprocessFormElements(element);
 
-                html2canvas(element, {
-                    scale: 3,
+    //             html2canvas(element, {
+    //                 scale: 3,
+    //                 logging: true, // 啟用日誌以幫助調試
+    //                 useCORS: true, // 允許跨域圖片
+    //                 allowTaint: true // 允許跨域圖片
+    //             }).then(function(canvas) {
+    //                 var imgData = canvas.toDataURL('image/png');
+    //                 var pdf = new jspdf.jsPDF('p', 'mm', 'a4');
+    //                 var imgWidth = 210;
+    //                 var pageHeight = 297;
+    //                 var imgHeight = canvas.height * imgWidth / canvas.width;
+    //                 var heightLeft = imgHeight;
+    //                 var position = 0;
+
+    //                 if (heightLeft < pageHeight) {
+    //                     pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, heightLeft);
+    //                 } else {
+    //                     pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, pageHeight);
+    //                     heightLeft -= pageHeight;
+
+    //                     while (heightLeft > 0) {
+    //                         position = heightLeft - imgHeight;
+    //                         pdf.addPage();
+    //                         pdf.addImage(imgData, 'PNG', 0, position, imgWidth, pageHeight);
+    //                         heightLeft -= pageHeight;
+    //                     }
+    //                 }
+
+    //         // 恢復原始表單元素
+    //         restoreFormElements(element);
+
+    //         var previewWindow = window.open('', '_blank');
+    //         previewWindow.document.write('<html><head><title>預覽 PDF</title></head><body>');
+    //         previewWindow.document.write('<embed width="100%" height="100%" src="' + pdf.output('bloburl') + '" type="application/pdf">');
+    //         previewWindow.document.write('</body></html>');
+    //         previewWindow.document.close();
+    //             });
+    //         }
+    //     }, 100); // 延遲打印以確保數據已經填充
+    // }
+
+    // function preprocessFormElements(element) {
+    //     var radios = element.querySelectorAll('input[type="radio"]');
+    //     var checkboxes = element.querySelectorAll('input[type="checkbox"]');
+
+    //     radios.forEach(function(radio) {
+    //         var span = document.createElement('span');
+    //         span.className = 'custom-radio';
+    //         span.textContent = radio.checked ? '●' : '○';
+    //         radio.parentNode.insertBefore(span, radio);
+    //         radio.style.display = 'none';
+    //     });
+
+    //     checkboxes.forEach(function(checkbox) {
+    //         var span = document.createElement('span');
+    //         span.className = 'custom-checkbox';
+    //         span.textContent = checkbox.checked ? '☑' : '☐';
+    //         checkbox.parentNode.insertBefore(span, checkbox);
+    //         checkbox.style.display = 'none';
+    //     });
+    // }
+
+    // function restoreFormElements(element) {
+    //     var customRadios = element.querySelectorAll('.custom-radio');
+    //     var customCheckboxes = element.querySelectorAll('.custom-checkbox');
+
+    //     customRadios.forEach(function(span) {
+    //         span.parentNode.removeChild(span);
+    //     });
+
+    //     customCheckboxes.forEach(function(span) {
+    //         span.parentNode.removeChild(span);
+    //     });
+
+    //     var radios = element.querySelectorAll('input[type="radio"]');
+    //     var checkboxes = element.querySelectorAll('input[type="checkbox"]');
+
+    //     radios.forEach(function(radio) {
+    //         radio.style.display = '';
+    //     });
+
+    //     checkboxes.forEach(function(checkbox) {
+    //         checkbox.style.display = '';
+    //     });
+    // }
+
+        function generatePDF() {
+            const element = document.getElementById('one');
+
+            const opt = {
+                margin:       1,
+                filename:     'download.pdf',
+                image:        { type: 'jpeg', quality: 1 },
+                html2canvas:  { scale: 3,
                     logging: true, // 啟用日誌以幫助調試
                     useCORS: true, // 允許跨域圖片
                     allowTaint: true // 允許跨域圖片
-                }).then(function(canvas) {
-                    var imgData = canvas.toDataURL('image/png');
-                    var pdf = new jspdf.jsPDF('p', 'mm', 'a4');
-                    var imgWidth = 210;
-                    var pageHeight = 297;
-                    var imgHeight = canvas.height * imgWidth / canvas.width;
-                    var heightLeft = imgHeight;
-                    var position = 0;
+                    },
+                jsPDF:        { unit: 'mm', format: 'legal', orientation: 'landscape' },
+                pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] }
+            };
 
-                    if (heightLeft < pageHeight) {
-                        pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, heightLeft);
-                    } else {
-                        pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, pageHeight);
-                        heightLeft -= pageHeight;
-
-                        while (heightLeft > 0) {
-                            position = heightLeft - imgHeight;
-                            pdf.addPage();
-                            pdf.addImage(imgData, 'PNG', 0, position, imgWidth, pageHeight);
-                            heightLeft -= pageHeight;
-                        }
-                    }
-
-            // 恢復原始表單元素
-            restoreFormElements(element);
-
-            var previewWindow = window.open('', '_blank');
-            previewWindow.document.write('<html><head><title>預覽 PDF</title></head><body>');
-            previewWindow.document.write('<embed width="100%" height="100%" src="' + pdf.output('bloburl') + '" type="application/pdf">');
-            previewWindow.document.write('</body></html>');
-            previewWindow.document.close();
-                });
-            }
-        }, 100); // 延遲打印以確保數據已經填充
-    }
-
-    function preprocessFormElements(element) {
-        var radios = element.querySelectorAll('input[type="radio"]');
-        var checkboxes = element.querySelectorAll('input[type="checkbox"]');
-
-        radios.forEach(function(radio) {
-            var span = document.createElement('span');
-            span.className = 'custom-radio';
-            span.textContent = radio.checked ? '●' : '○';
-            radio.parentNode.insertBefore(span, radio);
-            radio.style.display = 'none';
-        });
-
-        checkboxes.forEach(function(checkbox) {
-            var span = document.createElement('span');
-            span.className = 'custom-checkbox';
-            span.textContent = checkbox.checked ? '☑' : '☐';
-            checkbox.parentNode.insertBefore(span, checkbox);
-            checkbox.style.display = 'none';
-        });
-    }
-
-    function restoreFormElements(element) {
-        var customRadios = element.querySelectorAll('.custom-radio');
-        var customCheckboxes = element.querySelectorAll('.custom-checkbox');
-
-        customRadios.forEach(function(span) {
-            span.parentNode.removeChild(span);
-        });
-
-        customCheckboxes.forEach(function(span) {
-            span.parentNode.removeChild(span);
-        });
-
-        var radios = element.querySelectorAll('input[type="radio"]');
-        var checkboxes = element.querySelectorAll('input[type="checkbox"]');
-
-        radios.forEach(function(radio) {
-            radio.style.display = '';
-        });
-
-        checkboxes.forEach(function(checkbox) {
-            checkbox.style.display = '';
-        });
-    }
+            html2pdf().from(element).set(opt).save();
+        }
 </script>
 </body>
 </html>

@@ -314,6 +314,8 @@ $id = $_SESSION['authority'];
     <script src="javascript/dropdown-bootstrap-extended.js"></script>
     <!-- Init -->
     <script src="javascript/init.js"></script>
+    <!-- ================== jSignature ================== -->
+    <script src="jSignature/jSignature.min.js"></script>
     <!-- ================== JS notify控制 ================== -->
     <script src="javascript/notify/notyf.min.js"></script>
     <!-- ================== JS sweetalert2 ================== -->
