@@ -520,7 +520,11 @@ $("#dlgrec_update").on("click", function () {
             } 
           }
       });
-  
+
+      form_data.append("social_worker", $("#social_worker").val());
+      form_data.append("supervise1", $("#supervise1").val());
+      form_data.append("supervise2", $("#supervise2").val());
+
       form_data.append("dlgrec_id", dlgrec_id);
       form_data.append("bf_num", $("#bf_num").val());
       form_data.append("al_num", $("#al_num").val());
