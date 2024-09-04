@@ -6,9 +6,9 @@ $sign_type = $_POST['sign_type'];
 $employeeSign_imagePath_arr = $_POST['imagePath_arr'];
 $employeeSign_Date_arr = $_POST['Date_arr'];
 $datePath = $_POST['datePath'];
+$id = $_POST['id'];
 
 $user = $_SESSION['name'];
-
 
 /*  base64格式编码转换为图片并保存对应文件夹 */
 $base64_content = $_POST['src_data'];
@@ -31,14 +31,18 @@ $type = 'png';
 //生成文件名：相对路径
 $new_file = $new_file . time() . ".$type";
 
+// 根據簽名類型選擇更新對應的欄位
 switch ($sign_type) {
     case 'assign':
         $sql_str = " `assign` = '$user', `assign_signature` = '$new_file', `assign_sign_time` = NOW()";
         break;
-    case 'supervisor':
-        $sql_str = " `supervisor` = '$user', `supervisor_signature` = '$new_file', `supervisor_sign_time` = NOW()";
+    case 'supervisor1':
+        $sql_str = " `supervisor1` = '$user', `supervisor1_signature` = '$new_file', `supervisor1_sign_time` = NOW()";
         break;
-    default:
+    case 'supervisor2':
+        $sql_str = " `supervisor2` = '$user', `supervisor2_signature` = '$new_file', `supervisor2_sign_time` = NOW()";
+        break;
+     default:
         $sql_str = " `employee_sign_imagePath` = '$employeeSign_imagePath_arr', `employee_sign_Date` = '$employeeSign_Date_arr'";
         $new_file = $datePath;
         break;
@@ -46,8 +50,10 @@ switch ($sign_type) {
 
 //转换为图片文件
 if (file_put_contents($new_file, base64_decode($base64_content[1]))) {
-    $sqlUpdate = "UPDATE `form_case_report` SET $sql_str WHERE `form_type` = '$interlocution' ORDER BY `form_case_report`.`Create_date` ASC LIMIT 1;";
-    echo $sqlUpdate;
+    // 使用 `id` 和 `form_type` 作為唯一標識進行更新
+    $sqlUpdate = "UPDATE `form_case_report` SET $sql_str WHERE `Case_seqid` = '$id' AND `form_type` = '$interlocution' ORDER BY 'form_case_report' DESC LIMIT 1;";
+
+    echo $sqlUpdate;  // 打印 SQL 語句，方便調試
     if (mysqli_query($conn, $sqlUpdate)) {
         echo true;
     } else {
@@ -59,7 +65,5 @@ if (file_put_contents($new_file, base64_decode($base64_content[1]))) {
 }
 
 
-
-
-
 mysqli_close($conn);
+?>

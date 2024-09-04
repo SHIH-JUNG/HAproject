@@ -14,6 +14,7 @@
                     <td style="border-bottom: solid 1px;">
                         <div><b style="color: red">請按著滑鼠寫字簽名。</b></div>
                         <div id="signature_div"></div>
+                        <br><br>
                         <!-- <input type="button" value="保存" id="yes"/> -->
                         <!-- <input type="button" value="下載" id="download"/> -->
                         <input type="button" value="重寫" id="signature_reset"/>

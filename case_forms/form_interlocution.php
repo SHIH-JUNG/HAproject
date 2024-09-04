@@ -166,7 +166,8 @@
                                                                 </select>
                                                                 </div>
                                                                 <div class="col-sm-12" style="margin-bottom: 10px;">
-                                                                <button style="width:60%; color:red;" type="button" onclick="signature_btn_click('assign')">簽名</button>
+                                                                <button style="width:60%; color:red;" type="button" onclick="signature_btn_click('assign')">簽名</button><br>
+                                                                <a src="" id="assign_signature_simg" style="color:blue;" target="_blank" alt="簽名圖片連結"></a>
                                                                 </div>
                                                                 <!-- <div class="col-sm-12">
                                                                 <a src="" id="show_signature_image1" style="color:blue;" target="_blank" alt="簽名圖片連結">點擊顯示簽名圖片</a>
@@ -179,7 +180,8 @@
                                                                 </select>
                                                                 </div>
                                                                 <div class="col-sm-12" style="margin-bottom: 10px;">
-                                                                <button style="width:60%; color:red;" type="button" onclick="signature_btn_click('supervisor1')">簽名</button>
+                                                                <button style="width:60%; color:red;" type="button" onclick="signature_btn_click('supervisor1')">簽名</button><br>
+                                                                <a src="" id="supervisor1_signature_simg" style="color:blue;" target="_blank" alt="簽名圖片連結"></a>
                                                                 </div>
                                                                 <!-- <div class="col-sm-12">
                                                                 <a src="" id="show_signature_image2" style="color:blue;" target="_blank" alt="簽名圖片連結">點擊顯示簽名圖片</a>
@@ -190,7 +192,8 @@
                                                                 </select>
                                                                 </div>
                                                                 <div class="col-sm-12" style="margin-bottom: 10px;">
-                                                                <button style="width:60%; color:red;" type="button" onclick="signature_btn_click('supervisor2')">簽名</button>
+                                                                <button style="width:60%; color:red;" type="button" onclick="signature_btn_click('supervisor2')">簽名</button><br>
+                                                                <a src="" id="supervisor2_signature_simg" style="color:blue;" target="_blank" alt="簽名圖片連結"></a>
                                                                 </div>
                                                                 <!-- <div class="col-sm-12">
                                                                 <a src="" id="show_signature_image3" style="color:blue;" target="_blank" alt="簽名圖片連結">點擊顯示簽名圖片</a>
