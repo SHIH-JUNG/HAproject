@@ -352,7 +352,7 @@
                                         </div>
                                     </div>
                                     <div class="text-right">
-                                        <button style="font-size:20px" class="btn btn-default" onclick="previewAndPrintSection('form_1')">匯出基本資料為PDF</button>
+                                        <button style="font-size:20px" class="btn btn-default" onclick="generatePDF1()">匯出基本資料為PDF</button>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="two" role="tabpanel" aria-labelledby="profile-tab">
@@ -507,7 +507,7 @@
                                         </div>
                                     </div>
                                     <div class="text-right">
-                                        <button style="font-size:20px" class="btn btn-default" onclick="previewAndPrintSection('form_2')">匯出醫療追蹤為PDF</button>
+                                        <button style="font-size:20px" class="btn btn-default" onclick="generatePDF2()">匯出醫療追蹤為PDF</button>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="three" role="tabpanel" aria-labelledby="profile-tab">
@@ -690,7 +690,7 @@
                                         </div>
                                     </div>
                                     <div class="text-right">
-                                        <button style="font-size:20px" class="btn btn-default" onclick="previewAndPrintSection('form_3')">匯出問題陳述/問題分析與診斷/處遇計畫/資源與轉介/成效評估為PDF</button>
+                                        <button style="font-size:20px" class="btn btn-default" onclick="generatePDF3()">匯出問題陳述/問題分析與診斷/處遇計畫/資源與轉介/成效評估為PDF</button>
                                     </div>
                                 </div>
                                 <div class="panel-footer" style="text-align:center;">
@@ -731,6 +731,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
     <script src="case_detail.js"></script>
     <script>
 
@@ -844,6 +845,60 @@
             checkboxes.forEach(function(checkbox) {
                 checkbox.style.display = '';
             });
+        }
+        function generatePDF1() {
+            const element = document.getElementById('form_1');
+
+            const opt = {
+                margin:       1,
+                filename:     'download.pdf',
+                image:        { type: 'jpeg', quality: 1 },
+                html2canvas:  { scale: 3,
+                    logging: true, // 啟用日誌以幫助調試
+                    useCORS: true, // 允許跨域圖片
+                    allowTaint: true // 允許跨域圖片
+                    },
+                jsPDF:        { unit: 'mm', format: 'legal', orientation: 'landscape' },
+                pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] }
+            };
+
+            html2pdf().from(element).set(opt).save();
+        }
+        function generatePDF2() {
+            const element = document.getElementById('form_2');
+
+            const opt = {
+                margin:       1,
+                filename:     'download.pdf',
+                image:        { type: 'jpeg', quality: 1 },
+                html2canvas:  { scale: 3,
+                    logging: true, // 啟用日誌以幫助調試
+                    useCORS: true, // 允許跨域圖片
+                    allowTaint: true // 允許跨域圖片
+                    },
+                jsPDF:        { unit: 'mm', format: 'legal', orientation: 'landscape' },
+                pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] }
+            };
+
+            html2pdf().from(element).set(opt).save();
+        }
+        function generatePDF3() {
+            const element = document.getElementById('form_3');
+
+            const opt = {
+                margin:       1,
+                filename:     'download.pdf',
+                image:        { type: 'jpeg', quality: 1 },
+                html2canvas:  { scale: 3,
+                    logging: true, // 啟用日誌以幫助調試
+                    useCORS: true, // 允許跨域圖片
+                    allowTaint: true // 允許跨域圖片
+                    },
+                jsPDF:        { unit: 'mm', format: 'legal', orientation: 'landscape' },
+                pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] }
+            };
+
+            html2pdf().from(element).set(opt).save();
         }
     </script>
 </body>

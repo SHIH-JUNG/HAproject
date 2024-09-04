@@ -501,7 +501,7 @@
                                         </div>
                                     </div>
                                     <div class="text-right">
-                                        <button style="font-size:20px" class="btn btn-default" onclick="previewAndPrintSection('one')">匯出就業需求評估表為PDF</button>
+                                        <button style="font-size:20px" class="btn btn-default" onclick="generatePDF1()">匯出就業需求評估表為PDF</button>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="two" role="tabpanel" aria-labelledby="profile-tab">
@@ -749,7 +749,7 @@
                                         </div>
                                     </div>
                                     <div class="text-right">
-                                        <button style="font-size:20px" class="btn btn-default" onclick="previewAndPrintSection('form_all2')">匯出就業服務滿意度調查表為PDF</button>
+                                        <button style="font-size:20px" class="btn btn-default" onclick="generatePDF2()">匯出就業服務滿意度調查表為PDF</button>
                                     </div>
                                 </div>
 
@@ -790,120 +790,159 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
     <script src="case_detail.js"></script>
     <script>
 
-        function fillFormValues() {
-            // 執行JavaScript代碼填充表單數據
-            //個案評估表自動填入資料
-            $("#name").val(name);
-            $("#pid").val(decodeURIComponent(pid));
-            $("input[name='sex'][value='"+gender+"']").attr('checked',true);
-            $("#open_date").val(decodeURIComponent(date));
-            $("#birth").val(birth);
-            $("#age").val(getAge(birth.split('-'))[0]);
-            $("#assign_name").val(assign_name);
-            //填寫日期自動帶入
-            $("input[name*='fillin_date']").each(function(){
-                //獲取現在時間 moment.js插件
-                var timenow = moment().format('YYYY-MM-DD');
-                $(this).val(timenow);
-            });
-        }
+        // function fillFormValues() {
+        //     // 執行JavaScript代碼填充表單數據
+        //     //個案評估表自動填入資料
+        //     $("#name").val(name);
+        //     $("#pid").val(decodeURIComponent(pid));
+        //     $("input[name='sex'][value='"+gender+"']").attr('checked',true);
+        //     $("#open_date").val(decodeURIComponent(date));
+        //     $("#birth").val(birth);
+        //     $("#age").val(getAge(birth.split('-'))[0]);
+        //     $("#assign_name").val(assign_name);
+        //     //填寫日期自動帶入
+        //     $("input[name*='fillin_date']").each(function(){
+        //         //獲取現在時間 moment.js插件
+        //         var timenow = moment().format('YYYY-MM-DD');
+        //         $(this).val(timenow);
+        //     });
+        // }
 
-        function previewAndPrintSection(sectionId) {
-            fillFormValues(); // 確保數據填充
-            setTimeout(function() {
-                var element = document.getElementById(sectionId);
-                if (element) {
-                    // 預處理 radio 和 checkbox 元素
-                    preprocessFormElements(element);
+        // function previewAndPrintSection(sectionId) {
+        //     fillFormValues(); // 確保數據填充
+        //     setTimeout(function() {
+        //         var element = document.getElementById(sectionId);
+        //         if (element) {
+        //             // 預處理 radio 和 checkbox 元素
+        //             preprocessFormElements(element);
 
-                    html2canvas(element, {
-                        scale: 3,
-                        logging: true, // 啟用日誌以幫助調試
-                        useCORS: true, // 允許跨域圖片
-                        allowTaint: true // 允許跨域圖片
-                    }).then(function(canvas) {
-                        var imgData = canvas.toDataURL('image/png');
-                        var pdf = new jspdf.jsPDF('p', 'mm', 'a4');
-                        var imgWidth = 210;
-                        var pageHeight = 297;
-                        var imgHeight = canvas.height * imgWidth / canvas.width;
-                        var heightLeft = imgHeight;
-                        var position = 0;
+        //             html2canvas(element, {
+        //                 scale: 3,
+        //                 logging: true, // 啟用日誌以幫助調試
+        //                 useCORS: true, // 允許跨域圖片
+        //                 allowTaint: true // 允許跨域圖片
+        //             }).then(function(canvas) {
+        //                 var imgData = canvas.toDataURL('image/png');
+        //                 var pdf = new jspdf.jsPDF('p', 'mm', 'a4');
+        //                 var imgWidth = 210;
+        //                 var pageHeight = 297;
+        //                 var imgHeight = canvas.height * imgWidth / canvas.width;
+        //                 var heightLeft = imgHeight;
+        //                 var position = 0;
 
-                        if (heightLeft < pageHeight) {
-                            pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, heightLeft);
-                        } else {
-                            pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, pageHeight);
-                            heightLeft -= pageHeight;
+        //                 if (heightLeft < pageHeight) {
+        //                     pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, heightLeft);
+        //                 } else {
+        //                     pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, pageHeight);
+        //                     heightLeft -= pageHeight;
 
-                            while (heightLeft > 0) {
-                                position = heightLeft - imgHeight;
-                                pdf.addPage();
-                                pdf.addImage(imgData, 'PNG', 0, position, imgWidth, pageHeight);
-                                heightLeft -= pageHeight;
-                            }
-                        }
+        //                     while (heightLeft > 0) {
+        //                         position = heightLeft - imgHeight;
+        //                         pdf.addPage();
+        //                         pdf.addImage(imgData, 'PNG', 0, position, imgWidth, pageHeight);
+        //                         heightLeft -= pageHeight;
+        //                     }
+        //                 }
 
-                // 恢復原始表單元素
-                restoreFormElements(element);
+        //         // 恢復原始表單元素
+        //         restoreFormElements(element);
 
-                var previewWindow = window.open('', '_blank');
-                previewWindow.document.write('<html><head><title>預覽 PDF</title></head><body>');
-                previewWindow.document.write('<embed width="100%" height="100%" src="' + pdf.output('bloburl') + '" type="application/pdf">');
-                previewWindow.document.write('</body></html>');
-                previewWindow.document.close();
-                    });
+        //         var previewWindow = window.open('', '_blank');
+        //         previewWindow.document.write('<html><head><title>預覽 PDF</title></head><body>');
+        //         previewWindow.document.write('<embed width="100%" height="100%" src="' + pdf.output('bloburl') + '" type="application/pdf">');
+        //         previewWindow.document.write('</body></html>');
+        //         previewWindow.document.close();
+        //             });
+        //         }
+        //     }, 100); // 延遲打印以確保數據已經填充
+        // }
+
+        // function preprocessFormElements(element) {
+        //     var radios = element.querySelectorAll('input[type="radio"]');
+        //     var checkboxes = element.querySelectorAll('input[type="checkbox"]');
+
+        //     radios.forEach(function(radio) {
+        //         var span = document.createElement('span');
+        //         span.className = 'custom-radio';
+        //         span.textContent = radio.checked ? '●' : '○';
+        //         radio.parentNode.insertBefore(span, radio);
+        //         radio.style.display = 'none';
+        //     });
+
+        //     checkboxes.forEach(function(checkbox) {
+        //         var span = document.createElement('span');
+        //         span.className = 'custom-checkbox';
+        //         span.textContent = checkbox.checked ? '☑' : '☐';
+        //         checkbox.parentNode.insertBefore(span, checkbox);
+        //         checkbox.style.display = 'none';
+        //     });
+        // }
+
+        // function restoreFormElements(element) {
+        //     var customRadios = element.querySelectorAll('.custom-radio');
+        //     var customCheckboxes = element.querySelectorAll('.custom-checkbox');
+
+        //     customRadios.forEach(function(span) {
+        //         span.parentNode.removeChild(span);
+        //     });
+
+        //     customCheckboxes.forEach(function(span) {
+        //         span.parentNode.removeChild(span);
+        //     });
+
+        //     var radios = element.querySelectorAll('input[type="radio"]');
+        //     var checkboxes = element.querySelectorAll('input[type="checkbox"]');
+
+        //     radios.forEach(function(radio) {
+        //         radio.style.display = '';
+        //     });
+
+        //     checkboxes.forEach(function(checkbox) {
+        //         checkbox.style.display = '';
+        //     });
+        // }
+
+        function generatePDF1() {
+                    const element = document.getElementById('one');
+
+                    const opt = {
+                        margin:       1,
+                        filename:     'download.pdf',
+                        image:        { type: 'jpeg', quality: 1 },
+                        html2canvas:  { scale: 3,
+                            logging: true, // 啟用日誌以幫助調試
+                            useCORS: true, // 允許跨域圖片
+                            allowTaint: true // 允許跨域圖片
+                            },
+                        jsPDF:        { unit: 'mm', format: 'legal', orientation: 'landscape' },
+                        pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] }
+                    };
+
+                    html2pdf().from(element).set(opt).save();
                 }
-            }, 100); // 延遲打印以確保數據已經填充
-        }
 
-        function preprocessFormElements(element) {
-            var radios = element.querySelectorAll('input[type="radio"]');
-            var checkboxes = element.querySelectorAll('input[type="checkbox"]');
+        function generatePDF2() {
+                    const element = document.getElementById('two');
 
-            radios.forEach(function(radio) {
-                var span = document.createElement('span');
-                span.className = 'custom-radio';
-                span.textContent = radio.checked ? '●' : '○';
-                radio.parentNode.insertBefore(span, radio);
-                radio.style.display = 'none';
-            });
+                    const opt = {
+                        margin:       1,
+                        filename:     'download.pdf',
+                        image:        { type: 'jpeg', quality: 1 },
+                        html2canvas:  { scale: 3,
+                            logging: true, // 啟用日誌以幫助調試
+                            useCORS: true, // 允許跨域圖片
+                            allowTaint: true // 允許跨域圖片
+                            },
+                        jsPDF:        { unit: 'mm', format: 'legal', orientation: 'landscape' },
+                        pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] }
+                    };
 
-            checkboxes.forEach(function(checkbox) {
-                var span = document.createElement('span');
-                span.className = 'custom-checkbox';
-                span.textContent = checkbox.checked ? '☑' : '☐';
-                checkbox.parentNode.insertBefore(span, checkbox);
-                checkbox.style.display = 'none';
-            });
-        }
-
-        function restoreFormElements(element) {
-            var customRadios = element.querySelectorAll('.custom-radio');
-            var customCheckboxes = element.querySelectorAll('.custom-checkbox');
-
-            customRadios.forEach(function(span) {
-                span.parentNode.removeChild(span);
-            });
-
-            customCheckboxes.forEach(function(span) {
-                span.parentNode.removeChild(span);
-            });
-
-            var radios = element.querySelectorAll('input[type="radio"]');
-            var checkboxes = element.querySelectorAll('input[type="checkbox"]');
-
-            radios.forEach(function(radio) {
-                radio.style.display = '';
-            });
-
-            checkboxes.forEach(function(checkbox) {
-                checkbox.style.display = '';
-            });
-        }
+                    html2pdf().from(element).set(opt).save();
+                }
     </script>
 </body>
 </html>
