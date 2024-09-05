@@ -110,9 +110,13 @@ function add_option(){
         async: false,
         success: function (data) {
             $.each(data, function (index, value) {
-                var supervisor1SignPath = value.supervisor1_signature.replace("../signature/", "");
-                var supervisor2SignPath = value.supervisor2_signature.replace("../signature/", "");
-                var assignSignPath = value.assign_signature.replace("../signature/", "");
+                // var supervisor1SignPath = value.supervisor1_signature.replace("../signature/", "");
+                // var supervisor2SignPath = value.supervisor2_signature.replace("../signature/", "");
+                // var assignSignPath = value.assign_signature.replace("../signature/", "");
+                var supervisor1SignPath = (value.supervisor1_signature || '').replace("../signature/", "");
+                var supervisor2SignPath = (value.supervisor2_signature || '').replace("../signature/", "");
+                var assignSignPath = (value.assign_signature || '').replace("../signature/", "");
+
                 $("#supervisor1_signature_simg").text("點擊顯示簽名圖片");
                 $("#supervisor2_signature_simg").text("點擊顯示簽名圖片");
                 $("#assign_signature_simg").text("點擊顯示簽名圖片");
