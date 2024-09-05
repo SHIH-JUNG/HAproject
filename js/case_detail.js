@@ -41,6 +41,32 @@ employeeSign_imagePath_arr = []
 employeeSign_Date_arr = [];
 
 const notyf = new Notyf();
+
+//判斷個案是否結案
+$.ajax({
+    type: 'POST',
+    url: 'database/find_case_current_case_for_close.php',
+    data:{
+        Open_id:open_id,
+        Id:id,
+    },
+    dataType: "JSON",
+    async: false,
+    success: function (data) {
+        // console.log(data);
+        if(data[0]['Close_case_date'] == "" || data[0]['Close_case_date'] == "0000-00-00"){
+            $("#add_case_detail").attr("disabled", false);
+        }
+        else{
+            $("#add_case_detail").attr("disabled", true);
+        }
+    },
+    error:function(e){
+        // console.log(e);
+        notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
+    }
+});
+
 //20240904
 function add_option(){
     $.ajax({

@@ -56,6 +56,30 @@ case_url = 'case_detail.php?name='+name+'&gender='+gender+'&pid='+pid+'&date='+d
 
 window.sign_name_type = "";
 
+//判斷個案是否結案
+$.ajax({
+    type: 'POST',
+    url: 'database/find_case_current_case_for_close.php',
+    data:{
+        Open_id:open_id,
+        Id:id,
+    },
+    dataType: "JSON",
+    async: false,
+    success: function (data) {
+        console.log(data);
+        if(data[0]['Close_case_date'] == "" || data[0]['Close_case_date'] == "0000-00-00"){
+            $(".addBtn").attr("disabled", false);
+        }
+        else{
+            $(".addBtn").attr("disabled", true);
+        }
+    },
+    error:function(e){
+        // console.log(e);
+        notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
+    }
+});
 
 //抓所有量表region
 $(document).ready(function () {
