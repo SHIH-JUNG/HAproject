@@ -287,9 +287,10 @@ $.ajax({
             var attr_id = $(this).parent("tr").attr("id");
             // var attr_id = $(this).children("tr").attr("id");
             
-            $('#show_visit_m').modal('show');
-        
-            show_visit_modal(attr_id);
+            if(attr_id!=undefined){
+                $('#show_visit_m').modal('show');
+                show_visit_modal(attr_id);
+            }
         });
 
     },
@@ -694,6 +695,7 @@ update_vehicle_retain = function(this_btn) {
 
 //show 社工訪視 detail show modal region
 function show_visit_modal(modal_id) {
+    console.log(modal_id);
     $.ajax({
         url: "database/visit_show.php",
         data:{
