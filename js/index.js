@@ -682,7 +682,7 @@ update_vehicle_retain = function(this_btn) {
             }  
         },
         error:function(e){
-            console.log(e);
+            // console.log(e);
             swal({
                 title:'更新失敗！請聯絡網站維護人員',
                 type:'error',
@@ -722,6 +722,9 @@ function show_visit_modal(modal_id) {
                 $("#s_visit_assign2").val(value.Visit_assign2);
                 $("#s_visit_end_time").val(visit_end_time);
                 $("#s_visit_remark").val(value.Remark);
+
+                $("#edit_visit_modal").removeAttr("onclick");
+                $("#edit_visit_modal").attr("onclick","edit_visit_modal("+modal_id+")");
             });
                 
         },
@@ -731,6 +734,44 @@ function show_visit_modal(modal_id) {
     });
 }
 //endregion
+
+function edit_visit_modal(modal_id){
+    $.ajax({                                                                                    
+        url: "database/update_visit_show.php",
+        data:{
+            Id:modal_id,
+            title:$("#s_visit_title").val(),
+            time:$("#s_visit_time").val(),
+            assign1:$("#s_visit_assign1").val(),
+            assign2:$("#s_visit_assign2").val(),
+            remark: $("#s_visit_remark").val(),
+        },
+        type: "POST",
+        dataType: "JSON",
+        success: function (data) {
+            if(data == 1){
+                swal({
+                    title:'更新成功！',
+                    type:'success',                        
+                }).then(function(){
+                    location.reload();
+                }) 
+            }else{
+                swal({
+                    title:'更新失敗！請聯絡網站維護人員',
+                    type:'error',
+                })
+            }  
+        },
+        error:function(e){
+            console.log(e);
+            swal({
+                title:'更新失敗！請聯絡網站維護人員',
+                type:'error',
+            })
+        }
+    });
+}
 
 //前往簽核提醒頁面 region
 go_to_signature_notice = function() {

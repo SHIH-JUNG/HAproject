@@ -360,6 +360,7 @@
                                                                                 <!-- <button style="font-size:20px;" id="preview_word2" class="btn btn-default">預覽匯出</button> -->
                                                                             </div>
                                                                             <div class="text-right col-sm-4" style="padding-right:0;">
+                                                                                <button onclick="go_old_form();">查看表單</button>
                                                                                 <button type="button" id="reopencase" class="btn btn-default" style="font-size:20px" onclick="reopencase();">
                                                                                     再次開案
                                                                                 </button>

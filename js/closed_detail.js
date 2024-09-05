@@ -10,6 +10,10 @@ function getUrlVars() {
 }
 //endregion
 
+function go_old_form(){
+    window.location.href = 'case_all_all.php?id='+window.open_seqid+'&open_id='+window.open_id+'';
+}
+
 closed_id = getUrlVars()["closed_id"];
 
 supervise1_msg_arr = [];

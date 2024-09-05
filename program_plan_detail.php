@@ -17,6 +17,8 @@
     <link href="css/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
     <!--  table  -->
     <link rel="stylesheet" href="css/bootstrap-table.min.css">
+    <!-- Bootstrap FileDialog -->
+    <link rel="stylesheet" href="css/bootstrap-file-dialog-dist/bootstrap.fd.css">
     <!--  日期民國  -->
     <link data-require="jqueryui@*" rel="stylesheet" href="css/jquery-ui.css" />
     <link href="css/dtsel.css" rel="stylesheet" />
@@ -224,7 +226,7 @@
                                                                                 <td style="border-bottom: solid 1px;">
                                                                                     <div class="col-sm-8">
                                                                                         <div class="text-left">
-                                                                                            <input name="proposal_file" type="file" class="program_question form-control">
+                                                                                            <!-- <input name="proposal_file" type="file" class="program_question form-control"> -->
                                                                                             <br>
                                                                                             <div id="proposal_file"></div>
                                                                                         </div>
@@ -250,7 +252,7 @@
                                                                                 <td style="border-bottom: solid 1px;">
                                                                                     <div class="col-sm-8">
                                                                                         <div class="text-left">
-                                                                                            <input name="achieve_file" type="file" class="program_question form-control">
+                                                                                            <!-- <input name="achieve_file" type="file" class="program_question form-control"> -->
                                                                                             <br>
                                                                                             <div id="achieve_file"></div>
                                                                                         </div>
@@ -263,7 +265,7 @@
                                                                                 <td style="border-bottom: solid 1px;">
                                                                                     <div class="col-sm-8">
                                                                                         <div class="text-left">
-                                                                                            <input name="other_file" type="file" class="program_question form-control">
+                                                                                            <!-- <input name="other_file" type="file" class="program_question form-control"> -->
                                                                                             <br>
                                                                                             <div id="other_file"></div>
                                                                                         </div>
@@ -544,6 +546,8 @@
     <script src="javascript/jquery.slimscroll.js"></script>
     <!-- Fancy Dropdown JS -->
     <script src="javascript/dropdown-bootstrap-extended.js"></script>
+    <!-- Bootstrap FileDialog -->
+    <script src="javascript/bootstrap-file-dialog-dist/bootstrap.fd.js"></script>
     <!-- Init -->
     <script src="javascript/init.js"></script>
     <!-- ================== JS notify控制 ================== -->

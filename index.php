@@ -885,15 +885,15 @@
                             <label>標題</label>
                         </div>
                         <div class="col-sm-12 text-center">
-                            <input class="col-sm-12" id="s_visit_title" placeholder="請輸入標題" type="text" disabled="disabled">
+                            <input class="col-sm-12" id="s_visit_title" placeholder="請輸入標題" type="text">
                         </div>
                         <div class="col-sm-12 text-center">
                             <div class="col-sm-12">
                                 <label>訪視時間</label>
                             </div>
                             <div class="col-sm-12">
-                                <div id="test" class="input-group date" data-date-format="yyyy-mm-dd hh:ii" data-link-field="dtp_input1">
-                                    <input id="s_visit_time" class="form-control" type="text" value="" disabled="disabled">
+                                <div id="visit_start" class="input-group date form_datetime" data-date-format="yyyy-mm-dd hh:ii" data-link-field="dtp_input1">
+                                    <input id="s_visit_time" class="form-control" type="text" value="" readonly>
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
                                 </div>
@@ -903,7 +903,7 @@
                             <label>承辦人員1</label>
                         </div>
                         <div class="col-sm-12 text-center">
-                            <select class="col-sm-12" id="s_visit_assign1" disabled="disabled">
+                            <select class="col-sm-12" id="s_visit_assign1">
                                 <option value="">請選擇</option>
                             </select>
                         </div>
@@ -911,7 +911,7 @@
                             <label>承辦人員2</label>
                         </div>
                         <div class="col-sm-12 text-center">
-                            <select class="col-sm-12" id="s_visit_assign2" disabled="disabled">
+                            <select class="col-sm-12" id="s_visit_assign2">
                                 <option value="">請選擇</option>
                             </select>
                         </div>
@@ -920,7 +920,7 @@
                                 <label>訪視結束時間</label>
                             </div>
                             <div class="col-sm-12">
-                                <div id="test" class="input-group date" data-date-format="yyyy-mm-dd hh:ii" data-link-field="dtp_input1">
+                                <div id="visit_end" class="input-group date" data-date-format="yyyy-mm-dd hh:ii" data-link-field="dtp_input1">
                                     <input id="s_visit_end_time" class="form-control" type="text" value="" disabled="disabled">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
@@ -930,12 +930,13 @@
                                 <label>備註</label>
                             </div>
                             <div class="col-sm-12 text-center">
-                                <textarea class="col-sm-12" id="s_visit_remark" placeholder="請輸入備註" disabled="disabled"></textarea>
+                                <textarea class="col-sm-12" id="s_visit_remark" placeholder="請輸入備註"></textarea>
                             </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <div class="text-center col-sm-12">
+                        <button type="button" class="btn btn-default" id="edit_visit_modal">修改</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
                         <!-- <button onclick="update_visit()" type="button" class="btn btn-primary">新增</button> -->
                     </div>
