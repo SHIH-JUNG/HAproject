@@ -695,7 +695,7 @@ update_vehicle_retain = function(this_btn) {
 
 //show 社工訪視 detail show modal region
 function show_visit_modal(modal_id) {
-    console.log(modal_id);
+    // console.log(modal_id);
     $.ajax({
         url: "database/visit_show.php",
         data:{
