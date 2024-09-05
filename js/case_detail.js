@@ -30,33 +30,19 @@ var birth = getUrlVars()["birth"];
 var form_id = getUrlVars()["form_id"];
 var form_type = decodeURIComponent(getUrlVars()["form_type"]);
 
+function NewSign(){
+    var stepSignNumber = document.getElementsByClassName("signName").length;
+    tableTr+='<tr style="text-align:left"><td style="text-align:right;background-color:rgb(135 185 96);border-bottom-color: white;border-right-color: white;" class="NOline"><label>簽章</label></td><td style=""><div class="col-sm-3" style="margin-top: 0.6em;"><select class="signName" id="signName'+stepSignNumber+'" style="width:100%;"><option value="">請選擇</option></select></div><div class="col-sm-9"><button style="margin:.5em;margin-right:3em;color:red;" type="button"  onclick="signature_btn_click('+stepSignNumber+');">簽名</button><button style="margin:.5em;" type="button" onclick="sign_msg_model('+stepSignNumber+');" data-toggle="modal" data-target="#myModal">查看留言</button><a src="" id="signName'+stepSignNumber+'_signature_simg" style="color:blue;" target="_blank" alt="簽名圖片連結"></a></div></td></tr>'
+    $("#allSign").html(tableTr);
+  }
+
+employeeSign_arr = []
+employeeSign_imagePath_arr = []
+employeeSign_Date_arr = [];
+
 const notyf = new Notyf();
-//20240723
-
-$(document).ready(function () {
-    add_option();
-
-    $(".signName").on('change', function() {
-      // 當簽名下拉列表改變時處理邏輯
-    });
-
-    // 簽名按鈕點擊事件
-    $(".signature_btn").on('click', function() {
-    var sign_board_name = $(this).data("signBoardName");
-    signature_btn_click(sign_board_name);
-    });
-
-    // // 顯示簽名圖片按鈕點擊事件
-    // $(".show_signature_image").on('click', function() {
-    // var sign_board_name = $(this).data("signBoardName");
-    // show_signature_image(sign_board_name);
-    // });
-
-    // // 初始化簽名插件
-    // jsignature_initialization();
-  });
-
-  function add_option(){
+//20240904
+function add_option(){
     $.ajax({
       type: 'POST',
       url: 'database/find_check_user.php',
@@ -69,17 +55,74 @@ $(document).ready(function () {
       },
     });
   }
+
+  $(document).ready(function () {
+
+    add_option();
+    $(".signName").on('change', function() {
+        // 當簽名下拉列表改變時處理邏輯
+        });
+
+        //jsignature插件初始化 region
+        jsignature_initialization();
+        //endregion
+
+        //隱藏jsignature畫布區域 region
+        $("#signature_area").hide();
+        //endregion
+    sign_id = getUrlVars()["sign_id"];
+
+
+    $.ajax({
+        url: "database/find_interlocution_data_detail.php",
+        data: {
+          sign_id: id,
+          interlocution: form_type,
+        },
+        type: "POST",
+        dataType: "JSON",
+        async: false,
+        success: function (data) {
+            $.each(data, function (index, value) {
+                var supervisor1SignPath = value.supervisor1_signature.replace("../signature/", "");
+                var supervisor2SignPath = value.supervisor2_signature.replace("../signature/", "");
+                var assignSignPath = value.assign_signature.replace("../signature/", "");
+                $("#supervisor1_signature_simg").text("點擊顯示簽名圖片");
+                $("#supervisor2_signature_simg").text("點擊顯示簽名圖片");
+                $("#assign_signature_simg").text("點擊顯示簽名圖片");
+                // 督導1簽名顯示邏輯
+                if (!supervisor1SignPath || supervisor1SignPath === "") {
+                    $("#supervisor1_signature_simg").attr("onclick", "javascript:swal({title: '未簽名',type: 'error',}); return false;");
+                } else {
+                    $("#supervisor1_signature_simg").attr("href", "./signature/" + supervisor1SignPath);
+                }
+                // 督導2簽名顯示邏輯
+                if (!supervisor2SignPath || supervisor2SignPath === "") {
+                    $("#supervisor2_signature_simg").attr("onclick", "javascript:swal({title: '未簽名',type: 'error',}); return false;");
+                } else {
+                    $("#supervisor2_signature_simg").attr("href", "./signature/" + supervisor2SignPath);
+                }
+
+                // 社工簽名顯示邏輯
+                if (!assignSignPath || assignSignPath === "") {
+                    $("#assign_signature_simg").attr("onclick", "javascript:swal({title: '未簽名',type: 'error',}); return false;");
+                } else {
+                    $("#assign_signature_simg").attr("href", "./signature/" + assignSignPath);
+                }
+            });
+        },
+        error: function () {
+            swal({ title: "獲取簽名數據失敗！", type: "error" });
+        }
+    });
+});
+
 //jsignature插件初始化 region
 function jsignature_initialization() {
     var $sigdiv = $("#signature_div");
-    $sigdiv.jSignature({ UndoButton: true }); // 初始化jSignature插件-属性用","隔开
-    // $sigdiv.jSignature({'decor-color':'red'}); // 初始化jSignature插件-设置横线颜色
-    // $sigdiv.jSignature({'lineWidth':"6"});// 初始化jSignature插件-设置横线粗细
-    // $sigdiv.jSignature({"decor-color":"transparent"});// 初始化jSignature插件-去掉横线
-    // $sigdiv.jSignature({'UndoButton':true});// 初始化jSignature插件-撤销功能
-    // $sigdiv.jSignature({'height': 100, 'width': 200}); // 初始化jSignature插件-设置书写范围(大小)
+    $sigdiv.jSignature({ UndoButton: true });
 
-    // 同步更新畫布中的簽名圖片和簽名檔案格式 region
+    // 同步更新畫布中的簽名圖片和簽名檔案格式
     $("#signature_div").bind("change", function (e) {
       var datapair = $sigdiv.jSignature("getData", "image");
       $("#signature_images").attr(
@@ -87,30 +130,40 @@ function jsignature_initialization() {
         "data:" + datapair[0] + "," + datapair[1]
       );
     });
-    //endregion
 
-    //重設繪製簽名 region
+    //重設繪製簽名
     $("#signature_reset").click(function () {
-      $("#signature_div").jSignature("reset"); //重置画布，可以进行重新作画
+      $("#signature_div").jSignature("reset");
       $("#signature_images").attr("src", "");
     });
-    //endregion
   }
-  //endregion
+//endregion
 
-  // 儲存該簽名 region
-  signature_submit = function(this_btn) {
+// 儲存該簽名 region
+signature_submit = function(this_btn) {
 
     // 獲取簽名類型(督導、組長、主管)
     var sign_type = $(this_btn).attr("board_name");
-
     // console.log(sign_type);
 
-    var ajax_url = "database/update_supervisor_record_data_detail_signature_v2.php";
-
+    var ajax_url = "database/update_case_data_detail_signature.php";
     var src_data = $("#signature_images").attr("src");
     // console.log(src);
+    var today = new Date();
+    var year = today.getFullYear();
+    var month = today.getMonth()+1;
+    var day = today.getDay();
+    var hour = today.getHours();
+    var minute = today.getMinutes();
+    var second = today.getSeconds();
 
+
+    employeeSign_imagePath_arr[sign_type] = "../signature/" + year + month + day + ".png";
+    employeeSign_Date_arr[sign_type] = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
+    // console.log(employeeSign_msg_arr+'\n'+employeeSign_imagePath_arr+'\n'+employeeSign_Date_arr);
+    var imagePath_arr = employeeSign_imagePath_arr.join('、');
+    var Date_arr = employeeSign_Date_arr.join('、');
+    var datePath = "../signature/" + year + month + day + ".png"
     // 判斷有無簽名圖片，若有送出簽名並儲存檔案
     if (src_data) {
       // console.log("submit_sign");
@@ -118,36 +171,25 @@ function jsignature_initialization() {
         type: "post",
         url: ajax_url,
         data: {
-          sr_id: sr_id,
+            id:id,
+          interlocution: form_type,
           src_data: src_data,
-          sign_msg: $("#signature_msg").val(),
           sign_type: sign_type,
-          sign_name:$("#"+sign_type+"").val(),
-          sign_url:window.location.href.split("HA\/")[1],
+          imagePath_arr,
+          Date_arr,
+          datePath,
         },
         async: false,
         success: function (data) {
-          // console.log(data);
-          if (data == 1)
-          {
+          console.log(data);
+          if (data) {
             swal({
-            title: "送出簽名成功！",
-            type: "success",
+              title: "送出簽名成功！",
+              type: "success",
             }).then(function () {
-            location.reload();
+              location.reload();
             });
-          }
-          else if(data.includes("noallowsign"))
-          {
-            swal({
-                type: 'error',
-                title: '您無權限簽核此欄位',
-                text: '當前登入的帳號名稱與簽核欄位名稱不符',
-                allowOutsideClick: false //不可點背景關閉
-            });
-          }
-          else
-          {
+          } else {
             swal({
               title: "生成簽名圖片失敗！請聯絡網站維護人員",
               type: "error",
@@ -160,112 +202,51 @@ function jsignature_initialization() {
       return false;
     }
   }
-  //endregion
+//endregion
 
   signature_btn_click = function(sign_board_name) {
     var type_name = "";
 
     switch (sign_board_name) {
-        case "supervisor":
-            type_name = "督導";
+        case "supervisor1":
+            type_name = "督導1";
+            break;
+        case "supervisor2":
+        type_name = "督導2";
             break;
         case "assign":
             type_name = "社工人員";
             break;
+        default:
+            type_name = employeeSign_arr[sign_board_name];
+            break;
     }
 
-    // var sign_name = $("#signName" + sign_board_name).val();
-    // if (sign_name !== user_name) {
-    //     alert("您只能在顯示自己帳號的欄位中簽章！");
-    //     return false;
-    // }
-
-    $("#signature_h4").text(type_name + "簽名");
-    $("#signature_title_td").text(type_name);
-    $("#signature_msg_td").text(type_name);
-    $("#sign_submit_btn").attr("board_name", sign_board_name);
-
-    $("#signature_area").show();
-    $("#collapseTwo").hide();
-}
-
-sign_msg_model = function (sign_type_name) {
-    //手動新增按鈕點擊跳出模態框
-    $("#myModal2").on("shown.bs.modal", function () {
-      $("#" + sign_type_name).trigger("focus");
-    });
-
-    // console.log(social_worker_msg_arr)
-    // console.log(supervise_msg_arr)
-
-    switch (sign_type_name) {
-      case "supervisor":
-        var type_name = "督導";
-        $(".sign_msg").text(supervisor_msg_arr[0]);
-        $(".sign_msg_time").val(supervisor_msg_arr[1]);
-        break;
-
-      case "assign":
-        var type_name = "社工人員";
-        $(".sign_msg").text(assign_msg_arr[0]);
-        $(".sign_msg_time").val(assign_msg_arr[1]);
-        break;
-    }
-
-    $(".sign_msg_td_name").text(type_name + "簽名留言內容");
-  };
-
-// function show_signature_image(sign_board_name) {
-//     var sign_image_path = $("#signName" + sign_board_name + "_signature_simg").attr("href");
-//     if (sign_image_path) {
-//       window.open(sign_image_path, '_blank');
-//     } else {
-//       alert("未簽名或簽名圖片丟失！");
-//     }
+//   // 檢查當前使用者名稱是否與簽名欄位名稱匹配
+//   var sign_name = $("#signName" + sign_board_name).val();
+//   console.log(sign_name + '/' + user_name);
+//   if (sign_name !== user_name) {
+//     alert("您只能在顯示自己帳號的欄位中簽章！");
+//     return false;
 //   }
 
-//   function jsignature_initialization() {
-//     var $sigdiv = $("#signature_div");
-//     $sigdiv.jSignature({ UndoButton: true });
+  $("#signature_h4").text(type_name + "簽名");
+  $("#signature_title_td").text(type_name);
+  $("#sign_submit_btn").attr("board_name", sign_board_name);
 
-//     $("#signature_div").bind("change", function (e) {
-//       var datapair = $sigdiv.jSignature("getData", "image");
-//       $("#signature_images").attr("src", "data:" + datapair[0] + "," + datapair[1]);
-//     });
+  $("#signature_area").show();
+  $("#myTabContent").hide();
+  }
+//endregion
 
-//     $("#signature_reset").click(function () {
-//       $("#signature_div").jSignature("reset");
-//       $("#signature_images").attr("src", "");
-//     });
-//   }
+//在簽名畫布區域按取消，返回詳細資料，並自動滾動卷軸至最頂部 region
+show_main_panel = function () {
 
-//   function signature_submit(sign_board_name) {
-//     var form_data = new FormData();
-//   form_data.append("sign_name", sign_name);
-//   form_data.append("signature_data", signature_data[1]); // 只傳送圖片數據部分
-//   form_data.append("sign_board_name", sign_board_name);
-//   form_data.append("id", id); // 案件 ID
+    $("#signature_area").hide();
+    $("#myTabContent").show ();
 
-//   $.ajax({
-//     type: "POST",
-//     url: "database/save_signature.php",
-//     data: form_data,
-//     contentType: false,
-//     processData: false,
-//     success: function (response) {
-//       if (response.success) {
-//         alert("簽名成功！");
-//         $("#signName" + sign_board_name + "_signature_simg").attr("href", response.signature_path);
-//         $("#signName" + sign_board_name + "_signature_simg").text("點擊顯示簽名圖片");
-//       } else {
-//         alert("簽名失敗，請重試！");
-//       }
-//     },
-//     error: function () {
-//       alert("簽名失敗，請重試！");
-//     }
-//   });
-// }
+};
+//endregion
 
 // 複選問題 creation date 20240502
 function toggleCheckboxes(checkedCheckbox) {
