@@ -382,7 +382,7 @@
                                         </div>
                                     </div>
                                     <div class="text-right">
-                                        <button style="font-size:20px" class="btn btn-default" onclick="generatePDF()">匯出基本資料為PDF</button>
+                                        <button style="font-size:20px" class="btn btn-default" onclick="generatePDF1()">匯出基本資料為PDF</button>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="two" role="tabpanel" aria-labelledby="profile-tab">
@@ -598,7 +598,7 @@
                                         </div>
                                     </div>
                                     <div class="text-right">
-                                        <button style="font-size:20px" class="btn btn-default" onclick="generatePDF()">匯出醫療追蹤為PDF</button>
+                                        <button style="font-size:20px" class="btn btn-default" onclick="generatePDF2()">匯出醫療追蹤為PDF</button>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="three" role="tabpanel" aria-labelledby="profile-tab">
@@ -721,7 +721,7 @@
                                         </div>
                                     </div>
                                     <div class="text-right">
-                                        <button style="font-size:20px" class="btn btn-default" onclick="generatePDF()">匯出問題陳述/評估與診斷/處遇計畫/社工策略/資源與轉介為PDF</button>
+                                        <button style="font-size:20px" class="btn btn-default" onclick="generatePDF3()">匯出問題陳述/評估與診斷/處遇計畫/社工策略/資源與轉介為PDF</button>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="four" role="tabpanel" aria-labelledby="profile-tab">
@@ -753,7 +753,7 @@
 
                                                                         </span>
                                                                         &emsp;
-                                                                        <input name="pretest_depression_radio" style="zoom: 1.5" value="無" type="radio"><span>無</span>
+                                                                        <input name="pretest_depression_radio" style="zoom: 1.5" value="無" type="radio"><span>正常</span>
                                                                         <input name="pretest_depression_radio" style="zoom: 1.5" value="輕度" type="radio"><span>輕度</span>
                                                                         <input name="pretest_depression_radio" style="zoom: 1.5" value="中度" type="radio"><span>中度</span>
                                                                         <input name="pretest_depression_radio" style="zoom: 1.5" value="重度憂鬱" type="radio"><span>重度憂鬱；</span>
@@ -868,7 +868,7 @@
                                                                         <input style="width:3em;" name="pretest_life_day" id="pretest_life_day" type="text"><span>日</span>
                                                                         <span>測）</span>
                                                                         &emsp;
-                                                                        <input style="width:3em;" name="pretest_life_score" id="pretest_life_score" type="text"><span>分</span>
+                                                                        <input style="width:3em;" name="pretest_life_score" id="pretest_life_score" type="number"><span>分</span>
                                                                         <span id="pretest_life_area">
 
                                                                         </span>
@@ -885,7 +885,7 @@
                                                                         <input style="width:3em;" name="midtest_life_day" id="midtest_life_day" type="text"><span>日</span>
                                                                         <span>測）</span>
                                                                         &emsp;
-                                                                        <input style="width:3em;" name="midtest_life_score" id="midtest_life_score" type="text"><span>分</span>
+                                                                        <input style="width:3em;" name="midtest_life_score" id="midtest_life_score" type="number"><span>分</span>
                                                                         <span id="midtest_life_area">
 
                                                                         </span>
@@ -902,13 +902,23 @@
                                                                         <input style="width:3em;" name="posttest_life_day" id="posttest_life_day" type="text"><span>日</span>
                                                                         <span>測）</span>
                                                                         &emsp;
-                                                                        <input style="width:3em;" name="posttest_life_score" id="posttest_life_score" type="text"><span>分</span>
+                                                                        <input style="width:3em;" name="posttest_life_score" id="posttest_life_score" type="number"><span>分</span>
                                                                         <span id="posttest_life_area">
 
                                                                         </span>
                                                                         &emsp;
                                                                         <!-- <input name="pretest_life_text" type="text"> -->
                                                                         <span>狀況為：</span><input style="width:5em;" name="pretest_life_text" type="text">
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td colspan="4">
+                                                                        <div class="text-right">
+                                                                            <span>總分：</span>
+                                                                            <input style="width:6em;" name="pretest_life_score_total" id="pretest_life_score_total" type="text" />
+                                                                            <span>平均分：</span>
+                                                                            <input style="width:6em;" name="life_answer_score2_avg" id="life_answer_score2_avg" type="text" />
+                                                                        </div>
                                                                     </td>
                                                                 </tr>
                                                             </table>
@@ -1080,7 +1090,7 @@
                                         </div>
                                     </div>
                                     <div class="text-right">
-                                        <button style="font-size:20px" class="btn btn-default" onclick="generatePDF()">匯出成效評估為PDF</button>
+                                        <button style="font-size:20px" class="btn btn-default" onclick="generatePDF4()">匯出成效評估為PDF</button>
                                     </div>
                                 </div>
                                 <div class="panel-footer" style="text-align:center;">
@@ -1122,7 +1132,49 @@
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
     <script src="case_detail.js"></script>
+    <?php
+    // PHP部分：處理表單提交和初始計算
+    function calculateScores($pretest, $midtest, $posttest) {
+        $scores = array_filter([$pretest, $midtest, $posttest], 'is_numeric');
+        $total = array_sum($scores);
+        $count = count($scores);
+        $average = $count > 0 ? $total / $count : 0;
+
+        return [
+            'total' => number_format($total, 2),
+            'average' => number_format($average, 2)
+        ];
+    }
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $pretest_score = floatval($_POST['pretest_life_score'] ?? 0);
+        $midtest_score = floatval($_POST['midtest_life_score'] ?? 0);
+        $posttest_score = floatval($_POST['posttest_life_score'] ?? 0);
+
+        $results = calculateScores($pretest_score, $midtest_score, $posttest_score);
+    }
+    ?>
     <script>
+    function calculateTotal() {
+        var pretest = parseFloat(document.getElementById('pretest_life_score').value) || 0;
+        var midtest = parseFloat(document.getElementById('midtest_life_score').value) || 0;
+        var posttest = parseFloat(document.getElementById('posttest_life_score').value) || 0;
+
+        var total = pretest + midtest + posttest;
+        var count = (pretest !== 0) + (midtest !== 0) + (posttest !== 0);
+        var average = count > 0 ? total / count : 0;
+
+        document.getElementById('pretest_life_score_total').value = total.toFixed(2);
+        document.getElementById('life_answer_score2_avg').value = average.toFixed(2);
+    }
+
+    // 綁定事件監聽器到每個分數輸入框
+    document.getElementById('pretest_life_score').addEventListener('input', calculateTotal);
+    document.getElementById('midtest_life_score').addEventListener('input', calculateTotal);
+    document.getElementById('posttest_life_score').addEventListener('input', calculateTotal);
+
+    // 頁面加載時初始化計算（這裡會顯示 0.00，因為初始沒有輸入）
+    document.addEventListener('DOMContentLoaded', calculateTotal);
 
         // function fillFormValues() {
         //     // 執行JavaScript代碼填充表單數據
@@ -1235,8 +1287,62 @@
         //         checkbox.style.display = '';
         //     });
         // }
-        function generatePDF() {
-            const element = document.getElementById('form_1','form_2','form_3','form_4');
+        function generatePDF1() {
+            const element = document.getElementById('form_1');
+
+            const opt = {
+                margin:       1,
+                filename:     'download.pdf',
+                image:        { type: 'jpeg', quality: 1 },
+                html2canvas:  { scale: 3,
+                    logging: true, // 啟用日誌以幫助調試
+                    useCORS: true, // 允許跨域圖片
+                    allowTaint: true // 允許跨域圖片
+                    },
+                jsPDF:        { unit: 'mm', format: 'legal', orientation: 'landscape' },
+                pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] }
+            };
+
+            html2pdf().from(element).set(opt).save();
+        }
+        function generatePDF2() {
+            const element = document.getElementById('form_2');
+
+            const opt = {
+                margin:       1,
+                filename:     'download.pdf',
+                image:        { type: 'jpeg', quality: 1 },
+                html2canvas:  { scale: 3,
+                    logging: true, // 啟用日誌以幫助調試
+                    useCORS: true, // 允許跨域圖片
+                    allowTaint: true // 允許跨域圖片
+                    },
+                jsPDF:        { unit: 'mm', format: 'legal', orientation: 'landscape' },
+                pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] }
+            };
+
+            html2pdf().from(element).set(opt).save();
+        }
+        function generatePDF3() {
+            const element = document.getElementById('form_3');
+
+            const opt = {
+                margin:       1,
+                filename:     'download.pdf',
+                image:        { type: 'jpeg', quality: 1 },
+                html2canvas:  { scale: 3,
+                    logging: true, // 啟用日誌以幫助調試
+                    useCORS: true, // 允許跨域圖片
+                    allowTaint: true // 允許跨域圖片
+                    },
+                jsPDF:        { unit: 'mm', format: 'legal', orientation: 'landscape' },
+                pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] }
+            };
+
+            html2pdf().from(element).set(opt).save();
+        }
+        function generatePDF4() {
+            const element = document.getElementById('form_4');
 
             const opt = {
                 margin:       1,
