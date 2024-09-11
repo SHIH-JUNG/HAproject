@@ -245,9 +245,9 @@ function load_files() {
 
   $('[class^=program_forms_question]').attr('disabled', true);
 }
-window.file_A_arr = [];
-window.file_C_arr = [];
-window.file_D_arr = [];
+var file_A_arr = [];
+var file_C_arr = [];
+var file_D_arr = [];
 function load_program_datas() {
   $.ajax({
       url: "database/find_program_plan_user_data_detail.php",
@@ -349,8 +349,8 @@ function load_program_datas() {
                       
                       var file_a_htmlstr = "";
                       $.each(file_a_arr, function (i, val) {
-                        var program_file_path = value.File_path.replace("../", "./");
-                        var program_file_name = value.File_path.split("/");
+                        var program_file_path = val.replace("../", "./");
+                        var program_file_name = val.split("/");
                         var program_file_val = program_file_name[program_file_name.length - 1];
                         file_A_arr.push(val);
                         file_a_htmlstr += '<input class="program_question" style="zoom: 1.5" class="form-check-input" type="radio" name="file_a_check" forms_sql_id="' + value.Id + '" value="' + i + '">'
@@ -392,8 +392,8 @@ function load_program_datas() {
                       window.file_C_arr = [];
                       var file_a_htmlstr = "";
                       $.each(file_a_arr, function (i, val) {
-                        var program_file_path = value.File_path.replace("../", "./");
-                        var program_file_name = value.File_path.split("/");
+                        var program_file_path = val.replace("../", "./");
+                        var program_file_name = val.split("/");
                         var program_file_val = program_file_name[program_file_name.length - 1];
                         file_C_arr.push(val);
                         file_a_htmlstr += '<input class="program_question" style="zoom: 1.5" class="form-check-input" type="radio" name="file_a_check" forms_sql_id="' + value.Id + '" value="' + i + '">'
@@ -423,8 +423,8 @@ function load_program_datas() {
                       window.file_D_arr = [];
                       var file_a_htmlstr = "";
                       $.each(file_a_arr, function (i, val) {
-                        var program_file_path = value.File_path.replace("../", "./");
-                        var program_file_name = value.File_path.split("/");
+                        var program_file_path = val.replace("../", "./");
+                        var program_file_name = val.split("/");
                         var program_file_val = program_file_name[program_file_name.length - 1];
                         file_D_arr.push(val);
                         file_a_htmlstr += '<input class="program_question" style="zoom: 1.5" class="form-check-input" type="radio" name="file_a_check" forms_sql_id="' + value.Id + '" value="' + i + '">'
@@ -528,6 +528,8 @@ program_update = function() {
       form_data.append("Fund", foundChick);
       form_data.append("Remark", $("#remark").val());
       form_data.append("File_year", year_split);
+      // console.log(file_A_arr);
+      form_data.append("program_plan_files0", file_A_arr);
 
       // 預覽傳到後端的資料詳細內容
       // for (var pair of form_data.entries()) {
@@ -538,9 +540,7 @@ program_update = function() {
       $.ajax({
           url: "database/update_program_plan_user_data_detail.php",
           type: "POST",
-          //   data: {
-          //     Program_id:program_id,
-          //   },
+
           data: form_data,
           contentType: false,
           cache: false,
@@ -569,7 +569,7 @@ program_update = function() {
           }
         },
         error: function (e) {
-          // console.log(e)
+          console.log(e);
           swal({
               type: "error",
               title: "更新失敗！請聯絡網站維護人員",
@@ -788,7 +788,7 @@ selectFiles_delete = function (file_a_input_val_arr) {
         // console.log(file_a_input_val_arr)
 
         var r_file_a = file_a_input_val_arr.splice(parseInt(file_a_val), 1);
-        console.log(program_id);
+        console.log(file_a_sql_id);
         console.log(file_a_input_val_arr);
         console.log(r_file_a);
 
@@ -854,7 +854,7 @@ window.selectedFiles_str = "";
 selectFiles_insert = function (file, file_arr) {
 
 
-  if(selectedFiles.length==0)
+  if(file_arr.length==0)
   {
     selected_files(file, file_arr);
   }
@@ -892,7 +892,7 @@ selected_files = function(file, file_arr) {
   selectedFiles_str = "";
   var html = '<span style="color:red;">上傳檔案清單預覽：</span><br/>';
 
-  $("#"+file).html(html);
+  $("#selected-"+file).html(html);
 
   $.FileDialog({
     "accept": "*",
@@ -900,9 +900,9 @@ selected_files = function(file, file_arr) {
     "title": "載入檔案",
   }).on("files.bs.filedialog", function (event) {
     for (var a = 0; a < event.files.length; a++) {
-      selectedFiles.push(event.files[a]);
+      file_arr.push(event.files[a]);
 
-      console.log(event.files[a])
+      // console.log(event.files[a])
 
       if(a == 0)
       {
@@ -915,8 +915,8 @@ selected_files = function(file, file_arr) {
 
       html += '<span style="color:red;" value="' + event.files[a].name + '">' + event.files[a].name + '</span><br/>';
     }
-    $("#"+file).html(html);
-    console.log(selectedFiles_str);
+    console.log(file_arr);
+    $("#selected-"+file).html(html);
   });
 }
 
