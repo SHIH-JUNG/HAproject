@@ -772,7 +772,7 @@
 
                                                                         </span>
                                                                         &emsp;
-                                                                        <input name="midtest_depression_radio" style="zoom: 1.5" value="無" type="radio"><span>無</span>
+                                                                        <input name="midtest_depression_radio" style="zoom: 1.5" value="無" type="radio"><span>正常</span>
                                                                         <input name="midtest_depression_radio" style="zoom: 1.5" value="輕度" type="radio"><span>輕度</span>
                                                                         <input name="midtest_depression_radio" style="zoom: 1.5" value="中度" type="radio"><span>中度</span>
                                                                         <input name="midtest_depression_radio" style="zoom: 1.5" value="重度憂鬱" type="radio"><span>重度憂鬱；</span>
@@ -791,7 +791,7 @@
 
                                                                         </span>
                                                                         &emsp;
-                                                                        <input name="posttest_depression_radio" style="zoom: 1.5" value="無" type="radio"><span>無</span>
+                                                                        <input name="posttest_depression_radio" style="zoom: 1.5" value="無" type="radio"><span>正常</span>
                                                                         <input name="posttest_depression_radio" style="zoom: 1.5" value="輕度" type="radio"><span>輕度</span>
                                                                         <input name="posttest_depression_radio" style="zoom: 1.5" value="中度" type="radio"><span>中度</span>
                                                                         <input name="posttest_depression_radio" style="zoom: 1.5" value="重度憂鬱" type="radio"><span>重度憂鬱；</span>
