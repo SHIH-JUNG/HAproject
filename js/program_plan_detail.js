@@ -213,17 +213,17 @@ function load_files() {
               + '<br/>'
               + '<div id="employment_contract_'+(this_year - i) + '"></div>'
           + '</div>'
-        + '</div>'            
+        + '</div>'
       + '</td>'
-      
+
       + '<td>'
         + '<div class="col-sm-8">'
           + '<div class="text-left">'
-              + '<input name="PA_file_'+(this_year - i)+'" type="file" class="program_forms_question'+(this_year - i)+' form-control"/>' 
+              + '<input name="PA_file_'+(this_year - i)+'" type="file" class="program_forms_question'+(this_year - i)+' form-control"/>'
               + '<br/>'
               + '<div id="PA_file_'+(this_year - i) + '"></div>'
           + '</div>'
-        + '</div>'            
+        + '</div>'
       + '</td>'
 
       +'<td>'+ '<textarea style="height:150px;width:100%;resize: none;font-size: 20px;" name="remark_'+(this_year - i)+'" class="program_forms_question'+(this_year - i)+'" placeholder="備註"></textarea>' +'</td>'
@@ -232,7 +232,7 @@ function load_files() {
               +'<button style="font-size:20px" id="program_forms_edit'+(this_year - i)+'" class="btn btn-default" onclick="program_forms_edit('+(this_year - i)+');">編輯</button>'
           +'</div>'
           +'<div id="save_div'+(this_year - i)+'" hidden>'
-              +'<button style="font-size:20px" onclick="update_row('+(this_year - i)+')" class="btn btn-default">修改</button><br/><br/>'           
+              +'<button style="font-size:20px" onclick="update_row('+(this_year - i)+')" class="btn btn-default">修改</button><br/><br/>'
               +'<button style="font-size:20px" id="program_forms_cancel'+(this_year - i)+'" class="btn btn-default" onclick="program_forms_cancel('+(this_year - i)+');">取消</button>'
           +'</div>'
       +'</td>'
@@ -274,8 +274,8 @@ function load_program_datas() {
               }
               $("#remark").val(value.Remark);
           });
-          
-        
+
+
       },
       error:function(e){
           notyf.alert('伺服器錯誤，無法載入，請聯絡網站維護人員');
@@ -297,23 +297,26 @@ function load_program_datas() {
           var this_year_file_upload_num = 0;
           var recently_upload_date = "---年--月--日";
 
+          // 初始化所有上傳欄位
+          initializeUploadFields();
+
           if(data.length==0){
             $("#proposal_file").html('<br/>'
-              + '<button class="program_question" style="color:red;margin-right:3em;margin-bottom:.5em;" type="button" onclick="selectFiles_delete(file_A_arr);">刪除</button>'
+              + '<button class="program_question" style="color:red;margin-right:3em;margin-bottom:.5em;" type="button" onclick="selectFiles_delete(A,file_A_arr);">刪除</button>'
               + '<div>※點選上面要刪除的檔案</div>'
               + '<br/><hr style="border:3px dashed blue; height:1px">'
               + '<button class="program_question" style="color:blue;" type="button" onclick="selectFiles_insert(\'file_A\', file_A_arr);">新增檔案++</button><br/><div id="selected-file_A"><span style="color:red;">上傳檔案清單預覽：</span><br/></div>'
             );
-            
+
             $("#achieve_file").html('<br/>'
-              + '<button class="program_question" style="color:red;margin-right:3em;margin-bottom:.5em;" type="button" onclick="selectFiles_delete(file_C_arr);">刪除</button>'
+              + '<button class="program_question" style="color:red;margin-right:3em;margin-bottom:.5em;" type="button" onclick="selectFiles_delete(C,file_C_arr);">刪除</button>'
               + '<div>※點選上面要刪除的檔案</div>'
               + '<br/><hr style="border:3px dashed blue; height:1px">'
               + '<button class="program_question" style="color:blue;" type="button" onclick="selectFiles_insert(\'file_C\', file_C_arr);">新增檔案++</button><br/><div id="selected-file_C"><span style="color:red;">上傳檔案清單預覽：</span><br/></div>'
             );
-            
+
             $("#other_file").html('<br/>'
-              + '<button class="program_question" style="color:red;margin-right:3em;margin-bottom:.5em;" type="button" onclick="selectFiles_delete(file_D_arr);">刪除</button>'
+              + '<button class="program_question" style="color:red;margin-right:3em;margin-bottom:.5em;" type="button" onclick="selectFiles_delete(D,file_D_arr);">刪除</button>'
               + '<div>※點選上面要刪除的檔案</div>'
               + '<br/><hr style="border:3px dashed blue; height:1px">'
               + '<button class="program_question" style="color:blue;" type="button" onclick="selectFiles_insert(\'file_D\', file_D_arr);">新增檔案++</button><br/><div id="selected-file_D"><span style="color:red;">上傳檔案清單預覽：</span><br/></div>'
@@ -335,6 +338,8 @@ function load_program_datas() {
               switch (value.File_type) {
                   // 計劃書
                   case "file_A":
+                    var file_type = 'A';
+                    var file_id = 'proposal_file';
                       // var program_file_path = value.File_path.replace("../", "./");
                       // var program_file_name = value.File_path.split("/");
                       // $("[name='proposal_file']").attr("value", program_file_name[program_file_name.length - 1]);
@@ -342,28 +347,29 @@ function load_program_datas() {
                       //     '<a href="'+program_file_path+'" style="text-decoration:none;color:blue;" target="_blank">'
                       //     +program_file_name[program_file_name.length - 1]
                       //     +'</a>');
-                      
+
                       //上傳多個檔案
                       var file_a_arr = value.File_path.replace("\[", "").replace("\]", "").replace(/\"/g, "").split(",");
                       // console.log(file_a_arr)
-                      
+
                       var file_a_htmlstr = "";
                       $.each(file_a_arr, function (i, val) {
                         var program_file_path = val.replace("../", "./");
                         var program_file_name = val.split("/");
                         var program_file_val = program_file_name[program_file_name.length - 1];
-                        file_A_arr.push(val);
-                        file_a_htmlstr += '<input class="program_question" style="zoom: 1.5" class="form-check-input" type="radio" name="file_a_check" forms_sql_id="' + value.Id + '" value="' + i + '">'
-                          + '<span>檔案' + (i + 1) + '：</span><a id="val_arr'+i+'" href="' + program_file_path + '" style="text-decoration:none;color:blue;" target="_blank">'
-                          + program_file_val
-                          + '</a><br/><br/>';
-                      });
-                      file_a_htmlstr += '<br/>'
-                        + '<button class="program_question" style="color:red;margin-right:3em;margin-bottom:.5em;" type="button" onclick="selectFiles_delete(file_A_arr);">刪除</button>'
+                        file_a_htmlstr += '<input class="program_question" style="zoom: 1.5" type="radio" name="file_' + file_type + '_check" forms_sql_id="' + value.Id + '" value="' + i + '">'
+                            + '<span>檔案' + (i + 1) + '：</span><a id="val_arr'+i+'" href="' + program_file_path + '" style="text-decoration:none;color:blue;" target="_blank">'
+                            + program_file_val
+                            + '</a><br/><br/>';
+                    });
+
+                    file_a_htmlstr += '<br/>'
+                        + '<button class="program_question" style="color:red;margin-right:3em;margin-bottom:.5em;" type="button" onclick="selectFiles_delete(\'' + file_type + '\', file_' + file_type + '_arr);">刪除</button>'
                         + '<div>※點選上面要刪除的檔案</div>'
                         + '<br/><hr style="border:3px dashed blue; height:1px">'
-                        + '<button class="program_question" style="color:blue;" type="button" onclick="selectFiles_insert(\'file_A\', file_A_arr);">新增檔案++</button><br/><div id="selected-file_A"><span style="color:red;">上傳檔案清單預覽：</span><br/></div>';
-                      $("#proposal_file").html(file_a_htmlstr);
+                        + '<button class="program_question" style="color:blue;" type="button" onclick="selectFiles_insert(\'file_' + file_type + '\', file_' + file_type + '_arr);">新增檔案++</button><br/><div id="selected-file_' + file_type + '"><br/></div>';
+
+                    $("#" + file_id).html(file_a_htmlstr);
                       break;
 
                   // 期中報告
@@ -379,6 +385,8 @@ function load_program_datas() {
                       break;
                   // 成果報告
                   case "file_C":
+                    var file_type = 'C';
+                    var file_id = 'achieve_file';
                       // var program_file_path = value.File_path.replace("../", "./");
                       // var program_file_name = value.File_path.split("/");
                       // $("[name='achieve_file']").attr("value", program_file_name[program_file_name.length - 1]);
@@ -395,21 +403,24 @@ function load_program_datas() {
                         var program_file_path = val.replace("../", "./");
                         var program_file_name = val.split("/");
                         var program_file_val = program_file_name[program_file_name.length - 1];
-                        file_C_arr.push(val);
-                        file_a_htmlstr += '<input class="program_question" style="zoom: 1.5" class="form-check-input" type="radio" name="file_a_check" forms_sql_id="' + value.Id + '" value="' + i + '">'
-                          + '<span>檔案' + (i + 1) + '：</span><a id="val_arr'+i+'" href="' + program_file_path + '" style="text-decoration:none;color:blue;" target="_blank">'
-                          + program_file_val
-                          + '</a><br/><br/>';
-                      });
-                      file_a_htmlstr += '<br/>'
-                        + '<button class="program_question" style="color:red;margin-right:3em;margin-bottom:.5em;" type="button" onclick="selectFiles_delete(file_C_arr);">刪除</button>'
+                        file_a_htmlstr += '<input class="program_question" style="zoom: 1.5" type="radio" name="file_' + file_type + '_check" forms_sql_id="' + value.Id + '" value="' + i + '">'
+                            + '<span>檔案' + (i + 1) + '：</span><a id="val_arr'+i+'" href="' + program_file_path + '" style="text-decoration:none;color:blue;" target="_blank">'
+                            + program_file_val
+                            + '</a><br/><br/>';
+                    });
+
+                    file_a_htmlstr += '<br/>'
+                        + '<button class="program_question" style="color:red;margin-right:3em;margin-bottom:.5em;" type="button" onclick="selectFiles_delete(\'' + file_type + '\', file_' + file_type + '_arr);">刪除</button>'
                         + '<div>※點選上面要刪除的檔案</div>'
                         + '<br/><hr style="border:3px dashed blue; height:1px">'
-                        + '<button class="program_question" style="color:blue;" type="button" onclick="selectFiles_insert(\'file_C\', file_C_arr);">新增檔案++</button><br/><div id="selected-file_C"><span style="color:red;">上傳檔案清單預覽：</span><br/></div>';
-                      $("#achieve_file").html(file_a_htmlstr);
+                        + '<button class="program_question" style="color:blue;" type="button" onclick="selectFiles_insert(\'file_' + file_type + '\', file_' + file_type + '_arr);">新增檔案++</button><br/><div id="selected-file_' + file_type + '"><br/></div>';
+
+                    $("#" + file_id).html(file_a_htmlstr);
                       break;
                   // 其他檔案
                   case "file_D":
+                    var file_type = 'D';
+                    var file_id = 'other_file';
                       // var program_file_path = value.File_path.replace("../", "./");
                       // var program_file_name = value.File_path.split("/");
                       // $("[name='other_file']").attr("value", program_file_name[program_file_name.length - 1]);
@@ -426,18 +437,20 @@ function load_program_datas() {
                         var program_file_path = val.replace("../", "./");
                         var program_file_name = val.split("/");
                         var program_file_val = program_file_name[program_file_name.length - 1];
-                        file_D_arr.push(val);
-                        file_a_htmlstr += '<input class="program_question" style="zoom: 1.5" class="form-check-input" type="radio" name="file_a_check" forms_sql_id="' + value.Id + '" value="' + i + '">'
-                          + '<span>檔案' + (i + 1) + '：</span><a id="val_arr'+i+'" href="' + program_file_path + '" style="text-decoration:none;color:blue;" target="_blank">'
-                          + program_file_val
-                          + '</a><br/><br/>';
-                      });
-                      file_a_htmlstr += '<br/>'
-                        + '<button class="program_question" style="color:red;margin-right:3em;margin-bottom:.5em;" type="button" onclick="selectFiles_delete(file_D_arr);">刪除</button>'
+                        file_a_htmlstr += '<input class="program_question" style="zoom: 1.5" type="radio" name="file_' + file_type + '_check" forms_sql_id="' + value.Id + '" value="' + i + '">'
+                            + '<span>檔案' + (i + 1) + '：</span><a id="val_arr'+i+'" href="' + program_file_path + '" style="text-decoration:none;color:blue;" target="_blank">'
+                            + program_file_val
+                            + '</a><br/><br/>';
+                    });
+
+                    file_a_htmlstr += '<br/>'
+                        + '<button class="program_question" style="color:red;margin-right:3em;margin-bottom:.5em;" type="button" onclick="selectFiles_delete(\'' + file_type + '\', file_' + file_type + '_arr);">刪除</button>'
                         + '<div>※點選上面要刪除的檔案</div>'
                         + '<br/><hr style="border:3px dashed blue; height:1px">'
-                        + '<button class="program_question" style="color:blue;" type="button" onclick="selectFiles_insert(\'file_D\', file_D_arr);">新增檔案++</button><br/><div id="selected-file_D"><span style="color:red;">上傳檔案清單預覽：</span><br/></div>';
-                      $("#other_file").html(file_a_htmlstr);
+                        + '<button class="program_question" style="color:blue;" type="button" onclick="selectFiles_insert(\'file_' + file_type + '\', file_' + file_type + '_arr);">新增檔案++</button><br/><div id="selected-file_' + file_type + '"><br/></div>';
+
+                    $("#" + file_id).html(file_a_htmlstr);
+                      break;
                       break;
               }
 
@@ -452,12 +465,34 @@ function load_program_datas() {
       }
   });
 
+  function initializeUploadFields() {
+    // 方案計畫檔案
+    initializeUploadField("proposal_file", "file_A");
+
+    // 成果報告檔案
+    initializeUploadField("achieve_file", "file_C");
+
+    // 核銷及備註資料
+    initializeUploadField("other_file", "file_D");
+  }
+
+  function initializeUploadField(fieldId, fileType) {
+    var html = '<br/>' +
+      '<button class="program_question" style="color:red;margin-right:3em;margin-bottom:.5em;" type="button" onclick="selectFiles_delete(' + fileType + '_arr);">刪除</button>' +
+      '<div>※點選上面要刪除的檔案</div>' +
+      '<br/><hr style="border:3px dashed blue; height:1px">' +
+      '<button class="program_question" style="color:blue;" type="button" onclick="selectFiles_insert(\'' + fileType + '\', ' + fileType + '_arr);">新增檔案++</button>' +
+      // '<br/><div id="selected-' + fileType + '"><span style="color:red;">上傳檔案清單預覽：</span><br/></div>';
+
+    $("#" + fieldId).html(html);
+  }
+
 
   $(".program_question").attr("disabled",true);
 }
 
 program_update = function() {
-  
+
   var stau = false;
 
   if (check_updat_program_user_data() != "") {
@@ -501,15 +536,15 @@ program_update = function() {
                 form_data.append("program_plan_files"+index, program_files[i]);
                 // console.log(program_files[i])
               }
-            } 
-          //   else 
+            }
+          //   else
           //   {
           //     //載入量表『無重新上傳檔案』情況下按儲存，則加入no_file_arr供後端程式判斷
           //     no_file_arr.push({ name: program_files_name, value: program_files_val });
           //   }
           }
       });
-      
+
       // 未選擇檔案的file陣列no_file_arr加入File_name變數供後端程式判斷
       // form_data.append("File_name", JSON.stringify(no_file_arr));
 
@@ -588,7 +623,7 @@ function check_updat_program_user_data() {
 
   var errorstr = "";
 
-  
+
   if (date == null) {
       errorstr += "未填寫日期!\r\n";
   }
@@ -618,7 +653,7 @@ function check_updat_program_user_data() {
       //   errorstr += "未填寫經費來源!\r\n";
       // }
     }
-  
+
     return errorstr;
 }
 
@@ -640,7 +675,7 @@ $("input.program_forms_question"+row_year+"[type='file']").each(function(index, 
           form_data.append("program_forms_files"+index, program_forms_files[i]);
           // console.log(program_forms_files[i])
         }
-      } 
+      }
     }
 });
 
@@ -698,7 +733,7 @@ $.ajax({
     });
   },
 });
- 
+
 }
 
 // 顯示檔名 region
@@ -727,7 +762,7 @@ get_files_name_value = function() {
   //   var fileval = $(this).attr("value") || "";
     //獲取 file name名稱
     var name = $(this).attr("name");
-    
+
     file_name.push({ name: name, value: filePath[filePath.length - 1] });
   //   file_name.push({ name: name, value: fileval });
  });
@@ -765,87 +800,75 @@ function program_cancel(){
 //endregion
 
 // 刪除檔案內容 多檔案上傳 region
-selectFiles_delete = function (file_a_input_val_arr) {
+// 刪除檔案內容 多檔案上傳 region
+// 刪除檔案內容 多檔案上傳 region
+selectFiles_delete = function (file_type, file_arr) {
+  console.log("selectFiles_delete called with file_type:", file_type, "and file_arr:", file_arr);
 
+  var checkedFile = $("[name='file_" + file_type + "_check']:checked");
+  console.log("Checked file:", checkedFile.length > 0 ? checkedFile.val() : "None selected");
 
-  if ($("[name='file_a_check']:checked").length > 0) {
-    // console.log($("#val_arr" + $("[name='file_a_check']:checked").attr("value")))
-    swal({
-      title: "是否刪除該檔案？\n" + "檔名："+ $("#val_arr" + $("[name='file_a_check']:checked").attr("value")).text(),
-      text: "確認刪除後將無法復原操作",
-      type: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#DD6B55",
-      confirmButtonText: "確認",
-      cancelButtonText: "取消",
-      showConfirmButton: true,
-      showCancelButton: true
-    }).then(function (result) {
-      if (result) {
-        var file_a_sql_id = $("[name='file_a_check']:checked").attr("forms_sql_id");
-        var file_a_val = $("[name='file_a_check']:checked").attr("value");
+  if (checkedFile.length > 0) {
+      var file_name = $("#val_arr" + checkedFile.attr("value")).text();
+      console.log("File to be deleted:", file_name);
 
-        // console.log(file_a_input_val_arr)
+      swal({
+          title: "是否刪除該檔案？\n" + "檔名：" + file_name,
+          text: "確認刪除後將無法復原操作",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#DD6B55",
+          confirmButtonText: "確認",
+          cancelButtonText: "取消",
+          showConfirmButton: true,
+          showCancelButton: true
+      }).then(function (result) {
+          if (result.value) {
+              var file_sql_id = checkedFile.attr("forms_sql_id");
+              var file_val = checkedFile.attr("value");
 
-        var r_file_a = file_a_input_val_arr.splice(parseInt(file_a_val), 1);
-        console.log(file_a_sql_id);
-        console.log(file_a_input_val_arr);
-        console.log(r_file_a);
+              // 確保傳遞正確的檔案路徑（Remove_file）
+              var remove_file = $("#val_arr" + file_val).attr("href").replace("./", "../");
 
-        // $.ajax({
-        //   url: "database/delete_resume_file_a.php",
-        //   type: "POST",
-        //   data: {
-        //     Form_sql_id: file_a_sql_id,
-        //     program_id:program_id,
-        //     File_a_arr: file_a_input_val_arr,
-        //     File_a_delete_index: file_a_val,
-        //     Remove_file_a: r_file_a[0],
-        //   },
-        //   // dataType: "JSON",
-        //   success: function (data) {
-        //     // console.log(data);
-        //     if (data == 1) {
-        //       swal({
-        //         type: "success",
-        //         title: "刪除檔案成功!",
-        //         allowOutsideClick: false, //不可點背景關閉
-        //       }).then(function () {
-        //         location.reload();
-        //       });
-        //     }
+              console.log("Preparing to delete. SQL ID:", file_sql_id, "File value:", file_val, "Remove file:", remove_file);
 
-        //   },
-        //   error: function (e) {
-        //     // console.log(e)
-        //     swal({
-        //       type: "error",
-        //       title: "刪除檔案失敗！請聯絡網站維護人員",
-        //       allowOutsideClick: false, //不可點背景關閉
-        //     });
-        //   },
-        // });
-
-      }
-    }, function (dismiss) {
-      if (dismiss == 'cancel') {
-        swal({
-          title: '已取消',
-          type: 'success',
-        })
-      }
-    }).catch(swal.noop)
+              $.ajax({
+                  url: "database/delete_program_plan_file.php",
+                  type: "POST",
+                  data: {
+                      Form_sql_id: file_sql_id,
+                      program_id: program_id,
+                      file_type: file_type,
+                      File_arr: file_arr, // 傳遞所有的檔案陣列
+                      Remove_file: remove_file // 傳遞要刪除的具體檔案
+                  },
+                  dataType: 'json',
+                  success: function (response) {
+                      console.log("Delete response:", response);
+                      if (response.status === 'success') {
+                          swal("成功", "文件已成功刪除", "success").then(() => {
+                              location.reload();
+                          });
+                      } else {
+                          swal("錯誤", "刪除文件時發生錯誤：" + response.message, "error");
+                      }
+                  },
+                  error: function (xhr, status, error) {
+                      console.error("Ajax error:", xhr.responseText);
+                      swal("錯誤", "刪除文件時發生錯誤", "error");
+                  }
+              });
+          }
+      }).catch(swal.noop);
+  } else {
+      swal({
+          type: 'warning',
+          title: '請選取要刪除的檔案!',
+          allowOutsideClick: false
+      });
   }
-  else {
-    swal({
-      type: 'warning',
-      title: '請選取要刪除的檔案!',
-      allowOutsideClick: false //不可點背景關閉
-    })
-  }
-
-
 }
+
 //endregion
 
 window.selectedFiles = [];
@@ -883,40 +906,119 @@ selectFiles_insert = function (file, file_arr) {
         }
       }).catch(swal.noop)
   }
-    
+
 }
 
 
-selected_files = function(file, file_arr) {
-  selectedFiles = [];
-  selectedFiles_str = "";
-  var html = '<span style="color:red;">上傳檔案清單預覽：</span><br/>';
+// selected_files = function(file, file_arr) {
+//   selectedFiles = [];
+//   selectedFiles_str = "";
+//   var html = '<span style="color:red;">上傳檔案清單預覽：</span><br/>';
 
-  $("#selected-"+file).html(html);
+//   $("#selected-"+file).html(html);
 
+//   $.FileDialog({
+//     "accept": "*",
+//     "drag_message": "將檔案拖曳至此處新增",
+//     "title": "載入檔案",
+//   }).on("files.bs.filedialog", function (event) {
+//     for (var a = 0; a < event.files.length; a++) {
+//       file_arr.push(event.files[a]);
+
+//       // console.log(event.files[a])
+
+//       if(a == 0)
+//       {
+//         selectedFiles_str += event.files[a].name;
+//       }
+//       else
+//       {
+//         selectedFiles_str += "," + event.files[a].name;
+//       }
+
+//       html += '<span style="color:red;" value="' + event.files[a].name + '">' + event.files[a].name + '</span><br/>';
+//     }
+//     // console.log(file_arr);
+//     $.ajax({
+//       url: "database/update_program_plan_forms_data_detail.php",
+//       type: "POST",
+//       data: form_data,
+//       contentType: false,
+//       cache: false,
+//       processData: false,
+//       async: true,
+//     success: function (data) {
+//       // console.log(data);
+//       if (data == 1) {
+//         swal({
+//           type: "success",
+//           title: "更新成功!",
+//           allowOutsideClick: false, //不可點背景關閉
+//         }).then(function () {
+//           window.location.href =
+//             "program_plan_detail.php?"+
+//             "&program_id=" +
+//             program_id +
+//             "";
+//         });
+//       } else {
+//         swal({
+//           type: "error",
+//           title: "更新失敗！請聯絡網站維護人員",
+//           allowOutsideClick: false, //不可點背景關閉
+//         });
+//       }
+//     },
+//     error: function (e) {
+//       // console.log(e)
+//       swal({
+//           type: "error",
+//           title: "更新失敗！請聯絡網站維護人員",
+//           allowOutsideClick: false, //不可點背景關閉
+//       });
+//     },
+//   });
+//     $("#selected-"+file).html(html);
+//   });
+// }
+
+function selected_files(file_type, file_arr) {
   $.FileDialog({
-    "accept": "*",
-    "drag_message": "將檔案拖曳至此處新增",
-    "title": "載入檔案",
-  }).on("files.bs.filedialog", function (event) {
-    for (var a = 0; a < event.files.length; a++) {
-      file_arr.push(event.files[a]);
+    accept: "*",
+    cancelButton: "取消",
+    title: "選擇檔案",
+    multipleSelect: true,
+    linkType: "direct"
+  }).on('files.bs.filedialog', function (event) {
+    var files = event.files;
+    var formData = new FormData();
+    formData.append('program_id', program_id);
+    formData.append('file_type', file_type);
 
-      // console.log(event.files[a])
-
-      if(a == 0)
-      {
-        selectedFiles_str += event.files[a].name;
-      }
-      else
-      {
-        selectedFiles_str += "," + event.files[a].name;
-      }
-
-      html += '<span style="color:red;" value="' + event.files[a].name + '">' + event.files[a].name + '</span><br/>';
+    for (var i = 0; i < files.length; i++) {
+      formData.append('files[]', files[i]);
     }
-    console.log(file_arr);
-    $("#selected-"+file).html(html);
+
+    $.ajax({
+      url: 'database/update_program_plan_forms_data_detail.php',
+      type: 'POST',
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function (response) {
+        var result = JSON.parse(response);
+        if (result.status === 'success') {
+          swal("成功", "檔案上傳成功", "success").then(function() {
+            location.reload();
+          });
+        } else {
+          swal("錯誤", "檔案上傳失敗: " + result.message, "error");
+        }
+      },
+      error: function () {
+        swal("錯誤", "檔案上傳失敗", "error");
+      }
+    });
   });
 }
 
