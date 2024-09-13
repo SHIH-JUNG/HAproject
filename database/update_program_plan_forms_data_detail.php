@@ -11,9 +11,6 @@ $user = $_SESSION['name'];
 
 $action = isset($_POST['action']) ? $_POST['action'] : '';
 
-if ($action === 'delete_file') {
-    // ... (刪除文件的代碼保持不變)
-} else {
     $is_file_upload = isset($_POST['file_type']) && isset($_FILES['files']);
 
     if ($is_file_upload) {
@@ -56,8 +53,7 @@ if ($action === 'delete_file') {
                 $file_path = $file_dir . $file_name_parts['filename'] . '_' . $unique_id . '.' . $file_name_parts['extension'];
             }
             move_uploaded_file($tmp_name, $file_path);
-            $file_paths[] = $file_name; // 存储原始文件名
-        }
+            $file_paths[] = $file_name;
     }
 
     $success = true;
