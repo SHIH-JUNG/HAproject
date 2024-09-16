@@ -370,10 +370,10 @@ function displayFiles(file_id, file_type, value) {
     var program_file_path = val.replace("../", "./");
     var program_file_name = val.split("/");
     var program_file_val = program_file_name[program_file_name.length - 1];
-    file_a_htmlstr += '<input class="program_question" style="zoom: 1.5" type="radio" name="file_' + file_type + '_check" forms_sql_id="' + value.Id + '" value="' + i + '">'
-        + '<span>檔案' + (i + 1) + '：</span><a id="val_arr'+i+'" href="' + program_file_path + '" style="text-decoration:none;color:blue;" target="_blank">'
-        + program_file_val
-        + '</a><br/><br/>';
+    file_a_htmlstr += '<input class="program_question" style="zoom: 1.5" type="radio" name="file_' + file_type + '_check" forms_sql_id="' + value.Id + '" value="' + i + '" id="file_' + file_type + '_' + i + '">'
+      + '<label for="file_' + file_type + '_' + i + '">檔案' + (i + 1) + '：<a id="val_arr'+i+'" href="' + program_file_path + '" style="text-decoration:none;color:blue;" target="_blank">'
+      + program_file_val
+      + '</a></label><br/><br/>';
   });
 
   file_a_htmlstr += '<br/>'
@@ -900,9 +900,8 @@ function program_cancel(){
 };
 //endregion
 
-// 刪除檔案內容 多檔案上傳 region
-// 刪除檔案內容 多檔案上傳 region
-// 刪除檔案內容 多檔案上傳 region
+
+//刪除檔案內容 多檔案上傳 region
 selectFiles_delete = function (file_type, file_arr) {
   console.log("selectFiles_delete called with file_type:", file_type, "and file_arr:", file_arr);
 
@@ -938,7 +937,7 @@ selectFiles_delete = function (file_type, file_arr) {
                   type: "POST",
                   data: {
                       Form_sql_id: file_sql_id,
-                      program_id: program_id,
+                      Program_id: program_id,
                       file_type: file_type,
                       File_arr: file_arr, // 傳遞所有的檔案陣列
                       Remove_file: remove_file // 傳遞要刪除的具體檔案

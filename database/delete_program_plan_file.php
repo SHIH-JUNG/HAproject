@@ -1,67 +1,64 @@
+<?php session_start(); ?>
 <?php
-session_start();
+//連接資料庫
+//只要此頁面上有用到連接MySQL就要include它
 include("sql_connect.php");
 
-header('Content-Type: application/json');
 
-// 檢查是否存在必要的 POST 參數
-if (!isset($_POST['Form_sql_id']) || !isset($_POST['program_id']) || !isset($_POST['file_type']) || !isset($_POST['File_arr']) || !isset($_POST['Remove_file'])) {
-    echo json_encode(['status' => 'error', 'message' => '缺少必要參數']);
-    exit();
-}
-
-// 接收 POST 參數
 $Form_sql_id = $_POST['Form_sql_id'];
-$program_id = $_POST['program_id'];
-$file_type = $_POST['file_type'];
-$File_arr = $_POST['File_arr']; // 接收的是陣列
-$Remove_file = $_POST['Remove_file']; // 檔案完整路徑
+$Program_id = $_POST['Program_id'];
+@$File_a_arr = json_encode($_POST['File_a_arr'],JSON_UNESCAPED_UNICODE);
 
-// 獲取當前使用者名稱
+
+$Remove_file_a = $_POST['Remove_file_a'];
+
 $user = $_SESSION['name'];
+
 $now_date = date("Y-m-d");
 
-// 檢查檔案是否存在並進行刪除
-if (file_exists($Remove_file)) {
-    if (unlink($Remove_file)) {
-        // 刪除成功，處理 File_arr 並更新資料庫
 
-        // 更新檔案陣列（去除被刪除的檔案）
-        $updated_file_arr = array_diff($File_arr, [$Remove_file]);
 
-        // 如果沒有剩下的檔案，從資料庫中刪除該記錄
-        if (empty($updated_file_arr)) {
-            $sqlUpdate = "DELETE FROM `program_plan_form` WHERE `Id` = '$Form_sql_id';";
-        } else {
-            // 如果還有剩下的檔案，更新資料庫中的檔案陣列
-            $File_arr_json = json_encode($updated_file_arr, JSON_UNESCAPED_UNICODE);
-            $sqlUpdate = "UPDATE `program_plan_form` SET `File_path` = '$File_arr_json',
-            `Update_name` = '$user', `Update_date` = NOW() WHERE `Id` = '$Form_sql_id';";
-        }
+// 查詢 id、名字
+$select_user_data_num = "SELECT `Id` FROM `program_plan` WHERE `Id` = '$Program_id';";
 
-        // 同時更新主表 program_plan 中的更新時間和人員
-        $sqlUpdate .= "UPDATE `program_plan` SET `Update_name` = '$user', `Update_date` = NOW() WHERE `Id` = '$program_id';";
+$find_user_data_num = mysqli_query($conn,$select_user_data_num);
+$user_data_num = mysqli_fetch_row($find_user_data_num);
 
-        // 執行 SQL 查詢
-        if (mysqli_multi_query($conn, $sqlUpdate)) {
-            $response['status'] = 'success';
-            $response['message'] = '檔案已成功刪除';
-        } else {
-            $response['status'] = 'error';
-            $response['message'] = '資料庫更新失敗: ' . mysqli_error($conn);
-        }
-    } else {
-        $response['status'] = 'error';
-        $response['message'] = '無法刪除檔案';
+
+
+// echo empty($_POST['File_a_arr']);
+// echo $_POST['Remove_file_a'];
+
+if(file_exists($Remove_file_a)){
+    unlink($Remove_file_a);//將檔案刪除
+
+    if(empty($_POST['File_a_arr']))
+    {
+        $sqlUpdate = "DELETE from `program_plan_form` WHERE `Id`= '$Form_sql_id';";
     }
-} else {
-    $response['status'] = 'error';
-    $response['message'] = '檔案不存在';
+    else
+    {
+        $sqlUpdate = "UPDATE `program_plan_form` SET `File_path` = '$File_a_arr',
+        `Update_name` = '$user', `Update_date` = NOW() WHERE `Id`= '$Form_sql_id';";
+    }
+
+    $sqlUpdate .= "UPDATE `resume` SET `Resume_datas_date` = '$now_date',
+    `Update_name` = '$user', `Update_date` = NOW() WHERE `Id`= '$Program_id';";
+
+
+    if (mysqli_multi_query($conn, $sqlUpdate)) {
+        echo true;
+    } else {
+        echo false;
+    }
+}
+else
+{
+    echo false;
 }
 
-// 返回 JSON 回應給前端
-echo json_encode($response);
 
-// 關閉資料庫連接
 mysqli_close($conn);
+
+
 ?>
