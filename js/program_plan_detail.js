@@ -388,7 +388,7 @@ function displayFiles(file_id, file_type, value) {
     var program_file_name = val.split("/");
     var program_file_val = program_file_name[program_file_name.length - 1];
     file_htmlstr += '<input class="program_question" style="zoom: 1.5" type="radio" name="file_' + file_type + '_check" forms_sql_id="' + value.Id + '" value="' + i + '" id="file_' + file_type + '_' + i + '">'
-      + '<label for="file_' + file_type + '_' + i + '">檔案' + (i + 1) + '：<a id="val_arr'+i+'" href="' + program_file_path + '" style="text-decoration:none;color:blue;" target="_blank">'
+      + '<label for="file_' + file_type + '_' + i + '">檔案' + (i+1) + '：<a id="val_arr'+i+'" href="' + program_file_path + '" style="text-decoration:none;color:blue;" target="_blank">'
       + program_file_val
       + '</a></label><br/><br/>';
 
@@ -923,7 +923,7 @@ function program_cancel(){
 
 //刪除檔案內容 多檔案上傳 region
 function selectFiles_delete(file_type) {
-  console.log("selectFiles_delete called with file_type:", file_type);
+  // console.log("selectFiles_delete called with file_type:", file_type);
 
   var file_arr;
   var arrayName;
@@ -941,20 +941,20 @@ function selectFiles_delete(file_type) {
           arrayName = 'file_D_arr';
           break;
       default:
-          console.error('Unknown file type:', file_type);
+          // console.error('Unknown file type:', file_type);
           return;
   }
 
   var checkedFile = $("[name='" + file_type + "_check']:checked");
-  console.log("Checked file:", checkedFile.length > 0 ? checkedFile.val() : "None selected");
+  // console.log("Checked file:", checkedFile.length > 0 ? checkedFile.val() : "None selected");
 
   if (checkedFile.length > 0) {
-      var file_index = parseInt(checkedFile.attr("value"));
-      var file_name = file_arr[file_index].split('/').pop(); // 使用數組中的文件名
-      console.log("File to be deleted:", file_name);
-
+      var file_index = checkedFile.val()
+      var file_name = file_arr.splice(file_index, 1)[0]; // 使用數組中的文件名
+      // console.log("File to be deleted:", file_name);
+      var show_file_name = file_name;
       swal({
-          title: "是否刪除該檔案？\n" + "檔名：" + file_name,
+          title: "是否刪除該檔案？\n" + "檔名：" + show_file_name.split('/').pop(),
           text: "確認刪除後將無法復原操作",
           type: "warning",
           showCancelButton: true,
@@ -964,26 +964,27 @@ function selectFiles_delete(file_type) {
           showConfirmButton: true,
           showCancelButton: true
       }).then(function (result) {
-          if (result.value) {
+          if (result) {
               var file_sql_id = checkedFile.attr("forms_sql_id");
               var remove_file = file_name;
 
-              console.log("Preparing to delete. SQL ID:", file_sql_id, "File index:", file_index, "Remove file:", remove_file);
+              // console.log("Preparing to delete. SQL ID:", file_sql_id, "File index:", file_index, "Remove file:", remove_file);
 
               $.ajax({
-                  url: "database/delete_program_plan_file.php",
+                  url: "database/delete_program_plan.php",
                   type: "POST",
                   data: {
                       Form_sql_id: file_sql_id,
                       Program_id: program_id,
                       file_type: file_type,
-                      file_index: file_index,
+                      File_a_arr: file_arr,
+                      // file_index: file_index,
                       Remove_file: remove_file
                   },
-                  dataType: 'json',
+                  // dataType: 'json',
                   success: function (response) {
-                      console.log("Delete response:", response);
-                      if (response.status === 'success') {
+                      // console.log("Delete response:", response);
+                      if (response == 1) {
                           // 從相應的數組中移除文件
                           file_arr.splice(file_index, 1);
                           // 更新全局變量
@@ -1148,6 +1149,7 @@ function selected_files(file_type, file_arr) {
       processData: false,
       contentType: false,
       success: function (response) {
+        console.log(response);
         var result = JSON.parse(response);
         if (result.status === 'success') {
           swal("成功", "檔案上傳成功", "success").then(function() {

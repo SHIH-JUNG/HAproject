@@ -74,7 +74,8 @@ if ($is_file_upload && isset($_FILES['files'])) {
 
         $json_paths = json_encode($file_paths, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
         $json_paths = mysqli_real_escape_string($conn, $json_paths);
-
+        $query = "DELETE FROM `program_plan_form` WHERE `Program_id` = $program_id and `File_type` = '$file_type';";
+        mysqli_query($conn, $query);
         $query = "INSERT INTO `program_plan_form`
                   (`Program_id`, `File_type`, `File_year`, `File_path`, `Upload_date`, `Upload_name`, `Update_date`, `Update_name`)
                   VALUES ('$program_id', '$file_type', '$file_year', '$json_paths', '$update_date', '$user', '$update_date', '$user')
