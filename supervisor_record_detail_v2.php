@@ -149,19 +149,19 @@
                                             </div>
                                             <div class="col-sm-12">
                                                 <ul style="font-size:17px" class="nav nav-tabs" id="myTab" role="tablist">
-                                                    <li class="nav-item active" role="presentation">
+                                                    <li class="nav-item" role="presentation">
                                                         <a class="nav-link" id="home-tab" data-toggle="pill" href="#one" role="tab" aria-selected="true">
                                                             <b>會議議程</b>
                                                         </a>
                                                     </li>
-                                                    <li class="nav-item" role="presentation">
+                                                    <li class="nav-item active" role="presentation">
                                                         <a class="nav-link" id="profile-tab" data-toggle="pill" href="#two" role="tab" aria-selected="false">
                                                             <b>個案研討與團督記錄</b>
                                                         </a>
                                                     </li>
                                                 </ul>
                                                 <div class="tab-content" id="myTabContent">
-                                                    <div class="tab-pane fade in active" id="one" role="tabpanel" aria-labelledby="home-tab">
+                                                    <div class="tab-pane fade" id="one" role="tabpanel" aria-labelledby="home-tab">
                                                         <div class="accordion" id="accordionExample">
                                                             <div class="panel panel-default">
                                                                 <div class="panel-heading" id="headingOne">
@@ -231,7 +231,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="tab-pane fade" id="two" role="tabpanel" aria-labelledby="profile-tab">
+                                                    <div class="tab-pane fade in active" id="two" role="tabpanel" aria-labelledby="profile-tab">
                                                         <div class="accordion" id="accordionExample">
                                                             <div class="panel panel-default">
                                                                 <div class="panel-heading" id="headingTwo">

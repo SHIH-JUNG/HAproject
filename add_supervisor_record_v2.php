@@ -117,19 +117,19 @@
                                             </div>
                                             <br>
                                             <ul style="font-size:17px" class="nav nav-tabs" id="myTab" role="tablist">
-                                                <li class="nav-item active" role="presentation">
+                                                <li class="nav-item" role="presentation">
                                                     <a class="nav-link" id="home-tab" data-toggle="pill" href="#one" role="tab" aria-selected="true">
-                                                        <b>上傳會議章程</b>
+                                                        <b>上傳會議議程</b>
                                                     </a>
                                                 </li>
-                                                <li class="nav-item" role="presentation">
+                                                <li class="nav-item active" role="presentation">
                                                     <a class="nav-link" id="profile-tab" data-toggle="pill" href="#two" role="tab" aria-selected="false">
                                                         <b>上傳個案研討與團督記錄</b>
                                                     </a>
                                                 </li>
                                             </ul>
                                             <div class="tab-content" id="myTabContent">
-                                                <div class="tab-pane fade in active" id="one" role="tabpanel" aria-labelledby="home-tab">
+                                                <div class="tab-pane fade" id="one" role="tabpanel" aria-labelledby="home-tab">
                                                     <div class="panel-body">
                                                     </div>
                                                     <div class="table-wrap">
@@ -138,11 +138,11 @@
                                                                 <table style="width:70%;" class="table table-bordered">
                                                                     <tr>
                                                                         <td colspan="2">
-                                                                            <h3>上傳會議章程</h3>
+                                                                            <h3>上傳會議議程</h3>
                                                                         </td>
                                                                     </tr>
                                                                     <tr style="text-align:left">
-                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;width:12em;">會議章程標題</td>
+                                                                        <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;width:12em;">會議議程標題</td>
                                                                         <td style="border-bottom: solid 1px;"><div class="col-sm-10"><input id="upload_agenda_title_name" name="upload_agenda_title_name" type="text" style="width:100%;"></div></td>
                                                                     </tr>
                                                                     <tr style="text-align:left">
@@ -174,7 +174,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="tab-pane fade" id="two" role="tabpanel" aria-labelledby="profile-tab">
+                                                <div class="tab-pane fade in active" id="two" role="tabpanel" aria-labelledby="profile-tab">
                                                     <div class="panel-body">
                                                     </div>
                                                     <div class="table-wrap">

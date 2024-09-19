@@ -742,10 +742,10 @@ function check_updat_data() {
     errorstr += "未填寫團督記錄標題!\r\n";
   }
   if(upload_agenda_title_name == null) {
-    errorstr += "未填寫會議章程標題!\r\n";
+    errorstr += "未填寫會議議程標題!\r\n";
   }
   // if(customFile1 == 0) {
-  //   errorstr += "未上傳會議章程檔案!\r\n";
+  //   errorstr += "未上傳會議議程檔案!\r\n";
   // }
   // if(customFile2 == 0) {
   //   errorstr += "未上傳會議記錄檔案!\r\n";
@@ -761,7 +761,7 @@ function check_updat_data() {
       errorstr += "未填寫團督記錄標題!\r\n";
     }
     if(upload_agenda_title_name.replace(/\s*/g, "") == "") {
-      errorstr += "未填寫會議章程標題!\r\n";
+      errorstr += "未填寫會議議程標題!\r\n";
     }
     if (director.replace(/\s*/g, "") == "") {
       errorstr += "未選擇主管!\r\n";
