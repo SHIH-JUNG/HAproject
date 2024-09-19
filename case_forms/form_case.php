@@ -322,17 +322,17 @@
                                                     </tr>
 
                                                     <tr>
-                                                        <td style="background-color:rgb(255 201 54);text-align:left;">出入矯正機關</td>
-                                                        <td colspan="5">
-                                                            <div class="col-sm-12">
-                                                                <div class="text-left">
-                                                                    <span>曾出入那些矯正機關？共<input style="width:3em;" name="correctional_question_count" id="correctional_question_count" type="text">次,</span>
-                                                                    <span>時間<input name="correctional_question_start" id="correctional_question_start" type="month">至<input name="correctional_question_end" id="correctional_question_end" type="month"></span>
-                                                                    <span style="color:blue;"><span>&emsp;&emsp;約共<input style="width:3em;" name="correctional_year" id="correctional_year" type="text">年<input style="width:3em;" name="correctional_month" id="correctional_month" type="text">月</span></span>
-                                                                    <button style="font-size:20px;color:blue;" onclick="calculation_date(); return false;">計算</button>
-                                                                </div>
+                                                    <td style="background-color:rgb(255 201 54);text-align:left;">出入矯正機關</td>
+                                                    <td colspan="5">
+                                                        <div class="col-sm-12">
+                                                            <div class="text-left">
+                                                                <span>曾出入那些矯正機關？共<input style="width:3em;" name="correctional_question_count" id="correctional_question_count" type="text">次,</span>
+                                                                <span>時間<input name="correctional_question_start" id="correctional_question_start" type="text" placeholder="若無月份，輸入年份即可">至<input name="correctional_question_end" id="correctional_question_end" type="text" placeholder="若無月份，輸入年份即可"></span>
+                                                                <span style="color:blue;"><span>&emsp;&emsp;約共<input style="width:3em;" name="correctional_year" id="correctional_year" type="text">年<input style="width:3em;" name="correctional_month" id="correctional_month" type="text">月</span></span>
+                                                                <button style="font-size:20px;color:blue;" onclick="calculation_date(); return false;">計算</button>
                                                             </div>
-                                                        </td>
+                                                        </div>
+                                                    </td>
                                                     </tr>
 
                                                     <tr>
