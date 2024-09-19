@@ -364,25 +364,45 @@ function initializeUploadField(fieldId, fileType) {
 }
 
 function displayFiles(file_id, file_type, value) {
-  var file_a_arr = value.File_path.replace("\[", "").replace("\]", "").replace(/\"/g, "").split(",");
-  var file_a_htmlstr = "";
-  $.each(file_a_arr, function (i, val) {
+  var file_arr;
+  switch(file_type) {
+    case 'A':
+      file_arr = file_A_arr;
+      break;
+    case 'C':
+      file_arr = file_C_arr;
+      break;
+    case 'D':
+      file_arr = file_D_arr;
+      break;
+    default:
+      console.error('Unknown file type:', file_type);
+      return;
+  }
+
+  var file_paths = value.File_path.replace(/^\[|\]$/g, "").replace(/\"/g, "").split(",");
+  var file_htmlstr = "";
+
+  $.each(file_paths, function (i, val) {
     var program_file_path = val.replace("../", "./");
     var program_file_name = val.split("/");
     var program_file_val = program_file_name[program_file_name.length - 1];
-    file_a_htmlstr += '<input class="program_question" style="zoom: 1.5" type="radio" name="file_' + file_type + '_check" forms_sql_id="' + value.Id + '" value="' + i + '" id="file_' + file_type + '_' + i + '">'
+    file_htmlstr += '<input class="program_question" style="zoom: 1.5" type="radio" name="file_' + file_type + '_check" forms_sql_id="' + value.Id + '" value="' + i + '" id="file_' + file_type + '_' + i + '">'
       + '<label for="file_' + file_type + '_' + i + '">檔案' + (i + 1) + '：<a id="val_arr'+i+'" href="' + program_file_path + '" style="text-decoration:none;color:blue;" target="_blank">'
       + program_file_val
       + '</a></label><br/><br/>';
+
+    // 將檔案路徑添加到相應的全局數組中
+    file_arr.push(val);
   });
 
-  file_a_htmlstr += '<br/>'
-    + '<button class="program_question" style="color:red;margin-right:3em;margin-bottom:.5em;" type="button" onclick="selectFiles_delete(\'' + file_type + '\', file_' + file_type + '_arr);">刪除</button>'
+  file_htmlstr += '<br/>'
+    + '<button class="program_question" style="color:red;margin-right:3em;margin-bottom:.5em;" type="button" onclick="selectFiles_delete(\'file_' + file_type + '\', file_' + file_type + '_arr);">刪除</button>'
     + '<div>※點選上面要刪除的檔案</div>'
     + '<br/><hr style="border:3px dashed blue; height:1px">'
     + '<button class="program_question" style="color:blue;" type="button" onclick="selectFiles_insert(\'file_' + file_type + '\', file_' + file_type + '_arr);">新增檔案++</button><br/><div id="selected-file_' + file_type + '"><br/></div>';
 
-  $("#" + file_id).html(file_a_htmlstr);
+  $("#" + file_id).html(file_htmlstr);
 }
 //   $.ajax({
 //       url: "database/find_program_plan_forms_data_detail.php",
@@ -902,14 +922,35 @@ function program_cancel(){
 
 
 //刪除檔案內容 多檔案上傳 region
-selectFiles_delete = function (file_type, file_arr) {
-  console.log("selectFiles_delete called with file_type:", file_type, "and file_arr:", file_arr);
+function selectFiles_delete(file_type) {
+  console.log("selectFiles_delete called with file_type:", file_type);
 
-  var checkedFile = $("[name='file_" + file_type + "_check']:checked");
+  var file_arr;
+  var arrayName;
+  switch(file_type) {
+      case 'file_A':
+          file_arr = file_A_arr;
+          arrayName = 'file_A_arr';
+          break;
+      case 'file_C':
+          file_arr = file_C_arr;
+          arrayName = 'file_C_arr';
+          break;
+      case 'file_D':
+          file_arr = file_D_arr;
+          arrayName = 'file_D_arr';
+          break;
+      default:
+          console.error('Unknown file type:', file_type);
+          return;
+  }
+
+  var checkedFile = $("[name='" + file_type + "_check']:checked");
   console.log("Checked file:", checkedFile.length > 0 ? checkedFile.val() : "None selected");
 
   if (checkedFile.length > 0) {
-      var file_name = $("#val_arr" + checkedFile.attr("value")).text();
+      var file_index = parseInt(checkedFile.attr("value"));
+      var file_name = file_arr[file_index].split('/').pop(); // 使用數組中的文件名
       console.log("File to be deleted:", file_name);
 
       swal({
@@ -925,12 +966,9 @@ selectFiles_delete = function (file_type, file_arr) {
       }).then(function (result) {
           if (result.value) {
               var file_sql_id = checkedFile.attr("forms_sql_id");
-              var file_val = checkedFile.attr("value");
+              var remove_file = file_name;
 
-              // 確保傳遞正確的檔案路徑（Remove_file）
-              var remove_file = $("#val_arr" + file_val).attr("href").replace("./", "../");
-
-              console.log("Preparing to delete. SQL ID:", file_sql_id, "File value:", file_val, "Remove file:", remove_file);
+              console.log("Preparing to delete. SQL ID:", file_sql_id, "File index:", file_index, "Remove file:", remove_file);
 
               $.ajax({
                   url: "database/delete_program_plan_file.php",
@@ -939,13 +977,17 @@ selectFiles_delete = function (file_type, file_arr) {
                       Form_sql_id: file_sql_id,
                       Program_id: program_id,
                       file_type: file_type,
-                      File_arr: file_arr, // 傳遞所有的檔案陣列
-                      Remove_file: remove_file // 傳遞要刪除的具體檔案
+                      file_index: file_index,
+                      Remove_file: remove_file
                   },
                   dataType: 'json',
                   success: function (response) {
                       console.log("Delete response:", response);
                       if (response.status === 'success') {
+                          // 從相應的數組中移除文件
+                          file_arr.splice(file_index, 1);
+                          // 更新全局變量
+                          window[arrayName] = file_arr;
                           swal("成功", "文件已成功刪除", "success").then(() => {
                               location.reload();
                           });
@@ -984,8 +1026,7 @@ selectFiles_insert = function (file, file_arr) {
   else
   {
       swal({
-        title: "已經有選擇檔案，是否清空當前檔案清單，重新選取？",
-        text: "目前檔案清單："+selectedFiles_str,
+        title: "是否繼續新增檔案到檔案清單?",
         type: "warning",
         showCancelButton: true,
         confirmButtonColor: "#DD6B55",
