@@ -152,7 +152,7 @@
                                                                 <tr><td><input name="interlocution_time" id="interlocution_time" type="time"></td></tr>
                                                                 <tr><td>處遇</td></tr>
                                                                 <tr><td><textarea style="min-height:20em;height:auto;width:100%;resize: none;font-size: 20px;" name="interlocution_content" id="interlocution_content" placeholder="請輸入處遇"></textarea></td></tr>
-                                                                <tr><td><button onclick="generateTextFile('interlocution_content')" class="btn btn-primary"> 輸出文字檔</button></td></tr>
+                                                                <tr><td><button onclick="generateTextFile('interlocution_content')" class="btn btn-primary">輸出文字檔</button></td></tr>
                                                                 <tr><td>下次服務目標</td></tr>
                                                                 <tr><td><textarea style="min-height:20em;height:auto;width:100%;resize: none;font-size: 20px;" name="interlocution_next_target" id="interlocution_next_target" placeholder="請輸入下次服務目標"></textarea></td></tr>
                                                                 <tr><td><button onclick="generateTextFile('interlocution_next_target')" class="btn btn-primary">輸出文字檔</button></td></tr>
