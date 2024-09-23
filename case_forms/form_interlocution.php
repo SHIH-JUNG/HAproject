@@ -152,8 +152,10 @@
                                                                 <tr><td><input name="interlocution_time" id="interlocution_time" type="time"></td></tr>
                                                                 <tr><td>處遇</td></tr>
                                                                 <tr><td><textarea style="min-height:20em;height:auto;width:100%;resize: none;font-size: 20px;" name="interlocution_content" id="interlocution_content" placeholder="請輸入處遇"></textarea></td></tr>
+                                                                <tr><td><button onclick="generateTextFile('interlocution_content')" class="btn btn-primary"> 輸出文字檔</button></td></tr>
                                                                 <tr><td>下次服務目標</td></tr>
                                                                 <tr><td><textarea style="min-height:20em;height:auto;width:100%;resize: none;font-size: 20px;" name="interlocution_next_target" id="interlocution_next_target" placeholder="請輸入下次服務目標"></textarea></td></tr>
+                                                                <tr><td><button onclick="generateTextFile('interlocution_next_target')" class="btn btn-primary">輸出文字檔</button></td></tr>
                                                             </table>
                                                         </td>
                                                         <!-- <td><input name="assign_name" id="assign_name" type="text"></td>
@@ -244,7 +246,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
-<script src="case_detail.js"></script>
 <script>
 
     // function fillFormValues() {
@@ -376,6 +377,21 @@
             };
 
             html2pdf().from(element).set(opt).save();
+        }
+        function generateTextFile(contentId) {
+            var content = document.getElementById(contentId).value;
+            var filename = contentId === 'interlocution_content' ? '處遇內容.txt' : '下次服務目標.txt';
+
+            var element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(content));
+            element.setAttribute('download', filename);
+
+            element.style.display = 'none';
+            document.body.appendChild(element);
+
+            element.click();
+
+            document.body.removeChild(element);
         }
 </script>
 </body>
