@@ -31,6 +31,18 @@
     table {
         margin-left: auto;
         margin-right: auto;
+        page-break-inside: avoid; /* 防止表格跨頁切割 */
+        width: 100%; /* 確保表格寬度占滿頁面，避免縮放導致跨頁 */
+    }
+
+    tr {
+        page-break-inside: avoid !important; /* 強制防止表格跨頁切割 */
+        break-inside: avoid; /* 防止內部元素跨頁（部分瀏覽器兼容） */
+    }
+
+    td {
+        page-break-inside: avoid !important; /* 強制防止表格跨頁切割 */
+        break-inside: avoid; /* 防止內部元素跨頁（部分瀏覽器兼容） */
     }
 
     .scr_container {
@@ -74,7 +86,7 @@
     }
 </style>
 
-<body>
+<i>
     <!--讀取進度條-->
     <div class="preloader-it">
         <div class="la-anim-1"></div>
@@ -163,7 +175,13 @@
                                                                 </div>
                                                                 <div id="collapseTwo" class="collapse in" aria-labelledby="headingTwo" data-parent="#accordionExample">
                                                                     <div class="panel-body scr_container">
+                                                                    <div class="text-center">
+                                                                        <button style="font-size:20px" class="btn btn-default" onclick="generatePDF1()">匯出內容為PDF</button>
+                                                                    </div>
                                                                         <table id="all_data" style="width:75%;" class="table table-bordered">
+                                                                    <!-- <input type="checkbox" class="pdf-section" id="section_1" value="section1">
+                                                                    <label for="section_1">輸出詳細資料</label>
+                                                                    <div id="section1"> -->
                                                                         <tr style="text-align:left">
                                                                             <td colspan="2" style="border-bottom: solid 1px;">
                                                                                 <label for="bf_num">早餐：</label><input style="width:3.5em;" class="dlgrec_question" id="bf_num" type="number">人、
@@ -232,6 +250,10 @@
                                                                                     </div>
                                                                             </td>
                                                                         </tr>
+                                                                    <!-- </div> -->
+                                                                        <!-- <input type="checkbox" class="pdf-section" id="section_2" value="section2">
+                                                                        <label for="section_2">輸出輔導內容</label>
+                                                                        <div id="section2"> -->
                                                                         <tr style="text-align:left">
                                                                             <td style="text-align:center;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;width: 10em;">時間</td>
                                                                             <td style="text-align:center;background-color:rgb(255 201 54);">輔導內容:生活、輔導、職訓及相關事宜</td>
@@ -308,7 +330,7 @@
                                                                             <textarea class="dlgrec_question" id="dlgrec_11" name="dlgrec_textarea" placeholder="請輸入備註" contenteditable="true"></textarea>
                                                                             </td>
                                                                         </tr>
-                                                                        
+
                                                                             <tr style="text-align:left">
                                                                                 <td style="text-align:right;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;" class="NOline">
                                                                                     <label>建立日期</label>
@@ -342,18 +364,19 @@
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
+                                                                            <!-- </div> -->
                                                                                 <td colspan="2">
                                                                                     <div id="edit_div">
                                                                                         <button style="font-size:20px" id="dlgrec_edit" class="btn btn-default" onclick="dlgrec_edit();">編輯</button>
                                                                                     </div>
                                                                                     <div id="save_div" hidden>
-                                                                                        <button style="font-size:20px" id="dlgrec_update" class="btn btn-default">修改</button>           
+                                                                                        <button style="font-size:20px" id="dlgrec_update" class="btn btn-default">修改</button>
                                                                                         <button style="font-size:20px" id="dlgrec_cancel" class="btn btn-default" onclick="dlgrec_cancel();">取消</button>
                                                                                     </div>
                                                                                 </td>
                                                                             </tr>
                                                                         </table>
-                                                                    
+
                                                                         <div class="col-sm-12" style="padding-left:0;padding-right:0;margin-top:3em;">
                                                                             <div class="text-center col-sm-4" style="padding-left:0;">
                                                                             </div>
@@ -362,7 +385,7 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    
+
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -453,7 +476,81 @@
     </script>
     <!-- ================== detail ================== -->
     <script type="text/javascript" src="js/dlgrec_detail.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+    <script>
+        function generatePDF1() {
+            const element = document.getElementById('all_data');
 
+            const opt = {
+                margin:       1,
+                filename:     '向日葵家園每日生活輔導紀錄表.pdf',
+                image:        { type: 'jpeg', quality: 1 },
+                html2canvas:  { scale: 3,
+                    logging: true, // 啟用日誌以幫助調試
+                    useCORS: true, // 允許跨域圖片
+                    allowTaint: true // 允許跨域圖片
+                    },
+                jsPDF:        { unit: 'mm', format: 'legal', orientation: 'landscape' },
+                pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] }
+            };
+
+            html2pdf().from(element).set(opt).save();
+        }
+//         function generatePDF1() {
+//     // 取得所有被選中的 checkbox
+//     const selectedCheckboxes = document.querySelectorAll('.pdf-section:checked');
+
+//     // 若無選中則提示用戶
+//     if (selectedCheckboxes.length === 0) {
+//         alert('請選擇要匯出的部分');
+//         return;
+//     }
+
+//     // 創建一個新的元素來匯集選中的內容
+//     const contentDiv = document.createElement('div');
+
+//     selectedCheckboxes.forEach((checkbox) => {
+//         // 取得對應 checkbox 的內容部分
+//         const sectionContent = document.getElementById(checkbox.value);
+//         if (sectionContent) {
+//             const clone = sectionContent.cloneNode(true);
+//             clone.style.display = 'block'; // 確保內容可見
+//             contentDiv.appendChild(clone);
+//         }
+//     });
+
+//     // 檢查匯集到的內容
+//     if (contentDiv.innerHTML.trim() === "") {
+//         alert('匯出的內容為空，請檢查是否選擇了正確的區塊。');
+//         return;
+//     }
+
+//     // 確保內容顯示在頁面上，供檢查
+//     document.body.appendChild(contentDiv);
+
+//     // 選擇選中的部分生成 PDF
+//     const opt = {
+//         margin: 0.5,
+//         filename: '輸出內容.pdf',
+//         image: { type: 'jpeg', quality: 1 },
+//         html2canvas: { scale: 4, logging: true, useCORS: true, allowTaint: true },
+//         jsPDF: { unit: 'mm', format: 'legal', orientation: 'landscape' },
+//         pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+//     };
+
+//     // 嘗試生成 PDF
+//     html2pdf().from(contentDiv).set(opt).save().then(() => {
+//         contentDiv.remove();  // 生成後移除
+//     }).catch((error) => {
+//         console.error("生成 PDF 過程中發生錯誤: ", error);
+//         alert('生成PDF時發生錯誤，請檢查控制台日誌');
+//     });
+// }
+
+
+    </script>
 </body>
 
 </html>
@@ -466,10 +563,10 @@
                     title:"您無權限查看當前頁面!",
                     type:"error"
                 }).then(function(){
-                    window.history.go (-1); 
-                }); 
-                </script>';  
-        } 
+                    window.history.go (-1);
+                });
+                </script>';
+        }
     }
 
 ?>
