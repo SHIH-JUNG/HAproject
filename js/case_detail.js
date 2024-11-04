@@ -1313,13 +1313,13 @@ $(document).ready(function () {
     answer_score_counting();
 
     //載入憂鬱量表內容 個案評估表->成效評估
-    load_sullen_data();
+    // load_sullen_data();
     //載入BSRS-5結果 個案評估表->成效評估
     load_BSRS5_data();
     //載入生活品質量表內容 個案評估表->成效評估
-    load_life_data();
+    // load_life_data();
     //載入家庭關係量表內容 個案評估表->成效評估
-    load_familyship_data();
+    // load_familyship_data();
 
     if(form_type=="BSRS5")
     {
