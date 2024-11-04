@@ -826,8 +826,14 @@
                                                                         <input style="width:3em;" name="BSRS5_life_month" id="BSRS5_life_month" type="text"><span>月</span>
                                                                         <input style="width:3em;" name="BSRS5_life_day" id="BSRS5_life_day" type="text"><span>日</span>
                                                                         <span>測）</span>
-                                                                        <span>得</span><input style="width:3em;" name="BSRS5_score" id="BSRS5_score" type="text"><span>分身心障礙狀況 </span><input style="width:5em;" type="text">
-                                                                        <span>，</span><input name="BSRS5_checkbox" style="zoom: 1.5" value="無" type="checkbox"><span>無自殺想法</span>
+                                                                        <span>得</span><input style="width:3em;" name="BSRS5_score" id="BSRS5_score" type="text"><span>分身心障礙狀況 </span>
+                                                                        <select name="disability_status" style="width:5em;">
+                                                                            <option value="normal">正常</option>
+                                                                            <option value="light">輕度</option>
+                                                                            <option value="moderate">中度</option>
+                                                                            <option value="severe">重度</option>
+                                                                        </select>
+                                                                        <span>，</span><input name="BSRS5_checkbox" style="zoom: 1.5" value="無" type="checkbox"><span>無自殺想法(完全沒有/輕微)</span>
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
@@ -837,8 +843,14 @@
                                                                         <input style="width:3em;" name="BSRS5_life_month" id="BSRS5_life_month" type="text"><span>月</span>
                                                                         <input style="width:3em;" name="BSRS5_life_day" id="BSRS5_life_day" type="text"><span>日</span>
                                                                         <span>測）</span>
-                                                                        <span>得</span><input style="width:3em;" name="BSRS5_score" id="BSRS5_score" type="text"><span>分身心障礙狀況 </span><input style="width:5em;" type="text">
-                                                                        <span>，</span><input name="BSRS5_checkbox" style="zoom: 1.5" value="無" type="checkbox"><span>無自殺想法</span>
+                                                                        <span>得</span><input style="width:3em;" name="BSRS5_score" id="BSRS5_score" type="text"><span>分身心障礙狀況 </span>
+                                                                        <select name="disability_status" style="width:5em;">
+                                                                            <option value="normal">正常</option>
+                                                                            <option value="light">輕度</option>
+                                                                            <option value="moderate">中度</option>
+                                                                            <option value="severe">重度</option>
+                                                                        </select>
+                                                                        <span>，</span><input name="BSRS5_checkbox" style="zoom: 1.5" value="無" type="checkbox"><span>無自殺想法(完全沒有/輕微)</span>
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
@@ -848,8 +860,14 @@
                                                                         <input style="width:3em;" name="BSRS5_life_month" id="BSRS5_life_month" type="text"><span>月</span>
                                                                         <input style="width:3em;" name="BSRS5_life_day" id="BSRS5_life_day" type="text"><span>日</span>
                                                                         <span>測）</span>
-                                                                        <span>得</span><input style="width:3em;" name="BSRS5_score" id="BSRS5_score" type="text"><span>分身心障礙狀況 </span><input style="width:5em;" type="text">
-                                                                        <span>，</span><input name="BSRS5_checkbox" style="zoom: 1.5" value="無" type="checkbox"><span>無自殺想法</span>
+                                                                        <span>得</span><input style="width:3em;" name="BSRS5_score" id="BSRS5_score" type="text"><span>分身心障礙狀況 </span>
+                                                                        <select name="disability_status" style="width:5em;">
+                                                                            <option value="normal">正常</option>
+                                                                            <option value="light">輕度</option>
+                                                                            <option value="moderate">中度</option>
+                                                                            <option value="severe">重度</option>
+                                                                        </select>
+                                                                        <span>，</span><input name="BSRS5_checkbox" style="zoom: 1.5" value="無" type="checkbox"><span>無自殺想法(完全沒有/輕微)</span>
                                                                     </td>
                                                                 </tr>
                                                             </table>
@@ -988,6 +1006,7 @@
                                                             <input name="employment_radio" style="zoom: 1.5" value="失業" type="radio"><span>失業</span>
                                                             <input name="employment_radio" style="zoom: 1.5" value="就業輔導中" type="radio"><span>就業輔導中</span>
                                                             <input name="employment_radio" style="zoom: 1.5" value="其他" type="radio"><span>其他</span>
+                                                            <input name="employment_radio_text" type="text">
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -999,6 +1018,8 @@
                                                             <input name="social_adaptation_radio" style="zoom: 1.5" value="尚可" type="radio"><span>尚可</span>
                                                             <input name="social_adaptation_radio" style="zoom: 1.5" value="不佳" type="radio"><span>不佳</span>
                                                             <input name="social_adaptation_radio" style="zoom: 1.5" value="適應問題不佳" type="radio"><span>適應問題不佳</span>
+                                                            <input name="social_adaptation_radio" style="zoom: 1.5" value="其他" type="radio"><span>其他</span>
+                                                            <input name="social_adaptation_radio_text" type="text">
                                                         </td>
                                                     </tr>
                                                     <tr>
