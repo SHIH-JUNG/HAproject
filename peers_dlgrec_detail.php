@@ -163,6 +163,9 @@
                                                                 </div>
                                                                 <div id="collapseTwo" class="collapse in" aria-labelledby="headingTwo" data-parent="#accordionExample">
                                                                     <div class="panel-body scr_container">
+                                                                        <div class="text-center">
+                                                                            <button style="font-size:20px" class="btn btn-default" onclick="generatePDF1()">匯出內容為PDF</button>
+                                                                        </div>
                                                                         <table id="all_data" style="width:75%;" class="table table-bordered">
                                                                         <tr style="text-align:left">
                                                                             <td colspan="2" style="border-bottom: solid 1px;">
@@ -179,7 +182,7 @@
                                                                                 <label for="dlg_manager">同儕生輔員/生活輔導員：</label><input class="peers_dlgrec_question" style="width:15em;" id="dlg_manager" type="text"><br/>
                                                                                 <div class="col-sm-5">
                                                                                     <label for="social_worker" style="margin-top:.5em;">社工員：</label>
-                                                                                    <select class="peers_dlgrec_question" name="social_worker" id="social_worker" style="width:60%;margin-top:.5em;">
+                                                                                    <select class="peers_dlgrec_question" name="social_worker" id="social_worker" style="width:60%;">
                                                                                         <option value="">請選擇</option>
                                                                                     </select>
                                                                                 </div>
@@ -194,7 +197,7 @@
                                                                             <td colspan="2" style="border-bottom: solid 1px;">
                                                                                 <div class="col-sm-5">
                                                                                     <label for="supervise1" style="margin-top:.5em;">督導：</label>
-                                                                                    <select class="peers_dlgrec_question" name="supervise1" id="supervise1" style="width:60%;margin-top:.5em;">
+                                                                                    <select class="peers_dlgrec_question" name="supervise1" id="supervise1" style="width:60%;">
                                                                                         <option value="">請選擇</option>
                                                                                     </select>
                                                                                 </div>
@@ -209,7 +212,7 @@
                                                                             <td colspan="2" style="border-bottom: solid 1px;">
                                                                                 <div class="col-sm-5">
                                                                                     <label for="supervise2" style="margin-top:.5em;">執行長：</label>
-                                                                                    <select class="peers_dlgrec_question" name="supervise2" id="supervise2" style="width:60%;margin-top:.5em;">
+                                                                                    <select class="peers_dlgrec_question" name="supervise2" id="supervise2" style="width:60%;">
                                                                                         <option value="">請選擇</option>
                                                                                     </select>
                                                                                 </div>
@@ -455,6 +458,30 @@
     </script>
     <!-- ================== detail ================== -->
     <script type="text/javascript" src="js/peers_dlgrec_detail.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
+    <!-- ================== pdf ================== -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+    <script>
+        function generatePDF1() {
+            const element = document.getElementById('all_data');
+
+            const opt = {
+                margin:       1,
+                filename:     '向日葵家園每日生活輔導紀錄表.pdf',
+                image:        { type: 'jpeg', quality: 1 },
+                html2canvas:  { scale: 3,
+                    logging: true, // 啟用日誌以幫助調試
+                    useCORS: true, // 允許跨域圖片
+                    allowTaint: true // 允許跨域圖片
+                    },
+                jsPDF:        { unit: 'mm', format: 'legal', orientation: 'landscape' },
+                pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] }
+            };
+
+            html2pdf().from(element).set(opt).save();
+        }
+    </script>
 
 </body>
 

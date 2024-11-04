@@ -2,7 +2,9 @@
 session_start();
 include("sql_connect.php");
 $peers_dlgrec_id = $_REQUEST['peers_dlgrec_id']; 
-
+$social_worker = $_REQUEST['social_worker'];
+$supervise1 = $_REQUEST['supervise1'];
+$supervise2 = $_REQUEST['supervise2'];
 $bf_num = $_REQUEST['bf_num'];
 $al_num = $_REQUEST['al_num'];
 $em_num = $_REQUEST['em_num'];
@@ -67,6 +69,7 @@ if (isset($_FILES["peers_dlgrec_files0"]))
 $sqlUpdate ="UPDATE `peers_dlgrec` SET `bf_num` = '$bf_num', `al_num` = '$al_num', `em_num` = '$em_num', `lp_num` = '$lp_num', `leave_num` = '$leave_num', `peers_dlgrec_date` = '$peers_dlgrec_date',
  `peers_dlgrec_0` = '$peers_dlgrec_0', `peers_dlgrec_1` = '$peers_dlgrec_2', `peers_dlgrec_3` = '$peers_dlgrec_3', `peers_dlgrec_4` = '$peers_dlgrec_4', `peers_dlgrec_5` = '$peers_dlgrec_5', `peers_dlgrec_6` = '$peers_dlgrec_6',
  `peers_dlgrec_7` = '$peers_dlgrec_7', `peers_dlgrec_8` = '$peers_dlgrec_8', `peers_dlgrec_9` = '$peers_dlgrec_9', `peers_dlgrec_10` = '$peers_dlgrec_10', `peers_dlgrec_11` = '$peers_dlgrec_11',
+  `social_worker` = '$social_worker', `supervise1` = '$supervise1', `supervise2` = '$supervise2',
   `dlg_manager` = '$dlg_manager',".$sql_file_upload."
   `Update_name` = '$user', `Update_date` = NOW() WHERE `Id` = '$peers_dlgrec_id' ORDER BY `peers_dlgrec`.`Create_date` ASC LIMIT 1;";
 

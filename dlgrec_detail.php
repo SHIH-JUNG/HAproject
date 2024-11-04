@@ -84,6 +84,10 @@
         min-height:6em;
         overflow: auto;
     }
+    .dlgrec_sign{
+        display: flex;
+        align-items: center;
+    }
 </style>
 
 <i>
@@ -197,7 +201,7 @@
                                                                                 <label for="dlg_manager">同儕生輔員/生活輔導員：</label><input class="dlgrec_question" style="width:15em;" id="dlg_manager" type="text"><br/>
                                                                                 <div class="col-sm-5">
                                                                                     <label for="social_worker" style="margin-top:.5em;">社工員：</label>
-                                                                                    <select class="dlgrec_question" name="social_worker" id="social_worker" style="width:60%;margin-top:.5em;">
+                                                                                    <select class="dlgrec_question" name="social_worker" id="social_worker" style="width:60%;">
                                                                                         <option value="">請選擇</option>
                                                                                     </select>
                                                                                 </div>
@@ -212,7 +216,7 @@
                                                                             <td colspan="2" style="border-bottom: solid 1px;">
                                                                                 <div class="col-sm-5">
                                                                                     <label for="supervise1" style="margin-top:.5em;">督導：</label>
-                                                                                    <select class="dlgrec_question" name="supervise1" id="supervise1" style="width:60%;margin-top:.5em;">
+                                                                                    <select class="dlgrec_question" name="supervise1" id="supervise1" style="width:60%;">
                                                                                         <option value="">請選擇</option>
                                                                                     </select>
                                                                                 </div>
@@ -227,7 +231,7 @@
                                                                             <td colspan="2" style="border-bottom: solid 1px;">
                                                                                 <div class="col-sm-5">
                                                                                     <label for="supervise2" style="margin-top:.5em;">執行長：</label>
-                                                                                    <select class="dlgrec_question" name="supervise2" id="supervise2" style="width:60%;margin-top:.5em;">
+                                                                                    <select class="dlgrec_question" name="supervise2" id="supervise2" style="width:60%;">
                                                                                         <option value="">請選擇</option>
                                                                                     </select>
                                                                                 </div>
@@ -476,6 +480,7 @@
     </script>
     <!-- ================== detail ================== -->
     <script type="text/javascript" src="js/dlgrec_detail.js<?php echo "?".date("Y-m-d h:i:sa")?>"></script>
+    <!-- ================== pdf ================== -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
@@ -498,58 +503,6 @@
 
             html2pdf().from(element).set(opt).save();
         }
-//         function generatePDF1() {
-//     // 取得所有被選中的 checkbox
-//     const selectedCheckboxes = document.querySelectorAll('.pdf-section:checked');
-
-//     // 若無選中則提示用戶
-//     if (selectedCheckboxes.length === 0) {
-//         alert('請選擇要匯出的部分');
-//         return;
-//     }
-
-//     // 創建一個新的元素來匯集選中的內容
-//     const contentDiv = document.createElement('div');
-
-//     selectedCheckboxes.forEach((checkbox) => {
-//         // 取得對應 checkbox 的內容部分
-//         const sectionContent = document.getElementById(checkbox.value);
-//         if (sectionContent) {
-//             const clone = sectionContent.cloneNode(true);
-//             clone.style.display = 'block'; // 確保內容可見
-//             contentDiv.appendChild(clone);
-//         }
-//     });
-
-//     // 檢查匯集到的內容
-//     if (contentDiv.innerHTML.trim() === "") {
-//         alert('匯出的內容為空，請檢查是否選擇了正確的區塊。');
-//         return;
-//     }
-
-//     // 確保內容顯示在頁面上，供檢查
-//     document.body.appendChild(contentDiv);
-
-//     // 選擇選中的部分生成 PDF
-//     const opt = {
-//         margin: 0.5,
-//         filename: '輸出內容.pdf',
-//         image: { type: 'jpeg', quality: 1 },
-//         html2canvas: { scale: 4, logging: true, useCORS: true, allowTaint: true },
-//         jsPDF: { unit: 'mm', format: 'legal', orientation: 'landscape' },
-//         pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
-//     };
-
-//     // 嘗試生成 PDF
-//     html2pdf().from(contentDiv).set(opt).save().then(() => {
-//         contentDiv.remove();  // 生成後移除
-//     }).catch((error) => {
-//         console.error("生成 PDF 過程中發生錯誤: ", error);
-//         alert('生成PDF時發生錯誤，請檢查控制台日誌');
-//     });
-// }
-
-
     </script>
 </body>
 
