@@ -128,6 +128,7 @@
                                                             </select>
                                                         </td>
                                                         <td>
+                                                        <table style="width:100%;">
                                                             <span>選擇個案問題分類，並按+號添加至下方</span>
                                                             <!-- <select name="interlocution_ques_type" id="interlocution_ques_type" style="width:80%;"></select> -->
                                                             <select id="interlocution_ques_type" style="width:100%;"></select>
@@ -140,20 +141,23 @@
                                                                 <button id="add_interlocution_ques_type_btn" onclick="insert_ques_type_keywords();return false;">新增問題類型</button>
                                                             </div>
                                                             <br/>
-                                                            <span>個案問題分類：</span>
-                                                            <textarea style="min-height:6em;height:auto;width:100%;resize: none;font-size: 20px;" name="interlocution_ques_types" id="interlocution_ques_types" readonly></textarea>
-                                                            <button onclick="return_ques_types();return false;">刪掉最後的分類</button><button style="margin-center:1em;margin-top:0.3em;" onclick="clear_ques_types();return false;">清空問題分類</button>
+                                                            <tr><td>個案問題分類：</td></tr>
+                                                            <tr><td><textarea style="min-height:6em;height:auto;width:100%;resize: none;font-size: 20px;" name="interlocution_ques_types" id="interlocution_ques_types" readonly></textarea></td></tr>
+                                                            <tr><td><button onclick="return_ques_types();return false;">刪掉最後的分類</button><button style="margin-center:1em;margin-top:0.3em;" onclick="clear_ques_types();return false;">清空問題分類</button></td></tr>
                                                             <div class="text-left" style="font-size:16px;color:red;">※有誤刪或清空操作請別存檔並重新整理網頁</div>
-                                                            <textarea style="min-height:26em;height:auto;width:100%;resize: none;font-size: 20px;margin-top:1.5em;" name="interlocution_ques" id="interlocution_ques" placeholder="請輸入個案問題"></textarea>
+                                                            <tr><td>會談紀錄：</td></tr>
+                                                            <tr><td><textarea style="min-height:26em;height:auto;width:100%;resize: none;font-size: 20px;margin-top:1.5em;" name="interlocution_ques" id="interlocution_ques" placeholder="請輸入個案問題"></textarea></td></tr>
+                                                            <tr><td><button onclick="generateTextFile('interlocution_ques');return false;" class="btn btn-primary">輸出文字檔</button></td></tr>
+                                                        </table>
                                                         </td>
                                                         <td>
                                                             <table style="width:100%;">
-                                                                <tr><td>訪談時間</td></tr>
+                                                                <tr><td>訪談時間：</td></tr>
                                                                 <tr><td><input name="interlocution_time" id="interlocution_time" type="time"></td></tr>
-                                                                <tr><td>處遇</td></tr>
+                                                                <tr><td>處遇：</td></tr>
                                                                 <tr><td><textarea style="min-height:20em;height:auto;width:100%;resize: none;font-size: 20px;" name="interlocution_content" id="interlocution_content" placeholder="請輸入處遇"></textarea></td></tr>
                                                                 <tr><td><button onclick="generateTextFile('interlocution_content');return false;" class="btn btn-primary">輸出文字檔</button></td></tr>
-                                                                <tr><td>下次服務目標</td></tr>
+                                                                <tr><td>下次服務目標：</td></tr>
                                                                 <tr><td><textarea style="min-height:20em;height:auto;width:100%;resize: none;font-size: 20px;" name="interlocution_next_target" id="interlocution_next_target" placeholder="請輸入下次服務目標"></textarea></td></tr>
                                                                 <tr><td><button onclick="generateTextFile('interlocution_next_target');return false;" class="btn btn-primary">輸出文字檔</button></td></tr>
                                                             </table>
@@ -224,6 +228,7 @@
                                     <!-- <button style="font-size:20px" onclick="test()" class="btn btn-default">測試</button> -->
                                 </div>
                                 <div class="text-right">
+                                    <button onclick="generateCombinedTextFile();return false;" class="btn btn-primary">輸出所有文字檔</button>
                                     <button style="font-size:20px" class="btn btn-default" onclick="generatePDF()">匯出個別會談摘要記錄表為PDF</button>
                                 </div>
                                 <!-- <div class="text-right">
@@ -380,7 +385,7 @@
         }
         function generateTextFile(contentId) {
             var content = document.getElementById(contentId).value;
-            var filename = contentId === 'interlocution_content' ? '處遇內容.txt' : '下次服務目標.txt';
+            var filename = contentId === 'interlocution_content' ? '處遇內容.txt' : (contentId === 'interlocution_next_target' ? '下次服務目標.txt' : '會談紀錄.txt');
 
             var element = document.createElement('a');
             element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(content));
@@ -392,6 +397,19 @@
             element.click();
 
             document.body.removeChild(element);
+        }
+        function generateCombinedTextFile() {
+            var interlocutionQues = document.getElementById('interlocution_ques').value;
+            var interlocutionContent = document.getElementById('interlocution_content').value;
+            var interlocutionNextTarget = document.getElementById('interlocution_next_target').value;
+
+            var combinedContent = `會談紀錄:\n${interlocutionQues}\n\n處遇:\n${interlocutionContent}\n\n下次服務目標:\n${interlocutionNextTarget}\n\n`;
+
+            var blob = new Blob([combinedContent], { type: 'text/plain;charset=utf-8' });
+            var link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = '會談紀錄_處遇_下次服務目標.txt';
+            link.click();
         }
 </script>
 </body>
