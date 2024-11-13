@@ -826,14 +826,18 @@
                                                                         <input style="width:3em;" name="BSRS5_life_month" id="BSRS5_life_month" type="text"><span>月</span>
                                                                         <input style="width:3em;" name="BSRS5_life_day" id="BSRS5_life_day" type="text"><span>日</span>
                                                                         <span>測）</span>
-                                                                        <span>得</span><input style="width:3em;" name="BSRS5_score" id="BSRS5_score" type="text"><span>分身心障礙狀況 </span>
-                                                                        <select name="disability_status" style="width:5em;">
+                                                                        <span>得</span><input style="width:3em;" name="BSRS5_score" id="BSRS5_score_1" type="text"oninput="DisabilityStatus(1)"><span>分身心障礙狀況 </span>
+                                                                        <select name="disability_status" id="disability_status_1" style="width:5em;">
                                                                             <option value="normal">正常</option>
                                                                             <option value="light">輕度</option>
                                                                             <option value="moderate">中度</option>
                                                                             <option value="severe">重度</option>
                                                                         </select>
-                                                                        <span>，</span><input name="BSRS5_checkbox" style="zoom: 1.5" value="無" type="checkbox"><span>無自殺想法(完全沒有/輕微)</span>
+                                                                        <span>，</span>
+                                                                        <input name="BSRS5_checkbox" style="zoom: 1.5" value="完全沒有" type="radio"><span>無自殺想法(完全沒有)</span>
+                                                                        <input name="BSRS5_checkbox" style="zoom: 1.5" value="輕微" type="radio"><span>無自殺想法(輕微)</span>
+                                                                        <span>，</span>
+                                                                        <input name="BSRS5_checkbox" style="zoom: 1.5" value="完全沒有" type="checkbox"><span>附加題單獨得分</span>
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
@@ -843,14 +847,18 @@
                                                                         <input style="width:3em;" name="BSRS5_life_month" id="BSRS5_life_month" type="text"><span>月</span>
                                                                         <input style="width:3em;" name="BSRS5_life_day" id="BSRS5_life_day" type="text"><span>日</span>
                                                                         <span>測）</span>
-                                                                        <span>得</span><input style="width:3em;" name="BSRS5_score" id="BSRS5_score" type="text"><span>分身心障礙狀況 </span>
-                                                                        <select name="disability_status" style="width:5em;">
+                                                                        <span>得</span><input style="width:3em;" name="BSRS5_score" id="BSRS5_score_2" type="text"oninput="DisabilityStatus(2)"><span>分身心障礙狀況 </span>
+                                                                        <select name="disability_status" id="disability_status_2" style="width:5em;">
                                                                             <option value="normal">正常</option>
                                                                             <option value="light">輕度</option>
                                                                             <option value="moderate">中度</option>
                                                                             <option value="severe">重度</option>
                                                                         </select>
-                                                                        <span>，</span><input name="BSRS5_checkbox" style="zoom: 1.5" value="無" type="checkbox"><span>無自殺想法(完全沒有/輕微)</span>
+                                                                        <span>，</span>
+                                                                        <input name="BSRS5_checkbox" style="zoom: 1.5" value="完全沒有" type="radio"><span>無自殺想法(完全沒有)</span>
+                                                                        <input name="BSRS5_checkbox" style="zoom: 1.5" value="輕微" type="radio"><span>無自殺想法(輕微)</span>
+                                                                        <span>，</span>
+                                                                        <input name="BSRS5_checkbox" style="zoom: 1.5" value="完全沒有" type="checkbox"><span>附加題單獨得分</span>
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
@@ -860,14 +868,18 @@
                                                                         <input style="width:3em;" name="BSRS5_life_month" id="BSRS5_life_month" type="text"><span>月</span>
                                                                         <input style="width:3em;" name="BSRS5_life_day" id="BSRS5_life_day" type="text"><span>日</span>
                                                                         <span>測）</span>
-                                                                        <span>得</span><input style="width:3em;" name="BSRS5_score" id="BSRS5_score" type="text"><span>分身心障礙狀況 </span>
-                                                                        <select name="disability_status" style="width:5em;">
+                                                                        <span>得</span><input style="width:3em;" name="BSRS5_score" id="BSRS5_score_3" type="text"oninput="DisabilityStatus(3)"><span>分身心障礙狀況 </span>
+                                                                        <select name="disability_status" id="disability_status_3" style="width:5em;">
                                                                             <option value="normal">正常</option>
                                                                             <option value="light">輕度</option>
                                                                             <option value="moderate">中度</option>
                                                                             <option value="severe">重度</option>
                                                                         </select>
-                                                                        <span>，</span><input name="BSRS5_checkbox" style="zoom: 1.5" value="無" type="checkbox"><span>無自殺想法(完全沒有/輕微)</span>
+                                                                        <span>，</span>
+                                                                        <input name="BSRS5_checkbox" style="zoom: 1.5" value="完全沒有" type="radio"><span>無自殺想法(完全沒有)</span>
+                                                                        <input name="BSRS5_checkbox" style="zoom: 1.5" value="輕微" type="radio"><span>無自殺想法(輕微)</span>
+                                                                        <span>，</span>
+                                                                        <input name="BSRS5_checkbox" style="zoom: 1.5" value="完全沒有" type="checkbox"><span>附加題單獨得分</span>
                                                                     </td>
                                                                 </tr>
                                                             </table>
@@ -929,7 +941,7 @@
                                                                         <span>狀況為：</span><input style="width:5em;" name="pretest_life_text" type="text">
                                                                     </td>
                                                                 </tr>
-                                                                <tr>
+                                                                <!-- <tr>
                                                                     <td colspan="4">
                                                                         <div class="text-right">
                                                                             <span>總分：</span>
@@ -938,7 +950,7 @@
                                                                             <input style="width:6em;" name="life_answer_score2_avg" id="life_answer_score2_avg" type="text" />
                                                                         </div>
                                                                     </td>
-                                                                </tr>
+                                                                </tr> -->
                                                             </table>
                                                         </td>
                                                     </tr>

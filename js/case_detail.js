@@ -2517,4 +2517,27 @@ function append_user(){
         },
     });
 }
+
+// 20241114 update form_case
+function DisabilityStatus(formId) {
+    const scoreInput = document.getElementById(`BSRS5_score_${formId}`).value;
+    const disabilitySelect = document.getElementById(`disability_status_${formId}`);
+    const score = parseInt(scoreInput, 10);
+
+    if (!isNaN(score)) {
+        if (score >= 0 && score <= 5) {
+            disabilitySelect.value = 'normal';
+        } else if (score >= 6 && score <= 9) {
+            disabilitySelect.value = 'light';
+        } else if (score >= 10 && score <= 14) {
+            disabilitySelect.value = 'moderate';
+        } else if (score >= 15) {
+            disabilitySelect.value = 'severe';
+        } else {
+            disabilitySelect.value = ''; // 清空選擇，若輸入無效
+        }
+    } else {
+        disabilitySelect.value = ''; // 清空選擇，若輸入非數字
+    }
+}
 //endregion
