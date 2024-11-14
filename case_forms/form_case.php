@@ -834,10 +834,10 @@
                                                                             <option value="severe">重度</option>
                                                                         </select>
                                                                         <span>，</span>
-                                                                        <input name="BSRS5_checkbox" style="zoom: 1.5" value="完全沒有" type="radio"><span>無自殺想法(完全沒有)</span>
-                                                                        <input name="BSRS5_checkbox" style="zoom: 1.5" value="輕微" type="radio"><span>無自殺想法(輕微)</span>
+                                                                        <input name="BSRS5_checkbox_1" style="zoom: 1.5" value="完全沒有" type="radio"><span>無自殺想法(完全沒有)</span>
+                                                                        <input name="BSRS5_checkbox_1" style="zoom: 1.5" value="輕微" type="radio"><span>無自殺想法(輕微)</span>
                                                                         <span>，</span>
-                                                                        <input name="BSRS5_checkbox" style="zoom: 1.5" value="完全沒有" type="checkbox"><span>附加題單獨得分</span>
+                                                                        <input name="other1" style="zoom: 1.5" value="完全沒有" type="checkbox"><span>附加題單獨得分</span>
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
@@ -855,10 +855,10 @@
                                                                             <option value="severe">重度</option>
                                                                         </select>
                                                                         <span>，</span>
-                                                                        <input name="BSRS5_checkbox" style="zoom: 1.5" value="完全沒有" type="radio"><span>無自殺想法(完全沒有)</span>
-                                                                        <input name="BSRS5_checkbox" style="zoom: 1.5" value="輕微" type="radio"><span>無自殺想法(輕微)</span>
+                                                                        <input name="BSRS5_checkbox_2" style="zoom: 1.5" value="完全沒有" type="radio"><span>無自殺想法(完全沒有)</span>
+                                                                        <input name="BSRS5_checkbox_2" style="zoom: 1.5" value="輕微" type="radio"><span>無自殺想法(輕微)</span>
                                                                         <span>，</span>
-                                                                        <input name="BSRS5_checkbox" style="zoom: 1.5" value="完全沒有" type="checkbox"><span>附加題單獨得分</span>
+                                                                        <input name="other2" style="zoom: 1.5" value="完全沒有" type="checkbox"><span>附加題單獨得分</span>
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
@@ -876,10 +876,10 @@
                                                                             <option value="severe">重度</option>
                                                                         </select>
                                                                         <span>，</span>
-                                                                        <input name="BSRS5_checkbox" style="zoom: 1.5" value="完全沒有" type="radio"><span>無自殺想法(完全沒有)</span>
-                                                                        <input name="BSRS5_checkbox" style="zoom: 1.5" value="輕微" type="radio"><span>無自殺想法(輕微)</span>
+                                                                        <input name="BSRS5_checkbox_3" style="zoom: 1.5" value="完全沒有" type="radio"><span>無自殺想法(完全沒有)</span>
+                                                                        <input name="BSRS5_checkbox_3" style="zoom: 1.5" value="輕微" type="radio"><span>無自殺想法(輕微)</span>
                                                                         <span>，</span>
-                                                                        <input name="BSRS5_checkbox" style="zoom: 1.5" value="完全沒有" type="checkbox"><span>附加題單獨得分</span>
+                                                                        <input name="other3" style="zoom: 1.5" value="完全沒有" type="checkbox"><span>附加題單獨得分</span>
                                                                     </td>
                                                                 </tr>
                                                             </table>
@@ -1398,6 +1398,19 @@
 
             html2pdf().from(element).set(opt).save();
         }
+
+        document.querySelectorAll('input[type="radio"]').forEach(function(radio) {
+            radio.addEventListener('click', function() {
+                if (this.checked) {
+                    this.wasChecked = this.hasAttribute('data-checked') ? false : true;
+                    this.setAttribute('data-checked', this.wasChecked);
+                    if (!this.wasChecked) {
+                        this.checked = false;
+                        this.removeAttribute('data-checked');
+                    }
+                }
+            });
+        });
     </script>
 </body>
 </html>
