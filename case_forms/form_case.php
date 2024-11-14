@@ -899,6 +899,8 @@
                                                                         <span>測）</span>
                                                                         &emsp;
                                                                         <input style="width:3em;" name="pretest_life_score" id="pretest_life_score" type="number"><span>分</span>
+                                                                        <span>，</span>
+                                                                        <span>平均分：</span><input style="width:3em;" name="pretest_life_score" id="pretest_life_score" type="number"><span>分</span>
                                                                         <span id="pretest_life_area">
 
                                                                         </span>
@@ -916,6 +918,8 @@
                                                                         <span>測）</span>
                                                                         &emsp;
                                                                         <input style="width:3em;" name="midtest_life_score" id="midtest_life_score" type="number"><span>分</span>
+                                                                        <span>，</span>
+                                                                        <span>平均分：</span><input style="width:3em;" name="pretest_life_score" id="pretest_life_score" type="number"><span>分</span>
                                                                         <span id="midtest_life_area">
 
                                                                         </span>
@@ -933,6 +937,8 @@
                                                                         <span>測）</span>
                                                                         &emsp;
                                                                         <input style="width:3em;" name="posttest_life_score" id="posttest_life_score" type="number"><span>分</span>
+                                                                        <span>，</span>
+                                                                        <span>平均分：</span><input style="width:3em;" name="pretest_life_score" id="pretest_life_score" type="number"><span>分</span>
                                                                         <span id="posttest_life_area">
 
                                                                         </span>
