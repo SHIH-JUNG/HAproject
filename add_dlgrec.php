@@ -147,55 +147,55 @@ input[type=number] {
                                                                     </div>
                                                                 </td>
                                                             </tr>
-                                                            
+
                                                             <tr style="text-align:left">
                                                                 <td style="text-align:center;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;width: 10em;">時間</td>
                                                                 <td style="text-align:center;background-color:rgb(255 201 54);">輔導內容:生活、輔導、職訓及相關事宜</td>
                                                             </tr>
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:center;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">6:30<br/>7:30</td>
+                                                                <td style="text-align:center;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">8:30<br/>9:30</td>
                                                                 <td style="border-bottom: solid 1px;">
                                                                 <textarea id="dlgrec_0" name="dlgrec_textarea" placeholder="請輸入內容" contenteditable="true"></textarea>
                                                                 </td>
                                                             </tr>
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:center;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">7:30<br/>9:30</td>
+                                                                <td style="text-align:center;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">9:30<br/>10:30</td>
                                                                 <td style="border-bottom: solid 1px;">
                                                                 <textarea id="dlgrec_1" name="dlgrec_textarea" placeholder="請輸入內容" contenteditable="true"></textarea>
                                                                 </td>
                                                             </tr>
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:center;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">9:30<br/>12:30</td>
+                                                                <td style="text-align:center;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">10:30<br/>11:30</td>
                                                                 <td style="border-bottom: solid 1px;">
                                                                 <textarea id="dlgrec_2" name="dlgrec_textarea" placeholder="請輸入內容" contenteditable="true"></textarea>
                                                                 </td>
                                                             </tr>
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:center;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">12:30<br/>14:00</td>
+                                                                <td style="text-align:center;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">11:30<br/>12:30</td>
                                                                 <td style="border-bottom: solid 1px;">
                                                                 <textarea id="dlgrec_3" name="dlgrec_textarea" placeholder="請輸入內容" contenteditable="true"></textarea>
                                                                 </td>
                                                             </tr>
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:center;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">14:00<br/>17:30</td>
+                                                                <td style="text-align:center;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">12:30<br/>13:30</td>
                                                                 <td style="border-bottom: solid 1px;">
                                                                 <textarea id="dlgrec_4" name="dlgrec_textarea" placeholder="請輸入內容" contenteditable="true"></textarea>
                                                                 </td>
                                                             </tr>
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:center;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">17:30<br/>18:30</td>
+                                                                <td style="text-align:center;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">13:30<br/>14:30</td>
                                                                 <td style="border-bottom: solid 1px;">
                                                                 <textarea id="dlgrec_5" name="dlgrec_textarea" placeholder="請輸入內容" contenteditable="true"></textarea>
                                                                 </td>
                                                             </tr>
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:center;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">18:30<br/>21:30</td>
+                                                                <td style="text-align:center;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">14:30<br/>15:30</td>
                                                                 <td style="border-bottom: solid 1px;">
                                                                 <textarea id="dlgrec_6" name="dlgrec_textarea" placeholder="請輸入內容" contenteditable="true"></textarea>
                                                                 </td>
                                                             </tr>
                                                             <tr style="text-align:left">
-                                                                <td style="text-align:center;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">21:30<br/>22:00</td>
+                                                                <td style="text-align:center;background-color:rgb(255 201 54);border-bottom-color: white;border-right-color: white;">15:30<br/>18:00</td>
                                                                 <td style="border-bottom: solid 1px;">
                                                                 <textarea id="dlgrec_7" name="dlgrec_textarea" placeholder="請輸入內容" contenteditable="true"></textarea>
                                                                 </td>
@@ -317,10 +317,10 @@ input[type=number] {
                     title:"您無權限查看當前頁面!",
                     type:"error"
                 }).then(function(){
-                    window.history.go (-1); 
-                }); 
-                </script>';  
-        } 
+                    window.history.go (-1);
+                });
+                </script>';
+        }
     }
 
 ?>
