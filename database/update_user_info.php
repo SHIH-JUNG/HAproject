@@ -11,8 +11,11 @@ $job = $_POST['job'];
 
 $user = $_SESSION['name'];
 
-
 $sql = "UPDATE `user_info` SET `Password` = '$modify_password', `Authority` = '$modify_auth_num', `Job` = '$job', `Update_date` = NOW(), `Update_name` = '$user' WHERE `Id` = '$Id';";
+
+if($modify_password=='*****'){
+    $sql = "UPDATE `user_info` SET `Authority` = '$modify_auth_num', `Job` = '$job', `Update_date` = NOW(), `Update_name` = '$user' WHERE `Id` = '$Id';";
+}
 
 if(mysqli_query($conn,$sql)){
     echo true;

@@ -16,7 +16,7 @@ $(".user_info_table").on('click', 'tr', function() {
     $('select[name=modify_classification]').val($.trim($(this).find("td:eq(6)").text()));//selected 項目  
     $('.bootstrap-select .filter-option').text($("#modify_classification").val());//顯示 selected
     var id = $.trim($(this).find("td:eq(0)").text());
-
+    
     //修改用戶region
     $("#modify_val").click(function (e) {
         swal({
@@ -48,6 +48,7 @@ $(".user_info_table").on('click', 'tr', function() {
                         },
                         async: false,//啟用同步請求
                         success: function (data) {
+                            console.log(data)
                             if (data == 1) {
                                 swal({
                                     type: 'success',
@@ -65,6 +66,7 @@ $(".user_info_table").on('click', 'tr', function() {
                             }
                         },
                         error: function (e) {
+                            console.log(e)
                             swal({
                                 type: 'error',
                                 title: '伺服器錯誤，無法載入，請聯絡網站維護人員',
