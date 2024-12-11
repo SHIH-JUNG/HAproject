@@ -13,7 +13,7 @@ $user = $_SESSION['name'];
 
 $sql = "UPDATE `user_info` SET `Password` = '$modify_password', `Authority` = '$modify_auth_num', `Job` = '$job', `Update_date` = NOW(), `Update_name` = '$user' WHERE `Id` = '$Id';";
 
-if($modify_password=='*****'){
+if($modify_password=='*****' || $modify_password==''){
     $sql = "UPDATE `user_info` SET `Authority` = '$modify_auth_num', `Job` = '$job', `Update_date` = NOW(), `Update_name` = '$user' WHERE `Id` = '$Id';";
 }
 
