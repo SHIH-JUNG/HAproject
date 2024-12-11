@@ -13,7 +13,7 @@ $permissions = '';
 // echo $user_name;
 //region 抓資料
 
-if($id <= 3){
+if($id <= 4){
   $permissions = "";
 }
 else{
