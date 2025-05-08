@@ -174,9 +174,9 @@
                                                             <td class="text-left">
                                                                 <select id="vgroup" rel="5" class="filter search">
                                                                     <option value="">請選擇</option>
-                                                                    <option value="社區宣導志工組">社區宣導志工組</option>
-                                                                    <option value="監獄直接服務志工組">監獄直接服務志工組</option>
-                                                                    <option value="行政服務志工組">行政服務志工組</option>
+                                                                    <option value="快樂行政組">快樂行政組</option>
+                                                                    <option value="機動支援組">機動支援組</option>
+                                                                    <option value="社區關懷組">社區關懷組</option>
                                                                 </select>
                                                             </td>
 
